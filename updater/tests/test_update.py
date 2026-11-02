@@ -297,7 +297,7 @@ def test_missing_key_exits_cleanly(monkeypatch, capsys):
 
 
 def test_key_is_never_printed(data_dir, cost_log, monkeypatch, capsys):
-    secret = "sk-ant-api03-TESTSECRET-do-not-print"
+    secret = "fake-key-TESTSECRET-do-not-print"
     monkeypatch.setenv("ANTHROPIC_API_KEY", secret)
     monkeypatch.setattr(update, "make_client", lambda key: FakeClient([resp([], stop="refusal")]))
     assert update.main(["prices", "--data-dir", str(data_dir)]) == 1
@@ -337,7 +337,7 @@ def test_real_sdk_request_and_stream_parsing(data_dir, cost_log):
         ])
         return httpx2.Response(200, headers={"content-type": "text/event-stream"}, content=body.encode("utf-8"))
 
-    client = anthropic.Anthropic(api_key="sk-ant-test", base_url="http://mock.invalid", max_retries=0,
+    client = anthropic.Anthropic(api_key="fake-test-key", base_url="http://mock.invalid", max_retries=0,
                                  http_client=anthropic.DefaultHttpxClient(transport=httpx2.MockTransport(handler)))
     assert update.run("prices", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
     b, h = seen["body"], seen["headers"]
