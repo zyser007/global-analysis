@@ -1,3 +1,2 @@
 time_utc,mode,ok,model,requests,input_tokens,output_tokens,cache_write_tokens,cache_read_tokens,web_searches,cost_usd,note
-2026-11-02T11:44:56Z,prices,no,claude-sonnet-5-5,1,1000,200,0,0,0,0.0040,"model declined (refusal, category=None)"
 2026-11-02T11:47:52Z,prices,no,claude-sonnet-5-5,0,0,0,0,0,0,0.0000,"bad request: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'tools.0.web_search_20260209: Country code TH is not supported.'}, 'request_id': 'req_011Cge3kFQq"
