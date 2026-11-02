@@ -1,35 +1,35 @@
 {
- "updated_at": "2026-11-02T12:09:30Z",
- "note_th": "รอบนี้ราคาน้ำมัน ทองคำ DXY ยีลด์ 10 ปี USD/THB และ Bitcoin เป็นราคาระหว่างวัน SET และ Nikkei เป็นราคาปิดวันจันทร์ ส่วน S&P 500, Nasdaq 100 และ VIX ยังเป็นราคาปิดศุกร์ 30 ต.ค.",
+ "updated_at": "2026-11-02T13:14:33Z",
+ "note_th": "รอบนี้ราคาน้ำมัน ทองคำ DXY ยีลด์ 10 ปี USD/THB และ Bitcoin เป็นราคาระหว่างวัน SET และ Nikkei เป็นราคาปิดวันจันทร์ ส่วน S&P 500, Nasdaq 100 และ VIX ยังเป็นราคาปิดศุกร์ 30 ต.ค. เพราะตลาดสหรัฐยังไม่เปิด",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "108.72",
+   "value": "108.676",
    "unit": "$/บาร์เรล",
-   "change_th": "−4.15% วันนี้ จากปิดศุกร์ ราคาน้ำมันอ่อนตัวต่อเนื่อง",
+   "change_th": "−4.19% วันนี้ (−4.75) จากปิดศุกร์ ราคาลดลงหลังอิหร่านเสนอเงื่อนไขเปิดฮอร์มุซ",
    "trend": "down",
-   "as_of": "2026-11-02T12:06:00Z",
+   "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/commodity/brent-crude-oil"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "99.71",
+   "value": "99.66",
    "unit": "$/บาร์เรล",
-   "change_th": "−4.23% วันนี้ จากปิดศุกร์ 104.12",
+   "change_th": "−4.28% วันนี้ (−4.46) หลุดต่ำกว่า 100 ดอลลาร์",
    "trend": "down",
-   "as_of": "2026-11-02T12:06:00Z",
+   "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/commodity/crude-oil"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3900.10",
+   "value": "3900.88",
    "unit": "$/ออนซ์",
-   "change_th": "+0.63% วันนี้ (+24.26) ฟื้นจากต่ำสุด 1 ปี",
+   "change_th": "+0.65% วันนี้ (+25.04) ฟื้นจากต่ำสุด 1 ปี",
    "trend": "up",
-   "as_of": "2026-11-02T12:06:00Z",
+   "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/commodity/gold"
   },
   {
@@ -37,7 +37,7 @@
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
    "value": "62400",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งที่ 25 (ปิดตลาด) 15:59 น. ขายออก 62,400 สุทธิวันนี้ +150",
+   "change_th": "ประกาศครั้งที่ 25 (ปิดตลาด) 15:59 น. ขายออก 62,400 สุทธิวันนี้ +150 ยังไม่มีประกาศใหม่",
    "trend": "up",
    "as_of": "2026-11-02T08:59:00Z",
    "source": "https://www.bangkokbiznews.com/news/news-update/1258951"
@@ -45,11 +45,11 @@
   {
    "key": "dxy",
    "label_th": "ดัชนีดอลลาร์ (DXY)",
-   "value": "101.65",
+   "value": "101.617",
    "unit": "จุด",
-   "change_th": "−0.23% วันนี้ จากปิดศุกร์ ดอลลาร์อ่อนค่าต่อเนื่อง",
+   "change_th": "−0.26% วันนี้ จากปิดศุกร์ ดอลลาร์อ่อนค่าต่อเนื่อง",
    "trend": "down",
-   "as_of": "2026-11-02T12:06:00Z",
+   "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/united-states/currency"
   },
   {
@@ -79,28 +79,28 @@
    "unit": "$",
    "change_th": "ทรงตัวใกล้ 78,000 ดอลลาร์",
    "trend": "flat",
-   "as_of": "2026-11-02T12:05:00Z",
+   "as_of": "2026-11-02T13:10:00Z",
    "source": "https://www.coinbase.com/price/bitcoin"
   },
   {
    "key": "usdthb",
    "label_th": "ดอลลาร์/บาท",
-   "value": "33.747",
+   "value": "33.751",
    "unit": "บาท/$",
-   "change_th": "−0.07% วันนี้ (−0.023) บาทแข็งค่าเล็กน้อยจากช่วงก่อนหน้า",
+   "change_th": "−0.06% วันนี้ จากช่วงก่อนหน้า บาทแข็งค่าเล็กน้อย",
    "trend": "down",
-   "as_of": "2026-11-02T12:06:00Z",
+   "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/thailand/currency"
   },
   {
    "key": "us10y",
    "label_th": "ยีลด์พันธบัตรสหรัฐ 10 ปี",
-   "value": "4.933",
+   "value": "4.917",
    "unit": "%",
-   "change_th": "+0.001 วันนี้ ใกล้ต่ำสุด 7 สัปดาห์",
-   "trend": "flat",
-   "as_of": "2026-11-02T12:06:00Z",
-   "source": "https://tradingeconomics.com/united-states/government-bond-yield"
+   "change_th": "−0.08% วันนี้ (+0.017 ตามตาราง) ใกล้ต่ำสุด 7 สัปดาห์",
+   "trend": "down",
+   "as_of": "2026-11-02T13:14:00Z",
+   "source": "https://tradingeconomics.com/bonds"
   },
   {
    "key": "vix",

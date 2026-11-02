@@ -1,8 +1,16 @@
 {
- "updated_at": "2026-11-02T12:17:00Z",
+ "updated_at": "2026-11-02T13:14:33Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "น้ำมันร่วงขณะสหรัฐ-อิหร่านร่างข้อตกลง ทรัมป์ยังย้ำ “ค้อน” ยังอยู่บนโต๊ะ",
+   "time": "2026-11-02T12:00:00Z",
+   "source": "https://foxnews.com/live-news/iran-war-news-trump-midterms-peace-deal-israel-november-2",
+   "source_name": "Fox News"
+  },
+  {
+   "id": "h2",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านพร้อมเปิดฮอร์มุซภายใน 2 วัน หากสหรัฐยอมรับเงื่อนไข ย่นจาก 7 วันที่เสนอเมื่อเดือน ก.ย.",
    "time": "2026-11-02T11:30:00Z",
@@ -10,7 +18,7 @@
    "source_name": "Euronews"
   },
   {
-   "id": "h2",
+   "id": "h3",
    "conflict_id": "economy",
    "title_th": "ฟิวเจอร์สสหรัฐบวก หุ้นเทคฯ เอไอเริ่มทรงตัวหลังเดือน ต.ค. ย่ำแย่ นักลงทุนจับตาเลือกตั้งกลางเทอมและงบบริษัท",
    "time": "2026-11-02T11:00:00Z",
@@ -18,7 +26,7 @@
    "source_name": "Reuters"
   },
   {
-   "id": "h3",
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านส่งข้อเสนอผ่านกาตาร์ ระบุหากสหรัฐยอมรับ ฮอร์มุซจะกลับมาปลอดภัยและเริ่มเจรจา",
    "time": "2026-11-02T11:00:00Z",
@@ -26,7 +34,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "thailand",
    "title_th": "สมาคมค้าทองคำประกาศปิดตลาด ทองแท่งขายออก 62,400 บาท สุทธิวันนี้ +150",
    "time": "2026-11-02T10:58:00Z",
@@ -34,7 +42,15 @@
    "source_name": "ไทยรัฐ"
   },
   {
-   "id": "h5",
+   "id": "h6",
+   "conflict_id": "sudan_civil_war",
+   "title_th": "ทูตพิเศษ UN คาดการเจรจากับ RSF เรื่องการเปลี่ยนผ่านสู่การปกครองพลเรือนในซูดานจะเริ่มภายในไม่กี่สัปดาห์",
+   "time": "2026-11-02T09:00:00Z",
+   "source": "https://www.thenationalnews.com/news/mena/2026/11/02/talks-with-rsf-on-transition-to-civilian-rule-in-sudan-expected-within-weeks-says-un-envoy/",
+   "source_name": "The National"
+  },
+  {
+   "id": "h7",
    "conflict_id": "thailand",
    "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ รอผลเลือกตั้งสหรัฐ",
    "time": "2026-11-02T07:04:00Z",
@@ -42,7 +58,7 @@
    "source_name": "อินโฟเควสท์"
   },
   {
-   "id": "h6",
+   "id": "h8",
    "conflict_id": "thailand",
    "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ",
    "time": "2026-11-02T06:44:00Z",
@@ -50,7 +66,7 @@
    "source_name": "สยามรัฐ"
   },
   {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "world",
    "title_th": "หุ้นเอเชียผสม Nikkei −0.3% Kioxia ดิ่ง 15.8% Kospi +2.2% ฟิวเจอร์สสหรัฐบวก น้ำมันร่วง 3%",
    "time": "2026-11-02T06:33:00Z",
@@ -58,7 +74,7 @@
    "source_name": "AP"
   },
   {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "thailand",
    "title_th": "อนุทินระบุยังไม่เปิดด่านและไม่ฟื้นความสัมพันธ์กัมพูชาเป็นปกติ จนกว่าปัญหาดินแดน อาชญากรรมข้ามชาติคลี่คลาย",
    "time": "2026-11-02T05:43:00Z",
@@ -66,7 +82,7 @@
    "source_name": "Khaosod English"
   },
   {
-   "id": "h9",
+   "id": "h11",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนอ้างโดรนถล่มโรงกลั่น Kstovo–สถานีน้ำมันซามารา เคียฟชี้ ต.ค. รัสเซียสูญเสียทหารสูงสุด",
    "time": "2026-11-02T05:18:00Z",
@@ -74,7 +90,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h10",
+   "id": "h12",
    "conflict_id": "myanmar_civil_war",
    "title_th": "เจ้าหน้าที่แม่ฮ่องสอนประณามเมียนมาโจมตีทางอากาศใกล้ชายแดนไทย เรียกร้องจัดเขตปลอดภัย",
    "time": "2026-11-02T05:00:00Z",
@@ -82,7 +98,7 @@
    "source_name": "Khaosod English"
   },
   {
-   "id": "h11",
+   "id": "h13",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC อ้างเรือน้ำมัน 2 ลำชนทุ่นระเบิดในฮอร์มุซ ทรัมป์ลั่นสงครามจบเร็ว ๆ นี้ไม่ว่าทางใด",
    "time": "2026-11-02T04:30:00Z",
@@ -90,7 +106,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h12",
+   "id": "h14",
    "conflict_id": "world",
    "title_th": "เลือกตั้งกลางเทอมพรุ่งนี้ ลงคะแนนล่วงหน้าทะลุ 54 ล้าน ทรัมป์ปราศรัยลินคอล์นเมมโมเรียล",
    "time": "2026-11-02T03:06:00Z",
@@ -98,7 +114,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h13",
+   "id": "h15",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียถล่มโครงข่ายไฟฟ้า 4 ภูมิภาคยูเครน ไฟดับหลายแสนครัวเรือน แม้ทรัมป์ผลักดันหยุดยิงพลังงาน",
    "time": "2026-11-02T03:00:00Z",
