@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-02T12:06:48Z",
- "note_th": "รอบนี้อัปเดตน้ำมัน ทองคำ DXY ยีลด์ 10 ปี USD/THB และ Bitcoin เป็นราคาระหว่างวัน SET และ Nikkei เป็นราคาปิดวันจันทร์ ส่วน S&P 500, Nasdaq 100 และ VIX ยังเป็นราคาปิดศุกร์ 30 ต.ค.",
+ "updated_at": "2026-11-02T12:09:30Z",
+ "note_th": "รอบนี้ราคาน้ำมัน ทองคำ DXY ยีลด์ 10 ปี USD/THB และ Bitcoin เป็นราคาระหว่างวัน SET และ Nikkei เป็นราคาปิดวันจันทร์ ส่วน S&P 500, Nasdaq 100 และ VIX ยังเป็นราคาปิดศุกร์ 30 ต.ค.",
  "items": [
   {
    "key": "brent",
@@ -127,7 +127,7 @@
    "label_th": "Nikkei 225",
    "value": "63081.86",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% (−208.25 จุด) ลงวันที่ 2 Kioxia ดิ่ง 15.8%",
+   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% (−208.25 จุด) Kioxia ดิ่ง 15.8%",
    "trend": "down",
    "as_of": "2026-11-02T06:30:00Z",
    "source": "https://click2houston.com/business/2026/11/02/asian-shares-are-mixed-and-us-futures-advance-while-oil-prices-retreat"
