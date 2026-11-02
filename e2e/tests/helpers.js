@@ -12,7 +12,7 @@ fs.mkdirSync(SHOTS, { recursive: true });
 
 function writeData(name, obj) { fs.writeFileSync(path.join(MUT, name + '.json'), JSON.stringify(obj, null, 1)); }
 function removeData(name) { try { fs.unlinkSync(path.join(MUT, name + '.json')); } catch (e) { /* already gone */ } }
-function resetData() { fs.mkdirSync(MUT, { recursive: true }); for (const n of ['market', 'headlines', 'status']) fs.copyFileSync(path.join(SEED, n + '.json'), path.join(MUT, n + '.json')); }
+function resetData() { fs.mkdirSync(MUT, { recursive: true }); for (const n of ['market', 'headlines', 'status', 'disasters']) fs.copyFileSync(path.join(SEED, n + '.json'), path.join(MUT, n + '.json')); }
 function seed(name) { return JSON.parse(fs.readFileSync(path.join(SEED, name + '.json'), 'utf8')); }
 
 // console errors + page errors; `allow` = regexes for expected messages (e.g. a deliberate 404)

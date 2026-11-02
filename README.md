@@ -7,6 +7,10 @@
 แล้วเขียนไฟล์ `site/data/market.json`, `headlines.json`, `status.json` ใหม่ จากนั้นบอตจะ commit กลับเข้า `main`
 และสั่งเผยแพร่หน้าเว็บใหม่ หน้าเว็บดึงไฟล์ทั้งสามทุก 10 นาที และทุกครั้งที่ผู้ใช้กลับมาที่แท็บ
 
+แท็บ **ภัยพิบัติ** ใช้ไฟล์ `site/data/disasters.json` ที่สคริปต์ `updater/disasters.py` ดึงจากแหล่งฟรีโดยตรง ไม่ผ่าน AI และไม่มีค่าใช้จ่าย:
+GDACS (เหตุการณ์เตือนระดับส้มและแดง: แผ่นดินไหว พายุหมุนเขตร้อน น้ำท่วม ภูเขาไฟ ไฟป่า ภัยแล้ง) และ USGS (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด `sig` ≥ 600 หรือ PAGER ตั้งแต่สีเหลือง)
+แผ่นดินไหวที่อยู่ในทั้งสองแหล่งจะแสดงครั้งเดียว ชื่อเหตุการณ์ภาษาไทยสร้างจากแม่แบบ รันทุกรอบของงานตั้งเวลา (ทุก 4 ชม.) แยกจากตัวอัปเดตที่ใช้ Claude
+
 ข้อมูลพื้นฐาน (ความขัดแย้ง เศรษฐกิจ ช่องแคบ) และบทวิเคราะห์ทองคำ (`data/gold.json`) ฝังอยู่ในหน้าเว็บตอนสร้าง ไม่ได้อัปเดตอัตโนมัติ
 เนื้อหาเป็นข้อมูลประกอบการติดตามข่าว ไม่ใช่คำแนะนำการลงทุน
 
@@ -15,10 +19,10 @@
 ```
 site/                  สิ่งที่เผยแพร่ขึ้น Pages (ทุก path เป็นแบบสัมพัทธ์ ใช้ใต้ /global-analysis/ ได้)
   index.html           หน้าเว็บที่สร้างจาก tools/build.py (อย่าแก้ตรง ๆ)
-  data/*.json          ราคา ข่าว สถานะรอบอัปเดต (บอตเขียนทับ)
+  data/*.json          ราคา ข่าว สถานะรอบอัปเดต ภัยพิบัติ (บอตเขียนทับ)
 tools/                 ต้นฉบับหน้าเว็บ: template.html, gold_module.js, splice_gold.py, build.py, land_dots.*
 data/                  world-data.json, gold.json (ข้อมูลที่ฝังในหน้า)
-updater/               update.py, schema/*.json, tests/, requirements*.txt, cost-log.csv
+updater/               update.py, disasters.py, schema/*.json, tests/, requirements*.txt, cost-log.csv
 e2e/                   ทดสอบหน้าเว็บแบบไม่เปิดหน้าต่างด้วย Playwright
 .github/workflows/     update.yml (อัปเดตข้อมูล) และ pages.yml (เผยแพร่หน้าเว็บ)
 ```
@@ -97,6 +101,8 @@ GitHub อาจเริ่มรอบตามตารางช้ากว�
 - ถ้ารอบใดล้มเหลว (คีย์ผิด เกินวงเงิน โมเดลปฏิเสธ ผลลัพธ์ไม่ผ่านการตรวจ) ไฟล์ราคาและข่าวเดิมยังอยู่
   `status.json` จะเป็น `ok: false` พร้อมเหตุผลภาษาไทย หน้าเว็บแสดงคำเตือนสีส้ม และงานใน Actions จะขึ้นสีแดง
 - หน้าเว็บทำเครื่องหมาย “ข้อมูลเก่า” เมื่อราคาเก่ากว่า 10 ชั่วโมง (ข่าว 14 ชั่วโมง เพราะอัปเดตวันละ 2 รอบ)
+- ภัยพิบัติ: ถ้าแหล่งใดแหล่งหนึ่ง (GDACS หรือ USGS) ล้มเหลว จะคงเหตุการณ์เดิมของแหล่งนั้นไว้ อีกแหล่งยังอัปเดตตามปกติ และ `disasters.json` มี `ok: false` กับ `message_th` ให้หน้าเว็บแสดง
+  ถ้าล้มเหลวทั้งสองแหล่ง รายการเดิมยังอยู่และงานใน Actions ขึ้นสีแดง แต่ไม่ขวางการอัปเดตราคาและข่าว (และกลับกัน) หน้าเว็บทำเครื่องหมาย “ข้อมูลเก่า” เมื่อไฟล์เก่ากว่า 10 ชั่วโมง
 - ถ้าโหลดไฟล์ข้อมูลไม่ได้เลย หน้าเว็บยังแสดงข้อมูลที่ฝังไว้ พร้อมแถบ “โหมดออฟไลน์”
 
 ## พัฒนาในเครื่อง
@@ -109,10 +115,14 @@ python3 -m venv .venv
 
 python3 -I tools/build.py                       # สร้าง site/index.html ใหม่ (หลังแก้ gold_module.js ให้รัน tools/splice_gold.py ก่อน)
 .venv/bin/python -I updater/update.py --dry-run # ตรวจไฟล์ข้อมูลปัจจุบัน ไม่เรียก API
+.venv/bin/python -I updater/disasters.py        # ดึงภัยพิบัติจาก GDACS + USGS (ฟรี ไม่ใช้คีย์) แล้วเขียน disasters.json
+.venv/bin/python -I updater/disasters.py --check # ตรวจ disasters.json อย่างเดียว ไม่ใช้เน็ต
 .venv/bin/python -m pytest updater/tests -q     # ทดสอบหน่วย ไม่ใช้เน็ตและไม่ต้องมีคีย์
 
 cd e2e && PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci && npx playwright test   # ทดสอบหน้าเว็บแบบไม่เปิดหน้าต่าง
 ```
+
+บน macOS ถ้า Python ฟ้อง `CERTIFICATE_VERIFY_FAILED` ตอนรัน `disasters.py` ให้ใส่ `SSL_CERT_FILE=/etc/ssl/cert.pem` นำหน้าคำสั่ง (บน GitHub Actions ไม่ต้อง)
 
 ชุดทดสอบหน้าเว็บเปิดเซิร์ฟเวอร์ `e2e/serve.py` ที่ `http://127.0.0.1:18731-18733/global-analysis/` (เปลี่ยนพอร์ตด้วย `E2E_PORT`)
 และเก็บภาพหน้าจอไว้ที่ `e2e/shots/`

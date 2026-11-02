@@ -21,11 +21,14 @@
   --i1:#ffd166; --i2:#f8a44c; --i3:#f4703a; --i4:#e3453f; --i5:#c01448;
   --h-strong:#45d48a; --h-stable:#5aa9e6; --h-weak:#f0b24a; --h-crisis:#ff5c5c;
   --choke:#ffc857;
+  --disaster:#c58cff; --disaster-soft:rgba(197,140,255,.16);
   --gold:#b88c22; --gold-glow:#e6b84f; --gold-soft:rgba(230,184,79,.14);
   --globe-fill:#0f1a2b; --globe-rim:#3ea7b8; --globe-dot:#8fb3d9; --globe-grid:#1f3047; --space:#060a11;
   --shadow:0 10px 30px rgba(0,0,0,.45);
   --font-body:"Noto Sans Thai","Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-head:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,-apple-system,sans-serif;
+  /* alert levels (GDACS / USGS PAGER) follow the theme's own scale */
+  --al-red:var(--bad); --al-orange:var(--i2); --al-yellow:var(--i1); --al-green:var(--good); --al-none:var(--muted);
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
@@ -38,6 +41,7 @@
     --i1:#d9a300; --i2:#e07a1a; --i3:#d9522a; --i4:#c22f2a; --i5:#8c0c32;
     --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
     --choke:#b07d05;
+    --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
     --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
     --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
     --shadow:0 10px 30px rgba(20,40,70,.14);
@@ -53,6 +57,7 @@
   --i1:#d9a300; --i2:#e07a1a; --i3:#d9522a; --i4:#c22f2a; --i5:#8c0c32;
   --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
   --choke:#b07d05;
+  --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
   --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
   --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
   --shadow:0 10px 30px rgba(20,40,70,.14);
@@ -86,8 +91,8 @@ button{font:inherit;color:inherit}
 .stage canvas:active{cursor:grabbing}
 .panel{min-height:0;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .sheet-handle{display:none}
-.tabs{display:flex;gap:4px;padding:8px 8px 0;border-bottom:1px solid var(--border);flex:0 0 auto}
-.tab{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:8px 6px 9px;color:var(--muted);font-weight:500;font-size:14px;cursor:pointer;border-radius:6px 6px 0 0}
+.tabs{display:flex;gap:4px;padding:8px 8px 0;border-bottom:1px solid var(--border);flex:0 0 auto;min-width:0}
+.tab{flex:1 1 auto;min-width:0;white-space:nowrap;background:none;border:0;border-bottom:2px solid transparent;padding:8px 6px 9px;color:var(--muted);font-weight:500;font-size:14px;cursor:pointer;border-radius:6px 6px 0 0}
 .tab:hover{color:var(--text-2);background:var(--surface-2)}
 .tab[aria-selected="true"]{color:var(--text);border-bottom-color:var(--accent)}
 .panel-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:14px 14px 18px;-webkit-overflow-scrolling:touch}
@@ -214,6 +219,35 @@ button{font:inherit;color:inherit}
 .news li.flash,.tk.flash{animation:liveflash 1.1s ease-out;background:var(--surface-2)}
 @media (prefers-reduced-motion: reduce){ .flash,.news li.flash,.tk.flash{animation:none} }
 
+/* ---------- disasters ---------- */
+.chip .sw.tri{border-radius:0;width:11px;height:10px;background:var(--disaster);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.tri{width:11px;height:10px;display:inline-block;flex:0 0 auto;background:var(--disaster);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.tab.dz-tab[aria-selected="true"]{border-bottom-color:var(--disaster)}
+.dz-ic{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.dz-ic svg{width:18px;height:18px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.al-red{color:var(--al-red)} .al-orange{color:var(--al-orange)} .al-yellow{color:var(--al-yellow)} .al-green{color:var(--al-green)} .al-none{color:var(--al-none)}
+.list.dz .item{grid-template-columns:18px minmax(0,1fr) auto;align-items:start}
+.list.dz .item .dz-ic{margin-top:1px}
+.list.dz .item .nm{font-weight:600;font-size:13.5px;line-height:1.4}
+.list.dz .item .st{display:flex;flex-wrap:wrap;gap:2px 8px}
+.list.dz .item .st a{color:var(--accent);text-decoration:none}
+.list.dz .item .meta b{font-size:13px}
+.item.dz-red{border-left:3px solid var(--al-red)} .item.dz-orange{border-left:3px solid var(--al-orange)}
+.pill.alert{border-color:currentColor;background:color-mix(in srgb,currentColor 10%,var(--surface-2))}
+.pill .dz-ic,.pill .dz-ic svg{width:14px;height:14px}
+.dz-empty{font-size:13px;color:var(--text-2);background:var(--surface-2);border:1px dashed var(--border-strong);border-radius:10px;padding:10px 12px}
+.dz-src{margin-top:12px;font-size:11.5px;color:var(--muted);line-height:1.5}
+.dz-src a{color:var(--muted)}
+.dz-sum{display:block;width:100%;text-align:left;cursor:pointer;background:var(--disaster-soft);border:1px solid color-mix(in srgb,var(--disaster) 40%,transparent);border-radius:10px;padding:8px 11px;margin:12px 0;color:var(--text)}
+.dz-sum:hover{border-color:var(--disaster)}
+.dz-sum .k{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--disaster);font-family:var(--font-head);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.dz-sum .k .cnt{color:var(--text-2);font-weight:500;letter-spacing:0}
+.dz-sum ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.dz-sum li{display:flex;gap:7px;align-items:flex-start;font-size:13px;line-height:1.45}
+.dz-sum li .dz-ic,.dz-sum li .dz-ic svg{width:15px;height:15px;margin-top:2px}
+.dz-sum li .t{color:var(--muted);font-size:11.5px;white-space:nowrap;margin-left:2px}
+.dz-sum .more{font-size:12px;color:var(--disaster);margin-top:4px;font-weight:500}
+
 /* ---------- gold ---------- */
 .chip.gold .sw{background:var(--gold-glow);box-shadow:0 0 0 3px var(--gold-soft),0 0 8px var(--gold-glow)}
 .tab.gold-tab[aria-selected="true"]{border-bottom-color:var(--gold)}
@@ -289,6 +323,8 @@ details.fold .fold-body p{margin:0 0 8px}
 .gold-foot{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:11.5px;color:var(--muted);line-height:1.5}
 .gold-foot b{color:var(--text-2);font-weight:600}
 @media (max-width:860px){ .tabs .tab{font-size:13.5px;padding:8px 4px 9px} }
+@media (max-width:430px){ .tabs{gap:2px;padding-inline:4px} .tabs .tab{font-size:13px;padding:8px 2px 9px} }
+@media (max-width:350px){ .tabs .tab{font-size:12px;padding-inline:1px} }
 @media (max-width:360px){ .gold-head{flex-direction:column;gap:2px} .gold-head .asof{text-align:left} }
 
 /* ---------- mobile ---------- */
@@ -331,6 +367,7 @@ details.fold .fold-body p{margin:0 0 8px}
     <section class="stage" id="stage" aria-label="ลูกโลก 3 มิติ">
       <div class="stage-ui" id="stage-ui">
         <button class="chip" id="tg-conflicts" aria-pressed="true" type="button"><span class="sw" style="background:var(--i4)"></span>ความขัดแย้ง</button>
+        <button class="chip" id="tg-disasters" aria-pressed="true" type="button"><span class="sw tri"></span>ภัยพิบัติ</button>
         <button class="chip" id="tg-economies" aria-pressed="true" type="button"><span class="sw" style="background:var(--h-stable)"></span>เศรษฐกิจ</button>
         <button class="chip" id="tg-chokepoints" aria-pressed="true" type="button"><span class="sw" style="background:var(--choke)"></span>ช่องแคบ</button>
         <button class="chip gold" id="btn-gold" type="button" title="ราคาทองคำและบทวิเคราะห์"><span class="sw"></span>ทองคำ</button>
@@ -346,12 +383,14 @@ details.fold .fold-body p{margin:0 0 8px}
       <div class="tabs" role="tablist" id="tabs">
         <button class="tab" role="tab" data-tab="overview" aria-selected="true" type="button">ภาพรวม</button>
         <button class="tab" role="tab" data-tab="conflicts" aria-selected="false" type="button">ความขัดแย้ง</button>
+        <button class="tab dz-tab" role="tab" data-tab="disasters" aria-selected="false" type="button">ภัยพิบัติ</button>
         <button class="tab" role="tab" data-tab="economies" aria-selected="false" type="button">เศรษฐกิจ</button>
         <button class="tab gold-tab" role="tab" data-tab="gold" aria-selected="false" type="button">ทองคำ</button>
       </div>
       <div class="panel-body" id="panel-body">
         <div class="view" id="view-overview" role="tabpanel"></div>
         <div class="view" id="view-conflicts" role="tabpanel" hidden></div>
+        <div class="view" id="view-disasters" role="tabpanel" hidden></div>
         <div class="view" id="view-economies" role="tabpanel" hidden></div>
         <div class="view" id="view-gold" role="tabpanel" hidden></div>
         <div class="view detail" id="view-detail" hidden></div>
@@ -419,11 +458,13 @@ function healthVar(hh){ return 'var(--h-' + (HEALTH_TH[hh] ? hh : 'stable') + ')
 var conflicts = (DATA.conflicts||[]).slice().sort(function(a,b){ return (b.intensity||0)-(a.intensity||0); });
 var economies = (DATA.economies||[]).slice();
 var chokepoints = (DATA.chokepoints||[]).slice();
+var disasters = [];   /* live: data/disasters.json (updater/disasters.py, GDACS + USGS) */
 
 /* ================= header ================= */
 $('title').textContent = (DATA.meta && DATA.meta.title) || 'สถานการณ์โลก';
 $('updated').textContent = 'อัปเดต ' + thaiDate(DATA.meta && DATA.meta.updated);
-$('counts').querySelector('.full').textContent = conflicts.length + ' ความขัดแย้ง · ' + economies.length + ' เศรษฐกิจ · ' + chokepoints.length + ' ช่องแคบ';
+var COUNTS_FULL = conflicts.length + ' ความขัดแย้ง · ' + economies.length + ' เศรษฐกิจ · ' + chokepoints.length + ' ช่องแคบ';
+$('counts').querySelector('.full').textContent = COUNTS_FULL;
 $('counts').querySelector('.short').textContent = conflicts.length + ' ขัดแย้ง · ' + economies.length + ' ศก. · ' + chokepoints.length + ' ช่องแคบ';
 if(DATA.meta && DATA.meta.sample === true) $('sample-badge').hidden = false;
 
@@ -439,7 +480,8 @@ function buildLegend(){
     r2.appendChild(h('span', {text:HEALTH_TH[k], style:'margin-right:4px'}));
   });
   var r3 = h('div', {class:'legend-row'}, [h('span', {class:'lbl', text:'ช่องแคบ'}), h('span', {class:'dia'}), h('span', {text:'จุดเสี่ยงเส้นทางการค้า (ใหญ่ = เสี่ยงมาก)'})]);
-  wrap.appendChild(r1); wrap.appendChild(r2); wrap.appendChild(r3);
+  var r4 = h('div', {class:'legend-row'}, [h('span', {class:'lbl', text:'ภัยพิบัติ'}), h('span', {class:'tri'}), h('span', {text:'เตือนจาก GDACS / USGS (ใหญ่ = เตือนสูง)'})]);
+  wrap.appendChild(r1); wrap.appendChild(r4); wrap.appendChild(r2); wrap.appendChild(r3);
   return wrap;
 }
 $('legend-stage').appendChild(buildLegend());
@@ -449,6 +491,7 @@ $('legend-stage').appendChild(buildLegend());
   var v = $('view-overview');
   v.appendChild(h('div', {id:'live-slot'}));
   v.appendChild(h('div', {id:'news-slot', hidden:''}));
+  v.appendChild(h('div', {id:'dz-slot', hidden:''}));
   v.appendChild(h('h3', {class:'sec-title', text:'ตัวชี้วัดโลก'}));
   var tiles = h('div', {class:'tiles'});
   (DATA.indicators||[]).forEach(function(ind){
@@ -531,7 +574,7 @@ $('legend-stage').appendChild(buildLegend());
 })();
 
 /* ================= tabs & detail ================= */
-var VIEWS = ['overview','conflicts','economies','gold'];
+var VIEWS = ['overview','conflicts','disasters','economies','gold'];
 var currentTab = 'overview';
 function showTab(name){
   currentTab = name;
@@ -571,13 +614,15 @@ function renderDetail(kind, idx){
     ]));
     if(e.note_th) d.appendChild(h('p', {text:e.note_th}));
     d.appendChild(h('div', {class:'kv'}, [kv('GDP 2026', pct(e.gdp_growth_2026)), kv('GDP 2027 (คาดการณ์)', pct(e.gdp_growth_2027)), kv('เงินเฟ้อ', num(e.inflation,'%')), kv('ดอกเบี้ยนโยบาย', num(e.policy_rate,'%'))]));
+  } else if(kind==='disaster'){
+    renderDisasterDetail(d, disasters[idx]);
   } else {
     var ck = chokepoints[idx];
     d.appendChild(h('h2', {text:ck.name_th}));
     d.appendChild(h('div', {class:'chips'}, [h('span', {class:'pill'}, [h('span', {class:'dia'}), 'ระดับ '+(ck.level||1)+' · '+(LEVEL_TH[ck.level]||'')])]));
     if(ck.note_th) d.appendChild(h('p', {text:ck.note_th}));
   }
-  var src = (kind==='conflict' ? conflicts[idx].sources : kind==='econ' ? economies[idx].sources : chokepoints[idx].sources) || [];
+  var src = (kind==='conflict' ? conflicts[idx].sources : kind==='econ' ? economies[idx].sources : kind==='disaster' ? dzSources(disasters[idx]) : chokepoints[idx].sources) || [];
   d.appendChild(h('h3', {class:'sec-title', text:'แหล่งที่มา'}));
   d.appendChild(src.length ? sourcesList(src) : h('p', {class:'st', text:'ไม่มีแหล่งที่มาระบุ', style:'color:var(--muted);margin:0'}));
   VIEWS.forEach(function(n){ $('view-'+n).hidden = true; });
@@ -588,12 +633,13 @@ function renderDetail(kind, idx){
 
 var selected = null;
 function select(kind, idx, fromGlobe){
+  if(kind==='disaster' && !disasters[idx]) return;
   selected = {kind:kind, idx:idx};
   Array.prototype.forEach.call(document.querySelectorAll('.item'), function(b){
     b.classList.toggle('active', b.getAttribute('data-kind')===kind && +b.getAttribute('data-idx')===idx);
   });
   renderDetail(kind, idx);
-  var rec = kind==='conflict' ? conflicts[idx] : kind==='econ' ? economies[idx] : chokepoints[idx];
+  var rec = kind==='conflict' ? conflicts[idx] : kind==='econ' ? economies[idx] : kind==='disaster' ? disasters[idx] : chokepoints[idx];
   if(globe){ globe.flyTo(rec.lat, rec.lon); globe.highlight(rec.lat, rec.lon, kind); }
   if(isMobile() && sheetState==='low') setSheet('mid');
 }
@@ -642,7 +688,7 @@ function readTokens(){
     space:g('--space'), fill:g('--globe-fill'), rim:g('--globe-rim'), dot:g('--globe-dot'), grid:g('--globe-grid'), accent:g('--accent'),
     intensity:[g('--i1'),g('--i2'),g('--i3'),g('--i4'),g('--i5')],
     health:{strong:g('--h-strong'), stable:g('--h-stable'), weak:g('--h-weak'), crisis:g('--h-crisis')},
-    choke:g('--choke')
+    choke:g('--choke'), disaster:g('--disaster')
   };
 }
 
@@ -728,6 +774,8 @@ function createGlobe(stage){
    'void main(){ float face = smoothstep(0.02, 0.22, vFace); if(face<0.01) discard; vec2 d=(gl_PointCoord-0.5)*2.0; float r=length(d); float a=0.0; vec3 col=vColor;'+
    ' if(uShape==0){ float core=1.0-smoothstep(0.18,0.26,r); float glow=exp(-r*r*5.0)*0.5; float t=fract(uTime*(0.45+0.35*vHot)+vPhase); float ring=(1.0-smoothstep(0.0,0.07,abs(r-(0.26+t*0.7))))*(1.0-t)*uPulse; float hot=(1.0-smoothstep(0.0,0.045,abs(r-0.62)))*vHot*0.75; a=max(max(core,max(glow,ring*0.85)),hot); col=vColor+core*0.3+hot*0.25; }'+
    ' else if(uShape==1){ float ring=1.0-smoothstep(0.06,0.12,abs(r-0.46)); float dot=1.0-smoothstep(0.10,0.17,r); float glow=exp(-r*r*3.0)*0.18; a=max(max(ring,dot*0.95),glow); }'+
+   ' else if(uShape==3){ vec2 q=vec2(d.x,-d.y+0.18); float k=1.7320508; q.x=abs(q.x)-0.62; q.y=q.y+0.62/k; if(q.x+k*q.y>0.0) q=vec2(q.x-k*q.y,-k*q.x-q.y)/2.0; q.x-=clamp(q.x,-1.24,0.0); float sd=-length(q)*sign(q.y);'+
+   ' float fillA=1.0-smoothstep(-0.02,0.04,sd); float edge=1.0-smoothstep(0.0,0.07,abs(sd+0.06)); float t=fract(uTime*0.55+vPhase); float ring=(1.0-smoothstep(0.0,0.07,abs(r-(0.32+t*0.62))))*(1.0-t)*uPulse*vHot; a=max(max(fillA*0.6,edge),ring*0.8); col=vColor+edge*0.22; }'+
    ' else { float dm=abs(d.x)+abs(d.y); float shape=1.0-smoothstep(0.50,0.60,dm); float inner=1.0-smoothstep(0.22,0.30,dm); float blink=0.75+0.25*sin(uTime*2.0+vPhase*6.28)*uPulse; a=(shape-inner*0.55)*blink; col=vColor+inner*0.25; }'+
    ' a*=face; if(a<0.02) discard; gl_FragColor=vec4(col,a); }';
 
@@ -751,6 +799,7 @@ function createGlobe(stage){
   var pinsConf = makePins(conflicts, 0, function(c,tk){ return tk.intensity[Math.max(0,Math.min(4,(c.intensity|0)-1))]; }, function(c){ return 14 + (c.intensity||1)*5; });
   var pinsEcon = makePins(economies, 1, function(e,tk){ return tk.health[e.health] || tk.health.stable; }, function(){ return 24; });
   var pinsChoke = makePins(chokepoints, 2, function(c,tk){ return tk.choke; }, function(c){ return 14 + (c.level||1)*4; });
+  var pinsDz = null;   /* rebuilt whenever data/disasters.json changes */
 
   /* --- pick targets (screen-space nearest, so overlapping pins stay selectable) --- */
   var pinList = [];
@@ -758,10 +807,20 @@ function createGlobe(stage){
     recs.forEach(function(r, i){ var v = new T.Vector3(); toVec(r.lat, r.lon, R*1.02, v); pinList.push({kind:kind, idx:i, pos:v}); });
   }
   addPicks(conflicts, 'conflict'); addPicks(economies, 'econ'); addPicks(chokepoints, 'choke');
-  var layers = {conflict:true, econ:true, choke:true};
+  var layers = {conflict:true, econ:true, choke:true, disaster:true};
+  function setDisasters(recs){
+    if(pinsDz){ scene.remove(pinsDz); pinsDz.geometry.dispose(); pinsDz.material.dispose(); pinsDz = null; }
+    for(var i=pinList.length-1;i>=0;i--){ if(pinList[i].kind==='disaster') pinList.splice(i, 1); }
+    if(!recs || !recs.length) return;
+    pinsDz = makePins(recs, 3, function(r,tk){ return tk.disaster; }, function(r){ return r.alert_level==='red' ? 30 : r.alert_level==='orange' ? 25 : 20; });
+    pinsDz.userData.setHot(recs.map(function(r){ return r.alert_level==='red'; }));
+    pinsDz.visible = layers.disaster;
+    addPicks(recs, 'disaster');
+  }
   function setLayer(kind, on){
     layers[kind] = on;
-    (kind==='conflict' ? pinsConf : kind==='econ' ? pinsEcon : pinsChoke).visible = on;
+    var obj = kind==='conflict' ? pinsConf : kind==='econ' ? pinsEcon : kind==='disaster' ? pinsDz : pinsChoke;
+    if(obj) obj.visible = on;
     if(selected && selected.kind===kind && !on){ highlight(null); }
   }
 
@@ -867,7 +926,7 @@ function createGlobe(stage){
     renderer.setClearColor(new T.Color(tok.space), 1);
     bodyMat.uniforms.uFill.value.set(tok.fill); bodyMat.uniforms.uRim.value.set(tok.rim); atmoMat.uniforms.uRim.value.set(tok.rim);
     landMat.uniforms.uColor.value.set(tok.dot); scene.userData.gridMat.color.set(tok.grid); hiMat.color.set(tok.accent);
-    pinsConf.userData.recolor(tok); pinsEcon.userData.recolor(tok); pinsChoke.userData.recolor(tok);
+    pinsConf.userData.recolor(tok); pinsEcon.userData.recolor(tok); pinsChoke.userData.recolor(tok); if(pinsDz) pinsDz.userData.recolor(tok);
   }
   applyTheme();
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', applyTheme);
@@ -880,7 +939,7 @@ function createGlobe(stage){
     if(document.hidden) return;
     var dt = Math.min(0.05, (now-lastT)/1000); lastT = now;
     var t = now/1000;
-    pinsConf.material.uniforms.uTime.value = t; pinsEcon.material.uniforms.uTime.value = t; pinsChoke.material.uniforms.uTime.value = t;
+    pinsConf.material.uniforms.uTime.value = t; pinsEcon.material.uniforms.uTime.value = t; pinsChoke.material.uniforms.uTime.value = t; if(pinsDz) pinsDz.material.uniforms.uTime.value = t;
     if(fly){
       var k = fly.dur ? Math.min(1, (now-fly.t0)/fly.dur) : 1, e = k<0.5 ? 2*k*k : 1-Math.pow(-2*k+2,2)/2;
       cam.lat = fly.lat0 + (fly.lat1-fly.lat0)*e; cam.lon = fly.lon0 + (fly.lon1-fly.lon0)*e; cam.dist = fly.d0 + (fly.d1-fly.d0)*e;
@@ -900,7 +959,7 @@ function createGlobe(stage){
   if(window.ResizeObserver){ new ResizeObserver(resize).observe(stage); } else { window.addEventListener('resize', resize); }
   requestAnimationFrame(tick);
 
-  return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setHot:function(flags){ pinsConf.userData.setHot(flags); } };
+  return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setDisasters:setDisasters, setHot:function(flags){ pinsConf.userData.setHot(flags); } };
 }
 
 if(typeof THREE !== 'undefined' && webglOK()){
@@ -910,7 +969,7 @@ if(typeof THREE !== 'undefined' && webglOK()){
 }
 
 /* ================= stage buttons ================= */
-[['tg-conflicts','conflict'],['tg-economies','econ'],['tg-chokepoints','choke']].forEach(function(pair){
+[['tg-conflicts','conflict'],['tg-disasters','disaster'],['tg-economies','econ'],['tg-chokepoints','choke']].forEach(function(pair){
   var b = $(pair[0]);
   b.addEventListener('click', function(){
     var on = b.getAttribute('aria-pressed')!=='true';
@@ -1225,15 +1284,15 @@ function goldLive(items){
 /* ================= live layer (static JSON, polled) ================= */
 /* site/data/{market,headlines,status}.json are rewritten by updater/update.py (GitHub Actions)
    and fetched here; the render functions below are the same ones the artifact-db snapshots fed. */
-var live = { market:null, headlines:null, status:null, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false };
+var live = { market:null, headlines:null, status:null, disasters:null, dzError:false, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false };
 var NEWS_SHOW = 6, HOT_MS = 24*3600*1000;
 var STALE_MS = 10*3600*1000;          /* market/status older than 10 h -> stale */
 var NEWS_STALE_MS = 14*3600*1000;     /* headlines are refreshed twice a day */
 var POLL_MS = 10*60*1000;
 (function(){ var m = /[?&]poll=(\d+)/.exec(location.search); if(m && +m[1] >= 1000) POLL_MS = +m[1]; })(); /* test hook: ?poll=<ms> */
-var LIVE_DOCS = ['market', 'headlines', 'status'];
+var LIVE_DOCS = ['market', 'headlines', 'status', 'disasters'];   /* disasters failing never marks the prices as failed */
 var conflictIndex = {}; conflicts.forEach(function(c, i){ if(c.id) conflictIndex[c.id] = i; });
-var TAG_TH = { economy:'เศรษฐกิจ', world:'โลก', thailand:'ไทย' };
+var TAG_TH = { economy:'เศรษฐกิจ', world:'โลก', thailand:'ไทย', disaster:'ภัยพิบัติ' };
 
 function parseTs(iso){ var t = Date.parse(iso || ''); return isNaN(t) ? null : t; }
 function relTh(iso){
@@ -1267,7 +1326,9 @@ function refreshAges(){
   Array.prototype.forEach.call(document.querySelectorAll('[data-age]'), function(e){ e.textContent = ageText(e.getAttribute('data-age')); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-rel]'), function(e){ e.textContent = relTh(e.getAttribute('data-rel')); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-dot]'), function(e){ setDot(e, e.getAttribute('data-dot') || liveStamp(), +(e.getAttribute('data-stale-ms') || 0) || STALE_MS); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-dzdot]'), function(e){ e.className = 'sdot ' + freshClass(e.getAttribute('data-dzdot'), DZ_STALE_MS); });
   updateStaleNote();
+  updateDzNote();
   updateHot();
 }
 setInterval(refreshAges, 60000);
@@ -1407,6 +1468,139 @@ function updateHot(){
   globe.setHot(hotFlags);
 }
 
+/* ================= disasters (data/disasters.json from updater/disasters.py: GDACS + USGS, no AI) ================= */
+var DZ_STALE_MS = 10*3600*1000;       /* refreshed every 4 h by the workflow */
+var DZ_TYPE_TH = {earthquake:'แผ่นดินไหว', cyclone:'พายุหมุนเขตร้อน', flood:'น้ำท่วม', volcano:'ภูเขาไฟ', wildfire:'ไฟป่า', drought:'ภัยแล้ง'};
+var DZ_ALERT_TH = {red:'แดง', orange:'ส้ม', yellow:'เหลือง', green:'เขียว'};
+var DZ_RANK = {red:0, orange:1, yellow:2, green:3};
+var DZ_ICON = {
+  earthquake:'<svg viewBox="0 0 16 16"><path d="M1 8.5h2.6l1.6-4 2.6 8 2-6 1.3 2H15"/></svg>',
+  cyclone:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2"/><path d="M8 2a6 6 0 0 1 6 6M8 14a6 6 0 0 1-6-6M3.2 4.2A6 6 0 0 1 8 2M12.8 11.8A6 6 0 0 1 8 14"/></svg>',
+  flood:'<svg viewBox="0 0 16 16"><path d="M1 6.5c1.4-1.4 2.6-1.4 4 0s2.6 1.4 4 0 2.6-1.4 4 0 1.3 1 2 .6M1 11c1.4-1.4 2.6-1.4 4 0s2.6 1.4 4 0 2.6-1.4 4 0 1.3 1 2 .6"/></svg>',
+  volcano:'<svg viewBox="0 0 16 16"><path d="M1.5 14.5 6 7h4l4.5 7.5zM6.6 4.6 5.6 2.5M8 4V1.5M9.4 4.6l1-2.1"/></svg>',
+  wildfire:'<svg viewBox="0 0 16 16"><path d="M8 1.5c.6 2.6 3.8 3.8 3.8 7.6A3.8 3.8 0 0 1 4.2 9.1c0-1.7.8-2.8 1.8-3.6.1 1.6.9 2.5 1.8 2.6C7.4 5.6 7.2 3.6 8 1.5z"/></svg>',
+  drought:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></svg>'
+};
+function dzAlert(a){ return DZ_ALERT_TH[a] ? a : 'none'; }
+function dzAlertText(a){ return DZ_ALERT_TH[a] ? ('เตือนระดับ' + DZ_ALERT_TH[a]) : 'ไม่มีระดับเตือน'; }
+function dzIcon(type, alert){ return h('span', {class:'dz-ic al-' + dzAlert(alert), 'aria-hidden':'true', title:DZ_TYPE_TH[type] || '', html:DZ_ICON[type] || DZ_ICON.earthquake}); }
+function dzSources(it){ return it ? [it.source_url, it.alt_source_url].filter(function(u){ return typeof u==='string' && /^https:\/\//.test(u); }) : []; }
+/* only well-formed records; red, orange, yellow, green, none; then newest start */
+function dzItems(){
+  var d = live.disasters, arr = (d && Array.isArray(d.items)) ? d.items : [];
+  return arr.filter(function(x){ return x && typeof x==='object' && x.title_th && typeof x.lat==='number' && typeof x.lon==='number' && isFinite(x.lat) && isFinite(x.lon); })
+    .map(function(x, i){ return {x:x, i:i}; })
+    .sort(function(a, b){ var ra = a.x.alert_level in DZ_RANK ? DZ_RANK[a.x.alert_level] : 4, rb = b.x.alert_level in DZ_RANK ? DZ_RANK[b.x.alert_level] : 4; return ra - rb || (parseTs(b.x.start)||0) - (parseTs(a.x.start)||0) || a.i - b.i; })
+    .map(function(o){ return o.x; });
+}
+/* time ago: quakes and eruptions from their start; long events from the start while recent, else since <date> */
+function dzWhen(it){
+  var t = parseTs(it.start); if(t==null) return null;
+  var instant = it.type==='earthquake' || it.type==='volcano';
+  if(instant) return h('span', {'data-rel':String(it.start), title:String(it.start), text:relTh(it.start)});
+  if(Date.now()-t < 14*86400000) return h('span', {title:String(it.start)}, ['เริ่ม ', h('span', {'data-rel':String(it.start), text:relTh(it.start)})]);
+  return h('span', {title:String(it.start), text:'ตั้งแต่ ' + thaiDate(it.start)});
+}
+function dzRow(it, i){
+  var al = dzAlert(it.alert_level);
+  var row = h('div', {class:'item dz-' + al, role:'button', tabindex:'0', 'data-kind':'disaster', 'data-idx':i, 'data-id':String(it.id || i)}, [
+    dzIcon(it.type, it.alert_level),
+    h('span', {style:'min-width:0'}, [
+      h('div', {class:'nm', text:String(it.title_th)}),
+      h('div', {class:'st'}, [
+        it.country_th ? h('span', {text:String(it.country_th)}) : null,
+        dzWhen(it),
+        dzSources(it).length ? h('a', {href:dzSources(it)[0], target:'_blank', rel:'noopener noreferrer', text:String(it.source_name || domain(dzSources(it)[0]))}) : null
+      ])
+    ]),
+    h('span', {class:'meta'}, [h('b', {style:'color:var(--al-' + al + ')', text:DZ_ALERT_TH[it.alert_level] || '—'}), DZ_ALERT_TH[it.alert_level] ? 'ระดับเตือน' : 'ไม่มีเตือน'])
+  ]);
+  var go = function(){ select('disaster', i); };
+  row.addEventListener('click', function(ev){ if(ev.target.closest('a')) return; go(); });
+  row.addEventListener('keydown', function(ev){ if(ev.target.closest('a')) return; if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); go(); } });
+  return row;
+}
+function fmtLatLon(lat, lon){ return Math.abs(lat).toFixed(2) + '°' + (lat>=0 ? 'N' : 'S') + ' ' + Math.abs(lon).toFixed(2) + '°' + (lon>=0 ? 'E' : 'W'); }
+function renderDisasterDetail(d, it){
+  if(!it) return;
+  var al = dzAlert(it.alert_level);
+  d.appendChild(h('h2', {text:String(it.title_th)}));
+  d.appendChild(h('div', {class:'chips'}, [
+    h('span', {class:'pill alert', style:'color:var(--al-' + al + ')'}, [h('span', {class:'dot', style:'background:var(--al-' + al + ')'}), dzAlertText(it.alert_level)]),
+    h('span', {class:'pill'}, [dzIcon(it.type, null), DZ_TYPE_TH[it.type] || '']),
+    it.source_name ? h('span', {class:'pill', text:String(it.source_name) + (it.alt_source_name ? ' · ' + String(it.alt_source_name) : '')}) : null
+  ]));
+  var rows = [kv('พื้นที่', it.country_th || '—'), kv('ความรุนแรง', it.severity_th || '—'), kv(it.type==='earthquake' || it.type==='volcano' ? 'เวลาเกิด' : 'เริ่ม', bkkDateTime(it.start)), kv('ข้อมูลล่าสุด', bkkDateTime(it.updated))];
+  if(isFinite(it.lat) && isFinite(it.lon)) rows.push(kv('พิกัด', fmtLatLon(+it.lat, +it.lon)));
+  d.appendChild(h('div', {class:'kv'}, rows));
+  d.appendChild(h('p', {text: it.source_name==='USGS'
+    ? 'ระดับเตือน PAGER ของ USGS ประเมินจากจำนวนผู้เสียชีวิตและความเสียหายทางเศรษฐกิจที่คาดว่าจะเกิด'
+    : 'ระดับเตือนของ GDACS ประเมินผลกระทบด้านมนุษยธรรม: แดง = สูง อาจต้องการความช่วยเหลือระหว่างประเทศ · ส้ม = ปานกลาง · เขียว = ต่ำ'}));
+}
+function updateDzNote(){
+  var head = $('dz-head'); if(!head) return;
+  var note = head.querySelector('.note'), doc = live.disasters, n = null;
+  var stale = !!(doc && isStale(doc.updated, DZ_STALE_MS));
+  if(doc && doc.ok === false && doc.message_th) n = {text:String(doc.message_th), warn:true};
+  else if(doc && live.dzError) n = {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
+  else if(stale) n = {text:'ข้อมูลภัยพิบัติเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  note.hidden = !n; note.textContent = n ? n.text : ''; note.classList.toggle('warn', !!(n && n.warn));
+  head.classList.toggle('is-stale', stale);
+}
+function renderDisasterNews(){
+  var box = $('dz-news'); if(!box) return;
+  box.innerHTML = '';
+  var items = newsItems().filter(function(x){ return String(x.conflict_id || '')==='disaster'; });
+  if(!items.length) return;
+  box.appendChild(h('h3', {class:'sec-title', text:'ข่าวภัยพิบัติ', style:'margin-top:16px'}));
+  var ul = h('ul', {class:'news'});
+  items.forEach(function(it, i){ ul.appendChild(newsLi(it, i)); });
+  box.appendChild(ul);
+}
+function renderDzSummary(){
+  var slot = $('dz-slot'); if(!slot) return;
+  slot.innerHTML = '';
+  if(!live.disasters || !disasters.length){ slot.hidden = true; return; }
+  slot.hidden = false;
+  var nRed = disasters.filter(function(x){ return x.alert_level==='red'; }).length, nOr = disasters.filter(function(x){ return x.alert_level==='orange'; }).length;
+  var ul = h('ul');
+  disasters.slice(0, 3).forEach(function(it){
+    ul.appendChild(h('li', null, [dzIcon(it.type, it.alert_level), h('span', {style:'min-width:0'}, [String(it.title_th), it.start ? h('span', {class:'t', 'data-rel':String(it.start), text:relTh(it.start)}) : null])]));
+  });
+  var go = function(){ showTab('disasters'); clearSelection(); if(isMobile() && sheetState==='low') setSheet('mid'); };
+  var box = h('div', {class:'dz-sum', role:'button', tabindex:'0', onclick:go, onkeydown:function(ev){ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); go(); } }}, [
+    h('div', {class:'k'}, [h('span', {class:'tri'}), 'ภัยพิบัติขณะนี้', h('span', {class:'cnt', text:disasters.length + ' เหตุการณ์' + (nRed ? ' · เตือนแดง ' + nRed : '') + (nOr ? ' · ส้ม ' + nOr : '')})]),
+    ul,
+    h('div', {class:'more', text:'ดูทั้งหมดในแท็บภัยพิบัติ →'})
+  ]);
+  slot.appendChild(box);
+}
+function renderDisasters(){
+  var v = $('view-disasters'); if(!v) return;
+  var doc = live.disasters;
+  disasters = dzItems();
+  v.innerHTML = '';
+  var stamp = doc && doc.updated ? String(doc.updated) : '';
+  var age = h('span', {class:'age'}, stamp ? [h('span', {class:'sdot ' + freshClass(stamp, DZ_STALE_MS), 'data-dzdot':stamp}), h('span', {'data-age':stamp, text:ageText(stamp)})] : []);
+  v.appendChild(h('div', {class:'live-head', id:'dz-head'}, [h('h3', {class:'sec-title', text:'ภัยพิบัติขณะนี้'}), age, h('span', {class:'note', hidden:''})]));
+  if(!doc){
+    v.appendChild(h('div', {class:'dz-empty', text: live.dzError ? 'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ' : 'กำลังโหลดข้อมูลภัยพิบัติ…'}));
+  } else if(!disasters.length){
+    v.appendChild(h('div', {class:'dz-empty', text:'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด'}));
+  } else {
+    var l = h('div', {class:'list dz'});
+    disasters.forEach(function(it, i){ l.appendChild(dzRow(it, i)); });
+    v.appendChild(l);
+  }
+  v.appendChild(h('div', {id:'dz-news'}));
+  renderDisasterNews();
+  v.appendChild(h('p', {class:'dz-src'}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุก 4 ชม. ไม่ผ่าน AI']));
+  updateDzNote();
+  renderDzSummary();
+  $('counts').querySelector('.full').textContent = COUNTS_FULL + (doc ? ' · ' + disasters.length + ' ภัยพิบัติ' : '');
+  if(globe && globe.setDisasters) globe.setDisasters(disasters);
+}
+
 /* fetch one doc; resolves to {name, text, data} or {name, error} */
 function fetchDoc(name){
   var url = 'data/' + name + '.json?t=' + Math.floor(Date.now()/60000);
@@ -1425,8 +1619,10 @@ function pollLive(){
   polling = true; lastPoll = Date.now();
   return Promise.all(LIVE_DOCS.map(fetchDoc)).then(function(res){
     var changed = {}, failed = 0;
+    var dzHadError = live.dzError;
     res.forEach(function(r){
-      if(r.error){ failed++; return; }
+      if(r.name==='disasters') live.dzError = !!r.error;
+      if(r.error){ if(r.name!=='disasters') failed++; return; }
       if(live.raw[r.name] !== r.text){ live.raw[r.name] = r.text; live[r.name] = r.data; changed[r.name] = true; }
     });
     var marketOk = !!live.market;
@@ -1439,10 +1635,13 @@ function pollLive(){
       else updateStaleNote();
     }
     if(changed.headlines){ renderNews(); updateCardLatest(); updateHot(); }
+    if(changed.disasters || dzHadError !== live.dzError || (live.dzError && !live.disasters)) renderDisasters();
+    else if(changed.headlines) renderDisasterNews();
     window.__liveState = {offline:live.offline, fetchError:live.fetchError, polls:(window.__liveState ? window.__liveState.polls : 0) + 1, failed:failed};
   }).then(function(){ polling = false; }, function(){ polling = false; });
 }
 (function initLive(){
+  renderDisasters();
   pollLive();
   setInterval(function(){ if(!document.hidden) pollLive(); }, POLL_MS);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden && Date.now()-lastPoll > 2000) pollLive(); });

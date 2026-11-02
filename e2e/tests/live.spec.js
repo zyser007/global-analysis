@@ -52,11 +52,11 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     const ctx = await browser.newContext(ctxOpts('dark'));
     const page = await ctx.newPage();
     const errors = []; const allowed = [];
-    page.on('console', m => { if (m.type() !== 'error') return; const t = m.text() + ' ' + (m.location().url || ''); (/404/.test(t) && /data\/(market|headlines|status)\.json/.test(t) ? allowed : errors).push(t); });
+    page.on('console', m => { if (m.type() !== 'error') return; const t = m.text() + ' ' + (m.location().url || ''); (/404/.test(t) && /data\/(market|headlines|status|disasters)\.json/.test(t) ? allowed : errors).push(t); });
     page.on('pageerror', e => errors.push('pageerror: ' + e.message));
     await page.goto(URL.nodata); await page.waitForTimeout(2500);
     expect(errors).toEqual([]);
-    expect(allowed.length, 'the three data/*.json requests 404ed').toBeGreaterThanOrEqual(1);
+    expect(allowed.length, 'the data/*.json requests 404ed').toBeGreaterThanOrEqual(1);
     await expect(page.locator('#live-slot .offline-bar')).toBeVisible();
     expect(await page.locator('#live-slot .offline-bar').innerText()).toContain('โหมดออฟไลน์');
     expect(await page.locator('#live-slot .ticker').count()).toBe(0);
@@ -85,7 +85,7 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     await page.goto(URL.mutable);
     await expect(page.locator('#live-slot .ticker .tk')).toHaveCount(11);
     // relative fetches resolve under the Pages sub-path
-    expect([...new Set(reqs)].sort()).toEqual(['/global-analysis/data/headlines.json', '/global-analysis/data/market.json', '/global-analysis/data/status.json']);
+    expect([...new Set(reqs)].sort()).toEqual(['/global-analysis/data/disasters.json', '/global-analysis/data/headlines.json', '/global-analysis/data/market.json', '/global-analysis/data/status.json']);
     expect(await page.locator('#live-slot .tk[data-key="brent"] .v').textContent()).toBe('116.4');
     expect(await page.locator('#live-slot .tk[data-key="spx"] .tk-c').getAttribute('class')).toContain('down');
     expect(await page.locator('#live-slot .live-head .sdot').getAttribute('class')).toContain('fresh');

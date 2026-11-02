@@ -4,7 +4,7 @@
 const { test, expect } = require('@playwright/test');
 const path = require('path');
 const { URL, SHOTS, noHScroll, writeData, resetData, repoll } = require('./helpers');
-const DATA_404 = [/404/, /data\/(market|headlines|status)\.json/];
+const DATA_404 = [/404/, /data\/(market|headlines|status|disasters)\.json/];
 
 const cases = [
   { name: 'gold-mobile-dark', w: 390, h: 844, scheme: 'dark', dpr: 3 },

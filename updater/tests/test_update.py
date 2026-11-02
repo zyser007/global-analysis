@@ -69,7 +69,7 @@ def market_input(scale=1.0, note="ราคาระหว่างวัน"):
 
 
 def headlines_input(n=14):
-    ids = ["iran_us_israel_war", "ukraine_russia", "economy", "world", "thailand", "gaza_israel", "sudan_civil_war"]
+    ids = ["iran_us_israel_war", "ukraine_russia", "economy", "world", "thailand", "gaza_israel", "sudan_civil_war", "disaster"]
     return [{"conflict_id": ids[i % len(ids)], "title_th": f"ข่าวทดสอบลำดับ {i}", "time": f"2026-11-02T{12 - i % 12:02d}:00:00Z",
              "source": f"https://example.com/news/{i}", "source_name": "Example"} for i in range(n)]
 
@@ -125,7 +125,7 @@ def test_schemas_cover_world_data_conflicts():
     world = json.loads((ROOT / "data" / "world-data.json").read_text(encoding="utf-8"))
     allowed = set(update.allowed_conflict_ids())
     assert {c["id"] for c in world["conflicts"]} <= allowed
-    assert {"economy", "world", "thailand"} <= allowed
+    assert {"economy", "world", "thailand", "disaster"} <= allowed
     assert {i["conflict_id"] for i in seed("headlines")["items"]} <= allowed
 
 
@@ -594,6 +594,19 @@ def test_prompt_asks_for_article_time_and_major_outlets():
     sp = update.system_prompt()
     assert "publication time of the source article" in sp and "Reuters, AP, AFP, Bloomberg" in sp and "Kyiv Independent" in sp
     assert "at most about 5 older items" in sp and "at least 4 searches" in sp
+
+
+def test_prompt_tags_natural_disasters():
+    sp = update.system_prompt()
+    assert "- disaster\n" in sp and "- disaster: a major natural disaster" in sp
+    assert "typhoons hitting land, major floods, especially in Thailand and Southeast Asia" in sp
+    assert "Tag natural-disaster news as disaster" in sp
+    assert "disaster" in update.submit_tool("full")["input_schema"]["properties"]["headlines"]["items"]["properties"]["conflict_id"]["enum"]
+    row = {"conflict_id": "disaster", "title_th": "ไต้ฝุ่นขึ้นฝั่งเวียดนาม", "time": "2026-11-02T10:00:00Z",
+           "source": "https://example.com/typhoon", "source_name": "Example"}
+    h = update.build_headlines([row] + headlines_input(13), NOW)
+    assert any(i["conflict_id"] == "disaster" and i["title_th"] == row["title_th"] for i in h["items"])
+    assert update.validate_doc("headlines", h) == []
 
 
 

@@ -85,7 +85,10 @@ MARKET_KEYS: dict[str, str] = {
     "nikkei": "Nikkei 225 index, points",
 }
 TAGS_EXTRA = {"thailand": "Thailand domestic news that is not the Thai-Cambodian border",
-              "economy": "markets / economy / central banks", "world": "other world news"}
+              "economy": "markets / economy / central banks",
+              "disaster": "a major natural disaster (strong earthquake, typhoon or cyclone making landfall, major flood, "
+                          "eruption, wildfire), especially in Thailand and Southeast Asia",
+              "world": "other world news"}
 
 ISO_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$")
 NUM_RE = re.compile(r"^-?\d+(\.\d+)?$")
@@ -363,7 +366,7 @@ Rules for every market item:
 - note_th: one or two Thai sentences on what this round covers (which prices are intraday and which are closes), in the style of the previous note_th.
 
 ## Headlines (mode "full" only)
-- Research the news with web_search before submitting (at least 4 searches, grouped by theme), covering the time since the newest previous headline given in the user turn. Themes: Iran / Hormuz; US markets, the Fed and US data; the US midterm elections; Ukraine-Russia; China; Thai politics and economy, the baht and Thai gold; Yemen / Saudi Arabia; plus any other conflict on the globe that made news.
+- Research the news with web_search before submitting (at least 4 searches, grouped by theme), covering the time since the newest previous headline given in the user turn. Themes: Iran / Hormuz; US markets, the Fed and US data; the US midterm elections; Ukraine-Russia; China; Thai politics and economy, the baht and Thai gold; Yemen / Saudi Arabia; plus any other conflict on the globe that made news, and any major natural disaster (big earthquakes, typhoons hitting land, major floods, especially in Thailand and Southeast Asia).
 - 12 to 16 items, newest first, about the conflicts on the globe, the world economy and Thailand. Keep at most about 5 older items that are still among the most important; every other item must be newer than the newest previous headline whenever such news exists.
 - Sources: prefer primary, major outlets: Reuters, AP, AFP, Bloomberg, BBC, Al Jazeera, CNBC, ไทยรัฐ, มติชน, Bangkok Post, ประชาชาติธุรกิจ, กรุงเทพธุรกิจ, Kyiv Independent. Avoid syndication and aggregator sites (local TV sites re-running wire copy, regional papers re-running IANS, aggregators) when the original is available. One source URL per headline: the article itself, https.
 - title_th: a Thai headline of at most about 120 characters, factual, no clickbait, written by you (do not copy foreign headlines word for word).
@@ -372,6 +375,7 @@ Rules for every market item:
 {ids}
   Extra tags:
 {extra}
+  Tag natural-disaster news as disaster even when it hits Thailand.
 - A kept previous headline keeps its original time; do not refresh its time. Drop an older market headline whose numbers are superseded by the latest prices (for example an oil or gold level that has since moved) and drop items from syndication sites when you have a primary source.
 
 ## Run summary (mode "full" only)
@@ -1023,7 +1027,24 @@ def dry_run(data_dir: pathlib.Path = DATA_DIR) -> int:
     print(f"dry run: OK - market {len(m['items'])} items (updated {m['updated_at']}), "
           f"headlines {len(h['items'])} (updated {h['updated_at']}), status run {s['run_count']} ok={s['ok']}")
     print(f"dry run: model {MODEL}, effort {EFFORT}, search caps {MAX_SEARCHES}, fetch caps {MAX_FETCHES}, no API call made")
+    print(disasters_check_line(data_dir))
     return 0
+
+
+def disasters_check_line(data_dir: pathlib.Path) -> str:
+    """disasters.json comes from updater/disasters.py (GDACS + USGS, no AI). It is reported here but never
+    fails this check, so a problem with that feed cannot block the Claude update in the workflow."""
+    path = data_dir / "disasters.json"
+    if not path.exists():
+        return "dry run: disasters.json not present (written by updater/disasters.py)"
+    try:
+        errs = validate_doc("disasters", load_json(path))
+    except (OSError, ValueError) as e:
+        errs = [f"disasters: cannot read {path.name}: {e}"]
+    if errs:
+        return "dry run: disasters.json INVALID (separate feed, not fatal here; run updater/disasters.py --check)\n  " + "\n  ".join(errs[:5])
+    d = load_json(path)
+    return f"dry run: disasters.json OK - {len(d['items'])} events (updated {d['updated']}, feeds ok={d['ok']})"
 
 
 def main(argv: list[str] | None = None) -> int:

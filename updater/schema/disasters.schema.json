@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "disasters.schema.json",
+  "title": "site/data/disasters.json",
+  "description": "Current natural disasters from GDACS (orange/red alerts) and USGS (significant earthquakes), written by updater/disasters.py without AI.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["updated", "checked", "ok", "message_th", "feeds", "items"],
+  "$defs": {
+    "time": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https://[^\\s\"]+$"
+    },
+    "text": {
+      "type": "string",
+      "pattern": "^[^\"]*$"
+    },
+    "feed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ok", "fetched", "count", "url"],
+      "properties": {
+        "ok": {"type": "boolean", "description": "this round's fetch worked"},
+        "fetched": {
+          "description": "last successful fetch",
+          "anyOf": [{"$ref": "#/$defs/time"}, {"type": "null"}]
+        },
+        "count": {"type": "integer", "minimum": 0, "description": "items from this feed in the list"},
+        "url": {"$ref": "#/$defs/url"},
+        "error": {"$ref": "#/$defs/text"}
+      }
+    }
+  },
+  "properties": {
+    "updated": {"$ref": "#/$defs/time", "description": "last time at least one feed was read successfully"},
+    "checked": {"$ref": "#/$defs/time", "description": "last run, successful or not"},
+    "ok": {"type": "boolean", "description": "every feed worked this round"},
+    "message_th": {"$ref": "#/$defs/text", "description": "Thai note for the page when a feed failed, else empty"},
+    "feeds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gdacs", "usgs"],
+      "properties": {
+        "gdacs": {"$ref": "#/$defs/feed"},
+        "usgs": {"$ref": "#/$defs/feed"}
+      }
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "title_th", "country", "country_th", "countries", "lat", "lon", "start", "end", "updated",
+                     "alert_level", "severity_th", "severity_value", "severity_unit", "source_url", "source_name"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^(gdacs-(eq|tc|fl|vo|wf|dr)-[0-9]+|usgs-[a-z0-9]{4,40})$"},
+          "type": {"enum": ["earthquake", "cyclone", "flood", "volcano", "wildfire", "drought"]},
+          "title_th": {"allOf": [{"$ref": "#/$defs/text"}, {"minLength": 1, "maxLength": 300}]},
+          "country": {"$ref": "#/$defs/text", "description": "main country, English (empty at sea)"},
+          "country_th": {"$ref": "#/$defs/text", "description": "affected places for display, Thai where known"},
+          "countries": {"type": "array", "maxItems": 40, "items": {"$ref": "#/$defs/text"}},
+          "lat": {"type": "number", "minimum": -90, "maximum": 90},
+          "lon": {"type": "number", "minimum": -180, "maximum": 180},
+          "start": {"$ref": "#/$defs/time"},
+          "end": {"$ref": "#/$defs/time"},
+          "updated": {"$ref": "#/$defs/time"},
+          "alert_level": {"enum": ["red", "orange", "yellow", "green", null], "description": "GDACS alert, or the USGS PAGER alert (null = none issued)"},
+          "severity_th": {"$ref": "#/$defs/text"},
+          "severity_value": {"type": ["number", "null"]},
+          "severity_unit": {"enum": ["", "M", "km/h", "ha", "km2"]},
+          "source_url": {"$ref": "#/$defs/url"},
+          "source_name": {"enum": ["GDACS", "USGS"]},
+          "alt_source_url": {"$ref": "#/$defs/url"},
+          "alt_source_name": {"enum": ["USGS"]}
+        }
+      }
+    }
+  }
+}

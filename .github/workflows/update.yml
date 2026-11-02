@@ -55,11 +55,22 @@ jobs:
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "mode: $mode"
 
+      # Free GDACS + USGS feeds, no AI and no key. Runs in every mode and never blocks the Claude update
+      # (or is blocked by it): a failed feed keeps its previous events and says so in disasters.json.
+      - name: Refresh disasters (GDACS + USGS)
+        id: disasters
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python -I updater/disasters.py
+
       - name: Check the current data files
+        id: check
+        continue-on-error: true   # a broken market/headlines/status file must not stop the disasters commit
         run: python -I updater/update.py --dry-run
 
       - name: Run the updater
         id: run
+        if: steps.check.outcome == 'success'
         continue-on-error: true   # a failed run still writes status.json (ok=false); commit it, then fail the job
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -74,6 +85,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add site/data/market.json site/data/headlines.json site/data/status.json updater/cost-log.csv
+          if [ -f site/data/disasters.json ]; then git add site/data/disasters.json; fi
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "no data changes"
@@ -88,10 +100,16 @@ jobs:
           done
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Fail the job if the update failed
-        if: steps.run.outcome == 'failure'
+      - name: Fail the job if a step failed
+        if: steps.check.outcome == 'failure' || steps.run.outcome == 'failure' || steps.disasters.outcome == 'failure'
+        env:
+          CHECK: ${{ steps.check.outcome }}
+          RUN: ${{ steps.run.outcome }}
+          DISASTERS: ${{ steps.disasters.outcome }}
         run: |
-          echo "::error::update.py failed - the old prices and headlines were kept and status.json says ok=false. See the log above."
+          if [ "$CHECK" = "failure" ]; then echo "::error::the current market/headlines/status files are invalid - the Claude update was skipped. See the dry-run log above."; fi
+          if [ "$RUN" = "failure" ]; then echo "::error::update.py failed - the old prices and headlines were kept and status.json says ok=false. See the log above."; fi
+          if [ "$DISASTERS" = "failure" ]; then echo "::error::disasters.py could not read GDACS or USGS - the previous disasters.json was kept (ok=false). See the log above."; fi
           exit 1
 
   # Pushes made with GITHUB_TOKEN do not trigger other workflows, so deploy Pages from here.
