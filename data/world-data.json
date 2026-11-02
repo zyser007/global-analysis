@@ -1,0 +1,996 @@
+{
+ "meta": {
+  "updated": "2026-11-02",
+  "sample": false,
+  "title": "สถานการณ์โลก ปลายตุลาคม 2569"
+ },
+ "conflicts": [
+  {
+   "id": "ukraine_russia",
+   "name_th": "ยูเครน–รัสเซีย",
+   "lat": 48.28,
+   "lon": 37.18,
+   "type": "interstate",
+   "intensity": 5,
+   "status_th": "รบเต็มรูปแบบ มีเพียงหยุดยิงเฉพาะจุดที่โอเลชกี (27 ต.ค.) และคาดมีเจรจารอบใหม่ที่สหรัฐเป็นคนกลางเดือน พ.ย.",
+   "summary_th": "รัสเซียยึดครองราว 20% ของยูเครน ปลาย ต.ค. 2026 มีการปะทะ 196–211 ครั้งต่อวัน หนักสุดแนวโปครอฟสก์ คอสเตียนตินิฟกา และฮูไลโปเล 29 ต.ค. รัสเซียถล่มสถานีรถไฟดนีโปร ตาย 13–14 คน ยูเครนส่งโดรน 600+ ลำใส่มอสโก 30 ต.ค. เซเลนสกีบอกเปิดทางแช่แข็งแนวรบเพื่อยุติสงคราม หยุดยิงเฉพาะจุดที่โอเลชกีเริ่ม 27 ต.ค. เพื่อส่งอาหาร การเจรจาที่สหรัฐเป็นคนกลางยังไม่ได้หยุดยิงทั่วประเทศ",
+   "deaths_est": "พลเรือน OHCHR ยืนยัน 17,605 ตาย (ถึงสิ้น ก.ย. 2026); ทหารยูเครนตาย 100,000–140,000 (CSIS); ทหารรัสเซียตายราว 352,000 ที่ยืนยันรายชื่อ ถึง ~500,000 (ประเมินตะวันตก); UCDP 12 เดือน: 94,685",
+   "displaced": "ผู้ลี้ภัยในยุโรป ~5.2 ล้าน (UNHCR 27 ต.ค. 2026), พลัดถิ่นในประเทศ 3.7 ล้าน",
+   "confidence": "high",
+   "sources": [
+    "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine",
+    "https://www.npr.org/2026/10/27/g-s1-150037/russia-ukraine-war",
+    "https://www.russiamatters.org/news/russia-ukraine-war-report-card/russia-ukraine-war-report-card-oct-14-2026",
+    "https://www.unhcr.org/europe/news/briefing-notes/attacks-intensify-unhcr-urges-support-war-ravaged-ukrainians"
+   ]
+  },
+  {
+   "id": "iran_us_israel_war",
+   "name_th": "สงครามอิหร่าน (สหรัฐ/อิสราเอล–อิหร่าน)",
+   "lat": 35.69,
+   "lon": 51.39,
+   "type": "interstate",
+   "intensity": 4,
+   "status_th": "หยุดยิงเปราะบาง สหรัฐไม่ได้โจมตีอิหร่านตั้งแต่ต้น ก.ย. แต่ขู่เปิดฉากใหม่หลังเลือกตั้งกลางเทอม 3 พ.ย. ขณะกาตาร์เดินสายฟื้นข้อตกลง (30 ต.ค.)",
+   "summary_th": "สงครามเริ่ม 28 ก.พ. 2026 เมื่อสหรัฐและอิสราเอลโจมตีอิหร่าน สังหารผู้นำสูงสุดคาเมเนอี อิหร่านตอบโต้ใส่อิสราเอล ฐานสหรัฐ และรัฐอ่าว พร้อมปิดช่องแคบฮอร์มุซ หยุดยิง 8 เม.ย. (ปากีสถานเป็นคนกลาง) สหรัฐปิดล้อมทางทะเล 13 เม.ย. ลงนามบันทึกอิสลามาบัด 17 มิ.ย. แต่หยุดยิงล้ม 8 ก.ค. ต.ค. 2026 อิหร่านโจมตีเรือในฮอร์มุซพุ่งสูงสุดตั้งแต่เริ่มสงคราม 28 ต.ค. สหรัฐเตือนพันธมิตรเตรียมรับการโจมตีอิหร่านรอบใหม่หลังเลือกตั้ง 30 ต.ค. คณะกาตาร์ถึงเตหะรานพร้อมจดหมายจากรองประธานาธิบดีแวนซ์",
+   "deaths_est": "อิหร่าน 3,375–3,684 ตาย (WHO/HRANA/รัฐบาลอิหร่าน) สหรัฐ–อิสราเอลประเมินทหารอิหร่านตาย 6,000+; อิสราเอล 72; สหรัฐ 24–26; รัฐอ่าว พลเรือน ~50; ลูกเรือพาณิชย์ 24; UCDP 12 เดือน: 23,677; ค่าใช้จ่ายสหรัฐ $47.1 พันล้าน",
+   "displaced": "ไม่มีข้อมูลรวม",
+   "confidence": "medium",
+   "sources": [
+    "https://en.wikipedia.org/wiki/2026_Iran_war",
+    "https://aljazeera.com/news/2026/10/30/qatari-officials-in-iran-in-bid-to-revive-ceasefire-deal-with-us",
+    "https://www.opb.org/article/2026/10/28/us-warns-allies-to-prepare-for-possible-iran-strikes-retaliation-after-elections-ap-sources-say/",
+    "https://www.seatrade-maritime.com/security/iran-war-8-months-on-121-vessels-attacked-24-seafarers-killed"
+   ]
+  },
+  {
+   "id": "gaza_israel",
+   "name_th": "กาซา–อิสราเอล",
+   "lat": 31.42,
+   "lon": 34.37,
+   "type": "ceasefire",
+   "intensity": 3,
+   "status_th": "หยุดยิงตั้งแต่ 10 ต.ค. 2025 ยังคงอยู่แต่มีการโจมตีทางอากาศ รื้อถอน และยิงปืนแทบทุกวัน",
+   "summary_th": "ข้อตกลงหยุดยิงภายใต้แผน 20 ข้อของทรัมป์ปล่อยตัวประกันครบแล้ว ฮามาสยุบรัฐบาลกาซาแต่ไม่ยอมวางอาวุธ Board of Peace ประกาศโรดแมปปลดอาวุธฮามาส 31 ก.ค. 2026 แต่กองกำลังรักษาเสถียรภาพนานาชาติ (ISF) ยังรวบรวมทหารได้ยาก อิสราเอลคุมพื้นที่กว่า 60% ของกาซา ปลาย ต.ค. 2026 กระทรวงสาธารณสุขกาซารายงานถูกโจมตีเสียชีวิต 21 คนในสัปดาห์เดียว เลือกตั้งอิสราเอล 27 ต.ค. 2026 ไร้เสียงข้างมาก",
+   "deaths_est": "74,570 ตาย ตั้งแต่ ต.ค. 2023 (กระทรวงสาธารณสุขกาซา 29 ต.ค. 2026 ไม่ได้รับการตรวจสอบอิสระ); ตายหลังหยุดยิง 1,574; UCDP 12 เดือน: 2,120",
+   "displaced": "ราว 1.9 ล้าน (~90% ของประชากร)",
+   "confidence": "high",
+   "sources": [
+    "https://www.cfr.org/global-conflict-tracker/conflict/israeli-palestinian-conflict",
+    "https://www.aljazeera.com/news/2026/7/31/gaza-board-of-peace-announces-hamas-disarmament-agreement-what-we-know",
+    "https://www.aljazeera.com/news/2026/10/29/israel-election-result-shows-no-overall-majority-as-vote-count-complete"
+   ]
+  },
+  {
+   "id": "lebanon_israel_hezbollah",
+   "name_th": "เลบานอน–อิสราเอล/ฮิซบอลเลาะห์",
+   "lat": 33.25,
+   "lon": 35.3,
+   "type": "ceasefire",
+   "intensity": 3,
+   "status_th": "หยุดยิงตั้งแต่ มิ.ย. 2026 แต่อิสราเอลยังยึดครองใต้เลบานอนและโจมตีแทบทุกวัน การเจรจาชะงัก",
+   "summary_th": "สงครามเลบานอน 2026 เริ่ม 2 มี.ค. หลังสหรัฐ–อิสราเอลโจมตีอิหร่าน อิสราเอลบุกภาคพื้น 16 มี.ค. ถึงแม่น้ำลิตานี ปัจจุบันคุมราว 20% ของเลบานอน ทรัมป์ประกาศสงบศึก 19 มิ.ย. และกรอบข้อตกลง 26 มิ.ย. (ให้ฮิซบอลเลาะห์ปลดอาวุธแลกถอนทหาร) ซึ่งฮิซบอลเลาะห์ปฏิเสธ ต.ค. 2026 มีการโจมตีต่อเนื่อง เช่น โดรนถล่มบ้านในนาบาติเยห์ 27 ต.ค. ยิงปืนใหญ่ 29–30 ต.ค. ฮิซบอลเลาะห์ส่วนใหญ่ไม่ตอบโต้",
+   "deaths_est": "เลบานอน 4,362 ตาย (กระทรวงสาธารณสุขเลบานอน); อิสราเอล 44; UNIFIL 7; UCDP 12 เดือน: 4,551",
+   "displaced": "มากกว่า 1.2 ล้านคนในเลบานอน; อิสราเอลตอนเหนือ ~96,000",
+   "confidence": "medium",
+   "sources": [
+    "https://en.wikipedia.org/wiki/2026_Lebanon_war",
+    "https://www.cfr.org/global-conflict-tracker/conflict/political-instability-lebanon",
+    "https://www.npr.org/2026/10/01/nx-s1-5976061/in-lebanon-a-test-to-see-if-the-army-can-keep-israel-and-hezbollah-apart"
+   ]
+  },
+  {
+   "id": "iraq_militias",
+   "name_th": "อิรัก (สหรัฐ/อิสราเอล–กองกำลังนิยมอิหร่าน)",
+   "lat": 33.31,
+   "lon": 44.37,
+   "type": "insurgency",
+   "intensity": 2,
+   "status_th": "โจมตีเป็นระยะ ล่าสุด 25 ต.ค. อิรักสอบสวนระเบิดที่สงสัยว่าอิสราเอลโจมตีคลังอาวุธกลุ่มนิยมอิหร่าน",
+   "summary_th": "ตั้งแต่ 28 ก.พ. 2026 สหรัฐและอิสราเอลโจมตีกลุ่มติดอาวุธชีอะห์ในอิรัก กลุ่มเหล่านี้ยิงจรวดใส่ฐานสหรัฐและเออร์บิล 25 ต.ค. 2026 กลุ่ม Islamic Resistance in Iraq กล่าวหาสหรัฐรุกล้ำน่านฟ้า ขณะทางการอิรักสอบสวนเหตุระเบิดที่เชื่อว่าเป็นการโจมตีของอิสราเอล",
+   "deaths_est": "สมาชิก PMF ตายราว 73–100; UCDP 12 เดือน: 238",
+   "displaced": "ไม่มีข้อมูล",
+   "confidence": "medium",
+   "sources": [
+    "https://en.wikipedia.org/wiki/2026_United_States%E2%80%93Israeli_strikes_on_Iraq",
+    "https://themedialine.org/headlines/iran-backed-militia-accuses-us-of-airspace-violations-as-baghdad-probes-suspected-israeli-strikes/"
+   ]
+  },
+  {
+   "id": "sudan_civil_war",
+   "name_th": "ซูดาน (SAF–RSF)",
+   "lat": 13.18,
+   "lon": 30.22,
+   "type": "civil",
+   "intensity": 5,
+   "status_th": "รบเต็มรูปแบบ สงครามโดรนทั้งสองฝ่าย RSF ล้อมเอลโอเบดบางส่วน ไม่มีการหยุดยิง",
+   "summary_th": "กองทัพ (SAF) ยึดคาร์ทูมคืนแล้ว RSF คุมดาร์ฟูร์ทั้งหมดและตั้งรัฐบาลคู่ขนาน ครบ 1 ปีการยึดเอลฟาเชอร์ ซึ่ง UN พบลักษณะการฆ่าล้างเผ่าพันธุ์ ต.ค. 2026 เป็นเดือนที่โดรนโจมตีพลเรือนมากที่สุดตั้งแต่เริ่มสงคราม 26 ต.ค. โดรนถล่มตลาดนยาลาตาย 21 RSF โจมตีสถานีไฟฟ้าคาร์ทูมและซูดานตะวันออก 30 ต.ค. ผู้บัญชาการอาวุโส RSF แปรพักตร์ IPC เตือนความเสี่ยงทุพภิกขภัยในดาร์ฟูร์และกอร์โดฟาน",
+   "deaths_est": "150,000+ (UN) ถึง 400,000 (ช่วงประเมิน CSIS); UCDP 12 เดือน: 9,891",
+   "displaced": "11.3 ล้าน (UNHCR 5 ต.ค. 2026) ถึง 14 ล้าน (UN); 33.7 ล้านคนต้องการความช่วยเหลือ",
+   "confidence": "high",
+   "sources": [
+    "https://www.cfr.org/global-conflict-tracker/conflict/power-struggle-sudan",
+    "https://news.un.org/en/story/2026/10/1168696",
+    "https://data.unhcr.org/en/situations/sudansituation",
+    "https://www.csis.org/analysis/sudan-war-10-charts"
+   ]
+  },
+  {
+   "id": "myanmar_civil_war",
+   "name_th": "เมียนมา",
+   "lat": 21.9,
+   "lon": 95.9,
+   "type": "civil",
+   "intensity": 4,
+   "status_th": "รบอยู่ทั่วประเทศแบบคุมเชิง ไม่มีหยุดยิงทั่วประเทศ รัฐบาลหลังเลือกตั้งที่ทหารหนุนยังถูกต่อต้าน",
+   "summary_th": "พรรคที่ทหารหนุนชนะเลือกตั้ง ม.ค. 2026 มิน อ่อง หล่ายขึ้นเป็นประธานาธิบดี เม.ย. 2026 CFR ประเมินฝ่ายต่อต้านและกองกำลังชาติพันธุ์คุมราว 42% ของพื้นที่ รัฐบาลทหารคุม 21% ต.ค. 2026 มีการรบในรัฐชินและคะฉิ่น 30 ต.ค. ผู้สอบสวน UN ชี้กองทัพโจมตีพลเรือนเพื่อข่มขู่ 29 ต.ค. EU คว่ำบาตรเพิ่ม ขณะสหรัฐเริ่มคุยตรงกับรัฐบาลทหารเรื่องแร่หายากและศูนย์หลอกลวง",
+   "deaths_est": "100,114 ตายตั้งแต่รัฐประหาร 2021 (ACLED ก.ค. 2026); UCDP 12 เดือน: 1,856",
+   "displaced": "3.7 ล้านในประเทศ / 5.2 ล้านรวมข้ามพรมแดน (UN); 18.6 ล้านคนต้องการความช่วยเหลือ",
+   "confidence": "medium",
+   "sources": [
+    "https://www.cfr.org/global-conflict-tracker/conflict/rohingya-crisis-myanmar",
+    "https://www.manilatimes.net/2026/07/02/world/asia-oceania/myanmar-post-coup-conflict-death-toll-exceeds-100000/2376873"
+   ]
+  },
+  {
+   "id": "drc_m23_frn",
+   "name_th": "คองโกตะวันออก (M23/FRN)",
+   "lat": -1.68,
+   "lon": 29.22,
+   "type": "insurgency",
+   "intensity": 3,
+   "status_th": "รบอยู่ที่ชายแดนวาลุงกู–อูวีรา–ฟีซี การเจรจาโดฮาชะงัก กบฏจัดทัพใหม่ภายใต้คาบีลา",
+   "summary_th": "12 ต.ค. 2026 อดีตประธานาธิบดีโจเซฟ คาบีลาเปิดตัวแนวร่วมใหม่ FRN ที่โกมา รวม M23 และ AFC 28 ต.ค. กบฏโจมตีฐาน FARDC เพื่อพยายามยึดอูวีราคืนแต่ถูกตีถอย วันเดียวกันสหรัฐคว่ำบาตรกระทรวงกลาโหมรวันดาข้อหาส่งทหารหลายพันคนหนุน M23 โรดแมปโดฮา ส.ค. 2026 ยังไม่ลงนามพิธีสาร 6 ฉบับ",
+   "deaths_est": "UCDP 12 เดือน: 3,341; ไม่มีตัวเลขรวมที่น่าเชื่อถือ",
+   "displaced": "มากกว่า 5 ล้าน (OCHA ก.พ. 2026)",
+   "confidence": "medium",
+   "sources": [
+    "https://www.aljazeera.com/news/2026/10/14/ex-drc-president-joseph-kabila-joins-hands-with-m23-rebels-why-it-matters",
+    "https://www.aljazeera.com/news/2026/8/23/dr-congo-m23-rebels-agree-on-roadmap-for-peace-talks"
+   ]
+  },
+  {
+   "id": "mali_sahel",
+   "name_th": "มาลี (JNIM/FLA)",
+   "lat": 18.44,
+   "lon": 1.41,
+   "type": "insurgency",
+   "intensity": 4,
+   "status_th": "รบอยู่ กองทัพมาลีกับ Africa Corps ของรัสเซียยึดคีดัลคืน 6–7 ต.ค. แต่ JNIM ยังกดดันเส้นทางดาการ์–บามาโก",
+   "summary_th": "25 เม.ย. 2026 JNIM และกลุ่มแยกตัวตูอาเร็ก FLA เปิดฉากโจมตีประสานกันทั่วภาคกลาง-เหนือและยึดคีดัล 6–7 ต.ค. 2026 กองทัพมาลีและ Africa Corps เข้าคีดัลโดย FLA ถอนตัวไม่สู้ ACLED สัปดาห์ 17–23 ต.ค. รายงาน JNIM โจมตีกองกำลังอาสาในภาคกลางและคุกคามทางหลวงดาการ์–บามาโก",
+   "deaths_est": "ซาเฮลรวม UCDP 12 เดือน: 5,487; IEP Q3 2026: มาลีตายจากก่อการร้าย 85",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "medium",
+   "sources": [
+    "https://en.wikipedia.org/wiki/2026_Mali_offensives",
+    "https://acleddata.com/region/conflict-sahel"
+   ]
+  },
+  {
+   "id": "burkina_faso",
+   "name_th": "บูร์กินาฟาโซ",
+   "lat": 14.1,
+   "lon": -1.63,
+   "type": "insurgency",
+   "intensity": 4,
+   "status_th": "รบอยู่ พื้นที่ส่วนใหญ่อยู่นอกการควบคุมของรัฐ และ JNIM กับ ISSP รบกันเองที่อูดาลันเดือน ต.ค.",
+   "summary_th": "JNIM เปิดฉากโจมตีขนาดใหญ่ทางเหนือ-ตะวันออกตั้งแต่กลาง ก.พ. 2026 ต.ค. 2026 การสู้รบระหว่าง JNIM กับรัฐอิสลามซาเฮล (ISSP) ลามถึงจังหวัดอูดาลันติดชายแดนมาลี–ไนเจอร์ Amani Africa ระบุพื้นที่ส่วนใหญ่อยู่นอกการควบคุมของรัฐบาล",
+   "deaths_est": "รวมอยู่ในซาเฮล UCDP 12 เดือน 5,487",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "low",
+   "sources": [
+    "https://amaniafrica-et.org/update-on-the-situation-in-the-sahel/",
+    "https://www.crisisgroup.org/africa/sahel/burkina-faso"
+   ]
+  },
+  {
+   "id": "niger_tillaberi",
+   "name_th": "ไนเจอร์",
+   "lat": 14.2,
+   "lon": 1.45,
+   "type": "insurgency",
+   "intensity": 3,
+   "status_th": "รบอยู่ JNIM โจมตีถึงสนามบินนีอาเมและภูมิภาคติลลาเบรี",
+   "summary_th": "มิ.ย. 2026 JNIM โจมตีสนามบินนีอาเม ทหารและพลเรือนตายกว่า 30 ต.ค. 2026 ACLED รายงานการโจมตีต่อเนื่อง IEP จัดไนเจอร์เป็นประเทศที่ตายจากก่อการร้ายมากอันดับ 2 ของโลกใน Q3 2026",
+   "deaths_est": "IEP Q3 2026: 125 จากก่อการร้าย",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "low",
+   "sources": [
+    "https://amaniafrica-et.org/update-on-the-situation-in-the-sahel/",
+    "https://www.visionofhumanity.org/rise-in-civil-unrest-as-conflict-and-terrorism-deaths-fall/"
+   ]
+  },
+  {
+   "id": "yemen_houthi_saudi",
+   "name_th": "เยเมน/ทะเลแดง (ฮูตี–ซาอุดีฯ)",
+   "lat": 13.32,
+   "lon": 43.25,
+   "type": "interstate",
+   "intensity": 4,
+   "status_th": "รบอยู่ ฮูตียิงขีปนาวุธ/โดรนใส่ซาอุดีฯ และซาอุดีฯ โจมตีทางอากาศตอบโต้ (29–30 ต.ค.) ซาอุดีฯ กำลังพิจารณาบุกภาคพื้น",
+   "summary_th": "3–10 ก.ย. 2026 ฮูตีเปิดฉากรุก 3 แกนและยึดเมืองท่ามอคา เกาะเพริมกลางช่องแคบบับ อัล-มันดับ และหมู่เกาะฮานิช ต้น ต.ค. กองกำลังที่ซาอุดีฯ หนุนอ้างยึดมอคาคืน ฮูตีโจมตีโรงกลั่น/สนามบินซาอุดีฯ ต่อเนื่อง 29 ต.ค. อ้างยิง 6 ครั้งใส่ราสตานูรา อับกออิก สนามบินริยาดและดัมมาม 26 ต.ค. รัฐสภาอียิปต์อนุมัติการสนับสนุนทางทหารเชิงรับ",
+   "deaths_est": "UCDP 12 เดือน: 5,385; IEP Q3 2026: 1,710 (เพิ่มจาก 110 ในไตรมาสก่อน)",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "medium",
+   "sources": [
+    "https://www.aljazeera.com/news/2026/9/10/houthis-capture-yemeni-town-of-mocha-why-it-matters",
+    "https://www.longwarjournal.org/archives/2026/09/houthis-take-yemens-red-sea-coast-and-key-bab-al-mandeb-islands.php",
+    "https://gulfnews.com/world/mena/yemens-houthis-claim-attacks-on-saudi-oil-aviation-military-targets-1.500729076"
+   ]
+  },
+  {
+   "id": "somalia_al_shabaab",
+   "name_th": "โซมาเลีย (อัลชาบาบ)",
+   "lat": 2.78,
+   "lon": 44.08,
+   "type": "insurgency",
+   "intensity": 3,
+   "status_th": "รบอยู่ กองทัพเพิ่งพ่ายครั้งใหญ่ที่สุดในหลายปีใกล้บูร์ฮากาบา (26 ต.ค.)",
+   "summary_th": "อัลชาบาบยึดพื้นที่ที่เสียไปในปี 2022–23 กลับคืนเกือบหมดและคุมชนบทส่วนใหญ่ 26 ต.ค. 2026 ระหว่างปฏิบัติการ Banooda อัลชาบาบใช้รถระเบิดโจมตีกองทัพใกล้บูร์ฮากาบา ทหารตายหลายสิบถึงหลายร้อย (ตัวเลขขัดแย้ง) รัฐบาลตั้งคณะสอบสวน",
+   "deaths_est": "UCDP 12 เดือน: 3,591",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "medium",
+   "sources": [
+    "https://allafrica.com/stories/202610270336.html",
+    "https://africacenter.org/publication/asb45en-somalia-risk-jihadist-state/"
+   ]
+  },
+  {
+   "id": "haiti_gangs",
+   "name_th": "เฮติ (แก๊งติดอาวุธ)",
+   "lat": 18.54,
+   "lon": -72.34,
+   "type": "civil",
+   "intensity": 3,
+   "status_th": "รุนแรงต่อเนื่อง แก๊งโจมตีกองกำลังปราบแก๊ง (GSF) ของ UN แต่รัฐบาลประกาศวันเลือกตั้งแล้ว (30 ต.ค.)",
+   "summary_th": "18 ต.ค. 2026 แก๊งยิงรถหุ้มเกราะในปอร์โตแปรงซ์ ทหารเอลซัลวาดอร์ 4 นายสูญหาย เป็นการโจมตี GSF ครั้งใหญ่สุด GSF มีกำลังกว่า 2,000 นาย UN ชี้แก๊งคุม 3 ใน 10 จังหวัดและขยายสู่ชนบท ความหิวโหยพุ่ง 30 ต.ค. รัฐบาลประกาศกำหนดวันเลือกตั้ง",
+   "deaths_est": "1,123 ตาย ระหว่าง ก.ค.–ต้น ต.ค. 2026 (UN); UCDP 12 เดือน: 560",
+   "displaced": "เกือบ 1.5 ล้าน (UN)",
+   "confidence": "high",
+   "sources": [
+    "https://news.un.org/en/story/2026/10/1168626",
+    "https://www.cnn.com/2026/10/19/americas/haiti-el-salvador-ambush-latam-intl"
+   ]
+  },
+  {
+   "id": "taiwan_strait",
+   "name_th": "ช่องแคบไต้หวัน",
+   "lat": 24.0,
+   "lon": 120.0,
+   "type": "tension",
+   "intensity": 1,
+   "status_th": "ตึงเครียด ไม่มีการสู้รบ จีนเพิ่มกำลังเรือรอบไต้หวัน–ญี่ปุ่น–ฟิลิปปินส์ปลาย ต.ค.",
+   "summary_th": "29 ต.ค. 2026 ไต้หวันเรียกภัยคุกคามจากเรือรบและเรือราชการจีนกว่า 50 ลำที่กระจายตั้งแต่ใต้ญี่ปุ่นถึงฟิลิปปินส์ว่า ‘ชัดเจน’ เรือบรรทุกเครื่องบินเหลียวหนิงผ่านช่องแคบบาซิลัน 22 ต.ค. ผู้บัญชาการกองทัพบกสหรัฐภาคแปซิฟิกกล่าวว่าวางแผนบนสมมติฐานจีนอาจเคลื่อนไหวต่อไต้หวันเร็วสุดปีหน้า",
+   "deaths_est": "ไม่มี",
+   "displaced": "ไม่มี",
+   "confidence": "high",
+   "sources": [
+    "https://www.dailymaverick.co.za/article/2026-10-29-taiwan-flags-obvious-threat-from-50-chinese-vessels-in-wide-sweep-of-waters/",
+    "https://www.aei.org/commentary/china-taiwan-update-october-27-2026/"
+   ]
+  },
+  {
+   "id": "south_china_sea",
+   "name_th": "ทะเลจีนใต้ (จีน–ฟิลิปปินส์)",
+   "lat": 15.15,
+   "lon": 117.76,
+   "type": "tension",
+   "intensity": 1,
+   "status_th": "ตึงเครียดสูง เผชิญหน้าอันตรายถี่ขึ้นแต่ไม่มีการยิงกัน",
+   "summary_th": "USNI (9 ต.ค. 2026) นับการเผชิญหน้าอันตรายอย่างน้อย 6 ครั้งตั้งแต่ต้น ต.ค. ที่สการ์โบโรห์ เซกันด์โทมัส และสแปรตลี ฟิลิปปินส์เรียกทูตจีนเข้าพบ (20 ต.ค.) ทำเนียบขาวยืนยันสนธิสัญญาป้องกันร่วมครอบคลุมกองกำลังฟิลิปปินส์ในทะเลจีนใต้",
+   "deaths_est": "ไม่มี",
+   "displaced": "ไม่มี",
+   "confidence": "high",
+   "sources": [
+    "https://news.usni.org/2026/10/09/philippine-and-chinese-incidents-spike-in-south-china-sea-luzon-strait"
+   ]
+  },
+  {
+   "id": "korean_peninsula",
+   "name_th": "คาบสมุทรเกาหลี",
+   "lat": 38.0,
+   "lon": 127.0,
+   "type": "tension",
+   "intensity": 1,
+   "status_th": "ตึงเครียด เกาหลีเหนือยิงขีปนาวุธพิสัยใกล้ราว 12 ลูก (29 ต.ค.) โซลเสนอเจรจาทหารแต่ยังไม่ได้รับคำตอบ",
+   "summary_th": "21 ก.ย. 2026 ทุ่นระเบิดใต้เส้นแบ่งเขตทำทหารเกาหลีใต้บาดเจ็บ 3 นาย UNC พบเป็นทุ่นระเบิดเกาหลีเหนือ 29 ต.ค. ยิงขีปนาวุธจากวอนซานราว 12 ลูกลงทะเลตะวันออก เกาหลีใต้ สหรัฐ ญี่ปุ่นหารือ 30 ต.ค.",
+   "deaths_est": "ไม่มีผู้เสียชีวิต (บาดเจ็บ 3)",
+   "displaced": "ไม่มี",
+   "confidence": "high",
+   "sources": [
+    "https://www.euronews.com/2026/10/30/north-korea-warns-south-korea-with-ballistic-missiles-as-seoul-calls-for-talks-to-ease-bor"
+   ]
+  },
+  {
+   "id": "india_pakistan",
+   "name_th": "อินเดีย–ปากีสถาน",
+   "lat": 34.0,
+   "lon": 74.0,
+   "type": "ceasefire",
+   "intensity": 1,
+   "status_th": "หยุดยิงตั้งแต่ พ.ค. 2025 ยังอยู่ แต่มีเหตุเรือรบชนกันและยิงพลเรือนที่ชายแดน",
+   "summary_th": "15–16 ก.ย. 2026 เรือพิฆาตอินเดียชนเรือตรวจการณ์ปากีสถานในทะเลอาระเบีย เป็นการเผชิญหน้าทางทหารโดยตรงครั้งแรกตั้งแต่ พ.ค. 2025 2 ต.ค. BSF อินเดียยิงพลเรือนปากีสถานที่ชายแดนตาย 2 อินเดียยังระงับสนธิสัญญาน้ำสินธุ",
+   "deaths_est": "UCDP 12 เดือน (รวมแคชเมียร์): 346",
+   "displaced": "ไม่มีข้อมูล",
+   "confidence": "medium",
+   "sources": [
+    "https://www.cfr.org/global-conflict-tracker/conflict/conflict-between-india-and-pakistan"
+   ]
+  },
+  {
+   "id": "pakistan_afghanistan",
+   "name_th": "ปากีสถาน–อัฟกานิสถาน (ตาลีบัน/TTP)",
+   "lat": 33.3,
+   "lon": 69.9,
+   "type": "interstate",
+   "intensity": 3,
+   "status_th": "ปะทะชายแดนต่อเนื่อง (อย่างน้อย 3 ครั้งตั้งแต่ 19 ต.ค.) การเจรจามอสโก 5 ต.ค. ล้มเหลว ชายแดนปิดการค้าตั้งแต่ ต.ค. 2025",
+   "summary_th": "17 ต.ค. 2026 ยิงกันเกือบ 4 ชั่วโมงที่คุรรัม ปากีสถานอ้างสังหาร TTP 13 คน 27 ต.ค. ปะทะแนวปักติกา–วาซิริสถานใต้ แกนปัญหาคือที่พักพิง TTP ในอัฟกานิสถาน IEP ชี้ปากีสถานตายจากความขัดแย้ง 1,517 ใน Q3 2026 (อันดับ 3 ของโลก) และตายจากก่อการร้ายมากที่สุดในโลก",
+   "deaths_est": "ปากีสถาน UCDP 12 เดือน: 5,050; อัฟกานิสถาน 932",
+   "displaced": "ไม่มีข้อมูล",
+   "confidence": "medium",
+   "sources": [
+    "https://www.longwarjournal.org/archives/2026/10/pakistan-taliban-border-clashes-continue-amid-diplomatic-efforts.php",
+    "https://www.visionofhumanity.org/rise-in-civil-unrest-as-conflict-and-terrorism-deaths-fall/"
+   ]
+  },
+  {
+   "id": "thailand_cambodia",
+   "name_th": "ไทย–กัมพูชา (ชายแดน)",
+   "lat": 14.35,
+   "lon": 103.27,
+   "type": "ceasefire",
+   "intensity": 1,
+   "status_th": "หยุดยิงตั้งแต่ 27 ธ.ค. 2025 ยังอยู่ ไม่มีการปะทะใหญ่ใน ต.ค. 2026 แต่ข้อพิพาทดินแดนยังไม่คลี่คลาย",
+   "summary_th": "หลังปะทะ ก.ค. 2025 และปฏิญญากัวลาลัมเปอร์ 26 ต.ค. 2025 เกิดสู้รบรอบสองใน ธ.ค. 2025 ก่อนหยุดยิง 27 ธ.ค. 15 ต.ค. 2026 ฮุน มาเนตกล่าวว่าหยุดยิงยังอยู่แต่ปัญหาอธิปไตยยังค้าง Crisis Group (9 ต.ค.) ประเมินโอกาสแก้ข้อพิพาทต่ำ 19 ต.ค. กัมพูชาเผยตกลงมาตรการสร้างความไว้วางใจทางทะเลบางข้อ",
+   "deaths_est": "รวมสองรอบประมาณ 170–230+ (ตัวเลขขัดแย้ง)",
+   "displaced": "สูงสุดกว่า 500,000 ช่วง พ.ย.–ธ.ค. 2025; กัมพูชายังพลัดถิ่น 20,000+ ในปี 2026",
+   "confidence": "medium",
+   "sources": [
+    "https://www.khmertimeskh.com/502046115/kuala-lumpur-peace-declaration-marks-first-anniversary-amid-unresolved-border-row",
+    "https://cambodianess.com/article/international-crisis-group-warns-cambodia-faces-uphill-battle-to-resolve-border-dispute-with-thailand",
+    "https://en.wikipedia.org/wiki/2025_Cambodian%E2%80%93Thai_border_crisis"
+   ]
+  },
+  {
+   "id": "ethiopia_eritrea_tigray",
+   "name_th": "เอธิโอเปีย/ทิเกรย์–เอริเทรีย",
+   "lat": 13.49,
+   "lon": 39.47,
+   "type": "civil",
+   "intensity": 4,
+   "status_th": "รบอยู่ กองทัพกลางยึดเมเคเลคืนต้น ต.ค. โดรนโจมตีพลเรือนต่อเนื่อง เอธิโอเปีย–เอริเทรียตัดสัมพันธ์ (1 ต.ค.) เสี่ยงสงครามระหว่างรัฐ",
+   "summary_th": "ปลาย ก.ย. 2026 TPLF เปิดฉากรุกใส่กองทัพกลาง จากนั้นกองทัพกลางยึดอาลามาตา เมเคเล ชิเร อาดิกราต และรุกถึงรามาใกล้ชายแดน เอธิโอเปียแจ้ง UNSC ว่าทหารเอริเทรียรุกเข้าทิเกรย์ลึก 60 กม. เอริเทรียปฏิเสธและตัดสัมพันธ์ 1 ต.ค. เอธิโอเปียรับมอบ Su-35 จากรัสเซีย 29–30 ต.ค. โดรนถล่มค่ายผู้พลัดถิ่นในอัมฮาราตายอย่างน้อย 16–25 ข้อตกลงพริทอเรีย 2022 ถูกมองว่าล่มสลาย",
+   "deaths_est": "UCDP 12 เดือน (เอธิโอเปียทั้งหมด): 4,856; เหตุ ต.ค.: อาลามาตา 52, อัมฮารา 16–25",
+   "displaced": "อย่างน้อย 150,000 ในทิเกรย์และอาฟาร์ตั้งแต่ปลาย ก.ย. 2026",
+   "confidence": "medium",
+   "sources": [
+    "https://www.aljazeera.com/news/2026/10/11/ethiopia-eritrea-ramp-up-rhetoric-are-they-inching-towards-war",
+    "https://www.nbcnews.com/world/africa/eritrean-troops-cross-northern-ethiopia-conflict-escalates-rcna602246",
+    "https://aa.com.tr/en/africa/at-least-16-civilians-killed-in-drone-attack-on-displacement-camp-in-ethiopia/4106073"
+   ]
+  },
+  {
+   "id": "libya",
+   "name_th": "ลิเบีย",
+   "lat": 32.89,
+   "lon": 13.19,
+   "type": "tension",
+   "intensity": 1,
+   "status_th": "สงบแบบเปราะบาง ไม่มีการปะทะใน ต.ค. 2026 แต่มีโดรนโจมตีโรงไฟฟ้า/พลังงานใน ก.ย.",
+   "summary_th": "3–6 ก.ย. 2026 โดรนโจมตีสถานที่พลังงานในตริโปลีและซาวิยา รัฐบาลตริโปลีกล่าวหาซัดดัม ฮัฟตาร์ มีข้อตกลงเลือกตั้งที่ UN หนุน ต.ค. 2026 มีประท้วงบุกแหล่งน้ำมันทำการผลิตก๊าซสะดุด การปะทะใหญ่ล่าสุดคือ พ.ค. 2025",
+   "deaths_est": "UCDP 12 เดือน: 39",
+   "displaced": "ไม่มีข้อมูล",
+   "confidence": "medium",
+   "sources": [
+    "https://www.crisisgroup.org/middle-east-north-africa/north-africa/libya"
+   ]
+  },
+  {
+   "id": "syria",
+   "name_th": "ซีเรีย",
+   "lat": 33.51,
+   "lon": 36.29,
+   "type": "insurgency",
+   "intensity": 2,
+   "status_th": "สงบส่วนใหญ่ สุวัยดาอยู่ในภาวะชะงัก อิสราเอลยังโจมตีทางใต้ ขณะสหรัฐผลักดันดามัสกัส–อิสราเอลเจรจาฟื้นสัมพันธ์",
+   "summary_th": "หลังโค่นอัสซาด รัฐบาลอัล-ชารออ์บีบ SDF ให้ผนวกรวม จังหวัดสุวัยดาของชาวดรูซยังอยู่ในภาวะชะงัก 21 ต.ค. ทูตสหรัฐบาร์แร็กกล่าวว่าอัล-ชารออ์ต้องการฟื้นสัมพันธ์กับอิสราเอลและเรียกร้องให้อิสราเอลหยุดปฏิบัติการในซีเรีย IEP: ตายจากก่อการร้ายใน Q3 2026 เพิ่มกว่า 3 เท่า",
+   "deaths_est": "UCDP 12 เดือน: 949",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "low",
+   "sources": [
+    "https://www.aljazeera.com/news/2026/10/26/suwayda-remains-in-deadlock-as-us-signals-differences-with-israel-on-syria"
+   ]
+  },
+  {
+   "id": "venezuela_caribbean",
+   "name_th": "เวเนซุเอลา/แคริบเบียน (ปฏิบัติการสหรัฐ)",
+   "lat": 10.48,
+   "lon": -66.9,
+   "type": "tension",
+   "intensity": 2,
+   "status_th": "ไม่มีการสู้รบในประเทศ อยู่ในช่วงเปลี่ยนผ่านที่สหรัฐมีอิทธิพลสูง การโจมตีเรือยาเสพติดในแคริบเบียนยังดำเนินอยู่",
+   "summary_th": "3 ม.ค. 2026 สหรัฐบุกยึดตัวนิโกลัส มาดูโรที่การากัส (ตายราว 75 ตาม CSIS) นำตัวขึ้นศาลนิวยอร์ก เดลซี โรดริเกซรักษาการประธานาธิบดี ปฏิบัติการ Southern Spear โจมตีเรือ 59+ ลำ ตาย 205 (ถึง มิ.ย. 2026) 29 ต.ค. 2026 มารีอา โกรินา มาชาโดกลับประเทศและเรียกร้องเลือกตั้งปี 2027",
+   "deaths_est": "ปฏิบัติการ ม.ค.: ~75; โจมตีเรือ: 205 (ถึง มิ.ย. 2026)",
+   "displaced": "ไม่มีข้อมูล",
+   "confidence": "medium",
+   "sources": [
+    "https://www.cfr.org/articles/operation-southern-spear-us-military-campaign-targeting-venezuela",
+    "https://www.npr.org/2026/10/29/nx-s1-6019294/pressure-grows-for-venezuelas-authoritarian-regime-as-opposition-leader-machado-returns"
+   ]
+  },
+  {
+   "id": "nigeria_northeast_northwest",
+   "name_th": "ไนจีเรีย (ISWAP/โจรติดอาวุธ)",
+   "lat": 11.85,
+   "lon": 13.16,
+   "type": "insurgency",
+   "intensity": 4,
+   "status_th": "รบอยู่ ความรุนแรงสูงต่อเนื่องทั้งตะวันออกเฉียงเหนือ (ISWAP) และตะวันตกเฉียงเหนือ (โจรติดอาวุธ)",
+   "summary_th": "6–7 ต.ค. 2026 ทหารขับไล่ ISWAP ที่บุกเมืองคูคาวา รัฐบอร์โน 10 ต.ค. กองทัพอ้างโจมตีทางอากาศสังหาร ISWAP 40+ 12 ต.ค. โจรติดอาวุธซุ่มโจมตีขบวนพ่อค้าในรัฐซัมฟารา ตาย 20+ UCDP ชี้เป็นความขัดแย้งที่ตายมากอันดับ 3 ของโลกใน 12 เดือนล่าสุด",
+   "deaths_est": "UCDP 12 เดือน: 8,659",
+   "displaced": "ไม่มีข้อมูลล่าสุด",
+   "confidence": "medium",
+   "sources": [
+    "https://polity.org.za/article/gunmen-in-northwestern-nigeria-kill-20-people-2026-10-12",
+    "https://armedconflicts.org/"
+   ]
+  }
+ ],
+ "economies": [
+  {
+   "iso": "USA",
+   "name_th": "สหรัฐอเมริกา",
+   "lat": 38.9,
+   "lon": -77.0,
+   "gdp_growth_2026": 2.3,
+   "gdp_growth_2027": 2.3,
+   "inflation": 3.7,
+   "policy_rate": 3.875,
+   "health": "stable",
+   "note_th": "เศรษฐกิจยังโตดี GDP ไตรมาส 3 +3.4% แต่เงินเฟ้อกลับขึ้นเป็น 3.7% จากน้ำมันในสงครามอิหร่าน Fed ขึ้นดอกเบี้ย ก.ย. และคงไว้ 28 ต.ค. ตลาดคาดขึ้นอีก หนี้สาธารณะ $40.55 ล้านล้าน หุ้นใกล้สถิติแต่ร่วงแรง 30 ต.ค. จากผลประกอบการ AI เลือกตั้งกลางเทอม 3 พ.ย.",
+   "sources": [
+    "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
+    "https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html",
+    "https://maseconomics.com/imf-world-economic-outlook-october-2026/"
+   ]
+  },
+  {
+   "iso": "CHN",
+   "name_th": "จีน",
+   "lat": 39.9,
+   "lon": 116.4,
+   "gdp_growth_2026": 4.5,
+   "gdp_growth_2027": 4.0,
+   "inflation": 0.9,
+   "policy_rate": 3.0,
+   "health": "stable",
+   "note_th": "GDP ไตรมาส 3 +4.5% ดีกว่าคาด ส่งออกและอุตสาหกรรมหนุน แต่การลงทุนอสังหาฯ 9 เดือน -20.6% และบริโภคอ่อน CPI 0.9% PPI +5.0% สูงสุดตั้งแต่ 2022 พักรบการค้ากับสหรัฐถึง 10 ม.ค. 2027",
+   "sources": [
+    "https://finance.yahoo.com/economy/articles/china-q3-gdp-grows-4-024818026.html",
+    "https://english.news.cn/20261014/044f0e7aea0a4949bf71c7134989a940/c.html"
+   ]
+  },
+  {
+   "iso": "EUZ",
+   "name_th": "ยูโรโซน",
+   "lat": 50.1,
+   "lon": 8.7,
+   "gdp_growth_2026": 1.1,
+   "gdp_growth_2027": 1.2,
+   "inflation": 3.8,
+   "policy_rate": 2.5,
+   "health": "weak",
+   "note_th": "เงินเฟ้อ ก.ย. 3.8% สูงสุด 3 ปี จากพลังงาน +18.8% ECB ขึ้นดอกเบี้ย ก.ย. แล้วคงไว้ 2.50% อาจขึ้นอีก ธ.ค. GDP ไตรมาส 3 ชะลอเหลือ 0.4% ขณะฝรั่งเศสหดตัว Lagarde ประกาศลาออก ก.พ. 2027",
+   "sources": [
+    "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-16102026-ap",
+    "https://www.cnbc.com/2026/10/29/european-central-bank-interest-rates.html"
+   ]
+  },
+  {
+   "iso": "DEU",
+   "name_th": "เยอรมนี",
+   "lat": 52.5,
+   "lon": 13.4,
+   "gdp_growth_2026": 1.3,
+   "gdp_growth_2027": 1.1,
+   "inflation": null,
+   "policy_rate": 2.5,
+   "health": "stable",
+   "note_th": "IMF ปรับขึ้นปี 2026 เป็น 1.3% จากแรงกระตุ้นการคลังและโครงสร้างพื้นฐาน แต่ GDP ไตรมาส 3 ยังโตแค่ 0.2% ต้นทุนพลังงานสูงกดอุตสาหกรรม",
+   "sources": [
+    "https://finance.yahoo.com/economy/articles/imf-forecasts-3-1-global-024937571.html",
+    "https://www.cnbc.com/2026/10/30/euro-zone-gdp-france.html"
+   ]
+  },
+  {
+   "iso": "FRA",
+   "name_th": "ฝรั่งเศส",
+   "lat": 48.9,
+   "lon": 2.35,
+   "gdp_growth_2026": 0.4,
+   "gdp_growth_2027": 0.7,
+   "inflation": null,
+   "policy_rate": 2.5,
+   "health": "weak",
+   "note_th": "IMF หั่นปี 2026 เหลือ 0.4% GDP ไตรมาส 3 หดตัว -0.1% วิกฤตการเมืองและการคลัง ต้นทุนกู้ยืมพุ่ง ว่างงานคาดขึ้นถึง 8.4% มีการประท้วงค่าครองชีพทั่วประเทศ",
+   "sources": [
+    "https://www.cnbc.com/2026/10/30/euro-zone-gdp-france.html"
+   ]
+  },
+  {
+   "iso": "GBR",
+   "name_th": "สหราชอาณาจักร",
+   "lat": 51.5,
+   "lon": -0.13,
+   "gdp_growth_2026": 1.3,
+   "gdp_growth_2027": 1.2,
+   "inflation": 3.5,
+   "policy_rate": 3.75,
+   "health": "weak",
+   "note_th": "เงินเฟ้อ 3.5% BoE เตือนอาจเกิน 4% ต้นปีหน้า ยีลด์พันธบัตร 10 ปี 5.43% สูงสุดตั้งแต่ 2007 งบประมาณ 28 ต.ค. ท่ามกลางช่องว่างการคลัง BoE ประชุม 5 พ.ย.",
+   "sources": [
+    "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
+    "https://obr.uk/efo/economic-and-fiscal-outlook-october-2026/"
+   ]
+  },
+  {
+   "iso": "JPN",
+   "name_th": "ญี่ปุ่น",
+   "lat": 35.7,
+   "lon": 139.7,
+   "gdp_growth_2026": 0.7,
+   "gdp_growth_2027": 0.7,
+   "inflation": 2.1,
+   "policy_rate": 1.25,
+   "health": "stable",
+   "note_th": "BoJ คง 1.25% สูงสุดตั้งแต่ 1995 คาดขึ้นอีก ธ.ค./ม.ค. เยนอ่อน ~157/ดอลลาร์ หลังแทรกแซงร่วมกับสหรัฐเดือน ก.ค. IMF คาด GDP นามธรรมหล่นเป็นอันดับ 6 ของโลกปี 2027",
+   "sources": [
+    "https://www.cnbc.com/2026/10/30/boj-inflation-target-rates.html",
+    "https://www.japantimes.co.jp/business/2026/10/14/economy/japan-economy-6th/"
+   ]
+  },
+  {
+   "iso": "IND",
+   "name_th": "อินเดีย",
+   "lat": 28.6,
+   "lon": 77.2,
+   "gdp_growth_2026": 7.0,
+   "gdp_growth_2027": 7.0,
+   "inflation": 5.54,
+   "policy_rate": 5.5,
+   "health": "strong",
+   "note_th": "โตเร็วสุดในกลุ่มเศรษฐกิจใหญ่ แต่เงินเฟ้อ ก.ย. 5.54% สูงสุด 22 เดือน อาหาร +7.74% RBI ขึ้นดอกเบี้ย 25bp เป็น 5.50% วันที่ 7 ต.ค. ครั้งแรกตั้งแต่ ก.พ. 2023",
+   "sources": [
+    "https://www.cnbc.com/2026/10/12/india-inflation-oil-energy-iran-war.html"
+   ]
+  },
+  {
+   "iso": "BRA",
+   "name_th": "บราซิล",
+   "lat": -15.8,
+   "lon": -47.9,
+   "gdp_growth_2026": 2.2,
+   "gdp_growth_2027": 1.9,
+   "inflation": 4.58,
+   "policy_rate": 13.75,
+   "health": "stable",
+   "note_th": "Selic 13.75% หลังลด 25bp ก.ย. เงินเฟ้อ 4.58% เกินเพดานเป้า ลูลาชนะเลือกตั้งรอบสอง 25 ต.ค. เงินเรียลอ่อน ~8% สู่ 5.40/ดอลลาร์",
+   "sources": [
+    "https://agenciabrasil.ebc.com.br/en/economia/noticia/2026-10/imf-forecasts-22-gdp-growth-brazil-2026"
+   ]
+  },
+  {
+   "iso": "RUS",
+   "name_th": "รัสเซีย",
+   "lat": 55.75,
+   "lon": 37.6,
+   "gdp_growth_2026": 0.9,
+   "gdp_growth_2027": 0.9,
+   "inflation": 6.8,
+   "policy_rate": 14.0,
+   "health": "weak",
+   "note_th": "เศรษฐกิจใกล้ชะงัก ดอกเบี้ย 14% คงไว้ 23 ต.ค. เงินเฟ้อปี 2026 คาด 7.1–7.6% จากโดรนยูเครนโจมตีโรงกลั่น ขาดดุลงบประมาณ 3.2% ของ GDP ราคาน้ำมันสูงช่วยพยุงรายได้",
+   "sources": [
+    "https://interfax.com/newsroom/top-stories/119514/",
+    "https://www.intellinews.com/russia-s-central-bank-holds-key-rate-at-14-raises-inflation-forecast-478488"
+   ]
+  },
+  {
+   "iso": "SAU",
+   "name_th": "ซาอุดีอาระเบีย",
+   "lat": 24.7,
+   "lon": 46.7,
+   "gdp_growth_2026": -3.3,
+   "gdp_growth_2027": 7.9,
+   "inflation": 1.9,
+   "policy_rate": 4.5,
+   "health": "crisis",
+   "note_th": "IMF หั่นปี 2026 เป็นหดตัว -3.3% เพราะช่องแคบฮอร์มุซถูกปิด ส่งออกน้ำมันไม่ได้แม้ราคาเกิน $100 ภาคน้ำมันคาด -21.8% ปี 2027 คาดเด้ง 7.9% ถ้าฮอร์มุซเปิด มี.ค. 2027",
+   "sources": [
+    "https://houseofsaud.com/imf-vision-2030-wartime-verdict/",
+    "https://www.spa.gov.sa/en/N2678377"
+   ]
+  },
+  {
+   "iso": "NGA",
+   "name_th": "ไนจีเรีย",
+   "lat": 9.06,
+   "lon": 7.49,
+   "gdp_growth_2026": 4.2,
+   "gdp_growth_2027": 4.3,
+   "inflation": 14.63,
+   "policy_rate": 23.0,
+   "health": "stable",
+   "note_th": "เงินเฟ้อ ก.ย. ลดเหลือ 14.63% (อาหารยัง 19.6%) CBN ลด MPR เป็น 23% ไนราราว 1,333/ดอลลาร์ ธนาคารโลกห่วงรายจ่ายก่อนเลือกตั้ง 2027",
+   "sources": [
+    "https://nairametrics.com/2026/10/18/nigerias-inflation-mirage-food-prices-fall-but-core-pressures-mount/"
+   ]
+  },
+  {
+   "iso": "ZAF",
+   "name_th": "แอฟริกาใต้",
+   "lat": -25.7,
+   "lon": 28.2,
+   "gdp_growth_2026": 1.0,
+   "gdp_growth_2027": 1.3,
+   "inflation": 4.5,
+   "policy_rate": 7.25,
+   "health": "weak",
+   "note_th": "SARB ขึ้นดอกเบี้ย 2 ครั้งปีนี้เป็น 7.25% CPI 4.5% เหนือกรอบใหม่ 2–4% คาดเกิน 5% ปลายปีจากน้ำมัน",
+   "sources": [
+    "https://www.sanews.gov.za/south-africa/mpc-raises-repo-rate-725"
+   ]
+  },
+  {
+   "iso": "TUR",
+   "name_th": "ตุรกี",
+   "lat": 39.9,
+   "lon": 32.9,
+   "gdp_growth_2026": 2.7,
+   "gdp_growth_2027": 3.6,
+   "inflation": 29.73,
+   "policy_rate": 36.0,
+   "health": "weak",
+   "note_th": "เงินเฟ้อ 29.73% ลดจาก 31.5% ธนาคารกลางลดดอกเบี้ย 100bp เหลือ 36% (22 ต.ค.) ลีราใกล้ 50/ดอลลาร์ อ่อนสุดเป็นสถิติ",
+   "sources": [
+    "https://www.turkishminute.com/2026/10/13/imf-raises-turkeys-inflation-forecast-to-31-2-percent/"
+   ]
+  },
+  {
+   "iso": "ARG",
+   "name_th": "อาร์เจนตินา",
+   "lat": -34.6,
+   "lon": -58.4,
+   "gdp_growth_2026": 2.1,
+   "gdp_growth_2027": null,
+   "inflation": 33.4,
+   "policy_rate": null,
+   "health": "weak",
+   "note_th": "IMF หั่นโตปี 2026 จาก 3.5% เหลือ 2.1% เงินเฟ้อ 33.4% YoY IMF ตกลง 4 มาตรการโครงสร้างกับรัฐบาลมิเลย์ 29 ต.ค. รอบอร์ดอนุมัติ $900 ล้าน ธ.ค.",
+   "sources": [
+    "https://www.batimes.com.ar/news/economy/imf-slashes-argentinas-2026-growth-forecast-to-21.phtml"
+   ]
+  },
+  {
+   "iso": "IDN",
+   "name_th": "อินโดนีเซีย",
+   "lat": -6.2,
+   "lon": 106.8,
+   "gdp_growth_2026": 5.1,
+   "gdp_growth_2027": 5.1,
+   "inflation": 3.28,
+   "policy_rate": 5.75,
+   "health": "stable",
+   "note_th": "โต ~5% ต่อเนื่อง แต่รูเปียห์ร่วงสถิติ ~18,150/ดอลลาร์ หลัง MSCI ขู่ลดสถานะตลาด BI คง 5.75% เน้นแทรกแซงค่าเงิน",
+   "sources": [
+    "https://www.cnbc.com/2026/10/20/indonesia-msci-inflation-interest-rate-.html"
+   ]
+  },
+  {
+   "iso": "VNM",
+   "name_th": "เวียดนาม",
+   "lat": 21.0,
+   "lon": 105.8,
+   "gdp_growth_2026": 8.4,
+   "gdp_growth_2027": null,
+   "inflation": 5.08,
+   "policy_rate": 4.5,
+   "health": "strong",
+   "note_th": "GDP ไตรมาส 3 +9.95% สูงสุดตั้งแต่ 2022 ส่งออก ก.ย. +39% IMF คาด 8.4% เร็วสุดในอาเซียน แต่เงินเฟ้อ 5.08% เกินเป้า และเกินดุลกับสหรัฐ $122.6 พันล้าน เสี่ยงโดนสอบ Section 301",
+   "sources": [
+    "https://en.vneconomy.vn/vietnam-among-worlds-fastest-growing-economies-in-2026-imf-says.htm"
+   ]
+  },
+  {
+   "iso": "KOR",
+   "name_th": "เกาหลีใต้",
+   "lat": 37.6,
+   "lon": 127.0,
+   "gdp_growth_2026": 3.3,
+   "gdp_growth_2027": 2.8,
+   "inflation": 2.9,
+   "policy_rate": 3.0,
+   "health": "strong",
+   "note_th": "IMF ปรับขึ้นปี 2026 จาก 2.6% เป็น 3.3% ชิปและฮาร์ดแวร์ AI (~40% ของส่งออก) ชดเชยผลสงคราม BoK คง 3.00% หลังขึ้น ก.ค.–ส.ค. คาดขึ้นอีก พ.ย.",
+   "sources": [
+    "https://www.upi.com/Top_News/World-News/2026/10/13/imf-2026-growth-outlook/1281791943499/"
+   ]
+  },
+  {
+   "iso": "AUS",
+   "name_th": "ออสเตรเลีย",
+   "lat": -35.3,
+   "lon": 149.1,
+   "gdp_growth_2026": 1.9,
+   "gdp_growth_2027": 1.6,
+   "inflation": 4.3,
+   "policy_rate": 4.6,
+   "health": "stable",
+   "note_th": "RBA ขึ้นดอกเบี้ย 4 ครั้งปีนี้เป็น 4.60% สูงสุดตั้งแต่ 2011 CPI ไตรมาส 3 4.3% ตลาดมองขึ้นอีก 3 พ.ย.",
+   "sources": [
+    "https://www.babypips.com/news/headline-australia-cpi-heats-43-core-inflation-rba-alert-2026-10-28"
+   ]
+  },
+  {
+   "iso": "MEX",
+   "name_th": "เม็กซิโก",
+   "lat": 19.4,
+   "lon": -99.1,
+   "gdp_growth_2026": 1.5,
+   "gdp_growth_2027": 1.8,
+   "inflation": 3.62,
+   "policy_rate": 6.5,
+   "health": "weak",
+   "note_th": "GDP ไตรมาส 3 +0.9% Banxico คง 6.50% ทบทวน USMCA ล่าช้า สหรัฐเก็บภาษีเหล็ก 50% เปโซอ่อนสู่ 18.86/ดอลลาร์",
+   "sources": [
+    "https://www.riotimesonline.com/imf-mexico-growth-forecast-2026/"
+   ]
+  },
+  {
+   "iso": "THA",
+   "name_th": "ไทย",
+   "lat": 13.75,
+   "lon": 100.5,
+   "gdp_growth_2026": 2.1,
+   "gdp_growth_2027": 2.1,
+   "inflation": 2.1,
+   "policy_rate": 1.0,
+   "health": "weak",
+   "note_th": "IMF คาดโต 2.1% ทั้งปี 2026 และ 2027 ช้ากว่าอาเซียนทั้งหมดยกเว้นเมียนมาและบรูไน ส่วน ธปท. (กนง. 28 ต.ค. คง 1.00% ครั้งที่ 4) ปรับขึ้น GDP เป็น 2.4% จากส่งออกและลงทุนเกี่ยวกับ AI ส่งออก ก.ย. +24% โตเดือนที่ 27 ติดต่อกัน แต่ขาดดุลการค้าเพราะนำเข้า +50% ท่องเที่ยว -3.65% YoY ททท. ลดเป้าเหลือ ~33 ล้านคน หนี้ครัวเรือน 85.2% ของ GDP ลดเพราะเข้าถึงสินเชื่อยาก NPL SME ~10% บาทอ่อน ~7% YTD ภาษีสหรัฐเปลี่ยนจาก 19% เป็น Section 301 12.5% ข้อตกลงการค้ายังไม่ลงนาม การเมือง: ญัตติไม่ไว้วางใจถูกเลื่อน ประท้วงหนี้ครัวเรือน 15 ต.ค. น้ำท่วมใหญ่ กนง. เตือนเงินเฟ้อไตรมาส 4 อาจเกิน 3% จากน้ำมัน",
+   "sources": [
+    "https://www.khaosodenglish.com/featured/2026/10/14/imf-forecasts-thailand-growth-at-2-1-in-2026-among-aseans-slowest/",
+    "https://thaipublica.org/2026/10/mpc-28-10-2026/",
+    "https://www.nationthailand.com/business/trade/40072741",
+    "https://www.tradingview.com/news/reuters.com,2026:newsml_P8N439087:0-thai-household-debt-to-gdp-ratio-falls-to-85-2-at-end-q2-central-bank-says/",
+    "https://thediplomat.com/2026/10/trade-agreement-with-us-close-to-completion-thai-prime-minister-says/",
+    "https://acleddata.com/expert-comment/will-thailands-no-confidence-motion-deepen-pressure-anutins-government",
+    "https://www.nationthailand.com/news/tourism/40072403"
+   ]
+  }
+ ],
+ "chokepoints": [
+  {
+   "name_th": "ช่องแคบฮอร์มุซ",
+   "lat": 26.57,
+   "lon": 56.25,
+   "level": 3,
+   "note_th": "อิหร่านปิดช่องแคบตั้งแต่ มี.ค. 2026 โจมตีเรือ 121 ครั้ง ลูกเรือตาย 24 (IMO ถึง 27 ต.ค.) การสัญจรฟื้นบางส่วน แต่ 29 ต.ค. เรือบรรทุก 4 ลำโดนทุ่นระเบิด ต้นเหตุหลักของน้ำมัน $116"
+  },
+  {
+   "name_th": "บับ อัล-มันดับ / ทะเลแดง",
+   "lat": 12.6,
+   "lon": 43.3,
+   "level": 3,
+   "note_th": "ฮูตียึดเกาะเพริมและชายฝั่งมอคา ก.ย. 2026 ซาอุดีฯ ตอบโต้ทางอากาศ เรือพาณิชย์ส่วนใหญ่ยังเลี่ยงไปอ้อมแหลมกู๊ดโฮป"
+  },
+  {
+   "name_th": "คลองสุเอซ",
+   "lat": 30.45,
+   "lon": 32.35,
+   "level": 2,
+   "note_th": "ปริมาณเรือยังต่ำกว่าก่อนปี 2024 เพราะเรือเลี่ยงทะเลแดง ค่าระวางตู้ทรงตัว $4,400–4,600"
+  },
+  {
+   "name_th": "ทะเลดำ",
+   "lat": 44.0,
+   "lon": 34.0,
+   "level": 2,
+   "note_th": "ยูเครนโจมตีท่าเรือ/โรงกลั่นรัสเซีย โลจิสติกส์ธัญพืชสะดุด ดันราคาข้าวสาลี +6.3% (FAO ก.ย.)"
+  },
+  {
+   "name_th": "ช่องแคบไต้หวัน / ลูซอน",
+   "lat": 22.0,
+   "lon": 121.0,
+   "level": 1,
+   "note_th": "จีนวางเรือ 50+ ลำจากใต้ญี่ปุ่นถึงฟิลิปปินส์ปลาย ต.ค. ยังไม่กระทบการเดินเรือ แต่เป็นจุดเสี่ยงต่อห่วงโซ่ชิป"
+  },
+  {
+   "name_th": "ช่องแคบมะละกา",
+   "lat": 2.5,
+   "lon": 101.5,
+   "level": 1,
+   "note_th": "เส้นทางพลังงานหลักของไทยและอาเซียน ปัจจุบันเปิดปกติ แต่รับน้ำมันอ่าวเปอร์เซียน้อยลงเพราะฮอร์มุซ"
+  }
+ ],
+ "indicators": [
+  {
+   "label_th": "GDP โลก 2026 (IMF WEO ต.ค. 2026)",
+   "value": "3.1%",
+   "delta_th": "ปรับขึ้นจาก 3.0% (ก.ค.) แต่ชะลอจาก 3.5% ในปี 2025; เพียง 32 ประเทศสร้างการเติบโต 95% ของโลก",
+   "trend": "down",
+   "as_of": "2026-10-13",
+   "source": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026"
+  },
+  {
+   "label_th": "GDP โลก 2027 (IMF)",
+   "value": "3.4%",
+   "delta_th": "คงเดิมจาก ก.ค.; การฟื้นตัวตั้งอยู่บนสมมติฐานฮอร์มุซเปิดอีกครั้ง มี.ค. 2027",
+   "trend": "up",
+   "as_of": "2026-10-13",
+   "source": "https://maseconomics.com/imf-world-economic-outlook-october-2026/"
+  },
+  {
+   "label_th": "เงินเฟ้อโลก 2026 / 2027 (IMF)",
+   "value": "4.7% / 4.1%",
+   "delta_th": "สูงขึ้นจาก 4.1% ปี 2025 เพราะพลังงานและอาหาร; เงินเฟ้อพื้นฐาน 3.9% / 3.7%",
+   "trend": "up",
+   "as_of": "2026-10-12",
+   "source": "https://www.imf.org/en/blogs/articles/2026/10/12/global-economic-resilience-is-under-strain-demanding-decisive-policy-action"
+  },
+  {
+   "label_th": "ดอกเบี้ย Fed (สหรัฐ)",
+   "value": "3.75–4.00%",
+   "delta_th": "คงไว้ 28 ต.ค. (มติ 10–2 สองเสียงขอขึ้น) หลังขึ้น 25bp ก.ย. ครั้งแรกตั้งแต่ปี 2023; ประชุมถัดไป 9 ธ.ค.",
+   "trend": "up",
+   "as_of": "2026-10-28",
+   "source": "https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html"
+  },
+  {
+   "label_th": "ดอกเบี้ย ECB (เงินฝาก)",
+   "value": "2.50%",
+   "delta_th": "คงไว้ 29 ต.ค. หลังขึ้น 25bp ก.ย.; เงินเฟ้อยูโรโซน ก.ย. 3.8% สูงสุด 3 ปี; ตลาดให้โอกาสขึ้นอีก ธ.ค. ~67%",
+   "trend": "up",
+   "as_of": "2026-10-29",
+   "source": "https://www.cnbc.com/2026/10/29/european-central-bank-interest-rates.html"
+  },
+  {
+   "label_th": "ดอกเบี้ย BoJ (ญี่ปุ่น)",
+   "value": "1.25%",
+   "delta_th": "คงไว้ 30 ต.ค. สูงสุดตั้งแต่ปี 1995; เงินเฟ้อพื้นฐานถึงเป้า 2% ครั้งแรกตั้งแต่ 2013; คาดขึ้นอีก ธ.ค./ม.ค.",
+   "trend": "up",
+   "as_of": "2026-10-30",
+   "source": "https://www.cnbc.com/2026/10/30/boj-inflation-target-rates.html"
+  },
+  {
+   "label_th": "ดอกเบี้ย BoE (อังกฤษ)",
+   "value": "3.75%",
+   "delta_th": "คงไว้ 17 ก.ย. (6–3 สามเสียงขอขึ้น); เงินเฟ้อ 3.5%; ประชุมถัดไป 5 พ.ย.",
+   "trend": "flat",
+   "as_of": "2026-09-17",
+   "source": "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate"
+  },
+  {
+   "label_th": "น้ำมันดิบ Brent",
+   "value": "~$116–117",
+   "delta_th": "+10–13% ในเดือน ต.ค. ขึ้นเป็นเดือนที่ 4 ติดต่อกัน; เหนือ $100 ตั้งแต่ มี.ค. 2026; เรือบรรทุก 4 ลำโดนทุ่นระเบิดใกล้ฮอร์มุซ 29 ต.ค.",
+   "trend": "up",
+   "as_of": "2026-10-30",
+   "source": "https://www.abc.net.au/news/2026-10-30/asx-markets-business-live-news-oct-30/107326558"
+  },
+  {
+   "label_th": "ทองคำ (spot)",
+   "value": "~$3,940–4,055",
+   "delta_th": "+2–3% YoY แต่ต่ำกว่าสถิติ ~$5,400–5,600 (29 ม.ค. 2026) ราว 25%; 30 ต.ค. หลุด $4,000 เพราะกังวลดอกเบี้ยขึ้น",
+   "trend": "down",
+   "as_of": "2026-10-30",
+   "source": "https://www.macrotrends.net/1333/historical-gold-prices-100-year-chart"
+  },
+  {
+   "label_th": "ดัชนีดอลลาร์ (DXY)",
+   "value": "~101.7",
+   "delta_th": "+~2% YoY; อ่อนลง 3 วันติดจากบอนด์ยีลด์สหรัฐลดลง",
+   "trend": "flat",
+   "as_of": "2026-10-30",
+   "source": "https://tradingeconomics.com/dxy:cur"
+  },
+  {
+   "label_th": "S&P 500",
+   "value": "7,720",
+   "delta_th": "ปิด 29 ต.ค.; YTD +12.8%; สถิติ 7,818.93 เมื่อ 6 ต.ค.; 30 ต.ค. ร่วงแรงสุดตั้งแต่ มิ.ย. Nasdaq 100 -3% จากผลประกอบการ AI อ่อน",
+   "trend": "down",
+   "as_of": "2026-10-30",
+   "source": "https://www.bloomberg.com/news/articles/2026-10-29/stock-market-today-dow-s-p-live-updates"
+  },
+  {
+   "label_th": "หนี้สาธารณะสหรัฐ",
+   "value": "$40.55 ล้านล้าน",
+   "delta_th": "ทะลุ $40 ล้านล้าน 18 ส.ค. 2026; +~$0.3 ล้านล้านในเดือน ต.ค.",
+   "trend": "up",
+   "as_of": "2026-10-28",
+   "source": "https://indexbox.io/blog/us-total-public-debt-outstanding-eases-to-4055-trillion-on-2026-10-28"
+  },
+  {
+   "label_th": "ภาษีศุลกากรเฉลี่ยสหรัฐ",
+   "value": "~9–11%",
+   "delta_th": "ลดจาก 14.3% หลังศาลสูงล้มภาษี IEEPA (20 ก.พ. 2026) แล้วใช้ Section 301 อัตรา 10–12.5% บน 60 ประเทศ ตั้งแต่ 24 ก.ค.",
+   "trend": "down",
+   "as_of": "2026-08-24",
+   "source": "https://budgetlab.yale.edu/sites/default/files/page_to_pdf/1568/publication_1568.pdf"
+  },
+  {
+   "label_th": "สงครามการค้าสหรัฐ–จีน",
+   "value": "พักรบถึง 10 ม.ค. 2027",
+   "delta_th": "ขยายหลังประชุม Trump–Xi ปลาย ก.ย.; ตกลงลดภาษีสินค้า ~$30 พันล้านต่อฝ่าย; ภาษีสหรัฐบนจีนเฉลี่ย ~26.5%",
+   "trend": "flat",
+   "as_of": "2026-10-11",
+   "source": "https://www.cnbc.com/2026/09/24/us-china-trade-truce-bessent-trump-xi.html"
+  },
+  {
+   "label_th": "ปริมาณการค้าสินค้าโลก (WTO)",
+   "value": "+3.9% / +4.1%",
+   "delta_th": "ปี 2026/2027 ปรับขึ้นจาก 1.9%/2.6%; สินค้าเกี่ยวกับ AI คิดเป็น 47% ของการเติบโตการค้า H1; ส่งออกเอเชีย +9.9% ตะวันออกกลาง -17.2%",
+   "trend": "up",
+   "as_of": "2026-10-08",
+   "source": "https://www.wto.org/english/res_e/booksp_e/gtos1026_e.pdf"
+  },
+  {
+   "label_th": "ลงทุน AI/ดาต้าเซ็นเตอร์ (5 hyperscalers)",
+   "value": "~$660–800 พันล้าน",
+   "delta_th": "+64–76% จากปี 2025; capex เกินรายได้คลาวด์ Alphabet FCF ไตรมาส 3 ติดลบ Microsoft ลด capex 29 ต.ค.; IMF จัด 'การประเมิน AI ใหม่' เป็นความเสี่ยงหลัก",
+   "trend": "up",
+   "as_of": "2026-10-29",
+   "source": "https://finance.yahoo.com/technology/ai/articles/ai-absurd-spending-boom-hyperscalers-162709082.html"
+  },
+  {
+   "label_th": "ดัชนีราคาอาหาร FAO (ก.ย.)",
+   "value": "136.0",
+   "delta_th": "+1.5% m/m, +5.8% YoY สูงสุดตั้งแต่ พ.ย. 2022; ข้าวสาลี +6.3% จากโลจิสติกส์ทะเลดำ",
+   "trend": "up",
+   "as_of": "2026-10-02",
+   "source": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/"
+  },
+  {
+   "label_th": "ค่าระวางตู้ (Drewry WCI)",
+   "value": "$4,429/ตู้ 40 ฟุต",
+   "delta_th": "-3% w/w; ทั้งเดือนทรงตัว $4,400–4,600",
+   "trend": "down",
+   "as_of": "2026-10-29",
+   "source": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry"
+  },
+  {
+   "label_th": "Baltic Dry Index",
+   "value": "~2,652",
+   "delta_th": "ลดจาก 3,148 (2 ต.ค.) ราว -16% ในเดือน",
+   "trend": "down",
+   "as_of": "2026-10-28",
+   "source": "https://www.hellenicshippingnews.com/baltic-dry-index-climbs-to-2680-up-87-points/"
+  },
+  {
+   "label_th": "เงินเฟ้อสหรัฐ (CPI ก.ย.)",
+   "value": "3.7%",
+   "delta_th": "เร่งจาก 3.4% (ส.ค.); พื้นฐาน 2.6%; น้ำมันเบนซิน +34.2% YoY; GDP ไตรมาส 3 +3.4%",
+   "trend": "up",
+   "as_of": "2026-10-14",
+   "source": "https://www.bls.gov/news.release/archives/cpi_10142026.htm"
+  }
+ ],
+ "analysis_th": {
+  "headline": "สงครามอิหร่านเปลี่ยนเศรษฐกิจโลกเข้าสู่ยุคน้ำมันแพงและดอกเบี้ยขาขึ้น ขณะ AI เป็นเครื่องยนต์เดียวที่ยังดึงการเติบโต",
+  "points": [
+   "แกนกลางของปี 2026 คือสงครามอิหร่าน (เริ่ม 28 ก.พ.) และการปิดช่องแคบฮอร์มุซ น้ำมัน Brent ยืนเหนือ $100 ติดต่อกัน 8 เดือน ล่าสุด ~$116 เป็นตัวเร่งเงินเฟ้อโลกสู่ 4.7% และผลักให้ Fed, ECB, BoJ, RBA, RBI, BoK, SARB พลิกมาขึ้นดอกเบี้ยในปีเดียว",
+   "ผู้แพ้ที่ชัดสุดคือผู้ส่งออกน้ำมันในอ่าวเปอร์เซีย ซาอุดีฯ หดตัว -3.3% แม้ราคาน้ำมันสูง เพราะส่งออกไม่ได้ และผู้นำเข้าพลังงานนอกห่วงโซ่เทคโนโลยี (ยุโรป ไทย แอฟริกาใต้) ที่โตต่ำแต่เงินเฟ้อสูง ฝรั่งเศสหดตัวและเผชิญวิกฤตการคลัง",
+   "ผู้ชนะคือประเทศในห่วงโซ่ AI: เกาหลีใต้ถูกปรับขึ้นเป็น 3.3% เวียดนาม 8.4% อินเดีย 7.0% สหรัฐยังโต 2.3% สินค้าเกี่ยวกับ AI คิดเป็นเกือบครึ่งของการเติบโตการค้าโลก แต่ IMF จัด ‘การประเมิน AI ใหม่’ เป็นความเสี่ยงอันดับต้น หลัง hyperscalers ลงทุน $660–800 พันล้านเกินรายได้คลาวด์ และหุ้นเทคร่วงแรง 30 ต.ค.",
+   "สงครามระหว่างรัฐกลับมา: ปีนี้มีสงครามใหม่อย่างน้อย 4 สมรภูมิ (อิหร่าน เลบานอน เวเนซุเอลา ฮูตี–ซาอุดีฯ) และเอธิโอเปีย–เอริเทรียเสี่ยงเป็นสมรภูมิที่ 5 ขณะที่ยอดผู้เสียชีวิตรวมไตรมาส 3 ลดลง 52% จากปีก่อน เพราะกาซาและอิหร่านอยู่ในช่วงหยุดยิง สมรภูมิที่ตายมากสุดยังเป็นยูเครน (94,685 ใน 12 เดือน) ซูดาน และไนจีเรีย",
+   "สหรัฐสวมสองบทพร้อมกัน เป็นคู่สงคราม (อิหร่าน อิรัก เวเนซุเอลา) และคนกลาง (ยูเครน กาซา เลบานอน คองโก ไทย–กัมพูชา) จุดเปลี่ยนใกล้สุดคือเลือกตั้งกลางเทอม 3 พ.ย. 2026 ที่จะชี้ว่าจะเปิดฉากอิหร่านรอบใหม่หรือฟื้นข้อตกลงผ่านกาตาร์ และกำหนดทิศทางภาษี Section 301 กับการพักรบการค้าสหรัฐ–จีนที่หมดอายุ 10 ม.ค. 2027",
+   "หนี้สาธารณะโลกสูงสุดตั้งแต่สงครามโลกครั้งที่ 2 สหรัฐ $40.55 ล้านล้าน ยีลด์อังกฤษสูงสุดตั้งแต่ 2007 IMF เรียกร้องให้สร้างพื้นที่การคลังใหม่และใช้เงินช่วยค่าครองชีพแบบเจาะจงแทนการตรึงราคาพลังงาน ซึ่งเป็นแรงกดดันตรงต่อกองทุนน้ำมันของไทยที่ติดลบราว 1 แสนล้านบาท"
+  ],
+  "thailand": "ไทยอยู่ฝั่ง ‘โตต่ำ’ ของโลกสองความเร็ว IMF คาด 2.1% ช้ากว่าอาเซียนแทบทุกประเทศ แต่ ธปท. มองดีกว่าที่ 2.4% จากส่งออกที่โตเดือนที่ 27 ติดต่อกัน (+24% ก.ย.) ด้วยแรงหนุนสินค้าเกี่ยวกับ AI ขณะที่ท่องเที่ยวหดตัว (-3.65%) หนี้ครัวเรือน 85% ของ GDP และ NPL SME ~10% ฉุดการบริโภค กนง. คงดอกเบี้ย 1.00% สวนทางโลกที่ขึ้น ทำให้บาทอ่อน ~7% และเริ่มส่งสัญญาณว่าดอกเบี้ยต่ำนานมีต้นทุน ความเสี่ยงเฉพาะหน้าคือเงินเฟ้อไตรมาส 4 อาจเกิน 3% จากน้ำมันผ่านฮอร์มุซ ภาษีสหรัฐเปลี่ยนจาก 19% เป็น Section 301 12.5% โดยข้อตกลงการค้ายังไม่ลงนาม ชายแดนกัมพูชาสงบแต่ข้อพิพาทไม่จบ และการเมืองในประเทศ (ญัตติไม่ไว้วางใจ น้ำท่วม ประท้วงหนี้) เพิ่มความไม่แน่นอน",
+  "risks": [
+   "สงครามอิหร่านรอบใหม่หลัง 3 พ.ย. หรือฮอร์มุซไม่เปิดตามสมมติฐาน IMF (มี.ค. 2027) จะทำให้คาดการณ์ฟื้นตัวปี 2027 ที่ 3.4% ล้มทั้งกระดาน และสต็อกพลังงานที่ IEA ปล่อยไป 400 ล้านบาร์เรลใกล้หมดแรงพยุง",
+   "ฟองสบู่ AI แฟบ: capex เกินกระแสเงินสด หนี้ hyperscaler ~$800 พันล้าน หากกำไรผิดหวังต่อเนื่องจะลามถึงตลาดหุ้น การลงทุน และผู้ส่งออกชิ้นส่วนอย่างเกาหลี ไต้หวัน เวียดนาม และไทย",
+   "วิกฤตการคลังในประเทศพัฒนาแล้ว (ฝรั่งเศส อังกฤษ สหรัฐ) ดัน term premium และต้นทุนกู้ยืมทั่วโลก ซ้ำเติมประเทศเกิดใหม่ที่ค่าเงินอ่อน (อินโดนีเซีย ตุรกี บราซิล ไทย)",
+   "สงครามลามเป็นระหว่างรัฐเพิ่ม: เอธิโอเปีย–เอริเทรีย ซาอุดีฯ บุกเยเมนภาคพื้น ปากีสถาน–อัฟกานิสถาน หรือจีนกดดันไต้หวันขณะสหรัฐติดพันตะวันออกกลาง"
+  ]
+ }
+}

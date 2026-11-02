@@ -1,0 +1,133 @@
+{
+ "updated_at": "2026-11-02T08:05:00Z",
+ "items": [
+  {
+   "id": "h1",
+   "conflict_id": "thailand",
+   "title_th": "สมาคมค้าทองคำประกาศ 21 ครั้ง ทองแท่งขายออก 62,500 บาท +250 จากวานนี้ เปิดตลาดพุ่ง 350",
+   "time": "2026-11-02T07:38:00Z",
+   "source": "https://xn--42cah7d0cxcvbbb9x.com/",
+   "source_name": "สมาคมค้าทองคำ"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Brent ร่วง 2.7% เหลือ 110 $ WTI หลุด 101 หลังอิหร่านเสนอเปิดฮอร์มุซ 2 วัน OPEC+ คงเป้า",
+   "time": "2026-11-02T07:45:00Z",
+   "source": "https://tradingeconomics.com/commodity/brent-crude-oil",
+   "source_name": "Trading Economics"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "ทองโลกฟื้น 0.7% ยืนเหนือ 3,900 $ หลังต่ำสุด 1 ปี ตลาดให้โอกาสเฟดขึ้นดอกเบี้ย ธ.ค. 73–75%",
+   "time": "2026-11-02T07:45:00Z",
+   "source": "https://tradingeconomics.com/commodity/gold",
+   "source_name": "Trading Economics"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "thailand",
+   "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ ภาคเช้าลบ 2 จุดที่ 1,516 รอผลเลือกตั้งสหรัฐ",
+   "time": "2026-11-02T07:04:00Z",
+   "source": "https://infoquest.co.th/2026/672506",
+   "source_name": "อินโฟเควสท์"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "thailand",
+   "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ ชูมั่นคงอาหาร",
+   "time": "2026-11-02T06:44:00Z",
+   "source": "https://siamrath.co.th/politics/332765",
+   "source_name": "สยามรัฐ"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "world",
+   "title_th": "หุ้นเอเชียผสม Nikkei −0.3% Kioxia ดิ่ง 15.8% Kospi +2.2% ฟิวเจอร์สสหรัฐบวก น้ำมันร่วง 3%",
+   "time": "2026-11-02T06:33:00Z",
+   "source": "https://click2houston.com/business/2026/11/02/asian-shares-are-mixed-and-us-futures-advance-while-oil-prices-retreat",
+   "source_name": "AP"
+  },
+  {
+   "id": "h7",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนอ้างโดรนถล่มโรงกลั่น Kstovo–สถานีน้ำมันซามารา เคียฟชี้ ต.ค. รัสเซียสูญเสียทหารสูงสุด",
+   "time": "2026-11-02T05:18:00Z",
+   "source": "https://kyivindependent.com/ukrainian-forces-reportedly-strike-oil-facility-in-russias-samara-oblast-in-overnight-attack/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h8",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "ฮูตีอ้างซาอุฯถล่มท่าน้ำมันราสอิซา–ซาอะดะห์ 75 ครั้งใน 24 ชม. กองกำลังผสมสกัดโดรน–ขีปนาวุธ",
+   "time": "2026-11-02T05:11:00Z",
+   "source": "https://telanganatoday.com/houthis-report-airstrikes-on-red-sea-oil-port-telecom-facility-in-yemen",
+   "source_name": "Telangana Today (IANS)"
+  },
+  {
+   "id": "h9",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC อ้างเรือน้ำมัน 2 ลำชนทุ่นระเบิดในฮอร์มุซ ทรัมป์ลั่นสงครามจบเร็ว ๆ นี้ไม่ว่าทางใด",
+   "time": "2026-11-02T04:30:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h10",
+   "conflict_id": "world",
+   "title_th": "เลือกตั้งกลางเทอมพรุ่งนี้ ลงคะแนนล่วงหน้าทะลุ 54 ล้าน ทรัมป์ปราศรัยลินคอล์นเมมโมเรียล",
+   "time": "2026-11-02T03:06:00Z",
+   "source": "https://www.cbsnews.com/live-updates/2026-midterm-elections-campaigns-weekend-before/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h11",
+   "conflict_id": "thailand",
+   "title_th": "ฮั่วเซ่งเฮงมองทองฟื้นสั้น ขายทำกำไร 3,945 $/62,850 บาท ซื้อ 3,870 หลุด 3,800 ตัดขาดทุน",
+   "time": "2026-11-02T02:24:00Z",
+   "source": "https://www.sanook.com/money/960547/",
+   "source_name": "Sanook Money"
+  },
+  {
+   "id": "h12",
+   "conflict_id": "thailand",
+   "title_th": "บาทเปิด 33.77 อ่อนค่าตามภูมิภาคและทองร่วง กสิกรให้กรอบ 33.65–33.85 จับตาเลือกตั้งสหรัฐ–ISM",
+   "time": "2026-11-02T02:22:00Z",
+   "source": "https://dailynews.co.th/news/6323969",
+   "source_name": "เดลินิวส์"
+  },
+  {
+   "id": "h13",
+   "conflict_id": "world",
+   "title_th": "PMI ภาคผลิตจีน RatingDog ต.ค. 52.0 ดีกว่าคาด ผลผลิตโตเร็วสุด 6 เดือน สวนดัชนีทางการ 49.3",
+   "time": "2026-11-02T01:45:00Z",
+   "source": "https://www.tradingview.com/news/te_news:597072:0-china-manufacturing-pmi-beats-estimates/",
+   "source_name": "Trading Economics (TradingView)"
+  },
+  {
+   "id": "h14",
+   "conflict_id": "economy",
+   "title_th": "Bitcoin ทรงตัว 78,000 $ Binance ทยอยเปิดถอนทุกเหรียญ เติมคืน 95% ETF ไหลออก 643 ล้าน $",
+   "time": "2026-11-02T00:58:00Z",
+   "source": "https://au.finance.yahoo.com/news/bitcoin-steadies-near-us-78-005800846.html",
+   "source_name": "Yahoo Finance AU (Proactive)"
+  },
+  {
+   "id": "h15",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนอพยพ 167 คนช่วงหยุดยิงโอเลชกีเขตเคอร์ซอน รัสเซียถล่มไฟฟ้า 4 ภูมิภาคดับหลายแสนบ้าน",
+   "time": "2026-11-01T23:38:00Z",
+   "source": "https://kyivindependent.com/ukrainian-forces-evacuate-civilians-around-kherson-oblast-during-oleshky-ceasefire/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h16",
+   "conflict_id": "economy",
+   "title_th": "ฟิวเจอร์ส S&P +0.5% Nasdaq +0.9% รีบาวด์ รอ ISM คืนนี้ เลือกตั้ง 3 พ.ย. งบ Apple",
+   "time": "2026-11-01T23:30:00Z",
+   "source": "https://cnbc.com/2026/11/01/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  }
+ ]
+}
