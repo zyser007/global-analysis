@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-02T17:09:16Z",
- "checked": "2026-11-02T17:09:16Z",
+ "updated": "2026-11-02T21:09:13Z",
+ "checked": "2026-11-02T21:09:13Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-02T17:09:16Z",
+   "fetched": "2026-11-02T21:09:13Z",
    "count": 6,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-18&toDate=2026-11-03&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-02T17:09:16Z",
+   "fetched": "2026-11-02T21:09:13Z",
    "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -21,22 +21,22 @@
   {
    "id": "gdacs-tc-1001346",
    "type": "cyclone",
-   "title_th": "พายุหมุนเขตร้อน MURASU-26 ลมสูงสุด 120 กม./ชม. กระทบอินเดีย",
+   "title_th": "พายุหมุนเขตร้อน MURASU-26 ลมสูงสุด 157 กม./ชม. กระทบอินเดีย",
    "country": "India",
    "country_th": "อินเดีย",
    "countries": [
     "India"
    ],
-   "lat": 14.7,
-   "lon": 80.7,
+   "lat": 15.1,
+   "lon": 80.5,
    "start": "2026-11-01T00:00:00Z",
-   "end": "2026-11-02T12:00:00Z",
-   "updated": "2026-11-02T14:03:01Z",
+   "end": "2026-11-02T18:00:00Z",
+   "updated": "2026-11-02T20:01:51Z",
    "alert_level": "red",
-   "severity_th": "ลมสูงสุด 120 กม./ชม.",
-   "severity_value": 120.37,
+   "severity_th": "ลมสูงสุด 157 กม./ชม.",
+   "severity_value": 157.41,
    "severity_unit": "km/h",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=7&eventtype=TC",
+   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=8&eventtype=TC",
    "source_name": "GDACS"
   },
   {

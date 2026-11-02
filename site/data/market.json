@@ -1,13 +1,13 @@
 {
- "updated_at": "2026-11-02T17:09:19Z",
- "note_th": "รอบนี้ S&P 500, VIX, ยีลด์ 10 ปี เป็นราคาระหว่างวันตลาดสหรัฐเปิด ทองคำ น้ำมัน Bitcoin เป็นราคาระหว่างวัน ส่วน SET, Nikkei, Nasdaq 100, DXY, USD/THB และทองคำแท่งไทยยังใช้ค่าก่อนหน้า เพราะไม่พบราคาที่ใหม่กว่า",
+ "updated_at": "2026-11-02T21:09:16Z",
+ "note_th": "รอบนี้ไม่พบราคาปิดตลาดสหรัฐหรือราคาที่ใหม่กว่าจากแหล่งที่เชื่อถือได้ จึงคงค่าก่อนหน้าทุกรายการ ตัวเลขที่แสดงเป็นราคาระหว่างวันหรือราคาปิดของรอบก่อน",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
    "value": "105.86",
    "unit": "$/บาร์เรล",
-   "change_th": "−6.67% วันนี้ ราคาลดลงต่อเนื่องจากความหวังทางการทูตเรื่องอิหร่าน",
+   "change_th": "−6.67% วันนี้ ไม่พบค่าที่ใหม่กว่า คงค่าเดิม ความหวังทางการทูตเรื่องอิหร่าน",
    "trend": "down",
    "as_of": "2026-11-02T16:30:00Z",
    "source": "https://tradingeconomics.com/commodity/brent-crude-oil"
@@ -17,7 +17,7 @@
    "label_th": "น้ำมัน WTI",
    "value": "96.63",
    "unit": "$/บาร์เรล",
-   "change_th": "ลดลงจากปิดก่อนหน้า 104.1 ราว −7% ต่ำกว่า 100 ดอลลาร์",
+   "change_th": "ลดลงจากปิดก่อนหน้า 104.1 ราว −7% ไม่พบค่าที่ใหม่กว่า คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T16:30:00Z",
    "source": "https://www.investing.com/commodities/crude-oil"
@@ -27,7 +27,7 @@
    "label_th": "ทองคำ (spot)",
    "value": "3958.95",
    "unit": "$/ออนซ์",
-   "change_th": "+2.17% วันนี้ (+83.93) ราคา spot ณ 10:28 น. นิวยอร์ก ฟื้นต่อเนื่อง",
+   "change_th": "+2.17% วันนี้ ราคา spot ณ 10:28 น. นิวยอร์ก ไม่พบค่าที่ใหม่กว่า คงค่าเดิม",
    "trend": "up",
    "as_of": "2026-11-02T15:28:00Z",
    "source": "https://www.cnbc.com/quotes/XAU="
@@ -57,7 +57,7 @@
    "label_th": "S&P 500",
    "value": "7623.31",
    "unit": "จุด",
-   "change_th": "+0.57% (+43.24) ระหว่างวัน ตลาดเปิด ฟื้นหลังเทขายสัปดาห์ก่อน น้ำมันลง",
+   "change_th": "+0.57% ระหว่างวัน ไม่พบราคาปิดจริง ตลาดปิดผสมตามรายงาน คงค่าเดิม",
    "trend": "up",
    "as_of": "2026-11-02T17:06:00Z",
    "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
@@ -67,7 +67,7 @@
    "label_th": "Nasdaq 100",
    "value": "28384.85",
    "unit": "จุด",
-   "change_th": "ปิดศุกร์ 30 ต.ค. −3.46% ไม่พบราคา NDX ระหว่างวัน Nasdaq Composite ราว +0.7%",
+   "change_th": "ปิดศุกร์ 30 ต.ค. −3.46% ไม่พบราคา NDX ที่ใหม่กว่า คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-10-30T20:00:00Z",
    "source": "https://cnbc.com/2026/11/01/stock-market-today-live-updates.html"
@@ -77,7 +77,7 @@
    "label_th": "Bitcoin",
    "value": "77652",
    "unit": "$",
-   "change_th": "ทรงตัวต่ำกว่า 78,000 ดอลลาร์ ก่อนเลือกตั้งกลางเทอมสหรัฐ",
+   "change_th": "ทรงตัวต่ำกว่า 78,000 ดอลลาร์ ก่อนเลือกตั้งกลางเทอมสหรัฐ ไม่พบค่าที่ใหม่กว่า",
    "trend": "flat",
    "as_of": "2026-11-02T17:00:00Z",
    "source": "https://www.tradingview.com/symbols/BTCUSD/"
@@ -97,7 +97,7 @@
    "label_th": "ยีลด์พันธบัตรสหรัฐ 10 ปี",
    "value": "4.888",
    "unit": "%",
-   "change_th": "−0.041 (−0.83%) วันนี้ ยีลด์ลดลงตามราคาน้ำมัน",
+   "change_th": "−0.041 วันนี้ ยีลด์ลดลงตามราคาน้ำมัน ไม่พบค่าที่ใหม่กว่า",
    "trend": "down",
    "as_of": "2026-11-02T17:06:00Z",
    "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
@@ -107,7 +107,7 @@
    "label_th": "VIX",
    "value": "18.84",
    "unit": "จุด",
-   "change_th": "−2.99% (−0.58) ระหว่างวัน จากปิดศุกร์ 19.42",
+   "change_th": "−2.99% ระหว่างวัน จากปิดศุกร์ 19.42 ไม่พบค่าปิดจริง คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T17:06:00Z",
    "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
