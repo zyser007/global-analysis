@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Build world-globe/index.html from tools/template.html.
+"""Build site/index.html (a standalone page for GitHub Pages) from tools/template.html.
 
 - `__LAND_DOTS__`               <- tools/land_dots.json (raw text)
 - `<script id="world-data">`    <- data/world-data.json + data/gold.json (as key "gold"),
-                                   dumped compact (ensure_ascii=False, no spaces) so the block
-                                   round-trips byte-for-byte with the previous generation.
+                                   dumped compact (ensure_ascii=False, no spaces).
 
-Run:  python3 -I tools/build.py
+The live prices / headlines / run status are NOT embedded: the page fetches
+site/data/{market,headlines,status}.json at runtime (relative URLs), and
+updater/update.py rewrites those files from GitHub Actions.
+
+Run:  python3 -I tools/build.py          (after editing tools/gold_module.js run tools/splice_gold.py first)
 """
 import json, re, sys, pathlib
 
@@ -15,7 +18,7 @@ TEMPLATE = ROOT / "tools" / "template.html"
 LAND = ROOT / "tools" / "land_dots.json"
 WORLD = ROOT / "data" / "world-data.json"
 GOLD = ROOT / "data" / "gold.json"
-OUT = ROOT / "world-globe" / "index.html"
+OUT = ROOT / "site" / "index.html"
 
 tpl = TEMPLATE.read_text(encoding="utf-8")
 if "__LAND_DOTS__" not in tpl:
@@ -31,9 +34,17 @@ if not pat.search(tpl):
 html = pat.sub(lambda m: m.group(1) + world_txt + m.group(3), tpl, count=1)
 html = html.replace("__LAND_DOTS__", LAND.read_text(encoding="utf-8").strip(), 1)
 
-# the artifact page must start with <title>, carry no doctype/html/head/body
-assert html.startswith("<title>"), "page must start with <title>"
-assert not re.search(r"<!doctype|<(html|head|body)[\s>]", html, re.I), "page must not carry doctype/html/head/body"
+# a normal standalone document
+assert html.startswith("<!doctype html>"), "page must start with a doctype"
+for tag in ('<html lang="th">', "<head>", '<meta charset="utf-8">', "viewport-fit=cover", "</head>", "<body>", "</body>", "</html>"):
+    assert tag in html, "missing " + tag
+assert "claude.use" not in html and "window.claude" not in html, "artifact runtime code left in the page"
+# every runtime URL must be relative (the site lives under /<repo>/ on GitHub Pages)
+assert not re.search(r"fetch\(\s*['\"]/", html), "fetch() with an absolute path"
+assert "'data/' + name + '.json" in html, "live layer must fetch data/<doc>.json relatively"
+# external scripts: three.js r128 pinned on cdnjs only
+srcs = re.findall(r'<script[^>]+src="([^"]+)"', html)
+assert srcs == ["https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"], srcs
 
 # verify both JSON blocks parse and the gold data is present
 for bid in ("world-data", "land-dots"):
@@ -45,5 +56,6 @@ for bid in ("world-data", "land-dots"):
     else:
         assert len(parsed) > 6000, "land dots look truncated"
 
+OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html, encoding="utf-8")
-print("wrote %s (%d bytes, %d lines)" % (OUT, len(html.encode("utf-8")), html.count("\n") + 1))
+print("wrote %s (%d bytes, %d lines)" % (OUT.relative_to(ROOT), len(html.encode("utf-8")), html.count("\n") + 1))

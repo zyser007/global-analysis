@@ -1,5 +1,13 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ลูกโลกสถานการณ์โลก</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ลูกโลก 3 มิติสรุปความขัดแย้ง เศรษฐกิจ ช่องแคบสำคัญ ราคาตลาดและทองคำ อัปเดตอัตโนมัติวันละหลายรอบ">
+<meta name="theme-color" content="#0a0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e9eef5" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%230f1a2b' stroke='%233ea7b8' stroke-width='4'/%3E%3Cpath d='M8 32h48M32 4c-10 8-10 48 0 56M32 4c10 8 10 48 0 56' fill='none' stroke='%238fb3d9' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -172,6 +180,8 @@ button{font:inherit;color:inherit}
 .live-head .age{font-size:11.5px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
 .live-head .note{flex-basis:100%;font-size:11.5px;color:var(--muted)}
 .live-head .note.warn{color:var(--warn)}
+.live-head.is-stale .age{color:var(--warn)}
+#foot-live{white-space:nowrap}
 .ticker{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;padding:2px 2px 8px;margin:0 -2px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin;max-width:100%}
 .tk{flex:0 0 auto;width:132px;scroll-snap-align:start;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:8px 10px;min-width:0}
 .tk .tk-l{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -305,6 +315,8 @@ details.fold .fold-body p{margin:0 0 8px}
 @media (max-width:360px){ .tiles{grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){ .panel{transition:none} }
 </style>
+</head>
+<body>
 
 <div class="app" id="app">
   <header class="topbar">
@@ -344,7 +356,7 @@ details.fold .fold-body p{margin:0 0 8px}
         <div class="view" id="view-gold" role="tabpanel" hidden></div>
         <div class="view detail" id="view-detail" hidden></div>
       </div>
-      <div class="footnote">ข้อมูลพื้นฐานจากการค้นเว็บ 31 ต.ค.–1 พ.ย. 2569 ส่วนราคาและข่าวสดอัปเดตล่าสุด 2 พ.ย. 2569 โปรดตรวจแหล่งที่มาก่อนอ้างอิง</div>
+      <div class="footnote" id="footnote">ข้อมูลพื้นฐานจากการค้นเว็บ 31 ต.ค.–1 พ.ย. 2569 ส่วนราคาและข่าวสดอัปเดตอัตโนมัติ<span id="foot-live"></span> โปรดตรวจแหล่งที่มาก่อนอ้างอิง</div>
     </aside>
   </main>
 </div>
@@ -1210,10 +1222,18 @@ function goldLive(items){
   if(prevV !== liveNum(goldState.live)){ goldState.fcW = 0; goldLayout(); }
 }
 
-/* ================= live layer (artifact db, read-only) ================= */
-var live = { db:null, market:null, headlines:null, status:null, offline:false, seenNews:{}, newsExpanded:false };
+/* ================= live layer (static JSON, polled) ================= */
+/* site/data/{market,headlines,status}.json are rewritten by updater/update.py (GitHub Actions)
+   and fetched here; the render functions below are the same ones the artifact-db snapshots fed. */
+var live = { market:null, headlines:null, status:null, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false };
 var NEWS_SHOW = 6, HOT_MS = 24*3600*1000;
+var STALE_MS = 10*3600*1000;          /* market/status older than 10 h -> stale */
+var NEWS_STALE_MS = 14*3600*1000;     /* headlines are refreshed twice a day */
+var POLL_MS = 10*60*1000;
+(function(){ var m = /[?&]poll=(\d+)/.exec(location.search); if(m && +m[1] >= 1000) POLL_MS = +m[1]; })(); /* test hook: ?poll=<ms> */
+var LIVE_DOCS = ['market', 'headlines', 'status'];
 var conflictIndex = {}; conflicts.forEach(function(c, i){ if(c.id) conflictIndex[c.id] = i; });
+var TAG_TH = { economy:'เศรษฐกิจ', world:'โลก', thailand:'ไทย' };
 
 function parseTs(iso){ var t = Date.parse(iso || ''); return isNaN(t) ? null : t; }
 function relTh(iso){
@@ -1224,18 +1244,30 @@ function relTh(iso){
   var hh = Math.floor(m/60); if(hh < 48) return hh + ' ชม. ที่แล้ว';
   return Math.floor(hh/24) + ' วันที่แล้ว';
 }
-function freshClass(iso){
-  var t = parseTs(iso); if(t==null) return 'old';
-  var age = Date.now()-t;
-  return age < 3*3600000 ? 'fresh' : age < 12*3600000 ? 'stale' : 'old';
+/* Bangkok wall-clock time (UTC+7, no DST), Buddhist-era year */
+function bkkDateTime(iso){
+  var t = parseTs(iso); if(t==null) return '—';
+  var d = new Date(t + 7*3600000);
+  return d.getUTCDate() + ' ' + TH_MONTHS[d.getUTCMonth()] + ' ' + (d.getUTCFullYear()+543) + ' ' + ('0'+d.getUTCHours()).slice(-2) + ':' + ('0'+d.getUTCMinutes()).slice(-2) + ' น.';
 }
+function isStale(iso, ms){ var t = parseTs(iso); return t==null || Date.now()-t > (ms || STALE_MS); }
+function freshClass(iso, ms){ return parseTs(iso)==null ? 'old' : (isStale(iso, ms) ? 'stale' : 'fresh'); }
+/* the data's own timestamp: the market file (status.updated_at moves on failed runs too) */
 function liveStamp(){ return (live.market && live.market.updated_at) || (live.status && live.status.updated_at) || null; }
-function setDot(el, iso){ if(!el) return; el.className = 'sdot ' + (live.offline ? 'old' : freshClass(iso)); }
+/* "อัปเดตล่าสุด": status.updated_at of the last successful run; after a failed run fall back to the market time */
+function lastUpdate(){
+  var st = live.status;
+  if(st && st.ok !== false && st.updated_at) return st.updated_at;
+  return liveStamp();
+}
+function setDot(el, iso, ms){ if(!el) return; el.className = 'sdot ' + (live.offline ? 'old' : freshClass(iso, ms)); }
 function flash(el){ if(!el || reduceMotion) return; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+function ageText(iso){ return iso ? ('อัปเดตล่าสุด ' + bkkDateTime(iso) + ' (' + relTh(iso) + ')') : ''; }
 function refreshAges(){
-  Array.prototype.forEach.call(document.querySelectorAll('[data-age]'), function(e){ var iso = e.getAttribute('data-age'); e.textContent = iso ? ('อัปเดตเมื่อ ' + relTh(iso)) : ''; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-age]'), function(e){ e.textContent = ageText(e.getAttribute('data-age')); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-rel]'), function(e){ e.textContent = relTh(e.getAttribute('data-rel')); });
-  Array.prototype.forEach.call(document.querySelectorAll('[data-dot]'), function(e){ setDot(e, e.getAttribute('data-dot') || liveStamp()); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-dot]'), function(e){ setDot(e, e.getAttribute('data-dot') || liveStamp(), +(e.getAttribute('data-stale-ms') || 0) || STALE_MS); });
+  updateStaleNote();
   updateHot();
 }
 setInterval(refreshAges, 60000);
@@ -1244,14 +1276,32 @@ function updateHeaderFlag(){
   var dot = $('live-flag-dot'); if(!dot) return;
   dot.setAttribute('data-dot', liveStamp() || '');
   setDot(dot, liveStamp());
-  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (liveStamp() ? 'ข้อมูลสด ' + relTh(liveStamp()) : 'รอข้อมูลสด');
+  var lu = lastUpdate();
+  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (lu ? ('อัปเดตล่าสุด ' + bkkDateTime(lu) + (isStale(liveStamp()) ? ' · ข้อมูลเก่ากว่า 10 ชม.' : '')) : 'รอข้อมูลสด');
+  var foot = $('foot-live'); if(foot) foot.textContent = (lu && !live.offline) ? (' · อัปเดตล่าสุด ' + bkkDateTime(lu)) : '';
 }
 
 function renderOffline(){
   live.offline = true;
-  var slot = $('live-slot'); slot.innerHTML = '';
-  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · ล็อกอิน claude.ai เพื่อดูข้อมูลสด'})]));
+  var slot = $('live-slot'); slot.innerHTML = ''; tickerEls = {};
+  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'})]));
+  goldLive([]);
   updateHeaderFlag();
+}
+
+/* the note under "ราคาสด": failed run > failed fetch > stale data > the market's own note */
+function liveNote(){
+  var st = live.status, m = live.market;
+  if(st && st.ok === false && st.message_th) return {text:st.message_th, warn:true};
+  if(live.fetchError) return {text:'โหลดข้อมูลรอบล่าสุดไม่สำเร็จ แสดงค่าล่าสุดที่ได้รับ', warn:true};
+  if(m && isStale(m.updated_at)) return {text:'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  return {text:(m && m.note_th) || '', warn:false};
+}
+function updateStaleNote(){
+  var noteEl = document.querySelector('#live-slot .live-head .note'); if(!noteEl) return;
+  var n = liveNote();
+  noteEl.hidden = !n.text; noteEl.textContent = n.text; noteEl.classList.toggle('warn', n.warn);
+  var head = noteEl.parentNode; if(head) head.classList.toggle('is-stale', !!(live.market && isStale(live.market.updated_at)));
 }
 
 var tickerEls = {};
@@ -1260,17 +1310,16 @@ function renderTicker(){
   var m = live.market, items = (m && Array.isArray(m.items)) ? m.items : [];
   var head = slot.querySelector('.live-head'), strip = slot.querySelector('.ticker');
   if(!head){
-    slot.innerHTML = '';
+    slot.innerHTML = ''; tickerEls = {};
     head = h('div', {class:'live-head'}, [h('h3', {class:'sec-title', text:'ราคาสด'}), h('span', {class:'age'}, [h('span', {class:'sdot', 'data-dot':''}), h('span', {'data-age':''})]), h('span', {class:'note', hidden:''})]);
     strip = h('div', {class:'ticker', role:'list'});
     slot.appendChild(head); slot.appendChild(strip);
   }
-  var stamp = m && m.updated_at;
-  var ageEl = head.querySelector('[data-age]'), dotEl = head.querySelector('[data-dot]'), noteEl = head.querySelector('.note');
-  ageEl.setAttribute('data-age', stamp || ''); ageEl.textContent = stamp ? ('อัปเดตเมื่อ ' + relTh(stamp)) : 'รอข้อมูลสดชุดแรก';
-  dotEl.setAttribute('data-dot', stamp || ''); setDot(dotEl, stamp);
-  var note = (live.status && live.status.ok === false && live.status.message_th) ? live.status.message_th : (m && m.note_th) || '';
-  noteEl.hidden = !note; noteEl.textContent = note; noteEl.classList.toggle('warn', !!(live.status && live.status.ok === false));
+  var stamp = lastUpdate();
+  var ageEl = head.querySelector('[data-age]'), dotEl = head.querySelector('[data-dot]');
+  ageEl.setAttribute('data-age', stamp || ''); ageEl.textContent = stamp ? ageText(stamp) : 'รอข้อมูลสดชุดแรก';
+  dotEl.setAttribute('data-dot', liveStamp() || ''); setDot(dotEl, liveStamp());
+  updateStaleNote();
   var keep = {};
   items.forEach(function(it, i){
     if(!it || typeof it !== 'object') return;
@@ -1286,7 +1335,7 @@ function renderTicker(){
     var vEl = el.querySelector('.v'), uEl = el.querySelector('.u'), cEl = el.querySelector('.tk-c');
     var changed = vEl.textContent !== '' && (vEl.textContent !== val || cEl.textContent !== (tr==='up'?'▲ ':tr==='down'?'▼ ':'') + chg);
     vEl.textContent = val; uEl.textContent = unit; uEl.hidden = !unit;
-    cEl.textContent = (tr==='up'?'▲ ':tr==='down'?'▼ ':'') + chg; cEl.className = 'tk-c ' + tr;
+    cEl.textContent = (tr==='up'?'▲ ':tr==='down'?'▼ ':'') + chg; cEl.className = 'tk-c ' + tr; cEl.title = chg;
     if(changed) flash(el);
   });
   Object.keys(tickerEls).forEach(function(k){ if(!keep[k]){ strip.removeChild(tickerEls[k]); delete tickerEls[k]; } });
@@ -1300,7 +1349,7 @@ function newsItems(){ var hd = live.headlines; return (hd && Array.isArray(hd.it
 function newsLi(it, i){
   var cid = it.conflict_id ? String(it.conflict_id) : '', ci = conflictIndex[cid];
   var linked = ci != null, hot = parseTs(it.time) != null && Date.now()-parseTs(it.time) < HOT_MS;
-  var tagText = linked ? conflicts[ci].name_th : cid==='economy' ? 'เศรษฐกิจ' : cid==='world' ? 'โลก' : (cid || '');
+  var tagText = linked ? conflicts[ci].name_th : (TAG_TH[cid] || cid || '');
   var li = h('li', {class: linked ? 'linked' : '', 'data-id': String(it.id || i), role: linked ? 'button' : null, tabindex: linked ? '0' : null}, [
     h('div', {class:'nt', text:String(it.title_th)}),
     h('div', {class:'nm2'}, [ it.time ? h('span', {'data-rel':String(it.time), text:relTh(it.time), title:String(it.time)}) : null, it.source ? h('a', {href:String(it.source), target:'_blank', rel:'noopener noreferrer', text:it.source_name ? String(it.source_name) : domain(String(it.source))}) : (it.source_name ? h('span', {text:String(it.source_name)}) : null) ]),
@@ -1313,20 +1362,20 @@ function newsLi(it, i){
   }
   return li;
 }
-var lastNewsSnap = null;
 function renderNews(){
   var slot = $('news-slot'), items = newsItems();
   if(!items.length){ slot.hidden = true; slot.innerHTML = ''; return; }
   slot.hidden = false;
   var head = slot.querySelector('.live-head'), ul = slot.querySelector('.news'), more = slot.querySelector('.news-more');
   if(!head){
-    head = h('div', {class:'live-head'}, [h('h3', {class:'sec-title', text:'ข่าวล่าสุด'}), h('span', {class:'age'}, [h('span', {'data-age':''})])]);
+    head = h('div', {class:'live-head'}, [h('h3', {class:'sec-title', text:'ข่าวล่าสุด'}), h('span', {class:'age'}, [h('span', {class:'sdot', 'data-dot':'', 'data-stale-ms':String(NEWS_STALE_MS)}), h('span', {'data-age':''})])]);
     ul = h('ul', {class:'news'});
     more = h('button', {class:'news-more', type:'button', hidden:'', onclick:function(){ live.newsExpanded = !live.newsExpanded; renderNews(); }});
     slot.appendChild(head); slot.appendChild(ul); slot.appendChild(more);
   }
-  var stamp = live.headlines && live.headlines.updated_at, ageEl = head.querySelector('[data-age]');
-  ageEl.setAttribute('data-age', stamp || ''); ageEl.textContent = stamp ? ('อัปเดตเมื่อ ' + relTh(stamp)) : '';
+  var stamp = live.headlines && live.headlines.updated_at, ageEl = head.querySelector('[data-age]'), dotEl = head.querySelector('[data-dot]');
+  ageEl.setAttribute('data-age', stamp || ''); ageEl.textContent = ageText(stamp);
+  dotEl.setAttribute('data-dot', stamp || ''); setDot(dotEl, stamp, NEWS_STALE_MS);
   var show = live.newsExpanded ? items : items.slice(0, NEWS_SHOW);
   var firstLoad = !Object.keys(live.seenNews).length;
   ul.innerHTML = '';
@@ -1346,8 +1395,9 @@ function updateCardLatest(){
   items.forEach(function(it){
     ul.appendChild(h('li', null, [ it.source ? h('a', {href:String(it.source), target:'_blank', rel:'noopener noreferrer', text:String(it.title_th)}) : h('span', {text:String(it.title_th)}), it.time ? h('span', {class:'t', 'data-rel':String(it.time), text:relTh(it.time)}) : null ]));
   });
-  box.appendChild(h('div', {class:'latest'}, [h('div', {class:'k'}, [h('span', {class:'sdot', 'data-dot':''}), 'ล่าสุด']), ul]));
-  setDot(box.querySelector('.sdot'), live.headlines && live.headlines.updated_at);
+  box.appendChild(h('div', {class:'latest'}, [h('div', {class:'k'}, [h('span', {class:'sdot', 'data-dot':'', 'data-stale-ms':String(NEWS_STALE_MS)}), 'ล่าสุด']), ul]));
+  var d = box.querySelector('.sdot'), hs = live.headlines && live.headlines.updated_at;
+  d.setAttribute('data-dot', hs || ''); setDot(d, hs, NEWS_STALE_MS);
 }
 var hotFlags = new Array(conflicts.length);
 function updateHot(){
@@ -1357,25 +1407,48 @@ function updateHot(){
   globe.setHot(hotFlags);
 }
 
-function subscribeLive(db){
-  function sub(name, onData){
-    try {
-      db.doc('live/' + name).onSnapshot(function(snap){
-        live[name] = (snap && snap.exists) ? (snap.data() || null) : null;
-        onData();
-      }, function(err){ /* terminal: keep last data, mark it as not refreshing */ live.status = Object.assign({}, live.status || {}, {ok:false, message_th:'การเชื่อมต่อข้อมูลสดหยุดทำงาน (' + (err && err.code || 'unavailable') + ') แสดงค่าล่าสุดที่ได้รับ'}); renderTicker(); });
-    } catch(e){ renderOffline(); }
-  }
-  renderTicker();
-  sub('market', function(){ renderTicker(); });
-  sub('headlines', function(){ renderNews(); updateCardLatest(); updateHot(); });
-  sub('status', function(){ renderTicker(); });
+/* fetch one doc; resolves to {name, text, data} or {name, error} */
+function fetchDoc(name){
+  var url = 'data/' + name + '.json?t=' + Math.floor(Date.now()/60000);
+  return fetch(url, {cache:'no-store'}).then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  }).then(function(text){
+    var data = JSON.parse(text);
+    if(!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('not an object');
+    return {name:name, text:text, data:data};
+  }).catch(function(err){ return {name:name, error:String(err && err.message || err)}; });
+}
+var polling = false, lastPoll = 0;
+function pollLive(){
+  if(polling || typeof fetch !== 'function') { if(typeof fetch !== 'function') renderOffline(); return Promise.resolve(); }
+  polling = true; lastPoll = Date.now();
+  return Promise.all(LIVE_DOCS.map(fetchDoc)).then(function(res){
+    var changed = {}, failed = 0;
+    res.forEach(function(r){
+      if(r.error){ failed++; return; }
+      if(live.raw[r.name] !== r.text){ live.raw[r.name] = r.text; live[r.name] = r.data; changed[r.name] = true; }
+    });
+    var marketOk = !!live.market;
+    if(!marketOk){ live.fetchError = false; if(!live.offline) renderOffline(); }
+    else {
+      var wasOffline = live.offline, hadError = live.fetchError;
+      live.offline = false; live.everLoaded = true;
+      live.fetchError = failed > 0;
+      if(wasOffline || changed.market || changed.status || hadError !== live.fetchError) renderTicker();
+      else updateStaleNote();
+    }
+    if(changed.headlines){ renderNews(); updateCardLatest(); updateHot(); }
+    window.__liveState = {offline:live.offline, fetchError:live.fetchError, polls:(window.__liveState ? window.__liveState.polls : 0) + 1, failed:failed};
+  }).then(function(){ polling = false; }, function(){ polling = false; });
 }
 (function initLive(){
-  var p = null;
-  try { if(window.claude && typeof window.claude.use === 'function') p = window.claude.use('db'); } catch(e){ p = null; }
-  if(!p){ renderOffline(); return; }
-  Promise.resolve(p).then(function(db){ if(!db || typeof db.doc !== 'function'){ renderOffline(); return; } live.db = db; subscribeLive(db); }, function(){ renderOffline(); });
+  pollLive();
+  setInterval(function(){ if(!document.hidden) pollLive(); }, POLL_MS);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden && Date.now()-lastPoll > 2000) pollLive(); });
+  window.addEventListener('online', function(){ pollLive(); });
 })();
 })();
 </script>
+</body>
+</html>

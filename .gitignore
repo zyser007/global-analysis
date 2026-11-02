@@ -9,3 +9,4 @@ shots/
 .DS_Store
 .env
 *.key
+e2e/.srv/

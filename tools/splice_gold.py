@@ -7,7 +7,7 @@ tpl = here / "template.html"
 s = tpl.read_text(encoding="utf-8")
 mod = (here / "gold_module.js").read_text(encoding="utf-8")
 A = "/* ================= gold panel ================= */\n"
-B = "/* ================= live layer (artifact db, read-only) ================= */\n"
+B = "/* ================= live layer (static JSON, polled) ================= */\n"
 assert s.count(A) == 1 and s.count(B) == 1 and mod.startswith(A), "markers missing"
 i, j = s.index(A), s.index(B)
 s = s[:i] + mod.rstrip("\n") + "\n\n" + s[j:]
