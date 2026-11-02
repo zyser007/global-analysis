@@ -1,0 +1,11 @@
+{
+  "name": "world-globe-e2e",
+  "private": true,
+  "description": "Headless Playwright checks for site/ served over http://127.0.0.1 under a /global-analysis/ sub-path (like GitHub Pages)",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
