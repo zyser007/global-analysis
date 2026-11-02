@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "market.schema.json",
+  "title": "site/data/market.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "updated_at",
+    "note_th",
+    "items"
+  ],
+  "properties": {
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "note_th": {
+      "type": "string",
+      "pattern": "^[^\"]*$"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "label_th",
+          "value",
+          "unit",
+          "change_th",
+          "trend",
+          "as_of",
+          "source"
+        ],
+        "properties": {
+          "key": {
+            "enum": [
+              "brent",
+              "wti",
+              "gold",
+              "gold_th",
+              "dxy",
+              "spx",
+              "ndx",
+              "btc",
+              "usdthb",
+              "us10y",
+              "vix",
+              "set",
+              "nikkei"
+            ]
+          },
+          "label_th": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\"]*$",
+            "description": "label shown on the tile"
+          },
+          "value": {
+            "type": "string",
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+            "description": "plain number, no commas or units"
+          },
+          "unit": {
+            "type": "string",
+            "pattern": "^[^\"]*$"
+          },
+          "change_th": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\"]*$",
+            "description": "change and context, Thai"
+          },
+          "trend": {
+            "enum": [
+              "up",
+              "down",
+              "flat"
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "source": {
+            "type": "string",
+            "pattern": "^https?://[^\\s\\\"]+$"
+          }
+        }
+      }
+    }
+  }
+}

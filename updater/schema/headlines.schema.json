@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "headlines.schema.json",
+  "title": "site/data/headlines.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "updated_at",
+    "items"
+  ],
+  "properties": {
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "conflict_id",
+          "title_th",
+          "time",
+          "source",
+          "source_name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^h[0-9]+$"
+          },
+          "conflict_id": {
+            "enum": [
+              "ukraine_russia",
+              "iran_us_israel_war",
+              "gaza_israel",
+              "lebanon_israel_hezbollah",
+              "iraq_militias",
+              "sudan_civil_war",
+              "myanmar_civil_war",
+              "drc_m23_frn",
+              "mali_sahel",
+              "burkina_faso",
+              "niger_tillaberi",
+              "yemen_houthi_saudi",
+              "somalia_al_shabaab",
+              "haiti_gangs",
+              "taiwan_strait",
+              "south_china_sea",
+              "korean_peninsula",
+              "india_pakistan",
+              "pakistan_afghanistan",
+              "thailand_cambodia",
+              "ethiopia_eritrea_tigray",
+              "libya",
+              "syria",
+              "venezuela_caribbean",
+              "nigeria_northeast_northwest",
+              "thailand",
+              "economy",
+              "world"
+            ]
+          },
+          "title_th": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\"]*$",
+            "description": "headline, Thai"
+          },
+          "time": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "source": {
+            "type": "string",
+            "pattern": "^https?://[^\\s\\\"]+$"
+          },
+          "source_name": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\"]*$"
+          }
+        }
+      }
+    }
+  }
+}
