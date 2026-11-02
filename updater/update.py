@@ -288,7 +288,8 @@ Find the latest quote for every market item, then call the submit tool exactly o
    f) Nikkei 225 close today
    You may open a promising result page with web_fetch (quote pages such as tradingeconomics.com, investing.com, cnbc.com, reuters.com, set.or.th, goldtraders.or.th, thairath.co.th).
 3. A quote counts as newer when the time it refers to is later than the previous item's as_of. Whenever a reputable source shows a later quote, use it, even if it differs only slightly and even if you could not find an exact match for the previous source. Do not keep an old value just because one particular page did not load.
-4. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday) or no source with a later time exists after following the plan. Say so in change_th.
+4. Timestamps: a live quote page or price table shows the current or last price as of the moment you fetched it. Use the page's own quote or "last updated" time when it shows one; otherwise use the fetch time (retrieved_at) for a market that is trading now, or the session close time for a closed session. A search result dated today with a price counts too (use its stated time, or its page date). You do not need a minute-exact timestamp printed next to the number; you must not set as_of later than the current time.
+5. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
 
 ## Market items (key: meaning)## Market items (key: meaning)
 {keys}
@@ -592,6 +593,44 @@ def log_cost(mode: str, ok: bool, usage: Usage, note: str, now: dt.datetime, cos
 
 
 # ----------------------------------------------------------------- the model call
+def _short(x: Any, n: int = 160) -> str:
+    s = re.sub(r"\s+", " ", str(x if x is not None else "")).strip()
+    return s if len(s) <= n else s[: n - 1] + "…"
+
+
+def trace_lines(content: Any) -> list[str]:
+    """One line per server-tool call/result and per text note, for the Actions log (no secrets in here)."""
+    out = []
+    for b in content or []:
+        t = getattr(b, "type", "")
+        if t == "server_tool_use":
+            out.append(f"{getattr(b, 'name', '?')} {_short(json.dumps(getattr(b, 'input', {}), ensure_ascii=False), 200)}")
+        elif t == "web_search_tool_result":
+            c = getattr(b, "content", None)
+            if isinstance(c, list):
+                tops = "; ".join(f"{_short(getattr(r, 'title', ''), 60)} [{getattr(r, 'page_age', '') or '-'}]" for r in c[:3])
+                out.append(f"  search -> {len(c)} results: {tops}")
+            else:
+                out.append(f"  search -> error {getattr(c, 'error_code', c)}")
+        elif t == "web_fetch_tool_result":
+            c = getattr(b, "content", None)
+            if getattr(c, "type", "") == "web_fetch_result":
+                doc = getattr(c, "content", None)
+                src = getattr(doc, "source", None)
+                size = len(getattr(src, "data", "") or "") if src is not None else 0
+                out.append(f"  fetch -> {getattr(c, 'url', '?')} retrieved {getattr(c, 'retrieved_at', '?')} ({size} chars)")
+            else:
+                out.append(f"  fetch -> error {getattr(c, 'error_code', c)}")
+        elif t in ("bash_code_execution_tool_result", "code_execution_tool_result"):
+            c = getattr(b, "content", None)
+            out.append(f"  code -> rc={getattr(c, 'return_code', '?')} stdout: {_short(getattr(c, 'stdout', ''), 300)}")
+        elif t == "text" and getattr(b, "text", "").strip():
+            out.append(f"text: {_short(b.text, 300)}")
+        elif t == "tool_use":
+            out.append(f"{getattr(b, 'name', '?')} (submit)")
+    return out
+
+
 def make_client(api_key: str):
     import anthropic
 
@@ -640,6 +679,8 @@ def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usag
         except anthropic.APIConnectionError as e:
             raise UpdateError(f"connection error: {type(e).__name__}", "เชื่อมต่อ API ไม่ได้") from None
         usage.add(resp)
+        for line in trace_lines(resp.content):
+            print("trace: " + line)
 
         if resp.stop_reason == "refusal":
             cat = getattr(getattr(resp, "stop_details", None), "category", None)

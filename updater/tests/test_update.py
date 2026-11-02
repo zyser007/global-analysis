@@ -443,3 +443,25 @@ def test_usage_counts_fetches_and_migrates_old_csv(tmp_path):
     assert list(rows[0].keys()) == update.CSV_FIELDS
     assert rows[0]["cost_usd"] == "0.1001" and rows[0]["web_fetches"] == ""
     assert rows[1]["web_fetches"] == "3" and rows[1]["items_changed"] == "4"
+
+
+
+def test_trace_lines_summarise_server_tools():
+    content = [
+        NS(type="server_tool_use", name="web_search", input={"query": "gold price today"}),
+        NS(type="web_search_tool_result", content=[NS(title="Gold rises", page_age="2 hours ago"), NS(title="Oil", page_age=None)]),
+        NS(type="web_search_tool_result", content=NS(type="web_search_tool_result_error", error_code="max_uses_exceeded")),
+        NS(type="server_tool_use", name="web_fetch", input={"url": "https://tradingeconomics.com/commodities"}),
+        NS(type="web_fetch_tool_result", content=NS(type="web_fetch_result", url="https://tradingeconomics.com/commodities",
+                                                    retrieved_at="2026-11-02T12:00:00Z", content=NS(source=NS(data="x" * 50)))),
+        NS(type="web_fetch_tool_result", content=NS(type="web_fetch_tool_result_error", error_code="url_not_accessible")),
+        NS(type="bash_code_execution_tool_result", content=NS(return_code=0, stdout="Brent 109.8\nGold 3911")),
+        NS(type="text", text="Found the quotes."),
+        submit_block("submit_prices", {}),
+    ]
+    lines = update.trace_lines(content)
+    assert lines[0] == 'web_search {"query": "gold price today"}'
+    assert "2 results: Gold rises [2 hours ago]; Oil [-]" in lines[1]
+    assert lines[2].endswith("error max_uses_exceeded") and lines[5].endswith("error url_not_accessible")
+    assert "retrieved 2026-11-02T12:00:00Z (50 chars)" in lines[4]
+    assert "stdout: Brent 109.8 Gold 3911" in lines[6] and lines[-1] == "submit_prices (submit)"
