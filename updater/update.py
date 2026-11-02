@@ -55,6 +55,10 @@ MAX_SEARCHES = {"prices": 6, "full": 20}
 MAX_FETCHES = {"prices": 5, "full": 8}
 FETCH_MAX_CONTENT_TOKENS = 8000
 HEADLINES_MIN, HEADLINES_MAX = 12, 16
+MIN_NEWS_SEARCHES = 4                # a full run must search the news at least this often before submitting
+PRICES_FRESH_MIN = 60                # full run: prices younger than this are not searched again
+NEWS_TOPICS = ("Iran / Hormuz", "US markets, the Fed and US data", "the US midterm elections", "Ukraine-Russia", "China",
+               "Thai politics and economy, the baht and Thai gold", "Yemen / Saudi Arabia")
 MAX_MOVE = 0.15                      # reject a market value that moved more than 15 %
 MAX_REQUESTS = 5                     # first call + pause_turn continuations + one nudge + one schema fix
 DEADLINE_S = 11 * 60                 # the workflow job times out at 15 min
@@ -264,6 +268,37 @@ def build_headlines(items: list[dict], now: dt.datetime) -> dict:
     return {"updated_at": iso(now), "items": [{"id": f"h{i + 1}", **r} for i, r in enumerate(rows)]}
 
 
+def _norm_title(t: str) -> str:
+    return re.sub(r"\W+", "", str(t or "")).lower()
+
+
+def headlines_since(prev: dict) -> str:
+    """The newest headline time of the previous set (a run that re-submitted old items moved updated_at
+    without adding news), falling back to updated_at."""
+    times = [i["time"] for i in prev.get("items", []) if ISO_RE.match(str(i.get("time", "")))]
+    return max(times, key=_ts) if times else str(prev.get("updated_at") or "")
+
+
+def count_new_headlines(prev: dict, items: list[dict]) -> int:
+    """New = title and source not in the previous set, or a time later than the newest previous headline."""
+    titles = {_norm_title(i.get("title_th")) for i in prev.get("items", [])}
+    sources = {i.get("source") for i in prev.get("items", [])}
+    since = headlines_since(prev)
+    n = 0
+    for it in items:
+        later = ISO_RE.match(it.get("time", "")) and ISO_RE.match(since) and _ts(it["time"]) > _ts(since)
+        unseen = _norm_title(it.get("title_th")) not in titles and it.get("source") not in sources
+        n += 1 if (later or unseen) else 0
+    return n
+
+
+def prices_age_min(prev_market: dict, now: dt.datetime) -> float | None:
+    try:
+        return (now.timestamp() - _ts(prev_market["updated_at"])) / 60
+    except (KeyError, ValueError):
+        return None
+
+
 # ----------------------------------------------------------------- prompt + tools
 def system_prompt() -> str:
     """Stable across runs and modes (cached). Never put the date or the previous data here."""
@@ -275,7 +310,7 @@ def system_prompt() -> str:
 ## Job
 Find the latest quote for every market item, then call the submit tool exactly once with the complete result. The user turn gives the run mode, the current UTC and Bangkok time, which market sessions are open or closed right now, the tool budgets, a list of quote pages you may fetch directly, and the previous files.
 - Mode "prices": update the 13 market items only. Call submit_prices.
-- Mode "full": update the 13 market items, write 12 to 16 fresh headlines, and a one-paragraph run summary. Call submit_full.
+- Mode "full": research and write 12 to 16 fresh headlines and a one-paragraph run summary, and update the 13 market items unless the user turn says the prices are fresh (then submit_full has no market field and you must not search prices at all). Call submit_full.
 
 ## How to find the quotes (follow this plan)
 1. Fetch the quote pages listed in the user turn with web_fetch first: they are tables that cover several items at once (commodities, currencies and the dollar index, stock indexes, bond yields, the Thai gold association price board). A fetch costs no search.
@@ -309,14 +344,16 @@ Rules for every market item:
 - note_th: one or two Thai sentences on what this round covers (which prices are intraday and which are closes), in the style of the previous note_th.
 
 ## Headlines (mode "full" only)
-- 12 to 16 items, newest first, from the last 24-36 hours, about the conflicts on the globe, the world economy and Thailand. Prefer wire services and major outlets; one source URL per headline (the article itself, https).
+- Research the news with web_search before submitting (at least 4 searches, grouped by theme), covering the time since the newest previous headline given in the user turn. Themes: Iran / Hormuz; US markets, the Fed and US data; the US midterm elections; Ukraine-Russia; China; Thai politics and economy, the baht and Thai gold; Yemen / Saudi Arabia; plus any other conflict on the globe that made news.
+- 12 to 16 items, newest first, about the conflicts on the globe, the world economy and Thailand. Keep at most about 5 older items that are still among the most important; every other item must be newer than the newest previous headline whenever such news exists.
+- Sources: prefer primary, major outlets: Reuters, AP, AFP, Bloomberg, BBC, Al Jazeera, CNBC, ไทยรัฐ, มติชน, Bangkok Post, ประชาชาติธุรกิจ, กรุงเทพธุรกิจ, Kyiv Independent. Avoid syndication and aggregator sites (local TV sites re-running wire copy, regional papers re-running IANS, aggregators) when the original is available. One source URL per headline: the article itself, https.
 - title_th: a Thai headline of at most about 120 characters, factual, no clickbait, written by you (do not copy foreign headlines word for word).
-- time: when the event or article happened, ISO 8601 UTC. source_name: the outlet name.
+- time: the publication time of the source article (or the time of the event it reports, if earlier and stated), ISO 8601 UTC, never later than the current time. source_name: the outlet name.
 - conflict_id must be one of these ids (the globe links a headline to its conflict pin):
 {ids}
   Extra tags:
 {extra}
-- Keep a previous headline only if it is still among the most important and still recent.
+- A kept previous headline keeps its original time; do not refresh its time.
 
 ## Run summary (mode "full" only)
 status_message_th: one Thai paragraph (at most about 400 characters) saying what changed in this round: the biggest market moves and the main news themes.
@@ -360,7 +397,7 @@ def _market_schema() -> dict:
     }
 
 
-def submit_tool(mode: str) -> dict:
+def submit_tool(mode: str, skip_prices: bool = False) -> dict:
     # strict is off: the API rejects the compiled grammar of these schemas as too large. write_docs validates every
     # submitted input with jsonschema and the sanity checks, so a malformed submission never reaches the site.
     if mode == "prices":
@@ -371,7 +408,7 @@ def submit_tool(mode: str) -> dict:
             "input_schema": {"type": "object", "additionalProperties": False, "required": ["market"],
                              "properties": {"market": _market_schema()}},
         }
-    return {
+    tool = {
         "name": "submit_full",
         "description": "Submit the updated market items, 12-16 headlines and the run summary. Call exactly once, at the end, after searching.",
         "strict": False,
@@ -401,9 +438,14 @@ def submit_tool(mode: str) -> dict:
             },
         },
     }
+    if skip_prices:   # prices are fresh: the model submits news + summary only
+        del tool["input_schema"]["properties"]["market"]
+        tool["input_schema"]["required"].remove("market")
+        tool["description"] = "Submit 12-16 headlines and the run summary (prices are fresh this run). Call exactly once, at the end, after searching the news."
+    return tool
 
 
-def tools_for(mode: str) -> list[dict]:
+def tools_for(mode: str, skip_prices: bool = False) -> list[dict]:
     return [
         {
             "type": "web_search_20260209",   # dynamic filtering; no separate code_execution tool
@@ -420,7 +462,7 @@ def tools_for(mode: str) -> list[dict]:
             "max_content_tokens": FETCH_MAX_CONTENT_TOKENS,
             "use_cache": False,
         },
-        submit_tool(mode),
+        submit_tool(mode, skip_prices),
     ]
 
 
@@ -478,7 +520,22 @@ def market_sessions(now: dt.datetime) -> list[str]:
     ]
 
 
-def user_message(mode: str, prev: dict, now: dt.datetime) -> str:
+def user_message(mode: str, prev: dict, now: dt.datetime, skip_prices: bool = False) -> str:
+    if skip_prices:
+        age = prices_age_min(prev["market"], now) or 0
+        parts = [
+            f"Mode: {mode} (news run; prices are fresh)",
+            f"Current time: {iso(now)} (Bangkok {bkk_th(now)})",
+            f"Prices: market.json was updated {age:.0f} minutes ago by the prices run, so do not search or fetch prices in this run "
+            "and do not submit a market field. Spend the budget on news.",
+            f"Budgets for this run: web_search at most {MAX_SEARCHES[mode]} searches; web_fetch at most {MAX_FETCHES[mode]} pages.",
+            f"Previous headlines.json (newest item {headlines_since(prev['headlines'])}; search the news published since then):",
+            "```json\n" + json.dumps(prev["headlines"], ensure_ascii=False, indent=1) + "\n```",
+            "Latest prices, for the run summary only:",
+            "```json\n" + json.dumps({i["key"]: [i["value"], i["change_th"]] for i in prev["market"]["items"]}, ensure_ascii=False) + "\n```",
+            f"Search the news (at least {MIN_NEWS_SEARCHES} searches, grouped by theme), then call submit_full once with 12-16 headlines and status_message_th.",
+        ]
+        return "\n\n".join(parts)
     parts = [
         f"Mode: {mode}",
         f"Current time: {iso(now)} (Bangkok {bkk_th(now)})",
@@ -489,8 +546,9 @@ def user_message(mode: str, prev: dict, now: dt.datetime) -> str:
         "```json\n" + json.dumps(prev["market"], ensure_ascii=False, indent=1) + "\n```",
     ]
     if mode == "full":
-        parts += ["Previous headlines.json:", "```json\n" + json.dumps(prev["headlines"], ensure_ascii=False, indent=1) + "\n```"]
-        parts.append("Follow the plan, then call submit_full once with all 13 market items, 12-16 headlines and status_message_th.")
+        parts += [f"Previous headlines.json (newest item {headlines_since(prev['headlines'])}; search the news published since then):",
+                  "```json\n" + json.dumps(prev["headlines"], ensure_ascii=False, indent=1) + "\n```"]
+        parts.append(f"Follow the price plan, search the news (at least {MIN_NEWS_SEARCHES} searches, grouped by theme), then call submit_full once with all 13 market items, 12-16 headlines and status_message_th.")
     else:
         parts.append("Follow the plan, then call submit_prices once with all 13 market items.")
     return "\n\n".join(parts)
@@ -663,7 +721,7 @@ def normalize_submission(mode: str, data: Any) -> Any:
     if not isinstance(data, dict):
         return data
     data = dict(data)
-    if "market" not in data and ("items" in data or any(k in data for k in MARKET_KEYS)):
+    if "market" not in data and ("items" in data or any(k in data for k in MARKET_KEYS)) and isinstance(data.get("items", {}), (dict, list)):
         moved = {k: data.pop(k) for k in list(data) if k in ("items", "note_th") or k in MARKET_KEYS}
         data = {"market": moved, **data}
     market = _maybe_json(data.get("market"))
@@ -692,10 +750,10 @@ def normalize_submission(mode: str, data: Any) -> Any:
     return data
 
 
-def submission_errors(mode: str, data: Any) -> list[str]:
+def submission_errors(mode: str, data: Any, skip_prices: bool = False) -> list[str]:
     import jsonschema
 
-    v = jsonschema.Draft202012Validator(submit_tool(mode)["input_schema"])
+    v = jsonschema.Draft202012Validator(submit_tool(mode, skip_prices)["input_schema"])
     return [f"{'/'.join(map(str, e.absolute_path)) or '(root)'}: {_short(e.message, 160)}" for e in v.iter_errors(data)]
 
 
@@ -713,16 +771,16 @@ def shape_of(data: Any) -> str:
     return "; ".join(parts)
 
 
-def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usage) -> dict:
-    """Run the search + submit loop. Returns the submit tool's input (a dict)."""
+def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usage, skip_prices: bool = False) -> tuple[dict, bool]:
+    """Run the search + submit loop. Returns (the submit tool's input, whether a full run searched the news)."""
     import anthropic
 
     submit_name = "submit_prices" if mode == "prices" else "submit_full"
-    tools = tools_for(mode)                     # identical on every request of the run
+    tools = tools_for(mode, skip_prices)        # identical on every request of the run
     system = [{"type": "text", "text": system_prompt(), "cache_control": {"type": "ephemeral"}}]
     messages: list[dict] = [{"role": "user", "content": [
-        {"type": "text", "text": user_message(mode, prev, now), "cache_control": {"type": "ephemeral"}}]}]
-    nudged = fixed_once = False
+        {"type": "text", "text": user_message(mode, prev, now, skip_prices), "cache_control": {"type": "ephemeral"}}]}]
+    nudged = fixed_once = news_nudged = False
     started = time.monotonic()
     for _ in range(MAX_REQUESTS):
         if time.monotonic() - started > DEADLINE_S:
@@ -764,10 +822,26 @@ def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usag
         submit = next((b for b in resp.content if getattr(b, "type", None) == "tool_use" and getattr(b, "name", None) == submit_name), None)
         if submit is not None:
             data = normalize_submission(mode, submit.input)
+            if skip_prices and isinstance(data, dict):
+                data.pop("market", None)          # prices are fresh this run; ignore any market sent anyway
             print("trace: submitted shape " + shape_of(data))
-            errs = submission_errors(mode, data)
+            errs = submission_errors(mode, data, skip_prices)
+            if not errs and mode == "full" and usage.web_searches < MIN_NEWS_SEARCHES:
+                if news_nudged:
+                    print(f"trace: full run submitted after only {usage.web_searches} searches; headlines will not be replaced")
+                    return data, False
+                news_nudged = True
+                print(f"trace: submit_full rejected: only {usage.web_searches} web searches so far")
+                messages.append({"role": "assistant", "content": resp.content})
+                messages.append({"role": "user", "content": [{
+                    "type": "tool_result", "tool_use_id": submit.id, "is_error": True,
+                    "content": f"Rejected: the headlines were not researched (only {usage.web_searches} web searches this run). "
+                               f"Search the news published since {headlines_since(prev['headlines'])} with at least {MIN_NEWS_SEARCHES} grouped searches "
+                               f"({'; '.join(NEWS_TOPICS)}), then call submit_full again. Keep at most about 5 of the previous headlines.",
+                }]})
+                continue
             if not errs:
-                return data
+                return data, mode == "full"
             # the submit tool is not strict (its grammar is too large), so a malformed call gets one
             # is_error tool_result asking for a corrected call; the history stays append-only
             if fixed_once:
@@ -841,26 +915,42 @@ def failure_status(prev_status: dict | None, message_th: str, now: dt.datetime) 
     }
 
 
-def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime) -> tuple[dict[str, dict], list[str], int]:
-    market_in = result.get("market") or {}
-    items, notes = sanity_market(prev["market"], market_in.get("items") or {})
-    missing = [n for n in notes if n.endswith(": missing")]
-    if len(missing) > 3:      # never overwrite good data with a page full of stale markers
-        raise UpdateError(f"{len(missing)} market items missing from the submission",
-                          f"ผลลัพธ์จากโมเดลขาดราคา {len(missing)} รายการ")
-    market = {"updated_at": iso(now), "note_th": clean_th(market_in.get("note_th"), 500) or prev["market"]["note_th"], "items": items}
-    docs = {"market": market}
-    changed = count_changed(prev["market"]["items"], items)
-    total = len(items)
-    rejected = sum(1 for n in notes if "older than" not in n)
-    tail = (f"ราคาเปลี่ยน {changed}/{total} รายการ" if changed else f"รอบนี้ไม่พบราคาใหม่กว่ารอบก่อน (เปลี่ยน 0/{total} รายการ)") \
-        + (f" ไม่ผ่านการตรวจ {rejected} รายการ" if rejected else "")
+def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime, skip_prices: bool = False,
+               news_searched: bool = True) -> tuple[dict[str, dict], list[str], int | None]:
+    docs: dict[str, dict] = {}
+    notes: list[str] = []
+    changed: int | None = None
+    if skip_prices:
+        age = prices_age_min(prev["market"], now) or 0
+        tail = f"ราคาคงชุดรอบราคาเมื่อ {age:.0f} นาทีก่อน"
+    else:
+        market_in = result.get("market") or {}
+        items, notes = sanity_market(prev["market"], market_in.get("items") or {})
+        missing = [n for n in notes if n.endswith(": missing")]
+        if len(missing) > 3:      # never overwrite good data with a page full of stale markers
+            raise UpdateError(f"{len(missing)} market items missing from the submission",
+                              f"ผลลัพธ์จากโมเดลขาดราคา {len(missing)} รายการ")
+        docs["market"] = {"updated_at": iso(now), "note_th": clean_th(market_in.get("note_th"), 500) or prev["market"]["note_th"], "items": items}
+        changed = count_changed(prev["market"]["items"], items)
+        total = len(items)
+        rejected = sum(1 for n in notes if "older than" not in n)
+        tail = (f"ราคาเปลี่ยน {changed}/{total} รายการ" if changed else f"รอบนี้ไม่พบราคาใหม่กว่ารอบก่อน (เปลี่ยน 0/{total} รายการ)") \
+            + (f" ไม่ผ่านการตรวจ {rejected} รายการ" if rejected else "")
     if mode == "full":
-        docs["headlines"] = build_headlines(result.get("headlines") or [], now)
         summary = clean_th(result.get("status_message_th"), 400)
-        n_news = len(docs["headlines"]["items"])
-        message = clean_th(f"{summary} · {tail} · ข่าว {n_news} ข่าว" if summary
-                           else f"อัปเดตเต็มรอบอัตโนมัติ {bkk_th(now)} · {tail} · ข่าว {n_news} ข่าว", 600)
+        if not news_searched:
+            news = "ข่าวไม่ได้อัปเดตรอบนี้ (ไม่ได้ค้นข่าวใหม่) คงชุดเดิม"
+            notes.append("headlines: not researched, kept the previous file")
+        else:
+            h = build_headlines(result.get("headlines") or [], now)
+            fresh = count_new_headlines(prev["headlines"], h["items"])
+            if fresh == 0:
+                news = f"ไม่พบข่าวใหม่ คงชุดเดิม {len(prev['headlines'].get('items', []))} ข่าว"
+                notes.append("headlines: nothing new, kept the previous file")
+            else:
+                docs["headlines"] = h
+                news = f"ข่าวใหม่ {fresh} จาก {len(h['items'])} ข่าว"
+        message = clean_th(f"{summary} · {tail} · {news}" if summary else f"อัปเดตเต็มรอบอัตโนมัติ {bkk_th(now)} · {tail} · {news}", 600)
     else:
         message = f"อัปเดตราคาอัตโนมัติ {bkk_th(now)} · {tail} · ข่าวคงชุดเดิม"
     docs["status"] = {"updated_at": iso(now), "run_count": int(prev["status"].get("run_count", 0)) + 1, "ok": True, "message_th": message}
@@ -877,8 +967,12 @@ def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_l
         return 2
     usage = Usage()
     try:
-        result = call_model(client, mode, prev, now, usage)
-        docs, notes, changed = build_docs(mode, prev, result, now)
+        age = prices_age_min(prev["market"], now)
+        skip_prices = mode == "full" and age is not None and 0 <= age < PRICES_FRESH_MIN
+        if skip_prices:
+            print(f"prices are {age:.0f} min old: this full run researches news only")
+        result, news_searched = call_model(client, mode, prev, now, usage, skip_prices)
+        docs, notes, changed = build_docs(mode, prev, result, now, skip_prices, news_searched)
         write_docs(data_dir, docs)
     except UpdateError as e:
         print(f"update FAILED: {e}", file=sys.stderr)
@@ -889,7 +983,7 @@ def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_l
         log_cost(mode, False, usage, str(e), now, cost_log)
         return 1
     for n in notes:
-        print(f"sanity: kept previous value for {n}")
+        print(f"sanity: {n}")
     print(f"wrote {', '.join(f'{n}.json' for n in docs)} in {data_dir}")
     log_cost(mode, True, usage, "; ".join(notes), now, cost_log, items_changed=changed)
     return 0
@@ -899,7 +993,8 @@ def dry_run(data_dir: pathlib.Path = DATA_DIR) -> int:
     prev, errs = load_previous(data_dir)
     if not errs:
         # the request we would send must build too
-        system_prompt(), tools_for("prices"), tools_for("full"), user_message("full", prev, utcnow())
+        system_prompt(), tools_for("prices"), tools_for("full"), tools_for("full", True)
+        user_message("full", prev, utcnow()), user_message("full", prev, utcnow(), True)
         bad = [c for c in (i["conflict_id"] for i in prev["headlines"]["items"]) if c not in allowed_conflict_ids()]
         errs += [f"headlines: conflict_id {c!r} not allowed" for c in bad]
     if errs:

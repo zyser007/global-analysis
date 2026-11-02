@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "updater"))
 import update  # noqa: E402
 
 NOW = dt.datetime(2026, 11, 2, 13, 0, 0, tzinfo=dt.timezone.utc)
-SEED = ROOT / "site" / "data"
+SEED = HERE / "fixtures" / "data"   # frozen copy of the live4 seed (08:05Z), independent of bot commits
 
 
 # ----------------------------------------------------------------- fixtures / fakes
@@ -103,7 +103,8 @@ class FakeClient:
 
 # ----------------------------------------------------------------- validation + sanity
 def test_seed_files_pass_dry_run(capsys):
-    assert update.main(["--dry-run"]) == 0
+    assert update.main(["--dry-run"]) == 0                       # the live site/data files
+    assert update.dry_run(SEED) == 0                             # the frozen fixture
     assert "dry run: OK" in capsys.readouterr().out
 
 
@@ -289,7 +290,7 @@ def test_failures_keep_old_files_and_flag_status(data_dir, cost_log, bad):
 def test_invalid_output_is_never_written(data_dir, cost_log):
     before = (data_dir / "market.json").read_bytes()
     client = FakeClient([resp([submit_block("submit_full", {"market": market_input(), "headlines": headlines_input(9),
-                                                            "status_message_th": "x"})])])
+                                                            "status_message_th": "x"})], u=usage(searches=6))])
     assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 1
     assert (data_dir / "market.json").read_bytes() == before     # market was fine, but nothing partial is written
     assert json.loads((data_dir / "status.json").read_text(encoding="utf-8"))["ok"] is False
@@ -521,3 +522,75 @@ def test_still_invalid_after_retry_fails_and_keeps_files(data_dir, cost_log):
 def test_many_missing_items_never_overwrite_data():
     with pytest.raises(update.UpdateError):
         update.build_docs("prices", {k: seed(k) for k in update.DOCS}, {"market": {"note_th": "n", "items": {}}}, NOW)
+
+
+
+# ----------------------------------------------------------------- full runs must research the news
+def test_full_without_news_searches_is_sent_back_once(data_dir, cost_log):
+    sub = {"market": market_input(), "headlines": headlines_input(14), "status_message_th": "สรุป"}
+    first = resp([submit_block("submit_full", sub)], u=usage(searches=1))
+    second = resp([submit_block("submit_full", sub)], u=usage(searches=5))
+    client = FakeClient([first, second])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    tr = client.calls[1]["messages"][-1]["content"][0]
+    assert tr["is_error"] is True and "2026-11-02T07:45:00Z" in tr["content"] and "Iran / Hormuz" in tr["content"]
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert "ข่าวใหม่ 14 จาก 14 ข่าว" in s["message_th"]
+    assert json.loads((data_dir / "headlines.json").read_text(encoding="utf-8"))["updated_at"] == "2026-11-02T13:00:00Z"
+
+
+def test_full_that_never_searches_keeps_old_headlines(data_dir, cost_log):
+    before = (data_dir / "headlines.json").read_bytes()
+    sub = {"market": market_input(), "headlines": headlines_input(14), "status_message_th": "สรุป"}
+    client = FakeClient([resp([submit_block("submit_full", sub)]), resp([submit_block("submit_full", sub)])])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    assert (data_dir / "headlines.json").read_bytes() == before
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert s["ok"] is True and "ข่าวไม่ได้อัปเดตรอบนี้" in s["message_th"]
+
+
+def test_resubmitted_old_headlines_count_as_nothing_new(data_dir, cost_log):
+    before = (data_dir / "headlines.json").read_bytes()
+    old = [{k: v for k, v in i.items() if k != "id"} for i in seed("headlines")["items"]]
+    client = FakeClient([resp([submit_block("submit_full", {"market": market_input(), "headlines": old, "status_message_th": "x"})],
+                              u=usage(searches=8))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    assert (data_dir / "headlines.json").read_bytes() == before
+    assert "ไม่พบข่าวใหม่ คงชุดเดิม 16 ข่าว" in json.loads((data_dir / "status.json").read_text(encoding="utf-8"))["message_th"]
+
+
+def test_count_new_headlines_mixes_kept_and_new():
+    prev = seed("headlines")
+    kept = [{k: v for k, v in i.items() if k != "id"} for i in prev["items"][:5]]
+    new = headlines_input(9)          # times 04:00-12:00Z, some after the previous updated_at (08:05Z), all unseen
+    assert update.count_new_headlines(prev, kept + new) == 9
+
+
+def test_full_run_skips_prices_when_they_are_fresh(data_dir, cost_log):
+    before = (data_dir / "market.json").read_bytes()
+    now = dt.datetime(2026, 11, 2, 8, 35, tzinfo=dt.timezone.utc)      # market.json is 30 min old
+    sub = {"headlines": headlines_input(13), "status_message_th": "สรุปข่าว", "market": {"junk": 1}}
+    client = FakeClient([resp([submit_block("submit_full", sub)], u=usage(searches=6))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=now) == 0
+    kw = client.calls[0]
+    submit = [t for t in kw["tools"] if t.get("name") == "submit_full"][0]
+    assert "market" not in submit["input_schema"]["properties"] and "market" not in submit["input_schema"]["required"]
+    assert "updated 30 minutes ago" in kw["messages"][0]["content"][0]["text"]
+    assert (data_dir / "market.json").read_bytes() == before
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert "ราคาคงชุดรอบราคาเมื่อ 30 นาทีก่อน" in s["message_th"]
+
+
+def test_full_run_with_old_prices_still_follows_the_price_plan(data_dir, cost_log):
+    client = FakeClient([resp([submit_block("submit_full", {"market": market_input(), "headlines": headlines_input(12),
+                                                            "status_message_th": "x"})], u=usage(searches=9))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0      # 4 h 55 min old
+    submit = [t for t in client.calls[0]["tools"] if t.get("name") == "submit_full"][0]
+    assert "market" in submit["input_schema"]["required"]
+    assert "Follow the price plan" in client.calls[0]["messages"][0]["content"][0]["text"]
+
+
+def test_prompt_asks_for_article_time_and_major_outlets():
+    sp = update.system_prompt()
+    assert "publication time of the source article" in sp and "Reuters, AP, AFP, Bloomberg" in sp and "Kyiv Independent" in sp
+    assert "at most about 5 older items" in sp and "at least 4 searches" in sp
