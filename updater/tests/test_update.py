@@ -189,8 +189,8 @@ def test_cost_calculation():
     u = update.Usage()
     u.add(resp([], u=usage(inp=50_000, out=4_000, cw=3_000, cr=10_000, searches=6)))
     u.add(resp([], u=usage(inp=10_000, out=1_000, cw=0, cr=3_000, searches=0)))
-    # 60k*2 + 5k*10 + 3k*2.5 + 13k*0.20 per MTok + 6 searches * $0.01
-    expected = 60_000 * 2 / 1e6 + 5_000 * 10 / 1e6 + 3_000 * 2.5 / 1e6 + 13_000 * 0.20 / 1e6 + 6 * 0.01
+    # 60k*2 + 5k*10 + 3k*2.5 + 13k*0.10 per MTok + 6 searches * $0.01
+    expected = 60_000 * 2 / 1e6 + 5_000 * 10 / 1e6 + 3_000 * 2.5 / 1e6 + 13_000 * 0.10 / 1e6 + 6 * 0.01
     assert u.cost_usd() == pytest.approx(expected)
     assert (u.requests, u.web_searches, u.input_tokens) == (2, 6, 60_000)
 

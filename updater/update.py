@@ -58,7 +58,7 @@ DEADLINE_S = 11 * 60                 # the workflow job times out at 15 min
 
 # USD per million tokens (Claude Sonnet 5.5, Claude API first-party) and per web search.
 # Cache read is $0.20/MTok per the claude-api skill pricing table (2026-10-06); edit here if it changes.
-PRICE = {"input": 2.00, "output": 10.00, "cache_write_5m": 2.50, "cache_read": 0.20}
+PRICE = {"input": 2.00, "output": 10.00, "cache_write_5m": 2.50, "cache_read": 0.10}
 WEB_SEARCH_USD = 10.0 / 1000
 
 # market keys in display order, with what each one means for the model
