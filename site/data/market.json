@@ -1,43 +1,43 @@
 {
- "updated_at": "2026-11-02T13:14:33Z",
- "note_th": "รอบนี้ราคาน้ำมัน ทองคำ DXY ยีลด์ 10 ปี USD/THB และ Bitcoin เป็นราคาระหว่างวัน SET และ Nikkei เป็นราคาปิดวันจันทร์ ส่วน S&P 500, Nasdaq 100 และ VIX ยังเป็นราคาปิดศุกร์ 30 ต.ค. เพราะตลาดสหรัฐยังไม่เปิด",
+ "updated_at": "2026-11-02T17:09:19Z",
+ "note_th": "รอบนี้ S&P 500, VIX, ยีลด์ 10 ปี เป็นราคาระหว่างวันตลาดสหรัฐเปิด ทองคำ น้ำมัน Bitcoin เป็นราคาระหว่างวัน ส่วน SET, Nikkei, Nasdaq 100, DXY, USD/THB และทองคำแท่งไทยยังใช้ค่าก่อนหน้า เพราะไม่พบราคาที่ใหม่กว่า",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "108.676",
+   "value": "105.86",
    "unit": "$/บาร์เรล",
-   "change_th": "−4.19% วันนี้ (−4.75) จากปิดศุกร์ ราคาลดลงหลังอิหร่านเสนอเงื่อนไขเปิดฮอร์มุซ",
+   "change_th": "−6.67% วันนี้ ราคาลดลงต่อเนื่องจากความหวังทางการทูตเรื่องอิหร่าน",
    "trend": "down",
-   "as_of": "2026-11-02T13:14:00Z",
+   "as_of": "2026-11-02T16:30:00Z",
    "source": "https://tradingeconomics.com/commodity/brent-crude-oil"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "99.66",
+   "value": "96.63",
    "unit": "$/บาร์เรล",
-   "change_th": "−4.28% วันนี้ (−4.46) หลุดต่ำกว่า 100 ดอลลาร์",
+   "change_th": "ลดลงจากปิดก่อนหน้า 104.1 ราว −7% ต่ำกว่า 100 ดอลลาร์",
    "trend": "down",
-   "as_of": "2026-11-02T13:14:00Z",
-   "source": "https://tradingeconomics.com/commodity/crude-oil"
+   "as_of": "2026-11-02T16:30:00Z",
+   "source": "https://www.investing.com/commodities/crude-oil"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3900.88",
+   "value": "3958.95",
    "unit": "$/ออนซ์",
-   "change_th": "+0.65% วันนี้ (+25.04) ฟื้นจากต่ำสุด 1 ปี",
+   "change_th": "+2.17% วันนี้ (+83.93) ราคา spot ณ 10:28 น. นิวยอร์ก ฟื้นต่อเนื่อง",
    "trend": "up",
-   "as_of": "2026-11-02T13:14:00Z",
-   "source": "https://tradingeconomics.com/commodity/gold"
+   "as_of": "2026-11-02T15:28:00Z",
+   "source": "https://www.cnbc.com/quotes/XAU="
   },
   {
    "key": "gold_th",
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
    "value": "62400",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งที่ 25 (ปิดตลาด) 15:59 น. ขายออก 62,400 สุทธิวันนี้ +150 ยังไม่มีประกาศใหม่",
+   "change_th": "ประกาศครั้งที่ 25 (ปิดตลาด) ขายออก 62,400 ยังไม่มีประกาศใหม่",
    "trend": "up",
    "as_of": "2026-11-02T08:59:00Z",
    "source": "https://www.bangkokbiznews.com/news/news-update/1258951"
@@ -47,7 +47,7 @@
    "label_th": "ดัชนีดอลลาร์ (DXY)",
    "value": "101.617",
    "unit": "จุด",
-   "change_th": "−0.26% วันนี้ จากปิดศุกร์ ดอลลาร์อ่อนค่าต่อเนื่อง",
+   "change_th": "−0.26% วันนี้ ยังไม่พบค่าที่ใหม่กว่า คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/united-states/currency"
@@ -55,19 +55,19 @@
   {
    "key": "spx",
    "label_th": "S&P 500",
-   "value": "7580.07",
+   "value": "7623.31",
    "unit": "จุด",
-   "change_th": "ปิดศุกร์ 30 ต.ค. −1.82% ตลาดสหรัฐยังไม่เปิด ฟิวเจอร์ส/CFD ราว +0.5%",
-   "trend": "down",
-   "as_of": "2026-10-30T20:00:00Z",
-   "source": "https://cnbc.com/2026/11/01/stock-market-today-live-updates.html"
+   "change_th": "+0.57% (+43.24) ระหว่างวัน ตลาดเปิด ฟื้นหลังเทขายสัปดาห์ก่อน น้ำมันลง",
+   "trend": "up",
+   "as_of": "2026-11-02T17:06:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
   },
   {
    "key": "ndx",
    "label_th": "Nasdaq 100",
    "value": "28384.85",
    "unit": "จุด",
-   "change_th": "ปิดศุกร์ 30 ต.ค. −3.46% ตลาดสหรัฐยังไม่เปิด ฟิวเจอร์ส/CFD ราว +0.8%",
+   "change_th": "ปิดศุกร์ 30 ต.ค. −3.46% ไม่พบราคา NDX ระหว่างวัน Nasdaq Composite ราว +0.7%",
    "trend": "down",
    "as_of": "2026-10-30T20:00:00Z",
    "source": "https://cnbc.com/2026/11/01/stock-market-today-live-updates.html"
@@ -75,19 +75,19 @@
   {
    "key": "btc",
    "label_th": "Bitcoin",
-   "value": "78057.04",
+   "value": "77652",
    "unit": "$",
-   "change_th": "ทรงตัวใกล้ 78,000 ดอลลาร์",
+   "change_th": "ทรงตัวต่ำกว่า 78,000 ดอลลาร์ ก่อนเลือกตั้งกลางเทอมสหรัฐ",
    "trend": "flat",
-   "as_of": "2026-11-02T13:10:00Z",
-   "source": "https://www.coinbase.com/price/bitcoin"
+   "as_of": "2026-11-02T17:00:00Z",
+   "source": "https://www.tradingview.com/symbols/BTCUSD/"
   },
   {
    "key": "usdthb",
    "label_th": "ดอลลาร์/บาท",
    "value": "33.751",
    "unit": "บาท/$",
-   "change_th": "−0.06% วันนี้ จากช่วงก่อนหน้า บาทแข็งค่าเล็กน้อย",
+   "change_th": "−0.06% วันนี้ ไม่พบค่าที่ใหม่กว่า คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T13:14:00Z",
    "source": "https://tradingeconomics.com/thailand/currency"
@@ -95,29 +95,29 @@
   {
    "key": "us10y",
    "label_th": "ยีลด์พันธบัตรสหรัฐ 10 ปี",
-   "value": "4.917",
+   "value": "4.888",
    "unit": "%",
-   "change_th": "−0.08% วันนี้ (+0.017 ตามตาราง) ใกล้ต่ำสุด 7 สัปดาห์",
+   "change_th": "−0.041 (−0.83%) วันนี้ ยีลด์ลดลงตามราคาน้ำมัน",
    "trend": "down",
-   "as_of": "2026-11-02T13:14:00Z",
-   "source": "https://tradingeconomics.com/bonds"
+   "as_of": "2026-11-02T17:06:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
   },
   {
    "key": "vix",
    "label_th": "VIX",
-   "value": "19.42",
+   "value": "18.84",
    "unit": "จุด",
-   "change_th": "ปิดศุกร์ 30 ต.ค. +12.91% ยังไม่มีการซื้อขายวันจันทร์",
-   "trend": "up",
-   "as_of": "2026-10-30T20:15:00Z",
-   "source": "https://tradingeconomics.com/vix:ind"
+   "change_th": "−2.99% (−0.58) ระหว่างวัน จากปิดศุกร์ 19.42",
+   "trend": "down",
+   "as_of": "2026-11-02T17:06:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-2-dow-sp-500-nasdaq-091835095.html"
   },
   {
    "key": "set",
    "label_th": "ดัชนี SET",
    "value": "1507.20",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ 2 พ.ย. −0.75% (−11.39 จุด) มูลค่าซื้อขาย 55,798.72 ล้านบาท",
+   "change_th": "ปิดจันทร์ 2 พ.ย. −0.75% (−11.39 จุด) ยังไม่เปิดวันอังคาร",
    "trend": "down",
    "as_of": "2026-11-02T09:30:00Z",
    "source": "https://www.kaohoon.com/summary/876993"
@@ -127,7 +127,7 @@
    "label_th": "Nikkei 225",
    "value": "63081.86",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% (−208.25 จุด) Kioxia ดิ่ง 15.8%",
+   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% (−208.25 จุด) ยังไม่เปิดวันอังคาร",
    "trend": "down",
    "as_of": "2026-11-02T06:30:00Z",
    "source": "https://click2houston.com/business/2026/11/02/asian-shares-are-mixed-and-us-futures-advance-while-oil-prices-retreat"
