@@ -465,3 +465,59 @@ def test_trace_lines_summarise_server_tools():
     assert lines[2].endswith("error max_uses_exceeded") and lines[5].endswith("error url_not_accessible")
     assert "retrieved 2026-11-02T12:00:00Z (50 chars)" in lines[4]
     assert "stdout: Brent 109.8 Gold 3911" in lines[6] and lines[-1] == "submit_prices (submit)"
+
+
+
+# ----------------------------------------------------------------- non-strict submit tool: repair, validate, retry
+def _as_file_items(m):
+    return [{"key": k, "label_th": "x", "unit": "y", **v} for k, v in m["items"].items()]
+
+
+@pytest.mark.parametrize("shape", ["list_items", "string_market", "flat_market", "top_level", "numeric_values"])
+def test_normalize_submission_repairs_known_shapes(shape):
+    m = market_input()
+    if shape == "list_items":
+        data = {"market": {"note_th": "n", "items": _as_file_items(m)}}
+    elif shape == "string_market":
+        data = {"market": json.dumps(m, ensure_ascii=False)}
+    elif shape == "flat_market":
+        data = {"market": {"note_th": "n", **m["items"]}}
+    elif shape == "top_level":
+        data = {"note_th": "n", "items": m["items"]}
+    else:
+        data = {"market": {"note_th": "n", "items": {k: {**v, "value": float(v["value"])} for k, v in m["items"].items()}}}
+    fixed = update.normalize_submission("prices", data)
+    assert update.submission_errors("prices", fixed) == []
+    assert set(fixed["market"]["items"]) == set(update.MARKET_KEYS)
+
+
+def test_full_submission_with_string_headlines_is_repaired():
+    data = {"market": market_input(), "headlines": json.dumps(headlines_input(13), ensure_ascii=False), "status_message_th": "x"}
+    assert update.submission_errors("full", update.normalize_submission("full", data)) == []
+
+
+def test_invalid_submit_gets_one_is_error_retry(data_dir, cost_log):
+    bad = {"market": {"note_th": "n", "items": {"brent": {"value": "1"}}}}           # 12 keys missing, fields missing
+    first = resp([submit_block("submit_prices", bad)])
+    second = resp([submit_block("submit_prices", {"market": market_input()})])
+    client = FakeClient([first, second])
+    assert update.run("prices", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    retry = client.calls[1]["messages"]
+    assert retry[-2] == {"role": "assistant", "content": first.content}
+    tr = retry[-1]["content"][0]
+    assert tr["type"] == "tool_result" and tr["is_error"] is True and tr["tool_use_id"] == "toolu_1" and "wti" in tr["content"]
+    assert client.calls[1]["tools"] == client.calls[0]["tools"]
+
+
+def test_still_invalid_after_retry_fails_and_keeps_files(data_dir, cost_log):
+    before = (data_dir / "market.json").read_bytes()
+    bad = {"market": {"note_th": "n", "items": {}}}
+    client = FakeClient([resp([submit_block("submit_prices", bad)]), resp([submit_block("submit_prices", bad)])])
+    assert update.run("prices", data_dir, client=client, cost_log=cost_log, now=NOW) == 1
+    assert (data_dir / "market.json").read_bytes() == before
+    assert json.loads((data_dir / "status.json").read_text(encoding="utf-8"))["ok"] is False
+
+
+def test_many_missing_items_never_overwrite_data():
+    with pytest.raises(update.UpdateError):
+        update.build_docs("prices", {k: seed(k) for k in update.DOCS}, {"market": {"note_th": "n", "items": {}}}, NOW)

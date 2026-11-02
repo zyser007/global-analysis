@@ -56,7 +56,7 @@ MAX_FETCHES = {"prices": 5, "full": 8}
 FETCH_MAX_CONTENT_TOKENS = 8000
 HEADLINES_MIN, HEADLINES_MAX = 12, 16
 MAX_MOVE = 0.15                      # reject a market value that moved more than 15 %
-MAX_REQUESTS = 4                     # first call + pause_turn continuations + one nudge
+MAX_REQUESTS = 5                     # first call + pause_turn continuations + one nudge + one schema fix
 DEADLINE_S = 11 * 60                 # the workflow job times out at 15 min
 
 # USD per million tokens (Claude Sonnet 5.5, Claude API first-party) and per web search.
@@ -289,10 +289,14 @@ Find the latest quote for every market item, then call the submit tool exactly o
    You may open a promising result page with web_fetch (quote pages such as tradingeconomics.com, investing.com, cnbc.com, reuters.com, set.or.th, goldtraders.or.th, thairath.co.th).
 3. A quote counts as newer when the time it refers to is later than the previous item's as_of. Whenever a reputable source shows a later quote, use it, even if it differs only slightly and even if you could not find an exact match for the previous source. Do not keep an old value just because one particular page did not load.
 4. Timestamps: a live quote page or price table shows the current or last price as of the moment you fetched it. Use the page's own quote or "last updated" time when it shows one; otherwise use the fetch time (retrieved_at) for a market that is trading now, or the session close time for a closed session. A search result dated today with a price counts too (use its stated time, or its page date). You do not need a minute-exact timestamp printed next to the number; you must not set as_of later than the current time.
-5. Keep the context small: when you fetch or search from code, print only the lines you need (the rows or sentences that mention the instrument, its price and its time), never whole pages or raw result objects. Every printed character is re-read on each later step and costs money.
-6. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
+5. When you call the tools from code: web_search(...) and web_fetch(...) return a JSON string, so json.loads it first. A search gives a list of results (url, title, page_age, content); a fetch gives an object whose page text is at ["content"]["source"]["data"].
+6. Keep the context small: when you fetch or search from code, print only the lines you need (the rows or sentences that mention the instrument, its price and its time), never whole pages or raw result objects. Every printed character is re-read on each later step and costs money.
+7. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
 
-## Market items (key: meaning)## Market items (key: meaning)
+## Submitting
+The submit tool's input must follow its schema exactly: "market" is an object with "note_th" and "items", and "items" is an object keyed by the 13 market keys below (not a list), each with value, change_th, trend, as_of and source. In mode "full", "headlines" is a list of objects. Pass objects as objects, not as JSON strings.
+
+## Market items (key: meaning)
 {keys}
 
 Rules for every market item:
@@ -639,6 +643,76 @@ def make_client(api_key: str):
     return anthropic.Anthropic(api_key=api_key, max_retries=3, timeout=anthropic.Timeout(600.0, connect=15.0))
 
 
+def _maybe_json(v: Any) -> Any:
+    if isinstance(v, str) and v.strip()[:1] in ("{", "["):
+        try:
+            return json.loads(v)
+        except ValueError:
+            return v
+    return v
+
+
+ITEM_FIELDS = ("value", "change_th", "trend", "as_of", "source")
+
+
+def normalize_submission(mode: str, data: Any) -> Any:
+    """Repair the shapes a non-strict tool call is known to produce before validating it:
+    nested objects sent as JSON strings, market items sent as a list of {key, ...} (the file format),
+    items placed directly in `market`, or the market fields placed at the top level."""
+    data = _maybe_json(data)
+    if not isinstance(data, dict):
+        return data
+    data = dict(data)
+    if "market" not in data and ("items" in data or any(k in data for k in MARKET_KEYS)):
+        moved = {k: data.pop(k) for k in list(data) if k in ("items", "note_th") or k in MARKET_KEYS}
+        data = {"market": moved, **data}
+    market = _maybe_json(data.get("market"))
+    if isinstance(market, dict):
+        market = dict(market)
+        items = _maybe_json(market.get("items"))
+        if items is None and any(k in market for k in MARKET_KEYS):
+            items = {k: market.pop(k) for k in list(market) if k in MARKET_KEYS}
+        if isinstance(items, list):
+            items = {str(i.get("key")): i for i in items if isinstance(i, dict) and i.get("key")}
+        if isinstance(items, dict):
+            fixed = {}
+            for k, v in items.items():
+                v = _maybe_json(v)
+                if isinstance(v, dict):
+                    v = {f: x for f, x in v.items() if f in ITEM_FIELDS}
+                    if isinstance(v.get("value"), (int, float)) and not isinstance(v.get("value"), bool):
+                        v["value"] = str(v["value"])
+                fixed[k] = v
+            items = fixed
+        if items is not None:
+            market["items"] = items
+        data["market"] = market
+    if mode == "full" and "headlines" in data:
+        data["headlines"] = _maybe_json(data.get("headlines"))
+    return data
+
+
+def submission_errors(mode: str, data: Any) -> list[str]:
+    import jsonschema
+
+    v = jsonschema.Draft202012Validator(submit_tool(mode)["input_schema"])
+    return [f"{'/'.join(map(str, e.absolute_path)) or '(root)'}: {_short(e.message, 160)}" for e in v.iter_errors(data)]
+
+
+def shape_of(data: Any) -> str:
+    def t(v):
+        return type(v).__name__ + (f"({len(v)})" if isinstance(v, (list, dict)) else "")
+    if not isinstance(data, dict):
+        return t(data)
+    parts = []
+    for k, v in data.items():
+        if isinstance(v, dict):
+            parts.append(f"{k}{{" + _short(", ".join(f"{ik}:{t(iv)}" for ik, iv in v.items()), 200) + "}")
+        else:
+            parts.append(f"{k}:{t(v)}")
+    return "; ".join(parts)
+
+
 def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usage) -> dict:
     """Run the search + submit loop. Returns the submit tool's input (a dict)."""
     import anthropic
@@ -648,7 +722,7 @@ def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usag
     system = [{"type": "text", "text": system_prompt(), "cache_control": {"type": "ephemeral"}}]
     messages: list[dict] = [{"role": "user", "content": [
         {"type": "text", "text": user_message(mode, prev, now), "cache_control": {"type": "ephemeral"}}]}]
-    nudged = False
+    nudged = fixed_once = False
     started = time.monotonic()
     for _ in range(MAX_REQUESTS):
         if time.monotonic() - started > DEADLINE_S:
@@ -687,14 +761,26 @@ def call_model(client: Any, mode: str, prev: dict, now: dt.datetime, usage: Usag
         if resp.stop_reason == "refusal":
             cat = getattr(getattr(resp, "stop_details", None), "category", None)
             raise UpdateError(f"model declined (refusal, category={cat})", "โมเดลปฏิเสธคำขอรอบนี้")
-        for block in resp.content:
-            if getattr(block, "type", None) == "tool_use" and getattr(block, "name", None) == submit_name:
-                data = block.input
-                if isinstance(data, str):         # defensive: always parse, never string-match
-                    data = json.loads(data)
-                if not isinstance(data, dict):
-                    raise UpdateError("submit input is not an object", "ผลลัพธ์จากโมเดลไม่อยู่ในรูปแบบที่กำหนด")
+        submit = next((b for b in resp.content if getattr(b, "type", None) == "tool_use" and getattr(b, "name", None) == submit_name), None)
+        if submit is not None:
+            data = normalize_submission(mode, submit.input)
+            print("trace: submitted shape " + shape_of(data))
+            errs = submission_errors(mode, data)
+            if not errs:
                 return data
+            # the submit tool is not strict (its grammar is too large), so a malformed call gets one
+            # is_error tool_result asking for a corrected call; the history stays append-only
+            if fixed_once:
+                raise UpdateError("submit input still invalid: " + "; ".join(errs[:3]), "ผลลัพธ์จากโมเดลไม่อยู่ในรูปแบบที่กำหนด")
+            fixed_once = True
+            print("trace: submit rejected: " + "; ".join(errs[:5]))
+            messages.append({"role": "assistant", "content": resp.content})
+            messages.append({"role": "user", "content": [{
+                "type": "tool_result", "tool_use_id": submit.id, "is_error": True,
+                "content": f"Rejected: the input does not match the {submit_name} schema: " + "; ".join(errs[:8])
+                           + f". Call {submit_name} again with the corrected, complete input. Do not search again.",
+            }]})
+            continue
         if resp.stop_reason == "max_tokens":
             raise UpdateError("hit max_tokens before submitting", "คำตอบยาวเกินกำหนดก่อนส่งผลลัพธ์")
         # keep the history append-only (preserved thinking + prompt cache)
@@ -758,6 +844,10 @@ def failure_status(prev_status: dict | None, message_th: str, now: dt.datetime) 
 def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime) -> tuple[dict[str, dict], list[str], int]:
     market_in = result.get("market") or {}
     items, notes = sanity_market(prev["market"], market_in.get("items") or {})
+    missing = [n for n in notes if n.endswith(": missing")]
+    if len(missing) > 3:      # never overwrite good data with a page full of stale markers
+        raise UpdateError(f"{len(missing)} market items missing from the submission",
+                          f"ผลลัพธ์จากโมเดลขาดราคา {len(missing)} รายการ")
     market = {"updated_at": iso(now), "note_th": clean_th(market_in.get("note_th"), 500) or prev["market"]["note_th"], "items": items}
     docs = {"market": market}
     changed = count_changed(prev["market"]["items"], items)
