@@ -37,6 +37,11 @@ def cost_log(tmp_path):
     return tmp_path / "cost-log.csv"
 
 
+@pytest.fixture(autouse=True)
+def _no_real_cost_log(tmp_path, monkeypatch):
+    monkeypatch.setattr(update, "COST_LOG", tmp_path / "real-cost-log-guard.csv")
+
+
 def seed(name):
     return json.loads((SEED / f"{name}.json").read_text(encoding="utf-8"))
 

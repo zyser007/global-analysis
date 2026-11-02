@@ -374,7 +374,7 @@ def tools_for(mode: str) -> list[dict]:
             "type": "web_search_20260209",   # dynamic filtering; no separate code_execution tool
             "name": "web_search",
             "max_uses": MAX_SEARCHES[mode],
-            "user_location": {"type": "approximate", "country": "TH", "timezone": "Asia/Bangkok"},
+            "user_location": {"type": "approximate", "timezone": "Asia/Bangkok"},  # web search rejects country TH
         },
         submit_tool(mode),
     ]
@@ -612,9 +612,10 @@ def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime) -> tuple[d
     return docs, notes
 
 
-def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_log: pathlib.Path = COST_LOG,
+def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_log: pathlib.Path | None = None,
         now: dt.datetime | None = None) -> int:
     now = now or utcnow()
+    cost_log = cost_log or COST_LOG
     prev, errs = load_previous(data_dir)
     if errs:
         print("previous data files are invalid; refusing to run:\n  " + "\n  ".join(errs), file=sys.stderr)
