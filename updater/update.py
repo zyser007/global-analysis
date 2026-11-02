@@ -289,7 +289,8 @@ Find the latest quote for every market item, then call the submit tool exactly o
    You may open a promising result page with web_fetch (quote pages such as tradingeconomics.com, investing.com, cnbc.com, reuters.com, set.or.th, goldtraders.or.th, thairath.co.th).
 3. A quote counts as newer when the time it refers to is later than the previous item's as_of. Whenever a reputable source shows a later quote, use it, even if it differs only slightly and even if you could not find an exact match for the previous source. Do not keep an old value just because one particular page did not load.
 4. Timestamps: a live quote page or price table shows the current or last price as of the moment you fetched it. Use the page's own quote or "last updated" time when it shows one; otherwise use the fetch time (retrieved_at) for a market that is trading now, or the session close time for a closed session. A search result dated today with a price counts too (use its stated time, or its page date). You do not need a minute-exact timestamp printed next to the number; you must not set as_of later than the current time.
-5. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
+5. Keep the context small: when you fetch or search from code, print only the lines you need (the rows or sentences that mention the instrument, its price and its time), never whole pages or raw result objects. Every printed character is re-read on each later step and costs money.
+6. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
 
 ## Market items (key: meaning)## Market items (key: meaning)
 {keys}
@@ -422,7 +423,8 @@ def tools_for(mode: str) -> list[dict]:
 # quote pages the model may fetch without searching (web_fetch only opens URLs that appear in the conversation)
 QUOTE_PAGES = [
     ("https://tradingeconomics.com/commodities", "Brent, WTI, gold"),
-    ("https://tradingeconomics.com/currencies", "USD/THB and the dollar index DXY"),
+    ("https://tradingeconomics.com/currencies", "the dollar index DXY and major pairs"),
+    ("https://tradingeconomics.com/thailand/currency", "USD/THB (the baht is often missing from the main currencies table)"),
     ("https://tradingeconomics.com/stocks", "S&P 500, Nasdaq 100, Nikkei 225, SET"),
     ("https://tradingeconomics.com/bonds", "US 10-year yield"),
     ("https://www.goldtraders.or.th/", "Thai gold association price board (96.5% bar, sell)"),
