@@ -2,10 +2,10 @@ name: Update live data
 
 on:
   # Cron is UTC. full = 08:00 / 20:00 Bangkok, prices = 12:00 / 16:00 / 00:00 / 04:00 Bangkok.
-  # เปิดหลังรันทดลองผ่าน: ลบ # หน้า 3 บรรทัดด้านล่าง (schedule และ cron 2 บรรทัด) เมื่อรันทดลองด้วยมือ (workflow_dispatch) ผ่านแล้ว
-  # schedule:
-  #   - cron: "0 1,13 * * *"        # full
-  #   - cron: "0 5,9,17,21 * * *"   # prices
+  # เปิดแล้ว 2 พ.ย. 2569 หลังรันทดลองผ่าน
+  schedule:
+    - cron: "0 1,13 * * *"        # full
+    - cron: "0 5,9,17,21 * * *"   # prices
   workflow_dispatch:
     inputs:
       mode:
