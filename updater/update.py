@@ -326,20 +326,20 @@ def _market_schema() -> dict:
 
 
 def submit_tool(mode: str) -> dict:
-    # strict: true -> the input always matches the schema. eager_input_streaming is left off on purpose:
-    # it would turn the server-side validation off and nothing here consumes the partial input.
+    # strict is off: the API rejects the compiled grammar of these schemas as too large. write_docs validates every
+    # submitted input with jsonschema and the sanity checks, so a malformed submission never reaches the site.
     if mode == "prices":
         return {
             "name": "submit_prices",
             "description": "Submit the updated 13 market items. Call exactly once, at the end, after searching.",
-            "strict": True,
+            "strict": False,  # strict grammar for this schema is too large for the API; output is validated with jsonschema
             "input_schema": {"type": "object", "additionalProperties": False, "required": ["market"],
                              "properties": {"market": _market_schema()}},
         }
     return {
         "name": "submit_full",
         "description": "Submit the updated market items, 12-16 headlines and the run summary. Call exactly once, at the end, after searching.",
-        "strict": True,
+        "strict": False,
         "input_schema": {
             "type": "object",
             "additionalProperties": False,

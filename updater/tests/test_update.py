@@ -351,7 +351,7 @@ def test_real_sdk_request_and_stream_parsing(data_dir, cost_log):
     assert b["thinking"] == {"type": "adaptive"} and b["output_config"] == {"effort": "medium"}
     assert "temperature" not in b and "tool_choice" not in b
     sub = [t for t in b["tools"] if t.get("name") == "submit_prices"][0]
-    assert sub["strict"] is True and sub["input_schema"]["additionalProperties"] is False
+    assert sub["strict"] is False and sub["input_schema"]["additionalProperties"] is False
     assert b["system"][0]["cache_control"]["type"] == "ephemeral"
     m = json.loads((data_dir / "market.json").read_text(encoding="utf-8"))
     assert {i["key"]: i for i in m["items"]}["brent"]["as_of"] == "2026-11-02T12:30:00Z"
