@@ -1,13 +1,13 @@
 {
- "updated_at": "2026-11-02T08:05:00Z",
+ "updated_at": "2026-11-02T12:01:51Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "thailand",
-   "title_th": "สมาคมค้าทองคำประกาศ 21 ครั้ง ทองแท่งขายออก 62,500 บาท +250 จากวานนี้ เปิดตลาดพุ่ง 350",
-   "time": "2026-11-02T07:38:00Z",
-   "source": "https://xn--42cah7d0cxcvbbb9x.com/",
-   "source_name": "สมาคมค้าทองคำ"
+   "title_th": "สมาคมค้าทองคำประกาศปิดตลาด ทองแท่งขายออก 62,400 บาท สุทธิวันนี้ +150",
+   "time": "2026-11-02T10:58:00Z",
+   "source": "https://www.thairath.co.th/news/society/2969972",
+   "source_name": "ไทยรัฐ"
   },
   {
    "id": "h2",
@@ -28,7 +28,7 @@
   {
    "id": "h4",
    "conflict_id": "thailand",
-   "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ ภาคเช้าลบ 2 จุดที่ 1,516 รอผลเลือกตั้งสหรัฐ",
+   "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ รอผลเลือกตั้งสหรัฐ",
    "time": "2026-11-02T07:04:00Z",
    "source": "https://infoquest.co.th/2026/672506",
    "source_name": "อินโฟเควสท์"
@@ -36,7 +36,7 @@
   {
    "id": "h5",
    "conflict_id": "thailand",
-   "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ ชูมั่นคงอาหาร",
+   "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ",
    "time": "2026-11-02T06:44:00Z",
    "source": "https://siamrath.co.th/politics/332765",
    "source_name": "สยามรัฐ"
@@ -84,21 +84,13 @@
   {
    "id": "h11",
    "conflict_id": "thailand",
-   "title_th": "ฮั่วเซ่งเฮงมองทองฟื้นสั้น ขายทำกำไร 3,945 $/62,850 บาท ซื้อ 3,870 หลุด 3,800 ตัดขาดทุน",
-   "time": "2026-11-02T02:24:00Z",
-   "source": "https://www.sanook.com/money/960547/",
-   "source_name": "Sanook Money"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "thailand",
    "title_th": "บาทเปิด 33.77 อ่อนค่าตามภูมิภาคและทองร่วง กสิกรให้กรอบ 33.65–33.85 จับตาเลือกตั้งสหรัฐ–ISM",
    "time": "2026-11-02T02:22:00Z",
    "source": "https://dailynews.co.th/news/6323969",
    "source_name": "เดลินิวส์"
   },
   {
-   "id": "h13",
+   "id": "h12",
    "conflict_id": "world",
    "title_th": "PMI ภาคผลิตจีน RatingDog ต.ค. 52.0 ดีกว่าคาด ผลผลิตโตเร็วสุด 6 เดือน สวนดัชนีทางการ 49.3",
    "time": "2026-11-02T01:45:00Z",
@@ -106,15 +98,15 @@
    "source_name": "Trading Economics (TradingView)"
   },
   {
-   "id": "h14",
+   "id": "h13",
    "conflict_id": "economy",
-   "title_th": "Bitcoin ทรงตัว 78,000 $ Binance ทยอยเปิดถอนทุกเหรียญ เติมคืน 95% ETF ไหลออก 643 ล้าน $",
+   "title_th": "Bitcoin ทรงตัว 78,000 $ Binance ทยอยเปิดถอนทุกเหรียญ ETF ไหลออก 643 ล้าน $",
    "time": "2026-11-02T00:58:00Z",
    "source": "https://au.finance.yahoo.com/news/bitcoin-steadies-near-us-78-005800846.html",
    "source_name": "Yahoo Finance AU (Proactive)"
   },
   {
-   "id": "h15",
+   "id": "h14",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนอพยพ 167 คนช่วงหยุดยิงโอเลชกีเขตเคอร์ซอน รัสเซียถล่มไฟฟ้า 4 ภูมิภาคดับหลายแสนบ้าน",
    "time": "2026-11-01T23:38:00Z",
@@ -122,7 +114,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h16",
+   "id": "h15",
    "conflict_id": "economy",
    "title_th": "ฟิวเจอร์ส S&P +0.5% Nasdaq +0.9% รีบาวด์ รอ ISM คืนนี้ เลือกตั้ง 3 พ.ย. งบ Apple",
    "time": "2026-11-01T23:30:00Z",
