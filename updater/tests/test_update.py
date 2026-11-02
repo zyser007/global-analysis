@@ -604,3 +604,16 @@ def test_kept_headlines_are_copied_verbatim():
     h = update.build_headlines([retyped] + headlines_input(12), NOW, prev)
     row = [i for i in h["items"] if i["source"] == kept["source"]][0]
     assert {k: row[k] for k in kept} == kept
+
+
+
+def test_live_blog_items_sharing_a_url_stay_distinct_and_duplicates_drop():
+    prev = {"updated_at": "2026-11-02T12:00:00Z", "items": [
+        {"id": "h1", "conflict_id": "iran_us_israel_war", "title_th": "ข่าวเช้า", "time": "2026-11-02T04:30:00Z", "source": "https://x.com/live", "source_name": "AJ"},
+        {"id": "h2", "conflict_id": "iran_us_israel_war", "title_th": "ข่าวเที่ยง", "time": "2026-11-02T11:00:00Z", "source": "https://x.com/live", "source_name": "AJ"}]}
+    sub = [{"conflict_id": "iran_us_israel_war", "title_th": "ข่าวเที่ยง (พิมพ์ใหม่)", "time": "2026-11-02T11:00:00Z", "source": "https://x.com/live", "source_name": "AJ"},
+           {"conflict_id": "iran_us_israel_war", "title_th": "ข่าวเช้า", "time": "2026-11-02T04:30:00Z", "source": "https://x.com/live", "source_name": "AJ"},
+           {"conflict_id": "iran_us_israel_war", "title_th": "ข่าวเช้า", "time": "2026-11-02T04:30:00Z", "source": "https://x.com/live", "source_name": "AJ"}]
+    h = update.build_headlines(sub + headlines_input(12), NOW, prev)
+    live = [i["title_th"] for i in h["items"] if i["source"] == "https://x.com/live"]
+    assert sorted(live) == ["ข่าวเช้า", "ข่าวเที่ยง"]

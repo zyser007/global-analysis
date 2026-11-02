@@ -243,10 +243,23 @@ def _stale(old: dict, why: str) -> dict:
     return item
 
 
+def _match_kept(cands: list[dict], row: dict) -> dict | None:
+    """The previous item a submitted headline repeats: the only one with that URL, or (live blogs share a URL)
+    the one with the same title or the same time."""
+    if len(cands) == 1:
+        return cands[0]
+    for c in cands:
+        if _norm_title(c.get("title_th")) == _norm_title(row["title_th"]) or c.get("time") == row["time"]:
+            return c
+    return None
+
+
 def build_headlines(items: list[dict], now: dt.datetime, prev: dict | None = None) -> dict:
     allowed = set(allowed_conflict_ids())
-    by_source = {i.get("source"): i for i in (prev or {}).get("items", [])}
-    rows = []
+    by_source: dict[str, list[dict]] = {}
+    for i in (prev or {}).get("items", []):
+        by_source.setdefault(i.get("source"), []).append(i)
+    rows, seen = [], set()
     for it in items:
         if not isinstance(it, dict):
             continue
@@ -259,10 +272,12 @@ def build_headlines(items: list[dict], now: dt.datetime, prev: dict | None = Non
             "source": src,
             "source_name": clean_th(it.get("source_name"), 60),
         }
-        old = by_source.get(src)
+        old = _match_kept(by_source.get(src) or [], row)
         if old:   # a kept headline is copied verbatim (no retyped titles, no refreshed times)
             row = {k: old[k] for k in ("conflict_id", "title_th", "time", "source", "source_name")}
-        if row["title_th"] and re.match(r"^https?://\S+$", src) and '"' not in src and row["source_name"]:
+        key = (row["source"], _norm_title(row["title_th"]))
+        if row["title_th"] and re.match(r"^https?://\S+$", src) and '"' not in src and row["source_name"] and key not in seen:
+            seen.add(key)
             rows.append(row)
     rows.sort(key=lambda r: r["time"], reverse=True)
     rows = rows[:HEADLINES_MAX]

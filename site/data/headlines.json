@@ -19,6 +19,14 @@
   },
   {
    "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านส่งข้อเสนอผ่านกาตาร์ ระบุหากสหรัฐยอมรับ ฮอร์มุซจะกลับมาปลอดภัยและเริ่มเจรจา",
+   "time": "2026-11-02T11:00:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h4",
    "conflict_id": "thailand",
    "title_th": "สมาคมค้าทองคำประกาศปิดตลาด ทองแท่งขายออก 62,400 บาท สุทธิวันนี้ +150",
    "time": "2026-11-02T10:58:00Z",
@@ -26,7 +34,7 @@
    "source_name": "ไทยรัฐ"
   },
   {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "thailand",
    "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ รอผลเลือกตั้งสหรัฐ",
    "time": "2026-11-02T07:04:00Z",
@@ -34,15 +42,15 @@
    "source_name": "อินโฟเควสท์"
   },
   {
-   "id": "h5",
+   "id": "h6",
    "conflict_id": "thailand",
-   "title_th": "อนุทินเปิดศูนย์หัวใหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ",
+   "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ",
    "time": "2026-11-02T06:44:00Z",
    "source": "https://siamrath.co.th/politics/332765",
    "source_name": "สยามรัฐ"
   },
   {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "world",
    "title_th": "หุ้นเอเชียผสม Nikkei −0.3% Kioxia ดิ่ง 15.8% Kospi +2.2% ฟิวเจอร์สสหรัฐบวก น้ำมันร่วง 3%",
    "time": "2026-11-02T06:33:00Z",
@@ -50,7 +58,7 @@
    "source_name": "AP"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "thailand",
    "title_th": "อนุทินระบุยังไม่เปิดด่านและไม่ฟื้นความสัมพันธ์กัมพูชาเป็นปกติ จนกว่าปัญหาดินแดน อาชญากรรมข้ามชาติคลี่คลาย",
    "time": "2026-11-02T05:43:00Z",
@@ -58,7 +66,7 @@
    "source_name": "Khaosod English"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนอ้างโดรนถล่มโรงกลั่น Kstovo–สถานีน้ำมันซามารา เคียฟชี้ ต.ค. รัสเซียสูญเสียทหารสูงสุด",
    "time": "2026-11-02T05:18:00Z",
@@ -66,20 +74,12 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "myanmar_civil_war",
    "title_th": "เจ้าหน้าที่แม่ฮ่องสอนประณามเมียนมาโจมตีทางอากาศใกล้ชายแดนไทย เรียกร้องจัดเขตปลอดภัย",
    "time": "2026-11-02T05:00:00Z",
    "source": "https://www.khaosodenglish.com/news/2026/11/02/thai-official-condemns-myanmar-airstrikes-near-thai-border-urges-safety-zone/",
    "source_name": "Khaosod English"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC อ้างเรือน้ำมัน 2 ลำชนทุ่นระเบิดในฮอร์มุซ ทรัมป์ลั่นสงครามจบเร็ว ๆ นี้ไม่ว่าทางใด",
-   "time": "2026-11-02T04:30:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon",
-   "source_name": "Al Jazeera"
   },
   {
    "id": "h11",
