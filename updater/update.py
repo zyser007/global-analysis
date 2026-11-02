@@ -51,6 +51,9 @@ EFFORT = "medium"                    # skill: medium for multistep tool use on S
 MAX_TOKENS = 64000                   # streaming request, thinking counts toward it
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 MAX_SEARCHES = {"prices": 6, "full": 20}
+# web fetch has no per-use fee (tokens only); max_content_tokens caps each page that enters the context
+MAX_FETCHES = {"prices": 5, "full": 8}
+FETCH_MAX_CONTENT_TOKENS = 8000
 HEADLINES_MIN, HEADLINES_MAX = 12, 16
 MAX_MOVE = 0.15                      # reject a market value that moved more than 15 %
 MAX_REQUESTS = 4                     # first call + pause_turn continuations + one nudge
@@ -200,6 +203,10 @@ def sanity_market(prev: dict, new_items: dict[str, dict], max_move: float = MAX_
             continue
         as_of = str(sub.get("as_of") or "").strip()
         source = str(sub.get("source") or "").strip()
+        if ISO_RE.match(as_of) and _ts(as_of) < _ts(old["as_of"]):
+            out.append(copy.deepcopy(old))      # an older quote never replaces a newer one
+            notes.append(f"{key}: as_of {as_of} is older than the previous {old['as_of']}")
+            continue
         out.append({
             "key": key,
             "label_th": old["label_th"],
@@ -214,6 +221,16 @@ def sanity_market(prev: dict, new_items: dict[str, dict], max_move: float = MAX_
 
 
 STALE_PREFIX = "ค่าเดิม รอยืนยัน"
+
+
+def _ts(s: str) -> float:
+    return dt.datetime.fromisoformat(s.replace("Z", "+00:00")).timestamp()
+
+
+def count_changed(prev_items: list[dict], new_items: list[dict]) -> int:
+    """Items whose value or as_of differs from the previous file (= really refreshed this run)."""
+    old = {i["key"]: (i["value"], i["as_of"]) for i in prev_items}
+    return sum(1 for i in new_items if old.get(i["key"]) != (i["value"], i["as_of"]))
 
 
 def _stale(old: dict, why: str) -> dict:
@@ -256,21 +273,33 @@ def system_prompt() -> str:
     return f"""You maintain the live data files of a public Thai-language website: a 3D globe of world conflicts, economies and markets, with a gold-price panel. Readers are in Thailand. You run unattended on a schedule; nobody reads your text replies, only the data you submit through the submit tool.
 
 ## Job
-Use the web_search tool to check current values, then call the submit tool exactly once with the complete result. The user turn gives the run mode, the current time, the search budget and the previous files.
+Find the latest quote for every market item, then call the submit tool exactly once with the complete result. The user turn gives the run mode, the current UTC and Bangkok time, which market sessions are open or closed right now, the tool budgets, a list of quote pages you may fetch directly, and the previous files.
 - Mode "prices": update the 13 market items only. Call submit_prices.
 - Mode "full": update the 13 market items, write 12 to 16 fresh headlines, and a one-paragraph run summary. Call submit_full.
-Spend the search budget on what is most likely to have moved: queries that cover several instruments at once (for example a markets wrap or a quotes page) are better than one query per instrument. If the budget runs out, submit what you have: for an instrument you could not re-check, return the previous value, as_of and source unchanged and say in change_th that it is the previous value.
 
-## Market items (key: meaning)
+## How to find the quotes (follow this plan)
+1. Fetch the quote pages listed in the user turn with web_fetch first: they are tables that cover several items at once (commodities, currencies and the dollar index, stock indexes, bond yields, the Thai gold association price board). A fetch costs no search.
+2. Then use web_search for whatever is still missing or older than the previous as_of, grouping several items per query. A good plan for at most 6 searches:
+   a) gold spot price + Brent + WTI crude today
+   b) ราคาทองคำ สมาคมค้าทองคำ วันนี้ ประกาศล่าสุด (the latest Thai gold-bar announcement of today)
+   c) SET index close today + USD/THB (ดัชนี SET ปิดวันนี้ ค่าเงินบาท)
+   d) Bitcoin price + US dollar index DXY + US 10-year Treasury yield
+   e) S&P 500, Nasdaq 100 and VIX (cash session if open, otherwise last close; futures only as context in change_th)
+   f) Nikkei 225 close today
+   You may open a promising result page with web_fetch (quote pages such as tradingeconomics.com, investing.com, cnbc.com, reuters.com, set.or.th, goldtraders.or.th, thairath.co.th).
+3. A quote counts as newer when the time it refers to is later than the previous item's as_of. Whenever a reputable source shows a later quote, use it, even if it differs only slightly and even if you could not find an exact match for the previous source. Do not keep an old value just because one particular page did not load.
+4. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday) or no source with a later time exists after following the plan. Say so in change_th.
+
+## Market items (key: meaning)## Market items (key: meaning)
 {keys}
 
 Rules for every market item:
 - value: a plain decimal number as a string, no thousands separators, no units, no plus sign (e.g. "3903.12", "62500", "4.93").
-- Only change what moved. If the market is closed or nothing newer exists, keep the previous value and as_of, and say so in change_th (for example that it is the Friday close).
-- as_of: the time the value refers to, ISO 8601 UTC (e.g. "2026-11-02T07:45:00Z"). source: the https URL of the page the value came from (a quote page or a reputable outlet).
+- as_of: the time the value refers to (the quote time, or the session close time for a closing value), ISO 8601 UTC (e.g. "2026-11-02T07:45:00Z"). It must not be later than the current time. source: the https URL of the page the value came from (a quote page or a reputable outlet).
+- For a market that is trading now (gold, oil, FX, the dollar index, US yields, Bitcoin) the value should be from the last hour or two. For a session that closed today (SET, Nikkei, and US indexes after their close) use today's close with the close time as as_of.
 - change_th: short Thai text, at most about 140 characters: the change versus the previous close or the last update, with the reason when it is clear (for example "−2.7% วันนี้ จากปิดศุกร์ 113.43 หลังอิหร่านเสนอเปิดฮอร์มุซ"). Use the Unicode minus sign (−) for negative numbers in Thai text.
 - trend: "up", "down" or "flat" for the move described in change_th.
-- A value that moves more than 15% from the previous value is rejected automatically and the old one is kept, so double-check large moves against a second source before reporting them.
+- A value that moves more than 15% from the previous value, or an as_of older than the previous one, is rejected automatically and the old item is kept, so double-check large moves against a second source before reporting them.
 - note_th: one or two Thai sentences on what this round covers (which prices are intraday and which are closes), in the style of the previous note_th.
 
 ## Headlines (mode "full" only)
@@ -376,7 +405,69 @@ def tools_for(mode: str) -> list[dict]:
             "max_uses": MAX_SEARCHES[mode],
             "user_location": {"type": "approximate", "timezone": "Asia/Bangkok"},  # web search rejects country TH
         },
+        {
+            # web_fetch_20260309 = dynamic filtering (as 20260209) + use_cache, so quote pages are fetched fresh;
+            # no per-use fee, only tokens, capped by max_uses x max_content_tokens
+            "type": "web_fetch_20260309",
+            "name": "web_fetch",
+            "max_uses": MAX_FETCHES[mode],
+            "max_content_tokens": FETCH_MAX_CONTENT_TOKENS,
+            "use_cache": False,
+        },
         submit_tool(mode),
+    ]
+
+
+# quote pages the model may fetch without searching (web_fetch only opens URLs that appear in the conversation)
+QUOTE_PAGES = [
+    ("https://tradingeconomics.com/commodities", "Brent, WTI, gold"),
+    ("https://tradingeconomics.com/currencies", "USD/THB and the dollar index DXY"),
+    ("https://tradingeconomics.com/stocks", "S&P 500, Nasdaq 100, Nikkei 225, SET"),
+    ("https://tradingeconomics.com/bonds", "US 10-year yield"),
+    ("https://www.goldtraders.or.th/", "Thai gold association price board (96.5% bar, sell)"),
+]
+
+
+def _fmt_local(t: dt.datetime, tz: dt.tzinfo, label: str) -> str:
+    lt = t.astimezone(tz)
+    return f"{lt:%a %H:%M} {label}"
+
+
+def market_sessions(now: dt.datetime) -> list[str]:
+    """Plain-language session state for each market at `now` (weekday hours; local holidays not known)."""
+    from zoneinfo import ZoneInfo
+
+    bkk, tokyo, ny = ZoneInfo("Asia/Bangkok"), ZoneInfo("Asia/Tokyo"), ZoneInfo("America/New_York")
+    b, t, n = now.astimezone(bkk), now.astimezone(tokyo), now.astimezone(ny)
+
+    def within(lt, start, end):
+        m = lt.hour * 60 + lt.minute
+        return lt.weekday() < 5 and start <= m < end
+
+    def state(lt, sessions, close_label):
+        if lt.weekday() >= 5:
+            return "closed (weekend): use the last close of Friday"
+        m = lt.hour * 60 + lt.minute
+        if any(a <= m < z for a, z in sessions):
+            return "OPEN now: use an intraday quote from the last hour or two"
+        if m >= sessions[-1][1]:
+            return f"closed for the day ({close_label}): use today's close"
+        if m < sessions[0][0]:
+            return "not open yet today: use the previous session's close"
+        return "lunch break: use the latest quote of today's morning session"
+
+    # US futures/FX/commodities: Sunday 18:00 to Friday 17:00 New York time, daily pause 17:00-18:00
+    nm = n.hour * 60 + n.minute
+    globex = not (n.weekday() == 5 or (n.weekday() == 6 and nm < 18 * 60) or (n.weekday() == 4 and nm >= 17 * 60) or (17 * 60 <= nm < 18 * 60))
+    us_cash = state(n, [(9 * 60 + 30, 16 * 60)], "closed 16:00 New York")
+    return [
+        f"Bangkok {_fmt_local(now, bkk, '(UTC+7)')}, Tokyo {_fmt_local(now, tokyo, '(UTC+9)')}, New York {_fmt_local(now, ny, n.tzname() or '')}",
+        f"gold spot, Brent, WTI, DXY, USD/THB, US 10-year yield: {'trading now (nearly 24 h on weekdays): use a quote from the last hour or two' if globex else 'not trading now: use the last quote before the pause/weekend'}",
+        "Bitcoin: trades 24/7: use a quote from the last hour",
+        f"SET (Bangkok 10:00-12:30, 14:30-16:30): {state(b, [(10 * 60, 12 * 60 + 30), (14 * 60 + 30, 16 * 60 + 30)], 'closed 16:30 Bangkok')}",
+        f"Nikkei 225 (Tokyo 09:00-11:30, 12:30-15:30): {state(t, [(9 * 60, 11 * 60 + 30), (12 * 60 + 30, 15 * 60 + 30)], 'closed 15:30 Tokyo')}",
+        f"S&P 500, Nasdaq 100, VIX cash session (New York 09:30-16:00): {us_cash}; US index futures are {'trading' if globex else 'not trading'} (mention them in change_th only)",
+        f"Thai gold association (announces several times on business days, about 09:00-17:30 Bangkok): {'announcing today: use the latest announcement of today' if within(b, 9 * 60, 17 * 60 + 30) else 'use the latest announcement (today if there was one)'}",
     ]
 
 
@@ -384,15 +475,17 @@ def user_message(mode: str, prev: dict, now: dt.datetime) -> str:
     parts = [
         f"Mode: {mode}",
         f"Current time: {iso(now)} (Bangkok {bkk_th(now)})",
-        f"Web search budget for this run: {MAX_SEARCHES[mode]} searches in total.",
-        "Previous market.json:",
+        "Market sessions right now (computed from the clock; local holidays are not known):\n" + "\n".join("- " + x for x in market_sessions(now)),
+        f"Budgets for this run: web_search at most {MAX_SEARCHES[mode]} searches; web_fetch at most {MAX_FETCHES[mode]} pages.",
+        "Quote pages you may fetch directly:\n" + "\n".join(f"- {u} ({what})" for u, what in QUOTE_PAGES),
+        "Previous market.json (an item is refreshed when you give a value whose as_of is later than the as_of below):",
         "```json\n" + json.dumps(prev["market"], ensure_ascii=False, indent=1) + "\n```",
     ]
     if mode == "full":
         parts += ["Previous headlines.json:", "```json\n" + json.dumps(prev["headlines"], ensure_ascii=False, indent=1) + "\n```"]
-        parts.append("Search, then call submit_full once with the market items, 12-16 headlines and status_message_th.")
+        parts.append("Follow the plan, then call submit_full once with all 13 market items, 12-16 headlines and status_message_th.")
     else:
-        parts.append("Search, then call submit_prices once with all 13 market items.")
+        parts.append("Follow the plan, then call submit_prices once with all 13 market items.")
     return "\n\n".join(parts)
 
 
@@ -405,6 +498,7 @@ class Usage:
     cache_write_tokens: int = 0
     cache_read_tokens: int = 0
     web_searches: int = 0
+    web_fetches: int = 0
     served_by: list[str] = field(default_factory=list)
     stop_reasons: list[str] = field(default_factory=list)
 
@@ -423,6 +517,7 @@ class Usage:
         self.cache_read_tokens += int(getattr(u, "cache_read_input_tokens", 0) or 0)
         stu = getattr(u, "server_tool_use", None)
         self.web_searches += int(getattr(stu, "web_search_requests", 0) or 0) if stu is not None else 0
+        self.web_fetches += int(getattr(stu, "web_fetch_requests", 0) or 0) if stu is not None else 0
 
     def cost_usd(self) -> float:
         return round(
@@ -436,21 +531,42 @@ class Usage:
 
 
 CSV_FIELDS = ["time_utc", "mode", "ok", "model", "requests", "input_tokens", "output_tokens",
-              "cache_write_tokens", "cache_read_tokens", "web_searches", "cost_usd", "note"]
+              "cache_write_tokens", "cache_read_tokens", "web_searches", "cost_usd", "note", "web_fetches", "items_changed"]
 
 
-def log_cost(mode: str, ok: bool, usage: Usage, note: str, now: dt.datetime, cost_log: pathlib.Path) -> None:
+def _migrate_csv(cost_log: pathlib.Path) -> None:
+    """Rewrite an older cost log whose header lacks the newer columns (they were appended at the end)."""
+    if not cost_log.exists() or cost_log.stat().st_size == 0:
+        return
+    with cost_log.open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+        header = rows and list(rows[0].keys())
+    if header == CSV_FIELDS or not rows:
+        return
+    with cost_log.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+        w.writeheader()
+        for r in rows:
+            w.writerow({k: r.get(k, "") for k in CSV_FIELDS})
+
+
+def log_cost(mode: str, ok: bool, usage: Usage, note: str, now: dt.datetime, cost_log: pathlib.Path,
+             items_changed: int | None = None) -> None:
     row = {
         "time_utc": iso(now), "mode": mode, "ok": "yes" if ok else "no",
         "model": "+".join(usage.served_by) or MODEL, "requests": usage.requests,
         "input_tokens": usage.input_tokens, "output_tokens": usage.output_tokens,
         "cache_write_tokens": usage.cache_write_tokens, "cache_read_tokens": usage.cache_read_tokens,
         "web_searches": usage.web_searches, "cost_usd": f"{usage.cost_usd():.4f}", "note": note[:200],
+        "web_fetches": usage.web_fetches, "items_changed": "" if items_changed is None else items_changed,
     }
     print(f"usage: requests={usage.requests} input={usage.input_tokens} output={usage.output_tokens} "
           f"cache_write={usage.cache_write_tokens} cache_read={usage.cache_read_tokens} "
-          f"web_searches={usage.web_searches} stop={','.join(usage.stop_reasons)} served_by={row['model']}")
+          f"web_searches={usage.web_searches} web_fetches={usage.web_fetches} stop={','.join(usage.stop_reasons)} served_by={row['model']}")
     print(f"estimated cost: ${usage.cost_usd():.4f} USD ({mode}, {'ok' if ok else 'FAILED'})")
+    if items_changed is not None:
+        print(f"items changed: {items_changed}/{len(MARKET_KEYS)}")
+    _migrate_csv(cost_log)
     new = not cost_log.exists() or cost_log.stat().st_size == 0
     cost_log.parent.mkdir(parents=True, exist_ok=True)
     with cost_log.open("a", newline="", encoding="utf-8") as f:
@@ -468,7 +584,9 @@ def log_cost(mode: str, ok: bool, usage: Usage, note: str, now: dt.datetime, cos
                 f"| input tokens | {usage.input_tokens:,} |\n| output tokens | {usage.output_tokens:,} |\n"
                 f"| cache write / read | {usage.cache_write_tokens:,} / {usage.cache_read_tokens:,} |\n"
                 f"| web searches | {usage.web_searches} (เพดาน {MAX_SEARCHES.get(mode, '-')}) |\n"
-                f"| ค่าใช้จ่ายโดยประมาณ | **${usage.cost_usd():.4f}** |\n\n"
+                f"| web fetches | {usage.web_fetches} (เพดาน {MAX_FETCHES.get(mode, '-')}) |\n"
+                + (f"| ราคาที่เปลี่ยน | {items_changed}/{len(MARKET_KEYS)} |\n" if items_changed is not None else "")
+                + f"| ค่าใช้จ่ายโดยประมาณ | **${usage.cost_usd():.4f}** |\n\n"
                 + (f"หมายเหตุ: {note}\n\n" if note else "")
             )
 
@@ -594,22 +712,26 @@ def failure_status(prev_status: dict | None, message_th: str, now: dt.datetime) 
     }
 
 
-def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime) -> tuple[dict[str, dict], list[str]]:
+def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime) -> tuple[dict[str, dict], list[str], int]:
     market_in = result.get("market") or {}
     items, notes = sanity_market(prev["market"], market_in.get("items") or {})
     market = {"updated_at": iso(now), "note_th": clean_th(market_in.get("note_th"), 500) or prev["market"]["note_th"], "items": items}
     docs = {"market": market}
-    kept = len(notes)
-    tail = f"{len(items) - kept}/{len(items)} รายการ" + (f" คงค่าเดิม {kept} รายการที่ตรวจไม่ผ่าน" if kept else "")
+    changed = count_changed(prev["market"]["items"], items)
+    total = len(items)
+    rejected = sum(1 for n in notes if "older than" not in n)
+    tail = (f"ราคาเปลี่ยน {changed}/{total} รายการ" if changed else f"รอบนี้ไม่พบราคาใหม่กว่ารอบก่อน (เปลี่ยน 0/{total} รายการ)") \
+        + (f" ไม่ผ่านการตรวจ {rejected} รายการ" if rejected else "")
     if mode == "full":
         docs["headlines"] = build_headlines(result.get("headlines") or [], now)
         summary = clean_th(result.get("status_message_th"), 400)
-        message = clean_th(f"{summary} · ราคา {tail} ข่าว {len(docs['headlines']['items'])} ข่าว" if summary
-                           else f"อัปเดตเต็มรอบอัตโนมัติ {bkk_th(now)} ราคา {tail} ข่าว {len(docs['headlines']['items'])} ข่าว", 600)
+        n_news = len(docs["headlines"]["items"])
+        message = clean_th(f"{summary} · {tail} · ข่าว {n_news} ข่าว" if summary
+                           else f"อัปเดตเต็มรอบอัตโนมัติ {bkk_th(now)} · {tail} · ข่าว {n_news} ข่าว", 600)
     else:
-        message = f"อัปเดตราคาอัตโนมัติ {bkk_th(now)} ราคา {tail} ข่าวคงชุดเดิม"
+        message = f"อัปเดตราคาอัตโนมัติ {bkk_th(now)} · {tail} · ข่าวคงชุดเดิม"
     docs["status"] = {"updated_at": iso(now), "run_count": int(prev["status"].get("run_count", 0)) + 1, "ok": True, "message_th": message}
-    return docs, notes
+    return docs, notes, changed
 
 
 def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_log: pathlib.Path | None = None,
@@ -623,7 +745,7 @@ def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_l
     usage = Usage()
     try:
         result = call_model(client, mode, prev, now, usage)
-        docs, notes = build_docs(mode, prev, result, now)
+        docs, notes, changed = build_docs(mode, prev, result, now)
         write_docs(data_dir, docs)
     except UpdateError as e:
         print(f"update FAILED: {e}", file=sys.stderr)
@@ -636,7 +758,7 @@ def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_l
     for n in notes:
         print(f"sanity: kept previous value for {n}")
     print(f"wrote {', '.join(f'{n}.json' for n in docs)} in {data_dir}")
-    log_cost(mode, True, usage, "; ".join(notes), now, cost_log)
+    log_cost(mode, True, usage, "; ".join(notes), now, cost_log, items_changed=changed)
     return 0
 
 
@@ -653,7 +775,7 @@ def dry_run(data_dir: pathlib.Path = DATA_DIR) -> int:
     m, h, s = prev["market"], prev["headlines"], prev["status"]
     print(f"dry run: OK - market {len(m['items'])} items (updated {m['updated_at']}), "
           f"headlines {len(h['items'])} (updated {h['updated_at']}), status run {s['run_count']} ok={s['ok']}")
-    print(f"dry run: model {MODEL}, effort {EFFORT}, search caps {MAX_SEARCHES}, no API call made")
+    print(f"dry run: model {MODEL}, effort {EFFORT}, search caps {MAX_SEARCHES}, fetch caps {MAX_FETCHES}, no API call made")
     return 0
 
 

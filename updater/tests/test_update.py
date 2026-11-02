@@ -357,3 +357,89 @@ def test_real_sdk_request_and_stream_parsing(data_dir, cost_log):
     assert {i["key"]: i for i in m["items"]}["brent"]["as_of"] == "2026-11-02T12:30:00Z"
     row = list(csv.DictReader(cost_log.open(encoding="utf-8")))[0]
     assert row["web_searches"] == "4" and row["output_tokens"] == "2500"
+
+
+
+# ----------------------------------------------------------------- search plan, fetch tool, changed count
+def test_tools_include_fresh_capped_web_fetch():
+    for mode in ("prices", "full"):
+        tools = update.tools_for(mode)
+        fetch = [t for t in tools if t.get("name") == "web_fetch"][0]
+        assert fetch["type"].startswith("web_fetch_2026") and fetch["use_cache"] is False
+        assert fetch["max_uses"] == update.MAX_FETCHES[mode] and fetch["max_content_tokens"] == update.FETCH_MAX_CONTENT_TOKENS
+        assert [t.get("name") for t in tools] == ["web_search", "web_fetch", "submit_" + mode]
+    assert update.MAX_FETCHES == {"prices": 5, "full": 8} and update.MAX_SEARCHES == {"prices": 6, "full": 20}
+
+
+def test_user_message_carries_sessions_and_fetchable_quote_pages():
+    prev = {k: seed(k) for k in update.DOCS}
+    msg = update.user_message("prices", prev, dt.datetime(2026, 11, 2, 11, 51, tzinfo=dt.timezone.utc))
+    assert "Bangkok Mon 18:51" in msg and "New York Mon 06:51" in msg
+    assert "SET (Bangkok 10:00-12:30, 14:30-16:30): closed for the day" in msg
+    assert "S&P 500, Nasdaq 100, VIX cash session (New York 09:30-16:00): not open yet today" in msg
+    assert "gold spot, Brent, WTI, DXY, USD/THB, US 10-year yield: trading now" in msg
+    for url, _ in update.QUOTE_PAGES:      # web_fetch can only open URLs that appear in the conversation
+        assert url in msg
+    assert "web_search at most 6 searches; web_fetch at most 5 pages" in msg
+    sp = update.system_prompt()
+    assert "How to find the quotes" in sp and "later than the previous item's as_of" in sp
+
+
+@pytest.mark.parametrize("when,expect", [
+    ("2026-11-03T03:30:00Z", ["SET (Bangkok 10:00-12:30, 14:30-16:30): OPEN now", "Nikkei 225 (Tokyo 09:00-11:30, 12:30-15:30): OPEN now"]),
+    ("2026-11-02T15:00:00Z", ["VIX cash session (New York 09:30-16:00): OPEN now"]),
+    ("2026-11-07T03:00:00Z", ["SET (Bangkok 10:00-12:30, 14:30-16:30): closed (weekend)", "US 10-year yield: not trading now"]),
+])
+def test_market_sessions(when, expect):
+    lines = "\n".join(update.market_sessions(dt.datetime.fromisoformat(when.replace("Z", "+00:00"))))
+    for e in expect:
+        assert e in lines
+
+
+def test_older_as_of_never_replaces_newer():
+    sub = market_input()["items"]
+    sub["gold"]["as_of"] = "2026-11-01T00:00:00Z"
+    sub["gold"]["value"] = "3900"
+    items, notes = update.sanity_market(seed("market"), sub)
+    gold = {i["key"]: i for i in items}["gold"]
+    assert gold == {i["key"]: i for i in seed("market")["items"]}["gold"]
+    assert any(n.startswith("gold:") and "older" in n for n in notes)
+
+
+def test_status_reports_the_real_number_of_changed_items(data_dir, cost_log, capsys):
+    m = market_input(1.0)
+    prev = {i["key"]: i for i in seed("market")["items"]}
+    for k in ("set", "nikkei", "spx", "ndx", "vix"):        # these five come back exactly as before
+        m["items"][k] = {f: prev[k][f] for f in ("value", "change_th", "trend", "as_of", "source")}
+    client = FakeClient([resp([submit_block("submit_prices", {"market": m})], u=usage(searches=6))])
+    assert update.run("prices", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert "ราคาเปลี่ยน 8/13 รายการ" in s["message_th"] and "13/13" not in s["message_th"]
+    row = list(csv.DictReader(cost_log.open(encoding="utf-8")))[0]
+    assert row["items_changed"] == "8"
+    assert "items changed: 8/13" in capsys.readouterr().out
+
+
+def test_nothing_new_is_ok_but_says_so(data_dir, cost_log):
+    prev = {i["key"]: i for i in seed("market")["items"]}
+    same = {"note_th": "ไม่มีข้อมูลใหม่", "items": {k: {f: v[f] for f in ("value", "change_th", "trend", "as_of", "source")} for k, v in prev.items()}}
+    client = FakeClient([resp([submit_block("submit_prices", {"market": same})])])
+    assert update.run("prices", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert s["ok"] is True and "ไม่พบราคาใหม่กว่ารอบก่อน (เปลี่ยน 0/13 รายการ)" in s["message_th"]
+
+
+def test_usage_counts_fetches_and_migrates_old_csv(tmp_path):
+    log = tmp_path / "old.csv"
+    log.write_text("time_utc,mode,ok,model,requests,input_tokens,output_tokens,cache_write_tokens,cache_read_tokens,web_searches,cost_usd,note\n"
+                   "2026-11-02T11:51:22Z,prices,yes,claude-sonnet-5-5,1,12,2449,19752,62023,2,0.1001,\n", encoding="utf-8")
+    u = update.Usage()
+    u.add(NS(usage=NS(input_tokens=1, output_tokens=1, cache_creation_input_tokens=0, cache_read_input_tokens=0,
+                      server_tool_use=NS(web_search_requests=2, web_fetch_requests=3)), stop_reason="tool_use", model="m"))
+    assert (u.web_searches, u.web_fetches) == (2, 3)
+    assert u.cost_usd() == pytest.approx(2 / 1e6 * 1 + 10 / 1e6 + 0.02)    # fetches add no fee
+    update.log_cost("prices", True, u, "", NOW, log, items_changed=4)
+    rows = list(csv.DictReader(log.open(encoding="utf-8")))
+    assert list(rows[0].keys()) == update.CSV_FIELDS
+    assert rows[0]["cost_usd"] == "0.1001" and rows[0]["web_fetches"] == ""
+    assert rows[1]["web_fetches"] == "3" and rows[1]["items_changed"] == "4"
