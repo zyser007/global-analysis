@@ -243,8 +243,9 @@ def _stale(old: dict, why: str) -> dict:
     return item
 
 
-def build_headlines(items: list[dict], now: dt.datetime) -> dict:
+def build_headlines(items: list[dict], now: dt.datetime, prev: dict | None = None) -> dict:
     allowed = set(allowed_conflict_ids())
+    by_source = {i.get("source"): i for i in (prev or {}).get("items", [])}
     rows = []
     for it in items:
         if not isinstance(it, dict):
@@ -258,6 +259,9 @@ def build_headlines(items: list[dict], now: dt.datetime) -> dict:
             "source": src,
             "source_name": clean_th(it.get("source_name"), 60),
         }
+        old = by_source.get(src)
+        if old:   # a kept headline is copied verbatim (no retyped titles, no refreshed times)
+            row = {k: old[k] for k in ("conflict_id", "title_th", "time", "source", "source_name")}
         if row["title_th"] and re.match(r"^https?://\S+$", src) and '"' not in src and row["source_name"]:
             rows.append(row)
     rows.sort(key=lambda r: r["time"], reverse=True)
@@ -353,7 +357,7 @@ Rules for every market item:
 {ids}
   Extra tags:
 {extra}
-- A kept previous headline keeps its original time; do not refresh its time.
+- A kept previous headline keeps its original time; do not refresh its time. Drop an older market headline whose numbers are superseded by the latest prices (for example an oil or gold level that has since moved) and drop items from syndication sites when you have a primary source.
 
 ## Run summary (mode "full" only)
 status_message_th: one Thai paragraph (at most about 400 characters) saying what changed in this round: the biggest market moves and the main news themes.
@@ -942,7 +946,7 @@ def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime, skip_price
             news = "ข่าวไม่ได้อัปเดตรอบนี้ (ไม่ได้ค้นข่าวใหม่) คงชุดเดิม"
             notes.append("headlines: not researched, kept the previous file")
         else:
-            h = build_headlines(result.get("headlines") or [], now)
+            h = build_headlines(result.get("headlines") or [], now, prev["headlines"])
             fresh = count_new_headlines(prev["headlines"], h["items"])
             if fresh == 0:
                 news = f"ไม่พบข่าวใหม่ คงชุดเดิม {len(prev['headlines'].get('items', []))} ข่าว"

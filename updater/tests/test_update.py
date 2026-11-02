@@ -594,3 +594,13 @@ def test_prompt_asks_for_article_time_and_major_outlets():
     sp = update.system_prompt()
     assert "publication time of the source article" in sp and "Reuters, AP, AFP, Bloomberg" in sp and "Kyiv Independent" in sp
     assert "at most about 5 older items" in sp and "at least 4 searches" in sp
+
+
+
+def test_kept_headlines_are_copied_verbatim():
+    prev = seed("headlines")
+    kept = dict(prev["items"][0]); kept.pop("id")
+    retyped = {**kept, "title_th": kept["title_th"][:-3] + "พิมพ์ผิด", "time": "2026-11-02T12:00:00Z", "source_name": "x"}
+    h = update.build_headlines([retyped] + headlines_input(12), NOW, prev)
+    row = [i for i in h["items"] if i["source"] == kept["source"]][0]
+    assert {k: row[k] for k in kept} == kept
