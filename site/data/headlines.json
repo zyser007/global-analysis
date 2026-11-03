@@ -1,16 +1,56 @@
 {
- "updated_at": "2026-11-02T13:14:33Z",
+ "updated_at": "2026-11-03T01:13:23Z",
  "items": [
   {
    "id": "h1",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "น้ำมันร่วงขณะสหรัฐ-อิหร่านร่างข้อตกลง ทรัมป์ยังย้ำ “ค้อน” ยังอยู่บนโต๊ะ",
-   "time": "2026-11-02T12:00:00Z",
-   "source": "https://foxnews.com/live-news/iran-war-news-trump-midterms-peace-deal-israel-november-2",
-   "source_name": "Fox News"
+   "conflict_id": "economy",
+   "title_th": "ทองคำขยับใกล้ 3,950 ดอลลาร์ ตลาดรอผลเลือกตั้งกลางเทอมสหรัฐ",
+   "time": "2026-11-02T23:19:00Z",
+   "source": "https://www.fxstreet.com/news/gold-rises-to-near-3-950-as-traders-brace-for-us-midterm-election-202611022319",
+   "source_name": "FXStreet"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Nasdaq 100 ปิด −1.39% เข้าสู่ภาวะปรับฐาน VIX พุ่งสูงสุดตั้งแต่ 10 มิ.ย. ก่อนเลือกตั้งกลางเทอม",
+   "time": "2026-11-02T21:00:00Z",
+   "source": "https://pro.thestreet.com/market-commentary/techs-monday-bounce-reverses-pushing-the-nasdaq-100-into-correction",
+   "source_name": "TheStreet"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "S&P 500 ปิด −0.51% Nasdaq −1.07% เทคฯ ขายต่อ ขณะ Dow บวก 213 จุด",
+   "time": "2026-11-02T21:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/01/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "economy",
+   "title_th": "Dow บวก 1% น้ำมันดิ่ง 7% ความหวังสันติภาพสหรัฐ-อิหร่าน ฉุดยีลด์พันธบัตรลง",
+   "time": "2026-11-02T20:00:00Z",
+   "source": "https://www.benzinga.com/markets/equities/26/11/62788338/stock-market-today-dow-oil-iran-peace-hopes-amazon-idexx",
+   "source_name": "Benzinga"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "Brent ปิด 104.77 ดอลลาร์ ร่วง 7.6% หลังอิหร่านส่งสัญญาณเปิดทางเจรจากับสหรัฐ",
+   "time": "2026-11-02T19:30:00Z",
+   "source": "https://www.nationthailand.com/news/world/40073041",
+   "source_name": "Nation Thailand"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "economy",
+   "title_th": "Bitcoin ต่ำกว่า 78,000 ดอลลาร์ ทรงตัวเหนือ EMA 200 วัน ก่อนเลือกตั้งกลางเทอม",
+   "time": "2026-11-02T17:00:00Z",
+   "source": "https://www.fxstreet.com/cryptocurrencies/news/bitcoin-braces-for-us-midterm-elections-as-historical",
+   "source_name": "FXStreet"
+  },
+  {
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านพร้อมเปิดฮอร์มุซภายใน 2 วัน หากสหรัฐยอมรับเงื่อนไข ย่นจาก 7 วันที่เสนอเมื่อเดือน ก.ย.",
    "time": "2026-11-02T11:30:00Z",
@@ -18,23 +58,7 @@
    "source_name": "Euronews"
   },
   {
-   "id": "h3",
-   "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สสหรัฐบวก หุ้นเทคฯ เอไอเริ่มทรงตัวหลังเดือน ต.ค. ย่ำแย่ นักลงทุนจับตาเลือกตั้งกลางเทอมและงบบริษัท",
-   "time": "2026-11-02T11:00:00Z",
-   "source": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-caution-prevails-ahead-of-us-midterms-earnings/",
-   "source_name": "Reuters"
-  },
-  {
-   "id": "h4",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านส่งข้อเสนอผ่านกาตาร์ ระบุหากสหรัฐยอมรับ ฮอร์มุซจะกลับมาปลอดภัยและเริ่มเจรจา",
-   "time": "2026-11-02T11:00:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h5",
+   "id": "h8",
    "conflict_id": "thailand",
    "title_th": "สมาคมค้าทองคำประกาศปิดตลาด ทองแท่งขายออก 62,400 บาท สุทธิวันนี้ +150",
    "time": "2026-11-02T10:58:00Z",
@@ -42,7 +66,7 @@
    "source_name": "ไทยรัฐ"
   },
   {
-   "id": "h6",
+   "id": "h9",
    "conflict_id": "sudan_civil_war",
    "title_th": "ทูตพิเศษ UN คาดการเจรจากับ RSF เรื่องการเปลี่ยนผ่านสู่การปกครองพลเรือนในซูดานจะเริ่มภายในไม่กี่สัปดาห์",
    "time": "2026-11-02T09:00:00Z",
@@ -50,7 +74,7 @@
    "source_name": "The National"
   },
   {
-   "id": "h7",
+   "id": "h10",
    "conflict_id": "thailand",
    "title_th": "โบรกคาด SET บ่ายแกว่ง 1,500–1,540 ไร้หุ้นนำ รอผลเลือกตั้งสหรัฐ",
    "time": "2026-11-02T07:04:00Z",
@@ -58,7 +82,7 @@
    "source_name": "อินโฟเควสท์"
   },
   {
-   "id": "h8",
+   "id": "h11",
    "conflict_id": "thailand",
    "title_th": "อนุทินเปิดศูนย์หัวใจหนองคาย ลั่น ครม.สัญจรอุดรธานียกเกษตรเป็นวาระแห่งชาติ",
    "time": "2026-11-02T06:44:00Z",
@@ -66,23 +90,7 @@
    "source_name": "สยามรัฐ"
   },
   {
-   "id": "h9",
-   "conflict_id": "world",
-   "title_th": "หุ้นเอเชียผสม Nikkei −0.3% Kioxia ดิ่ง 15.8% Kospi +2.2% ฟิวเจอร์สสหรัฐบวก น้ำมันร่วง 3%",
-   "time": "2026-11-02T06:33:00Z",
-   "source": "https://click2houston.com/business/2026/11/02/asian-shares-are-mixed-and-us-futures-advance-while-oil-prices-retreat",
-   "source_name": "AP"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "thailand",
-   "title_th": "อนุทินระบุยังไม่เปิดด่านและไม่ฟื้นความสัมพันธ์กัมพูชาเป็นปกติ จนกว่าปัญหาดินแดน อาชญากรรมข้ามชาติคลี่คลาย",
-   "time": "2026-11-02T05:43:00Z",
-   "source": "https://www.khaosodenglish.com/featured/2026/11/02/anutin-no-return-to-normal-ties-with-cambodia-for-now/",
-   "source_name": "Khaosod English"
-  },
-  {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนอ้างโดรนถล่มโรงกลั่น Kstovo–สถานีน้ำมันซามารา เคียฟชี้ ต.ค. รัสเซียสูญเสียทหารสูงสุด",
    "time": "2026-11-02T05:18:00Z",
@@ -90,36 +98,12 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "myanmar_civil_war",
    "title_th": "เจ้าหน้าที่แม่ฮ่องสอนประณามเมียนมาโจมตีทางอากาศใกล้ชายแดนไทย เรียกร้องจัดเขตปลอดภัย",
    "time": "2026-11-02T05:00:00Z",
    "source": "https://www.khaosodenglish.com/news/2026/11/02/thai-official-condemns-myanmar-airstrikes-near-thai-border-urges-safety-zone/",
    "source_name": "Khaosod English"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC อ้างเรือน้ำมัน 2 ลำชนทุ่นระเบิดในฮอร์มุซ ทรัมป์ลั่นสงครามจบเร็ว ๆ นี้ไม่ว่าทางใด",
-   "time": "2026-11-02T04:30:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h14",
-   "conflict_id": "world",
-   "title_th": "เลือกตั้งกลางเทอมพรุ่งนี้ ลงคะแนนล่วงหน้าทะลุ 54 ล้าน ทรัมป์ปราศรัยลินคอล์นเมมโมเรียล",
-   "time": "2026-11-02T03:06:00Z",
-   "source": "https://www.cbsnews.com/live-updates/2026-midterm-elections-campaigns-weekend-before/",
-   "source_name": "CBS News"
-  },
-  {
-   "id": "h15",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียถล่มโครงข่ายไฟฟ้า 4 ภูมิภาคยูเครน ไฟดับหลายแสนครัวเรือน แม้ทรัมป์ผลักดันหยุดยิงพลังงาน",
-   "time": "2026-11-02T03:00:00Z",
-   "source": "https://www.nbcnews.com/world/ukraine/russian-strikes-cut-power-thousands-ukraine-trumps-energy-ceasefire-rcna606784",
-   "source_name": "NBC News"
   }
  ]
 }
