@@ -1,13 +1,13 @@
 {
- "updated_at": "2026-11-03T17:09:11Z",
- "note_th": "รอบนี้ไม่สามารถดึงค่าใหม่กว่าได้ (โควตาเครื่องมือค้นหาเต็ม) จึงคงค่าก่อนหน้าทุกรายการ",
+ "updated_at": "2026-11-03T21:08:44Z",
+ "note_th": "รอบนี้อัปเดตได้เฉพาะ S&P 500 (ราคาปิดวันอังคาร) ส่วนรายการอื่นหาค่าใหม่ที่มีเวลาชัดเจนไม่ได้ จึงคงค่าก่อนหน้า",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
    "value": "106.5",
    "unit": "$/บาร์เรล",
-   "change_th": "ราว +1.6% ระหว่างวันอังคาร ลองดึงข้อมูลใหม่แต่ไม่สำเร็จ คงค่าเดิม",
+   "change_th": "ราว +1.6% ระหว่างวันอังคาร ลองดึงข้อมูลใหม่แต่ไม่ได้เวลาที่ชัดเจน คงค่าเดิม",
    "trend": "up",
    "as_of": "2026-11-03T09:00:00Z",
    "source": "https://www.cnbc.com/2026/11/03/oil-rises-after-report-of-us-strike-on-irans-qeshm-island.html"
@@ -17,7 +17,7 @@
    "label_th": "น้ำมัน WTI",
    "value": "98.00",
    "unit": "$/บาร์เรล",
-   "change_th": "+1.60% ระหว่างวันอังคาร ลองดึงข้อมูลใหม่แต่ไม่สำเร็จ คงค่าเดิม",
+   "change_th": "+1.60% ระหว่างวันอังคาร ลองดึงข้อมูลใหม่แต่ไม่ได้เวลาที่ชัดเจน คงค่าเดิม",
    "trend": "up",
    "as_of": "2026-11-03T09:00:00Z",
    "source": "https://www.cnbc.com/2026/11/03/oil-rises-after-report-of-us-strike-on-irans-qeshm-island.html"
@@ -27,7 +27,7 @@
    "label_th": "ทองคำ (spot)",
    "value": "3921",
    "unit": "$/ออนซ์",
-   "change_th": "ราว −0.65% วันอังคาร ลองดึงข้อมูลใหม่แต่ไม่สำเร็จ คงค่าเดิม",
+   "change_th": "ราว −0.65% วันอังคาร ลองดึงข้อมูลใหม่แต่ไม่ได้ค่า spot ที่ชัดเจน คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-03T09:00:00Z",
    "source": "https://financefeeds.com/gold-price-today-3921-tuesday-midterm-election-day-jobs-report-6-november-bull-4075-bear-3830/"
@@ -55,19 +55,19 @@
   {
    "key": "spx",
    "label_th": "S&P 500",
-   "value": "7541.40",
+   "value": "7571.81",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ −0.51% (−38.67) ลองดึงค่าระหว่างวันไม่สำเร็จ คงค่าเดิม",
-   "trend": "down",
-   "as_of": "2026-11-02T21:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/01/stock-market-today-live-updates.html"
+   "change_th": "ปิดอังคาร +0.40% จากปิดจันทร์ 7541.40 หุ้นชิปฟื้นก่อนผลเลือกตั้งกลางเทอม",
+   "trend": "up",
+   "as_of": "2026-11-03T21:00:00Z",
+   "source": "https://www.marketscreener.com/news/s-p-500-nasdaq-rise-as-tech-stocks-gain-ahead-of-midterm-results-ce785fdeda8ff726"
   },
   {
    "key": "ndx",
    "label_th": "Nasdaq 100",
    "value": "27989.82",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ −1.39% ลองดึงค่าระหว่างวันไม่สำเร็จ คงค่าเดิม",
+   "change_th": "ปิดจันทร์ −1.39% วันอังคาร Nasdaq ปิดบวก แต่ไม่พบค่า NDX ที่แน่ชัด คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T21:00:00Z",
    "source": "https://pro.thestreet.com/market-commentary/techs-monday-bounce-reverses-pushing-the-nasdaq-100-into-correction"
@@ -107,7 +107,7 @@
    "label_th": "VIX",
    "value": "21.18",
    "unit": "จุด",
-   "change_th": "+9.12% ปิดจันทร์ ลองดึงค่าระหว่างวันไม่สำเร็จ คงค่าเดิม",
+   "change_th": "+9.12% ปิดจันทร์ วันอังคารรายงานว่า VIX ลดลงราว 1% แต่ไม่พบค่าแน่ชัด คงค่าเดิม",
    "trend": "up",
    "as_of": "2026-11-02T21:00:00Z",
    "source": "https://pro.thestreet.com/market-commentary/techs-monday-bounce-reverses-pushing-the-nasdaq-100-into-correction"
