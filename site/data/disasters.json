@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-03T01:13:19Z",
- "checked": "2026-11-03T01:13:19Z",
+ "updated": "2026-11-03T05:10:18Z",
+ "checked": "2026-11-03T05:10:18Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-03T01:13:19Z",
+   "fetched": "2026-11-03T05:10:18Z",
    "count": 6,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-19&toDate=2026-11-04&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-03T01:13:19Z",
+   "fetched": "2026-11-03T05:10:18Z",
    "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -27,16 +27,16 @@
    "countries": [
     "India"
    ],
-   "lat": 15.1,
-   "lon": 80.5,
+   "lat": 15.5,
+   "lon": 80.3,
    "start": "2026-11-01T00:00:00Z",
-   "end": "2026-11-02T18:00:00Z",
-   "updated": "2026-11-03T01:01:25Z",
+   "end": "2026-11-03T00:00:00Z",
+   "updated": "2026-11-03T02:02:00Z",
    "alert_level": "red",
    "severity_th": "ลมสูงสุด 157 กม./ชม.",
    "severity_value": 157.41,
    "severity_unit": "km/h",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=8&eventtype=TC",
+   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=9&eventtype=TC",
    "source_name": "GDACS"
   },
   {
@@ -185,8 +185,8 @@
    "lat": 48.127,
    "lon": 12.876,
    "start": "2025-12-21T00:00:00Z",
-   "end": "2026-10-31T00:00:00Z",
-   "updated": "2026-11-02T05:57:03Z",
+   "end": "2026-11-01T00:00:00Z",
+   "updated": "2026-11-03T05:07:02Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 2.0 ล้าน ตร.กม.",
    "severity_value": 2009754.0,
