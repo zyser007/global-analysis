@@ -1,0 +1,6 @@
+[
+ {"key": "brent", "label": "น้ำมันดิบ Brent", "prefix": "$", "decimals": 2},
+ {"key": "gold", "label": "ทองคำ (spot)", "prefix": "$", "decimals": 0},
+ {"key": "dxy", "label": "ดัชนีดอลลาร์ (DXY)", "prefix": "", "decimals": 2},
+ {"key": "spx", "label": "S&P 500", "prefix": "", "decimals": 0}
+]

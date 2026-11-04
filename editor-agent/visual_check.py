@@ -18,6 +18,11 @@ Checks, per viewport:
   - no horizontal scroll and no element wider than the panel
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
+
+three.js (pinned r128 on cdnjs) is fetched once with curl, checked, and served to the page from that copy via
+page routing. Reason: the Managed Agents sandbox re-signs outgoing TLS, which curl/git trust but Chromium does not
+(ERR_CERT_AUTHORITY_INVALID). Only that one URL is routed; certificate checks, console errors, page errors and
+failed requests stay as strict as before. If curl cannot get a valid copy, the page loads the CDN itself.
 """
 from __future__ import annotations
 
@@ -28,6 +33,7 @@ import http.server
 import json
 import pathlib
 import shutil
+import socketserver
 import sys
 import tempfile
 import threading
@@ -41,11 +47,34 @@ CASES = [
     {"name": "mobile-light", "w": 390, "h": 844, "scheme": "light"},
     {"name": "mobile-dark", "w": 390, "h": 844, "scheme": "dark"},
 ]
+THREE_URL = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
 LAUNCH_ARGS = ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"]
 
 
 def thai_date(d: dt.date) -> str:
     return "%d %s %d" % (d.day, TH_MONTH_ABBR[d.month - 1], d.year + 543)
+
+
+def fetch_three() -> tuple[bytes | None, str]:
+    """The pinned three.js via curl (which trusts the sandbox's TLS re-signing), checked to really be r128."""
+    import subprocess
+
+    try:
+        r = subprocess.run(["curl", "-fsSL", "--max-time", "40", THREE_URL], capture_output=True)
+    except OSError as e:
+        return None, "curl not available: %s" % e
+    if r.returncode != 0:
+        return None, "curl failed: %s" % r.stderr.decode("utf-8", "replace").strip()[:160]
+    return check_three(r.stdout)
+
+
+def check_three(body: bytes) -> tuple[bytes | None, str]:
+    head = body[:2000].decode("utf-8", "replace")
+    if len(body) < 300_000 or "three.js" not in head.lower():
+        return None, "the downloaded file does not look like three.js (%d bytes)" % len(body)
+    if b'REVISION="128"' not in body and b"REVISION = '128'" not in body and b'"128"' not in body:
+        return None, "the downloaded three.js is not revision 128"
+    return body, "three.js r128 served from a checked curl copy (%d bytes)" % len(body)
 
 
 def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pathlib.Path]:
@@ -60,7 +89,7 @@ def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pat
             self.send_header("Cache-Control", "no-store")
             super().end_headers()
 
-    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Quiet, directory=str(tmp)))
+    srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), functools.partial(Quiet, directory=str(tmp)))   # no getfqdn()
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return "http://127.0.0.1:%d/global-analysis/" % srv.server_address[1], srv, tmp
 
@@ -70,6 +99,9 @@ def main() -> int:
     ap.add_argument("--shots", default=str(ROOT / "editor-agent" / "shots"))
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--only", help="run one case by name, e.g. mobile-dark")
+    ap.add_argument("--site", default=str(ROOT / "site"), help="folder served as /global-analysis/ (tests)")
+    ap.add_argument("--data-root", default=str(ROOT), help="repo root whose data/*.json give the expectations (tests)")
+    ap.add_argument("--no-three-copy", action="store_true", help="let the page load three.js from the CDN itself")
     a = ap.parse_args()
 
     try:
@@ -78,8 +110,9 @@ def main() -> int:
         print("ERROR playwright: the Python package is not installed (pip install playwright)")
         return 1
 
-    world = json.loads((ROOT / "data" / "world-data.json").read_text(encoding="utf-8"))
-    gold = json.loads((ROOT / "data" / "gold.json").read_text(encoding="utf-8"))
+    droot = pathlib.Path(a.data_root)
+    world = json.loads((droot / "data" / "world-data.json").read_text(encoding="utf-8"))
+    gold = json.loads((droot / "data" / "gold.json").read_text(encoding="utf-8"))
     meta = world.get("meta", {})
     basis = meta.get("basis_th") or thai_date(dt.date.fromisoformat(meta["updated"]))
     gold_day = thai_date(dt.datetime.fromisoformat(gold["as_of"].replace("Z", "+00:00")).astimezone(BKK).date())
@@ -90,11 +123,18 @@ def main() -> int:
     }
     shots = pathlib.Path(a.shots)
     shots.mkdir(parents=True, exist_ok=True)
-    url, srv, tmp = serve(ROOT / "site")
+    url, srv, tmp = serve(pathlib.Path(a.site))
     findings: list[dict] = []
 
     def add(level: str, case: str, what: str) -> None:
         findings.append({"level": level, "case": case, "what": what})
+
+    three, why = (None, "disabled by --no-three-copy") if a.no_three_copy else fetch_three()
+    add("INFO", "three.js", why if three else "page loads the CDN itself (%s)" % why)
+
+    def serve_three(route):
+        route.fulfill(status=200, body=three, headers={"content-type": "application/javascript; charset=utf-8",
+                                                       "access-control-allow-origin": "*"})
 
     try:
         with sync_playwright() as p:
@@ -105,6 +145,8 @@ def main() -> int:
                 mobile = c["w"] < 500
                 ctx = browser.new_context(viewport={"width": c["w"], "height": c["h"]}, color_scheme=c["scheme"],
                                           device_scale_factor=2 if mobile else 1, is_mobile=mobile, has_touch=mobile)
+                if three:
+                    ctx.route(THREE_URL, serve_three)
                 page = ctx.new_page()
                 errs: list[str] = []
                 page.on("console", lambda m, errs=errs: errs.append("console: " + m.text) if m.type == "error" else None)
@@ -192,13 +234,14 @@ def main() -> int:
         shutil.rmtree(tmp, ignore_errors=True)
 
     errors = [x for x in findings if x["level"] == "ERROR"]
+    warns = [x for x in findings if x["level"] == "WARN"]
     if a.json:
         print(json.dumps({"ok": not errors, "shots": str(shots), "findings": findings}, ensure_ascii=False, indent=1))
     else:
         for x in findings:
             print("%-5s %s: %s" % (x["level"], x["case"], x["what"]))
         print("visual_check.py: %s - %d error(s), %d warning(s); screenshots in %s" % (
-            "FAIL" if errors else "OK", len(errors), len(findings) - len(errors), shots))
+            "FAIL" if errors else "OK", len(errors), len(warns), shots))
     return 1 if errors else 0
 
 

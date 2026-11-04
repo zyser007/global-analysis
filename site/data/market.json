@@ -1,13 +1,13 @@
 {
- "updated_at": "2026-11-04T01:13:07Z",
- "note_th": "รอบนี้ราคาน้ำมัน ทองคำ DXY USD/THB และยีลด์ 10 ปี เป็นราคาระหว่างวันจาก Trading Economics ส่วน VIX เป็นราคาปิดวันอังคาร Bitcoin เป็นค่าล่าสุดที่พบ ส่วน SET, Nikkei, S&P 500, Nasdaq 100 และทองไทยคงค่าเดิม",
+ "updated_at": "2026-11-04T05:10:20Z",
+ "note_th": "รอบนี้อัปเดตเฉพาะ WTI จาก Investing.com ส่วนรายการอื่นคงค่าเดิมเพราะเครื่องมือค้นหาและดึงข้อมูลเต็มโควตา ไม่พบราคาที่ใหม่กว่าและยืนยันได้",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
    "value": "104.385",
    "unit": "$/บาร์เรล",
-   "change_th": "+0.76% ระหว่างวันพุธ จากราคาตัดสินก่อนหน้า ตลาดจับตาการเจรจาสหรัฐ-อิหร่านและฮอร์มุซ",
+   "change_th": "คงค่าเดิม ไม่พบราคาที่ยืนยันเวลาได้ (Investing.com แสดง 106.68 แต่ไม่ระบุเวลา/สัญญา)",
    "trend": "up",
    "as_of": "2026-11-04T01:10:00Z",
    "source": "https://tradingeconomics.com/commodities"
@@ -15,19 +15,19 @@
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "96.722",
+   "value": "97.17",
    "unit": "$/บาร์เรล",
-   "change_th": "+0.66% ระหว่างวันพุธ จากราคาตัดสินก่อนหน้า",
+   "change_th": "+0.74% ระหว่างวัน (+0.71) จาก Investing.com ตลาดจับตาเจรจาสหรัฐ-อิหร่าน",
    "trend": "up",
-   "as_of": "2026-11-04T01:10:00Z",
-   "source": "https://tradingeconomics.com/commodities"
+   "as_of": "2026-11-04T05:00:00Z",
+   "source": "https://www.investing.com/commodities/crude-oil"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
    "value": "3935.06",
    "unit": "$/ออนซ์",
-   "change_th": "+0.09% ระหว่างวันพุธ ทรงตัวใกล้ 3,900 ดอลลาร์ ตลาดรอผลเลือกตั้งกลางเทอมสหรัฐ",
+   "change_th": "คงค่าเดิม ราคาซื้อขายแกว่งต่ำกว่า 3,940 ดอลลาร์ ตลาดรอผลเลือกตั้งกลางเทอมสหรัฐ",
    "trend": "up",
    "as_of": "2026-11-04T01:10:00Z",
    "source": "https://tradingeconomics.com/commodities"
@@ -37,7 +37,7 @@
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
    "value": "62500",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งสุดท้ายเมื่อวาน (ครั้งที่ 22) ยังไม่มีประกาศใหม่วันนี้ คงค่าเดิม",
+   "change_th": "คงค่าเดิม ประกาศครั้งที่ 1 วันนี้ 09:12 น. ทองรูปพรรณขาย 63,750 ปรับขึ้น 450 แต่ไม่พบราคาแท่งขายออกที่ยืนยันได้",
    "trend": "up",
    "as_of": "2026-11-03T09:39:00Z",
    "source": "https://siamnews.com/news/economy/56618"
@@ -47,7 +47,7 @@
    "label_th": "ดัชนีดอลลาร์ (DXY)",
    "value": "101.528",
    "unit": "จุด",
-   "change_th": "−0.35% ระหว่างวันพุธ ดอลลาร์อ่อนลงเล็กน้อยก่อนผลเลือกตั้งกลางเทอม",
+   "change_th": "คงค่าเดิม −0.35% ระหว่างวันพุธ ไม่พบราคาใหม่กว่า",
    "trend": "down",
    "as_of": "2026-11-04T01:10:00Z",
    "source": "https://tradingeconomics.com/currencies"
@@ -57,7 +57,7 @@
    "label_th": "S&P 500",
    "value": "7571.81",
    "unit": "จุด",
-   "change_th": "ปิดอังคาร +0.40% คงค่าปิดเดิม ฟิวเจอร์สสหรัฐอ่อนลงราว −0.7% ระหว่างรอผลเลือกตั้ง",
+   "change_th": "ปิดอังคาร +0.40% คงค่าปิดเดิม ตลาดสหรัฐยังไม่เปิด",
    "trend": "up",
    "as_of": "2026-11-03T21:00:00Z",
    "source": "https://www.marketscreener.com/news/s-p-500-nasdaq-rise-as-tech-stocks-gain-ahead-of-midterm-results-ce785fdeda8ff726"
@@ -67,7 +67,7 @@
    "label_th": "Nasdaq 100",
    "value": "27989.82",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ −1.39% วันอังคาร NDX ปิดบวกราว 0.4% แต่ไม่พบค่าแน่ชัด คงค่าเดิม ฟิวเจอร์สลดลง",
+   "change_th": "ปิดจันทร์ −1.39% ไม่พบค่าปิดวันอังคารที่แน่ชัด คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T21:00:00Z",
    "source": "https://pro.thestreet.com/market-commentary/techs-monday-bounce-reverses-pushing-the-nasdaq-100-into-correction"
@@ -77,7 +77,7 @@
    "label_th": "Bitcoin",
    "value": "77543.55",
    "unit": "$",
-   "change_th": "ราว +1% วันอังคารช่วงบ่าย จากราคา Coinbase เพิ่มจาก 76,496 ดอลลาร์",
+   "change_th": "คงค่าเดิม ไม่พบราคาที่ใหม่กว่า ราว +1% วันอังคาร",
    "trend": "up",
    "as_of": "2026-11-03T20:00:00Z",
    "source": "https://www.coinbase.com/price/bitcoin"
@@ -87,7 +87,7 @@
    "label_th": "ดอลลาร์/บาท",
    "value": "33.747",
    "unit": "บาท/$",
-   "change_th": "−0.10% ระหว่างวันพุธ บาทแข็งค่าเล็กน้อย",
+   "change_th": "คงค่าเดิม −0.10% ระหว่างวันพุธ ไม่พบราคาใหม่กว่า",
    "trend": "down",
    "as_of": "2026-11-04T01:10:00Z",
    "source": "https://tradingeconomics.com/thailand/currency"
@@ -97,7 +97,7 @@
    "label_th": "ยีลด์พันธบัตรสหรัฐ 10 ปี",
    "value": "4.922",
    "unit": "%",
-   "change_th": "ขึ้นจาก 4.904% หลังตัวเลขตำแหน่งงานว่างสหรัฐแข็งแกร่ง",
+   "change_th": "คงค่าเดิม ยีลด์ทรงตัวใกล้ 4.92% ก่อนผลเลือกตั้งกลางเทอม",
    "trend": "up",
    "as_of": "2026-11-04T01:10:00Z",
    "source": "https://tradingeconomics.com/bonds"
@@ -117,7 +117,7 @@
    "label_th": "ดัชนี SET",
    "value": "1491.01",
    "unit": "จุด",
-   "change_th": "ปิดอังคาร 3 พ.ย. −1.07% ตลาดยังไม่เปิดวันนี้ คงค่าปิดเดิม",
+   "change_th": "คงค่าปิดอังคาร 3 พ.ย. −1.07% ไม่พบค่าระหว่างวันนี้ที่ยืนยันได้",
    "trend": "down",
    "as_of": "2026-11-03T09:30:00Z",
    "source": "https://www.infoquest.co.th/2026/673360"
@@ -127,10 +127,10 @@
    "label_th": "Nikkei 225",
    "value": "63081.86",
    "unit": "จุด",
-   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% ไม่พบค่าระหว่างวันนี้ที่ยืนยันได้ คงค่าเดิม",
+   "change_th": "ปิดจันทร์ 2 พ.ย. −0.33% ตลาดญี่ปุ่นปิดวันอังคาร (วันวัฒนธรรม) ไม่พบค่าระหว่างวันนี้ คงค่าเดิม",
    "trend": "down",
    "as_of": "2026-11-02T06:30:00Z",
-   "source": "https://www.bbntimes.com/financial/nikkei-225-today-index-falls-to-63-081-86-as-kioxia-crashes-15-8-and-tokyo-electron-limits-losses"
+   "source": "https://www.bbntimes.com/financial/nikkei-225-today-index-falls-to-63081-86-as-kioxia-crashes-15-8-and-tokyo-electron-limits-losses"
   }
  ]
 }

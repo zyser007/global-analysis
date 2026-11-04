@@ -19,3 +19,4 @@ time_utc,mode,ok,model,requests,input_tokens,output_tokens,cache_write_tokens,ca
 2026-11-03T17:09:11Z,prices,yes,claude-sonnet-5-5,1,12,3026,17598,67651,6,0.1410,,5,0
 2026-11-03T21:08:44Z,prices,yes,claude-sonnet-5-5,1,20,4259,22764,149806,4,0.1545,,5,1
 2026-11-04T01:13:07Z,full,yes,claude-sonnet-5-5,1,18,8076,41547,215858,16,0.3662,,8,8
+2026-11-04T05:10:20Z,prices,yes,claude-sonnet-5-5,1,12,3729,22576,72143,6,0.1610,"gold_history: gold as_of unchanged, no new point",5,1

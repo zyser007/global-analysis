@@ -11,7 +11,9 @@
 GDACS (เหตุการณ์เตือนระดับส้มและแดง: แผ่นดินไหว พายุหมุนเขตร้อน น้ำท่วม ภูเขาไฟ ไฟป่า ภัยแล้ง) และ USGS (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด `sig` ≥ 600 หรือ PAGER ตั้งแต่สีเหลือง)
 แผ่นดินไหวที่อยู่ในทั้งสองแหล่งจะแสดงครั้งเดียว ชื่อเหตุการณ์ภาษาไทยสร้างจากแม่แบบ รันทุกรอบของงานตั้งเวลา (ทุก 4 ชม.) แยกจากตัวอัปเดตที่ใช้ Claude
 
-ข้อมูลพื้นฐาน (ความขัดแย้ง เศรษฐกิจ ช่องแคบ) และบทวิเคราะห์ทองคำ (`data/gold.json`) ฝังอยู่ในหน้าเว็บตอนสร้าง ไม่ได้อัปเดตอัตโนมัติ
+ข้อมูลพื้นฐาน (ความขัดแย้ง เศรษฐกิจ ช่องแคบ ตัวชี้วัด) และบทวิเคราะห์ทองคำ (`data/gold.json`) ฝังอยู่ในหน้าเว็บตอนสร้าง
+ผู้ช่วยบรรณาธิการ (Claude Managed Agents) ค้นข่าวและอัปเดตไฟล์ทั้งสองวันละครั้งตอน 07:00 น. ดูรายละเอียดใน [`editor-agent/README.md`](editor-agent/README.md)
+ไทล์ตัวชี้วัดที่มีราคาสดตรงกัน (Brent, ทองคำ spot, DXY, S&P 500 ตาม `tools/live_indicators.json`) แสดงค่าจาก `market.json` พร้อมเวลาของค่านั้น และใช้ค่าที่ฝังไว้เมื่อโหลดราคาสดไม่ได้
 หน้าเว็บจึงติดป้ายวันที่ของข้อมูลชุดนี้ไว้ (`meta.basis_th` ใน `data/world-data.json` และ “บทวิเคราะห์ ณ …” ในแท็บทองคำ)
 
 แท็บ **ทองคำ** ใช้ราคาสดจาก `market.json` (`gold`, `gold_th` พร้อม `buy` และ `ornament_sell` ถ้าประกาศเดียวกันมีให้) แทนค่าที่ฝังไว้เมื่อ `as_of` ใหม่กว่า
@@ -25,11 +27,12 @@ GDACS (เหตุการณ์เตือนระดับส้มแล�
 site/                  สิ่งที่เผยแพร่ขึ้น Pages (ทุก path เป็นแบบสัมพัทธ์ ใช้ใต้ /global-analysis/ ได้)
   index.html           หน้าเว็บที่สร้างจาก tools/build.py (อย่าแก้ตรง ๆ)
   data/*.json          ราคา ข่าว สถานะรอบอัปเดต ภัยพิบัติ ประวัติราคาทอง (บอตเขียนทับ)
-tools/                 ต้นฉบับหน้าเว็บ: template.html, gold_module.js, splice_gold.py, build.py, land_dots.*
+tools/                 ต้นฉบับหน้าเว็บ: template.html (มีแค่ placeholder ของข้อมูล), gold_module.js, splice_gold.py, build.py, land_dots.*, live_indicators.json
 data/                  world-data.json, gold.json (ข้อมูลที่ฝังในหน้า)
 updater/               update.py, disasters.py, backfill_gold_history.py, schema/*.json, tests/, requirements*.txt, cost-log.csv
 e2e/                   ทดสอบหน้าเว็บแบบไม่เปิดหน้าต่างด้วย Playwright
-.github/workflows/     update.yml (อัปเดตข้อมูล) และ pages.yml (เผยแพร่หน้าเว็บ)
+editor-agent/          ผู้ช่วยบรรณาธิการรายวัน: นิยาม agent, เครื่องมือ, ตัวตรวจ, บันทึกแต่ละรอบ (runs/)
+.github/workflows/     update.yml (อัปเดตข้อมูล), pages.yml (เผยแพร่หน้าเว็บ), agent-issues.yml (เปิด issue จากไฟล์ที่ผู้ช่วยบรรณาธิการ push มาในกิ่ง agent/*-issues)
 ```
 
 ## ตั้งค่าครั้งแรก

@@ -40,6 +40,8 @@ def repo(tmp_path):
     shutil.copy(FIX / "world-data.json", root / "data" / "world-data.json")
     shutil.copy(FIX / "gold.json", root / "data" / "gold.json")
     shutil.copy(FIX / "headlines.schema.json", root / "updater" / "schema" / "headlines.schema.json")
+    (root / "tools").mkdir()
+    shutil.copy(FIX / "live_indicators.json", root / "tools" / "live_indicators.json")
     (root / "editor-agent" / "runs" / ".gitkeep").write_text("")
     for args in (["init", "-q", "-b", "main"], ["add", "-A"], ["commit", "-q", "-m", "base"]):
         subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@x", "-c", "commit.gpgsign=false", *args], cwd=root, check=True)
@@ -184,3 +186,45 @@ def test_dry_run_writes_nothing(repo, tmp_path, capsys):
     assert run_apply(repo, tmp_path, doc, "--dry-run") == 0
     assert raw(repo, "data/world-data.json") == before
     assert "dry run" in capsys.readouterr().out
+
+
+def test_brief_marks_live_indicators(repo, capsys):
+    brief.main(["indicators"], root=repo)
+    out = capsys.readouterr().out
+    live = [l for l in out.splitlines() if "LIVE market.json:" in l]
+    assert {l.split("LIVE market.json:")[1] for l in live} == {"brent", "gold", "dxy", "spx"}
+    assert not any("ดอกเบี้ย" in l for l in live)   # policy rates stay the agent's job
+
+
+@pytest.mark.parametrize("url", ["https://cappnotes.substack.com/p/x", "https://www.kitco.com/charts/gold", "https://www.pomegra.io/y"])
+def test_apply_refuses_blocked_sources(repo, tmp_path, capsys, url):
+    doc = {"date": RUN, "changes": [{"section": "conflicts", "key": "ukraine_russia", "set": {"status_th": "x (4 พ.ย.)"},
+                                     "summary_th": "x", "confidence": "high", "sources": src(url)}]}
+    assert run_apply(repo, tmp_path, doc) == 1
+    out = capsys.readouterr().out
+    assert "blocked source type" in out or "chart or quote page" in out
+
+
+def test_apply_stale_source_needs_low_confidence_and_reason(repo, tmp_path, capsys):
+    ch = {"section": "economies", "key": "GBR", "set": {"note_th": "x (15 ต.ค.)"}, "summary_th": "x", "confidence": "high",
+          "sources": src("https://www.bankofengland.co.uk/x", "2026-10-15")}
+    assert run_apply(repo, tmp_path, {"date": RUN, "changes": [ch]}) == 1
+    assert "more than 7 days" in capsys.readouterr().out
+    ch.update(confidence="low", stale_reason_th="BoE ยังไม่ประชุมรอบใหม่ (นัด 5 พ.ย.)")
+    assert run_apply(repo, tmp_path, {"date": RUN, "changes": [ch]}) == 0
+    doc = json.loads(raw(repo, "editor-agent/runs/%s.changes.json" % RUN))
+    assert doc["changes"][0]["stale_reason_th"].startswith("BoE")
+
+
+def test_apply_keeps_reviewed_and_changed_disjoint(repo, tmp_path, capsys):
+    a = {"date": RUN, "changes": [], "reviewed_unchanged": ["gaza_israel", "libya"]}
+    assert run_apply(repo, tmp_path, a) == 0
+    b = {"date": RUN, "changes": [{"section": "conflicts", "key": "gaza_israel", "set": {"status_th": "x (4 พ.ย.)"},
+                                   "summary_th": "x", "confidence": "high", "sources": src()}],
+         "reviewed_unchanged": ["sudan_civil_war"]}
+    assert run_apply(repo, tmp_path, b) == 0
+    c = {"date": RUN, "changes": [], "reviewed_unchanged": ["gaza_israel"]}
+    assert run_apply(repo, tmp_path, c) == 0
+    assert "because they changed: gaza_israel" in capsys.readouterr().out
+    doc = json.loads(raw(repo, "editor-agent/runs/%s.changes.json" % RUN))
+    assert doc["reviewed_unchanged"] == ["libya", "sudan_civil_war"]
