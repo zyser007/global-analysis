@@ -2111,10 +2111,10 @@ function rdLatest(N){
   if(an.points && an.points.length) s.appendChild(rdMore('analysis', 'อ่านบทวิเคราะห์ทั้งหมด', '', [rdBullets(an.points)]));
   if(an.risks && an.risks.length) s.appendChild(rdMore('risks', 'ความเสี่ยงที่ต้องจับตา', '', [rdBullets(an.risks)]));
 }
-/* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo.com, goldtraders.or.th -> goldtraders */
+/* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo, goldtraders.or.th -> goldtraders */
 function rdHost(url){
   var p = domain(String(url)).split('.');
-  return (p.length > 2 && p[p.length-2].length <= 3) ? p[p.length-3] : p.slice(-2).join('.');
+  return (p.length > 2 && p[p.length-2].length <= 3) ? p[p.length-3] : p[Math.max(0, p.length-2)];
 }
 /* a change text that already says when (a closing date, an announcement time) needs no time beside it */
 function rdNamesTime(s){

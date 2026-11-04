@@ -279,7 +279,7 @@ test.describe('content', () => {
     await expect(row('spx').locator('.line2 > span')).toHaveCount(1);
     await expect(row('stuck').locator('.line2 > span').nth(1)).toContainText('ณ ');
     await expect(row('brent').locator('.line2 > span')).toHaveCount(1);
-    await expect(row('usdthb').locator('a')).toHaveText('yahoo.com');
+    await expect(row('usdthb').locator('a')).toHaveText('yahoo');
     await ctx.close();
   });
 
