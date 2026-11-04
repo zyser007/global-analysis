@@ -1574,10 +1574,11 @@ function updateHeaderFlag(){
   up.title = liveUp ? (stale ? 'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน' : 'ราคาและข่าวอัปเดตอัตโนมัติทุก 4 ชม.') : 'ข้อมูลที่ฝังในหน้า (โหลดข้อมูลสดไม่สำเร็จ)';
 }
 
+function offlineText(){ return 'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'; }
 function renderOffline(){
   live.offline = true;
   var slot = $('live-slot'); slot.innerHTML = ''; tickerEls = {};
-  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'})]));
+  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:offlineText()})]));
   goldLive([]); indLive([]);
   updateHeaderFlag();
 }
@@ -1770,13 +1771,17 @@ function renderDisasterDetail(d, it){
     ? 'ระดับเตือน PAGER ของ USGS ประเมินจากจำนวนผู้เสียชีวิตและความเสียหายทางเศรษฐกิจที่คาดว่าจะเกิด'
     : 'ระดับเตือนของ GDACS ประเมินผลกระทบด้านมนุษยธรรม: แดง = สูง อาจต้องการความช่วยเหลือระหว่างประเทศ · ส้ม = ปานกลาง · เขียว = ต่ำ'}));
 }
+function dzNote(){
+  var doc = live.disasters;
+  if(doc && doc.ok === false && doc.message_th) return {text:String(doc.message_th), warn:true};
+  if(doc && live.dzError) return {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
+  if(doc && isStale(doc.updated, DZ_STALE_MS)) return {text:'ข้อมูลภัยพิบัติเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  return null;
+}
 function updateDzNote(){
   var head = $('dz-head'); if(!head) return;
-  var note = head.querySelector('.note'), doc = live.disasters, n = null;
+  var note = head.querySelector('.note'), doc = live.disasters, n = dzNote();
   var stale = !!(doc && isStale(doc.updated, DZ_STALE_MS));
-  if(doc && doc.ok === false && doc.message_th) n = {text:String(doc.message_th), warn:true};
-  else if(doc && live.dzError) n = {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
-  else if(stale) n = {text:'ข้อมูลภัยพิบัติเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
   note.hidden = !n; note.textContent = n ? n.text : ''; note.classList.toggle('warn', !!(n && n.warn));
   head.classList.toggle('is-stale', stale);
 }
@@ -1808,6 +1813,8 @@ function renderDzSummary(){
   ]);
   slot.appendChild(box);
 }
+function dzSrcNote(cls){ return h('p', {class:cls}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุก 4 ชม. ไม่ผ่าน AI']); }
+var DZ_EMPTY_TH = 'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด';
 function renderDisasters(){
   var v = $('view-disasters'); if(!v) return;
   var doc = live.disasters;
@@ -1819,7 +1826,7 @@ function renderDisasters(){
   if(!doc){
     v.appendChild(h('div', {class:'dz-empty', text: live.dzError ? 'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ' : 'กำลังโหลดข้อมูลภัยพิบัติ…'}));
   } else if(!disasters.length){
-    v.appendChild(h('div', {class:'dz-empty', text:'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด'}));
+    v.appendChild(h('div', {class:'dz-empty', text:DZ_EMPTY_TH}));
   } else {
     var l = h('div', {class:'list dz'});
     disasters.forEach(function(it, i){ l.appendChild(dzRow(it, i)); });
@@ -1827,7 +1834,7 @@ function renderDisasters(){
   }
   v.appendChild(h('div', {id:'dz-news'}));
   renderDisasterNews();
-  v.appendChild(h('p', {class:'dz-src'}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุก 4 ชม. ไม่ผ่าน AI']));
+  v.appendChild(dzSrcNote('dz-src'));
   updateDzNote();
   renderDzSummary();
   $('counts').querySelector('.full').textContent = COUNTS_FULL + (doc ? ' · ' + disasters.length + ' ภัยพิบัติ' : '');
