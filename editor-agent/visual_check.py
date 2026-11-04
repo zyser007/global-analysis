@@ -19,6 +19,7 @@ Checks, per viewport:
 One more case, reading-mobile: ?view=read at 390x844 with every section open: the six chapters have content, the
 conflict, economy (table rows and notes) and chokepoint counts = the data, no errors, no bad text, no overflow, and the
 page is still a book page: figures in tables, the page colour and the book face in force, every colour readable at 4.5:1.
+One more case, infographic-mobile: every marker's click card at 390x844 with reduced motion: no bad text, no overflow, one row per arc.
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
 
@@ -153,6 +154,61 @@ def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.
         add("ERROR", READING_NAME, "offline: data/*.json did not load")
     elif r["banner"]:
         add("WARN", READING_NAME, r["banner"][:120])
+    ctx.close()
+
+
+CARD_NAME = "infographic-mobile"
+CARD_WIDTH = 390
+CARD_JS = """() => {
+  const fx = window.__globeFx; if (!fx) return { missing: true };
+  const c = fx.counts(), out = { missing: false, cards: 0, bad: [], arcs: [], hidden: [], wide: [], width: [] };
+  for (const [k, n] of [['conflict', c.conflict], ['econ', c.econ], ['choke', c.choke], ['disaster', c.disaster], ['gold', 1]]) {
+    for (let i = 0; i < n; i++) {
+      window.__igSelect(k, i);
+      const d = document.getElementById('view-detail'), id = k + ':' + i, t = d.innerText;
+      if (!d.querySelector('.ig h2')) { out.bad.push(id + ' no card'); continue; }
+      out.cards++;
+      const m = t.match(/\\bnull\\b|\\bNaN\\b|undefined|\\[object Object\\]/); if (m) out.bad.push(id + ' ' + m[0]);
+      if (d.querySelectorAll('.ig-link[data-arc="1"]').length !== fx.arcs.length) out.arcs.push(id);
+      if (Array.from(d.querySelectorAll('.ig-rv')).some((e) => +getComputedStyle(e).opacity < 1)) out.hidden.push(id);
+      const wide = Array.from(d.querySelectorAll('*')).find((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && e.checkVisibility() && (r.right > WIDTH + 0.5 || r.left < -0.5); });
+      if (wide) out.wide.push(id + ' ' + (wide.className || wide.tagName));
+    }
+  }
+  out.width = [document.documentElement.scrollWidth, document.body.scrollWidth];
+  return out;
+}"""
+
+
+def check_cards(browser, url: str, sandbox: bool, shots: pathlib.Path, add) -> None:
+    """Every marker's infographic card with today's data, at once (reduced motion skips the animation): no bad text, no
+    overflow, one row per arc. One phone case only, so the gate stays cheap."""
+    import time
+    t0 = time.monotonic()
+    ctx = browser.new_context(viewport={"width": CARD_WIDTH, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True,
+                              reduced_motion="reduce", ignore_https_errors=sandbox)
+    page = ctx.new_page()
+    errs: list[str] = []
+    page.on("console", lambda m: errs.append("console: %s" % m.text[:160]) if m.type == "error" else None)
+    page.on("pageerror", lambda e: errs.append("pageerror: " + str(e)[:160]))
+    page.goto(url + "?view=map", wait_until="load")
+    try:
+        page.wait_for_function("() => ((window.__liveState || {}).polls || 0) > 0 && window.__globeFx && window.__globeFx.stats()", timeout=15000)
+    except Exception:
+        add("ERROR", CARD_NAME, "the globe or its data never finished loading")
+    r = page.evaluate(CARD_JS.replace("WIDTH", str(CARD_WIDTH)))
+    for e in errs[:5]:
+        add("ERROR", CARD_NAME, e)
+    if r["missing"]:
+        add("ERROR", CARD_NAME, "the page has no infographic code")
+    else:
+        for what, key in (("bad text or no card", "bad"), ("arcs without a row", "arcs"), ("elements left hidden", "hidden"), ("wider than the phone", "wide")):
+            if r[key]:
+                add("ERROR", CARD_NAME, "%s: %s" % (what, ", ".join(r[key][:5])))
+        if max(r["width"]) > CARD_WIDTH:
+            add("ERROR", CARD_NAME, "horizontal overflow: %s" % r["width"])
+        add("INFO", CARD_NAME, "%d cards checked in %.1f s" % (r["cards"], time.monotonic() - t0))
+    page.screenshot(path=str(shots / (CARD_NAME + ".png")))
     ctx.close()
 
 
@@ -298,6 +354,8 @@ def main() -> int:
                 ctx.close()
             if not a.only or a.only == READING_NAME:
                 check_reading(browser, url, world, sandbox, shots, add)
+            if not a.only or a.only == CARD_NAME:
+                check_cards(browser, url, sandbox, shots, add)
             browser.close()
     except Exception as e:  # a browser that cannot start is an environment problem the agent must report
         add("ERROR", "browser", "%s: %s" % (type(e).__name__, str(e)[:400]))

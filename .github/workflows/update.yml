@@ -65,6 +65,14 @@ jobs:
         timeout-minutes: 3
         run: python -I updater/disasters.py
 
+      # Free GDACS tropical cyclone tracks, no AI and no key, for the page's storm and rain layer. Same rules as disasters:
+      # a failure keeps the last good file and says so, and never blocks prices, news or disasters.
+      - name: Refresh storm tracks (GDACS)
+        id: storms
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python -I updater/storms.py
+
       - name: Check the current data files
         id: check
         continue-on-error: true   # a broken market/headlines/status file must not stop the disasters commit
@@ -96,6 +104,7 @@ jobs:
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add site/data/market.json site/data/headlines.json site/data/status.json updater/cost-log.csv
           if [ -f site/data/disasters.json ]; then git add site/data/disasters.json; fi
+          if [ -f site/data/storms.json ]; then git add site/data/storms.json; fi
           if [ -f site/data/gold_history.json ]; then git add site/data/gold_history.json; fi
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -116,17 +125,19 @@ jobs:
           echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
 
       - name: Fail the job if a step failed
-        if: steps.check.outcome == 'failure' || steps.prices.outcome == 'failure' || steps.run.outcome == 'failure' || steps.disasters.outcome == 'failure'
+        if: steps.check.outcome == 'failure' || steps.prices.outcome == 'failure' || steps.run.outcome == 'failure' || steps.disasters.outcome == 'failure' || steps.storms.outcome == 'failure'
         env:
           CHECK: ${{ steps.check.outcome }}
           PRICES: ${{ steps.prices.outcome }}
           RUN: ${{ steps.run.outcome }}
           DISASTERS: ${{ steps.disasters.outcome }}
+          STORMS: ${{ steps.storms.outcome }}
         run: |
           if [ "$CHECK" = "failure" ]; then echo "::error::the current market/headlines/status files are invalid - the price and news updates were skipped. See the dry-run log above."; fi
           if [ "$PRICES" = "failure" ]; then echo "::error::prices.py failed (more than 6 keys without a feed, or a timeout) - the old prices were kept and status.json says ok=false. See the log above."; fi
           if [ "$RUN" = "failure" ]; then echo "::error::update.py full failed - the old headlines were kept and status.json says ok=false. See the log above."; fi
           if [ "$DISASTERS" = "failure" ]; then echo "::error::disasters.py could not read GDACS or USGS - the previous disasters.json was kept (ok=false). See the log above."; fi
+          if [ "$STORMS" = "failure" ]; then echo "::error::storms.py could not read GDACS - the previous storms.json was kept (ok=false). See the log above."; fi
           exit 1
 
   # Pushes made with GITHUB_TOKEN do not trigger other workflows, so deploy Pages from here.

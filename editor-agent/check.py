@@ -592,11 +592,11 @@ def check_live(root: pathlib.Path, w: Any, g: Any, f: Findings, now: dt.datetime
     # 08:00 / 20:00 Bangkok, so about 26 bot commits a day; 3 h allows for GitHub's late or skipped cron starts.
     # gold_history only moves when the gold as_of moves (not while gold is shut), so it keeps the older 6 h limit.
     limits = (("status", "updated_at", 3), ("market", "updated_at", 3), ("headlines", "updated_at", 14),
-              ("disasters", "updated", 3), ("gold_history", "updated_at", 6))
+              ("disasters", "updated", 3), ("gold_history", "updated_at", 6), ("storms", "updated", 3))
     docs: dict[str, Any] = {}
     for name, fld, lim in limits:
         rel = "%s/%s.json" % (LIVE_DIR, name)
-        d = read_json(root, rel, f, required=name != "gold_history")
+        d = read_json(root, rel, f, required=name not in ("gold_history", "storms"))
         docs[name] = d
         if not isinstance(d, dict):
             continue
