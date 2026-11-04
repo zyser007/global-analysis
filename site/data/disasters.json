@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-04T05:10:17Z",
- "checked": "2026-11-04T05:10:17Z",
+ "updated": "2026-11-04T06:54:13Z",
+ "checked": "2026-11-04T06:54:13Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-04T05:10:17Z",
-   "count": 6,
+   "fetched": "2026-11-04T06:54:13Z",
+   "count": 5,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-20&toDate=2026-11-05&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-04T05:10:17Z",
+   "fetched": "2026-11-04T06:54:13Z",
    "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -31,33 +31,12 @@
    "lon": 80.2,
    "start": "2026-11-01T00:00:00Z",
    "end": "2026-11-03T06:00:00Z",
-   "updated": "2026-11-04T01:01:18Z",
+   "updated": "2026-11-04T06:01:20Z",
    "alert_level": "red",
    "severity_th": "ลมสูงสุด 157 กม./ชม.",
    "severity_value": 157.41,
    "severity_unit": "km/h",
    "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=10&eventtype=TC",
-   "source_name": "GDACS"
-  },
-  {
-   "id": "gdacs-tc-1001345",
-   "type": "cyclone",
-   "title_th": "พายุหมุนเขตร้อน ARNAB-26 ลมสูงสุด 222 กม./ชม. กระทบอินเดีย",
-   "country": "India",
-   "country_th": "อินเดีย",
-   "countries": [
-    "India"
-   ],
-   "lat": 16.4,
-   "lon": 81.8,
-   "start": "2026-10-26T00:00:00Z",
-   "end": "2026-10-28T06:00:00Z",
-   "updated": "2026-10-29T08:02:06Z",
-   "alert_level": "red",
-   "severity_th": "ลมสูงสุด 222 กม./ชม.",
-   "severity_value": 222.22,
-   "severity_unit": "km/h",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
    "source_name": "GDACS"
   },
   {
@@ -106,7 +85,7 @@
    "lon": 34.193,
    "start": "2026-05-21T00:00:00Z",
    "end": "2026-11-02T00:00:00Z",
-   "updated": "2026-11-04T05:07:34Z",
+   "updated": "2026-11-04T05:57:21Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 1.3 ล้าน ตร.กม.",
    "severity_value": 1341883.0,
@@ -137,7 +116,7 @@
    "lon": -95.396,
    "start": "2026-04-21T00:00:00Z",
    "end": "2026-11-02T00:00:00Z",
-   "updated": "2026-11-04T05:07:22Z",
+   "updated": "2026-11-04T05:57:14Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 1.0 ล้าน ตร.กม.",
    "severity_value": 1012801.0,
@@ -186,7 +165,7 @@
    "lon": 12.876,
    "start": "2025-12-21T00:00:00Z",
    "end": "2026-11-02T00:00:00Z",
-   "updated": "2026-11-04T05:07:02Z",
+   "updated": "2026-11-04T05:57:03Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 2.0 ล้าน ตร.กม.",
    "severity_value": 2009754.0,
