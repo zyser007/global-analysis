@@ -1,0 +1,33 @@
+name: Open editor-agent issues
+
+# The editor agent (Claude Managed Agents) cannot call the GitHub REST API from its sandbox, so editor-agent/issue.py
+# pushes each issue as a file editor-agent/issues/<date>-<slug>.md to a branch agent/<date>-issues.
+# This workflow turns those files into real issues labelled editor-agent (one per file, de-duplicated by a marker
+# in the body; a changed file becomes a comment). See editor-agent/open_issues.py.
+on:
+  push:
+    branches: ["agent/*-issues"]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: agent-issues
+  cancel-in-progress: false
+
+jobs:
+  open:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create issues from editor-agent/issues/*.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          BRANCH: ${{ github.ref_name }}
+        run: python3 -I editor-agent/open_issues.py

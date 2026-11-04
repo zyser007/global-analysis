@@ -294,7 +294,38 @@ def test_source_dates(repo):
     assert has(f, "older than the newest source")
     write_run(repo, changes_doc([entry("conflicts", ["ukraine_russia"], published="2026-10-20")]))
     code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
-    assert code == 0 and has(f, "16 days old", "WARN")
+    assert code == 1 and has(f, "more than 7 days before the run")
+    stale = entry("conflicts", ["ukraine_russia"], published="2026-10-20", conf="low")
+    write_run(repo, changes_doc([stale]))
+    code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
+    assert code == 1 and has(f, "stale_reason_th")
+    stale["stale_reason_th"] = "ยังไม่มีรายงานใหม่กว่านี้"
+    write_run(repo, changes_doc([stale]))
+    code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
+    assert code == 0, msgs(f)
+
+
+@pytest.mark.parametrize("url", ["https://cappnotes.substack.com/p/x", "https://www.pomegra.io/a", "https://financefeeds.com/b",
+                                 "https://www.babypips.com/news/c", "https://www.kitco.com/charts/gold", "https://x.medium.com/d",
+                                 "https://foo.blogspot.com/e", "https://www.hoa.org.uk/f"])
+def test_blocked_sources(repo, url):
+    edit_conflict(repo, url=url)
+    write_run(repo, changes_doc([entry("conflicts", ["ukraine_russia"], url=url)]))
+    code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
+    assert code == 1 and (has(f, "blocked source type") or has(f, "chart or quote page"))
+
+
+def test_source_problem_allows_established_outlets():
+    for u in ("https://www.reuters.com/world/x", "https://news.un.org/en/story/2026/11/1", "https://www.kitco.com/news/article/2026-11-04/gold",
+              "https://www.bot.or.th/th/news.html"):
+        assert check.source_problem(u) is None, u
+
+
+def test_reviewed_unchanged_must_not_contain_changed_keys(repo):
+    edit_conflict(repo)
+    write_run(repo, changes_doc([entry("conflicts", ["ukraine_russia"])], reviewed_unchanged=["ukraine_russia", "libya"]))
+    code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
+    assert code == 1 and has(f, "reviewed_unchanged at the same time: ukraine_russia")
 
 
 def test_meta_updated_must_move_to_run_date(repo):
