@@ -194,14 +194,24 @@ test.describe('content', () => {
       // 3 conflicts: most severe first, severity in words, summary collapsed, sources kept
       const conf = world.conflicts.slice().sort((a, b) => b.intensity - a.intensity);
       const rows = page.locator('#r-conflict-list > li');
-      await expect(rows).toHaveCount(conf.length);
-      const levels = await rows.evaluateAll((els) => els.map((e) => +e.getAttribute('data-intensity')));
+      const high = conf.filter((c) => c.intensity >= 4);
+      await expect(rows).toHaveCount(high.length);
+      const levels = await page.locator('#r-conflicts li.rd-conf').evaluateAll((els) => els.map((e) => +e.getAttribute('data-intensity')));
+      expect(levels).toHaveLength(conf.length);
       expect(levels).toEqual(levels.slice().sort((a, b) => b - a));
+      const more = page.locator('details[data-rd="conf-rest"]');
+      await expect(more.locator('> summary')).toContainText(`ดูอีก ${conf.length - high.length} รายการ`);
+      await expect(page.locator('#r-conflict-more')).toBeHidden();
+      await more.locator('> summary').click();
+      await expect(page.locator('#r-conflict-more')).toBeVisible();
+      await expect(page.locator('#r-conflict-more > li')).toHaveCount(conf.length - high.length);
+      await expect(page.locator('#r-conflict-more > li').first()).toContainText(conf[high.length].name_th);
+      await more.locator('> summary').click();
       await expect(rows.first().locator('h3')).toHaveText(conf[0].name_th);
       await expect(rows.first().locator('.rd-level')).toContainText('รุนแรงที่สุด');
       await expect(rows.first()).toContainText(conf[0].status_th);
       for (const [lvl, word] of [[5, 'รุนแรงที่สุด'], [4, 'รุนแรงมาก'], [3, 'รุนแรงปานกลาง'], [2, 'รุนแรงน้อย'], [1, 'รุนแรงน้อยมาก']]) {
-        const r = page.locator(`#r-conflict-list > li[data-intensity="${lvl}"]`).first();
+        const r = page.locator(`#r-conflicts li[data-intensity="${lvl}"]`).first();
         if (await r.count()) await expect(r.locator('.rd-level b')).toHaveText(word);
       }
       expect(await page.locator('#r-conflicts details[open]').count(), 'details are collapsed by default').toBe(0);
@@ -462,7 +472,7 @@ test.describe('failure honesty', () => {
       await expect(rows.first()).toContainText('ค่าล่าสุดที่ฝังในหน้าเว็บ ณ');
       await expect(page.locator('#r-prices [data-age]')).toHaveCount(0);
       // what does not depend on a feed is still there
-      await expect(page.locator('#r-conflict-list > li')).toHaveCount(world.conflicts.length);
+      await expect(page.locator('#r-conflicts li.rd-conf')).toHaveCount(world.conflicts.length);
       await expect(page.locator('#r-gold-th')).toBeVisible();
       await noHScroll(page, 'offline');
       expect(errors).toEqual([]);

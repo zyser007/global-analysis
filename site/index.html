@@ -2006,6 +2006,7 @@ function renderDisasters(){
 var RD_SEVERITY = {5:'รุนแรงที่สุด', 4:'รุนแรงมาก', 3:'รุนแรงปานกลาง', 2:'รุนแรงน้อย', 1:'รุนแรงน้อยมาก'};
 var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data every day */
 var RD_NEWS_TOP = 5;
+var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are open on the page */
 var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
 var rdOpen = {}, rdSig = null, rdDirty = true;
 function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
@@ -2173,10 +2174,10 @@ function rdConflicts(N){
   s.appendChild(rdBasisLine());
   s.appendChild(h('p', {class:'rd-note', text:'เรียงจากรุนแรงมากไปน้อย'}));
   if(N.basis) s.appendChild(rdNote(N.basis));
-  var ul = h('ul', {class:'rd-rows', id:'r-conflict-list'}), all = newsItems();
-  conflicts.forEach(function(c){
+  var all = newsItems();
+  function card(c){
     var i = Math.max(1, Math.min(5, c.intensity|0)), key = 'conf-' + (c.id || c.name_th), news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
-    ul.appendChild(h('li', {class:'rd-conf', style:'--rd-sev:' + intensityVar(i), 'data-intensity':String(i)}, [
+    return h('li', {class:'rd-conf', style:'--rd-sev:' + intensityVar(i), 'data-intensity':String(i)}, [
       h('h3', {text:String(c.name_th)}),
       h('p', {class:'rd-level'}, [h('b', {text:RD_SEVERITY[i]}), ' · ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]),
       c.status_th ? h('p', {text:String(c.status_th)}) : null,
@@ -2186,9 +2187,13 @@ function rdConflicts(N){
         rdKv([['ผู้เสียชีวิต (ประมาณ)', c.deaths_est], ['ผู้พลัดถิ่น', c.displaced], ['ความน่าเชื่อถือของข้อมูล', CONF_TH[c.confidence]]]),
         rdSources(c.sources)
       ])
-    ]));
-  });
-  s.appendChild(ul);
+    ]);
+  }
+  /* the most severe show first, the rest behind one button; conflicts is already sorted, so the order holds across both */
+  var top = conflicts.filter(function(c){ return (c.intensity|0) >= RD_CONFLICT_TOP_LEVEL; }), rest = conflicts.filter(function(c){ return (c.intensity|0) < RD_CONFLICT_TOP_LEVEL; });
+  if(!top.length){ top = rest; rest = []; }
+  s.appendChild(h('ul', {class:'rd-rows', id:'r-conflict-list'}, top.map(card)));
+  if(rest.length) s.appendChild(rdMore('conf-rest', 'ดูอีก ' + rest.length + ' รายการ (ระดับ ' + (RD_CONFLICT_TOP_LEVEL-1) + ' ลงมา)', 'rd-group', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(card))]));
 }
 /* the event's own dates from the data: one day with its age, or a start-end range */
 function rdDzDate(it){
