@@ -5,7 +5,7 @@
     "version": 4,
     "digest": "d3b99ef9535de1b9"
   },
-  "updated_at": "2026-11-04T07:09:47Z",
+  "updated_at": "2026-11-04T07:11:01Z",
   "environment": {
     "id": "env_01Xhp1CuQaAhFftKYcTTtMHv",
     "digest": "cdfc7f796d4f03cf"
@@ -14,5 +14,9 @@
     "id": "memstore_01XPc1zEXXYLxLWnhBZ1gzB8",
     "name": "world-globe-editor",
     "digest": "77b04834948ebda2"
+  },
+  "deployment": {
+    "id": "depl_01W2pc87YakvbnjJ3RxdKsvG",
+    "digest": "231f4b86e2bedc31"
   }
 }
