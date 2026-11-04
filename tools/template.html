@@ -50,6 +50,8 @@
   --font-head:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,-apple-system,sans-serif;
   /* alert levels (GDACS / USGS PAGER) follow the theme's own scale */
   --al-red:var(--bad); --al-orange:var(--i2); --al-yellow:var(--i1); --al-green:var(--good); --al-none:var(--muted);
+  /* the three kinds of arc on the globe */
+  --fx-data:#6ff0c4; --fx-mention:#ffb454; --fx-geo:#a9c3e6;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
@@ -62,6 +64,7 @@
     --i1:#d9a300; --i2:#e07a1a; --i3:#d9522a; --i4:#c22f2a; --i5:#8c0c32;
     --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
     --choke:#b07d05;
+    --fx-data:#067a5e; --fx-mention:#a85600; --fx-geo:#3d5a82;
     --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
     --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
     --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
@@ -78,6 +81,7 @@
   --i1:#d9a300; --i2:#e07a1a; --i3:#d9522a; --i4:#c22f2a; --i5:#8c0c32;
   --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
   --choke:#b07d05;
+  --fx-data:#067a5e; --fx-mention:#a85600; --fx-geo:#3d5a82;
   --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
   --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
   --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
@@ -567,6 +571,188 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
 .rd-foot{margin-top:clamp(48px,8vh,72px);padding-top:1.2em;border-top:1px solid var(--rd-rule);display:flex;flex-wrap:wrap;gap:0 1.4em;align-items:center;justify-content:center;font-size:.9em;line-height:1.7;color:var(--rd-ink-2)}
 .rd-foot a{display:inline-flex;align-items:center;min-height:44px}
 .rd-go{min-height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer;font-family:var(--rd-font);font-size:1em;line-height:1.7;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+
+/* ---------- click infographic: the card in the panel and the overlay on the globe. Without .play every element is in its final state ---------- */
+.ig{--fx:var(--accent);min-width:0}
+.ig h2{margin:0;font-family:var(--font-head);font-weight:700;font-size:20px;line-height:1.45;overflow-wrap:anywhere}
+.ig-hero{position:relative;display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center;padding:12px;border-radius:14px;overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--fx) 55%,var(--border));
+  background:radial-gradient(130% 130% at 0% 0%,color-mix(in srgb,var(--fx) 30%,transparent),transparent 62%),linear-gradient(160deg,color-mix(in srgb,var(--fx) 10%,var(--surface-2)),var(--surface-2));
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--fx) 14%,transparent),0 12px 34px -18px var(--fx)}
+.ig-hero .chips{margin:6px 0 0}
+.ig-kick{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:var(--font-head);font-size:11.5px;font-weight:600;letter-spacing:.03em;line-height:1.6;color:color-mix(in srgb,var(--fx) 62%,var(--text))}
+.ig-kick .dz-ic,.ig-kick .dz-ic svg{width:14px;height:14px}
+.ig-sheen{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(105deg,transparent 30%,color-mix(in srgb,var(--fx) 40%,#fff 20%) 50%,transparent 70%)}
+.ig.play .ig-hero.in .ig-sheen{animation:igsheen .95s ease-out .1s}
+@keyframes igsheen{0%{opacity:.75;transform:translateX(-100%)}100%{opacity:0;transform:translateX(100%)}}
+.ig-gauge{position:relative;width:84px;height:84px;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--fx) 55%,transparent))}
+.ig-gauge svg{display:block;width:100%;height:100%;transform:rotate(-90deg)}
+.ig-gauge .tr{fill:none;stroke:color-mix(in srgb,var(--fx) 16%,var(--border));stroke-width:7}
+.ig-gauge .ar{fill:none;stroke:var(--fx);stroke-width:7;stroke-linecap:round;stroke-dasharray:var(--v) 100}
+.ig-gauge .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.25}
+.ig-gauge .b{font-family:var(--font-head);font-weight:700;font-size:23px;font-variant-numeric:tabular-nums;line-height:1.2;color:var(--text)}
+.ig-gauge .b.w{font-size:13.5px;line-height:1.5}
+.ig-gauge .b .dz-ic,.ig-gauge .b .dz-ic svg{width:30px;height:30px}
+.ig-gauge .s{font-size:10.5px;color:var(--text-2);line-height:1.4}
+.ig-rail{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 2px}
+.ig-rail button{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:2px 9px;border-radius:999px;border:1px solid color-mix(in srgb,var(--fx) 35%,var(--border));background:color-mix(in srgb,var(--fx) 8%,var(--surface-2));font-size:11.5px;font-weight:500;line-height:1.5;color:var(--text);cursor:pointer}
+.ig-rail button:hover{border-color:var(--fx)}
+.ig-rail svg,.ig-dim-t svg{width:14px;height:14px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ig-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.ig-stat{position:relative;min-width:0;padding:9px 11px 8px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);overflow:hidden}
+.ig-stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--fx)}
+.ig-stat .k{font-size:11.5px;color:var(--text-2);line-height:1.5}
+.ig-stat .v{font-family:var(--font-head);font-weight:700;font-size:26px;line-height:1.3;font-variant-numeric:tabular-nums;color:var(--text);overflow-wrap:anywhere}
+.ig-stat .v small{font-size:12px;font-weight:500;color:var(--text-2);margin-left:3px}
+.ig-stat .m{font-size:11px;line-height:1.5;color:var(--muted)}
+.ig-stat .m a{color:var(--muted)}
+.ig-stat.wide{grid-column:1 / -1}
+.ig-dim{margin-top:12px;padding:10px 11px 11px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);min-width:0;scroll-margin-top:6px}
+.ig-dim-t{display:flex;align-items:center;gap:6px;margin:0 0 7px;font-family:var(--font-head);font-weight:600;font-size:13px;line-height:1.6;color:var(--text)}
+.ig-dim-t svg{color:var(--fx)}
+.ig-line{display:flex;justify-content:space-between;align-items:baseline;gap:4px 10px;flex-wrap:wrap;font-size:12.5px;line-height:1.55;color:var(--text-2)}
+.ig-line b{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
+.ig-line + .ig-line,.ig-strip + .ig-line,.ig-bar + .ig-line,.ig-dots + .ig-line,.ig-fact + .ig-line{margin-top:7px}
+.ig-note{font-size:11.5px;line-height:1.55;color:var(--muted);margin:5px 0 0}
+.ig-note a{color:var(--muted)}
+.ig-fact{font-size:12.5px;line-height:1.6;color:var(--text-2);margin:0 0 3px}
+.ig-fact b{font-family:var(--font-head);font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.ig-quote{margin:5px 0 0;padding:4px 0 4px 9px;border-left:2px solid var(--fx-mention);font-size:12px;line-height:1.6;color:var(--text-2)}
+.ig-seg{display:flex;gap:4px;margin:2px 0 4px}
+.ig-seg i{flex:1 1 0;height:9px;border-radius:3px;background:color-mix(in srgb,var(--fx) 14%,var(--border))}
+.ig-seg i.on{background:var(--fx);box-shadow:0 0 8px color-mix(in srgb,var(--fx) 65%,transparent)}
+.ig-seg-l{display:flex;gap:4px;font-size:10.5px;line-height:1.5;color:var(--muted)}
+.ig-seg-l span{flex:1 1 0;text-align:center;min-width:0}
+.ig-seg-l span.on{color:var(--text);font-weight:600}
+.ig-dots{display:flex;flex-wrap:wrap;gap:4px;margin:3px 0 2px}
+.ig-dots i{width:11px;height:11px;border-radius:50%;background:var(--c,var(--muted));opacity:.34}
+.ig-dots i.me{opacity:1;box-shadow:0 0 0 2px var(--surface-2),0 0 0 3.5px var(--text)}
+.ig-bar{position:relative;height:8px;border-radius:4px;background:var(--border);overflow:hidden;margin:3px 0}
+.ig-bar i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:4px;background:var(--c,var(--fx));transform-origin:0 50%;transform:scaleX(var(--v,1))}
+.ig-strip{position:relative;height:18px;margin:2px 7px 0}
+.ig-strip::before{content:"";position:absolute;left:-7px;right:-7px;top:8px;height:2px;border-radius:1px;background:var(--border)}
+.ig-strip i{position:absolute;top:5px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--muted);opacity:.5}
+.ig-strip i.me{top:2px;width:14px;height:14px;margin-left:-7px;background:var(--fx);opacity:1;box-shadow:0 0 0 2px var(--surface-2),0 0 10px var(--fx)}
+.ig-scale{display:flex;justify-content:space-between;font-size:10.5px;line-height:1.5;color:var(--muted);font-variant-numeric:tabular-nums}
+.ig-spark{display:block;width:100%;height:auto;overflow:visible;margin:2px 0}
+.ig-spark .a{fill:color-mix(in srgb,var(--fx) 18%,transparent)}
+.ig-spark .l{fill:none;stroke:var(--fx);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1 0}
+.ig-spark .p{fill:var(--fx);stroke:var(--surface-2);stroke-width:2}
+.ig-time{position:relative;height:6px;border-radius:3px;background:var(--border);margin:6px 0}
+.ig-time i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--fx)}
+.ig-time u{position:absolute;top:-4px;width:2px;height:14px;background:var(--text);text-decoration:none}
+.ig-chips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 0}
+.ig-chips span{font-size:11.5px;line-height:1.5;padding:1px 8px;border-radius:999px;border:1px solid var(--border-strong);color:var(--text-2)}
+.ig-links{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ig-link{display:grid;grid-template-columns:18px minmax(0,1fr);gap:0 8px;padding:7px 9px;border-radius:10px;background:var(--surface);border:1px solid var(--border)}
+.ig-link .g{font-size:14px;line-height:1.5;text-align:center;font-weight:700}
+.ig-link[data-rel="data"] .g{color:var(--fx-data)} .ig-link[data-rel="geo"] .g{color:var(--fx-geo)} .ig-link[data-rel="mention"] .g{color:var(--fx-mention)}
+.ig-go{all:unset;display:block;cursor:pointer;font-weight:600;font-size:13.5px;line-height:1.5;color:var(--text);overflow-wrap:anywhere;min-height:24px}
+.ig-go:hover{color:var(--accent)} .ig-go:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.ig-go.off{cursor:default}
+.ig-link .t{font-size:11.5px;line-height:1.55;color:var(--text-2)}
+.ig-link .t em{font-style:normal;font-weight:600}
+.ig-link[data-rel="data"] .t em{color:var(--fx-data)} .ig-link[data-rel="geo"] .t em{color:var(--fx-geo)} .ig-link[data-rel="mention"] .t em{color:var(--fx-mention)}
+.ig-link .q{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:2px}
+.ig-link .s{font-size:11px;line-height:1.6;color:var(--muted)} .ig-link .s a{color:var(--muted)}
+.ig-key{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:2px;font-size:11px;line-height:1.55;color:var(--muted)}
+.ig-key b{font-weight:600}
+.ig-key .k-data{color:var(--fx-data)} .ig-key .k-geo{color:var(--fx-geo)} .ig-key .k-mention{color:var(--fx-mention)}
+.ig .fold{margin-top:12px}
+.ig > .basis-note{margin:10px 0 0}
+.ig > .status{margin:8px 0 0;line-height:1.65}
+.ig > .ig-dim + p{margin:12px 0 0}
+.ig > .kv{margin-top:12px}
+.ig > .news-more{margin:12px 0 4px}
+#card-latest:not(:empty){margin-top:10px}
+#card-latest .latest{margin:0}
+/* the play: elements wait hidden only while .play is on the card */
+.ig.play .ig-rv{opacity:0;transform:translateY(12px) scale(.985)}
+.ig.play .ig-rv.in{opacity:1;transform:none;transition:opacity .38s ease-out,transform .5s cubic-bezier(.16,1.1,.3,1)}
+.ig.play .ig-hero{clip-path:inset(0 100% 0 0 round 14px);opacity:1;transform:none}
+.ig.play .ig-hero.in{clip-path:inset(-6px -6px -6px -6px round 14px);transition:clip-path .55s cubic-bezier(.2,.8,.2,1)}
+.ig.play .ig-gauge .ar{stroke-dasharray:0 100}
+.ig.play .in .ig-gauge .ar,.ig.play .in.ig-gauge .ar{stroke-dasharray:var(--v) 100;transition:stroke-dasharray .95s cubic-bezier(.2,.8,.2,1) .12s}
+.ig.play .ig-seg i.on{background:color-mix(in srgb,var(--fx) 14%,var(--border));box-shadow:none}
+.ig.play .in .ig-seg i.on{background:var(--fx);box-shadow:0 0 8px color-mix(in srgb,var(--fx) 65%,transparent);transition:background .16s linear calc(var(--i)*95ms),box-shadow .16s linear calc(var(--i)*95ms)}
+.ig.play .ig-bar i{transform:scaleX(0)}
+.ig.play .in .ig-bar i{transform:scaleX(var(--v,1));transition:transform .8s cubic-bezier(.2,.8,.2,1) .1s}
+.ig.play .ig-dots i{transform:scale(0)}
+.ig.play .in .ig-dots i{transform:none;transition:transform .3s cubic-bezier(.2,1.4,.4,1) calc(var(--i)*22ms)}
+.ig.play .ig-strip i{left:50% !important;opacity:0}
+.ig.play .in .ig-strip i{left:var(--x) !important;opacity:.5;transition:left .7s cubic-bezier(.2,.8,.2,1) calc(var(--i)*14ms),opacity .3s}
+.ig.play .in .ig-strip i.me{opacity:1}
+.ig.play .ig-spark .l{stroke-dasharray:0 1}
+.ig.play .in .ig-spark .l{stroke-dasharray:1 0;transition:stroke-dasharray 1.1s ease-out .1s}
+.ig.play .ig-spark .a,.ig.play .ig-spark .p{opacity:0}
+.ig.play .in .ig-spark .a,.ig.play .in .ig-spark .p{opacity:1;transition:opacity .5s ease-out .9s}
+
+/* the overlay on the globe */
+.fx-hud{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;--fx:var(--accent)}
+.fx-hud[hidden]{display:none}
+.fx-flash{position:absolute;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;opacity:0;background:radial-gradient(circle,color-mix(in srgb,var(--fx) 80%,#fff 20%) 0%,color-mix(in srgb,var(--fx) 40%,transparent) 22%,transparent 62%);will-change:transform,opacity}
+.fx-hud.run .fx-flash{animation:fxflash .7s ease-out}
+@keyframes fxflash{0%{opacity:.9;scale:.15}100%{opacity:0;scale:1.5}}
+.fx-scan{position:absolute;left:0;right:0;top:0;height:34%;opacity:0;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--fx) 30%,transparent) 88%,color-mix(in srgb,var(--fx) 85%,#fff 15%) 100%);will-change:transform,opacity}
+.fx-hud.run .fx-scan{animation:fxscan 1s cubic-bezier(.3,0,.5,1)}
+@keyframes fxscan{0%{opacity:.8;transform:translateY(-100%)}85%{opacity:.5}100%{opacity:0;transform:translateY(300%)}}
+.fx-xh,.fx-yh{position:absolute;left:0;top:0;background:color-mix(in srgb,var(--fx) 55%,transparent);opacity:.55}
+.fx-xh{width:100%;height:1px}
+.fx-yh{width:1px;height:100%}
+.fx-hud.run .fx-xh{animation:fxxh .75s cubic-bezier(.2,.8,.2,1)}
+.fx-hud.run .fx-yh{animation:fxyh .75s cubic-bezier(.2,.8,.2,1)}
+@keyframes fxxh{0%{clip-path:inset(0 50% 0 50%);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:.55}}
+@keyframes fxyh{0%{clip-path:inset(50% 0 50% 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:.55}}
+.fx-ret{position:absolute;left:0;top:0;width:0;height:0}
+.fx-ret i{position:absolute;width:13px;height:13px;border:2px solid var(--fx);filter:drop-shadow(0 0 4px var(--fx))}
+.fx-ret i:nth-child(1){left:-26px;top:-26px;border-right:0;border-bottom:0}
+.fx-ret i:nth-child(2){left:13px;top:-26px;border-left:0;border-bottom:0}
+.fx-ret i:nth-child(3){left:-26px;top:13px;border-right:0;border-top:0}
+.fx-ret i:nth-child(4){left:13px;top:13px;border-left:0;border-top:0}
+.fx-hud.run .fx-ret i{animation:fxlock .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes fxlock{0%{transform:scale(5.5);opacity:0}60%{opacity:1}100%{transform:none;opacity:1}}
+.fx-coord{position:absolute;left:32px;top:-32px;white-space:nowrap;font-family:var(--font-head);font-size:11px;font-weight:600;line-height:1.5;font-variant-numeric:tabular-nums;color:var(--text);padding:0 6px;border-radius:5px;background:color-mix(in srgb,var(--surface) 82%,transparent)}
+.fx-ret.flip .fx-coord{left:auto;right:32px}
+.fx-coord{opacity:0}
+.fx-hud.run .fx-coord{animation:fxcoord 1.7s linear}
+@keyframes fxcoord{0%,70%{opacity:1}100%{opacity:0}}
+.fx-lb{position:absolute;left:0;top:0;display:none;align-items:center;gap:4px;max-width:176px;padding:2px 8px;border:1px solid var(--c);border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);font-family:var(--font-body);font-size:11.5px;font-weight:500;line-height:1.6;color:var(--text);white-space:nowrap;cursor:pointer;pointer-events:auto;opacity:0;will-change:transform}
+.fx-lb.on{display:inline-flex;opacity:1}
+.fx-hud.run .fx-lb.on{animation:fxpop .4s cubic-bezier(.2,1.5,.4,1)}
+@keyframes fxpop{0%{opacity:0;scale:.5}100%{opacity:1;scale:1}}
+.fx-lb .g{font-weight:700;color:var(--c)}
+.fx-lb .n{overflow:hidden;text-overflow:ellipsis}
+.fx-lb .w{color:var(--c);font-size:10.5px;flex:0 0 auto}
+.fx-bar{position:absolute;left:10px;right:10px;bottom:10px;display:flex;align-items:center;gap:10px;padding:6px 12px 7px;border-radius:12px;border:1px solid color-mix(in srgb,var(--fx) 55%,var(--border));background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 8px 26px -12px var(--fx)}
+.fx-bar::before{content:"";flex:0 0 auto;align-self:stretch;width:4px;border-radius:2px;background:var(--fx);box-shadow:0 0 10px var(--fx)}
+.fx-bar .nmw{flex:1 1 auto;min-width:0}
+.fx-bar .co{font-family:var(--font-head);font-size:10.5px;line-height:1.5;color:var(--text-2);font-variant-numeric:tabular-nums}
+.fx-bar .nm{font-family:var(--font-head);font-weight:600;font-size:14px;line-height:1.5;color:var(--text);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.fx-bar .kv2{flex:0 0 auto;text-align:right;max-width:46%}
+.fx-bar .bv{display:block;font-family:var(--font-head);font-weight:700;font-size:22px;line-height:1.25;font-variant-numeric:tabular-nums;color:var(--text);white-space:nowrap}
+.fx-bar .bk{display:block;font-size:10.5px;line-height:1.5;color:var(--text-2)}
+.fx-hud.run .fx-bar{animation:fxbar .55s cubic-bezier(.16,1.1,.3,1) .22s backwards}
+@keyframes fxbar{0%{transform:translateY(130%);opacity:0}100%{transform:none;opacity:1}}
+.stage.has-fx .legend,.stage.has-fx .hint{opacity:0;pointer-events:none}
+@media (max-width:860px){
+  .panel.has-card .footnote{display:none}
+  .stage.has-fx .stage-ui{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .stage.has-fx .stage-ui::-webkit-scrollbar{display:none}
+  .stage.has-fx .chip{flex:0 0 auto}
+  .stage.has-fx .chip.primary{margin-left:0}
+  .fx-bar{left:6px;right:6px;bottom:6px;padding:4px 10px 5px;gap:8px}
+  .fx-bar .nm{font-size:12.5px}
+  .fx-bar .bv{font-size:18px}
+  .fx-lb{font-size:11px;max-width:150px;padding:1px 7px}
+  .ig h2{font-size:17px}
+  .ig-hero{grid-template-columns:72px minmax(0,1fr);gap:10px;padding:9px 10px}
+  .ig-gauge{width:72px;height:72px}
+  .ig-gauge .b{font-size:20px}
+  .ig-gauge .b.w{font-size:12px}
+  .ig-stat .v{font-size:22px}
+  .detail .back{padding-bottom:4px}
+}
+@media (max-width:360px){ .ig-stats{grid-template-columns:minmax(0,1fr)} }
 </style>
 </head>
 <body>
@@ -633,6 +819,7 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
         <button class="chip gold" id="btn-gold" type="button" title="ราคาทองคำและบทวิเคราะห์"><span class="sw"></span>ทองคำ</button>
         <button class="chip primary" id="btn-thai" type="button">หมุนไปที่ไทย</button>
       </div>
+      <div class="fx-hud" id="fx-hud" hidden aria-hidden="true"></div>
       <div class="legend" id="legend-stage"></div>
       <div class="hint">ลากเพื่อหมุน · เลื่อนเพื่อซูม · แตะหมุดเพื่อดูรายละเอียด</div>
       <div class="fallback" id="fallback"></div>
@@ -754,7 +941,8 @@ function buildLegend(){
   });
   var r3 = h('div', {class:'legend-row'}, [h('span', {class:'lbl', text:'ช่องแคบ'}), h('span', {class:'dia'}), h('span', {text:'จุดเสี่ยงเส้นทางการค้า (ใหญ่ = เสี่ยงมาก)'})]);
   var r4 = h('div', {class:'legend-row'}, [h('span', {class:'lbl', text:'ภัยพิบัติ'}), h('span', {class:'tri'}), h('span', {text:'เตือนจาก GDACS / USGS (ใหญ่ = เตือนสูง)'})]);
-  wrap.appendChild(r1); wrap.appendChild(r4); wrap.appendChild(r2); wrap.appendChild(r3);
+  var r5 = h('div', {class:'legend-row'}, [h('span', {class:'lbl', text:'ทองคำ'}), h('span', {class:'dot', style:'background:var(--gold-glow)'}), h('span', {text:'จุดสัญลักษณ์ ไม่ใช่ที่ตั้งจริงของราคาทอง'})]);
+  wrap.appendChild(r1); wrap.appendChild(r4); wrap.appendChild(r2); wrap.appendChild(r3); wrap.appendChild(r5);
   return wrap;
 }
 $('legend-stage').appendChild(buildLegend());
@@ -894,6 +1082,7 @@ function showTab(name){
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function(t){ t.setAttribute('aria-selected', String(t.getAttribute('data-tab')===name)); });
   VIEWS.forEach(function(n){ $('view-'+n).hidden = (n!==name); });
   $('view-detail').hidden = true;
+  $('panel').classList.remove('has-card');
   $('panel-body').scrollTop = 0;
   if(name==='gold' && typeof goldLayout==='function') goldLayout();
 }
@@ -906,62 +1095,40 @@ function kv(k, v){ var s = String(v==null ? '—' : v); return h('div', null, [h
 function renderDetail(kind, idx){
   var d = $('view-detail'); d.innerHTML = '';
   d.appendChild(h('button', {class:'back', type:'button', onclick:function(){ showTab(currentTab); clearSelection(); }, text:'← กลับ'}));
-  if(kind==='conflict'){
-    var c = conflicts[idx];
-    d.appendChild(h('h2', {text:c.name_th}));
-    d.appendChild(h('div', {class:'chips'}, [
-      h('span', {class:'pill'}, [h('span', {class:'dot', style:'background:'+intensityVar(c.intensity)}), 'ความรุนแรง '+(c.intensity||'—')+'/5']),
-      h('span', {class:'pill', text:TYPE_TH[c.type]||c.type||''}),
-      c.confidence ? h('span', {class:'pill conf-'+c.confidence, text:CONF_TH[c.confidence]||c.confidence}) : null
-    ]));
-    d.appendChild(h('div', {id:'card-latest'}));
-    d.appendChild(basisNote());
-    if(c.status_th) d.appendChild(h('p', {class:'status', text:c.status_th}));
-    if(c.summary_th) d.appendChild(h('p', {text:c.summary_th}));
-    d.appendChild(h('div', {class:'kv'}, [kv('ผู้เสียชีวิต (ประมาณ)', c.deaths_est||'—'), kv('ผู้พลัดถิ่น', c.displaced||'—')]));
-  } else if(kind==='econ'){
-    var e = economies[idx];
-    d.appendChild(h('h2', {text:e.name_th}));
-    d.appendChild(h('div', {class:'chips'}, [
-      h('span', {class:'pill', style:'color:'+healthVar(e.health)+';border-color:'+healthVar(e.health)}, [h('span', {class:'dot', style:'background:'+healthVar(e.health)}), HEALTH_TH[e.health]||'—']),
-      e.iso ? h('span', {class:'pill', text:e.iso}) : null
-    ]));
-    d.appendChild(basisNote());
-    if(e.note_th) d.appendChild(h('p', {text:e.note_th}));
-    d.appendChild(h('div', {class:'kv'}, [kv('GDP 2026', pct(e.gdp_growth_2026)), kv('GDP 2027 (คาดการณ์)', pct(e.gdp_growth_2027)), kv('เงินเฟ้อ', num(e.inflation,'%')), kv('ดอกเบี้ยนโยบาย', num(e.policy_rate,'%'))]));
-  } else if(kind==='disaster'){
-    renderDisasterDetail(d, disasters[idx]);
-  } else {
-    var ck = chokepoints[idx];
-    d.appendChild(h('h2', {text:ck.name_th}));
-    d.appendChild(h('div', {class:'chips'}, [h('span', {class:'pill'}, [h('span', {class:'dia'}), 'ระดับ '+(ck.level||1)+' · '+(LEVEL_TH[ck.level]||'')])]));
-    d.appendChild(basisNote());
-    if(ck.note_th) d.appendChild(h('p', {text:ck.note_th}));
-  }
-  var src = (kind==='conflict' ? conflicts[idx].sources : kind==='econ' ? economies[idx].sources : kind==='disaster' ? dzSources(disasters[idx]) : chokepoints[idx].sources) || [];
+  var rows = igRelations(kind, idx);
+  rows.arcs = igPickArcs(rows);
+  d.appendChild(igCard(kind, idx, rows));
+  var rec = igRec(kind, idx);
+  var src = (kind==='conflict' ? rec.sources : kind==='econ' ? rec.sources : kind==='disaster' ? dzSources(rec) : kind==='gold' ? null : rec.sources) || [];
   d.appendChild(h('h3', {class:'sec-title', text:'แหล่งที่มา'}));
-  d.appendChild(src.length ? sourcesList(src) : h('p', {class:'st', text:'ไม่มีแหล่งที่มาระบุ', style:'color:var(--muted);margin:0'}));
+  if(kind==='gold') d.appendChild(h('p', {class:'ig-note', text:((GOLD && GOLD.sources) || []).join(' · ')}));
+  else d.appendChild(src.length ? sourcesList(src) : h('p', {class:'st', text:'ไม่มีแหล่งที่มาระบุ', style:'color:var(--muted);margin:0'}));
   VIEWS.forEach(function(n){ $('view-'+n).hidden = true; });
   d.hidden = false;
+  $('panel').classList.add('has-card');
   $('panel-body').scrollTop = 0;
   if(kind==='conflict' && typeof updateCardLatest==='function') updateCardLatest();
+  return rows;
 }
 
 var selected = null;
 function select(kind, idx, fromGlobe){
   if(kind==='disaster' && !disasters[idx]) return;
+  if(kind==='gold' && !GOLD) return;
+  igCancel();
   selected = {kind:kind, idx:idx};
   Array.prototype.forEach.call(document.querySelectorAll('.item'), function(b){
     b.classList.toggle('active', b.getAttribute('data-kind')===kind && +b.getAttribute('data-idx')===idx);
   });
-  renderDetail(kind, idx);
-  var rec = kind==='conflict' ? conflicts[idx] : kind==='econ' ? economies[idx] : kind==='disaster' ? disasters[idx] : chokepoints[idx];
-  if(globe){ globe.flyTo(rec.lat, rec.lon); globe.highlight(rec.lat, rec.lon, kind); }
+  var rows = renderDetail(kind, idx), rec = igRec(kind, idx);
+  if(globe) globe.highlight(rec.lat, rec.lon, kind);
+  igPlay(kind, idx, rows);
   if(isMobile() && sheetState==='low') setSheet('mid');
 }
 function clearSelection(){
   selected = null;
   Array.prototype.forEach.call(document.querySelectorAll('.item.active'), function(b){ b.classList.remove('active'); });
+  igClear();
   if(globe) globe.highlight(null);
 }
 
@@ -1004,7 +1171,7 @@ function readTokens(){
     space:g('--space'), fill:g('--globe-fill'), rim:g('--globe-rim'), dot:g('--globe-dot'), grid:g('--globe-grid'), accent:g('--accent'),
     intensity:[g('--i1'),g('--i2'),g('--i3'),g('--i4'),g('--i5')],
     health:{strong:g('--h-strong'), stable:g('--h-stable'), weak:g('--h-weak'), crisis:g('--h-crisis')},
-    choke:g('--choke'), disaster:g('--disaster')
+    choke:g('--choke'), disaster:g('--disaster'), goldGlow:g('--gold-glow')
   };
 }
 
@@ -1072,10 +1239,12 @@ function createGlobe(stage){
 
   /* --- land dots --- */
   var landMat = new T.ShaderMaterial({
-    uniforms:{ uColor:{value:new T.Color(tok.dot)}, uPR:{value:renderer.getPixelRatio()}, uSize:{value:1.7} },
+    uniforms:{ uColor:{value:new T.Color(tok.dot)}, uPR:{value:renderer.getPixelRatio()}, uSize:{value:1.7},
+      /* the click sequence: a spotlight around the selected place and two waves that run through the dots. Uniforms only, no new object */
+      uHot:{value:new T.Color(tok.accent)}, uFocus:{value:new T.Vector3(0,0,1)}, uFocusAmt:{value:0}, uWave:{value:-1}, uWave2:{value:-1} },
     transparent:true, depthWrite:false,
-    vertexShader:'uniform float uPR; uniform float uSize; varying float vF; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vec3 n = normalize(normalMatrix*normal); vF = max(dot(n, normalize(-mv.xyz)),0.0); gl_Position = projectionMatrix*mv; gl_PointSize = uSize*uPR*(3.4/(-mv.z)); }',
-    fragmentShader:'uniform vec3 uColor; varying float vF; void main(){ vec2 d = gl_PointCoord-0.5; if(dot(d,d)>0.25) discard; float a = 0.35+0.65*smoothstep(0.0,0.35,vF); gl_FragColor = vec4(uColor, a); }'
+    vertexShader:'uniform float uPR; uniform float uSize; uniform vec3 uFocus; uniform float uFocusAmt; uniform float uWave; uniform float uWave2; varying float vF; varying float vHot; varying float vSpot; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vec3 n = normalize(normalMatrix*normal); vF = max(dot(n, normalize(-mv.xyz)),0.0); float ang = acos(clamp(dot(normal,uFocus),-1.0,1.0)); float w1 = (ang-uWave)/0.085; float w2 = (ang-uWave2)/0.055; float wave = exp(-w1*w1)+0.65*exp(-w2*w2); vHot = wave+0.55*uFocusAmt*(1.0-smoothstep(0.03,0.32,ang)); vSpot = mix(1.0,0.34+0.66*(1.0-smoothstep(0.3,1.3,ang)),uFocusAmt); gl_Position = projectionMatrix*mv; gl_PointSize = uSize*uPR*(3.4/(-mv.z))*(1.0+wave*1.5); }',
+    fragmentShader:'uniform vec3 uColor; uniform vec3 uHot; varying float vF; varying float vHot; varying float vSpot; void main(){ vec2 d = gl_PointCoord-0.5; if(dot(d,d)>0.25) discard; float h = clamp(vHot,0.0,1.0); float a = (0.35+0.65*smoothstep(0.0,0.35,vF))*vSpot; gl_FragColor = vec4(mix(uColor,uHot+h*0.12,h), clamp(a+h*0.5,0.0,1.0)); }'
   });
   (function(){
     var n = LAND.length, pos = new Float32Array(n*3), nor = new Float32Array(n*3), v = new T.Vector3();
@@ -1086,14 +1255,15 @@ function createGlobe(stage){
 
   /* --- pins: one Points per category --- */
   var PIN_VS = 'attribute vec3 aColor; attribute float aSize; attribute float aPhase; attribute float aHot; uniform float uPR; varying vec3 vColor; varying float vPhase; varying float vFace; varying float vHot; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vec3 n = normalize(normalMatrix*normalize(position)); vFace = dot(n, normalize(-mv.xyz)); vColor = aColor; vPhase = aPhase; vHot = aHot; gl_Position = projectionMatrix*mv; gl_PointSize = aSize*uPR*(3.0/(-mv.z)); }';
-  var PIN_FS = 'uniform float uTime; uniform float uPulse; uniform int uShape; varying vec3 vColor; varying float vPhase; varying float vFace; varying float vHot;'+
+  var PIN_FS = 'uniform float uTime; uniform float uPulse; uniform int uShape; uniform float uDim; varying vec3 vColor; varying float vPhase; varying float vFace; varying float vHot;'+
    'void main(){ float face = smoothstep(0.02, 0.22, vFace); if(face<0.01) discard; vec2 d=(gl_PointCoord-0.5)*2.0; float r=length(d); float a=0.0; vec3 col=vColor;'+
    ' if(uShape==0){ float core=1.0-smoothstep(0.18,0.26,r); float glow=exp(-r*r*5.0)*0.5; float t=fract(uTime*(0.45+0.35*vHot)+vPhase); float ring=(1.0-smoothstep(0.0,0.07,abs(r-(0.26+t*0.7))))*(1.0-t)*uPulse; float hot=(1.0-smoothstep(0.0,0.045,abs(r-0.62)))*vHot*0.75; a=max(max(core,max(glow,ring*0.85)),hot); col=vColor+core*0.3+hot*0.25; }'+
    ' else if(uShape==1){ float ring=1.0-smoothstep(0.06,0.12,abs(r-0.46)); float dot=1.0-smoothstep(0.10,0.17,r); float glow=exp(-r*r*3.0)*0.18; a=max(max(ring,dot*0.95),glow); }'+
    ' else if(uShape==3){ vec2 q=vec2(d.x,-d.y+0.18); float k=1.7320508; q.x=abs(q.x)-0.62; q.y=q.y+0.62/k; if(q.x+k*q.y>0.0) q=vec2(q.x-k*q.y,-k*q.x-q.y)/2.0; q.x-=clamp(q.x,-1.24,0.0); float sd=-length(q)*sign(q.y);'+
    ' float fillA=1.0-smoothstep(-0.02,0.04,sd); float edge=1.0-smoothstep(0.0,0.07,abs(sd+0.06)); float t=fract(uTime*0.55+vPhase); float ring=(1.0-smoothstep(0.0,0.07,abs(r-(0.32+t*0.62))))*(1.0-t)*uPulse*vHot; a=max(max(fillA*0.6,edge),ring*0.8); col=vColor+edge*0.22; }'+
+   ' else if(uShape==4){ float k=max(abs(d.x)*0.866+abs(d.y)*0.5,abs(d.y)); float hexo=1.0-smoothstep(0.44,0.52,k); float inner=1.0-smoothstep(0.2,0.27,k); float glow=exp(-r*r*3.2)*0.42; float t=fract(uTime*0.4+vPhase); float ring=(1.0-smoothstep(0.0,0.06,abs(r-(0.42+t*0.5))))*(1.0-t)*uPulse*0.7; a=max(max(hexo-inner*0.45,glow),ring); col=vColor+hexo*0.2; }'+
    ' else { float dm=abs(d.x)+abs(d.y); float shape=1.0-smoothstep(0.50,0.60,dm); float inner=1.0-smoothstep(0.22,0.30,dm); float blink=0.75+0.25*sin(uTime*2.0+vPhase*6.28)*uPulse; a=(shape-inner*0.55)*blink; col=vColor+inner*0.25; }'+
-   ' a*=face; if(a<0.02) discard; gl_FragColor=vec4(col,a); }';
+   ' a*=face*uDim; if(a<0.02) discard; gl_FragColor=vec4(col,a); }';
 
   function makePins(recs, shape, colorFn, sizeFn){
     var n = recs.length, pos = new Float32Array(n*3), col = new Float32Array(n*3), size = new Float32Array(n), phase = new Float32Array(n), hot = new Float32Array(n), v = new T.Vector3();
@@ -1104,7 +1274,7 @@ function createGlobe(stage){
     g.setAttribute('aSize', new T.BufferAttribute(size,1));
     g.setAttribute('aPhase', new T.BufferAttribute(phase,1));
     g.setAttribute('aHot', new T.BufferAttribute(hot,1));
-    var m = new T.ShaderMaterial({ uniforms:{uTime:{value:0}, uPulse:{value:reduceMotion?0:1}, uShape:{value:shape}, uPR:{value:renderer.getPixelRatio()}}, vertexShader:PIN_VS, fragmentShader:PIN_FS, transparent:true, depthWrite:false });
+    var m = new T.ShaderMaterial({ uniforms:{uTime:{value:0}, uPulse:{value:reduceMotion?0:1}, uShape:{value:shape}, uDim:{value:1}, uPR:{value:renderer.getPixelRatio()}}, vertexShader:PIN_VS, fragmentShader:PIN_FS, transparent:true, depthWrite:false });
     var p = new T.Points(g, m);
     p.userData.recolor = function(tk){ var c = new T.Color(); for(var i=0;i<n;i++){ c.set(colorFn(recs[i], tk)); col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b; } g.attributes.aColor.needsUpdate = true; };
     p.userData.recolor(tok);
@@ -1116,6 +1286,8 @@ function createGlobe(stage){
   var pinsEcon = makePins(economies, 1, function(e,tk){ return tk.health[e.health] || tk.health.stable; }, function(){ return 24; });
   var pinsChoke = makePins(chokepoints, 2, function(c,tk){ return tk.choke; }, function(c){ return 14 + (c.level||1)*4; });
   var pinsDz = null;   /* rebuilt whenever data/disasters.json changes */
+  var pinsGold = makePins([GOLD_PIN], 4, function(r,tk){ return tk.goldGlow; }, function(){ return 26; });
+  pinsGold.visible = !!GOLD;
 
   /* --- pick targets (screen-space nearest, so overlapping pins stay selectable) --- */
   var pinList = [];
@@ -1123,7 +1295,8 @@ function createGlobe(stage){
     recs.forEach(function(r, i){ var v = new T.Vector3(); toVec(r.lat, r.lon, R*1.02, v); pinList.push({kind:kind, idx:i, pos:v}); });
   }
   addPicks(conflicts, 'conflict'); addPicks(economies, 'econ'); addPicks(chokepoints, 'choke');
-  var layers = {conflict:true, econ:true, choke:true, disaster:true};
+  if(GOLD) addPicks([GOLD_PIN], 'gold');
+  var layers = {conflict:true, econ:true, choke:true, disaster:true, gold:true};
   function setDisasters(recs){
     if(pinsDz){ scene.remove(pinsDz); pinsDz.geometry.dispose(); pinsDz.material.dispose(); pinsDz = null; }
     for(var i=pinList.length-1;i>=0;i--){ if(pinList[i].kind==='disaster') pinList.splice(i, 1); }
@@ -1131,6 +1304,7 @@ function createGlobe(stage){
     pinsDz = makePins(recs, 3, function(r,tk){ return tk.disaster; }, function(r){ return r.alert_level==='red' ? 30 : r.alert_level==='orange' ? 25 : 20; });
     pinsDz.userData.setHot(recs.map(function(r){ return r.alert_level==='red'; }));
     pinsDz.visible = layers.disaster;
+    pinsDz.material.uniforms.uDim.value = pinDim;
     addPicks(recs, 'disaster');
   }
   function setLayer(kind, on){
@@ -1149,10 +1323,172 @@ function createGlobe(stage){
     toVec(lat, lon, R*1.025, hi.position); hiDir.copy(hi.position).multiplyScalar(2); hi.lookAt(hiDir); hi.visible = true;
   }
 
+  /* --- click sequence on the globe: pooled, one object per job, rewritten in place and never recreated --- */
+  var FX_ARCS = 8, FX_DOTS = 72, fxN = FX_ARCS*FX_DOTS, ARC_DUR = 0.8, ARC_T0 = 0.5, ARC_GAP = 0.13;
+  var arcPos = new Float32Array(fxN*3), arcCol = new Float32Array(fxN*3), arcT = new Float32Array(fxN), arcS = new Float32Array(fxN), arcB = new Float32Array(fxN);
+  var arcGeo = new T.BufferGeometry();
+  arcGeo.setAttribute('position', new T.BufferAttribute(arcPos, 3)); arcGeo.setAttribute('aColor', new T.BufferAttribute(arcCol, 3));
+  arcGeo.setAttribute('aT', new T.BufferAttribute(arcT, 1)); arcGeo.setAttribute('aS', new T.BufferAttribute(arcS, 1)); arcGeo.setAttribute('aB', new T.BufferAttribute(arcB, 1));
+  arcGeo.setDrawRange(0, 0);
+  var arcMat = new T.ShaderMaterial({ transparent:true, depthWrite:false,
+    uniforms:{uP:{value:0}, uTime:{value:0}, uPR:{value:renderer.getPixelRatio()}, uFlow:{value:reduceMotion?0:1}, uDur:{value:ARC_DUR}},
+    vertexShader:'attribute vec3 aColor; attribute float aT; attribute float aS; attribute float aB; uniform float uP; uniform float uPR; uniform float uTime; uniform float uFlow; uniform float uDur; varying vec3 vC; varying float vA; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); float h = (uP-aS)/uDur; float dv = h-aT; float head = exp(-dv*dv*220.0)*step(h,1.3); float on = step(0.0,dv); vA = on*(0.74+uFlow*0.26*sin(aT*15.0-uTime*2.6))+head*on; vC = aColor+head*0.55; gl_Position = projectionMatrix*mv; gl_PointSize = aB*uPR*(3.0/(-mv.z))*(1.0+head*2.6); }',
+    fragmentShader:'varying vec3 vC; varying float vA; void main(){ if(vA<0.01) discard; vec2 d = gl_PointCoord-0.5; float r = dot(d,d); if(r>0.25) discard; gl_FragColor = vec4(vC, min(1.0,vA)*(1.0-smoothstep(0.14,0.25,r))); }'
+  });
+  var arcPts = new T.Points(arcGeo, arcMat); arcPts.frustumCulled = false; arcPts.visible = false; scene.add(arcPts);
+
+  var PULSES = FX_ARCS, pulPos = new Float32Array(PULSES*3), pulCol = new Float32Array(PULSES*3), pulS = new Float32Array(PULSES);
+  var pulGeo = new T.BufferGeometry();
+  pulGeo.setAttribute('position', new T.BufferAttribute(pulPos, 3)); pulGeo.setAttribute('aColor', new T.BufferAttribute(pulCol, 3)); pulGeo.setAttribute('aS', new T.BufferAttribute(pulS, 1));
+  pulGeo.setDrawRange(0, 0);
+  var pulMat = new T.ShaderMaterial({ transparent:true, depthWrite:false,
+    uniforms:{uP:{value:0}, uPR:{value:renderer.getPixelRatio()}, uFlow:{value:reduceMotion?0:1}},
+    vertexShader:'attribute vec3 aColor; attribute float aS; uniform float uP; uniform float uPR; varying vec3 vC; varying float vK; varying float vFace; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vec3 n = normalize(normalMatrix*normalize(position)); vFace = dot(n, normalize(-mv.xyz)); vC = aColor; vK = uP-aS; gl_Position = projectionMatrix*mv; gl_PointSize = 46.0*uPR*(3.0/(-mv.z)); }',
+    fragmentShader:'uniform float uFlow; varying vec3 vC; varying float vK; varying float vFace; void main(){ if(vK<0.0 || vFace<0.02) discard; float r = length(gl_PointCoord-0.5)*2.0; float k = clamp(vK/0.8,0.0,1.0); float hit = (1.0-smoothstep(0.0,0.09,abs(r-(0.12+k*0.82))))*(1.0-k); float t = fract(vK/2.6); float slow = (1.0-smoothstep(0.0,0.05,abs(r-(0.18+t*0.6))))*(1.0-t)*0.5*uFlow; float core = 1.0-smoothstep(0.1,0.16,r); float a = max(max(hit,slow),core); if(a<0.02) discard; gl_FragColor = vec4(vC+core*0.2, a*smoothstep(0.02,0.2,vFace)); }'
+  });
+  var pulPts = new T.Points(pulGeo, pulMat); pulPts.frustumCulled = false; pulPts.visible = false; scene.add(pulPts);
+
+  var rippleMat = new T.ShaderMaterial({ transparent:true, depthWrite:false, side:T.DoubleSide,
+    uniforms:{uP:{value:0}, uColor:{value:new T.Color('#ffffff')}, uSpin:{value:reduceMotion?0:1}},
+    vertexShader:'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+    fragmentShader:'uniform float uP; uniform vec3 uColor; uniform float uSpin; varying vec2 vUv; float ring(float r, float t, float w){ return (1.0-smoothstep(0.0,w,abs(r-t))); } void main(){ vec2 d = (vUv-0.5)*2.0; float r = length(d); if(r>1.0) discard; float a = 0.0; for(int i=0;i<3;i++){ float k = clamp((uP-float(i)*0.2)/1.15,0.0,1.0); if(k>0.0 && k<1.0) a = max(a, ring(r,k,0.05-k*0.02)*(1.0-k)); } float ang = atan(d.y,d.x)+uP*0.5*uSpin; float ticks = step(0.55,fract(ang*3.8197))*ring(r,0.26,0.022); float guard = ring(r,0.34,0.008)*0.7; float glow = exp(-r*r*22.0)*0.5; a = max(a, max(max(ticks,guard),glow)*smoothstep(0.1,0.6,uP)); if(a<0.01) discard; gl_FragColor = vec4(uColor+0.25*(1.0-r), a); }'
+  });
+  var ripple = new T.Mesh(new T.PlaneGeometry(0.72, 0.72), rippleMat); ripple.visible = false; ripple.renderOrder = 2; scene.add(ripple);
+
+  var fx = {active:false, target:0, amt:0, t0:0, instant:false, src:new T.Vector3(), lat:0, lon:0, labels:[], order:[], sx:-1, sy:-1, safeTop:50, dots:0, arcs:0};
+  var fxV0 = new T.Vector3(), fxV1 = new T.Vector3(), fxVa = new T.Vector3(), fxC = new T.Color();
+  /* write the arcs: great circles lifted by their length. The dot pattern differs by kind, so the kinds differ without colour too */
+  function fxFillArcs(lat, lon, arcs){
+    var o = 0, land = [];
+    toVec(lat, lon, 1, fxV0);
+    for(var a=0;a<arcs.length && a<FX_ARCS;a++){
+      var rc = arcs[a], rel = rc.rel, start = ARC_T0 + a*ARC_GAP;
+      toVec(rc.lat, rc.lon, 1, fxV1);
+      var ang = Math.acos(Math.max(-1, Math.min(1, fxV0.dot(fxV1)))), sn = Math.sin(ang)||1e-6, lift = 0.015 + 0.24*ang/Math.PI, size = rel==='data' ? 4.6 : rel==='mention' ? 4 : 3.4;
+      var dots = Math.max(9, Math.min(FX_DOTS, Math.round(ang/DEG/1.15)));   /* even spacing on the globe, so a short arc is not a solid bar */
+      fxC.set(rc.color);
+      for(var i=0;i<dots;i++){
+        if(rel==='geo' && i%3!==0 && i!==dots-1) continue;
+        if(rel==='mention' && i%3===2) continue;
+        var t = i/(dots-1), k0 = Math.sin((1-t)*ang)/sn, k1 = Math.sin(t*ang)/sn, rr = R*1.012 + lift*Math.sin(Math.PI*t);
+        fxVa.copy(fxV0).multiplyScalar(k0).addScaledVector(fxV1, k1).normalize().multiplyScalar(rr);
+        arcPos[o*3] = fxVa.x; arcPos[o*3+1] = fxVa.y; arcPos[o*3+2] = fxVa.z;
+        arcCol[o*3] = fxC.r; arcCol[o*3+1] = fxC.g; arcCol[o*3+2] = fxC.b;
+        arcT[o] = t; arcS[o] = start; arcB[o] = size; o++;
+      }
+      toVec(rc.lat, rc.lon, R*1.016, fxVa);
+      pulPos[a*3] = fxVa.x; pulPos[a*3+1] = fxVa.y; pulPos[a*3+2] = fxVa.z;
+      pulCol[a*3] = fxC.r; pulCol[a*3+1] = fxC.g; pulCol[a*3+2] = fxC.b;
+      pulS[a] = start + ARC_DUR;
+      land.push(start + ARC_DUR);
+    }
+    arcGeo.setDrawRange(0, o); pulGeo.setDrawRange(0, Math.min(arcs.length, FX_ARCS));
+    ['position','aColor','aT','aS','aB'].forEach(function(n){ arcGeo.attributes[n].needsUpdate = true; });
+    ['position','aColor','aS'].forEach(function(n){ pulGeo.attributes[n].needsUpdate = true; });
+    fx.dots = o; fx.arcs = Math.min(arcs.length, FX_ARCS);
+    return land;
+  }
+  function fxPlay(o){
+    fx.lat = o.lat; fx.lon = o.lon; fx.instant = !!o.instant; fx.t0 = performance.now(); fx.target = 1; fx.active = true;
+    toVec(o.lat, o.lon, R*1.02, fx.src);
+    var land = fxFillArcs(o.lat, o.lon, o.arcs||[]);
+    arcPts.visible = land.length>0; pulPts.visible = land.length>0;
+    toVec(o.lat, o.lon, R*1.008, ripple.position); hiDir.copy(ripple.position).multiplyScalar(2); ripple.lookAt(hiDir); ripple.visible = true;
+    rippleMat.uniforms.uColor.value.set(o.color);
+    landMat.uniforms.uHot.value.set(o.color);
+    landMat.uniforms.uFocus.value.copy(ripple.position).normalize();
+    if(fx.instant){ fx.amt = 1; }
+    /* the wider the arcs reach, the less the camera moves in */
+    var spread = 0; toVec(o.lat, o.lon, 1, fxV0);
+    (o.arcs||[]).forEach(function(a){ toVec(a.lat, a.lon, 1, fxV1); spread = Math.max(spread, Math.acos(Math.max(-1, Math.min(1, fxV0.dot(fxV1))))/DEG); });
+    flyTo(o.lat, o.lon, {k: spread>85 ? 1 : spread>40 ? 0.93 : spread>12 ? 0.85 : 0.78, swoop:true});
+    fx.ret = $('fx-ret'); fx.flash = $('fx-flash'); fx.xh = $('fx-xh'); fx.yh = $('fx-yh'); fx.sx = fx.sy = -1;
+    var ui = $('stage-ui'); fx.safeTop = ui ? ui.offsetTop + ui.offsetHeight + 6 : 50;
+    var bar = $('fx-bar'); fx.safeBottom = bar ? bar.offsetHeight + 16 : 60;
+    return land;
+  }
+  function fxLabels(els, arcs){
+    fx.labels.length = 0; fx.order.length = 0;
+    els.forEach(function(el, i){
+      var a = fx.labels[i] = {el:el, pos:new T.Vector3(), w:el.offsetWidth||120, h:el.offsetHeight||22, x:-1, y:-1, ax:0, ay:0, shown:true};
+      toVec(arcs[i].lat, arcs[i].lon, R*1.02, a.pos);
+      fx.order[i] = i;
+    });
+  }
+  function fxLabelsMeasure(){ for(var i=0;i<fx.labels.length;i++){ var a = fx.labels[i]; if(a.el.classList.contains('on')){ a.w = a.el.offsetWidth; a.h = a.el.offsetHeight; } } }
+  function fxClear(){
+    if(!fx.active) return;
+    fx.target = 0; fx.labels.length = 0;
+    arcPts.visible = false; pulPts.visible = false; ripple.visible = false;
+    if(reduceMotion) fx.amt = 0;
+    fly = {t0:performance.now(), dur:reduceMotion?0:480, lat0:cam.lat, lon0:cam.lon, lat1:cam.lat, lon1:cam.lon, d0:cam.dist, d1:userZoomed?cam.dist:fitDist, sw:0};
+    lastInteract = performance.now();
+  }
+  function fxTick(now, dt, t){
+    var p = fx.instant ? 1000 : (now-fx.t0)/1000;
+    fx.amt += (fx.target-fx.amt)*Math.min(1, dt*5);
+    if(fx.target===0 && fx.amt<0.01){
+      fx.amt = 0; fx.active = false;
+      landMat.uniforms.uFocusAmt.value = 0; landMat.uniforms.uWave.value = -1; landMat.uniforms.uWave2.value = -1;
+      pinsSetDim(1);
+      return;
+    }
+    landMat.uniforms.uFocusAmt.value = fx.amt;
+    landMat.uniforms.uWave.value = (!fx.instant && fx.target>0 && p>0.15 && p<2.6) ? (p-0.15)*1.25 : -1;
+    landMat.uniforms.uWave2.value = (!fx.instant && fx.target>0 && p>0.55 && p<3.0) ? (p-0.55)*1.25 : -1;
+    pinsSetDim(1-0.55*fx.amt);
+    rippleMat.uniforms.uP.value = p; arcMat.uniforms.uP.value = p; pulMat.uniforms.uP.value = p; arcMat.uniforms.uTime.value = t;
+    if(fx.target>0) fxHud();
+  }
+  function fxHud(){
+    var W = stW, H = stH;
+    projV.copy(fx.src).project(camera);
+    var sx = (projV.x+1)*0.5*W, sy = (1-projV.y)*0.5*H, front = fx.src.dot(camera.position) > R*R*1.02;
+    if(fx.ret && (Math.abs(sx-fx.sx)>0.4 || Math.abs(sy-fx.sy)>0.4)){
+      fx.sx = sx; fx.sy = sy;
+      var tr = 'translate(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px)';
+      fx.ret.style.transform = tr; fx.flash.style.transform = tr;
+      fx.xh.style.transform = 'translateY(' + sy.toFixed(1) + 'px)'; fx.yh.style.transform = 'translateX(' + sx.toFixed(1) + 'px)';
+      fx.ret.classList.toggle('flip', sx > W*0.58);
+    }
+    if(fx.ret) fx.ret.style.display = front ? '' : 'none';
+    var i, j, n = fx.labels.length, L, Q, ord = fx.order;
+    for(i=0;i<n;i++){
+      L = fx.labels[i];
+      L.vis = L.pos.dot(camera.position) > R*R*1.02;
+      if(L.vis){ projV.copy(L.pos).project(camera); var px = (projV.x+1)*0.5*W, py = (1-projV.y)*0.5*H; L.ax = px < W*0.6 ? px+9 : px-L.w-9; L.ay = py-L.h/2; L.ax = Math.max(4, Math.min(W-L.w-4, L.ax)); }
+    }
+    /* keep the labels apart: top to bottom, each pushed below whatever it overlaps. No allocation */
+    for(i=1;i<n;i++){ var v = ord[i]; for(j=i-1;j>=0 && fx.labels[ord[j]].ay>fx.labels[v].ay;j--) ord[j+1] = ord[j]; ord[j+1] = v; }
+    for(i=0;i<n;i++){
+      L = fx.labels[ord[i]];
+      if(!L.vis) continue;
+      L.ay = Math.max(fx.safeTop, L.ay);
+      for(j=0;j<i;j++){ Q = fx.labels[ord[j]]; if(Q.vis && L.ax<Q.ax+Q.w+3 && Q.ax<L.ax+L.w+3 && L.ay<Q.ay+Q.h+2 && Q.ay<L.ay+L.h+2) L.ay = Q.ay+Q.h+3; }
+      L.vis = L.ay + L.h < H - (fx.safeBottom||60);
+    }
+    for(i=0;i<n;i++){
+      L = fx.labels[i];
+      if(L.shown !== L.vis){ L.shown = L.vis; L.el.style.visibility = L.vis ? '' : 'hidden'; }
+      if(L.vis && (Math.abs(L.ax-L.x)>0.4 || Math.abs(L.ay-L.y)>0.4)){ L.x = L.ax; L.y = L.ay; L.el.style.transform = 'translate(' + L.ax.toFixed(1) + 'px,' + L.ay.toFixed(1) + 'px)'; }
+    }
+  }
+  var pinDim = 1;
+  function pinsSetDim(v){
+    if(Math.abs(v-pinDim)<0.002) return;
+    pinDim = v;
+    pinsConf.material.uniforms.uDim.value = v; pinsEcon.material.uniforms.uDim.value = v; pinsChoke.material.uniforms.uDim.value = v; pinsGold.material.uniforms.uDim.value = v;
+    if(pinsDz) pinsDz.material.uniforms.uDim.value = v;
+  }
+  function fxStats(){
+    var objs = 0; scene.traverse(function(){ objs++; });
+    return {calls:renderer.info.render.calls, points:renderer.info.render.points, triangles:renderer.info.render.triangles, objects:objs, geometries:renderer.info.memory.geometries, textures:renderer.info.memory.textures, programs:renderer.info.programs ? renderer.info.programs.length : 0, arcDots:fx.dots, arcs:fx.arcs, focus:fx.amt, camDist:cam.dist, fitDist:fitDist, camLat:cam.lat, camLon:cam.lon};
+  }
+
   /* --- camera / controls --- */
   var cam = {lat:18, lon:95, dist:2.9};
   var vel = {lat:0, lon:0};
-  var minDist = 1.45, maxDist = 4.5, fitDist = 2.9, userZoomed = false;
+  var minDist = 1.45, maxDist = 4.5, fitDist = 2.9, userZoomed = false, stW = 1, stH = 1;
   var lastInteract = performance.now();
   var fly = null;
   function fitDistance(){
@@ -1172,7 +1508,8 @@ function createGlobe(stage){
     renderer.setSize(w, hgt, false);
     camera.aspect = w/hgt; camera.updateProjectionMatrix();
     fitDist = fitDistance(); maxDist = Math.max(fitDist*1.5, 3.2);
-    if(!userZoomed) cam.dist = fitDist;
+    stW = w; stH = hgt;
+    if(!userZoomed && !fx.active) cam.dist = fitDist;
     updateCamera();
   }
 
@@ -1229,10 +1566,15 @@ function createGlobe(stage){
     if(best) select(best.kind, best.idx, true);
   }
 
-  function flyTo(lat, lon){
-    userZoomed = userZoomed; // keep zoom
+  function flyTo(lat, lon, o){
     var tl = lon; while(tl - cam.lon > 180) tl -= 360; while(tl - cam.lon < -180) tl += 360;
-    fly = {t0:performance.now(), dur:reduceMotion?0:950, lat0:cam.lat, lon0:cam.lon, lat1:Math.max(-85,Math.min(85,lat)), lon1:tl, d0:cam.dist, d1:Math.min(cam.dist, fitDist*0.95)};
+    var la = Math.max(-85,Math.min(85,lat)), d1 = Math.min(cam.dist, fitDist*0.95), sw = 0;
+    if(o){
+      if(o.k!=null) d1 = userZoomed ? cam.dist : Math.max(minDist, fitDist*o.k);
+      /* a long trip lifts off and comes back in */
+      if(o.swoop && !reduceMotion) sw = Math.min(0.75, Math.hypot(tl-cam.lon, la-cam.lat)/180*1.15);
+    }
+    fly = {t0:performance.now(), dur:reduceMotion?0:1000, lat0:cam.lat, lon0:cam.lon, lat1:la, lon1:tl, d0:cam.dist, d1:d1, sw:sw};
     vel.lat = vel.lon = 0; lastInteract = performance.now();
   }
 
@@ -1242,7 +1584,7 @@ function createGlobe(stage){
     renderer.setClearColor(new T.Color(tok.space), 1);
     bodyMat.uniforms.uFill.value.set(tok.fill); bodyMat.uniforms.uRim.value.set(tok.rim); atmoMat.uniforms.uRim.value.set(tok.rim);
     landMat.uniforms.uColor.value.set(tok.dot); scene.userData.gridMat.color.set(tok.grid); hiMat.color.set(tok.accent);
-    pinsConf.userData.recolor(tok); pinsEcon.userData.recolor(tok); pinsChoke.userData.recolor(tok); if(pinsDz) pinsDz.userData.recolor(tok);
+    pinsConf.userData.recolor(tok); pinsEcon.userData.recolor(tok); pinsChoke.userData.recolor(tok); pinsGold.userData.recolor(tok); if(pinsDz) pinsDz.userData.recolor(tok);
   }
   applyTheme();
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', applyTheme);
@@ -1255,27 +1597,29 @@ function createGlobe(stage){
     if(document.hidden || viewMode === 'read') return;
     var dt = Math.min(0.05, (now-lastT)/1000); lastT = now;
     var t = now/1000;
-    pinsConf.material.uniforms.uTime.value = t; pinsEcon.material.uniforms.uTime.value = t; pinsChoke.material.uniforms.uTime.value = t; if(pinsDz) pinsDz.material.uniforms.uTime.value = t;
+    pinsConf.material.uniforms.uTime.value = t; pinsEcon.material.uniforms.uTime.value = t; pinsChoke.material.uniforms.uTime.value = t; pinsGold.material.uniforms.uTime.value = t; if(pinsDz) pinsDz.material.uniforms.uTime.value = t;
     if(fly){
       var k = fly.dur ? Math.min(1, (now-fly.t0)/fly.dur) : 1, e = k<0.5 ? 2*k*k : 1-Math.pow(-2*k+2,2)/2;
-      cam.lat = fly.lat0 + (fly.lat1-fly.lat0)*e; cam.lon = fly.lon0 + (fly.lon1-fly.lon0)*e; cam.dist = fly.d0 + (fly.d1-fly.d0)*e;
+      cam.lat = fly.lat0 + (fly.lat1-fly.lat0)*e; cam.lon = fly.lon0 + (fly.lon1-fly.lon0)*e; cam.dist = fly.d0 + (fly.d1-fly.d0)*e + (fly.sw||0)*Math.sin(Math.PI*k);
       if(k>=1) fly = null;
       updateCamera();
     } else {
       if(pCount===0 && (Math.abs(vel.lat)>0.001 || Math.abs(vel.lon)>0.001)){
         cam.lon += vel.lon; cam.lat += vel.lat; vel.lon *= 0.90; vel.lat *= 0.90; updateCamera();
-      } else if(!reduceMotion && pCount===0 && now-lastInteract > 2500){
+      } else if(!reduceMotion && pCount===0 && !fx.active && now-lastInteract > 2500){
         cam.lon += 3.5*dt; updateCamera();
       }
     }
     if(hi.visible){ var s = 1 + 0.18*Math.sin(t*3.0); hi.scale.set(s,s,1); }
+    if(fx.active) fxTick(now, dt, t);
     renderer.render(scene, camera);
   }
   resize();
   if(window.ResizeObserver){ new ResizeObserver(resize).observe(stage); } else { window.addEventListener('resize', resize); }
   requestAnimationFrame(tick);
 
-  return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setDisasters:setDisasters, setHot:function(flags){ pinsConf.userData.setHot(flags); } };
+  return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setDisasters:setDisasters, setHot:function(flags){ pinsConf.userData.setHot(flags); },
+    fxPlay:fxPlay, fxLabels:fxLabels, fxLabelsMeasure:fxLabelsMeasure, fxClear:fxClear, fxStats:fxStats };
 }
 
 /* three.js and the WebGL scene wait until the map view is first shown, so the reading view never downloads them.
@@ -1295,8 +1639,8 @@ function startGlobe(){
     if(disasters.length) globe.setDisasters(disasters);
     updateHot();
     if(selected){
-      var rec = selected.kind==='conflict' ? conflicts[selected.idx] : selected.kind==='econ' ? economies[selected.idx] : selected.kind==='disaster' ? disasters[selected.idx] : chokepoints[selected.idx];
-      if(rec){ globe.flyTo(rec.lat, rec.lon); globe.highlight(rec.lat, rec.lon, selected.kind); }
+      var rec = igRec(selected.kind, selected.idx);
+      if(rec){ globe.highlight(rec.lat, rec.lon, selected.kind); var late = igRelations(selected.kind, selected.idx); late.arcs = igPickArcs(late); igPlay(selected.kind, selected.idx, late, true); }
     }
   }
   var s = document.createElement('script');
@@ -2116,6 +2460,612 @@ function renderDisasters(){
   $('counts').querySelector('.full').textContent = COUNTS_FULL + (doc ? ' · ' + disasters.length + ' ภัยพิบัติ' : '');
   if(globe && globe.setDisasters) globe.setDisasters(disasters);
 }
+
+/* ================= click infographic (what a marker click plays on the globe and in the panel) ================= */
+/* Honesty rules, in code:
+   - an arc exists only for one of three kinds, and every arc says which it is:
+       data    a structured field states it (disasters.json `countries`: the countries GDACS or USGS name for the event)
+       geo     computed distance, labelled as geography, never as impact
+       mention the name appears in the item's existing text, labelled as a mention, with the snippet and the item's source
+   - nothing here writes analysis: labels and numbers only. Causes and effects are never stated by this code.
+   - every value comes from the data with its own date; a missing value means the element is not built.
+   - the DOM is built in its final state. The animation only hides things while .play is on, so the end of the sequence,
+     a cancelled sequence and prefers-reduced-motion all show the same text. */
+var IG_KIND_TH = {conflict:'ความขัดแย้ง', econ:'เศรษฐกิจ', disaster:'ภัยพิบัติ', choke:'เส้นทางการค้า', gold:'ทองคำ'};
+var IG_REL = {
+  data:{g:'●', th:'ข้อมูลระบุ', key:'แหล่งข้อมูลระบุความเชื่อมโยงนี้ไว้ตรง ๆ ในช่องข้อมูล'},
+  mention:{g:'❝', th:'กล่าวถึง', key:'ชื่อนี้ปรากฏในข้อความของรายการ แค่บอกว่ามีการเอ่ยถึง'},
+  geo:{g:'◌', th:'ภูมิศาสตร์', key:'คำนวณจากระยะทางบนลูกโลก ไม่ได้บอกว่าเกี่ยวข้องกัน'}
+};
+var IG_ICON = {
+  security:'<svg viewBox="0 0 16 16"><path d="M8 1.5 13.5 3.6v4c0 3.3-2.2 5.6-5.5 6.9C4.7 13.2 2.5 10.9 2.5 7.600v-4z"/></svg>',
+  disaster:'<svg viewBox="0 0 16 16"><path d="M8 2 15 14H1zM8 6.500v3.500M8 12v.2"/></svg>',
+  economy:'<svg viewBox="0 0 16 16"><path d="M2 14.500h12M4 12V8M8 12V3.500M12 12V6"/></svg>',
+  trade:'<svg viewBox="0 0 16 16"><path d="M1.5 10.500h13l-1.7 3.500H3.200zM8 1.500v9M8 3l4.5 5.500H8"/></svg>',
+  prices:'<svg viewBox="0 0 16 16"><path d="M1.5 12 6 7.500l3 3 5.5-6M10.5 4.500h4v4"/></svg>',
+  thai:'<svg viewBox="0 0 16 16"><path d="M8 14.500S3 9.7 3 6.200a5 5 0 0 1 10 0c0 3.5-5 8.3-5 8.300z"/><circle cx="8" cy="6.2" r="1.7"/></svg>',
+  links:'<svg viewBox="0 0 16 16"><circle cx="3.5" cy="12.5" r="2"/><circle cx="12.5" cy="3.5" r="2"/><path d="M3.5 10.500C3.5 6 7 3.5 10.5 3.5"/></svg>'
+};
+/* The gold dot has no single true place. It sits in the Gulf of Thailand, beside the Thai pin, and the card says it is a symbol. */
+var GOLD_PIN = {lat:10.6, lon:100.9, name_th:'ทองคำ'};
+var BANGKOK = {lat:13.75, lon:100.5};
+var IG_GEO_KM = {choke:2500, conflict:1500, disaster:2500, econ:1500};
+
+/* names to look for in Thai text. A table, because a Thai place name has no word boundaries; unknown new records fall back to their full name */
+var IG_ECON_ALIAS = {USA:['สหรัฐ'], CHN:['จีน'], EUZ:['ยูโรโซน'], DEU:['เยอรมนี'], FRA:['ฝรั่งเศส'], GBR:['สหราชอาณาจักร','อังกฤษ'], JPN:['ญี่ปุ่น'], IND:['อินเดีย'], BRA:['บราซิล'], RUS:['รัสเซีย'], SAU:['ซาอุดี'], NGA:['ไนจีเรีย'], ZAF:['แอฟริกาใต้'], TUR:['ตุรกี'], ARG:['อาร์เจนตินา'], IDN:['อินโดนีเซีย'], VNM:['เวียดนาม'], KOR:['เกาหลีใต้'], AUS:['ออสเตรเลีย'], MEX:['เม็กซิโก'], THA:['ไทย']};
+var IG_ECON_EN = {USA:['United States'], CHN:['China'], DEU:['Germany'], FRA:['France'], GBR:['United Kingdom'], JPN:['Japan'], IND:['India'], BRA:['Brazil'], RUS:['Russia'], SAU:['Saudi Arabia'], NGA:['Nigeria'], ZAF:['South Africa'], TUR:['Turkey','Turkiye'], ARG:['Argentina'], IDN:['Indonesia'], VNM:['Vietnam','Viet Nam'], KOR:['South Korea'], AUS:['Australia'], MEX:['Mexico'], THA:['Thailand']};
+var IG_CONFLICT_ALIAS = {ukraine_russia:['ยูเครน'], iran_us_israel_war:['สงครามอิหร่าน','อิหร่าน'], gaza_israel:['กาซา'], lebanon_israel_hezbollah:['เลบานอน','ฮิซบอลเลาะห์'], iraq_militias:['อิรัก'], sudan_civil_war:['ซูดาน'], myanmar_civil_war:['เมียนมา'], drc_m23_frn:['คองโก'], mali_sahel:['มาลี'], burkina_faso:['บูร์กินาฟาโซ'], niger_tillaberi:['ไนเจอร์'], yemen_houthi_saudi:['เยเมน','ฮูตี'], somalia_al_shabaab:['โซมาเลีย'], haiti_gangs:['เฮติ'], taiwan_strait:['ไต้หวัน'], south_china_sea:['ทะเลจีนใต้'], korean_peninsula:['เกาหลีเหนือ','คาบสมุทรเกาหลี'], india_pakistan:['แคชเมียร์'], pakistan_afghanistan:['อัฟกานิสถาน','ตาลีบัน'], thailand_cambodia:['กัมพูชา'], ethiopia_eritrea_tigray:['เอธิโอเปีย','เอริเทรีย','ทิเกรย์'], libya:['ลิเบีย'], syria:['ซีเรีย'], venezuela_caribbean:['เวเนซุเอลา']};
+var IG_CHOKE_ALIAS = [['ฮอร์มุซ'], ['บับ อัล-มันดับ','ทะเลแดง'], ['สุเอซ'], ['ทะเลดำ'], ['ช่องแคบไต้หวัน'], ['มะละกา']];
+/* a match inside a longer name is not the same place: ทะเลจีนใต้ is not China, อ่าวไทย and ไทยรัฐ are not Thailand as a mention */
+var IG_NOT = {'จีน':{b:['ทะเล']}, 'ไทย':{b:['อ่าว'], a:['รัฐ']}, 'อินเดีย':{b:['มหาสมุทร']}, 'มาลี':{b:['โซ']}, 'ซูดาน':{a:['ใต้']}, 'ไนจีเรีย':{}, 'อิหร่าน':{}};
+var IG_PRICE_WORDS = [{k:'brent', w:['น้ำมัน','Brent']}, {k:'gold', w:['ทองคำ']}, {k:'dxy', w:['ดัชนีดอลลาร์','DXY']}, {k:'usdthb', w:['บาทอ่อน','ค่าเงินบาท','บาท/ดอลลาร์']}, {k:'us10y', w:['ยีลด์พันธบัตรสหรัฐ']}, {k:'spx', w:['S&P 500']}, {k:'ndx', w:['Nasdaq']}, {k:'btc', w:['Bitcoin','บิตคอยน์']}, {k:'set', w:['SET','ตลาดหุ้นไทย']}, {k:'vix', w:['VIX']}, {k:'nikkei', w:['Nikkei','นิกเกอิ']}];
+var IG_ECON_MARKETS = {USA:['spx','ndx','us10y','dxy'], JPN:['nikkei'], THA:['set','usdthb','gold_th']};
+
+function igRec(kind, idx){ return kind==='conflict' ? conflicts[idx] : kind==='econ' ? economies[idx] : kind==='disaster' ? disasters[idx] : kind==='gold' ? GOLD_PIN : chokepoints[idx]; }
+function igName(kind, rec){ return kind==='disaster' ? String(rec.title_th) : rec.name_th; }
+function igAlias(kind, rec, i){
+  if(kind==='econ') return IG_ECON_ALIAS[rec.iso] || [rec.name_th];
+  if(kind==='conflict') return IG_CONFLICT_ALIAS[rec.id] || [rec.name_th];
+  if(kind==='choke'){ for(var j=0;j<IG_CHOKE_ALIAS.length;j++){ if(rec.name_th.indexOf(IG_CHOKE_ALIAS[j][0])>=0) return IG_CHOKE_ALIAS[j]; } return [rec.name_th]; }
+  return [];
+}
+function igTexts(kind, rec){
+  if(kind==='conflict') return [rec.status_th, rec.summary_th];
+  if(kind==='econ' || kind==='choke') return [rec.note_th];
+  if(kind==='gold'){
+    var g = GOLD || {}, o = g.outlook_th || {}, a = [];
+    [(g.drivers_th||{}).points, (g.supports_th||{}).points, o.risks_up, o.risks_down].forEach(function(p){ if(Array.isArray(p)) a = a.concat(p); });
+    return a;
+  }
+  return [];
+}
+function igSources(kind, rec){
+  if(kind==='gold' || kind==='disaster') return [];
+  return Array.isArray(rec.sources) ? rec.sources.filter(function(u){ return typeof u==='string' && /^https:\/\//.test(u); }) : [];
+}
+/* first real position of a name in a text, or -1 */
+function igFind(text, name){
+  var rule = IG_NOT[name] || {}, from = 0, at;
+  while((at = text.indexOf(name, from)) >= 0){
+    var ok = !(rule.b||[]).some(function(w){ return text.slice(Math.max(0, at-w.length), at)===w; }) && !(rule.a||[]).some(function(w){ return text.substr(at+name.length, w.length)===w; });
+    if(ok) return at;
+    from = at + name.length;
+  }
+  return -1;
+}
+function igFindAny(texts, names){
+  for(var i=0;i<(texts||[]).length;i++){
+    var t = String(texts[i]||'');
+    for(var j=0;j<names.length;j++){ var at = igFind(t, names[j]); if(at>=0) return {text:t, at:at, name:names[j]}; }
+  }
+  return null;
+}
+/* the words around a match, verbatim, cut at spaces */
+function igSnippet(hit){
+  var t = hit.text, a = hit.at, b = a + hit.name.length;
+  var s = a, e = b, i;
+  for(i=0;i<3 && s>0;i++){ var ps = t.lastIndexOf(' ', s-2); s = ps<0 ? 0 : ps+1; if(a-s > 44) break; }
+  for(i=0;i<3 && e<t.length;i++){ var ne = t.indexOf(' ', e+1); e = ne<0 ? t.length : ne; if(e-b > 44) break; }
+  return (s>0?'…':'') + t.slice(s, e).trim() + (e<t.length?'…':'');
+}
+function igKm(a, b){
+  var R = 6371, p1 = a.lat*Math.PI/180, p2 = b.lat*Math.PI/180, dp = p2-p1, dl = (b.lon-a.lon)*Math.PI/180;
+  var x = Math.sin(dp/2)*Math.sin(dp/2) + Math.cos(p1)*Math.cos(p2)*Math.sin(dl/2)*Math.sin(dl/2);
+  return 2*R*Math.asin(Math.min(1, Math.sqrt(x)));
+}
+function igKmText(km){ return (km<100 ? Math.round(km) : Math.round(km/10)*10).toLocaleString('en-US') + ' กม.'; }
+/* every marker a relation can point at */
+function igTargets(){
+  var out = [];
+  conflicts.forEach(function(r, i){ out.push({kind:'conflict', idx:i, rec:r}); });
+  economies.forEach(function(r, i){ out.push({kind:'econ', idx:i, rec:r}); });
+  chokepoints.forEach(function(r, i){ out.push({kind:'choke', idx:i, rec:r}); });
+  return out;
+}
+function igNearest(rec, list, kind, self){
+  var best = null;
+  list.forEach(function(r, i){
+    if(r===self || typeof r.lat!=='number' || typeof r.lon!=='number') return;
+    var km = igKm(rec, r);
+    if(!best || km<best.km) best = {kind:kind, idx:i, rec:r, km:km};
+  });
+  return best;
+}
+/* all relations of one item: rows for the panel. Strongest kind first; a target appears once. */
+function igRelations(kind, idx){
+  var rec = igRec(kind, idx), rows = [], seen = {};
+  function key(k, i){ return k + ':' + (k==='disaster' ? String(disasters[i].id) : i); }
+  function add(row){ var ky = key(row.kind, row.idx); if(seen[ky] || (row.kind===kind && row.idx===idx)) return false; seen[ky] = true; row.name = igName(row.kind, igRec(row.kind, row.idx)); row.lat = igRec(row.kind, row.idx).lat; row.lon = igRec(row.kind, row.idx).lon; rows.push(row); return true; }
+
+  /* data: the countries a disaster record names, against the economy pins */
+  if(kind==='disaster'){
+    var names = (rec.countries||[]).map(function(c){ return String(c).toLowerCase(); });
+    economies.forEach(function(e, i){
+      if((IG_ECON_EN[e.iso]||[]).some(function(n){ return names.indexOf(n.toLowerCase())>=0; })) add({rel:'data', kind:'econ', idx:i, text:String(rec.source_name||'แหล่งข้อมูล') + ' ระบุประเทศนี้ในเหตุการณ์', src:rec.source_url, srcName:rec.source_name});
+    });
+  }
+  if(kind==='econ'){
+    var en = (IG_ECON_EN[rec.iso]||[]).map(function(n){ return n.toLowerCase(); });
+    disasters.forEach(function(d, i){
+      if((d.countries||[]).some(function(c){ return en.indexOf(String(c).toLowerCase())>=0; })) add({rel:'data', kind:'disaster', idx:i, text:String(d.source_name||'แหล่งข้อมูล') + ' ระบุประเทศนี้ในเหตุการณ์', src:d.source_url, srcName:d.source_name});
+    });
+  }
+
+  /* mention, this item's own text: needs a source to link to, so an item without sources draws none */
+  var targets = igTargets(), texts = igTexts(kind, rec), srcs = igSources(kind, rec);
+  var goldNames = kind==='gold' ? (GOLD && GOLD.sources || []).join(' · ') : '';
+  if(srcs.length || goldNames){
+    targets.forEach(function(t){
+      var hit = igFindAny(texts, igAlias(t.kind, t.rec));
+      if(hit) add({rel:'mention', kind:t.kind, idx:t.idx, text:'ข้อความของรายการนี้กล่าวถึง “' + hit.name + '”', quote:igSnippet(hit), src:srcs[0]||null, srcName:goldNames, more:Math.max(0, srcs.length-1)});
+    });
+  }
+  /* mention, another item's text names this one */
+  var mine = igAlias(kind, rec);
+  if(mine.length){
+    targets.forEach(function(t){
+      if(t.rec===rec) return;
+      var ss = igSources(t.kind, t.rec); if(!ss.length) return;
+      var hit = igFindAny(igTexts(t.kind, t.rec), mine);
+      if(hit) add({rel:'mention', kind:t.kind, idx:t.idx, text:'ข้อความของ ' + igName(t.kind, t.rec) + ' กล่าวถึงชื่อนี้', quote:igSnippet(hit), src:ss[0], more:Math.max(0, ss.length-1)});
+    });
+  }
+
+  /* geo: the nearest of each layer, only when near; a label and a distance, never an impact */
+  if(kind!=='gold' && typeof rec.lat==='number'){
+    [[chokepoints,'choke'],[conflicts,'conflict'],[disasters,'disaster']].forEach(function(p){
+      if(p[1]===kind && kind==='choke') return;
+      var n = igNearest(rec, p[0], p[1], rec);
+      if(n && n.km <= IG_GEO_KM[p[1]]) add({rel:'geo', kind:p[1], idx:n.idx, km:n.km, text:'ใกล้ · ' + igKmText(n.km) + ' (คำนวณระยะทาง)'});
+    });
+  }
+  return rows;
+}
+/* which rows get an arc: the strongest kinds first, at least one of each kind that exists */
+function igPickArcs(rows){
+  var cap = isMobile() ? 5 : 8, order = {data:0, mention:1, geo:2};
+  var sorted = rows.slice().sort(function(a, b){ return order[a.rel]-order[b.rel]; });
+  var out = [], used = {};
+  ['geo','mention','data'].forEach(function(r){ for(var i=0;i<sorted.length;i++){ if(sorted[i].rel===r){ out.push(sorted[i]); used[i] = 1; break; } } });
+  sorted.forEach(function(r, i){ if(!used[i] && out.length<cap) out.push(r); });
+  out = out.slice(0, cap).sort(function(a, b){ return order[a.rel]-order[b.rel]; });
+  rows.forEach(function(r){ r.arc = out.indexOf(r)>=0; });
+  return out;
+}
+function igMarket(key){
+  if(live.offline || !live.market || !Array.isArray(live.market.items)) return null;
+  var it = null; live.market.items.forEach(function(x){ if(!it && x && x.key===key && x.value!=null && x.as_of) it = x; });
+  return it;
+}
+function igPriceTile(it, why){
+  return h('div', {class:'ig-stat', 'data-price':it.key}, [
+    h('div', {class:'k', text:String(it.label_th||it.key)}),
+    h('div', {class:'v'}, [h('span', {'data-cu':'', text:String(it.value)}), it.unit ? h('small', {text:String(it.unit)}) : null]),
+    h('div', {class:'m', text:(['up','down'].indexOf(it.trend)>=0 ? TREND_GLYPH[it.trend] + ' ' : '') + String(it.change_th||'')}),
+    h('div', {class:'m'}, ['ณ ' + bkkDateTime(it.as_of) + (isStale(it.as_of, IND_STALE_MS) ? ' · ข้อมูลเก่า' : '') + ' · ', it.source ? h('a', {href:String(it.source), target:'_blank', rel:'noopener noreferrer', text:domain(String(it.source))}) : null]),
+    h('div', {class:'m', text:why})
+  ]);
+}
+/* number words inside a text become count-ups; the text stays exactly as written. Years and small counts are left alone. */
+function igRichNums(text){
+  var out = [], re = /\d[\d,]*(?:\.\d+)?/g, m, last = 0, s = String(text);
+  while((m = re.exec(s))){
+    var v = Number(m[0].replace(/,/g,''));
+    if(v < 100 || (v>=1900 && v<=2100 && m[0].indexOf(',')<0)) continue;
+    if(m.index>last) out.push(s.slice(last, m.index));
+    out.push(h('b', {'data-cu':'', text:m[0]}));
+    last = m.index + m[0].length;
+  }
+  if(last<s.length) out.push(s.slice(last));
+  return out;
+}
+function igGauge(frac, center, sub){
+  var NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 84 84'); svg.setAttribute('aria-hidden', 'true');
+  [['tr',null],['ar',frac]].forEach(function(p){
+    var c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', 42); c.setAttribute('cy', 42); c.setAttribute('r', 37); c.setAttribute('pathLength', 100); c.setAttribute('class', p[0]);
+    if(p[1]!=null) c.style.setProperty('--v', String(Math.max(0, Math.min(1, p[1]))*100));
+    svg.appendChild(c);
+  });
+  return h('div', {class:'ig-gauge'}, [svg, h('div', {class:'c'}, [center, sub ? h('div', {class:'s', text:sub}) : null])]);
+}
+function igSeg(n, max, labels){
+  var row = h('div', {class:'ig-seg', role:'img', 'aria-label':n + ' จาก ' + max});
+  for(var i=1;i<=max;i++){ var c = h('i', {class:i<=n?'on':''}); c.style.setProperty('--i', String(i-1)); row.appendChild(c); }
+  if(!labels) return [row];
+  var l = h('div', {class:'ig-seg-l'});
+  labels.forEach(function(t, i){ l.appendChild(h('span', {class:i===n-1?'on':'', text:t})); });
+  return [row, l];
+}
+/* one dot per record on a real linear scale, this one marked; `rank` counts from the highest value */
+function igStrip(label, fmt, vals, me, note){
+  var ok = vals.filter(function(v){ return typeof v==='number' && isFinite(v); });
+  if(me==null || typeof me!=='number' || !isFinite(me) || ok.length<2) return [];
+  var lo = Math.min.apply(null, ok), hi = Math.max.apply(null, ok), w = (hi-lo)||1, strip = h('div', {class:'ig-strip', 'aria-hidden':'true'}), rank = 1;
+  ok.forEach(function(v, i){ if(v>me) rank++; var d = h('i', null), x = ((v-lo)/w*100).toFixed(1) + '%'; d.style.left = x; d.style.setProperty('--x', x); d.style.setProperty('--i', String(i)); strip.appendChild(d); });
+  var meDot = h('i', {class:'me'}), mx = ((me-lo)/w*100).toFixed(1) + '%'; meDot.style.left = mx; meDot.style.setProperty('--x', mx); meDot.style.setProperty('--i', '0'); strip.appendChild(meDot);
+  return [
+    h('div', {class:'ig-line'}, [h('span', {text:label}), h('b', {'data-cu':'', text:fmt(me)})]),
+    strip,
+    h('div', {class:'ig-scale'}, [h('span', {text:fmt(lo)}), h('span', {text:'อันดับ ' + rank + ' จาก ' + ok.length + (note ? ' · ' + note : '')}), h('span', {text:fmt(hi)})])
+  ];
+}
+function igDim(key, title, kids){
+  kids = (kids||[]).filter(Boolean);
+  if(!kids.length) return null;
+  return h('section', {class:'ig-dim ig-rv', 'data-dim':key}, [h('h3', {class:'ig-dim-t', html:IG_ICON[key] + '<span></span>'})].concat(kids));
+}
+function igSetTitle(sec, title){ if(sec) sec.querySelector('.ig-dim-t span').textContent = title; return sec; }
+function igGeoLine(row){ return h('div', {class:'ig-line'}, [h('span', {text:IG_REL.geo.g + ' ใกล้สุด: ' + row.name}), h('b', {'data-cu':'', text:igKmText(row.km)})]); }
+function igRowsFor(rows, kinds){ return rows.filter(function(r){ return kinds.indexOf(r.kind)>=0; }); }
+function igRowLines(rows){
+  return rows.map(function(r){
+    if(r.rel==='geo') return igGeoLine(r);
+    return h('div', {class:'ig-line'}, [h('span', {text:IG_REL[r.rel].g + ' ' + r.name})]);
+  });
+}
+function igThaiDim(kind, rec, rows){
+  var kids = [];
+  var isThai = kind==='econ' && rec.iso==='THA';
+  if(!isThai && kind!=='gold' && typeof rec.lat==='number') kids.push(h('div', {class:'ig-line', 'data-geo-th':''}, [h('span', {text:IG_REL.geo.g + ' ระยะจากกรุงเทพฯ (คำนวณ)'}), h('b', {'data-cu':'', text:igKmText(igKm(rec, BANGKOK))})]));
+  var mine = igAlias(kind, rec), an = DATA.analysis_th && DATA.analysis_th.thailand;
+  var names = kind==='gold' ? ['ทอง'] : mine;
+  if(an && names.length && !isThai){
+    var hit = igFindAny([an], names);
+    if(hit) kids.push(h('p', {class:'ig-quote'}, [h('b', {text:IG_REL.mention.g + ' บทวิเคราะห์มุมมองไทย ณ ' + BASIS_TH + ' กล่าวถึงชื่อนี้: '}), igSnippet(hit)]));
+  }
+  if(isThai && an) kids.push(h('p', {class:'ig-quote'}, [h('b', {text:'บทวิเคราะห์มุมมองไทย ณ ' + BASIS_TH + ': '}), an]));
+  if(!isThai && kind!=='gold'){
+    var own = igFindAny(igTexts(kind, rec), ['ไทย']);
+    if(own) kids.push(h('p', {class:'ig-quote'}, [h('b', {text:IG_REL.mention.g + ' ข้อความของรายการนี้กล่าวถึงไทย: '}), igSnippet(own)]));
+    if(kind==='disaster' && (rec.countries||[]).some(function(c){ return String(c).toLowerCase()==='thailand'; })) kids.push(h('div', {class:'ig-line'}, [h('span', {text:IG_REL.data.g + ' ' + String(rec.source_name||'') + ' ระบุไทยในรายชื่อประเทศของเหตุการณ์'})]));
+  }
+  return igSetTitle(igDim('thai', '', kids), 'มุมมองจากไทย');
+}
+function igPricesDim(kind, rec){
+  var kids = [];
+  (IG_ECON_MARKETS[rec.iso]||[]).forEach(function(k){ var it = igMarket(k); if(it) kids.push(igPriceTile(it, 'ตลาดของประเทศนี้')); });
+  if(!kids.length){
+    IG_PRICE_WORDS.forEach(function(p){
+      if(kids.length>=3) return;
+      var hit = igFindAny(igTexts(kind, rec), p.w), it = hit && igMarket(p.k);
+      if(it) kids.push(igPriceTile(it, IG_REL.mention.g + ' ข้อความของรายการนี้กล่าวถึง “' + hit.name + '”'));
+    });
+  }
+  if(!kids.length) return null;
+  return igSetTitle(igDim('prices', '', [h('div', {class:'ig-stats', style:'margin-top:0'}, kids.slice(0, 4))]), 'ราคาล่าสุด');
+}
+var IG_UCDP = /(?:^|;\s*)UCDP 12 เดือน(?:\s*\([^)]*\))?:\s*([\d,]+)/;
+function igUcdp(c){ var m = IG_UCDP.exec(String(c.deaths_est||'')); return m ? Number(m[1].replace(/,/g,'')) : null; }
+/* click-through: the list may have been rebuilt by a poll, so a disaster is found again by its id */
+function igGo(r){
+  var id = r.kind==='disaster' ? String(disasters[r.idx].id) : null;
+  return function(){ var i = r.idx; if(id){ i = -1; disasters.forEach(function(d, n){ if(String(d.id)===id) i = n; }); if(i<0) return; } select(r.kind, i); };
+}
+function igLinks(rows){
+  if(!rows.length) return null;
+  var ul = h('ul', {class:'ig-links'});
+  rows.forEach(function(r){
+    var rel = IG_REL[r.rel];
+    var go = igGo(r);
+    var links = [];
+    if(r.src) links.push(h('a', {href:String(r.src), target:'_blank', rel:'noopener noreferrer', text:r.srcName && r.rel==='data' ? String(r.srcName) : domain(String(r.src))}));
+    if(r.more) links.push(' และอีก ' + r.more + ' แหล่งท้ายการ์ด');
+    if(!r.src && r.srcName) links.push('ดูรายชื่อแหล่งท้ายการ์ด');
+    ul.appendChild(h('li', {class:'ig-link', 'data-rel':r.rel, 'data-arc':r.arc ? '1' : '0'}, [
+      h('span', {class:'g', 'aria-hidden':'true', text:rel.g}),
+      h('div', {style:'min-width:0'}, [
+        h('button', {class:'ig-go', type:'button', onclick:go, text:r.name}),
+        h('div', {class:'t'}, [h('em', {text:rel.th}), ' · ' + r.text + (r.arc ? '' : ' (ไม่ได้วาดเส้น)')]),
+        r.quote ? h('div', {class:'q', text:r.quote}) : null,
+        links.length ? h('div', {class:'s'}, ['ที่มา: '].concat(links)) : null
+      ])
+    ]));
+  });
+  var kinds = {}; rows.forEach(function(r){ kinds[r.rel] = 1; });
+  var key = h('ul', {class:'ig-key'});
+  ['data','mention','geo'].forEach(function(k){ if(kinds[k]) key.appendChild(h('li', null, [h('b', {class:'k-'+k, text:IG_REL[k].g + ' ' + IG_REL[k].th}), ' = ' + IG_REL[k].key])); });
+  key.appendChild(h('li', {text:'เส้นและป้ายเหล่านี้ไม่ได้บอกว่าสิ่งหนึ่งเป็นเหตุหรือส่งผลต่ออีกสิ่งหนึ่ง'}));
+  return igSetTitle(igDim('links', '', [ul, key]), 'เส้นเชื่อม ' + rows.length + ' รายการ');
+}
+/* the card: built in its final state */
+function igCard(kind, idx, rows){
+  var rec = igRec(kind, idx), c = h('div', {class:'ig', 'data-kind':kind}), acc, hero, stats = [], dims = [], tail = [];
+  var nearChoke = igRowsFor(rows, ['choke']), nearConf = igRowsFor(rows, ['conflict']), nearDz = igRowsFor(rows, ['disaster']), nearEcon = igRowsFor(rows, ['econ']);
+  function econLines(list){ return list.slice(0, 6).map(function(r){ var e = economies[r.idx]; return h('div', {class:'ig-line'}, [h('span', {text:IG_REL[r.rel].g + ' ' + r.name}), e.gdp_growth_2026!=null ? h('span', {text:'GDP 2026 ' + pct(e.gdp_growth_2026) + ' · ' + (HEALTH_TH[e.health]||'')}) : null]); }); }
+  if(kind==='conflict'){
+    acc = intensityVar(rec.intensity);
+    hero = [igGauge((rec.intensity||0)/5, h('div', {class:'b'}, [h('span', {'data-cu':'', text:String(rec.intensity||'—')})]), 'จาก 5'),
+      [h('div', {class:'ig-kick', text:IG_KIND_TH.conflict + ' · ' + (TYPE_TH[rec.type]||rec.type||'')}), h('h2', {text:rec.name_th}),
+       h('div', {class:'chips'}, [h('span', {class:'pill'}, [h('span', {class:'dot', style:'background:'+intensityVar(rec.intensity)}), 'ความรุนแรง '+(rec.intensity||'—')+'/5']), rec.confidence ? h('span', {class:'pill conf-'+rec.confidence, text:CONF_TH[rec.confidence]||rec.confidence}) : null])]];
+    tail.push(h('div', {id:'card-latest'}));
+    tail.push(basisNote());
+    if(rec.status_th) tail.push(h('p', {class:'status', text:rec.status_th}));
+    var factLines = function(v, label){
+      var s = String(v||''); if(!s || s==='ไม่มี' || /^ไม่มีข้อมูล/.test(s)) return null;
+      return h('div', {class:'ig-stat wide'}, [h('div', {class:'k', text:label})].concat(s.split(/;\s*/).map(function(p){ return h('p', {class:'ig-fact'}, igRichNums(p)); })));
+    };
+    stats.push(factLines(rec.deaths_est, 'ผู้เสียชีวิต (ประมาณ)'), factLines(rec.displaced, 'ผู้พลัดถิ่น'));
+    var same = conflicts.filter(function(x){ return x.intensity===rec.intensity; }).length;
+    var dots = h('div', {class:'ig-dots', 'aria-hidden':'true'});
+    conflicts.forEach(function(x, i){ var d = h('i', {class:x===rec?'me':''}); d.style.setProperty('--c', intensityVar(x.intensity)); d.style.setProperty('--i', String(i)); dots.appendChild(d); });
+    var u = igUcdp(rec), us = conflicts.map(igUcdp).filter(function(v){ return v!=null; }), um = us.length ? Math.max.apply(null, us) : 0;
+    var ucdpBar = null;
+    if(u!=null && um>0){ var ur = 1; us.forEach(function(v){ if(v>u) ur++; }); var ubar = h('div', {class:'ig-bar', 'aria-hidden':'true'}, [h('i', null)]); ubar.firstChild.style.setProperty('--v', String(u/um)); ucdpBar = [h('div', {class:'ig-line'}, [h('span', {text:'UCDP 12 เดือน'}), h('b', {'data-cu':'', text:u.toLocaleString('en-US')})]), ubar, h('div', {class:'ig-note', text:'อันดับ ' + ur + ' จาก ' + us.length + ' รายการที่ข้อมูลนี้ระบุตัวเลข UCDP ตรง ๆ'})]; }
+    dims.push(igSetTitle(igDim('security', '', [].concat(igSeg(rec.intensity||0, 5), dots, [h('div', {class:'ig-note', text:'จุดละหนึ่งความขัดแย้ง เรียงตามความรุนแรง ระดับเดียวกับรายการนี้ ' + same + ' จาก ' + conflicts.length + ' รายการ'})], ucdpBar||[], igRowLines(nearConf))), 'ความมั่นคง'));
+    dims.push(igSetTitle(igDim('disaster', '', igRowLines(nearDz)), 'ภัยพิบัติ'));
+    dims.push(igSetTitle(igDim('economy', '', econLines(nearEcon)), 'เศรษฐกิจ'));
+    dims.push(igSetTitle(igDim('trade', '', igRowLines(nearChoke)), 'เส้นทางการค้า'));
+    if(rec.summary_th) tail.push(h('details', {class:'fold'}, [h('summary', {text:'อ่านสรุปเต็ม'}), h('div', {class:'fold-body'}, [h('p', {text:rec.summary_th})])]));
+  } else if(kind==='econ'){
+    acc = healthVar(rec.health);
+    var hr = {crisis:1, weak:2, stable:3, strong:4}[rec.health]||0;
+    hero = [igGauge(hr/4, h('div', {class:'b w', text:HEALTH_TH[rec.health]||'—'}), hr ? hr + ' จาก 4' : ''),
+      [h('div', {class:'ig-kick', text:IG_KIND_TH.econ + (rec.iso ? ' · ' + rec.iso : '')}), h('h2', {text:rec.name_th}),
+       h('div', {class:'chips'}, [h('span', {class:'pill', style:'color:'+healthVar(rec.health)+';border-color:'+healthVar(rec.health)}, [h('span', {class:'dot', style:'background:'+healthVar(rec.health)}), HEALTH_TH[rec.health]||'—']), rec.iso ? h('span', {class:'pill', text:rec.iso}) : null])]];
+    tail.push(basisNote());
+    if(rec.gdp_growth_2026!=null) stats.push(h('div', {class:'ig-stat', 'data-v':'gdp26'}, [h('div', {class:'k', text:'GDP 2026'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:pct(rec.gdp_growth_2026)})])]));
+    if(rec.gdp_growth_2027!=null) stats.push(h('div', {class:'ig-stat', 'data-v':'gdp27'}, [h('div', {class:'k', text:'GDP 2027 (คาดการณ์)'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:pct(rec.gdp_growth_2027)})])]));
+    var pick = function(f){ return economies.map(function(e){ return e[f]; }); };
+    var pctf = function(v){ return (v>0?'+':'') + Number(v).toFixed(1) + '%'; }, rawf = function(v){ return num(v, '%'); };
+    dims.push(igSetTitle(igDim('economy', '', [].concat(
+      igSeg(hr, 4, ['วิกฤต','อ่อนแอ','ทรงตัว','แข็งแรง']),
+      igStrip('GDP 2026', pctf, pick('gdp_growth_2026'), rec.gdp_growth_2026, 'สูงไปต่ำ'),
+      igStrip('เงินเฟ้อ', rawf, pick('inflation'), rec.inflation, 'สูงไปต่ำ'),
+      igStrip('ดอกเบี้ยนโยบาย', rawf, pick('policy_rate'), rec.policy_rate, 'สูงไปต่ำ'),
+      [h('div', {class:'ig-note', text:'จุดละหนึ่งเศรษฐกิจในข้อมูลนี้ · ข้อมูล ณ ' + BASIS_TH})]
+    )), 'เศรษฐกิจ'));
+    dims.push(igSetTitle(igDim('security', '', igRowLines(nearConf).slice(0, 6)), 'ความมั่นคง'));
+    dims.push(igSetTitle(igDim('disaster', '', igRowLines(nearDz)), 'ภัยพิบัติ'));
+    dims.push(igSetTitle(igDim('trade', '', igRowLines(nearChoke)), 'เส้นทางการค้า'));
+    if(rec.note_th) tail.push(h('details', {class:'fold'}, [h('summary', {text:'อ่านสรุปเต็ม'}), h('div', {class:'fold-body'}, [h('p', {text:rec.note_th})])]));
+  } else if(kind==='disaster'){
+    var al = dzAlert(rec.alert_level); acc = 'var(--al-' + al + ')';
+    hero = [igGauge(1, h('div', {class:'b'}, [dzIcon(rec.type, null)]), DZ_ALERT_TH[rec.alert_level] ? 'เตือน' + DZ_ALERT_TH[rec.alert_level] : 'ไม่มีเตือน'),
+      [h('div', {class:'ig-kick', text:IG_KIND_TH.disaster + ' · ' + (DZ_TYPE_TH[rec.type]||'')}), h('h2', {text:String(rec.title_th)}),
+       h('div', {class:'chips'}, [h('span', {class:'pill alert', style:'color:var(--al-' + al + ')'}, [h('span', {class:'dot', style:'background:var(--al-' + al + ')'}), dzAlertText(rec.alert_level)]), h('span', {class:'pill'}, [dzIcon(rec.type, null), DZ_TYPE_TH[rec.type]||'']), rec.source_name ? h('span', {class:'pill', text:String(rec.source_name) + (rec.alt_source_name ? ' · ' + String(rec.alt_source_name) : '')}) : null])]];
+    var unit = {M:'แมกนิจูด', 'km/h':'กม./ชม.', ha:'เฮกตาร์', km2:'ตร.กม.'}[rec.severity_unit];
+    if(rec.severity_value!=null && unit) stats.push(h('div', {class:'ig-stat', 'data-v':'severity'}, [h('div', {class:'k', text:rec.severity_unit==='km/h' ? 'ลมสูงสุด' : rec.severity_unit==='M' ? 'ขนาด' : 'พื้นที่'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:Number(rec.severity_value).toLocaleString('en-US', {maximumFractionDigits:rec.severity_unit==='M'?1:0})}), h('small', {text:unit})]), h('div', {class:'m', text:'ข้อมูล ' + String(rec.source_name||'') + ' ณ ' + bkkDateTime(rec.updated)})]));
+    var ts = parseTs(rec.start), te = parseTs(rec.end), instant = rec.type==='earthquake' || rec.type==='volcano';
+    if(ts!=null && !instant && te!=null && te>ts){
+      var days = Math.max(1, Math.round((te-ts)/86400000));
+      var tb = h('div', {class:'ig-time', 'aria-hidden':'true'}, [h('i', {style:'left:0;width:100%'})]);
+      stats.push(h('div', {class:'ig-stat', 'data-v':'days'}, [h('div', {class:'k', text:'ช่วงเหตุการณ์ในข้อมูล'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:String(days)}), h('small', {text:'วัน'})]), tb, h('div', {class:'m', text:thaiDate(new Date(ts+7*3600000).toISOString()) + ' ถึง ' + thaiDate(new Date(te+7*3600000).toISOString())})]));
+    } else if(ts!=null){
+      stats.push(h('div', {class:'ig-stat', 'data-v':'when'}, [h('div', {class:'k', text:instant ? 'เวลาเกิด' : 'เริ่ม'}), h('div', {class:'v', style:'font-size:15px;line-height:1.5'}, [bkkDateTime(rec.start)]), h('div', {class:'m', 'data-rel':String(rec.start), text:relTh(rec.start)})]));
+    }
+    if((rec.countries||[]).length){
+      var cc = rec.countries.length, sh = h('div', {class:'ig-chips'});
+      rec.countries.slice(0, 8).forEach(function(n){ sh.appendChild(h('span', {text:String(n)})); });
+      if(cc>8) sh.appendChild(h('span', {text:'และอีก ' + (cc-8)}));
+      dims.push(igSetTitle(igDim('disaster', '', [h('div', {class:'ig-line'}, [h('span', {text:IG_REL.data.g + ' ประเทศที่ ' + String(rec.source_name||'แหล่งข้อมูล') + ' ระบุ'}), h('b', {'data-cu':'', text:String(cc)})]), sh].concat(igRowLines(nearDz))), 'ภัยพิบัติ'));
+    } else dims.push(igSetTitle(igDim('disaster', '', igRowLines(nearDz)), 'ภัยพิบัติ'));
+    dims.push(igSetTitle(igDim('economy', '', econLines(nearEcon)), 'เศรษฐกิจ'));
+    dims.push(igSetTitle(igDim('security', '', igRowLines(nearConf)), 'ความมั่นคง'));
+    dims.push(igSetTitle(igDim('trade', '', igRowLines(nearChoke)), 'เส้นทางการค้า'));
+    var drows = [kv('พื้นที่', rec.country_th || '—'), kv('ความรุนแรง', rec.severity_th || '—'), kv(instant ? 'เวลาเกิด' : 'เริ่ม', bkkDateTime(rec.start)), kv('ข้อมูลล่าสุด', bkkDateTime(rec.updated))];
+    if(isFinite(rec.lat) && isFinite(rec.lon)) drows.push(kv('พิกัด', fmtLatLon(+rec.lat, +rec.lon)));
+    tail.push(h('div', {class:'kv'}, drows));
+    tail.push(h('p', {class:'ig-note', text: rec.source_name==='USGS'
+      ? 'ระดับเตือน PAGER ของ USGS ประเมินจากจำนวนผู้เสียชีวิตและความเสียหายทางเศรษฐกิจที่คาดว่าจะเกิด'
+      : 'ระดับเตือนของ GDACS ประเมินผลกระทบด้านมนุษยธรรม: แดง = สูง อาจต้องการความช่วยเหลือระหว่างประเทศ · ส้ม = ปานกลาง · เขียว = ต่ำ'}));
+  } else if(kind==='gold'){
+    acc = 'var(--gold-glow)';
+    var g = GOLD || {}, vm = goldVM(), th = g.thai || {}, sl = vm.sl, tl = vm.tl, fp = vm.fromPeak;
+    hero = [igGauge(vm.peak ? vm.spot/vm.peak : 0, h('div', {class:'b w', 'data-cu':'', text:signPct(fp)}), 'จากสถิติ'),
+      [h('div', {class:'ig-kick', text:IG_KIND_TH.gold + ' · ราคาโลกและราคาไทย'}), h('h2', {text:'ทองคำ'}),
+       h('div', {class:'chips'}, [h('span', {class:'pill', text:g.unit ? 'ราคาโลกเป็น' + g.unit : 'ราคาโลก'})])]];
+    tail.push(h('p', {class:'ig-note', text:'จุดทองคำบนลูกโลกเป็นสัญลักษณ์ ทองคำไม่มีที่ตั้งเดียว ราคาไทยประกาศโดยสมาคมค้าทองคำ'}));
+    stats.push(h('div', {class:'ig-stat', 'data-v':'spot'}, [h('div', {class:'k', text:'ทองคำโลก (spot)'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:'$' + fmtN(vm.spot)})]), h('div', {class:'m'}, ['ณ ' + thaiDateTime(vm.spotAsOf) + ' ', sl && sl.source ? goldSrcLink(sl.source) : null])]));
+    stats.push(h('div', {class:'ig-stat', 'data-v':'thai'}, [h('div', {class:'k', text:'ทองแท่งไทย ขายออก'}), h('div', {class:'v'}, [h('span', {'data-cu':'', text:fmtN(vm.sell)}), h('small', {text:'บาท'})]), h('div', {class:'m'}, ['ณ ' + thaiDateTime(vm.thAsOf) + ' ', tl && tl.source ? goldSrcLink(tl.source) : (th.source_th||'')])]));
+    var hp = (goldState.hist && goldState.hist.points || []).filter(function(p){ return typeof p.spot==='number' && parseTs(p.time)!=null; });
+    var goldKids = [];
+    if(hp.length>=3){
+      var W = 320, H = 70, tt = hp.map(function(p){ return parseTs(p.time); }), vv = hp.map(function(p){ return p.spot; });
+      var t0 = tt[0], t1 = tt[tt.length-1], v0 = Math.min.apply(null, vv), v1 = Math.max.apply(null, vv), vw = (v1-v0)||1, tw = (t1-t0)||1;
+      var pts = hp.map(function(p, i){ return [ (tt[i]-t0)/tw*W, H-4-(vv[i]-v0)/vw*(H-8) ]; });
+      var dp = pts.map(function(q, i){ return (i?'L':'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('');
+      var NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'ig-spark'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'ราคาทองคำจากระบบบันทึกของหน้านี้ ' + hp.length + ' จุด');
+      var a = document.createElementNS(NS, 'path'); a.setAttribute('class', 'a'); a.setAttribute('d', dp + 'L' + W + ' ' + H + 'L0 ' + H + 'Z'); svg.appendChild(a);
+      var l = document.createElementNS(NS, 'path'); l.setAttribute('class', 'l'); l.setAttribute('d', dp); l.setAttribute('pathLength', '1'); svg.appendChild(l);
+      var last = pts[pts.length-1], cc2 = document.createElementNS(NS, 'circle'); cc2.setAttribute('class', 'p'); cc2.setAttribute('cx', last[0]); cc2.setAttribute('cy', last[1]); cc2.setAttribute('r', 4); svg.appendChild(cc2);
+      goldKids.push(h('div', {class:'ig-line'}, [h('span', {text:'ราคาโลกที่ระบบบันทึกไว้ ' + hp.length + ' จุด'})]), svg, h('div', {class:'ig-scale'}, [h('span', {text:thaiDayShort(t0)}), h('span', {text:'$' + fmtN(v0) + ' ถึง $' + fmtN(v1)}), h('span', {text:thaiDayShort(t1)})]));
+    }
+    var se = g.sentiment || {};
+    if(se.bearish!=null && se.bullish!=null && se.neutral!=null){
+      [['มองลง', se.bearish, 'var(--bad)'], ['เป็นกลาง', se.neutral, 'var(--muted)'], ['มองขึ้น', se.bullish, 'var(--good)']].forEach(function(r){
+        var b = h('div', {class:'ig-bar', 'aria-hidden':'true'}, [h('i', null)]); b.firstChild.style.setProperty('--v', String(r[1]/100)); b.firstChild.style.setProperty('--c', r[2]);
+        goldKids.push(h('div', {class:'ig-line'}, [h('span', {text:r[0]}), h('b', {'data-cu':'', text:r[1] + '%'})]), b);
+      });
+      goldKids.push(h('div', {class:'ig-note', text:'ความเห็นนักวิเคราะห์จาก Kitco ตามบทวิเคราะห์ ณ ' + GOLD_ANALYSIS_DAY}));
+    }
+    dims.push(igSetTitle(igDim('prices', '', goldKids), 'ราคาและความเห็น'));
+    dims.push(igSetTitle(igDim('security', '', igRowLines(nearConf)), 'ความมั่นคง'));
+    dims.push(igSetTitle(igDim('economy', '', econLines(nearEcon)), 'เศรษฐกิจ'));
+    dims.push(igSetTitle(igDim('trade', '', igRowLines(nearChoke)), 'เส้นทางการค้า'));
+    tail.push(h('button', {class:'news-more', type:'button', 'data-gold-open':'', onclick:function(){ showTab('gold'); clearSelection(); }, text:'ดูแผงทองคำเต็ม'}));
+    if(g.disclaimer_th) tail.push(h('p', {class:'ig-note', text:g.disclaimer_th}));
+  } else {
+    acc = 'var(--choke)';
+    hero = [igGauge((rec.level||1)/3, h('div', {class:'b'}, [h('span', {'data-cu':'', text:String(rec.level||1)})]), 'จาก 3'),
+      [h('div', {class:'ig-kick', text:IG_KIND_TH.choke}), h('h2', {text:rec.name_th}),
+       h('div', {class:'chips'}, [h('span', {class:'pill'}, [h('span', {class:'dia'}), 'ระดับ '+(rec.level||1)+' · '+(LEVEL_TH[rec.level]||'')])])]];
+    tail.push(basisNote());
+    dims.push(igSetTitle(igDim('trade', '', [].concat(igSeg(rec.level||1, 3, ['เฝ้าระวัง','เสี่ยง','วิกฤต']), igRowLines(nearChoke))), 'เส้นทางการค้า'));
+    dims.push(igSetTitle(igDim('security', '', igRowLines(nearConf).slice(0, 6)), 'ความมั่นคง'));
+    dims.push(igSetTitle(igDim('economy', '', econLines(nearEcon)), 'เศรษฐกิจ'));
+    dims.push(igSetTitle(igDim('disaster', '', igRowLines(nearDz)), 'ภัยพิบัติ'));
+    if(rec.note_th) tail.push(h('p', {text:rec.note_th}));
+  }
+  c.style.setProperty('--fx', acc);
+  if(kind!=='gold') dims.push(igPricesDim(kind, rec));
+  dims.push(igThaiDim(kind, rec, rows));
+  dims = dims.filter(Boolean);
+  c.appendChild(h('div', {class:'ig-hero ig-rv'}, [h('div', {class:'ig-sheen'}), hero[0], h('div', {style:'min-width:0;position:relative'}, hero[1])]));
+  if(dims.length>1){
+    var rail = h('div', {class:'ig-rail ig-rv'});
+    dims.forEach(function(d){ var key = d.getAttribute('data-dim'); rail.appendChild(h('button', {type:'button', html:IG_ICON[key] + '<span></span>', onclick:function(){ d.scrollIntoView({block:'start', behavior:reduceMotion?'auto':'smooth'}); }})); rail.lastChild.querySelector('span').textContent = d.querySelector('.ig-dim-t span').textContent; });
+    c.appendChild(rail);
+  }
+  stats = stats.filter(Boolean);
+  if(stats.length){ var sg = h('div', {class:'ig-stats'}); stats.forEach(function(s){ s.classList.add('ig-rv'); sg.appendChild(s); }); c.appendChild(sg); }
+  /* the news a headline's conflict_id links here, then the rest of the words */
+  var headN = {conflict:3, econ:1, choke:1, disaster:0, gold:1}[kind];
+  tail.slice(0, headN).forEach(function(n){ if(n) c.appendChild(n); });
+  var ln = igLinks(rows);
+  dims.forEach(function(d){ c.appendChild(d); });
+  if(ln) c.appendChild(ln);
+  tail.slice(headN).forEach(function(n){ if(n) c.appendChild(n); });
+  return c;
+}
+
+/* ----- the sequence ----- */
+var IG = {state:'idle', raf:0, timer:0, items:[], t0:0, card:null, plays:0, cancels:0, arcs:[], kind:null, idx:null};
+/* animate one number: every digit run rolls up to its true value, the text around it stays */
+function igCountItem(el, at, dur){
+  var finalText = el.textContent, parts = [], re = /\d[\d,]*(?:\.\d+)?/g, m, last = 0;
+  while((m = re.exec(finalText))){
+    parts.push(finalText.slice(last, m.index));
+    var s = m[0], dec = s.indexOf('.')>=0 ? s.length-s.indexOf('.')-1 : 0;
+    parts.push({v:Number(s.replace(/,/g,'')), dec:dec, comma:s.indexOf(',')>=0});
+    last = m.index + s.length;
+  }
+  parts.push(finalText.slice(last));
+  if(parts.length<3) return null;
+  return {at:at, dur:dur, el:el, finalText:finalText, step:function(k){
+    var e = 1-Math.pow(1-k, 3), out = '';
+    for(var i=0;i<parts.length;i++){
+      var p = parts[i];
+      if(typeof p==='string'){ out += p; continue; }
+      var x = p.v*e;
+      out += p.comma || p.v>=1000 ? x.toLocaleString('en-US', {minimumFractionDigits:p.dec, maximumFractionDigits:p.dec}) : x.toFixed(p.dec);
+    }
+    el.textContent = out;
+  }, end:function(){ el.textContent = finalText; }};
+}
+function igEndAll(){
+  cancelAnimationFrame(IG.raf); clearTimeout(IG.timer);
+  IG.items.forEach(function(it){ if(it.end) it.end(); });
+  IG.items = [];
+  if(IG.card) IG.card.classList.remove('play');
+  var hud = $('fx-hud'); if(hud) hud.classList.remove('run');
+}
+function igCancel(){ if(IG.state==='play'){ IG.cancels++; igEndAll(); IG.state = 'done'; } }
+function igLoop(now){
+  var t = now-IG.t0, live2 = false;
+  for(var i=0;i<IG.items.length;i++){
+    var it = IG.items[i];
+    if(it.fin) continue;
+    if(t < it.at){ live2 = true; continue; }
+    if(it.dur){
+      var k = (t-it.at)/it.dur;
+      if(k<1){ it.step(k); live2 = true; continue; }
+      it.end(); it.fin = true;
+    } else { it.fire(); it.fin = true; }
+  }
+  if(live2) IG.raf = requestAnimationFrame(igLoop);
+  else { IG.items = []; if(IG.card) IG.card.classList.remove('play'); $('fx-hud').classList.remove('run'); IG.state = 'done'; clearTimeout(IG.timer); }
+}
+function igFxColor(kind, rec){
+  var cs = getComputedStyle(document.documentElement), name = kind==='conflict' ? '--i'+Math.max(1,Math.min(5,rec.intensity|0)) : kind==='econ' ? '--h-'+(HEALTH_TH[rec.health]?rec.health:'stable') : kind==='disaster' ? '--al-'+dzAlert(rec.alert_level) : kind==='gold' ? '--gold-glow' : '--choke';
+  return cs.getPropertyValue(name).trim();
+}
+function igBarText(kind, rec){
+  if(kind==='conflict') return {b:String(rec.intensity||'—')+'/5', k:'ความรุนแรง'};
+  if(kind==='econ') return rec.gdp_growth_2026!=null ? {b:pct(rec.gdp_growth_2026), k:'GDP 2026'} : {b:HEALTH_TH[rec.health]||'—', k:'สุขภาพเศรษฐกิจ'};
+  if(kind==='choke') return {b:String(rec.level||1)+'/3', k:LEVEL_TH[rec.level]||'ระดับ'};
+  if(kind==='gold'){ var vm = goldVM(); return {b:'$'+fmtN(vm.spot), k:'ทองคำโลก'}; }
+  var unit = {M:'', 'km/h':' กม./ชม.', ha:' ฮ.', km2:' ตร.กม.'}[rec.severity_unit];
+  if(rec.severity_value!=null && unit!=null) return {b:(rec.severity_unit==='M'?'M ':'') + Number(rec.severity_value).toLocaleString('en-US', {maximumFractionDigits:rec.severity_unit==='M'?1:0}) + unit, k:DZ_ALERT_TH[rec.alert_level]?'เตือนระดับ'+DZ_ALERT_TH[rec.alert_level]:'ไม่มีระดับเตือน'};
+  return {b:DZ_ALERT_TH[rec.alert_level]||'—', k:'ระดับเตือน'};
+}
+function igHudBuild(){
+  var hud = $('fx-hud');
+  if(hud.firstChild) return hud;
+  hud.appendChild(h('div', {class:'fx-scan'}));
+  hud.appendChild(h('div', {class:'fx-flash', id:'fx-flash'}));
+  hud.appendChild(h('div', {class:'fx-xh', id:'fx-xh'}));
+  hud.appendChild(h('div', {class:'fx-yh', id:'fx-yh'}));
+  hud.appendChild(h('div', {class:'fx-ret', id:'fx-ret'}, [h('i'), h('i'), h('i'), h('i'), h('div', {class:'fx-coord', id:'fx-coord'})]));
+  hud.appendChild(h('div', {class:'fx-labels', id:'fx-labels'}));
+  hud.appendChild(h('div', {class:'fx-bar', id:'fx-bar'}, [h('div', {class:'nmw'}, [h('div', {class:'nm', id:'fx-bar-nm'}), h('div', {class:'co', id:'fx-bar-co'})]), h('div', {class:'kv2'}, [h('span', {class:'bv', id:'fx-bar-v'}), h('span', {class:'bk', id:'fx-bar-k'})])]));
+  return hud;
+}
+var igLabelEls = [];
+function igPlay(kind, idx, rows, instantWanted){
+  igCancel();
+  var rec = igRec(kind, idx), card = $('view-detail').querySelector('.ig'), plan = [], instant = reduceMotion || !!instantWanted;
+  IG.kind = kind; IG.idx = idx; IG.card = card; IG.plays++;
+  var arcs = rows.arcs || [];
+  IG.arcs = arcs.map(function(r){ return {rel:r.rel, kindTh:IG_REL[r.rel].th, name:r.name, lat:r.lat, lon:r.lon, tKind:r.kind, tIdx:r.idx, km:r.km}; });
+  var color = igFxColor(kind, rec), hud = globe ? igHudBuild() : null, landing = [];
+  if(globe){
+    var cs = getComputedStyle(document.documentElement);
+    var relColor = {data:cs.getPropertyValue('--fx-data').trim(), geo:cs.getPropertyValue('--fx-geo').trim(), mention:cs.getPropertyValue('--fx-mention').trim()};
+    landing = globe.fxPlay({lat:rec.lat, lon:rec.lon, color:color, instant:instant, arcs:arcs.map(function(r){ return {lat:r.lat, lon:r.lon, rel:r.rel, color:relColor[r.rel]}; })});
+    $('stage').classList.add('has-fx');
+    hud.hidden = false; hud.style.setProperty('--fx', color);
+    $('fx-coord').textContent = fmtLatLon(+rec.lat, +rec.lon);
+    $('fx-bar-co').textContent = kind==='gold' ? 'จุดสัญลักษณ์' : fmtLatLon(+rec.lat, +rec.lon);
+    var bt = igBarText(kind, rec);
+    $('fx-bar-nm').textContent = kind==='gold' ? 'ทองคำ' : igName(kind, rec); $('fx-bar-v').textContent = bt.b; $('fx-bar-k').textContent = bt.k;
+    /* labels on the globe: one per arc, pooled */
+    var box = $('fx-labels');
+    arcs.forEach(function(r, i){
+      var el = igLabelEls[i];
+      if(!el){ el = h('button', {class:'fx-lb', type:'button', tabindex:'-1'}, [h('span', {class:'g'}), h('span', {class:'n'}), h('span', {class:'w'})]); box.appendChild(el); igLabelEls[i] = el; }
+      el.style.setProperty('--c', relColor[r.rel]);
+      el.setAttribute('data-rel', r.rel);
+      el.children[0].textContent = IG_REL[r.rel].g; el.children[1].textContent = r.name; el.children[2].textContent = IG_REL[r.rel].th;
+      el.onclick = igGo(r);
+      el.classList.toggle('on', instant);
+    });
+    for(var li=arcs.length;li<igLabelEls.length;li++){ igLabelEls[li].classList.remove('on'); }
+    globe.fxLabels(arcs.length ? igLabelEls.slice(0, arcs.length) : [], arcs);
+  }
+  if(instant){ IG.state = 'done'; IG.items = []; return; }
+  /* the plan, in ms from the click */
+  card.classList.add('play');
+  void card.offsetWidth;
+  var rv = card.querySelectorAll('.ig-rv');
+  Array.prototype.forEach.call(rv, function(el, i){
+    var at = i===0 ? 60 : 340 + Math.min(i, 14)*105;
+    plan.push({at:at, fire:function(){ el.classList.add('in'); }});
+    Array.prototype.forEach.call(el.querySelectorAll('[data-cu]'), function(n, j){ var ci = igCountItem(n, at+60+j*50, 820); if(ci){ n.textContent = n.textContent.replace(/\d/g, '0'); plan.push(ci); } });
+  });
+  if(globe){
+    hud.classList.remove('run'); void hud.offsetWidth; hud.classList.add('run');
+    var bv = igCountItem($('fx-bar-v'), 260, 900); if(bv){ bv.el.textContent = bv.finalText.replace(/\d/g, '0'); plan.push(bv); }
+    var co = igCountItem($('fx-coord'), 0, 620); if(co) plan.push(co);
+    arcs.forEach(function(r, i){ plan.push({at:Math.round(landing[i]*1000), fire:function(){ igLabelEls[i].classList.add('on'); globe.fxLabelsMeasure(); }}); });
+  }
+  IG.items = plan; IG.state = 'play'; IG.t0 = performance.now();
+  var last = 0; plan.forEach(function(p){ last = Math.max(last, p.at+(p.dur||0)); });
+  IG.timer = setTimeout(function(){ if(IG.state==='play'){ igEndAll(); IG.state = 'done'; } }, last+2500);   /* a throttled tab never leaves the card half drawn */
+  IG.raf = requestAnimationFrame(igLoop);
+}
+function igClear(){
+  igCancel();
+  IG.state = 'idle'; IG.arcs = []; IG.kind = null; IG.idx = null; IG.card = null;
+  igLabelEls.forEach(function(el){ el.classList.remove('on'); });
+  var hud = $('fx-hud'); if(hud){ hud.hidden = true; hud.classList.remove('run'); }
+  $('stage').classList.remove('has-fx');
+  $('panel').classList.remove('has-card');
+  if(globe) globe.fxClear();
+}
+document.addEventListener('visibilitychange', function(){ if(document.hidden && IG.state==='play'){ igEndAll(); IG.state = 'done'; } });
+document.addEventListener('keydown', function(ev){ if(ev.key==='Escape' && selected && viewMode==='map'){ showTab(currentTab); clearSelection(); } });
+/* read-only test hook, like window.__liveState */
+window.__globeFx = {
+  get state(){ return IG.state; }, get kind(){ return IG.kind; }, get idx(){ return IG.idx; }, get arcs(){ return IG.arcs.slice(); },
+  get plays(){ return IG.plays; }, get cancels(){ return IG.cancels; },
+  stats:function(){ return globe ? globe.fxStats() : null; },
+  relations:function(kind, idx){ return igRelations(kind, idx).map(function(r){ return {rel:r.rel, kind:r.kind, idx:r.idx, name:r.name, text:r.text, quote:r.quote||'', src:r.src||''}; }); },
+  counts:function(){ return {conflict:conflicts.length, econ:economies.length, choke:chokepoints.length, disaster:disasters.length}; }
+};
+window.__igSelect = function(kind, idx){ select(kind, idx); };
 
 /* ================= reading view (a book page; same data and same failure rules as the map view) ================= */
 /* words for the 1-5 severity of world-data.json; the number stays next to them */
