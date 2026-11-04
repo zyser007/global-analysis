@@ -430,6 +430,7 @@ html[data-view="read"] .live::before{display:none}
 /* a line of small facts; a link inside keeps a 44px tap height without pushing the lines apart */
 .rd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;color:var(--rd-2);font-size:15.5px;line-height:1.65}
 .rd-meta a{display:inline-flex;align-items:center;min-height:44px;margin-block:-9px;overflow-wrap:anywhere}
+.rd-rows > li.rd-price{padding-block:9px}
 .rd-rows > li{padding-block:12px;border-top:1px solid var(--rd-line)}
 .rd-rows > li:first-child{border-top:0;padding-top:4px}
 .rd-title{margin:0 0 2px;font-weight:500;line-height:1.7}
@@ -438,7 +439,10 @@ html[data-view="read"] .live::before{display:none}
 .rd-price .nm{font-weight:500;line-height:1.6;min-width:0;flex:1 1 11em}
 .rd-price .val{font-family:var(--font-head);font-weight:600;font-size:1.15em;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.6}
 .rd-price .val .u{font-family:var(--font-body);font-weight:400;font-size:15px;margin-left:5px;color:var(--rd-2)}
-.rd-price .chg{font-size:16px;line-height:1.65}
+.rd-price .line2{gap:0 10px;color:var(--text)}
+.rd-price .line2 > span:not(.chg){color:var(--rd-2)}
+.rd-price .chg{font-size:15.5px;line-height:1.65}
+.rd-price div.chg{font-size:16px}
 .rd-price .chg.warn{font-weight:600}
 /* conflicts and disasters */
 .rd-conf h3,.rd-dz h3{margin:0 0 2px;font-size:19.5px}
@@ -2002,6 +2006,7 @@ function renderDisasters(){
 var RD_SEVERITY = {5:'รุนแรงที่สุด', 4:'รุนแรงมาก', 3:'รุนแรงปานกลาง', 2:'รุนแรงน้อย', 1:'รุนแรงน้อยมาก'};
 var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data every day */
 var RD_NEWS_TOP = 5;
+var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
 var rdOpen = {}, rdSig = null, rdDirty = true;
 function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
 function rdNote(n){ return n && n.text ? h('p', {class:'rd-note' + (n.warn ? ' warn' : ''), 'data-warn':n.warn ? '1' : null}, [n.warn ? h('b', {text:'ข้อควรระวัง: '}) : null, n.text]) : null; }
@@ -2101,11 +2106,43 @@ function rdLatest(N){
   if(an.points && an.points.length) s.appendChild(rdMore('analysis', 'อ่านบทวิเคราะห์ทั้งหมด', '', [rdBullets(an.points)]));
   if(an.risks && an.risks.length) s.appendChild(rdMore('risks', 'ความเสี่ยงที่ต้องจับตา', '', [rdBullets(an.risks)]));
 }
+/* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo.com, goldtraders.or.th -> goldtraders */
+function rdHost(url){
+  var p = domain(String(url)).split('.');
+  return (p.length > 2 && p[p.length-2].length <= 3) ? p[p.length-3] : p.slice(-2).join('.');
+}
+/* a change text that already says when (a closing date, an announcement time) needs no time beside it */
+function rdNamesTime(s){
+  s = String(s || '');
+  return /เวลา\s*\d/.test(s) || TH_MONTHS.some(function(m){ return s.indexOf(' ' + m) >= 0; });
+}
+function rdShortTime(t){ var d = new Date(t + 7*3600000); return thaiDayShort(t) + ' ' + ('0'+d.getUTCHours()).slice(-2) + ':' + ('0'+d.getUTCMinutes()).slice(-2) + ' น.'; }
+function rdItemTime(it, latest){
+  var t = parseTs(it.as_of);
+  if(t==null || latest-t <= RD_PRICE_OLD_MS || rdNamesTime(it.change_th)) return null;
+  return h('span', {text:'ณ ' + rdShortTime(t)});
+}
+function rdPriceName(it){
+  var nm = String(it.label_th || it.key || '');
+  return it.key==='gold_th' ? nm.replace(/\s*\([^)]*\)\s*$/, '') : nm;   /* the source link already names the association */
+}
+/* Thai gold: "ประกาศครั้งที่ 46 เวลา 16:11 น. +50 บาท · +1,900 จากวันก่อน" -> "ประกาศ 16:11 น. · +1,900 จากวันก่อน",
+   or with the date instead of the word when the announcement is not from today. Any other wording is shown as it is. */
+function rdPriceChange(it){
+  var s = it.change_th ? String(it.change_th) : '', t = parseTs(it.as_of);
+  if(it.key!=='gold_th' || t==null) return s;
+  var m = /^ประกาศครั้งที่\s*\S+\s*เวลา\s*(\d{1,2}:\d{2}\s*น\.).*?·\s*(.+)$/.exec(s);
+  if(!m) return s;
+  return (bkkDay(t)===bkkDay(Date.now()) ? 'ประกาศ ' + m[1] : rdShortTime(t)) + ' · ' + m[2];
+}
 function rdPriceRow(o){
   return h('li', {class:'rd-price', 'data-key':o.key || null}, [
     h('div', {class:'top'}, [h('span', {class:'nm', text:o.name}), h('span', {class:'val'}, [o.value, o.unit ? h('span', {class:'u', text:o.unit}) : null])]),
-    o.change ? h('div', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [rdGlyph(o.trend), o.change]) : null,
-    h('div', {class:'rd-meta'}, [o.when, o.source ? rdA(o.source) : null])
+    h('div', {class:'rd-meta line2'}, [
+      o.change ? h('span', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [rdGlyph(o.trend), o.change]) : null,
+      o.when,
+      o.source ? rdA(o.source, rdHost(o.source)) : null
+    ])
   ]);
 }
 function rdPrices(N){
@@ -2114,9 +2151,11 @@ function rdPrices(N){
   if(N.price) s.appendChild(rdNote(N.price));
   var rows = [];
   if(!live.offline){
+    var latest = 0;
+    items.forEach(function(it){ var t = it && parseTs(it.as_of); if(t && t > latest) latest = t; });
     items.forEach(function(it, i){
       if(!it || typeof it !== 'object' || it.value==null) return;
-      rows.push(rdPriceRow({key:String(it.key || i), name:String(it.label_th || it.key || ''), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:it.change_th ? String(it.change_th) : '', trend:it.trend, when:rdRel(it.as_of, 'ณ '), source:it.source}));
+      rows.push(rdPriceRow({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:rdPriceChange(it), trend:it.trend, when:rdItemTime(it, latest), source:it.source}));
     });
   }
   if(live.offline){

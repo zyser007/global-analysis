@@ -188,9 +188,8 @@ test.describe('content', () => {
       await expect(page.locator('#r-price-list > li')).toHaveCount(market.items.length);
       const first = page.locator(`#r-price-list > li[data-key="${market.items[0].key}"]`);
       await expect(first).toContainText(market.items[0].label_th);
-      await expect(first).toContainText(market.items[0].change_th);
-      await expect(first).toContainText(bkk(market.items[0].as_of));
       await expect(first.locator('a')).toHaveAttribute('href', market.items[0].source);
+      await expect(page.locator('#r-prices .rd-fresh')).toContainText(bkk(market.updated_at));
 
       // 3 conflicts: most severe first, severity in words, summary collapsed, sources kept
       const conf = world.conflicts.slice().sort((a, b) => b.intensity - a.intensity);
@@ -239,6 +238,41 @@ test.describe('content', () => {
     });
   }
 
+  test('prices are two lines each at 390px; a time shows only where it adds something', async ({ browser }) => {
+    writeFresh();
+    const dayAgo = iso(26 * HOUR);
+    const M = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+    const d = new Date(Date.parse(dayAgo) + 7 * HOUR), closeDay = `${d.getUTCDate()} ${M[d.getUTCMonth()]}`;
+    const clock = `${('0' + d.getUTCHours()).slice(-2)}:${('0' + d.getUTCMinutes()).slice(-2)} น.`;
+    const mk = (key, label_th, value, unit, change_th, as_of, source) => ({ key, label_th, value, unit, change_th, trend: 'up', as_of, source });
+    writeData('market', { updated_at: iso(5 * MIN), note_th: 'ทดสอบ', items: [
+      mk('brent', 'น้ำมัน Brent', '101.53', '$/บาร์เรล', '−2.00% (−2.07) จากปิดก่อนหน้า', iso(10 * MIN), 'https://www.cnbc.com/quotes/@LCO.1'),
+      mk('gold_th', 'ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)', '64400', 'บาท', `ประกาศครั้งที่ 46 เวลา ${clock} +50 บาท · +1,900 จากวันก่อน`, dayAgo, 'https://www.goldtraders.or.th/'),
+      mk('spx', 'S&P 500', '7568.92', 'จุด', `ปิด ${closeDay} +0.36% (+27.52)`, dayAgo, 'https://www.cboe.com/x'),
+      mk('usdthb', 'ดอลลาร์/บาท', '33.610', 'บาท/$', '−0.44% (−0.150) จากปิดก่อนหน้า', iso(15 * MIN), 'https://finance.yahoo.com/quote/THB=X'),
+      mk('stuck', 'รายการค้าง', '12.5', 'จุด', '+1.0% จากปิดก่อนหน้า', iso(8 * HOUR), 'https://www.cnbc.com/y'),
+    ] });
+    const { ctx, page } = await open(browser, 390, 844);
+    await page.goto(URL.mutable + '?view=read'); await ready(page);
+    const row = (k) => page.locator(`#r-price-list > li[data-key="${k}"]`);
+    const heights = await page.locator('#r-price-list > li').evaluateAll((els) => els.map((e) => [e.getAttribute('data-key'), e.querySelector('.top').getBoundingClientRect().height, e.querySelector('.line2').getBoundingClientRect().height]));
+    for (const [k, top, line2] of heights) {
+      expect(top, k + ' name and value on one line').toBeLessThan(44);
+      expect(line2, k + ' change and source on one line').toBeLessThan(44);
+    }
+    // Thai gold: short name, the announcement time kept with its date because it is not from today, no second time beside it
+    await expect(row('gold_th').locator('.nm')).toHaveText('ทองคำแท่ง 96.5% ขายออก');
+    await expect(row('gold_th').locator('.chg')).toContainText(`${closeDay} ${clock} · +1,900 จากวันก่อน`);
+    await expect(row('gold_th').locator('a')).toHaveText('goldtraders');
+    await expect(row('gold_th').locator('.val')).toContainText('64,400');
+    // a closing date in the change text is enough; a stale item with no date of its own shows its time; fresh ones show none
+    await expect(row('spx').locator('.line2 > span')).toHaveCount(1);
+    await expect(row('stuck').locator('.line2 > span').nth(1)).toContainText('ณ ');
+    await expect(row('brent').locator('.line2 > span')).toHaveCount(1);
+    await expect(row('usdthb').locator('a')).toHaveText('yahoo.com');
+    await ctx.close();
+  });
+
   test('disasters are called the latest, with each event\'s date or range from the data, and none is filtered out', async ({ browser }) => {
     writeFresh();
     const ended = '2026-10-01T05:00:00Z';
@@ -285,7 +319,6 @@ test.describe('content', () => {
     await repoll(page);
     await expect(page.locator('#r-prices .rd-fresh')).toContainText(bkk(m2.updated_at));
     await expect(page.locator('#r-price-list > li[data-key="brent"]')).toContainText('120.50');
-    await expect(page.locator('#r-price-list > li[data-key="brent"]')).toContainText(bkk(m2.items[0].as_of));
     await expect(card.locator('.rd-more-b')).toBeVisible();
     // a value kept after a failed fetch says so in the row itself
     await expect(page.locator('#r-price-list > li[data-key="gold_th"] .chg')).toContainText('ค่าเดิม');
