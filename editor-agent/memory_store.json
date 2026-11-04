@@ -1,0 +1,7 @@
+{
+  "name": "world-globe-editor",
+  "description": "Memory of the daily World Globe Editor agent (repo zyser007/global-analysis). Files: README.md (how this store is organised), known-issues.md (problems and workarounds that persist between runs), open-decisions.md (questions waiting for the owner, with issue links), watchlist.md (dated upcoming events to check), sources.md (reliable / unreliable sources per topic), runs/<YYYY-MM-DD>.md (one short log per run). Read before each run, update at the end. Never store secrets.",
+  "seed_dir": "memory_seed",
+  "session_access": "read_write",
+  "session_instructions": "Your memory across daily runs. Before research read README.md, known-issues.md, open-decisions.md, watchlist.md, sources.md and the 3 newest files in runs/. At the end write runs/<DATE>.md and update the other files. Keep files short; no secrets."
+}

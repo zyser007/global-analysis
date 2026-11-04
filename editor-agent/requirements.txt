@@ -1,0 +1,6 @@
+# for setup.py / run_once.py / check.py / tests on the owner's machine (same versions as updater/requirements*.txt)
+anthropic==2.3.0
+jsonschema==4.26.0
+pytest==9.2.0
+# visual_check.py also needs Playwright for Python; the Managed Agents sandbox has it pre-installed.
+# Locally (optional): pip install playwright==1.56.0  (uses the Chromium already in ~/Library/Caches/ms-playwright)

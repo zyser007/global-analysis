@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gold.schema.json",
+  "title": "data/gold.json (gold analysis, embedded into site/index.html as world-data.gold)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["as_of", "as_of_caption_th", "updated_th", "unit", "spot_now", "spot_note_th", "intraday_low", "change_day_pct", "change_week_pct", "change_oct_pct", "from_peak_pct", "peak", "peak_date", "year_open", "year_low", "year_low_note_th", "series_2026", "thai", "drivers_th", "supports_th", "sentiment", "levels", "forecasts", "outlook_th", "disclaimer_th", "sources"],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "day": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "instant": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"},
+    "usd": {"type": "number", "exclusiveMinimum": 0},
+    "baht": {"type": "integer", "exclusiveMinimum": 0},
+    "texts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+    "titled_points": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title_th", "points"],
+      "properties": {"title_th": {"$ref": "#/$defs/text"}, "points": {"$ref": "#/$defs/texts"}}
+    }
+  },
+  "properties": {
+    "as_of": {"$ref": "#/$defs/instant", "description": "time of the world spot price in spot_now (UTC)"},
+    "as_of_caption_th": {"$ref": "#/$defs/text"},
+    "updated_th": {"$ref": "#/$defs/text", "description": "must contain the Bangkok date of as_of, e.g. 'ข้อมูลรวบรวมถึง 2 พ.ย. 2569 15:05 น.'"},
+    "unit": {"$ref": "#/$defs/text"},
+    "spot_now": {"$ref": "#/$defs/usd"},
+    "spot_note_th": {"$ref": "#/$defs/text"},
+    "intraday_low": {"$ref": "#/$defs/usd"},
+    "change_day_pct": {"type": "number"},
+    "change_week_pct": {"type": "number"},
+    "change_oct_pct": {"type": "number"},
+    "from_peak_pct": {"type": "number", "maximum": 0},
+    "peak": {"$ref": "#/$defs/usd"},
+    "peak_date": {"$ref": "#/$defs/day"},
+    "year_open": {"$ref": "#/$defs/usd"},
+    "year_low": {"$ref": "#/$defs/usd"},
+    "year_low_note_th": {"$ref": "#/$defs/text"},
+    "series_2026": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["note_th", "points", "peak_marker"],
+      "properties": {
+        "note_th": {"$ref": "#/$defs/text"},
+        "points": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {"type": "array", "prefixItems": [{"$ref": "#/$defs/text"}, {"$ref": "#/$defs/usd"}], "minItems": 2, "maxItems": 2}
+        },
+        "peak_marker": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label_th", "value", "date"],
+          "properties": {"label_th": {"$ref": "#/$defs/text"}, "value": {"$ref": "#/$defs/usd"}, "date": {"$ref": "#/$defs/day"}}
+        }
+      }
+    },
+    "thai": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label_th", "sell", "buy", "ornament_sell", "unit_th", "as_of", "source_th", "year_open", "record", "record_note_th", "year_low", "ytd_pct", "note_th"],
+      "properties": {
+        "label_th": {"$ref": "#/$defs/text"},
+        "sell": {"$ref": "#/$defs/baht"},
+        "buy": {"$ref": "#/$defs/baht"},
+        "ornament_sell": {"$ref": "#/$defs/baht"},
+        "unit_th": {"$ref": "#/$defs/text"},
+        "as_of": {"$ref": "#/$defs/instant"},
+        "source_th": {"$ref": "#/$defs/text"},
+        "friday_sell": {"$ref": "#/$defs/baht"},
+        "sat_change_baht": {"type": "integer"},
+        "sun_change_baht": {"type": "integer"},
+        "two_day_change_baht": {"type": "integer"},
+        "year_open": {"$ref": "#/$defs/baht"},
+        "record": {"$ref": "#/$defs/baht"},
+        "record_note_th": {"$ref": "#/$defs/text"},
+        "year_low": {"$ref": "#/$defs/baht"},
+        "oct_change_baht": {"type": "integer"},
+        "ytd_pct": {"type": "number"},
+        "analyst_range_th": {"$ref": "#/$defs/text"},
+        "note_th": {"$ref": "#/$defs/text"}
+      }
+    },
+    "drivers_th": {"$ref": "#/$defs/titled_points"},
+    "supports_th": {"$ref": "#/$defs/titled_points"},
+    "sentiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title_th", "survey_th", "bearish", "bullish", "neutral", "bear_targets_th", "counter_th"],
+      "properties": {
+        "title_th": {"$ref": "#/$defs/text"},
+        "survey_th": {"$ref": "#/$defs/text"},
+        "bearish": {"type": "integer", "minimum": 0, "maximum": 100},
+        "bullish": {"type": "integer", "minimum": 0, "maximum": 100},
+        "neutral": {"type": "integer", "minimum": 0, "maximum": 100},
+        "retail_bullish": {"type": "integer", "minimum": 0, "maximum": 100},
+        "bear_targets_th": {"$ref": "#/$defs/texts"},
+        "counter_th": {"$ref": "#/$defs/texts"}
+      }
+    },
+    "levels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["support", "chart_support", "ma200", "rsi_daily"],
+      "properties": {
+        "support": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["range_th", "lo", "hi", "role", "note_th"],
+            "properties": {
+              "range_th": {"$ref": "#/$defs/text"},
+              "lo": {"$ref": "#/$defs/usd"},
+              "hi": {"$ref": "#/$defs/usd"},
+              "role": {"enum": ["support", "resistance"]},
+              "note_th": {"$ref": "#/$defs/text"}
+            }
+          }
+        },
+        "chart_support": {"$ref": "#/$defs/usd"},
+        "ma200": {"$ref": "#/$defs/usd"},
+        "rsi_daily": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    },
+    "forecasts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["note_th", "items"],
+      "properties": {
+        "note_th": {"$ref": "#/$defs/text"},
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "end_2026", "end_2027"],
+            "properties": {
+              "name": {"$ref": "#/$defs/text"},
+              "end_2026": {"$ref": "#/$defs/usd"},
+              "end_2027": {"oneOf": [{"$ref": "#/$defs/usd"}, {"type": "null"}]},
+              "note_th": {"$ref": "#/$defs/text"}
+            }
+          }
+        }
+      }
+    },
+    "outlook_th": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenarios", "calendar_th", "risks_up", "risks_down"],
+      "properties": {
+        "scenarios": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["k", "text"],
+            "properties": {"k": {"$ref": "#/$defs/text"}, "text": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "calendar_th": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title_th", "items"],
+          "properties": {"title_th": {"$ref": "#/$defs/text"}, "items": {"$ref": "#/$defs/texts"}}
+        },
+        "risks_up": {"$ref": "#/$defs/texts"},
+        "risks_down": {"$ref": "#/$defs/texts"}
+      }
+    },
+    "disclaimer_th": {"$ref": "#/$defs/text"},
+    "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}, "description": "publisher names shown on the page; the URLs and dates of each run live in editor-agent/runs/<date>.changes.json"}
+  }
+}

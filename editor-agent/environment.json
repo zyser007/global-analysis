@@ -1,0 +1,10 @@
+{
+  "name": "world-globe-editor-env",
+  "description": "Cloud sandbox for the World Globe Editor. Unrestricted egress because web_search/web_fetch must reach news sites that cannot be listed in advance; no secret ever enters this sandbox (the GitHub token is injected by the git proxy).",
+  "config": {
+    "type": "cloud",
+    "networking": {"type": "unrestricted"},
+    "packages": {"type": "packages", "pip": ["jsonschema==4.26.0", "pytest==9.2.0", "anthropic==2.3.0"]}
+  },
+  "metadata": {"repo": "zyser007/global-analysis", "managed_by": "editor-agent/setup.py"}
+}

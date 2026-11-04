@@ -1,0 +1,19 @@
+{
+  "name": "World Globe Editor - daily 07:00 Bangkok",
+  "description": "Runs the World Globe Editor once a day; each run is one session capped at $3.00 list cost.",
+  "schedule": {"type": "cron", "expression": "0 7 * * *", "timezone": "Asia/Bangkok"},
+  "budget": {"type": "limit", "max_list_cost": {"amount": "300", "currency": "USD"}},
+  "repository": {
+    "url": "https://github.com/zyser007/global-analysis",
+    "mount_path": "/workspace/global-analysis",
+    "checkout": {"type": "branch", "name": "main"}
+  },
+  "github_token_file": "/Users/zyser/Documents/work/key/github_agent_token",
+  "kickoff": {
+    "message_file": "kickoff/message.md",
+    "outcome_description_file": "kickoff/outcome.md",
+    "rubric_file": "kickoff/rubric.md",
+    "max_iterations": 2
+  },
+  "metadata": {"repo": "zyser007/global-analysis", "managed_by": "editor-agent/setup.py"}
+}

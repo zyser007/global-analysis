@@ -291,7 +291,7 @@ function goldFoldTitle(title, asof){
   function ul(items, cls){ var u = h('ul', {class:cls||'points'}); (items||[]).forEach(function(p){ u.appendChild(h('li', {text:p})); }); return u; }
 
   v.appendChild(h('h3', {class:'sec-title', text:'เจาะลึก'}));
-  v.appendChild(h('p', {class:'static-note', id:'gold-analysis-note'}, [h('b', {text:ANALYSIS}), ' · ไม่อัปเดตอัตโนมัติ ตัวเลขในหัวข้อด้านล่างอาจต่างจากราคาสดด้านบน']));
+  v.appendChild(h('p', {class:'static-note', id:'gold-analysis-note'}, [h('b', {text:ANALYSIS}), ' · AI บรรณาธิการทบทวนวันละครั้ง ตัวเลขในหัวข้อด้านล่างอาจต่างจากราคาสดด้านบน']));
   v.appendChild(fold((g.drivers_th && g.drivers_th.title_th) || 'ทำไมลง', true, [ul(g.drivers_th && g.drivers_th.points)], true));
   v.appendChild(fold((g.supports_th && g.supports_th.title_th) || 'แรงหนุน', false, [ul(g.supports_th && g.supports_th.points)], true));
 
@@ -314,7 +314,7 @@ function goldFoldTitle(title, asof){
 
   v.appendChild(fold('ทองไทย (' + (th.label_th||'96.5%') + ')', false, [
     h('div', {class:'kv', id:'gold-th-kv', style:'margin-top:0'}),
-    (th.analyst_range_th || th.note_th) ? h('p', {class:'static-note', text:ANALYSIS + ' (ไม่อัปเดตอัตโนมัติ)'}) : null,
+    (th.analyst_range_th || th.note_th) ? h('p', {class:'static-note', text:ANALYSIS + ' (ทบทวนวันละครั้ง)'}) : null,
     th.analyst_range_th ? h('p', {text:th.analyst_range_th}) : null,
     th.note_th ? h('p', {text:th.note_th}) : null
   ]));
