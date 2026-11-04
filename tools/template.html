@@ -408,172 +408,523 @@ details.fold .fold-body p{margin:0 0 8px}
   html:not([data-view="read"]) .topbar .sub{grid-column:1 / -1;grid-row:2;margin:0}
 }
 
-/* ---------- reading view: a book page, not a dashboard (html[data-view="read"]; colour and size set before first paint by the script in <head>).
+/* ---------- reading view: a magazine, one chapter on screen at a time (html[data-view="read"]; colour and size set before first paint by the script in <head>).
    Why each value is what it is: docs/reading-mode-research.md ---------- */
-html:not([data-view="read"]) .reader,html:not([data-view="read"]) .rd-aa,html:not([data-view="read"]) .rd-progress{display:none}
+html:not([data-view="read"]) .reader,html:not([data-view="read"]) .rd-aa,html:not([data-view="read"]) .rd-progress,html:not([data-view="read"]) .rd-tabs,html:not([data-view="read"]) .rd-sheet{display:none}
 html[data-view="read"]{
   color-scheme:light;
-  --rd-paper:#fbf7ee; --rd-ink:#322c26; --rd-ink-2:#625a4e; --rd-rule:#d8cfbe; --rd-line:#a89b85; --rd-warn:#8c3a14;
+  --rd-paper:#f8f2e6; --rd-card:#fffbf2; --rd-ink:#2a241f; --rd-ink-2:#5c5244; --rd-rule:#dfd4bf; --rd-line:#a89b85; --rd-warn:#8c3a14; --rd-warn-bg:#f7e3cf;
+  --rd-up:#14683c; --rd-down:#ab2a1e; --rd-held:#5c5244; --rd-mapbg:#ece4d2; --rd-mapdot:#b3a68c;
+  --rd-s1:#a58a4a; --rd-s2:#c08a2a; --rd-s3:#c9622a; --rd-s4:#b83a2c; --rd-s5:#86122e; --rd-s0:#dfd4bf;
+  /* a chapter's colour: --c is a solid field that carries light text, --a is the same colour as text on the page */
+  --c-latest:#232b40; --a-latest:#2e3a63; --c-prices:#0f5a54; --a-prices:#0f5f58; --c-conflicts:#7b1d2a; --a-conflicts:#8a2030;
+  --c-disasters:#8d3f0e; --a-disasters:#94430f; --c-economy:#1b4f7a; --a-economy:#1c5480; --c-gold:#654a09; --a-gold:#755608; --c-front:#2a241f; --a-front:#2a241f;
+  --rd-on:#fff8ec; --rd-on-2:#f1e6d3; --rd-land:rgba(255,248,236,.3); --rd-glint:#f6d36b;
+  --rd-disp:"IBM Plex Sans Thai","Noto Sans Thai","Thonburi","Leelawadee UI","Tahoma",sans-serif;
   --rd-font:"Noto Serif Thai","Thonburi","Leelawadee UI","Tahoma","Noto Sans Thai",serif;
-  --rd-base:1.125rem; --rd-scale:1; --rd-measure:34em; --rd-margin:clamp(24px,6.6vw,48px);
+  --rd-base:1.0625rem; --rd-scale:1; --rd-g:clamp(16px,4.4vw,28px); --rd-tabs:58px;
   /* the header and the shared helpers keep working on the same page colours */
   --bg:var(--rd-paper); --surface:var(--rd-paper); --text:var(--rd-ink); --text-2:var(--rd-ink-2); --muted:var(--rd-ink-2);
   --border:var(--rd-rule); --border-strong:var(--rd-rule); --accent:var(--rd-ink); --warn:var(--rd-warn);
-  --font-body:var(--rd-font); --font-head:var(--rd-font);
+  --font-body:var(--rd-font); --font-head:var(--rd-disp);
 }
-html[data-view="read"][data-rd-theme="sepia"]{--rd-paper:#f3e9d4; --rd-ink:#3a2f24; --rd-ink-2:#655442; --rd-rule:#d3c4a6; --rd-line:#9f8c6d; --rd-warn:#853512}
-html[data-view="read"][data-rd-theme="night"]{color-scheme:dark; --rd-paper:#1d1a17; --rd-ink:#d6cdbe; --rd-ink-2:#a89d8c; --rd-rule:#3d372f; --rd-line:#6f6556; --rd-warn:#e0a177}
-@media (min-width:700px){ html[data-view="read"]{--rd-base:1.1875rem} }
+html[data-view="read"][data-rd-theme="sepia"]{--rd-paper:#f1e6cf; --rd-card:#f8efdc; --rd-ink:#33291f; --rd-ink-2:#5f4f3d; --rd-rule:#d6c6a6; --rd-line:#9f8c6d; --rd-warn:#853512; --rd-warn-bg:#efd9bb; --rd-mapbg:#e5d8bb; --rd-mapdot:#ab9873; --rd-up:#0f5f35; --rd-down:#a0261b; --rd-held:#5f4f3d; --rd-s0:#d6c6a6}
+html[data-view="read"][data-rd-theme="night"]{color-scheme:dark;
+  --rd-paper:#1b1815; --rd-card:#25211c; --rd-ink:#e0d7c8; --rd-ink-2:#b0a595; --rd-rule:#3a342c; --rd-line:#6f6556; --rd-warn:#eeb088; --rd-warn-bg:#3d281a;
+  --rd-up:#71d49c; --rd-down:#ff9d8f; --rd-held:#b0a595; --rd-mapbg:#26221d; --rd-mapdot:#5a5246;
+  --rd-s1:#a6936a; --rd-s2:#d4a54a; --rd-s3:#e88a4a; --rd-s4:#f0695a; --rd-s5:#ff6f86; --rd-s0:#3a342c;
+  --c-latest:#2a3147; --a-latest:#aebbe6; --c-prices:#0f4a45; --a-prices:#62ccbd; --c-conflicts:#611a25; --a-conflicts:#f49aa5;
+  --c-disasters:#6d340f; --a-disasters:#f0a76b; --c-economy:#174468; --a-economy:#82bdec; --c-gold:#54400f; --a-gold:#e6c163; --c-front:#2d2823; --a-front:#e0d7c8;
+  --rd-on:#fbf2e4; --rd-on-2:#e6dac6; --rd-land:rgba(251,242,228,.24)}
+.rd-c-front{--c:var(--c-front);--a:var(--a-front)} .rd-c-latest{--c:var(--c-latest);--a:var(--a-latest)} .rd-c-prices{--c:var(--c-prices);--a:var(--a-prices)}
+.rd-c-conflicts{--c:var(--c-conflicts);--a:var(--a-conflicts)} .rd-c-disasters{--c:var(--c-disasters);--a:var(--a-disasters)}
+.rd-c-economy{--c:var(--c-economy);--a:var(--a-economy)} .rd-c-gold{--c:var(--c-gold);--a:var(--a-gold)}
+@media (min-width:1000px){ html[data-view="read"]{--rd-base:1.125rem} }
 html[data-view="read"][data-rd-size="1"]{--rd-scale:.89}
 html[data-view="read"][data-rd-size="2"]{--rd-scale:.945}
 html[data-view="read"][data-rd-size="4"]{--rd-scale:1.11}
 html[data-view="read"][data-rd-size="5"]{--rd-scale:1.22}
 html[data-view="read"][data-rd-size="6"]{--rd-scale:1.33}
 html[data-view="read"],html[data-view="read"] body{height:auto;min-height:100%;overflow:visible;background:var(--rd-paper)}
-html[data-view="read"] body{color:var(--rd-ink);font-family:var(--rd-font);font-size:calc(var(--rd-base)*var(--rd-scale));font-weight:400;line-height:1.8;
+html.rd-lock[data-view="read"],html.rd-lock[data-view="read"] body{overflow:hidden}
+html[data-view="read"] body{color:var(--rd-ink);font-family:var(--rd-font);font-size:calc(var(--rd-base)*var(--rd-scale));font-weight:400;line-height:1.75;
   overflow-wrap:break-word;word-break:normal;hyphens:none;text-align:start;font-variant-numeric:lining-nums tabular-nums}
 html[data-view="read"] ::selection{background:color-mix(in srgb,var(--rd-line) 45%,var(--rd-paper))}
-html[data-view="read"] .app{height:auto;display:block;padding:env(safe-area-inset-top,0px) max(var(--rd-margin),env(safe-area-inset-right,0px)) 0 max(var(--rd-margin),env(safe-area-inset-left,0px))}
+html[data-view="read"] .app{height:auto;display:block;padding:0}
 html[data-view="read"] .main{display:none}
 
-/* the title page: two small controls, then the book's title and the date of this edition */
-html[data-view="read"] .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 8px;max-width:var(--rd-measure);margin-inline:auto;padding-block:4px 0;position:relative}
-html[data-view="read"] .topbar > div:first-child{grid-column:1 / -1;grid-row:2;text-align:center;padding-top:clamp(20px,5vh,44px)}
-html[data-view="read"] .topbar h1{font-family:var(--rd-font);font-weight:600;font-size:1.9em;line-height:1.6;letter-spacing:0}
-html[data-view="read"] .topbar .sub{display:block;overflow:visible;white-space:normal;margin:.1em 0 0;font-size:.84em;line-height:1.7;color:var(--rd-ink-2)}
-html[data-view="read"] #counts,html[data-view="read"] #live-flag{display:none}
+/* the masthead row: name of the publication, page colour and type size, the way to the globe. It scrolls away; the tab bar stays. */
+html[data-view="read"] .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:0 2px;margin:0;padding:env(safe-area-inset-top,0px) max(calc(var(--rd-g) - 8px),env(safe-area-inset-right,0px)) 0 max(var(--rd-g),env(safe-area-inset-left,0px));min-height:50px;background:none;border:0;position:static}
+html[data-view="read"] .topbar > div:first-child{grid-column:1;grid-row:1;min-width:0}
+html[data-view="read"] .topbar h1{font-family:var(--rd-disp);font-weight:700;font-size:1.125rem;line-height:1.5;letter-spacing:0;color:var(--rd-ink);cursor:pointer;white-space:nowrap}
+html[data-rd-ch="front"][data-view="read"] .topbar h1{font-size:1.5rem;line-height:1.45}
+html[data-view="read"] .topbar .sub{display:none}
 html[data-view="read"] .live{display:inline}
 html[data-view="read"] .live::before{display:none}
-html[data-view="read"] .badge-sample{grid-column:1 / -1;grid-row:3;justify-self:center;background:none;border:0;padding:0;font-size:.84em;line-height:1.7;font-weight:600;letter-spacing:0;color:var(--rd-warn)}
-html[data-view="read"] .view-switch{grid-column:1;grid-row:1;justify-self:start;border:0;border-radius:0;background:none;padding:0;gap:0;margin-left:-10px}
-html[data-view="read"] .view-switch button{min-height:44px;padding:0 10px;border-radius:0;background:none;color:var(--rd-ink-2);font-family:var(--rd-font);font-size:.9375rem;font-weight:400;line-height:1.7}
-html[data-view="read"] .view-switch button[aria-pressed="true"]{background:none;color:var(--rd-ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.3em}
+html[data-view="read"] .badge-sample{grid-column:1 / -1;grid-row:2;justify-self:start;background:none;border:0;padding:0;font-family:var(--rd-disp);font-size:.8125rem;line-height:1.6;font-weight:600;letter-spacing:0;color:var(--rd-warn)}
+html[data-view="read"] .view-switch{grid-column:3;grid-row:1;border:0;border-radius:0;background:none;padding:0;gap:0}
+html[data-view="read"] #vw-read{display:none}
+html[data-view="read"] .view-switch button{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 8px;border-radius:0;background:none;color:var(--rd-ink-2);font-family:var(--rd-disp);font-size:.875rem;font-weight:500;line-height:1.5}
+html[data-view="read"] .view-switch button:hover{color:var(--rd-ink)}
 html[data-view="read"] .view-switch button:focus-visible,.rd-aa summary:focus-visible,.rd-aa button:focus-visible{outline:2px solid var(--rd-ink);outline-offset:-2px}
 
-/* page colour and type size: one small "Aa", nothing else stays on screen while reading */
-.rd-aa{grid-column:2;grid-row:1;justify-self:end}
-.rd-aa > summary{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-right:-10px;cursor:pointer;list-style:none;color:var(--rd-ink-2);font-size:1.0625rem;line-height:1.5;-webkit-user-select:none;user-select:none}
+/* page colour and type size: one small mark at the top of every page, and in the bar of an open article */
+.rd-aa{grid-column:2;grid-row:1}
+.rd-aa > summary{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;cursor:pointer;list-style:none;color:var(--rd-ink-2);font-family:var(--rd-disp);font-weight:500;font-size:1.0625rem;line-height:1.5;-webkit-user-select:none;user-select:none}
 .rd-aa > summary .a-s{font-size:.78em}
 .rd-aa > summary::-webkit-details-marker{display:none}
 .rd-aa[open] > summary{color:var(--rd-ink)}
-.rd-aa-panel{position:absolute;z-index:5;top:46px;right:0;width:min(19.5rem,100%);padding:12px 14px 14px;background:var(--rd-paper);border:1px solid var(--rd-rule);font-size:.9375rem;line-height:1.7}
+.rd-aa-panel{position:fixed;z-index:40;top:calc(50px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));width:min(19.5rem,calc(100vw - 20px));padding:12px 14px 14px;background:var(--rd-card);border:1px solid var(--rd-rule);border-radius:10px;box-shadow:0 10px 30px rgba(30,20,10,.22);font-family:var(--rd-disp);font-size:.9375rem;line-height:1.7}
 .rd-aa-panel p{margin:0;color:var(--rd-ink-2)}
 .rd-aa-row{display:flex;gap:6px;margin:2px 0 10px}
 .rd-aa-row:last-child{margin-bottom:0}
-.rd-aa button{flex:1 1 0;min-width:44px;min-height:44px;padding:0 6px;border:1px solid var(--rd-rule);border-radius:2px;background:none;color:var(--rd-ink);font-family:var(--rd-font);font-size:.9375rem;line-height:1.5;cursor:pointer}
+.rd-aa button{flex:1 1 0;min-width:44px;min-height:44px;padding:0 6px;border:1px solid var(--rd-rule);border-radius:8px;background:none;color:var(--rd-ink);font-family:var(--rd-disp);font-size:.9375rem;line-height:1.5;cursor:pointer}
 .rd-aa button[aria-pressed="true"]{border:2px solid var(--rd-ink);font-weight:600}
 .rd-aa button:disabled{color:var(--rd-ink-2);border-style:dashed;cursor:default}
-.rd-aa button.sw-paper{background:#fbf7ee;color:#322c26}
-.rd-aa button.sw-sepia{background:#f3e9d4;color:#3a2f24}
-.rd-aa button.sw-night{background:#1d1a17;color:#d6cdbe}
+.rd-aa button.sw-paper{background:#f8f2e6;color:#2a241f}
+.rd-aa button.sw-sepia{background:#f1e6cf;color:#33291f}
+.rd-aa button.sw-night{background:#1b1815;color:#e0d7c8}
 .rd-aa .rd-size-now{flex:0 0 auto;align-self:center;min-width:5.5em;text-align:center;color:var(--rd-ink-2)}
 .rd-aa .a-small{font-size:.875rem}
 .rd-aa .a-large{font-size:1.25rem}
 
-/* the thin hint of how far along the page you are; nothing moves but this line */
-.rd-progress{position:fixed;z-index:4;top:0;left:0;right:0;height:2px;pointer-events:none;background:var(--rd-line);opacity:.7;transform-origin:0 50%;transform:scaleX(0)}
+/* how far along an open article you are; nothing moves but this line */
+.rd-progress{position:fixed;z-index:60;top:0;left:0;right:0;height:3px;pointer-events:none;background:var(--a,var(--rd-line));transform-origin:0 50%;transform:scaleX(0)}
 
-/* one column */
-.reader{max-width:var(--rd-measure);margin-inline:auto;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
-.reader p{margin:0 0 .85em}
+/* the tab bar */
+.rd-tabs{position:fixed;z-index:20;left:0;right:0;bottom:0;display:flex;justify-content:stretch;padding:0 max(2px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(2px,env(safe-area-inset-left,0px));background:var(--rd-card);border-top:1px solid var(--rd-rule);font-family:var(--rd-disp)}
+.rd-tabs a{flex:1 1 0;min-width:0;min-height:var(--rd-tabs);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:5px 0 3px;color:var(--rd-ink-2);text-decoration:none;font-size:.6875rem;font-weight:500;line-height:1.35;white-space:nowrap;position:relative;-webkit-tap-highlight-color:transparent}
+.rd-tabs svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.rd-tabs a[aria-current="page"]{color:var(--a);font-weight:700}
+.rd-tabs a[aria-current="page"] svg{stroke-width:2.1}
+.rd-tabs a[aria-current="page"]::before{content:"";position:absolute;top:-1px;left:18%;right:18%;height:3px;border-radius:0 0 3px 3px;background:var(--a)}
+.rd-tabs a:focus-visible{outline:2px solid var(--rd-ink);outline-offset:-3px}
+
+/* pages */
+.reader{display:block;overflow-x:clip;touch-action:pan-y pinch-zoom;padding-bottom:calc(var(--rd-tabs) + env(safe-area-inset-bottom,0px))}
+.reader p{margin:0}
 .reader ul,.reader ol{margin:0;padding:0;list-style:none}
-.reader h2,.reader h3,.reader h4{font-family:var(--rd-font);font-weight:600;letter-spacing:0}
-.reader a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+.reader h2,.reader h3,.reader h4{font-family:var(--rd-disp);font-weight:700;letter-spacing:0;margin:0}
+.reader h2:focus{outline:none}
+:where(.reader) a:where(:not(.x)){color:inherit}
+.reader a,.rd-sheet a,.rd-tabs a{-webkit-tap-highlight-color:transparent}
+.reader a:active,.rd-sheet a:active{opacity:.78}
 .reader a:focus-visible,.reader summary:focus-visible,.reader button:focus-visible{outline:2px solid var(--rd-ink);outline-offset:2px}
-
-/* contents: a short run of words under the title */
-.rd-toc{display:flex;flex-wrap:wrap;justify-content:center;column-gap:.9em;margin:.7em 0 0;font-size:.875em;line-height:1.7;color:var(--rd-ink-2)}
-.rd-toc li{display:inline-flex}
-.rd-toc a{display:inline-flex;align-items:center;gap:.35em;min-height:44px;text-decoration:none}
-.rd-toc a span:last-child{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
-.rd-banner{margin:1.4em 0 0;padding:.7em 0;border-block:1px solid var(--rd-warn);color:var(--rd-ink);font-size:.94em;line-height:1.75}
+.rd-sec{display:none}
+.rd-sec.on{display:block}
+html[data-rd-ch="front"] .rd-foot{display:none}
+.rd-in-next{animation:rd-in-next .18s ease-out}
+.rd-in-prev{animation:rd-in-prev .18s ease-out}
+@keyframes rd-in-next{from{opacity:.25;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes rd-in-prev{from{opacity:.25;transform:translateX(-36px)}to{opacity:1;transform:none}}
+.rd-banner{margin:0;padding:.55em var(--rd-g);background:var(--rd-warn-bg);color:var(--rd-ink);font-family:var(--rd-disp);font-size:.8125em;line-height:1.6}
 .rd-banner[hidden]{display:none}
 
-/* chapters */
-.rd-sec{padding-top:clamp(52px,9vh,84px)}
-.rd-sec[hidden]{display:none}
-.rd-sec:first-of-type{padding-top:clamp(36px,6vh,60px)}
-.rd-ch{text-align:center;margin:0 0 1.5em}
-.rd-ch-no{margin:0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-sec .rd-ch h2{margin:0;font-size:1.5em;line-height:1.55;text-wrap:balance}
-.rd-fresh{margin:.35em 0 0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-sec h3{margin:2.1em 0 .35em;font-size:1.14em;line-height:1.65;text-wrap:pretty}
-.rd-sec h3 + .rd-fresh{margin:-.2em 0 .8em !important;text-align:start}
-.rd-lead{font-size:1.1em;line-height:1.8}
-.reader p,.rd-prose li,.rd-title{text-wrap:pretty}
-.rd-prose li{margin:0 0 .85em}
-.rd-note{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-note a{display:inline-block;padding-block:11px;margin-block:-11px}
-/* a warning stays body size and says what it is; no box, because the words are the message */
-.rd-note.warn{font-size:.94em;color:var(--rd-ink)}
-.rd-note.warn b{font-weight:600;color:var(--rd-warn)}
-.rd-rows > li{margin:0 0 1.15em}
-.rd-title{margin:0 !important}
-.rd-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .9em;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-meta a{display:inline-flex;align-items:center;min-height:44px;margin-block:-10px;align-self:center;overflow-wrap:anywhere}
+/* the front page */
+.rd-fm{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 .9em;margin:0 var(--rd-g);padding:.25em 0 .3em;border-block:1px solid var(--rd-ink);border-top-width:3px;font-family:var(--rd-disp);font-size:.8125em;line-height:1.55;color:var(--rd-ink-2)}
+.rd-fm .warn{color:var(--rd-warn);font-weight:600}
+.rd-lead-link{display:block;margin:.55rem var(--rd-g) .6rem;text-decoration:none}
+.rd-kick{font-family:var(--rd-disp);font-size:.8125em;font-weight:600;line-height:1.6}
+.rd-lead-link .rd-kick{color:var(--a-conflicts)}
+.rd-lead-link h2{font-weight:700;line-height:1.42;text-wrap:pretty}
+.rd-lead-link h2.l1{font-size:1.75em}
+.rd-lead-link h2.l2{font-size:1.5em}
+.rd-lead-link h2.l3{font-size:1.32em}
+.rd-lead-link h2.l4{font-size:1.2em}
 
-/* items that read like short sections */
-.rd-conf,.rd-dz,.rd-choke{margin:0 0 1.9em !important}
-.rd-conf h3,.rd-dz h3,.rd-choke h3,.rd-choke h4{margin:0 0 .15em;font-size:1.14em;line-height:1.65}
-.rd-level{margin:0 0 .45em !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-level b{font-weight:600;color:var(--rd-ink)}
-.rd-sev{margin:0 0 .15em !important}
-.rd-conf > p:not(.rd-level){margin-bottom:0}
+/* key numbers */
+.rd-nums{display:block;margin:0 var(--rd-g);padding:.3em 0 .4em;border-block:1px solid var(--rd-rule);text-decoration:none;font-family:var(--rd-disp)}
+.rd-nums-h{display:flex;justify-content:space-between;gap:.8em;font-size:.75em;line-height:1.6;color:var(--rd-ink-2);font-weight:500}
+.rd-nums-h b{font-weight:700;color:var(--a-prices)}
+.rd-nums-g{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:0 8px}
+.rd-num{min-width:0}
+.rd-num + .rd-num{border-left:1px solid var(--rd-rule);padding-left:9px}
+.rd-num .k{display:block;font-size:.75em;line-height:1.5;color:var(--rd-ink-2);white-space:nowrap}
+.rd-num .v{display:block;white-space:nowrap;font-size:1.12em;line-height:1.3;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums}
+.rd-num .rd-mv{display:block;font-size:.76em;line-height:1.45}
+/* the four figures stay in one row only while the longest of them fits; a price must never be cut */
+@media (max-width:389px){
+  .rd-nums-g{gap:0 6px}
+  .rd-num + .rd-num{padding-left:7px}
+  .rd-num .v{font-size:1.02em}
+  .rd-num .rd-mv{font-size:.72em}
+}
+@media (max-width:350px){
+  .rd-nums-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8px}
+  .rd-num:nth-child(odd){border-left:0;padding-left:0}
+  .rd-num .v{font-size:1.12em}
+  .rd-num .rd-mv{font-size:.76em}
+}
+@media (max-width:430px){
+  html[data-rd-size="4"] .rd-nums-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 8px}
+  html[data-rd-size="4"] .rd-num:nth-child(odd){border-left:0;padding-left:0}
+}
+html[data-rd-size="5"] .rd-nums-g,html[data-rd-size="6"] .rd-nums-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 8px}
+html[data-rd-size="5"] .rd-num:nth-child(odd),html[data-rd-size="6"] .rd-num:nth-child(odd){border-left:0;padding-left:0}
 
-/* "read on": a few quiet words under the paragraph, one level deep */
-details.rd-more > summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;list-style:none;font-size:.9em;line-height:1.7;color:var(--rd-ink-2)}
-details.rd-more > summary > span{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+/* up and down: colour, an arrow and a sign, always all three */
+.rd-nb{white-space:nowrap}
+.rd-mv{font-family:var(--rd-disp);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums lining-nums}
+.rd-mv i{font-style:normal;font-size:.72em;margin-right:.18em;vertical-align:.08em}
+.rd-mv.up{color:var(--rd-up)} .rd-mv.down{color:var(--rd-down)} .rd-mv.flat,.rd-mv.held{color:var(--rd-held)}
+.rd-on .rd-mv,.rd-hero .rd-mv{color:var(--rd-on)}
+
+/* chapter entries: a mosaic of coloured tiles, each with something from today's data */
+.rd-mosaic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:.6rem var(--rd-g) .9rem}
+.rd-tile{position:relative;display:flex;flex-direction:column;min-width:0;min-height:134px;padding:9px 11px 10px;overflow:hidden;border-radius:10px;background:var(--c);color:var(--rd-on);text-decoration:none;font-family:var(--rd-disp);-webkit-tap-highlight-color:transparent}
+.rd-tile.wide{grid-column:1 / -1;min-height:124px}
+.rd-tile .h{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px;font-size:.8125em;font-weight:700;line-height:1.5}
+.rd-tile .h span{font-weight:500;color:var(--rd-on-2);white-space:nowrap}
+.rd-tile .t{position:relative;margin-top:.1em;font-size:.875em;font-weight:500;line-height:1.56;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.rd-tile .big{position:relative;display:block;font-size:1.32em;font-weight:700;line-height:1.3;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums}
+.rd-tile.wide .t{font-size:1.06em;font-weight:700;line-height:1.64;-webkit-line-clamp:2;max-width:66%}
+.rd-tile .sevline{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:0 .5em;margin-top:.15em;font-size:.8125em;font-weight:500;line-height:1.5;max-width:66%}
+.rd-tile .wmap{position:absolute;right:-8px;bottom:-6px;width:74%;height:auto;pointer-events:none}
+.rd-tile .spark{margin-top:auto;display:block;width:100%;height:auto;pointer-events:none}
+.rd-tile .ic{position:relative;display:inline-flex;margin-top:auto;align-self:flex-end;color:var(--rd-on);opacity:.92}
+.rd-tile .bars{margin-top:auto;display:block;width:100%;height:30px}
+.rd-tile:focus-visible{outline:3px solid var(--rd-ink);outline-offset:2px}
+.rd-swhint{display:none}
+
+/* chapter hero: a full-width field of the chapter's colour with a data graphic in it */
+.rd-hero{position:relative;padding:.7rem var(--rd-g) 1rem;background:var(--c);color:var(--rd-on);overflow:hidden}
+.rd-hero .rd-kick{color:var(--rd-on-2);font-weight:500}
+.rd-hero h2{font-size:2em;line-height:1.36;font-weight:700}
+.rd-hero-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:0 .6em}
+.rd-hero-top h2{min-width:0}
+.rd-hero-top .rd-tally{margin:0;flex:none}
+.rd-hero a{color:inherit}
+.rd-hero-sub{margin-top:.25em !important;font-size:.8125em;font-family:var(--rd-disp);line-height:1.6;color:var(--rd-on-2)}
+.rd-fresh{font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2);text-wrap:pretty}
+.rd-hero .rd-fresh{color:var(--rd-on-2);margin-top:.35em}
+#r-latest .rd-hero h2{font-size:1.14em;line-height:1.5;color:var(--rd-on-2);font-weight:600}
+#r-latest .rd-hero .rd-kick{display:none}
+.rd-hero .rd-lede{font-family:var(--rd-disp);font-weight:600;font-size:1.26em;line-height:1.42;margin-top:.35em;text-wrap:pretty}
+.rd-world{display:block;width:calc(100% + 2*var(--rd-g));max-width:none;height:auto;margin:.5rem calc(-1*var(--rd-g)) .1rem}
+.rd-land{fill:none;stroke:var(--rd-land);stroke-width:1.5;stroke-linecap:round}
+.rd-tally{display:flex;flex-wrap:wrap;gap:.1em 1em;margin-top:.45em;font-family:var(--rd-disp);line-height:1.4}
+.rd-tally > span{display:inline-flex;align-items:baseline;gap:.3em;font-size:.875em;font-weight:500;color:var(--rd-on-2)}
+.rd-tally b{font-size:1.75em;line-height:1.2;font-weight:700;color:var(--rd-on);font-variant-numeric:tabular-nums lining-nums}
+.rd-stack{display:flex;height:9px;gap:2px;margin-top:.55em;border-radius:3px;overflow:hidden}
+.rd-stack i{display:block;min-width:3px}
+.rd-sevkey{display:flex;flex-wrap:wrap;gap:0 .9em;margin-top:.35em;font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-on-2)}
+.rd-sevkey b{font-weight:700;color:var(--rd-on)}
+
+/* chapter body */
+.rd-body{padding:.9rem var(--rd-g) 0}
+.rd-body > * + *{margin-top:1rem}
+.rd-sh{display:flex;align-items:baseline;justify-content:space-between;gap:.8em;padding-top:.35rem;border-top:3px solid var(--a);font-family:var(--rd-disp);font-size:1.12em;font-weight:700;line-height:1.5;color:var(--a)}
+.rd-sh + .rd-fresh{margin-top:0 !important}
+.rd-note{font-family:var(--rd-disp);font-size:.8125em;line-height:1.65;color:var(--rd-ink-2)}
+.rd-note a{display:inline-block;padding-block:11px;margin-block:-11px;text-underline-offset:.2em}
+/* a warning says what it is: words first, then a quiet field of colour */
+.rd-note.warn{font-size:.9em;padding:.55em .8em;border-radius:8px;background:var(--rd-warn-bg);color:var(--rd-ink)}
+.rd-note.warn b{font-weight:700;color:var(--rd-warn)}
+
+/* severity: five steps plus words, never colour alone */
+.rd-meter{display:inline-flex;gap:2px;vertical-align:middle;flex:none}
+.rd-meter i{display:block;width:15px;height:6px;border-radius:1px;background:var(--rd-s0)}
+.rd-meter[data-max="3"] i{width:22px}
+.rd-meter[data-lv="1"] i:nth-child(-n+1){background:var(--rd-s1)}
+.rd-meter[data-lv="2"] i:nth-child(-n+2){background:var(--rd-s2)}
+.rd-meter[data-lv="3"] i:nth-child(-n+3){background:var(--rd-s3)}
+.rd-meter[data-lv="4"] i:nth-child(-n+4){background:var(--rd-s4)}
+.rd-meter[data-lv="5"] i:nth-child(-n+5){background:var(--rd-s5)}
+.rd-meter[data-max="3"][data-lv="2"] i:nth-child(-n+2){background:var(--rd-s3)}
+.rd-meter[data-max="3"][data-lv="3"] i:nth-child(-n+3){background:var(--rd-s5)}
+.rd-on .rd-meter i{background:rgba(255,248,236,.28)}
+.rd-on .rd-meter[data-lv] i{background:rgba(255,248,236,.28)}
+.rd-on .rd-meter[data-lv="1"] i:nth-child(-n+1),.rd-on .rd-meter[data-lv="2"] i:nth-child(-n+2),.rd-on .rd-meter[data-lv="3"] i:nth-child(-n+3),.rd-on .rd-meter[data-lv="4"] i:nth-child(-n+4),.rd-on .rd-meter[data-lv="5"] i:nth-child(-n+5){background:var(--rd-on)}
+.rd-level{display:flex;flex-wrap:wrap;align-items:center;gap:0 .5em;font-family:var(--rd-disp);font-size:.8125em;line-height:1.65;color:var(--rd-ink-2)}
+.rd-level b{font-weight:700;color:var(--rd-ink)}
+
+/* the dot-map locator */
+.rd-map{display:block;background:var(--rd-mapbg);background:color-mix(in srgb,var(--a) 9%,var(--rd-paper));overflow:hidden}
+.rd-map svg{display:block;width:100%;height:auto}
+.rd-mapland{fill:none;stroke:var(--rd-mapdot);stroke:color-mix(in srgb,var(--a) 40%,var(--rd-paper));stroke-linecap:round}
+.rd-mark-o{fill:none;stroke-width:1.5}
+.rd-thumb{flex:none;width:64px;height:64px;border-radius:8px}
+
+/* stories: the large ones and the compact ones are different objects, so the page has a rhythm */
+.rd-story{display:block;text-decoration:none;color:inherit}
+.rd-lead-1 .rd-map{margin-bottom:.55rem;border-radius:10px}
+.rd-lead-1 h3{font-size:1.5em;line-height:1.36;margin-top:.1em}
+.rd-lead-1 p.tx{margin-top:.35em !important;line-height:1.72}
+.rd-lead-2{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:0 12px;padding-top:.8rem;border-top:1px solid var(--rd-rule)}
+.rd-lead-2 .rd-map{grid-column:2;grid-row:1;border-radius:8px;width:104px;height:104px}
+.rd-lead-2 .in{grid-column:1;grid-row:1}
+.rd-lead-2 h3{font-size:1.2em;line-height:1.4}
+.rd-lead-2 p.tx{grid-column:1 / -1;grid-row:2;margin-top:.3em !important;line-height:1.7}
+.rd-go-a{display:inline-block;margin-top:.2em;color:var(--a);font-family:var(--rd-disp);font-size:.875em;font-weight:600;line-height:1.7}
+.rd-rows > li{border-top:1px solid var(--rd-rule)}
+.rd-rows > li:first-child:has(.rd-lead-1){border-top:0}
+#r-conflict-list > li:first-child .rd-lead-2{border-top:0}
+.rd-grid > * + *{margin-top:1.1rem}
+.rd-row{display:flex;align-items:center;gap:11px;min-height:44px;padding-block:.55rem;text-decoration:none;color:inherit}
+.rd-row .in{flex:1 1 auto;min-width:0}
+.rd-row h3,.rd-row h4{font-size:1em;font-weight:600;line-height:1.45}
+.rd-row .chev,.rd-prow .chev{flex:none;color:var(--rd-ink-2);font-family:var(--rd-disp);font-size:1.25em;line-height:1}
+.rd-dz-date{font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2);display:block}
+.rd-ic{display:inline-flex;align-items:center;justify-content:center}
+.rd-ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.rd-thumbwrap{position:relative;flex:none;width:64px;height:64px}
+.rd-thumbwrap .rd-ic{position:absolute;right:-5px;bottom:-5px;width:26px;height:26px;padding:4px;border-radius:50%;background:var(--a);color:var(--rd-paper);border:2px solid var(--rd-paper)}
+.rd-al{display:inline-flex;align-items:center;gap:.35em;font-weight:700;color:var(--rd-ink)}
+.rd-al::before{content:"";width:.7em;height:.7em;border-radius:50%;background:var(--rd-al,var(--rd-s0))}
+.rd-al.al-red{--rd-al:var(--rd-s5)} .rd-al.al-orange{--rd-al:var(--rd-s3)} .rd-al.al-yellow{--rd-al:var(--rd-s2)} .rd-al.al-green{--rd-al:var(--rd-up)}
+
+/* "see all": a real button, one level deep */
+details.rd-more > summary{display:flex;align-items:center;justify-content:center;gap:.4em;min-height:48px;padding:.3em 1em;border:1px solid var(--a);border-radius:10px;cursor:pointer;list-style:none;color:var(--a);font-family:var(--rd-disp);font-size:.9375em;font-weight:600;line-height:1.5;text-align:center}
 details.rd-more > summary::-webkit-details-marker{display:none}
 details.rd-more .when-open{display:none}
 details.rd-more[open] > summary .when-open{display:inline}
 details.rd-more[open] > summary .when-shut{display:none}
-details.rd-more > .rd-more-b{padding-block:.1em .4em}
-details.rd-group{margin-top:-.4em}
-details.rd-group > .rd-more-b{padding-top:1.1em}
-.rd-kv{margin:.9em 0}
-.rd-kv dt{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-kv dd{margin:0 0 .5em}
-.rd-srcs-k{margin:.7em 0 0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-srcs{display:flex;flex-wrap:wrap;gap:0 .9em;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-srcs a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
+details.rd-more > .rd-more-b{padding-top:.6rem}
+details.rd-more.quiet > summary{justify-content:flex-start;border:0;padding:0;font-size:.8125em;font-weight:500;color:var(--rd-ink-2);text-decoration:underline;text-underline-offset:.25em}
 
-/* figures: a small table in a book, thin rules top and bottom, the digits lined up */
-.rd-table{width:100%;border-collapse:collapse;border-block:1px solid var(--rd-rule);margin:0 0 1em;font-variant-numeric:lining-nums tabular-nums}
-.rd-table th,.rd-table td{padding:0;text-align:start;font-weight:400;vertical-align:baseline}
-.rd-table caption{caption-side:top;text-align:start;font-size:.84em;line-height:1.75;color:var(--rd-ink-2);padding-bottom:.35em}
-.rd-price > tr:first-child > *{padding-top:.5em}
-.rd-price > tr:last-child > *{padding-bottom:.55em}
-.rd-table .nm{padding-right:.8em;line-height:1.6}
-.rd-table .val{text-align:right;white-space:nowrap;line-height:1.6}
-.rd-table .u{padding-left:.45em;width:1%;white-space:nowrap;font-size:.8em;line-height:1.6;color:var(--rd-ink-2)}
-.rd-table .line2 td{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
-.rd-table .line2 td > span,.rd-table .line2 td > a{margin-right:.9em}
-.rd-table .line2 a{display:inline-block;padding-block:11px;margin-block:-11px}
-.rd-table .chg.warn{font-weight:600;color:var(--rd-ink)}
-.rd-table .sub-row th,.rd-table .sub-row td{font-size:.92em}
-.rd-econ th,.rd-econ td{padding-block:.3em;line-height:1.6}
-.rd-econ thead th{font-size:.76em;line-height:1.6;color:var(--rd-ink-2);text-align:right;vertical-align:bottom;padding-left:.5em;padding-block:.5em .35em}
-.rd-econ thead{border-bottom:1px solid var(--rd-rule)}
-.rd-econ thead tr:first-child th:first-child{text-align:start;padding-left:0}
-.rd-econ thead th.span{text-align:center;border-bottom:1px solid var(--rd-rule);padding-block:.5em .1em}
-.rd-econ thead tr:nth-child(2) th{padding-top:.15em}
-.rd-econ tbody th{padding-right:.4em;font-size:.92em;line-height:1.6}
-.rd-econ tbody th small{display:block;font-size:.84em;line-height:1.65;color:var(--rd-ink-2)}
-.rd-econ tbody td{text-align:right;white-space:nowrap;padding-left:.5em;font-size:.86em}
-/* large type on a phone: each country becomes a short paragraph, the column names move next to the figures */
+/* news */
+#r-news > li,.rd-news-more > li{border-top:1px solid var(--rd-rule)}
+#r-news > li:first-child,.rd-news-more > li:first-child{border-top:0}
+.rd-nw{display:grid;grid-template-columns:2.1rem minmax(0,1fr);gap:0 .35rem;padding-block:.65rem;min-height:44px;text-decoration:none;color:inherit}
+.rd-nw .no{font-family:var(--rd-disp);font-weight:700;font-size:1.6em;line-height:1.15;color:var(--a);font-variant-numeric:lining-nums}
+.rd-nw .rd-title{font-family:var(--rd-disp);font-weight:600;font-size:1.02em;line-height:1.5;text-wrap:pretty}
+.rd-nw .rd-meta{grid-column:2;display:flex;flex-wrap:wrap;gap:0 .7em;margin-top:.15em;font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-nw.first{grid-template-columns:minmax(0,1fr);padding-top:.25rem}
+.rd-nw.first .no{display:none}
+.rd-nw.first .rd-title{font-size:1.36em;line-height:1.42;font-weight:700}
+.rd-nw.first .rd-meta{grid-column:1}
+.rd-nw .rd-meta > span{min-width:0;overflow-wrap:anywhere}
+.rd-nw .ext{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+
+/* an entry into an article */
+.rd-card{display:block;padding:.75rem .9rem .7rem;border-radius:10px;background:var(--rd-card);border:1px solid var(--rd-rule);border-left:5px solid var(--a);text-decoration:none;color:inherit}
+.rd-card h3{font-size:1.14em;line-height:1.45}
+.rd-card .cnt{font-family:var(--rd-disp);font-size:.8125em;font-weight:500;line-height:1.6;color:var(--rd-ink-2)}
+.rd-card p{margin-top:.2em !important;line-height:1.82;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.rd-card.solid{background:var(--c);color:var(--rd-on);border-color:var(--c)}
+.rd-card.solid .cnt{color:var(--rd-on-2)}
+.rd-card.solid .rd-go-a{color:var(--rd-on)}
+
+/* price table */
+.rd-movers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.rd-mover{display:block;padding:.5rem .7rem .55rem;border-radius:10px;background:var(--rd-card);border:1px solid var(--rd-rule);font-family:var(--rd-disp);text-decoration:none;color:inherit;min-width:0}
+.rd-mover .k{display:block;font-size:.75em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-mover .n{display:block;font-size:.875em;font-weight:600;line-height:1.45}
+.rd-mover .rd-mv{display:block;font-size:1.5em;font-weight:700;line-height:1.3}
+#r-price-list{font-family:var(--rd-disp)}
+.rd-pgroup > h3{margin-top:.8rem !important;padding-bottom:.1rem;font-size:.8125em;font-weight:700;line-height:1.6;color:var(--a);border-bottom:2px solid var(--a)}
+.rd-pgroup:first-child > h3{margin-top:0 !important}
+.rd-prow{display:grid;grid-template-columns:minmax(0,1fr) auto 5.05em 1em;align-items:center;gap:0 .6em;min-height:50px;padding-block:.3rem;border-bottom:1px solid var(--rd-rule);text-decoration:none;color:inherit}
+.rd-prow .nm{min-width:0;font-weight:600;font-size:.94em;line-height:1.4}
+.rd-prow .nm small{display:block;font-size:.8em;font-weight:400;line-height:1.45;color:var(--rd-ink-2)}
+.rd-prow .val{font-weight:700;font-size:1.02em;text-align:right;white-space:nowrap;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums}
+.rd-prow .rd-mv{text-align:right;font-size:.875em}
+.rd-prow .chev{text-align:right}
+
+/* economy: one comparison */
+.rd-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;font-family:var(--rd-disp)}
+.rd-chips button{min-height:46px;padding:.15em .25em;border:1px solid var(--rd-rule);border-radius:8px;background:var(--rd-card);color:var(--rd-ink);font-family:inherit;font-size:.8125em;font-weight:500;line-height:1.3;cursor:pointer}
+.rd-chips button[aria-pressed="true"]{background:var(--a);border-color:var(--a);color:var(--rd-paper);font-weight:700}
+#r-econ-list{font-family:var(--rd-disp)}
+.rd-bar{display:grid;grid-template-columns:minmax(5.9em,31%) minmax(0,1fr) 3.5em;align-items:center;gap:0 .5em;min-height:46px;padding-inline:.35em;text-decoration:none;color:inherit;border-radius:6px}
+#r-econ-list > li + li{border-top:1px solid var(--rd-rule)}
+.rd-bar .nm{min-width:0;font-size:.875em;font-weight:600;line-height:1.38}
+.rd-bar .nm small{display:block;font-size:.8em;font-weight:500;line-height:1.35;color:var(--rd-ink-2)}
+.rd-bar .nm small.crisis{color:var(--rd-down);font-weight:700}
+.rd-bar .val{font-size:.94em;font-weight:700;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums lining-nums}
+.rd-track{position:relative;display:block;height:14px}
+.rd-track::before{content:"";position:absolute;top:-4px;bottom:-4px;left:var(--z,0);width:1px;background:var(--rd-line)}
+.rd-track i{position:absolute;top:0;bottom:0;border-radius:0 2px 2px 0;background:var(--a)}
+.rd-track i.neg{border-radius:2px 0 0 2px;background:var(--rd-down)}
+.rd-bar.home{background:color-mix(in srgb,var(--a) 13%,var(--rd-paper))}
+.rd-bar.home .nm{font-weight:700}
+.rd-chokes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+.rd-choke a{display:block;text-decoration:none;color:inherit;min-height:44px}
+.rd-choke .rd-map{border-radius:8px}
+.rd-choke h4{margin-top:.3rem !important;font-size:.94em;font-weight:600;line-height:1.4}
+.rd-choke .rd-level{display:block}
+.rd-choke .rd-level b{display:block}
+
+/* gold */
+.rd-goldnow{margin-top:.45em}
+.rd-goldnow .k{font-family:var(--rd-disp);font-size:.875em;font-weight:500;line-height:1.5;color:var(--rd-on-2)}
+.rd-goldnow .val{display:block;font-family:var(--rd-disp);font-size:2.9em;font-weight:700;line-height:1.14;letter-spacing:-.015em;font-variant-numeric:tabular-nums lining-nums}
+.rd-goldnow .val small{font-size:.32em;font-weight:500;letter-spacing:0;margin-left:.3em}
+.rd-goldnow .chgline{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .6em;font-family:var(--rd-disp);line-height:1.5}
+.rd-goldnow .chg{font-size:1.14em;font-weight:700}
+.rd-goldnow .rest{font-size:.8125em;color:var(--rd-on-2)}
+.rd-sparkwrap{margin-top:.5rem}
+.rd-sparkwrap svg{display:block;width:100%;height:auto}
+.rd-sparkcap{display:flex;justify-content:space-between;gap:.8em;font-family:var(--rd-disp);font-size:.75em;line-height:1.6;color:var(--rd-on-2)}
+.rd-glist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-family:var(--rd-disp)}
+.rd-gcell{padding:.5rem .7rem .55rem;border-radius:10px;background:var(--rd-card);border:1px solid var(--rd-rule);min-width:0}
+.rd-gcell.wide{grid-column:1 / -1}
+.rd-gcell .k{display:block;font-size:.8125em;line-height:1.5;color:var(--rd-ink-2)}
+.rd-gcell .v{display:block;font-size:1.32em;font-weight:700;line-height:1.3;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums}
+.rd-gcell .v small{font-size:.6em;font-weight:500;letter-spacing:0;margin-left:.25em;color:var(--rd-ink-2)}
+.rd-gcell .d{display:block;font-size:.8125em;line-height:1.55;color:var(--rd-ink-2)}
+.rd-gcell .d a{display:inline-flex;align-items:center;min-height:44px;margin-block:-10px;text-underline-offset:.2em}
+.rd-gcell .rd-mv{font-size:1em}
+.rd-chart svg{display:block;width:100%;height:auto;margin-top:.4rem}
+.rd-chart .cap{display:flex;justify-content:space-between;gap:.8em;font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-chart .cap b{display:block;color:var(--rd-ink);font-size:1.14em;font-weight:700;font-variant-numeric:tabular-nums lining-nums}
+
+/* previous and next chapter */
+.rd-pager{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:1.2rem var(--rd-g) .3rem;font-family:var(--rd-disp)}
+.rd-pager a{display:flex;flex-direction:column;justify-content:center;min-height:64px;padding:.4rem .8rem;border-radius:10px;text-decoration:none;line-height:1.4;background:var(--rd-card);border:1px solid var(--rd-rule);color:var(--rd-ink)}
+.rd-pager a small{font-size:.75em;font-weight:500;color:var(--rd-ink-2)}
+.rd-pager a b{font-size:.98em;font-weight:700}
+.rd-pager a.next{grid-column:2;background:var(--c);border-color:var(--c);color:var(--rd-on);text-align:right}
+.rd-pager a.next small{color:var(--rd-on-2)}
+.rd-pager a:focus-visible{outline:2px solid var(--rd-ink);outline-offset:2px}
+.rd-foot{display:flex;flex-wrap:wrap;gap:0 1.2em;align-items:center;justify-content:center;padding:.4rem var(--rd-g) 1rem;font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-go{min-height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer;font-family:inherit;font-size:1em;line-height:1.6;text-decoration:underline;text-underline-offset:.25em}
+
+/* an open article: this is where the book-like reading lives */
+.rd-sheet{position:fixed;z-index:50;inset:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--rd-paper);font-size:calc(var(--rd-base)*var(--rd-scale));color:var(--rd-ink);font-family:var(--rd-font);line-height:1.85}
+.rd-sheet[hidden]{display:none}
+.rd-sheet-in{animation:rd-sheet-in .2s ease-out}
+@keyframes rd-sheet-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.rd-sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:4px;min-height:50px;padding:env(safe-area-inset-top,0px) 6px 0 6px;background:var(--rd-paper);border-bottom:1px solid var(--rd-rule);font-family:var(--rd-disp)}
+.rd-sheet-bar .where{flex:1 1 auto;min-width:0;font-size:.875rem;font-weight:600;line-height:1.5;color:var(--a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#rd-sheet-close{display:inline-flex;align-items:center;gap:.25em;min-width:44px;min-height:44px;padding:0 10px;border:0;background:none;color:var(--rd-ink);font-family:var(--rd-disp);font-size:.9375rem;font-weight:600;line-height:1.5;cursor:pointer}
+#rd-sheet-close b{font-size:1.5em;font-weight:500;line-height:1}
+#rd-sheet-close:focus-visible{outline:2px solid var(--rd-ink);outline-offset:-2px}
+.rd-art{max-width:36em;margin-inline:auto;padding:1rem max(22px,var(--rd-g)) calc(2.5rem + env(safe-area-inset-bottom,0px))}
+.rd-art h2{font-family:var(--rd-disp);font-weight:700;font-size:1.6em;line-height:1.36;margin:.1em 0 .25em;letter-spacing:0;text-wrap:pretty}
+.rd-art h3{font-family:var(--rd-disp);font-weight:700;font-size:1.14em;line-height:1.5;color:var(--a);margin:1.6em 0 .35em}
+.rd-art p{margin:0 0 .95em}
+.rd-art .rd-kick{color:var(--a);margin:0}
+.rd-art .rd-level{margin:0 0 .7em}
+.rd-art .rd-map{margin:.3rem 0 1rem;border-radius:10px}
+.rd-art .lede{font-size:1.1em;line-height:1.8;font-weight:600}
+.rd-art ul,.rd-art ol{margin:0;padding:0;list-style:none}
+.rd-art a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.25em}
+.rd-art a:focus-visible{outline:2px solid var(--rd-ink);outline-offset:2px}
+.rd-pts > li{display:grid;grid-template-columns:2.3rem minmax(0,1fr);gap:0 .3rem;margin-bottom:1.1em}
+.rd-pts .no{font-family:var(--rd-disp);font-weight:700;font-size:1.7em;line-height:1.1;color:var(--a)}
+.rd-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:8px;margin:0 0 1.2em;font-family:var(--rd-disp)}
+.rd-facts > div{padding:.45rem .7rem .5rem;border-radius:10px;background:var(--rd-card);border:1px solid var(--rd-rule);min-width:0}
+.rd-facts dt{font-size:.8125em;line-height:1.5;color:var(--rd-ink-2)}
+.rd-facts dd{margin:0;font-size:1.14em;font-weight:700;line-height:1.4;font-variant-numeric:tabular-nums lining-nums}
+.rd-srcs-k{margin:1.6em 0 .1em !important;font-family:var(--rd-disp);font-size:.8125em;line-height:1.6;color:var(--rd-ink-2);font-weight:600}
+.rd-srcs{display:flex;flex-wrap:wrap;gap:0 1em;font-family:var(--rd-disp);font-size:.875em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-srcs a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
+.rd-art .rd-nw .no{display:none}
+.rd-art .rd-nw{grid-template-columns:minmax(0,1fr);padding-block:.5rem;text-decoration:none}
+.rd-art .rd-nw .rd-meta{grid-column:1}
+.rd-art .rd-rows > li{border-top:1px solid var(--rd-rule)}
+.rd-nextart{display:block;margin-top:1.8rem;padding:.7rem .9rem;border-radius:10px;background:var(--c);color:var(--rd-on) !important;text-decoration:none !important;font-family:var(--rd-disp);line-height:1.45}
+.rd-nextart small{display:block;font-size:.8125em;color:var(--rd-on-2)}
+.rd-nextart b{font-weight:700}
+
+/* large type on a phone: the small grids give way */
 @media (max-width:480px){
-  html[data-rd-size="4"] .rd-econ thead,html[data-rd-size="5"] .rd-econ thead,html[data-rd-size="6"] .rd-econ thead{display:none}
-  html[data-rd-size="4"] .rd-econ tr,html[data-rd-size="5"] .rd-econ tr,html[data-rd-size="6"] .rd-econ tr{display:block;padding-block:.45em}
-  html[data-rd-size="4"] .rd-econ tbody,html[data-rd-size="5"] .rd-econ tbody,html[data-rd-size="6"] .rd-econ tbody,
-  html[data-rd-size="4"] .rd-econ tbody th,html[data-rd-size="5"] .rd-econ tbody th,html[data-rd-size="6"] .rd-econ tbody th{display:block;padding:0}
-  html[data-rd-size="4"] .rd-econ tbody td,html[data-rd-size="5"] .rd-econ tbody td,html[data-rd-size="6"] .rd-econ tbody td{display:inline-block;padding:0 .7em 0 0;white-space:nowrap;font-size:.84em;line-height:1.75}
-  html[data-rd-size="4"] .rd-econ tbody td::before,html[data-rd-size="5"] .rd-econ tbody td::before,html[data-rd-size="6"] .rd-econ tbody td::before{content:attr(data-l) " ";color:var(--rd-ink-2)}
+  html[data-rd-size="6"] .rd-mosaic,html[data-rd-size="5"] .rd-mosaic{grid-template-columns:minmax(0,1fr)}
+  html[data-rd-size="6"] .rd-chokes,html[data-rd-size="6"] .rd-glist,html[data-rd-size="6"] .rd-movers,html[data-rd-size="5"] .rd-chokes{grid-template-columns:minmax(0,1fr)}
+  html[data-rd-size="5"] .rd-chips,html[data-rd-size="6"] .rd-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html[data-rd-size="5"] .rd-bar,html[data-rd-size="6"] .rd-bar{grid-template-columns:minmax(0,1fr) 3.7em;row-gap:.1em;padding-block:.35em}
+  html[data-rd-size="5"] .rd-bar .rd-track,html[data-rd-size="6"] .rd-bar .rd-track{grid-column:1 / -1;grid-row:2}
+  html[data-rd-size="5"] .rd-prow,html[data-rd-size="6"] .rd-prow{grid-template-columns:minmax(0,1fr) 5.6em;row-gap:0;padding-block:.45rem}
+  html[data-rd-size="5"] .rd-prow .chev,html[data-rd-size="6"] .rd-prow .chev{display:none}
+  html[data-rd-size="5"] .rd-prow .nm,html[data-rd-size="6"] .rd-prow .nm{grid-column:1 / -1}
+  html[data-rd-size="5"] .rd-goldnow .val,html[data-rd-size="6"] .rd-goldnow .val{font-size:2.2em}
+}
+@media (max-width:360px){ html[data-rd-size="4"] .rd-movers{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:480px){ html[data-rd-size="5"] .rd-movers{grid-template-columns:minmax(0,1fr)} }
+@media (hover:none){ .rd-swhint{display:block;grid-column:1 / -1;text-align:center;font-size:.75em;line-height:1.6;color:var(--rd-ink-2)} }
+
+/* tablet: wider grids, the same bottom bar */
+@media (min-width:640px){
+  .rd-mosaic{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .rd-tile.wide,.rd-tile[data-tile="gold"],.rd-tile[data-tile="economy"]{grid-column:span 2}
+  .rd-tile{min-height:168px}
+  .rd-lead-link h2.l1,.rd-lead-link h2.l2{font-size:2.2em}
+  .rd-lead-link h2.l3,.rd-lead-link h2.l4{font-size:1.8em}
+  .rd-tile .spark{width:60%;align-self:flex-end}
+  .rd-tile .bars{height:56px}
+  .rd-chokes{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rd-glist{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .rd-gcell.wide{grid-column:span 2}
+  .rd-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .rd-cards > .rd-card + .rd-card{margin-top:0}
+  .rd-world{width:100%;margin-inline:0}
+}
+@media (max-width:639px){ .rd-cards > * + *{margin-top:.6rem} }
+
+/* desktop: a magazine page that uses the width */
+@media (min-width:1000px){
+  html[data-view="read"] .topbar{max-width:1240px;margin-inline:auto;padding:14px var(--rd-g) 6px;min-height:0}
+  html[data-view="read"] .topbar h1,html[data-rd-ch="front"][data-view="read"] .topbar h1{font-size:2rem;line-height:1.4}
+  .rd-aa-panel{top:64px;right:max(16px,calc((100vw - 1240px)/2 + 12px))}
+  /* the tabs become the section strip under the masthead */
+  .rd-tabs{position:sticky;top:0;bottom:auto;max-width:1240px;margin-inline:auto;padding:0 var(--rd-g);background:var(--rd-paper);border-top:3px solid var(--rd-ink);border-bottom:1px solid var(--rd-ink);justify-content:flex-start;gap:2px}
+  .rd-tabs a{flex:0 1 auto;flex-direction:row;gap:7px;min-height:44px;padding:0 14px;font-size:.9375rem;white-space:nowrap}
+  .rd-tabs svg{width:18px;height:18px}
+  .rd-tabs a[aria-current="page"]::before{top:auto;bottom:-1px;left:8px;right:8px;height:3px;border-radius:0}
+  .reader{max-width:1240px;margin-inline:auto;padding-bottom:0;touch-action:auto;overflow-x:visible}
+  .rd-banner{border-radius:0}
+  .rd-fm{border-top:0}
+  #r-front.on{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"fm fm" "lead nums" "mos mos";gap:0 28px;padding:0 var(--rd-g)}
+  #r-front .rd-fm{grid-area:fm;margin:0}
+  #r-front .rd-lead-link{grid-area:lead;margin:1.1rem 0 1rem}
+  #r-front .rd-lead-link h2{font-size:2.9em;line-height:1.28}
+  #r-front .rd-lead-link h2.l3{font-size:2.5em}
+  #r-front .rd-lead-link h2.l4{font-size:2.15em}
+  #r-front .rd-nums{grid-area:nums;align-self:center;margin:1.1rem 0 1rem;padding:.6rem 0 .7rem;border-block:0;border-left:1px solid var(--rd-rule);padding-left:28px}
+  #r-front .rd-nums-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 18px}
+  #r-front .rd-num + .rd-num{border-left:0;padding-left:0}
+  #r-front .rd-num .k{font-size:.8125em}
+  #r-front .rd-num .v{font-size:1.9em}
+  #r-front .rd-num .rd-mv{font-size:.94em}
+  #r-front .rd-mosaic{grid-area:mos;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 1.4rem}
+  #r-front .rd-tile{min-height:172px;padding:14px 16px}
+  #r-front .rd-tile.wide,#r-front .rd-tile[data-tile="gold"],#r-front .rd-tile[data-tile="economy"]{grid-column:span 2}
+  #r-front .rd-tile .h{font-size:.94em}
+  #r-front .rd-tile .t{font-size:1em;-webkit-line-clamp:4}
+  #r-front .rd-tile .spark{width:50%;align-self:flex-end}
+  #r-front .rd-tile .bars{height:64px}
+  #r-front .rd-tile.wide .t{font-size:1.3em;max-width:60%;-webkit-line-clamp:3}
+  #r-front .rd-tile .sevline{max-width:60%}
+  #r-front .rd-tile .big{font-size:1.7em}
+  .rd-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"kick map" "title map" "x map";grid-auto-rows:auto;column-gap:32px;align-items:start;padding:1.3rem 28px 1.4rem}
+  .rd-hero > *{grid-column:1}
+  .rd-hero:not(:has(.rd-world,.rd-sparkwrap)){display:block}
+  .rd-hero .rd-world{grid-column:2;grid-row:1 / span 6;width:100%;margin:0;align-self:center}
+  .rd-hero .rd-sparkwrap{grid-column:2;grid-row:1 / span 6;margin:0;align-self:center}
+  .rd-hero h2{font-size:2.5em}
+  .rd-hero .rd-lede{grid-column:1 / -1;font-size:2.2em;line-height:1.32;max-width:30em}
+  .rd-body{padding:1.5rem 28px 0}
+  .rd-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:1rem 36px;align-items:start}
+  .rd-grid > * + *{margin-top:0}
+  .rd-grid > .col > * + *{margin-top:1rem}
+  .rd-cards{display:block}
+  .rd-cards > * + *{margin-top:.8rem}
+  .rd-lead-1 h3{font-size:1.8em;line-height:1.32}
+  .rd-lead-2{grid-template-columns:minmax(0,1fr) 120px}
+  .rd-lead-2 .rd-map{width:120px;height:120px}
+  .rd-pager{padding:1.8rem 28px .4rem}
+  #r-price-list{columns:2;column-gap:40px}
+  .rd-pgroup{break-inside:avoid;padding-bottom:.8rem}
+  #r-price-list .rd-pgroup > h3{margin-top:0 !important}
+  .rd-movers{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #r-econ-list{columns:1}
+  .rd-chokes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rd-glist{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rd-goldnow .val{font-size:3.6em}
+  .rd-sheet{background:rgba(25,18,10,.55);padding:28px 16px}
+  html[data-rd-theme="night"] .rd-sheet{background:rgba(0,0,0,.6)}
+  .rd-sheet-in{max-width:780px;margin-inline:auto;min-height:calc(100% - 56px);background:var(--rd-paper);border-radius:14px;box-shadow:0 24px 70px rgba(10,5,0,.45)}
+  .rd-sheet-bar{top:-28px;border-radius:14px 14px 0 0}
+  .rd-art{padding-inline:44px}
+  .rd-aa-panel{position:absolute}
+  .rd-sheet-bar .rd-aa{position:relative}
+  .rd-sheet-bar .rd-aa-panel{top:46px;right:0}
 }
 
-/* the end of the book */
-.rd-foot{margin-top:clamp(48px,8vh,72px);padding-top:1.2em;border-top:1px solid var(--rd-rule);display:flex;flex-wrap:wrap;gap:0 1.4em;align-items:center;justify-content:center;font-size:.9em;line-height:1.7;color:var(--rd-ink-2)}
-.rd-foot a{display:inline-flex;align-items:center;min-height:44px}
-.rd-go{min-height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer;font-family:var(--rd-font);font-size:1em;line-height:1.7;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+@media (prefers-reduced-motion:reduce){
+  .rd-in-next,.rd-in-prev,.rd-sheet-in{animation:none}
+}
 
 /* ---------- click infographic: the card in the panel and the overlay on the globe. Without .play every element is in its final state ---------- */
 .ig{--fx:var(--accent);min-width:0}
@@ -811,6 +1162,7 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
       <button type="button" id="vw-read" aria-pressed="false">อ่านง่าย</button>
       <button type="button" id="vw-map" aria-pressed="false">ลูกโลก</button>
     </div>
+    <span id="rd-aa-home" hidden></span>
     <details class="rd-aa" id="rd-aa">
       <summary aria-label="ปรับสีหน้ากระดาษและขนาดตัวอักษร"><span aria-hidden="true"><span class="a-s">ก</span>ก</span></summary>
       <div class="rd-aa-panel">
@@ -830,25 +1182,26 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
     </details>
   </header>
 
+  <nav class="rd-tabs rd-c-front" id="rd-tabs" aria-label="บทในหน้านี้">
+    <a href="#front" data-sec="r-front"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2 12 3.8l9 7.4M5.6 9.6V20h12.8V9.6M10 20v-5.5h4V20"/></svg>หน้าแรก</a>
+    <a href="#latest" data-sec="r-latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14.5H4zM7.5 9h9M7.5 12.5h9M7.5 16h5.5"/></svg>ล่าสุด</a>
+    <a href="#prices" data-sec="r-prices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5V20h16M7.5 15.5l3.6-4.2 3 2.6 5-6.4"/></svg>ราคา</a>
+    <a href="#conflicts" data-sec="r-conflicts"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5.6"/><path d="M12 2.8v5M12 16.2v5M2.8 12h5M16.2 12h5"/></svg>ขัดแย้ง</a>
+    <a href="#disasters" data-sec="r-disasters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2.8 20h18.4zM12 10v5M12 17.6v.01"/></svg>ภัยพิบัติ</a>
+    <a href="#economy" data-sec="r-economy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20.5v-6M10 20.5V9.5M15 20.5v-8M20 20.5V4.5"/></svg>เศรษฐกิจ</a>
+    <a href="#gold" data-sec="r-gold" id="rd-tab-gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 4.5h6.8l2 6.5H6.6zM4.2 13h6.6l1.8 6.5H2.4zM13.2 13h6.6l1.8 6.5h-10.2z"/></svg>ทองคำ</a>
+  </nav>
+
   <div class="reader" id="reader" role="main" aria-label="โหมดอ่านง่าย">
-    <nav aria-label="สารบัญ">
-      <ol class="rd-toc">
-        <li><a href="#r-latest"><span aria-hidden="true">1</span><span>ล่าสุด</span></a></li>
-        <li><a href="#r-prices"><span aria-hidden="true">2</span><span>ราคา</span></a></li>
-        <li><a href="#r-conflicts"><span aria-hidden="true">3</span><span>ความขัดแย้ง</span></a></li>
-        <li><a href="#r-disasters"><span aria-hidden="true">4</span><span>ภัยพิบัติ</span></a></li>
-        <li><a href="#r-economy"><span aria-hidden="true">5</span><span>เศรษฐกิจ</span></a></li>
-        <li><a href="#r-gold"><span aria-hidden="true">6</span><span>ทองคำ</span></a></li>
-      </ol>
-    </nav>
     <p class="rd-banner" id="r-banner" role="status" hidden></p>
-    <section class="rd-sec" id="r-latest"></section>
-    <section class="rd-sec" id="r-prices"></section>
-    <section class="rd-sec" id="r-conflicts"></section>
-    <section class="rd-sec" id="r-disasters"></section>
-    <section class="rd-sec" id="r-economy"></section>
-    <section class="rd-sec" id="r-gold"></section>
-    <div class="rd-foot"><button type="button" class="rd-go" id="r-to-map">ดูบนลูกโลกและตัวชี้วัดทั้งหมด</button><a href="#title">กลับขึ้นด้านบน</a></div>
+    <section class="rd-sec rd-c-front" id="r-front"></section>
+    <section class="rd-sec rd-c-latest" id="r-latest"></section>
+    <section class="rd-sec rd-c-prices" id="r-prices"></section>
+    <section class="rd-sec rd-c-conflicts" id="r-conflicts"></section>
+    <section class="rd-sec rd-c-disasters" id="r-disasters"></section>
+    <section class="rd-sec rd-c-economy" id="r-economy"></section>
+    <section class="rd-sec rd-c-gold" id="r-gold"></section>
+    <div class="rd-foot"><button type="button" class="rd-go" id="r-to-map">ดูบนลูกโลกและตัวชี้วัดทั้งหมด</button></div>
   </div>
 
   <main class="main" id="main">
@@ -890,6 +1243,16 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
       <div class="footnote" id="footnote">ข้อมูลพื้นฐาน (ความขัดแย้ง เศรษฐกิจ ช่องแคบ บทวิเคราะห์) ณ <span id="foot-basis">—</span> ส่วนราคาและข่าวสดอัปเดตอัตโนมัติ<span id="foot-live"></span> โปรดตรวจแหล่งที่มาก่อนอ้างอิง</div>
     </aside>
   </main>
+</div>
+
+<div class="rd-sheet" id="rd-sheet" role="dialog" aria-modal="true" aria-labelledby="rd-sheet-title" hidden>
+  <div class="rd-sheet-in">
+    <div class="rd-sheet-bar" id="rd-sheet-bar">
+      <button type="button" id="rd-sheet-close" aria-label="ปิดบทความและกลับ"><b aria-hidden="true">‹</b>กลับ</button>
+      <span class="where" id="rd-sheet-where"></span>
+    </div>
+    <div id="rd-sheet-body"></div>
+  </div>
 </div>
 
 <script type="application/json" id="world-data">__WORLD_DATA__</script>
@@ -3359,20 +3722,33 @@ $('tg-weather').addEventListener('click', function(){
   if(on){ wxRefresh(); WX.timer = setInterval(wxRefresh, POLL_MS); }
 });
 
-/* ================= reading view (a book page; same data and same failure rules as the map view) ================= */
-/* words for the 1-5 severity of world-data.json; the number stays next to them */
+/* ================= reading view (a magazine: one chapter on screen, deep reading in a sheet; same data and same failure rules as the map view) ================= */
+/* words for the 1-5 severity of world-data.json; the meter and the number stay next to them */
 var RD_SEVERITY = {5:'รุนแรงที่สุด', 4:'รุนแรงมาก', 3:'รุนแรงปานกลาง', 2:'รุนแรงน้อย', 1:'รุนแรงน้อยมาก'};
 var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data every day */
 var RD_NEWS_TOP = 5;
-var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are on the page, the rest behind one quiet line */
+var RD_CONF_LEADS = 3, RD_CONF_ROWS = 4;   /* large stories, then compact rows on the page; the rest behind one button */
+var RD_DZ_ROWS = 6;
 var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
-var RD_CHAPTER_NO = {'r-latest':'1', 'r-prices':'2', 'r-conflicts':'3', 'r-disasters':'4', 'r-economy':'5', 'r-gold':'6'};
-var rdOpen = {}, rdSig = null, rdDirty = true;
+var RD_SPARK_DAYS = 30;
+/* one page each; `hash` is the address, not an element's id, so the browser never scrolls to it by itself */
+var RD_PAGES = [
+  {hash:'', sec:'r-front', c:'front', tab:'หน้าแรก', name:'หน้าแรก'},
+  {hash:'latest', sec:'r-latest', c:'latest', tab:'ล่าสุด', name:'สถานการณ์ล่าสุด', no:1},
+  {hash:'prices', sec:'r-prices', c:'prices', tab:'ราคา', name:'ราคาสำคัญ', no:2},
+  {hash:'conflicts', sec:'r-conflicts', c:'conflicts', tab:'ขัดแย้ง', name:'ความขัดแย้ง', no:3},
+  {hash:'disasters', sec:'r-disasters', c:'disasters', tab:'ภัยพิบัติ', name:'ภัยพิบัติล่าสุด', no:4},
+  {hash:'economy', sec:'r-economy', c:'economy', tab:'เศรษฐกิจ', name:'เศรษฐกิจและช่องแคบ', no:5},
+  {hash:'gold', sec:'r-gold', c:'gold', tab:'ทองคำ', name:'ทองคำ', no:6}
+];
+var rdOpen = {}, rdSig = null, rdDirty = true, rdGen = 1, rdDone = {}, rdNow = null, rdRoute = null, rdScrollY = {}, rdOpener = null, rdEconMetric = 0;
+function rdPages(){ return RD_PAGES.filter(function(p){ return p.c !== 'gold' || GOLD; }); }
+function rdPage(key){ for(var i=0; i<RD_PAGES.length; i++) if(RD_PAGES[i].hash === key || RD_PAGES[i].sec === key) return RD_PAGES[i]; return null; }
+function rdHref(p, art){ return '#' + (p.hash || 'front') + (art != null ? '/' + encodeURIComponent(art) : ''); }
 function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
 function rdNote(n){ return n && n.text ? h('p', {class:'rd-note' + (n.warn ? ' warn' : ''), 'data-warn':n.warn ? '1' : null}, [n.warn ? h('b', {text:'ข้อควรระวัง: '}) : null, n.text]) : null; }
 function rdAge(iso){ return iso ? h('p', {class:'rd-fresh'}, [h('span', {'data-age':String(iso), text:ageText(iso)})]) : null; }
 function rdRel(iso, prefix){ return parseTs(iso)==null ? null : h('span', null, [(prefix || '') + bkkDateTime(iso) + ' (', h('span', {'data-rel':String(iso), text:relTh(iso)}), ')']); }
-/* shut: a few words under the paragraph. open: the same place says "ย่อ". One level deep, except the group around the lesser conflicts. */
 function rdMore(key, shut, cls, body, opened){
   var d = h('details', {class:'rd-more' + (cls ? ' ' + cls : ''), 'data-rd':key}, [
     h('summary', null, [h('span', {class:'when-shut', text:shut}), h('span', {class:'when-open', text:opened || 'ย่อ'})]),
@@ -3381,16 +3757,20 @@ function rdMore(key, shut, cls, body, opened){
   if(rdOpen[key]) d.open = true;
   return d;
 }
-function rdSources(urls){
+function rdSources(urls, key){
   urls = (urls||[]).filter(function(u){ return typeof u === 'string' && u; });
   if(!urls.length) return null;
-  return h('div', null, [h('p', {class:'rd-srcs-k', text:'แหล่งที่มา'}), h('div', {class:'rd-srcs'}, urls.map(function(u){ return rdA(u); }))]);
+  return h('div', null, [h('p', {class:'rd-srcs-k', text:key || 'แหล่งที่มา'}), h('div', {class:'rd-srcs'}, urls.map(function(u){ return rdA(u); }))]);
 }
-function rdProse(items, place){ return h('ul', {class:'rd-prose'}, (items||[]).map(function(p, i){ return h('li', {'data-rd-place':place + '-' + i, text:String(p)}); })); }
-function rdKv(pairs){
-  var dl = h('dl', {class:'rd-kv'});
-  pairs.forEach(function(p){ if(p[1]==null || p[1]==='') return; dl.appendChild(h('dt', {text:p[0]})); dl.appendChild(h('dd', {text:String(p[1])})); });
-  return dl.children.length ? dl : null;
+/* the shared helpers write an ASCII hyphen; on this page a negative figure carries the same minus sign as the feeds' own text */
+function rdMinus(s){ return String(s).replace(/^-/, '−'); }
+function rdPct(v){ return rdMinus(pct(v)); }
+function rdNum(v, unit){ return rdMinus(num(v, unit)); }
+/* a Thai line break may fall inside a compound word: keep the ones that read wrong when split */
+function rdWhole(s){
+  var out = [];
+  String(s).split(/(ขายออก)/).forEach(function(x){ if(x) out.push(x === 'ขายออก' ? h('span', {class:'rd-nb', text:x}) : x); });
+  return out;
 }
 function rdGroupedNum(v){
   var s = String(v==null ? '' : v), m = /^-?\d+(\.\d+)?$/.exec(s);
@@ -3444,45 +3824,111 @@ function rdNotes(){
   return {vm:vm, basis:rdBasisNote(), price:rdPriceNote(), news:rdNewsNote(), dz:rdDzNote(), gold:rdGoldNote(vm)};
 }
 
-/* --- chapters --- */
-function rdSection(id, title){
-  var s = $(id); s.innerHTML = '';
-  s.setAttribute('data-rd-place', id);
-  s.appendChild(h('div', {class:'rd-ch'}, [h('p', {class:'rd-ch-no', text:'บทที่ ' + RD_CHAPTER_NO[id]}), h('h2', {text:title})]));
-  return s;
-}
-function rdHead(s, node){ if(node) s.querySelector('.rd-ch').appendChild(node); }
-function rdNewsRow(it){
-  return h('li', {'data-id':String(it.id || ''), 'data-rd-place':'news-' + (it.id || it.title_th)}, [
-    h('p', {class:'rd-title', text:String(it.title_th)}),
-    h('div', {class:'rd-meta'}, [
-      it.time ? h('span', {'data-rel':String(it.time), text:relTh(it.time)}) : null,
-      it.source ? rdA(it.source, it.source_name ? String(it.source_name) : domain(String(it.source))) : (it.source_name ? h('span', {text:String(it.source_name)}) : null)
-    ])
-  ]);
-}
-function rdLatest(N){
-  var s = rdSection('r-latest', 'สถานการณ์ล่าสุด'), an = DATA.analysis_th || {}, items = newsItems();
-  if(an.headline){
-    rdHead(s, rdBasisLine());
-    s.appendChild(h('p', {class:'rd-lead', 'data-rd-place':'lead', text:an.headline}));
-    if(N.basis) s.appendChild(rdNote(N.basis));
+/* --- graphics from the data --- */
+/* the land dots are already inline in the page for the globe: the maps cost no request, only a little arithmetic when a chapter is first shown */
+var RD_W_TOP = 78, RD_W_H = 134, RD_LAND_DEG = 1.5, rdWorldMade = false, rdLocMemo = {};   /* RD_LAND_DEG: about how far apart the land dots are */
+function rdEnsureWorld(){
+  if(rdWorldMade) return; rdWorldMade = true;
+  var seen = {}, d = [], cell = 3;
+  for(var i=0; i<LAND.length; i++){
+    var la = LAND[i][0], lo = LAND[i][1], y = RD_W_TOP - la;
+    if(y < 0 || y >= RD_W_H) continue;
+    var cx = Math.floor((lo+180)/cell), cy = Math.floor(y/cell), k = cx*100 + cy;
+    if(seen[k]) continue; seen[k] = 1;
+    d.push('M' + (cx*cell+1.5) + ' ' + (cy*cell+1.5) + 'h.01');
   }
-  s.appendChild(h('h3', {text:'ข่าวล่าสุด'}));
-  if(live.headlines) s.appendChild(rdAge(live.headlines.updated_at));
-  if(N.news) s.appendChild(rdNote(N.news));
-  if(items.length){
-    s.appendChild(h('ul', {class:'rd-rows', id:'r-news'}, items.slice(0, RD_NEWS_TOP).map(rdNewsRow)));
-    if(items.length > RD_NEWS_TOP) s.appendChild(rdMore('news-all', 'อ่านข่าวอื่นอีก ' + (items.length - RD_NEWS_TOP) + ' ข่าว', '', [h('ul', {class:'rd-rows'}, items.slice(RD_NEWS_TOP).map(rdNewsRow))]));
-  }
-  if(an.thailand) s.appendChild(h('div', {class:'rd-callout', 'data-rd-place':'thailand'}, [h('h3', {text:'มุมมองต่อไทย'}), h('p', {text:an.thailand})]));
-  if(an.points && an.points.length){ s.appendChild(h('h3', {text:'บทวิเคราะห์'})); s.appendChild(rdProse(an.points, 'analysis')); }
-  if(an.risks && an.risks.length){ s.appendChild(h('h3', {text:'ความเสี่ยงที่ต้องจับตา'})); s.appendChild(rdProse(an.risks, 'risk')); }
+  var s = h('div', {'aria-hidden':'true', style:'position:absolute;width:0;height:0;overflow:hidden', html:'<svg width="0" height="0"><symbol id="rd-land" viewBox="0 0 360 ' + RD_W_H + '"><path class="rd-land" d="' + d.join('') + '"/></symbol></svg>'});
+  $('reader').appendChild(s);
 }
-/* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo, goldtraders.or.th -> goldtraders */
-function rdHost(url){
-  var p = domain(String(url)).split('.');
-  return (p.length > 2 && p[p.length-2].length <= 3) ? p[p.length-3] : p[Math.max(0, p.length-2)];
+/* a world map; marks: [{lat, lon, r, color}] drawn in the given order */
+function rdWorldSvg(marks, cls){
+  rdEnsureWorld();
+  var m = (marks||[]).map(function(p){
+    if(typeof p.lat !== 'number' || typeof p.lon !== 'number') return '';
+    var x = (p.lon+180).toFixed(1), y = (RD_W_TOP-p.lat).toFixed(1);
+    return '<circle cx="' + x + '" cy="' + y + '" r="' + (p.r*1.75).toFixed(1) + '" fill="' + p.color + '" opacity=".2"/><circle cx="' + x + '" cy="' + y + '" r="' + p.r + '" fill="' + p.color + '"/>';
+  }).join('');
+  return '<svg class="' + (cls || 'rd-world') + '" viewBox="0 0 360 ' + RD_W_H + '" aria-hidden="true" focusable="false"><use href="#rd-land" width="360" height="' + RD_W_H + '"/>' + m + '</svg>';
+}
+/* a locator: the land around one point, at a size that still shows the shape of the coast */
+function rdLocator(lat, lon, o){
+  if(typeof lat !== 'number' || typeof lon !== 'number') return null;
+  var W = o.w, H = o.h, c = Math.max(.5, Math.cos(lat*Math.PI/180)), P = W/(2*o.span*c), cell = Math.max(o.cell, Math.round(P*RD_LAND_DEG*10)/10), memo = [lat, lon, W, H, cell, o.span].join(), d = rdLocMemo[memo];
+  if(d == null){
+    var seen = {}, parts = [], dLat = H/2/P + cell/P;
+    for(var i=0; i<LAND.length; i++){
+      var la = LAND[i][0]; if(Math.abs(la-lat) > dLat) continue;
+      var dl = LAND[i][1]-lon; dl = ((dl+540)%360)-180;
+      var x = W/2 + dl*P*c, y = H/2 - (la-lat)*P;
+      if(x < 0 || x >= W || y < 0 || y >= H) continue;
+      var cx = Math.floor(x/cell), cy = Math.floor(y/cell), k = cx*1000 + cy;
+      if(seen[k]) continue; seen[k] = 1;
+      parts.push('M' + (cx*cell+cell/2).toFixed(1) + ' ' + (cy*cell+cell/2).toFixed(1) + 'h.01');
+    }
+    d = rdLocMemo[memo] = parts.join('');
+  }
+  var mx = W/2, my = H/2, r = o.mark || 5;
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true" focusable="false"><path class="rd-mapland" stroke-width="' + (cell*.58).toFixed(1) + '" d="' + d + '"/>'
+    + '<circle cx="' + mx + '" cy="' + my + '" r="' + (r*2.4) + '" fill="' + o.color + '" opacity=".22"/><circle class="rd-mark-o" cx="' + mx + '" cy="' + my + '" r="' + (r*2.4) + '" stroke="' + o.color + '"/><circle cx="' + mx + '" cy="' + my + '" r="' + r + '" fill="' + o.color + '"/></svg>';
+  return h('span', {class:'rd-map' + (o.cls ? ' ' + o.cls : ''), html:svg});
+}
+function rdThumb(lat, lon, color){ return rdLocator(lat, lon, {w:64, h:64, span:42, cell:3.2, mark:3.5, color:color, cls:'rd-thumb'}); }
+function rdWide(lat, lon, color){ return rdLocator(lat, lon, {w:400, h:150, span:58, cell:6, mark:6, color:color}); }
+function rdSquare(lat, lon, color){ return rdLocator(lat, lon, {w:120, h:120, span:36, cell:4, mark:4.5, color:color}); }
+function rdSevColor(i){ return 'var(--rd-s' + Math.max(1, Math.min(5, i|0)) + ')'; }
+function rdMeter(lv, max){
+  max = max || 5; var kids = [];
+  for(var i=0; i<max; i++) kids.push(h('i'));
+  return h('span', {class:'rd-meter', 'data-lv':String(lv), 'data-max':String(max), role:'img', 'aria-label':'ระดับ ' + lv + ' จาก ' + max}, kids);
+}
+/* a line and its soft area; points [{t, v}] oldest first */
+function rdSparkSvg(pts, W, H, color, fill){
+  if(!pts || pts.length < 2) return '';
+  var t0 = pts[0].t, t1 = pts[pts.length-1].t, lo = Infinity, hi = -Infinity;
+  pts.forEach(function(p){ if(p.v < lo) lo = p.v; if(p.v > hi) hi = p.v; });
+  if(hi === lo){ hi += 1; lo -= 1; }
+  var pad = 5, X = function(t){ return (t1 > t0 ? (t-t0)/(t1-t0) : 1)*(W-2*pad-3) + pad; }, Y = function(v){ return pad + (hi-v)/(hi-lo)*(H-2*pad); };
+  var line = pts.map(function(p, i){ return (i ? 'L' : 'M') + X(p.t).toFixed(1) + ' ' + Y(p.v).toFixed(1); }).join(''), end = pts[pts.length-1];
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true" focusable="false"' + (fill === 'tile' ? ' class="spark"' : '') + '>'
+    + '<path d="' + line + 'L' + X(end.t).toFixed(1) + ' ' + H + 'L' + X(t0).toFixed(1) + ' ' + H + 'Z" fill="' + color + '" opacity=".16"/>'
+    + '<path d="' + line + '" fill="none" stroke="' + color + '" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'
+    + '<circle cx="' + X(end.t).toFixed(1) + '" cy="' + Y(end.v).toFixed(1) + '" r="4" fill="' + color + '"/></svg>';
+}
+/* the recorded points inside the window; the newest one is the value on the page (goldPoints adds the live item) */
+function rdRecent(arr){
+  var cut = Date.now() - RD_SPARK_DAYS*86400000;
+  return (arr||[]).filter(function(p){ return p.t >= cut; });
+}
+
+/* --- reading a price --- */
+/* the signed figure in a change text, its direction, and the rest of the words: "−8.49% (−8.80) จากปิดก่อนหน้า" -> −8.49%, down, "(−8.80) จากปิดก่อนหน้า" */
+function rdMove(it){
+  var s = rdPriceChange(it);
+  if(/^ค่าเดิม/.test(s)) return {token:'ค่าเดิม', dir:'held', rest:s.replace(/^ค่าเดิม\s*/, ''), full:s};
+  var m = /[+\-−]\s?\d[\d,]*(?:\.\d+)?%/.exec(s);
+  if(!m){
+    var seg = s.lastIndexOf('·') >= 0 ? s.slice(s.lastIndexOf('·')+1) : s;
+    m = /[+\-−]\s?\d[\d,]*(?:\.\d+)?(?:\s?bp|\s?บาท)?/.exec(seg);
+  }
+  if(!m){ var tr = it && (it.trend === 'up' || it.trend === 'down') ? it.trend : 'flat'; return {token:'', dir:tr, rest:s, full:s}; }
+  var tok = m[0], zero = !/[1-9]/.test(tok), dir = zero ? 'flat' : tok.charAt(0)==='+' ? 'up' : 'down';
+  var rest = s.replace(tok, '').replace(/\s{2,}/g, ' ').replace(/^[\s·]+|[\s·]+$/g, '');
+  return {token:tok, dir:dir, rest:rest, full:s};
+}
+var RD_ARROW = {up:'▲', down:'▼', flat:'■', held:'■'};
+function rdMoveEl(mv){
+  if(!mv || !mv.token) return h('span', {class:'rd-mv flat chg', text:'—'});
+  return h('span', {class:'rd-mv chg ' + mv.dir}, [mv.dir === 'held' ? null : h('i', {'aria-hidden':'true', text:RD_ARROW[mv.dir]}), mv.token]);
+}
+function rdMoveSize(mv){
+  if(!mv || mv.token.indexOf('%') < 0) return null;
+  var v = parseFloat(mv.token.replace('−', '-').replace(/[+\s,%]/g, ''));
+  return isNaN(v) ? null : v;
+}
+function rdMarketItem(key){
+  var m = live.market, items = (m && !live.offline && Array.isArray(m.items)) ? m.items : [];
+  for(var i=0; i<items.length; i++) if(items[i] && items[i].key === key && items[i].value != null) return items[i];
+  return null;
 }
 /* a change text that already says when (a closing date, an announcement time) needs no time beside it */
 function rdNamesTime(s){
@@ -3490,11 +3936,6 @@ function rdNamesTime(s){
   return /เวลา\s*\d/.test(s) || TH_MONTHS.some(function(m){ return s.indexOf(' ' + m) >= 0; });
 }
 function rdShortTime(t){ var d = new Date(t + 7*3600000); return thaiDayShort(t) + ' ' + ('0'+d.getUTCHours()).slice(-2) + ':' + ('0'+d.getUTCMinutes()).slice(-2) + ' น.'; }
-function rdItemTime(it, latest){
-  var t = parseTs(it.as_of);
-  if(t==null || latest-t <= RD_PRICE_OLD_MS || rdNamesTime(it.change_th)) return null;
-  return h('span', {text:'ณ ' + rdShortTime(t)});
-}
 function rdPriceName(it){
   var nm = String(it.label_th || it.key || '');
   return it.key==='gold_th' ? nm.replace(/\s*\([^)]*\)\s*$/, '').replace(/^ทองคำแท่ง/, 'ทองแท่ง') : nm;   /* the source link already names the association */
@@ -3502,72 +3943,259 @@ function rdPriceName(it){
 /* Thai gold: "ประกาศครั้งที่ 46 เวลา 16:11 น. +50 บาท · +1,900 จากวันก่อน" -> "ประกาศ 16:11 น. · +1,900 จากวันก่อน",
    or with the date instead of the word when the announcement is not from today. Any other wording is shown as it is. */
 function rdPriceChange(it){
-  var s = it.change_th ? String(it.change_th) : '', t = parseTs(it.as_of);
-  if(it.key!=='gold_th' || t==null) return s;
+  var s = it && it.change_th ? String(it.change_th) : '', t = it ? parseTs(it.as_of) : null;
+  if(!it || it.key!=='gold_th' || t==null) return s;
   var m = /^ประกาศ(?:\s+\d{1,2}\s+\S+)?\s*ครั้งที่\s*\S+\s*เวลา\s*(\d{1,2}:\d{2}\s*น\.).*?·\s*(.+)$/.exec(s);
   if(!m) return s;
   return (bkkDay(t)===bkkDay(Date.now()) ? 'ประกาศ ' + m[1] : rdShortTime(t)) + ' · ' + m[2];
 }
-/* one figure as table rows: name, number, unit, then a small line with its change, its time when that adds something, and its source */
-function rdPriceRow(o){
-  var small = [
-    o.change ? h('span', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [o.change]) : null,
-    o.when || null,
-    o.source ? rdA(o.source, o.sourceLabel || rdHost(o.source)) : null
-  ].filter(Boolean);
-  return h('tbody', {class:'rd-price', id:o.id || null, 'data-key':o.key || null, 'data-rd-place':'price-' + (o.id || o.key)}, [
-    h('tr', null, [h('th', {class:'nm', scope:'row', text:o.name}), h('td', {class:'val', text:o.value}), h('td', {class:'u', text:o.unit || ''})])
-  ].concat(o.more || []).concat(small.length ? [h('tr', {class:'line2'}, [h('td', {colspan:'3'}, small)])] : []));
-}
-function rdPrices(N){
-  var s = rdSection('r-prices', 'ราคาสำคัญ'), m = live.market, items = (m && Array.isArray(m.items)) ? m.items : [];
-  if(!live.offline && m) rdHead(s, rdAge(m.updated_at));
-  if(N.price) s.appendChild(rdNote(N.price));
-  var rows = [];
+/* every price the page can show, one shape for the table and for its article: live items, or the embedded values when no live file loaded */
+function rdPriceItems(){
+  var out = [];
   if(!live.offline){
-    var latest = 0;
+    var m = live.market, items = (m && Array.isArray(m.items)) ? m.items : [], latest = 0;
     items.forEach(function(it){ var t = it && parseTs(it.as_of); if(t && t > latest) latest = t; });
     items.forEach(function(it, i){
       if(!it || typeof it !== 'object' || it.value==null) return;
-      rows.push(rdPriceRow({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:rdPriceChange(it), when:rdItemTime(it, latest), source:it.source}));
+      var t = parseTs(it.as_of), old = t!=null && latest-t > RD_PRICE_OLD_MS && !rdNamesTime(it.change_th);
+      out.push({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', move:rdMove(it), when:old ? 'ณ ' + rdShortTime(t) : '', asOf:it.as_of, source:it.source, raw:it});
     });
-  }
-  if(live.offline){
-    /* no live file at all: the embedded values that have a live counterpart, each with its own date */
+  } else {
     (DATA.indicators||[]).forEach(function(ind){
       var map = LIVE_IND.filter(function(x){ return x && x.label === ind.label_th; })[0];
-      if(map) rows.push(rdPriceRow({key:'embedded-' + map.key, name:String(ind.label_th), value:String(ind.value), change:ind.delta_th ? String(ind.delta_th) : '', when:ind.as_of ? h('span', {text:'ค่าล่าสุดที่ฝังในหน้าเว็บ ณ ' + thaiDate(ind.as_of)}) : null, source:ind.source}));
+      if(map) out.push({key:'embedded-' + map.key, name:String(ind.label_th), value:String(ind.value), unit:'', move:{token:'', dir:'flat', rest:ind.delta_th ? String(ind.delta_th) : '', full:ind.delta_th ? String(ind.delta_th) : ''}, when:ind.as_of ? 'ค่าล่าสุดที่ฝังในหน้าเว็บ ณ ' + thaiDate(ind.as_of) : '', source:ind.source, embedded:true});
     });
   }
-  if(rows.length) s.appendChild(h('table', {class:'rd-table', id:'r-price-list'}, rows));
-  if(!live.offline && m && m.note_th) s.appendChild(rdMore('price-note', 'หมายเหตุเรื่องแหล่งราคา', '', [h('p', {class:'rd-note', text:String(m.note_th)})]));
+  return out;
+}
+
+/* --- chapter scaffolding --- */
+function rdSection(id){
+  var p = rdPage(id), s = $(id); s.innerHTML = '';
+  s.setAttribute('data-rd-place', id);
+  var hero = h('header', {class:'rd-hero'}, [h('p', {class:'rd-kick', text:'บทที่ ' + p.no + ' จาก ' + (rdPages().length-1)}), h('h2', {tabindex:'-1', text:p.name})]);
+  var body = h('div', {class:'rd-body'});
+  s.appendChild(hero); s.appendChild(body);
+  return {s:s, hero:hero, body:body};
+}
+function rdPager(id){
+  var ps = rdPages(), i = -1;
+  ps.forEach(function(p, j){ if(p.sec === id) i = j; });
+  var prev = ps[i-1], next = ps[i+1];
+  return h('nav', {class:'rd-pager', 'aria-label':'บทก่อนหน้าและบทถัดไป'}, [
+    prev ? h('a', {class:'prev rd-c-' + prev.c, href:rdHref(prev)}, [h('small', {text:'‹ ก่อนหน้า'}), h('b', {text:prev.tab})]) : null,
+    next ? h('a', {class:'next rd-c-' + next.c, href:rdHref(next)}, [h('small', {text:'ถัดไป ›'}), h('b', {text:next.name})]) : null,
+    h('p', {class:'rd-swhint', text:'ปัดซ้ายหรือขวาเพื่อเปลี่ยนบท'})
+  ]);
+}
+/* the title and one big number on the same row */
+function rdHeroTop(t, node){ var hd = t.hero.querySelector('h2'), row = h('div', {class:'rd-hero-top'}); t.hero.insertBefore(row, hd); row.appendChild(hd); row.appendChild(node); }
+function rdAdd(parent, node){ if(node) parent.appendChild(node); return parent; }
+function rdTeaser(s){ return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+
+/* --- front page --- */
+var RD_DAYS = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+var RD_KEY_NUMS = [['gold_th','ทองแท่ง'],['brent','Brent'],['usdthb','ดอลลาร์'],['set','SET']];
+function rdToday(){ var n = Date.now(); return 'วัน' + RD_DAYS[new Date(n + 7*3600000).getUTCDay()] + 'ที่ ' + thaiDate(bkkDay(n)); }
+/* the Thai bar as the page shows it everywhere: the live item when usable, else the embedded value */
+function rdGoldNow(N, kind){
+  var g = GOLD, th = (g && g.thai) || {}, it = rdGoldItem(kind === 'th' ? goldState.liveTh : goldState.live);
+  if(it) return {it:it, value:rdGroupedNum(it.value), move:rdMove(it), unit:it.unit ? String(it.unit) : (kind === 'th' ? 'บาท' : '')};
+  if(!g) return null;
+  if(kind === 'th') return th.sell != null ? {value:fmtN(th.sell), unit:'บาท', move:null, asOf:th.as_of} : null;
+  return g.spot_now != null ? {value:'$' + fmtN(g.spot_now), unit:'ต่อออนซ์', move:null, asOf:g.as_of} : null;
+}
+/* a change text without its own time, because the line already says when */
+function rdRestNoTime(mv){ return mv && mv.rest ? mv.rest.replace(/^(?:ประกาศ\s+)?(?:\d{1,2}\s+\S+\s+)?\d{1,2}:\d{2}\s*น\.\s*·\s*/, '') : ''; }
+function rdKeyCell(label, value, move, note){
+  return h('span', {class:'rd-num'}, [h('span', {class:'k', text:label}), h('span', {class:'v', text:value}), move && move.token ? rdMoveEl(move) : h('span', {class:'rd-mv flat', text:note || '—'})]);
+}
+function rdFront(N){
+  var s = $('r-front'), an = DATA.analysis_th || {}, items = newsItems(), head = an.headline || (items[0] && items[0].title_th) || '';
+  s.innerHTML = ''; s.setAttribute('data-rd-place', 'r-front');
+  var up = $('updated');
+  s.appendChild(h('div', {class:'rd-fm'}, [h('span', {id:'rd-today', text:rdToday()}), h('span', {id:'rd-updated', class:up.classList.contains('is-stale') || live.offline ? 'warn' : null, text:up.querySelector('.u-short').textContent})]));
+  var len = head.length;
+  s.appendChild(h('a', {class:'rd-lead-link rd-c-latest', href:rdHref(rdPage('latest'))}, [
+    h('h2', {tabindex:'-1', class:len <= 62 ? 'l1' : len <= 112 ? 'l2' : len <= 160 ? 'l3' : 'l4', text:head})
+  ]));
+  /* key numbers */
+  var cells = [], priced = rdPriceItems(), waiting = !live.polled && !live.market;
+  if(waiting) RD_KEY_NUMS.forEach(function(k){ cells.push(rdKeyCell(k[1], '—', null, '\u00a0')); });   /* the first file is on its way: same layout, no old value that is about to change */
+  else if(!live.offline){
+    RD_KEY_NUMS.forEach(function(k){
+      var it = rdMarketItem(k[0]);
+      if(it) cells.push(rdKeyCell(k[1], rdGroupedNum(it.value), rdMove(it)));
+    });
+  }
+  if(!cells.length && GOLD){
+    var gth = rdGoldNow(N, 'th');
+    if(gth) cells.push(rdKeyCell('ทองแท่ง', gth.value, null, live.offline ? 'ค่าฝัง' : '—'));
+    priced.slice(0, 3).forEach(function(p){ cells.push(rdKeyCell(p.name.replace(/^น้ำมันดิบ\s*/, '').replace(/\s*\(.*$/, ''), p.value, null, 'ค่าฝัง')); });
+  }
+  s.appendChild(h('a', {class:'rd-nums rd-c-prices', href:rdHref(rdPage('prices')), id:'rd-nums'}, [
+    h('span', {class:'rd-nums-h'}, [h('b', {text:'ราคา · ' + (priced.length ? priced.length + ' รายการ' : 'กำลังโหลด') + ' ›'}), live.offline ? h('span', {class:'warn', text:'โหลดราคาสดไม่สำเร็จ'}) : (live.market && live.market.updated_at ? h('span', {'data-rel':String(live.market.updated_at), text:relTh(live.market.updated_at)}) : null)]),
+    h('span', {class:'rd-nums-g'}, cells)
+  ]));
+  /* the entries */
+  var c0 = conflicts[0], marks = conflicts.slice().reverse().map(function(c){ var i = c.intensity|0; return {lat:c.lat, lon:c.lon, r:i >= 5 ? 5 : i >= 4 ? 3.6 : 2.2, color:i >= 4 ? 'var(--rd-glint)' : 'var(--rd-on-2)'}; });
+  var tile = function(p, cls, count, kids){ return h('a', {class:'rd-tile rd-c-' + p.c + ' rd-on' + (cls ? ' ' + cls : ''), href:rdHref(p), 'data-tile':p.c}, [h('span', {class:'h'}, [p.tab === 'ขัดแย้ง' ? 'ความขัดแย้ง' : p.tab, count ? h('span', {text:count}) : null])].concat(kids)); };
+  var top = c0 ? Math.max(1, Math.min(5, c0.intensity|0)) : 0, tiles = [];
+  tiles.push(tile(rdPage('conflicts'), 'wide', conflicts.length + ' เรื่อง', c0 ? [
+    h('span', {html:rdWorldSvg(marks, 'wmap')}).firstChild,
+    h('span', {class:'t', text:String(c0.name_th)}),
+    h('span', {class:'sevline'}, [rdMeter(top), RD_SEVERITY[top]])
+  ] : []));
+  tiles.push(tile(rdPage('latest'), '', items.length ? items.length + ' ข่าว' : '', [items.length ? h('span', {class:'t', text:rdTeaser(items[0].title_th)}) : h('span', {class:'t', text:N.news ? N.news.text : ''})]));
+  var d0 = disasters[0];
+  tiles.push(tile(rdPage('disasters'), '', live.disasters ? disasters.length + ' เหตุการณ์' : '', [
+    h('span', {class:'t', text:d0 ? rdTeaser(d0.title_th) : (N.dz && N.dz.text) || (live.disasters ? DZ_EMPTY_TH : '')}),
+    d0 ? h('span', {class:'ic rd-ic', style:'width:24px;height:24px', 'aria-hidden':'true', html:DZ_ICON[d0.type] || DZ_ICON.earthquake}) : null
+  ]));
+  if(GOLD){
+    var gt = waiting ? {value:'—', unit:''} : rdGoldNow(N, 'th'), pts = N.vm && !waiting ? rdRecent(N.vm.P.th) : [], sp = rdSparkSvg(pts, 160, 34, 'var(--rd-glint)', 'tile');
+    tiles.push(tile(rdPage('gold'), '', 'ทองแท่ง ขายออก', [
+      gt ? h('span', {class:'big', text:gt.value + ' ' + gt.unit}) : null,
+      gt && gt.move && gt.move.token ? rdMoveEl(gt.move) : null,
+      sp ? h('span', {html:sp}).firstChild : null
+    ]));
+  }
+  var ranked = rdEconRanked(0);
+  if(ranked.length){
+    var hi = ranked[0], thai = economies.filter(function(e){ return e.iso === 'THA'; })[0];
+    tiles.push(tile(rdPage('economy'), '', economies.length + ' ประเทศ', [
+      h('span', {class:'t', text:(thai ? thai.name_th + ' ' + rdPct(thai.gdp_growth_2026) + ' · ' : '') + 'สูงสุด ' + hi.name_th + ' ' + rdPct(hi.gdp_growth_2026)}),
+      h('span', {html:rdMiniBars(ranked)}).firstChild
+    ]));
+  }
+  s.appendChild(h('nav', {class:'rd-mosaic', 'aria-label':'บทในฉบับนี้'}, tiles));
+}
+function rdMiniBars(ranked){
+  var W = 160, H = 30, n = ranked.length, max = 0, bw = W/n;
+  ranked.forEach(function(e){ var v = Math.abs(+e.gdp_growth_2026 || 0); if(v > max) max = v; });
+  var hasNeg = ranked.some(function(e){ return e.gdp_growth_2026 < 0; }), z = hasNeg ? H*.72 : H;
+  var r = ranked.map(function(e, i){
+    var v = +e.gdp_growth_2026 || 0, bh = Math.max(1, Math.abs(v)/(max || 1)*(v < 0 ? H-z : z));
+    return '<rect x="' + (i*bw).toFixed(1) + '" y="' + (v < 0 ? z : z-bh).toFixed(1) + '" width="' + (bw-1.4).toFixed(1) + '" height="' + bh.toFixed(1) + '" fill="' + (e.iso === 'THA' ? 'var(--rd-glint)' : 'var(--rd-on-2)') + '"' + (e.iso === 'THA' ? '' : ' opacity=".62"') + '/>';
+  }).join('');
+  return '<svg class="bars" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true" focusable="false">' + r + '</svg>';
+}
+
+/* --- chapter 1: latest --- */
+function rdNewsRow(it, i, first){
+  var body = [
+    i != null ? h('span', {class:'no', 'aria-hidden':'true', text:String(i+1)}) : null,
+    h('span', {class:'rd-title', text:String(it.title_th)}),
+    h('span', {class:'rd-meta'}, [
+      it.time ? h('span', {'data-rel':String(it.time), text:relTh(it.time)}) : null,
+      it.source_name || it.source ? h('span', {class:it.source ? 'ext' : null, text:it.source_name ? String(it.source_name) : domain(String(it.source))}) : null
+    ])
+  ];
+  var cls = 'rd-nw' + (first ? ' first' : '');
+  return h('li', {'data-id':String(it.id || ''), 'data-rd-place':'news-' + (it.id || it.title_th)}, [
+    it.source ? h('a', {class:cls, href:String(it.source), target:'_blank', rel:'noopener noreferrer'}, body) : h('div', {class:cls}, body)
+  ]);
+}
+function rdLatest(N){
+  var t = rdSection('r-latest'), an = DATA.analysis_th || {}, items = newsItems(), b = t.body;
+  if(an.headline){ t.hero.appendChild(h('p', {class:'rd-lede', 'data-rd-place':'lead', text:an.headline})); t.hero.appendChild(rdBasisLine()); }
+  rdAdd(b, rdNote(N.basis));
+  var news = h('div');
+  news.appendChild(h('h3', {class:'rd-sh', text:'ข่าวล่าสุด'}));
+  rdAdd(news, live.headlines ? rdAge(live.headlines.updated_at) : null);
+  rdAdd(news, rdNote(N.news));
+  if(items.length){
+    news.appendChild(h('ul', {id:'r-news'}, items.slice(0, RD_NEWS_TOP).map(function(it, i){ return rdNewsRow(it, i, i===0); })));
+    if(items.length > RD_NEWS_TOP) news.appendChild(rdMore('news-all', 'ดูทั้งหมด ' + items.length + ' ข่าว', '', [h('ul', {class:'rd-news-more'}, items.slice(RD_NEWS_TOP).map(function(it, i){ return rdNewsRow(it, i + RD_NEWS_TOP, false); }))], 'ย่อข่าว'));
+  }
+  var cards = h('div', {class:'rd-cards col'});
+  if(an.thailand) cards.appendChild(h('a', {class:'rd-card solid', href:rdHref(rdPage('latest'), 'thailand'), 'data-rd-place':'thailand'}, [h('h3', {text:'มุมมองต่อไทย'}), h('p', {text:rdTeaser(an.thailand)}), h('span', {class:'rd-go-a', text:'อ่านต่อ ›'})]));
+  if(an.points && an.points.length) cards.appendChild(h('a', {class:'rd-card', href:rdHref(rdPage('latest'), 'analysis'), 'data-rd-place':'analysis'}, [h('h3', {text:'บทวิเคราะห์'}), h('span', {class:'cnt', text:an.points.length + ' ประเด็น'}), h('p', {text:rdTeaser(an.points[0])}), h('span', {class:'rd-go-a', text:'อ่านบทความ ›'})]));
+  if(an.risks && an.risks.length) cards.appendChild(h('a', {class:'rd-card', href:rdHref(rdPage('latest'), 'risks'), 'data-rd-place':'risks'}, [h('h3', {text:'ความเสี่ยงที่ต้องจับตา'}), h('span', {class:'cnt', text:an.risks.length + ' ข้อ'}), h('p', {text:rdTeaser(an.risks[0])}), h('span', {class:'rd-go-a', text:'อ่านบทความ ›'})]));
+  b.appendChild(h('div', {class:'rd-grid'}, [news, cards.children.length ? cards : null]));
+  t.s.appendChild(rdPager('r-latest'));
+}
+
+/* --- chapter 2: prices --- */
+var RD_PRICE_GROUPS = [['พลังงาน',['brent','wti']], ['ทองคำ',['gold_th','gold']], ['ตลาดหุ้น',['set','spx','ndx','nikkei']], ['ค่าเงินและดอกเบี้ย',['usdthb','dxy','us10y']]];
+function rdPriceRow(p){
+  return h('li', {'data-key':p.key, 'data-rd-place':'price-' + p.key}, [
+    h('a', {class:'rd-prow', href:rdHref(rdPage('prices'), p.key)}, [
+      h('span', {class:'nm'}, rdWhole(p.name).concat([p.unit || p.when ? h('small', {text:[p.unit, p.when].filter(Boolean).join(' · ')}) : null])),
+      h('span', {class:'val', text:p.value}),
+      rdMoveEl(p.move),
+      h('span', {class:'chev', 'aria-hidden':'true', text:'›'})
+    ])
+  ]);
+}
+function rdPrices(N){
+  var t = rdSection('r-prices'), m = live.market, b = t.body, list = rdPriceItems();
+  if(!live.offline && m) t.hero.appendChild(rdAge(m.updated_at));
+  rdAdd(b, rdNote(N.price));
+  if(!live.offline && list.length){
+    var up = 0, dn = 0, best = null, worst = null;
+    list.forEach(function(p){
+      if(p.move.dir === 'up') up++; else if(p.move.dir === 'down') dn++;
+      var v = rdMoveSize(p.move);
+      if(v == null) return;
+      if(v > 0 && (!best || v > best.v)) best = {v:v, p:p};
+      if(v < 0 && (!worst || v < worst.v)) worst = {v:v, p:p};
+    });
+    rdHeroTop(t, h('div', {class:'rd-tally'}, [h('span', null, [h('b', {text:String(list.length)}), 'รายการ'])]));
+    t.hero.appendChild(h('div', {class:'rd-tally'}, [h('span', null, [h('b', {text:String(up)}), 'ขึ้น ▲']), h('span', null, [h('b', {text:String(dn)}), 'ลง ▼'])]));
+    if(best || worst) b.appendChild(h('div', {class:'rd-movers'}, [best, worst].filter(Boolean).map(function(x){
+      return h('a', {class:'rd-mover', href:rdHref(rdPage('prices'), x.p.key)}, [h('span', {class:'k', text:x.v > 0 ? 'ขึ้นแรงสุด' : 'ลงแรงสุด'}), h('span', {class:'n'}, rdWhole(x.p.name)), rdMoveEl(x.p.move)]);
+    })));
+  }
+  if(list.length){
+    var used = {}, groups = RD_PRICE_GROUPS.map(function(g){
+      var rows = list.filter(function(p){ return g[1].indexOf(p.key) >= 0; });
+      rows.forEach(function(p){ used[p.key] = 1; });
+      return [g[0], rows];
+    });
+    groups.push([groups.some(function(g){ return g[1].length; }) ? 'อื่น ๆ' : 'ค่าล่าสุดที่ฝังในหน้าเว็บ', list.filter(function(p){ return !used[p.key]; })]);
+    b.appendChild(h('div', {id:'r-price-list'}, groups.filter(function(g){ return g[1].length; }).map(function(g){
+      return h('section', {class:'rd-pgroup'}, [h('h3', {text:g[0]}), h('ul', null, g[1].map(rdPriceRow))]);
+    })));
+  }
+  if(!live.offline && m && m.note_th) b.appendChild(rdMore('price-note', 'หมายเหตุเรื่องแหล่งราคา', 'quiet', [h('p', {class:'rd-note', text:String(m.note_th)})]));
+  t.s.appendChild(rdPager('r-prices'));
+}
+
+/* --- chapter 3: conflicts --- */
+function rdConfLevel(c){
+  var i = Math.max(1, Math.min(5, c.intensity|0));
+  return h('p', {class:'rd-level'}, [rdMeter(i), h('b', {text:RD_SEVERITY[i]}), 'ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]);
+}
+function rdConfCard(c, kind){
+  var i = Math.max(1, Math.min(5, c.intensity|0)), key = c.id || c.name_th, href = rdHref(rdPage('conflicts'), key), col = rdSevColor(i), a;
+  if(kind === 1) a = h('a', {class:'rd-story rd-lead-1', href:href}, [rdWide(c.lat, c.lon, col), h('div', {class:'in'}, [rdConfLevel(c), h('h3', {text:String(c.name_th)}), c.status_th ? h('p', {class:'tx', text:String(c.status_th)}) : null, h('span', {class:'rd-go-a', text:'อ่านต่อ ›'})])]);
+  else if(kind === 2) a = h('a', {class:'rd-story rd-lead-2', href:href}, [h('div', {class:'in'}, [rdConfLevel(c), h('h3', {text:String(c.name_th)})]), rdSquare(c.lat, c.lon, col), c.status_th ? h('p', {class:'tx', text:String(c.status_th)}) : null]);
+  else a = h('a', {class:'rd-row', href:href}, [rdThumb(c.lat, c.lon, col), h('div', {class:'in'}, [h('h3', {text:String(c.name_th)}), rdConfLevel(c)]), h('span', {class:'chev', 'aria-hidden':'true', text:'›'})]);
+  return h('li', {class:'rd-conf', 'data-intensity':String(i), 'data-rd-place':'conf-' + key}, [a]);
 }
 function rdConflicts(N){
-  var s = rdSection('r-conflicts', 'ความขัดแย้ง');
-  rdHead(s, rdBasisLine());
-  rdHead(s, h('p', {class:'rd-fresh', text:'เรียงจากรุนแรงมากไปน้อย'}));
-  if(N.basis) s.appendChild(rdNote(N.basis));
-  var all = newsItems();
-  function card(c){
-    var i = Math.max(1, Math.min(5, c.intensity|0)), key = 'conf-' + (c.id || c.name_th), news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
-    return h('li', {class:'rd-conf', 'data-intensity':String(i), 'data-rd-place':key}, [
-      h('h3', {text:String(c.name_th)}),
-      h('p', {class:'rd-level'}, [h('b', {text:RD_SEVERITY[i]}), ' · ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]),
-      c.status_th ? h('p', {text:String(c.status_th)}) : null,
-      rdMore(key, 'อ่านต่อ', '', [
-        c.summary_th ? h('p', {text:String(c.summary_th)}) : null,
-        rdKv([['ผู้เสียชีวิต (ประมาณ)', c.deaths_est], ['ผู้พลัดถิ่น', c.displaced], ['ความน่าเชื่อถือของข้อมูล', CONF_TH[c.confidence]]]),
-        news.length ? h('div', null, [h('p', {class:'rd-srcs-k', text:'ข่าวล่าสุดของเรื่องนี้'}), h('ul', {class:'rd-rows'}, news.map(rdNewsRow))]) : null,
-        rdSources(c.sources)
-      ])
-    ]);
-  }
-  /* the most severe are on the page, the rest behind one line; conflicts is already sorted, so the order holds across both */
-  var top = conflicts.filter(function(c){ return (c.intensity|0) >= RD_CONFLICT_TOP_LEVEL; }), rest = conflicts.filter(function(c){ return (c.intensity|0) < RD_CONFLICT_TOP_LEVEL; });
-  if(!top.length){ top = rest; rest = []; }
-  s.appendChild(h('ul', {class:'rd-rows', id:'r-conflict-list'}, top.map(card)));
-  if(rest.length) s.appendChild(rdMore('conf-rest', 'อ่านอีก ' + rest.length + ' เรื่อง (ระดับ ' + (RD_CONFLICT_TOP_LEVEL-1) + ' ลงมา)', 'rd-group', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(card))], 'ย่อเรื่องที่เหลือ'));
+  var t = rdSection('r-conflicts'), b = t.body, counts = [0,0,0,0,0,0];
+  conflicts.forEach(function(c){ counts[Math.max(1, Math.min(5, c.intensity|0))]++; });
+  var ramp = {5:'#fff4d6', 4:'#ffd166', 3:'#f0b23e', 2:'#d99a4a', 1:'#b98f60'};
+  var marks = conflicts.slice().reverse().map(function(c){ var i = Math.max(1, Math.min(5, c.intensity|0)); return {lat:c.lat, lon:c.lon, r:[0,1.8,2.2,2.8,3.6,4.8][i], color:ramp[i]}; });
+  rdHeroTop(t, h('div', {class:'rd-tally'}, [h('span', null, [h('b', {text:String(conflicts.length)}), 'เรื่อง'])]));
+  t.hero.appendChild(h('div', {html:rdWorldSvg(marks)}).firstChild);
+  t.hero.appendChild(h('div', {class:'rd-stack', 'aria-hidden':'true'}, [5,4,3,2,1].filter(function(i){ return counts[i]; }).map(function(i){ return h('i', {style:'flex:' + counts[i] + ' 1 0;background:' + ramp[i]}); })));
+  t.hero.appendChild(h('p', {class:'rd-sevkey'}, [5,4,3].filter(function(i){ return counts[i]; }).map(function(i){ return h('span', null, [h('b', {text:String(counts[i])}), ' ' + RD_SEVERITY[i]]); })));
+  t.hero.appendChild(rdBasisLine());
+  rdAdd(b, rdNote(N.basis));
+  var leads = conflicts.slice(0, RD_CONF_LEADS), rows = conflicts.slice(RD_CONF_LEADS, RD_CONF_LEADS + RD_CONF_ROWS), rest = conflicts.slice(RD_CONF_LEADS + RD_CONF_ROWS);
+  var leadList = h('ul', {id:'r-conflict-list'}, leads.map(function(c, i){ return rdConfCard(c, i === 0 ? 1 : 2); }));
+  var side = h('div', {class:'col'}, [
+    rows.length ? h('ul', {class:'rd-rows', id:'r-conflict-rows'}, rows.map(function(c){ return rdConfCard(c, 3); })) : null,
+    rest.length ? rdMore('conf-rest', 'ดูทั้งหมด ' + conflicts.length + ' รายการ', '', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(function(c){ return rdConfCard(c, 3); }))], 'ย่อรายการ') : null
+  ].filter(Boolean));
+  b.appendChild(h('div', {class:'rd-grid'}, [leadList, side]));
+  t.s.appendChild(rdPager('r-conflicts'));
 }
+
+/* --- chapter 4: disasters --- */
 /* the event's own dates from the data: one day with its age, or a start-end range */
 function rdDzDate(it){
   var a = parseTs(it.start), b = parseTs(it.end);
@@ -3576,93 +4204,401 @@ function rdDzDate(it){
   if(d1 !== d0) return h('span', {class:'rd-dz-date', text:thaiDate(d0) + ' – ' + thaiDate(d1)});
   return h('span', {class:'rd-dz-date'}, [thaiDate(d0) + ' (', h('span', {'data-rel':String(it.start), text:relTh(it.start)}), ')']);
 }
-function rdDisasters(N){
-  var s = rdSection('r-disasters', 'ภัยพิบัติล่าสุด'), doc = live.disasters;
-  if(doc) rdHead(s, rdAge(doc.updated));
-  if(N.dz) s.appendChild(rdNote(N.dz));
-  if(doc && !disasters.length) s.appendChild(h('p', {text:DZ_EMPTY_TH}));
-  if(disasters.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-dz-list'}, disasters.map(function(it){
-    var src = dzSources(it);
-    return h('li', {class:'rd-dz', 'data-id':String(it.id || ''), 'data-rd-place':'dz-' + (it.id || it.title_th)}, [
-      h('h3', {text:String(it.title_th)}),
-      h('p', {class:'rd-level'}, [h('b', {text:dzAlertText(it.alert_level)}), DZ_TYPE_TH[it.type] ? ' · ' + DZ_TYPE_TH[it.type] : '', it.country_th ? ' · ' + String(it.country_th) : '']),
-      it.severity_th ? h('p', {class:'rd-sev', text:String(it.severity_th)}) : null,
-      h('div', {class:'rd-meta'}, [rdDzDate(it)].concat(src.map(function(u, j){ var nm = j===0 ? it.source_name : it.alt_source_name; return rdA(u, nm ? String(nm) : domain(u)); })))
-    ]);
-  })));
-  s.appendChild(dzSrcNote('rd-note'));
+function rdDzColor(a){ return {red:'var(--rd-s5)', orange:'var(--rd-s3)', yellow:'var(--rd-s2)', green:'var(--rd-up)'}[a] || 'var(--rd-line)'; }
+function rdDzLevel(it){
+  return h('p', {class:'rd-level'}, [h('span', {class:'rd-al al-' + dzAlert(it.alert_level)}, [dzAlertText(it.alert_level)]), [DZ_TYPE_TH[it.type], it.country_th].filter(Boolean).join(' · ')].filter(Boolean));
 }
-var RD_ECON_COLS = [['GDP 2026', 'gdp_growth_2026', true], ['GDP 2027 คาดการณ์', 'gdp_growth_2027', true], ['เงินเฟ้อ', 'inflation', false], ['ดอกเบี้ยนโยบาย', 'policy_rate', false]], RD_ECON_YEARS = ['2026', '2027 คาด'];   /* gdp_growth_ years */
+function rdDzCard(it, lead){
+  var key = it.id || it.title_th, href = rdHref(rdPage('disasters'), key), col = rdDzColor(it.alert_level), ic = h('span', {class:'rd-ic', 'aria-hidden':'true', html:DZ_ICON[it.type] || DZ_ICON.earthquake}), a;
+  if(lead) a = h('a', {class:'rd-story rd-lead-1', href:href}, [rdWide(it.lat, it.lon, col), h('div', {class:'in'}, [rdDzLevel(it), h('h3', {text:String(it.title_th)}), rdDzDate(it), h('span', {class:'rd-go-a', text:'อ่านต่อ ›'})])]);
+  else a = h('a', {class:'rd-row', href:href}, [h('span', {class:'rd-thumbwrap'}, [rdThumb(it.lat, it.lon, col), ic]), h('div', {class:'in'}, [h('h3', {text:String(it.title_th)}), rdDzLevel(it), rdDzDate(it)]), h('span', {class:'chev', 'aria-hidden':'true', text:'›'})]);
+  return h('li', {class:'rd-dz', 'data-id':String(it.id || ''), 'data-rd-place':'dz-' + key}, [a]);
+}
+function rdDisasters(N){
+  var t = rdSection('r-disasters'), doc = live.disasters, b = t.body, ramp = {red:'#fff4d6', orange:'#ffd166', yellow:'#f0b23e', green:'#e8d3a8'};
+  if(doc) rdHeroTop(t, h('div', {class:'rd-tally'}, [h('span', null, [h('b', {text:String(disasters.length)}), 'เหตุการณ์'])]));
+  if(disasters.length) t.hero.appendChild(h('div', {html:rdWorldSvg(disasters.slice().reverse().map(function(it){ return {lat:it.lat, lon:it.lon, r:it.alert_level === 'red' ? 5 : it.alert_level === 'orange' ? 3.8 : 2.8, color:ramp[it.alert_level] || '#e8d3a8'}; }))}).firstChild);
+  if(doc){
+    var reds = disasters.filter(function(d){ return d.alert_level === 'red'; }).length, oranges = disasters.filter(function(d){ return d.alert_level === 'orange'; }).length;
+    t.hero.appendChild(h('div', {class:'rd-tally'}, [reds ? h('span', null, [h('b', {text:String(reds)}), 'เตือนแดง']) : null, oranges ? h('span', null, [h('b', {text:String(oranges)}), 'เตือนส้ม']) : null].filter(Boolean)));
+    t.hero.appendChild(rdAge(doc.updated));
+  }
+  rdAdd(b, rdNote(N.dz));
+  if(doc && !disasters.length) b.appendChild(h('p', {text:DZ_EMPTY_TH}));
+  if(disasters.length){
+    var first = disasters.slice(0, 1), rows = disasters.slice(1, RD_DZ_ROWS + 1), rest = disasters.slice(RD_DZ_ROWS + 1);
+    var list = h('ul', {id:'r-dz-list', class:'rd-rows'}, first.map(function(it){ return rdDzCard(it, true); }).concat(rows.map(function(it){ return rdDzCard(it, false); })));
+    b.appendChild(list);
+    if(rest.length) b.appendChild(rdMore('dz-rest', 'ดูทั้งหมด ' + disasters.length + ' รายการ', '', [h('ul', {class:'rd-rows', id:'r-dz-more'}, rest.map(function(it){ return rdDzCard(it, false); }))], 'ย่อรายการ'));
+  }
+  b.appendChild(dzSrcNote('rd-note'));
+  t.s.appendChild(rdPager('r-disasters'));
+}
+
+/* --- chapter 5: economy --- */
+var RD_ECON_COLS = [['GDP 2026', 'gdp_growth_2026', true], ['GDP 2027 คาด', 'gdp_growth_2027', true], ['เงินเฟ้อ', 'inflation', false], ['ดอกเบี้ยนโยบาย', 'policy_rate', false]];
+function rdEconRanked(m){
+  var f = RD_ECON_COLS[m][1], has = economies.filter(function(e){ return e[f] != null && e[f] !== ''; }), no = economies.filter(function(e){ return e[f] == null || e[f] === ''; });
+  return has.slice().sort(function(a, b){ return Number(b[f]) - Number(a[f]); }).concat(no);
+}
+function rdEconRows(){
+  var col = RD_ECON_COLS[rdEconMetric], f = col[1], ranked = rdEconRanked(rdEconMetric), lo = 0, hi = 0;
+  ranked.forEach(function(e){ var v = Number(e[f]); if(e[f] == null || e[f] === '' || isNaN(v)) return; if(v > hi) hi = v; if(v < lo) lo = v; });
+  var span = (hi-lo) || 1, z = -lo/span*100;
+  return ranked.map(function(e){
+    var raw = e[f], ok = raw != null && raw !== '' && !isNaN(Number(raw)), v = Number(raw), w = ok ? Math.abs(v)/span*100 : 0;
+    return h('li', {'data-rd-place':'econ-' + (e.iso || e.name_th), 'data-iso':String(e.iso || '')}, [
+      h('a', {class:'rd-bar' + (e.iso === 'THA' ? ' home' : ''), href:rdHref(rdPage('economy'), e.iso || e.name_th)}, [
+        h('span', {class:'nm'}, [String(e.name_th), h('small', {class:e.health === 'crisis' ? 'crisis' : null, text:HEALTH_TH[e.health] || '—'})]),
+        h('span', {class:'rd-track', style:'--z:' + z.toFixed(1) + '%', 'aria-hidden':'true'}, ok ? [h('i', {class:v < 0 ? 'neg' : null, style:'left:' + (v < 0 ? z-w : z).toFixed(1) + '%;width:' + Math.max(.6, w).toFixed(1) + '%'})] : []),
+        h('span', {class:'val', text:col[2] ? rdPct(raw) : rdNum(raw, '%')})
+      ])
+    ]);
+  });
+}
 function rdEconomy(N){
-  var s = rdSection('r-economy', 'เศรษฐกิจและช่องแคบ');
-  rdHead(s, rdBasisLine());
-  if(N.basis) s.appendChild(rdNote(N.basis));
+  var t = rdSection('r-economy'), b = t.body, tally = {strong:0, stable:0, weak:0, crisis:0};
+  economies.forEach(function(e){ if(tally[e.health] != null) tally[e.health]++; });
+  rdHeroTop(t, h('div', {class:'rd-tally'}, [h('span', null, [h('b', {text:String(economies.length)}), 'ประเทศ'])]));
+  t.hero.appendChild(h('div', {class:'rd-tally'}, ['strong','stable','weak','crisis'].filter(function(k){ return tally[k]; }).map(function(k){ return h('span', null, [h('b', {text:String(tally[k])}), HEALTH_TH[k]]); })));
+  t.hero.appendChild(rdBasisLine());
+  rdAdd(b, rdNote(N.basis));
+  var chart = null, chokes = null;
   if(economies.length){
-    s.appendChild(h('h3', {text:'เศรษฐกิจรายประเทศ'}));
-    s.appendChild(h('table', {class:'rd-table rd-econ', id:'r-econ-list'}, [
-      h('thead', null, [
-        h('tr', null, [h('th', {scope:'col', rowspan:'2', text:'ประเทศ'}), h('th', {scope:'colgroup', colspan:'2', class:'span', text:'GDP'}), h('th', {scope:'col', rowspan:'2', text:'เงินเฟ้อ'}), h('th', {scope:'col', rowspan:'2', text:'ดอกเบี้ย'})]),
-        h('tr', null, RD_ECON_YEARS.map(function(y){ return h('th', {scope:'col', text:y}); }))
-      ]),
-      h('tbody', null, economies.map(function(e){
-        return h('tr', {'data-rd-place':'econ-' + (e.iso || e.name_th)}, [h('th', {scope:'row'}, [String(e.name_th), h('small', {text:HEALTH_TH[e.health] || '—'})])].concat(RD_ECON_COLS.map(function(c){
-          return h('td', {'data-l':c[0], text:c[2] ? pct(e[c[1]]) : num(e[c[1]], '%')});
-        })));
-      }))
-    ]));
-    s.appendChild(rdMore('econ-notes', 'อ่านหมายเหตุรายประเทศ ' + economies.length + ' ประเทศ', 'rd-group', [h('ul', {class:'rd-rows', id:'r-econ-notes'}, economies.map(function(e){
-      return h('li', {class:'rd-choke', 'data-rd-place':'econ-note-' + (e.iso || e.name_th)}, [h('h4', {text:String(e.name_th)}), e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)]);
-    }))], 'ย่อหมายเหตุ'));
+    var list = h('ul', {id:'r-econ-list'}, rdEconRows());
+    var chips = h('div', {class:'rd-chips', role:'group', 'aria-label':'เลือกตัวชี้วัด'}, RD_ECON_COLS.map(function(c, i){
+      return h('button', {type:'button', 'aria-pressed':String(i === rdEconMetric), 'data-econ':String(i), text:c[0]});
+    }));
+    chips.addEventListener('click', function(ev){
+      var bt = ev.target.closest && ev.target.closest('button[data-econ]'); if(!bt) return;
+      rdEconMetric = +bt.getAttribute('data-econ');
+      Array.prototype.forEach.call(chips.children, function(x){ x.setAttribute('aria-pressed', String(x === bt)); });
+      list.innerHTML = '';
+      rdEconRows().forEach(function(li){ list.appendChild(li); });
+    });
+    chart = h('div', {class:'col'}, [h('h3', {class:'rd-sh'}, ['เทียบเศรษฐกิจรายประเทศ']), chips, list]);
   }
   if(chokepoints.length){
-    s.appendChild(h('h3', {text:'ช่องแคบและเส้นทางการค้า'}));
-    s.appendChild(h('ul', {class:'rd-rows', id:'r-choke-list'}, chokepoints.map(function(c){
-      return h('li', {class:'rd-choke', 'data-rd-place':'choke-' + c.name_th}, [
+    chokes = h('div', {class:'col'}, [h('h3', {class:'rd-sh', text:'ช่องแคบและเส้นทางการค้า'}), h('ul', {class:'rd-chokes', id:'r-choke-list'}, chokepoints.map(function(c, i){
+      var lv = Math.max(1, Math.min(3, c.level|0 || 1));
+      return h('li', {class:'rd-choke', 'data-rd-place':'choke-' + c.name_th}, [h('a', {href:rdHref(rdPage('economy'), 'choke-' + i)}, [
+        rdLocator(c.lat, c.lon, {w:180, h:92, span:34, cell:4.4, mark:4.5, color:lv >= 3 ? 'var(--rd-s5)' : lv === 2 ? 'var(--rd-s3)' : 'var(--rd-s2)'}),
         h('h4', {text:String(c.name_th)}),
-        h('p', {class:'rd-level'}, [h('b', {text:LEVEL_TH[c.level] || '—'}), ' · ระดับ ' + (c.level || 1) + ' จาก 3']),
-        c.note_th ? h('p', {text:String(c.note_th)}) : null,
-        rdSources(c.sources)
-      ]);
-    })));
+        h('p', {class:'rd-level'}, [rdMeter(lv, 3), ' ', h('b', {text:LEVEL_TH[c.level] || '—'})])
+      ])]);
+    }))]);
   }
+  b.appendChild(h('div', {class:'rd-grid'}, [chart, chokes]));
+  t.s.appendChild(rdPager('r-economy'));
 }
+
+/* --- chapter 6: gold --- */
 function rdGold(N){
-  var s = rdSection('r-gold', 'ทองคำ'), vm = N.vm;
-  if(!GOLD || !vm){ s.hidden = true; return; }
-  var g = GOLD, th = g.thai || {}, sl = rdGoldItem(goldState.live), tl = rdGoldItem(goldState.liveTh);
-  if(N.gold) s.appendChild(rdNote(N.gold));
-  var old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
-  var sub = function(name, v){ return h('tr', {class:'sub-row'}, [h('th', {class:'nm', scope:'row', text:name}), h('td', {class:'val', text:v}), h('td', {class:'u', text:'บาท'})]); };
-  var rows = [];
-  if(tl || th.sell != null) rows.push(rdPriceRow({id:'r-gold-th', name:'ทองคำแท่งไทย ขายออก', value:tl ? rdGroupedNum(tl.value) : fmtN(th.sell), unit:'บาท',
-    more:[vm.buy && vm.buy.v != null ? sub('รับซื้อ' + old(vm.buy), fmtN(vm.buy.v)) : null, vm.orn && vm.orn.v != null ? sub('ทองรูปพรรณ ขายออก' + old(vm.orn), fmtN(vm.orn.v)) : null].filter(Boolean),
-    change:tl && tl.change_th ? String(tl.change_th) : '', when:tl ? rdRel(tl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(th.as_of)}), source:tl && tl.source, sourceLabel:tl && tl.source ? domain(String(tl.source)) : null}));
-  if(sl || g.spot_now != null) rows.push(rdPriceRow({id:'r-gold-spot', name:'ทองคำโลก (spot)', value:sl ? rdGroupedNum(sl.value) : '$' + fmtN(g.spot_now), unit:sl ? (sl.unit ? String(sl.unit) : '') : 'ต่อออนซ์',
-    change:sl && sl.change_th ? String(sl.change_th) : '', when:sl ? rdRel(sl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(g.as_of)}), source:sl && sl.source, sourceLabel:sl && sl.source ? domain(String(sl.source)) : null}));
-  if(!tl && th.source_th && rows.length) rows[0].querySelector('.line2 td').appendChild(h('span', {text:String(th.source_th)}));
-  s.appendChild(h('table', {class:'rd-table'}, rows));
-  if(g.disclaimer_th) s.appendChild(h('p', {class:'rd-note', text:String(g.disclaimer_th)}));
+  var page = $('r-gold'), tb = $('rd-tab-gold'), vm = N.vm;
+  if(!GOLD || !vm){ page.innerHTML = ''; if(tb) tb.hidden = true; return; }
+  var t = rdSection('r-gold'), g = GOLD, th = g.thai || {}, b = t.body, sl = rdGoldItem(goldState.live), tl = rdGoldItem(goldState.liveTh);
+  var nowT = rdGoldNow(N, 'th'), nowS = rdGoldNow(N, 'spot'), old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
+  if(nowT){
+    t.hero.appendChild(h('div', {class:'rd-goldnow', id:'r-gold-th', 'data-rd-place':'gold-th'}, [
+      h('span', {class:'k', text:'ทองคำแท่งไทย ขายออก'}),
+      h('span', {class:'val'}, [h('span', {class:'num', text:nowT.value}), h('small', {class:'u', text:nowT.unit || 'บาท'})]),
+      h('div', {class:'chgline'}, [nowT.move ? rdMoveEl(nowT.move) : null, h('span', {class:'rest'}, [rdRestNoTime(nowT.move) ? rdRestNoTime(nowT.move) + ' · ' : '', tl ? rdRel(tl.as_of, 'ณ ') : 'ณ ' + thaiDateTime(th.as_of)])])
+    ]));
+  }
+  var ptsT = rdRecent(vm.P.th), spT = rdSparkSvg(ptsT, 400, 92, 'var(--rd-glint)');
+  if(spT) t.hero.appendChild(h('div', {class:'rd-sparkwrap', html:spT + '<div class="rd-sparkcap"><span>' + thaiDayShort(ptsT[0].t) + '</span><span>ราคาขายออกที่บันทึกไว้ ' + ptsT.length + ' จุด</span></div>'}));
+  rdAdd(b, rdNote(N.gold));
+  var cells = [];
+  if(nowS) cells.push(h('div', {class:'rd-gcell wide', id:'r-gold-spot', 'data-rd-place':'gold-spot'}, [
+    h('span', {class:'k', text:'ทองคำโลก (spot)'}),
+    h('span', {class:'v'}, [h('span', {class:'num', text:nowS.value}), h('small', {class:'u', text:nowS.unit})]),
+    nowS.move ? rdMoveEl(nowS.move) : null,
+    h('span', {class:'d'}, [nowS.move && nowS.move.rest ? nowS.move.rest + ' · ' : '', sl ? rdRel(sl.as_of, 'ณ ') : 'ณ ' + thaiDateTime(g.as_of)]),
+  ]));
+  if(vm.buy && vm.buy.v != null) cells.push(h('div', {class:'rd-gcell'}, [h('span', {class:'k', text:'รับซื้อ' + old(vm.buy)}), h('span', {class:'v'}, [fmtN(vm.buy.v), h('small', {text:'บาท'})])]));
+  if(vm.orn && vm.orn.v != null) cells.push(h('div', {class:'rd-gcell'}, [h('span', {class:'k', text:'ทองรูปพรรณ ขายออก' + old(vm.orn)}), h('span', {class:'v'}, [fmtN(vm.orn.v), h('small', {text:'บาท'})])]));
+  var yr = g.series_2026, yp = yr && Array.isArray(yr.points) ? yr.points : [], chart = null;
+  if(yp.length >= 3 && vm.spot > 0){
+    var pts = yp.map(function(p, i){ return {t:i, v:Number(p[1])}; }).concat([{t:yp.length, v:vm.spot}]), peak = null;
+    pts.forEach(function(p){ if(!peak || p.v > peak.v) peak = p; });
+    chart = h('div', {class:'rd-chart col'}, [
+      h('h3', {class:'rd-sh', text:'ทองคำโลกตั้งแต่ต้นปี'}),
+      h('div', {html:rdSparkSvg(pts, 400, 110, 'var(--a)')}),
+      h('div', {class:'cap'}, [
+        h('span', null, [String(yp[0][0]), h('b', {text:'$' + fmtN(yp[0][1])})]),
+        h('span', null, ['สูงสุด ' + (g.peak_date && !vm.peakLive ? thaiDayShort(Date.parse(g.peak_date)) : ''), h('b', {text:'$' + fmtN(vm.peak)})]),
+        h('span', {style:'text-align:right'}, ['ต่ำกว่าจุดสูงสุด', h('b', {text:rdPct(vm.fromPeak)})])
+      ]),
+      yr.note_th ? h('p', {class:'rd-note', text:String(yr.note_th)}) : null
+    ]);
+  }
+  b.appendChild(h('div', {class:'rd-grid'}, [h('div', {class:'rd-glist'}, cells), chart]));
+  rdAdd(b, rdSources([tl && tl.source, sl && sl.source]));
+  if(!tl && th.source_th) b.appendChild(h('p', {class:'rd-note', text:'ทองคำแท่งไทย: ' + String(th.source_th)}));
+  if(g.disclaimer_th) b.appendChild(h('p', {class:'rd-note', text:String(g.disclaimer_th)}));
+  t.s.appendChild(rdPager('r-gold'));
 }
 function rdBanner(N){
   var b = $('r-banner'), parts = [];
   if(live.offline){ b.textContent = offlineText(); b.hidden = false; return; }
   [[N.news, 'ข่าว'], [N.price, 'ราคา'], [N.basis, 'ความขัดแย้งและเศรษฐกิจ'], [N.dz, 'ภัยพิบัติ'], [N.gold, 'ทองคำ']].forEach(function(p){ if(p[0] && p[0].warn) parts.push(p[1]); });
   b.hidden = !parts.length;
-  b.textContent = parts.length ? 'ข้อมูลบางส่วนอาจไม่เป็นปัจจุบัน: ' + parts.join(' · ') + ' ดูข้อควรระวังในแต่ละหัวข้อ' : '';
+  b.textContent = parts.length ? 'ข้อมูลบางส่วนอาจไม่เป็นปัจจุบัน: ' + parts.join(' · ') + ' ดูข้อควรระวังในแต่ละบท' : '';
 }
+
+/* --- articles: the long text, opened on demand --- */
+function rdFacts(pairs){
+  var kids = pairs.filter(function(p){ return p[1] != null && p[1] !== ''; }).map(function(p){ return h('div', null, [h('dt', {text:p[0]}), h('dd', {text:String(p[1])})]); });
+  return kids.length ? h('dl', {class:'rd-facts'}, kids) : null;
+}
+function rdPoints(items){ return h('ol', {class:'rd-pts'}, (items||[]).map(function(p, i){ return h('li', {'data-rd-place':'pt-' + i}, [h('span', {class:'no', 'aria-hidden':'true', text:String(i+1)}), h('p', {text:String(p)})]); })); }
+/* an article's pieces and the order of its neighbours; null when the data no longer has it */
+function rdArticleKeys(p){
+  if(p.c === 'latest'){ var an = DATA.analysis_th || {}; return [an.thailand ? 'thailand' : null, an.points && an.points.length ? 'analysis' : null, an.risks && an.risks.length ? 'risks' : null].filter(Boolean); }
+  if(p.c === 'conflicts') return conflicts.map(function(c){ return String(c.id || c.name_th); });
+  if(p.c === 'disasters') return disasters.map(function(d){ return String(d.id || d.title_th); });
+  if(p.c === 'economy') return rdEconRanked(rdEconMetric).map(function(e){ return String(e.iso || e.name_th); }).concat(chokepoints.map(function(c, i){ return 'choke-' + i; }));
+  if(p.c === 'prices') return rdPriceItems().map(function(x){ return x.key; });
+  return [];
+}
+function rdArticle(p, key){
+  var an = DATA.analysis_th || {}, all = newsItems(), body, title, kick = p.name, next = null;
+  if(p.c === 'latest'){
+    if(key === 'thailand' && an.thailand){ title = 'มุมมองต่อไทย'; body = [rdBasisLine(), h('p', {class:'lede', text:String(an.thailand)})]; }
+    else if(key === 'analysis' && an.points && an.points.length){ title = 'บทวิเคราะห์'; body = [rdBasisLine(), an.headline ? h('p', {class:'lede', text:String(an.headline)}) : null, rdPoints(an.points)]; }
+    else if(key === 'risks' && an.risks && an.risks.length){ title = 'ความเสี่ยงที่ต้องจับตา'; body = [rdBasisLine(), rdPoints(an.risks)]; }
+    else return null;
+  } else if(p.c === 'conflicts'){
+    var c = conflicts.filter(function(x){ return String(x.id || x.name_th) === key; })[0];
+    if(!c) return null;
+    var news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
+    title = String(c.name_th);
+    body = [rdConfLevel(c), rdWide(c.lat, c.lon, rdSevColor(c.intensity)), rdBasisLine(), rdNote(rdBasisNote()),
+      c.status_th ? h('p', {class:'lede', text:String(c.status_th)}) : null,
+      c.summary_th ? h('p', {text:String(c.summary_th)}) : null,
+      rdFacts([['ผู้เสียชีวิต (ประมาณ)', c.deaths_est], ['ผู้พลัดถิ่น', c.displaced], ['ความน่าเชื่อถือของข้อมูล', CONF_TH[c.confidence]]]),
+      news.length ? h('div', null, [h('h3', {text:'ข่าวล่าสุดของเรื่องนี้'}), h('ul', {class:'rd-rows'}, news.map(function(n){ return rdNewsRow(n, null, false); }))]) : null,
+      rdSources(c.sources)];
+  } else if(p.c === 'disasters'){
+    var d = disasters.filter(function(x){ return String(x.id || x.title_th) === key; })[0];
+    if(!d) return null;
+    var src = dzSources(d);
+    title = String(d.title_th);
+    body = [rdDzLevel(d), rdWide(d.lat, d.lon, rdDzColor(d.alert_level)), h('p', null, [rdDzDate(d)]), d.severity_th ? h('p', {class:'lede', text:String(d.severity_th)}) : null, rdNote(rdDzNote()),
+      src.length ? h('div', null, [h('p', {class:'rd-srcs-k', text:'แหล่งที่มา'}), h('div', {class:'rd-srcs'}, src.map(function(u, j){ var nm = j===0 ? d.source_name : d.alt_source_name; return rdA(u, nm ? String(nm) : domain(u)); }))]) : null,
+      dzSrcNote('rd-note')];
+  } else if(p.c === 'economy'){
+    var cm = /^choke-(\d+)$/.exec(key);
+    if(cm){
+      var ck = chokepoints[+cm[1]];
+      if(!ck) return null;
+      var lv = Math.max(1, Math.min(3, ck.level|0 || 1));
+      title = String(ck.name_th);
+      kick = 'ช่องแคบและเส้นทางการค้า';
+      body = [h('p', {class:'rd-level'}, [rdMeter(lv, 3), h('b', {text:LEVEL_TH[ck.level] || '—'}), 'ระดับ ' + lv + ' จาก 3']), rdWide(ck.lat, ck.lon, lv >= 3 ? 'var(--rd-s5)' : lv === 2 ? 'var(--rd-s3)' : 'var(--rd-s2)'), rdBasisLine(), ck.note_th ? h('p', {text:String(ck.note_th)}) : null, rdSources(ck.sources)];
+    } else {
+      var e = economies.filter(function(x){ return String(x.iso || x.name_th) === key; })[0];
+      if(!e) return null;
+      title = String(e.name_th);
+      kick = 'เศรษฐกิจรายประเทศ';
+      body = [h('p', {class:'rd-level'}, [h('b', {text:HEALTH_TH[e.health] || '—'})]), rdFacts(RD_ECON_COLS.map(function(col){ return [col[0], col[2] ? rdPct(e[col[1]]) : rdNum(e[col[1]], '%')]; })), rdBasisLine(), rdNote(rdBasisNote()), e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)];
+    }
+  } else if(p.c === 'prices'){
+    var x = rdPriceItems().filter(function(i){ return i.key === key; })[0];
+    if(!x) return null;
+    title = x.name;
+    body = [rdFacts([['ราคา', x.value + (x.unit ? ' ' + x.unit : '')], ['การเปลี่ยนแปลง', x.move.token || null]]), x.move.full ? h('p', null, [x.move.full]) : null,
+      x.asOf && parseTs(x.asOf) != null ? h('p', {class:'rd-fresh'}, [rdRel(x.asOf, 'ณ ')]) : (x.when ? h('p', {class:'rd-fresh', text:x.when}) : null),
+      x.raw && x.raw.key === 'gold_th' && x.raw.change_th ? h('p', {class:'rd-note', text:String(x.raw.change_th)}) : null,
+      x.source ? rdSources([x.source]) : null];
+  } else return null;
+  var keys = rdArticleKeys(p), at = keys.indexOf(key);
+  if(at >= 0 && at+1 < keys.length) next = keys[at+1];
+  return {title:title, kick:kick, body:body, next:next};
+}
+function rdNextTitle(p, key){ var a = rdArticle(p, key); return a ? a.title : ''; }
+function rdSheetFill(rt){
+  var p = rdPage(rt.sec), a = rdArticle(p, rt.art), sh = $('rd-sheet');
+  if(!a) return false;
+  sh.className = 'rd-sheet rd-c-' + p.c;
+  $('rd-sheet-where').textContent = a.kick;
+  var box = $('rd-sheet-body'); box.innerHTML = '';
+  var art = h('article', {class:'rd-art'}, [h('h2', {id:'rd-sheet-title', tabindex:'-1'}, rdWhole(a.title))].concat(a.body));
+  if(a.next) art.appendChild(h('a', {class:'rd-nextart', href:rdHref(p, a.next), 'data-rd-next':'1'}, [h('small', {text:'เรื่องถัดไป ›'}), h('b', {text:rdNextTitle(p, a.next)})]));
+  box.appendChild(art);
+  return true;
+}
+function rdSheetOpen(rt){
+  var sh = $('rd-sheet'), was = !sh.hidden, oldY = sh.scrollTop;
+  if(!rdSheetFill(rt)) return false;
+  if(!was){
+    if(!rdOpener) rdOpener = document.activeElement;
+    sh.hidden = false;
+    rdRoot().classList.add('rd-lock');
+    $('app').setAttribute('inert', '');
+    $('rd-sheet-bar').appendChild($('rd-aa'));
+    $('rd-aa').open = false;
+    sh.scrollTop = 0;
+    $('rd-sheet-close').focus({preventScroll:true});
+  } else if(rdSheetArt !== rt.art) {
+    sh.scrollTop = 0;
+    $('rd-sheet-title').focus({preventScroll:true});
+  } else sh.scrollTop = oldY;
+  rdSheetArt = rt.art;
+  rdProgress();
+  return true;
+}
+var rdSheetArt = null;
+function rdSheetHide(){
+  var sh = $('rd-sheet');
+  if(sh.hidden) return;
+  sh.hidden = true;
+  rdSheetArt = null;
+  rdRoot().classList.remove('rd-lock');
+  $('app').removeAttribute('inert');
+  $('rd-aa').open = false;
+  $('rd-aa-home').parentNode.insertBefore($('rd-aa'), $('rd-aa-home'));
+  rdProgress();
+  var back = rdOpener;
+  rdOpener = null;
+  if(!back || !document.contains(back) || back === document.body){
+    var s = $(rdRoute.sec);
+    back = s && s.querySelector('h2');
+  }
+  if(back && back.focus) back.focus({preventScroll:true});
+}
+function rdSheetClose(){
+  /* the sheet was always opened on top of its chapter, so going back closes it; only if something else put it there does the address change here */
+  if(history.state && history.state.rdArt) history.back();
+  else rdGo(rdPage(rdRoute.sec), null, {replace:true, keepScroll:true});
+}
+
+/* --- pages and the address --- */
+function rdParse(hash){
+  var s = String(hash || '').replace(/^#/, ''), i = s.indexOf('/'), head = i >= 0 ? s.slice(0, i) : s, art = i >= 0 ? s.slice(i+1) : null;
+  head = head.replace(/^r-/, '');
+  var p = rdPage(head === 'front' ? '' : head);
+  if(!p || (p.c === 'gold' && !GOLD)) return {sec:'r-front', art:null};
+  try { art = art ? decodeURIComponent(art) : null; } catch(e){ art = null; }
+  return {sec:p.sec, art:art || null};
+}
+function rdRenderSec(sec){
+  if(rdDone[sec] === rdGen || !rdNow) return;
+  rdDone[sec] = rdGen;
+  var fn = {'r-front':rdFront, 'r-latest':rdLatest, 'r-prices':rdPrices, 'r-conflicts':rdConflicts, 'r-disasters':rdDisasters, 'r-economy':rdEconomy, 'r-gold':rdGold}[sec];
+  if(fn) fn(rdNow);
+}
+function rdShow(rt, o){
+  o = o || {};
+  var prev = rdRoute, changed = !prev || prev.sec !== rt.sec, p = rdPage(rt.sec);
+  if(prev && changed) rdScrollY[prev.sec] = window.scrollY;
+  rdRoute = rt;
+  rdRoot().setAttribute('data-rd-ch', p.c);
+  Array.prototype.forEach.call(document.querySelectorAll('#rd-tabs a'), function(a){
+    var on = a.getAttribute('data-sec') === rt.sec;
+    if(on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  $('rd-tabs').className = 'rd-tabs rd-c-' + p.c;
+  rdRenderSec(rt.sec);
+  RD_PAGES.forEach(function(x){
+    var el = $(x.sec), on = x.sec === rt.sec;
+    el.classList.toggle('on', on);
+    el.style.transform = ''; el.style.opacity = '';
+    if(!on) el.classList.remove('rd-in-next', 'rd-in-prev');
+  });
+  if(viewMode !== 'read') return;
+  if(changed){
+    if(o.restore && rdScrollY[rt.sec] != null) window.scrollTo(0, rdScrollY[rt.sec]);
+    else if(!o.keepScroll) window.scrollTo(0, 0);
+    var sec = $(rt.sec);
+    if(o.dir && !reduceMotion){
+      sec.classList.remove('rd-in-next', 'rd-in-prev');
+      void sec.offsetWidth;
+      sec.classList.add(o.dir > 0 ? 'rd-in-next' : 'rd-in-prev');
+    }
+    if(prev && !rt.art && !o.noFocus){ var hd = sec.querySelector('h2'); if(hd) hd.focus({preventScroll:true}); }
+  }
+  if(rt.art){
+    if(!rdSheetOpen(rt)) rdArticleGone();
+  } else rdSheetHide();
+}
+/* the article is not in the data: wait for the first load (a direct link to a live item), then fall back to its chapter */
+function rdArticleGone(){
+  if(!live.polled) return;
+  var p = rdPage(rdRoute.sec), had = !$('rd-sheet').hidden;
+  try { history.replaceState(null, '', location.pathname + location.search + rdHref(p)); } catch(e){}
+  rdRoute = {sec:rdRoute.sec, art:null};
+  rdSheetHide();
+  if(had) rdRenderSec(rdRoute.sec);
+}
+function rdIndex(sec){ var ps = rdPages(), i = -1; ps.forEach(function(p, j){ if(p.sec === sec) i = j; }); return i; }
+function rdGo(p, art, o){
+  o = o || {};
+  var rt = {sec:p.sec, art:art == null ? null : String(art)}, url = location.pathname + location.search + (p.hash || art != null ? rdHref(p, art) : '');
+  if(rdRoute && rdRoute.sec === rt.sec && rdRoute.art === rt.art){ if(!rt.art) window.scrollTo(0, 0); return; }
+  var dir = rdRoute && rdRoute.sec !== rt.sec ? (rdIndex(rt.sec) > rdIndex(rdRoute.sec) ? 1 : -1) : 0;
+  try {
+    if(o.replace) history.replaceState(rt.art ? {rdArt:1} : null, '', url);
+    else history.pushState(rt.art ? {rdArt:1} : null, '', url);
+  } catch(e){}
+  rdShow(rt, {dir:o.noAnim ? 0 : dir, keepScroll:o.keepScroll, noFocus:o.noFocus});
+  rdPlaceSave();
+}
+function rdStep(d, o){
+  var ps = rdPages(), i = rdIndex(rdRoute.sec), n = ps[i+d];
+  if(n) rdGo(n, null, o);
+  return !!n;
+}
+/* the swipe: the page follows the finger, sideways only; the first and last chapters resist. Touches at the very edge belong to the phone's own back gesture. */
+function rdSwipeInit(){
+  var r = $('reader'), sx = 0, sy = 0, t0 = 0, on = false, horiz = null, dx = 0, page = null;
+  function reset(){ if(page){ page.style.transform = ''; page.style.opacity = ''; } on = false; horiz = null; page = null; dx = 0; }
+  r.addEventListener('touchstart', function(ev){
+    if(ev.touches.length !== 1 || rdRoute.art){ reset(); return; }
+    var x = ev.touches[0].clientX;
+    if(x < 24 || x > window.innerWidth-24 || (ev.target.closest && ev.target.closest('.rd-chips'))){ reset(); return; }
+    on = true; horiz = null; dx = 0; sx = x; sy = ev.touches[0].clientY; t0 = Date.now(); page = $(rdRoute.sec);
+  }, {passive:true});
+  r.addEventListener('touchmove', function(ev){
+    if(!on || ev.touches.length !== 1) return;
+    dx = ev.touches[0].clientX - sx;
+    var dy = ev.touches[0].clientY - sy;
+    if(horiz === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) horiz = Math.abs(dx) > Math.abs(dy)*1.3;
+    if(horiz === false){ reset(); return; }
+    if(horiz && page && !reduceMotion){
+      var i = rdIndex(rdRoute.sec), ps = rdPages(), edge = (dx > 0 && i === 0) || (dx < 0 && i === ps.length-1);
+      page.style.transform = 'translateX(' + Math.round(edge ? dx*.22 : dx) + 'px)';
+      page.style.opacity = String(Math.max(.45, 1 - Math.abs(dx)/(window.innerWidth*1.4)));
+    }
+  }, {passive:true});
+  r.addEventListener('touchend', function(){
+    if(!on) return;
+    var far = Math.abs(dx) > Math.max(56, window.innerWidth*.16), flick = Math.abs(dx) > 26 && Date.now()-t0 < 240, was = horiz, d = dx;
+    reset();
+    if(was && (far || flick)){
+      rdSwipedAt = Date.now();
+      rdStep(d < 0 ? 1 : -1, {noFocus:true});
+    }
+  }, {passive:true});
+  r.addEventListener('touchcancel', reset, {passive:true});
+}
+var rdSwipedAt = 0;
 
 /* --- keeping the reader's place: while new data arrives, when the type size changes, and on coming back to this tab --- */
 var RD_PLACE_KEY = 'world-read-place', RD_PLACE_MAX_MS = 12*3600*1000;
 var rdPlacePending = null, rdPlaceLast = null, rdMoved = false, rdSaveTimer = 0;
 function rdPlaceNow(){
-  if(viewMode !== 'read' || window.scrollY < 40) return null;
+  if(viewMode !== 'read' || !rdRoute) return null;
+  var sh = $('rd-sheet');
+  if(!sh.hidden) return {ch:rdRoute.sec, art:rdRoute.art, sy:Math.round(sh.scrollTop), a:'', o:0};
+  if(window.scrollY < 40) return null;
   /* the first block that starts on screen; a block taller than the screen when none does */
   var r = $('reader'), x = Math.round(document.documentElement.clientWidth/2), ys = [24, 72, 140, 220, 320], first = null;
   for(var i=0; i<ys.length; i++){
     var el = document.elementFromPoint(x, ys[i]);
     var bl = el && r.contains(el) ? el.closest('[data-rd-place]') : null;
     if(!bl) continue;
-    var p = {a:bl.getAttribute('data-rd-place'), o:Math.round(bl.getBoundingClientRect().top)};
+    var p = {ch:rdRoute.sec, art:null, a:bl.getAttribute('data-rd-place'), o:Math.round(bl.getBoundingClientRect().top)};
     if(p.o >= 0) return p;
     if(!first) first = p;
   }
@@ -3673,7 +4609,13 @@ function rdPlaceFind(a){
   for(var i=0; i<all.length; i++) if(all[i].getAttribute('data-rd-place') === a && all[i].getClientRects().length) return all[i];
   return null;
 }
-function rdPlaceApply(p){ var b = rdPlaceFind(p.a); if(!b) return false; window.scrollBy(0, Math.round(b.getBoundingClientRect().top) - p.o); return true; }
+function rdPlaceApply(p){
+  if(!p || !rdRoute || p.ch !== rdRoute.sec) return false;
+  if(p.sy != null && !$('rd-sheet').hidden){ $('rd-sheet').scrollTop = p.sy; return true; }
+  var b = p.a ? rdPlaceFind(p.a) : null; if(!b) return false;
+  window.scrollBy(0, Math.round(b.getBoundingClientRect().top) - p.o);
+  return true;
+}
 function rdPlaceSave(){
   if(viewMode !== 'read') return;
   var p = rdPlaceNow();
@@ -3685,10 +4627,11 @@ function rdPlaceSave(){
 function rdPlaceLoad(){
   var p = null;
   try { p = JSON.parse(sessionStorage.getItem(RD_PLACE_KEY) || 'null'); } catch(e){}
-  if(!p || typeof p.a !== 'string' || !(Date.now() - p.t < RD_PLACE_MAX_MS)) return null;
-  /* a link to a chapter says where to go; a reload of the same address does not */
+  if(!p || typeof p.ch !== 'string' || !(Date.now() - p.t < RD_PLACE_MAX_MS)) return null;
+  /* a link says where to go; a reload of the same address does not, and the address already names the chapter and the article */
   var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-  if(location.hash && !(nav && (nav.type === 'reload' || nav.type === 'back_forward'))) return null;
+  if(!(nav && (nav.type === 'reload' || nav.type === 'back_forward'))) return null;
+  if(rdRoute && p.ch !== rdRoute.sec) return null;
   if(Array.isArray(p.open)) p.open.forEach(function(k){ rdOpen[k] = true; });
   return p;
 }
@@ -3731,12 +4674,15 @@ function rdSetSize(z){
   if(p) rdPlaceApply(p);
   rdPaintControls();
 }
-/* the thin line at the top: how far down the page, and nothing else */
-var rdTicking = false;
+/* the thin line while an article is open: how far down it, and nothing else */
 function rdProgress(){
-  var de = rdRoot(), max = de.scrollHeight - window.innerHeight;
-  $('rd-progress').style.transform = 'scaleX(' + (max > 0 ? Math.max(0, Math.min(1, window.scrollY/max)).toFixed(4) : 0) + ')';
+  var sh = $('rd-sheet'), line = $('rd-progress');
+  if(sh.hidden){ line.style.transform = 'scaleX(0)'; return; }
+  line.className = 'rd-progress rd-c-' + rdPage(rdRoute.sec).c;
+  var max = sh.scrollHeight - sh.clientHeight;
+  line.style.transform = 'scaleX(' + (max > 0 ? Math.max(0, Math.min(1, sh.scrollTop/max)).toFixed(4) : 1) + ')';
 }
+var rdTicking = false;
 function rdOnScroll(){
   if(viewMode !== 'read') return;
   if(!rdTicking){ rdTicking = true; requestAnimationFrame(function(){ rdTicking = false; rdProgress(); }); }
@@ -3744,27 +4690,72 @@ function rdOnScroll(){
   rdSaveTimer = setTimeout(rdPlaceSave, 400);
 }
 
-/* re-render only when the data or a warning changed; open sections stay open (rdOpen) and the reader stays on the same item. Hidden while the map view is on. */
+/* re-render only when the data or a warning changed; open sections stay open (rdOpen) and the reader stays on the same item. Only the page on screen is built; the others when they are shown. */
 function rdRefresh(force){
   if(force) rdDirty = true;
   if(viewMode !== 'read') return;
-  var N = rdNotes(), sig = JSON.stringify([N.basis, N.price, N.news, N.dz, N.gold, live.offline]);
-  if(!rdDirty && sig === rdSig) return;
-  rdSig = sig; rdDirty = false;
+  var N = rdNotes(), sig = JSON.stringify([N.basis, N.price, N.news, N.dz, N.gold, live.offline, bkkDay(Date.now())]);
+  if(!rdDirty && sig === rdSig){ if(rdRoute && rdRoute.art && $('rd-sheet').hidden && !rdSheetOpen(rdRoute)) rdArticleGone(); return; }
+  rdSig = sig; rdDirty = false; rdGen++; rdNow = N;
   var place = rdPlaceNow();
-  rdBanner(N); rdLatest(N); rdPrices(N); rdConflicts(N); rdDisasters(N); rdEconomy(N); rdGold(N);
+  rdBanner(N);
+  if(!rdRoute) rdInitRoute();
+  rdRenderSec(rdRoute.sec);
+  if(rdRoute.art && !rdSheetOpen(rdRoute)) rdArticleGone();
   if(place) rdPlaceApply(place);
   rdProgress();
 }
+function rdInitRoute(){
+  var rt = rdParse(location.hash), p = rdPage(rt.sec), base = location.pathname + location.search;
+  if(!rt.art){ rdShow(rt, {noFocus:true}); return; }
+  /* a link straight to an article: the chapter goes underneath, so going back closes the article and stays on the site */
+  try { history.replaceState(null, '', base + rdHref(p)); history.pushState({rdArt:1}, '', base + rdHref(p, rt.art)); } catch(e){}
+  rdShow(rt, {noFocus:true});
+}
 (function initReader(){
-  var r = $('reader'), aa = $('rd-aa');
-  r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k){ rdOpen[k] = ev.target.open; rdProgress(); } }, true);
+  var r = $('reader'), aa = $('rd-aa'), tabs = $('rd-tabs'), sh = $('rd-sheet');
+  r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k) rdOpen[k] = ev.target.open; }, true);
   $('r-to-map').addEventListener('click', function(){ setView('map'); });
+  $('title').addEventListener('click', function(){ if(viewMode === 'read') rdGo(rdPage(''), null); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-rd-theme-set]'), function(b){ b.addEventListener('click', function(){ rdSetTheme(b.getAttribute('data-rd-theme-set'), true); }); });
   $('rd-size-down').addEventListener('click', function(){ rdSetSize(rdSize() - 1); });
   $('rd-size-up').addEventListener('click', function(){ rdSetSize(rdSize() + 1); });
   document.addEventListener('click', function(ev){ if(aa.open && !aa.contains(ev.target)) aa.open = false; });
-  document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape' && aa.open){ aa.open = false; aa.querySelector('summary').focus(); } });
+  /* every page and article link in the view goes through here: a new address, no jump, no reload */
+  document.addEventListener('click', function(ev){
+    if(viewMode !== 'read' || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+    var a = ev.target.closest && ev.target.closest('a[href^="#"]');
+    if(!a || !(r.contains(a) || tabs.contains(a) || sh.contains(a))) return;
+    ev.preventDefault();
+    if(r.contains(a) && Date.now() - rdSwipedAt < 350) return;   /* the finger that swiped also lifted over a link */
+    var rt = rdParse(a.getAttribute('href')), p = rdPage(rt.sec);
+    if(rt.art){
+      if(a.hasAttribute('data-rd-next')){ rdGo(p, rt.art, {replace:true, keepScroll:true}); return; }
+      rdOpener = a;
+    }
+    rdGo(p, rt.art);
+  });
+  window.addEventListener('popstate', function(){ if(viewMode === 'read') rdShow(rdParse(location.hash), {restore:true}); });
+  window.addEventListener('hashchange', function(){
+    if(viewMode !== 'read') return;
+    var rt = rdParse(location.hash);
+    if(!rdRoute || rt.sec !== rdRoute.sec || rt.art !== rdRoute.art) rdShow(rt, {});
+  });
+  $('rd-sheet-close').addEventListener('click', rdSheetClose);
+  sh.addEventListener('click', function(ev){ if(ev.target === sh) rdSheetClose(); });
+  sh.addEventListener('scroll', rdOnScroll, {passive:true});
+  document.addEventListener('keydown', function(ev){
+    if(ev.key === 'Escape'){
+      if(aa.open){ aa.open = false; aa.querySelector('summary').focus(); return; }
+      if(!sh.hidden) rdSheetClose();
+      return;
+    }
+    if(viewMode !== 'read' || !sh.hidden || ev.metaKey || ev.ctrlKey || ev.altKey || ev.shiftKey) return;
+    if(ev.key === 'ArrowRight' || ev.key === 'ArrowLeft'){
+      var inTabs = tabs.contains(document.activeElement);
+      if(rdStep(ev.key === 'ArrowRight' ? 1 : -1, {noFocus:inTabs}) && inTabs){ var cur = tabs.querySelector('a[aria-current="page"]'); if(cur) cur.focus(); }
+    }
+  });
   /* until the reader picks a colour, a phone that turns dark at night takes the page with it */
   var mq = window.matchMedia('(prefers-color-scheme: dark)'), onScheme = function(){ if(!rdThemeChosen) rdSetTheme(mq.matches ? 'night' : 'paper', false); };
   if(mq.addEventListener) mq.addEventListener('change', onScheme);
@@ -3772,8 +4763,9 @@ function rdRefresh(force){
   window.addEventListener('resize', rdOnScroll, {passive:true});
   window.addEventListener('pagehide', rdPlaceSave);
   ['wheel', 'touchmove'].forEach(function(n){ window.addEventListener(n, function(){ rdMoved = true; }, {passive:true, once:true}); });
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
   rdPlacePending = rdPlaceLoad();
-  if(rdPlacePending && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+  rdSwipeInit();
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(rdPlaceLast && !rdMoved) rdPlaceApply(rdPlaceLast); rdProgress(); });
   rdPaintChrome(); rdPaintControls();
 })();

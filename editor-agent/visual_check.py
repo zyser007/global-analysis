@@ -16,9 +16,9 @@ Checks, per viewport:
   - overview tiles / points / risks, conflict and economy list lengths = the data
   - no 'null' / 'NaN' / 'undefined' text in any tab, every tab has content
   - no horizontal scroll and no element wider than the panel
-One more case, reading-mobile: ?view=read at 390x844 with every section open: the six chapters have content, the
-conflict, economy (table rows and notes) and chokepoint counts = the data, no errors, no bad text, no overflow, and the
-page is still a book page: figures in tables, the page colour and the book face in force, every colour readable at 4.5:1.
+One more case, reading-mobile: ?view=read at 390x844, page by page with everything open, and every article: the front page
+and six chapters have content, the conflict, economy and chokepoint counts = the data, every article opens, no errors, no bad
+text, no Thai digits, no overflow, every colour readable at 4.5:1. A chapter longer than about three screens only warns.
 One more case, infographic-mobile: every marker's click card at 390x844 with reduced motion: no bad text, no overflow, one row per arc.
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
@@ -85,40 +85,71 @@ def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pat
 
 READING_NAME = "reading-mobile"
 READING_WIDTH = 390   # compared with this, not innerWidth: on a phone viewport innerWidth grows with content that is too wide
-READING_JS = """() => {
-  const ids = ['r-latest', 'r-prices', 'r-conflicts', 'r-disasters', 'r-economy', 'r-gold'];
-  document.querySelectorAll('#reader details').forEach((d) => { d.open = true; });
+READING_MAX_PX = 2500   # the first state of one chapter on a phone: about three screens
+READING_JS = """async () => {
+  const pages = ['front', 'latest', 'prices', 'conflicts', 'disasters', 'economy', 'gold'];
   const n = (sel) => document.querySelectorAll(sel).length;
-  const reader = document.getElementById('reader');
+  const wait = () => new Promise((r) => setTimeout(r, 60));
+  const go = async (h) => { location.hash = h; await wait(); };
+  const cv = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  const rgba = (c) => { cv.clearRect(0, 0, 1, 1); cv.fillStyle = c; cv.fillRect(0, 0, 1, 1); const d = cv.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2], d[3] / 255]; };
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const bgOf = (e) => { for (; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c[3] > 0.99) return c; } return [255, 255, 255, 1]; };
+  const out = { thin: [], text: '', tall: [], width: [], wide: [], low: [] };
+  const scan = () => {
+    out.width.push(document.documentElement.scrollWidth, document.body.scrollWidth);
+    document.querySelectorAll('.topbar *, #rd-tabs *, #reader *, #rd-sheet *').forEach((e) => {
+      if (!e.checkVisibility() || e.closest('svg')) return;
+      const r = e.getBoundingClientRect();
+      if (r.width > 0 && (r.right > WIDTH + 0.5 || r.left < -0.5)) out.wide.push(e.className || e.tagName);
+      if (!Array.from(e.childNodes).some((x) => x.nodeType === 3 && x.textContent.trim())) return;
+      const a = lum(rgba(getComputedStyle(e).color)), b = lum(bgOf(e)), k = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+      if (k < 4.5) out.low.push((e.className || e.tagName) + ' ' + k.toFixed(2));
+    });
+  };
+  for (const p of pages) {
+    await go(p === 'front' ? 'front' : p);
+    const id = 'r-' + p, e = document.getElementById(id);
+    if (!e || e.innerText.trim().length < 40) out.thin.push(id);
+    const h = document.documentElement.scrollHeight;
+    if (p === 'front') { const last = Array.from(document.querySelectorAll('.rd-tile')).pop(), tab = document.getElementById('rd-tabs').getBoundingClientRect().top; out.frontFits = !!last && last.getBoundingClientRect().bottom <= tab + 0.5; }
+    else if (h > READ_MAX) out.tall.push(p + ' ' + h);
+    scan();
+    document.querySelectorAll('#reader .rd-sec.on details').forEach((d) => { d.open = true; });
+    scan();
+    if (e) out.text += e.innerText + '\\n';
+  }
+  /* the long text: one article per kind, and every article of the two big lists */
+  const arts = ['latest/analysis', 'latest/risks', 'latest/thailand'];
+  document.querySelectorAll('#r-conflicts a[href^="#conflicts/"], #r-economy a[href^="#economy/"], #r-disasters a[href^="#disasters/"], #r-prices a[href^="#prices/"]').forEach((a) => arts.push(a.getAttribute('href').slice(1)));
+  out.missingArticles = [];
+  for (const h of Array.from(new Set(arts))) {
+    await go(h);
+    const s = document.getElementById('rd-sheet');
+    if (s.hidden || s.innerText.trim().length < 20) { out.missingArticles.push(h); continue; }
+    out.text += s.innerText + '\\n';
+    scan();
+  }
+  await go('front');
   const banner = document.getElementById('r-banner');
-  return {
-    thin: ids.filter((id) => { const e = document.getElementById(id); return !e || e.innerText.trim().length < 40; }),
-    text: reader ? reader.innerText : '',
-    conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list tbody tr'), econNotes: n('#r-econ-notes > li'), chokepoints: n('#r-choke-list > li'),
-    priceTable: n('table#r-price-list tbody[data-key]'),
+  return Object.assign(out, {
+    articles: arts.length,
+    conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list > li'), chokepoints: n('#r-choke-list > li'),
+    priceTable: n('#r-price-list li[data-key]'),
     fontFamily: getComputedStyle(document.body).fontFamily,
-    contrast: ['.topbar h1', '.rd-toc a', '.rd-fresh', '.rd-prose li', '.rd-level', '.rd-table .val', '.rd-table .line2 td', 'details.rd-more > summary', '.rd-note'].map((s) => {
-      const e = document.querySelector(s); if (!e) return [s, 0];
-      const v = (c) => { const m = c.match(/[0-9.]+/g).map(Number).slice(0, 3); return m.map((x) => (x /= 255) <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4)); };
-      const l = (c) => { const a = v(c); return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2]; };
-      const a = l(getComputedStyle(e).color), b = l(getComputedStyle(document.body).backgroundColor);
-      return [s, (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)];
-    }),
     offline: !!(window.__liveState || {}).offline,
     banner: banner && !banner.hidden ? banner.textContent : '',
-    width: [document.documentElement.scrollWidth, document.body.scrollWidth],
-    wide: Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
-      const r = e.getBoundingClientRect(); return e.checkVisibility() && r.width > 0 && (r.right > WIDTH + 0.5 || r.left < -0.5);
-    }).map((e) => e.className || e.tagName).slice(0, 3),
-  };
+    wide: Array.from(new Set(out.wide)).slice(0, 3), low: Array.from(new Set(out.low)).slice(0, 6),
+  });
 }"""
 
 
 def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.Path, add) -> None:
-    """The reading view with today's data, every section open: six sections, no errors, no overflow. One phone case only."""
+    """The reading view with today's data, page by page with everything open, and every article: six chapters and a front page,
+    no errors, no overflow, no Thai digits, the first state of a chapter stays short. One phone case only."""
     import re
     ctx = browser.new_context(viewport={"width": READING_WIDTH, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True,
-                              ignore_https_errors=sandbox)
+                              reduced_motion="reduce", ignore_https_errors=sandbox)
     page = ctx.new_page()
     errs: list[str] = []
     page.on("console", lambda m: errs.append("console: %s" % m.text[:160]) if m.type == "error" else None)
@@ -130,21 +161,29 @@ def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.
     except Exception:
         add("ERROR", READING_NAME, "the page never finished its first data load")
     page.screenshot(path=str(shots / (READING_NAME + ".png")))
-    r = page.evaluate(READING_JS.replace("WIDTH", str(READING_WIDTH)))
+    r = page.evaluate(READING_JS.replace("WIDTH", str(READING_WIDTH)).replace("READ_MAX", str(READING_MAX_PX)))
     for e in errs[:5]:
         add("ERROR", READING_NAME, e)
     if r["thin"]:
         add("ERROR", READING_NAME, "empty or missing sections: " + ", ".join(r["thin"]))
-    for what, key in (("conflicts", "conflicts"), ("economies", "economies"), ("economies", "econNotes"), ("chokepoints", "chokepoints")):
+    for what, key in (("conflicts", "conflicts"), ("economies", "economies"), ("chokepoints", "chokepoints")):
         if r[key] != len(world.get(what, [])):
             add("ERROR", READING_NAME, "%s (%s): %d on the page, %d in the data" % (what, key, r[key], len(world.get(what, []))))
     if not r["priceTable"] and not r["offline"]:
         add("ERROR", READING_NAME, "the prices are not in their table")
     if "Noto Serif Thai" not in r["fontFamily"]:
         add("ERROR", READING_NAME, "the book face is not in force: " + r["fontFamily"][:80])
-    low = ["%s %.2f" % (x, c) for x, c in r["contrast"] if c < 4.5]
-    if low:
-        add("ERROR", READING_NAME, "text below 4.5:1: " + ", ".join(low))
+    if r["low"]:
+        add("ERROR", READING_NAME, "text below 4.5:1: " + ", ".join(r["low"]))
+    if r["missingArticles"]:
+        add("ERROR", READING_NAME, "articles that do not open: " + ", ".join(r["missingArticles"][:5]))
+    if re.search(r"[\u0e50-\u0e59]", r["text"]):
+        add("ERROR", READING_NAME, "Thai digits on the page: " + ", ".join(sorted(set(re.findall(r"\S*[\u0e50-\u0e59]\S*", r["text"])))[:3]))
+    # today's data decides these lengths, so they warn and do not block a publish
+    if r["tall"]:
+        add("WARN", READING_NAME, "chapter longer than %d px on a phone: %s" % (READING_MAX_PX, ", ".join(r["tall"])))
+    if not r["frontFits"] and not r["banner"] and not r["offline"]:
+        add("WARN", READING_NAME, "the front page entries no longer fit one phone screen")
     bad = sorted(set(re.findall(r"\bnull\b|\bNaN\b|undefined|\[object Object\]", r["text"])))
     if bad:
         add("ERROR", READING_NAME, "page shows " + ", ".join(bad))
