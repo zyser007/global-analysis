@@ -219,7 +219,17 @@ def test_cost_log_csv_and_step_summary(tmp_path, monkeypatch, capsys):
 
 
 # ----------------------------------------------------------------- end to end with a fake client
+def fresh_prices(data_dir, minutes=10, ok=True, message="อัปเดตราคาอัตโนมัติ"):
+    """Make market.json / status.json look like prices.py ran `minutes` before NOW (as in the workflow)."""
+    t = (NOW - dt.timedelta(minutes=minutes)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    m = seed("market"); m["updated_at"] = t
+    st = seed("status"); st.update(updated_at=t, ok=ok, message_th=message)
+    (data_dir / "market.json").write_text(json.dumps(m, ensure_ascii=False, indent=1), encoding="utf-8")
+    (data_dir / "status.json").write_text(json.dumps(st, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def test_full_run_request_shape(data_dir, cost_log):
+    fresh_prices(data_dir)
     old_market = (data_dir / "market.json").read_bytes()
     client = FakeClient([resp([NS(type="server_tool_use", name="web_search", id="srv1", input={"query": "iran"}),
                                submit_block("submit_full", full_input())],
@@ -488,6 +498,7 @@ def test_full_without_news_searches_is_sent_back_once(data_dir, cost_log):
 
 
 def test_full_that_never_searches_keeps_old_headlines(data_dir, cost_log):
+    fresh_prices(data_dir)
     before = (data_dir / "headlines.json").read_bytes()
     sub = full_input(status="สรุป")
     client = FakeClient([resp([submit_block("submit_full", sub)]), resp([submit_block("submit_full", sub)])])
@@ -562,3 +573,31 @@ def test_live_blog_items_sharing_a_url_stay_distinct_and_duplicates_drop():
     h = update.build_headlines(sub + headlines_input(12), NOW, prev)
     live = [i["title_th"] for i in h["items"] if i["source"] == "https://x.com/live"]
     assert sorted(live) == ["ข่าวเช้า", "ข่าวเที่ยง"]
+
+
+def test_full_run_keeps_a_failed_price_run_visible(data_dir, cost_log):
+    fresh_prices(data_dir, minutes=3, ok=False, message="อัปเดตอัตโนมัติไม่สำเร็จ (ดึงราคาไม่สำเร็จ 8/13 รายการ)")
+    client = FakeClient([resp([submit_block("submit_full", full_input())], u=usage(searches=6))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert s["ok"] is False and update.validate_doc("status", s) == []
+    assert s["message_th"].startswith("รอบดึงราคาล่าสุดไม่สำเร็จ") and "8/13" in s["message_th"]
+    assert (data_dir / "headlines.json").exists()
+
+
+def test_full_run_flags_stale_prices(data_dir, cost_log):
+    fresh_prices(data_dir, minutes=5 * 60)          # price runs silent for 5 hours
+    client = FakeClient([resp([submit_block("submit_full", full_input())], u=usage(searches=6))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    s = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    assert s["ok"] is False and "ราคาไม่ได้อัปเดตมา 5 ชม." in s["message_th"]
+
+
+def test_old_price_failure_is_not_carried_forward(data_dir, cost_log):
+    fresh_prices(data_dir, minutes=10)
+    st = json.loads((data_dir / "status.json").read_text(encoding="utf-8"))
+    st.update(ok=False, updated_at=(NOW - dt.timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    (data_dir / "status.json").write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
+    client = FakeClient([resp([submit_block("submit_full", full_input())], u=usage(searches=6))])
+    assert update.run("full", data_dir, client=client, cost_log=cost_log, now=NOW) == 0
+    assert json.loads((data_dir / "status.json").read_text(encoding="utf-8"))["ok"] is True

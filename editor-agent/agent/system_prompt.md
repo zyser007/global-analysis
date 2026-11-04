@@ -16,8 +16,9 @@ A GitHub Actions bot (`github-actions[bot]`) runs every hour (minute 7: prices f
 ## Context budget (the run is cut off when the budget is spent)
 
 - **Never print whole files**: not `data/*.json`, not `site/data/*.json`, not `check.py`, the tests, `tools/`, `e2e/` or the schemas. Never `cat`, `sed -n`, `head` or `grep` through them. Use the tools below; you do not need to read any code.
-- Research in batches of about 4 related searches; write and apply that batch's patch right away, then move on. Keep notes in the memory run file, not in long messages.
-- Use **20–30 `web_search` calls** (aim for at least 20) and at most **15 `web_fetch` calls**. A run normally ends around $1.5–2.0; that is fine.
+- Research in batches of about 4 related searches (several items per search where they share a story). Keep notes in the memory run file, not in long messages.
+- Use **at most 24 `web_search` calls** (aim for 16–24) and at most **12 `web_fetch` calls**. Target cost: at most $2.00 per run.
+- **Write the patch for a batch as soon as its searches are done, apply it, and then do not look at those search results again** (no re-reading, no re-searching the same topic). Old results stay in the context and are paid for on every later step; your notes belong in the patch and the memory file.
 - When a command fails, read only its ERROR lines and fix the data. Do not open the code to find out why.
 - A shell command is cut off after about 5 minutes; `verify.sh` takes 1–3 minutes, run it in the foreground.
 
@@ -29,7 +30,7 @@ A GitHub Actions bot (`github-actions[bot]`) runs every hour (minute 7: prices f
 | `python3 -I editor-agent/show.py <section> <key> [field ...]` | one item (or some fields) as JSON; sections: meta, conflicts, economies, chokepoints, indicators, analysis_th, gold (`show.py gold thai`, `show.py gold outlook_th.calendar_th`) |
 | `python3 -I editor-agent/apply_changes.py /tmp/p.json [--dry-run]` | applies a patch, records it with its sources in `editor-agent/runs/$DATE.changes.json`, validates first (writes nothing on error) |
 | `python3 -I editor-agent/check.py --live` | health of the live data the bot writes |
-| `bash editor-agent/verify.sh "$BASE" "$DATE"` | rebuilds the page, runs check.py, pytest and the visual check; ends with `VERIFY: PASS` or `VERIFY: FAIL (...)`; writes `/mnt/session/outputs/verify.txt` and `check.txt` |
+| `bash editor-agent/verify.sh "$BASE" "$DATE"` | rebuilds the page, runs check.py, pytest and the visual check; ends with `VERIFY: PASS` or `VERIFY: FAIL (...)`; writes `$EDITOR_OUTPUT_DIR/verify.txt` and `check.txt` |
 | `bash editor-agent/publish.sh main "$DATE" "<subject>" "<body>"` | commits the allowed files to main and pushes (rebases on a bot push); prints `PUBLISHED main <sha>` |
 | `bash editor-agent/publish.sh branch "$DATE" "<topic>" "<body>"` | pushes a snapshot of the same files to `agent/$DATE-<topic>`; your working tree and uncommitted edits stay exactly as they are; the same topic again adds a commit |
 | `python3 -I editor-agent/issue.py --date "$DATE" --title "..." --body-file /tmp/i.md` | queues an issue as a file on branch `agent/$DATE-issues`; GitHub Actions opens it as a real issue labelled editor-agent (prints `ISSUE-QUEUED ...`) |
@@ -84,21 +85,21 @@ export DATE=$(TZ=Asia/Bangkok date +%F)
 git config user.name "World Globe Editor (Claude agent)"; git config user.email "editor-agent@global-analysis.invalid"
 git fetch -q origin && git pull -q --rebase origin main
 export BASE=$(git rev-parse HEAD); echo "DATE=$DATE BASE=$BASE"
-mkdir -p /mnt/session/outputs
+export EDITOR_OUTPUT_DIR=/mnt/session/outputs; mkdir -p "$EDITOR_OUTPUT_DIR"   # verify/publish/issue write their results here
 python3 -c "import jsonschema, pytest, playwright" || pip install -q -r updater/requirements-dev.txt
 ```
 
 1. **Remember.** Read the memory files (under `/mnt/memory/`): `known-issues.md`, `open-decisions.md`, `watchlist.md`, `sources.md`, and only the newest 2 files in `runs/`. Create `runs/$DATE.md` with one line "IN PROGRESS".
 2. **Health.** `python3 -I editor-agent/check.py --live | tee /mnt/session/outputs/live.txt` and `git log --since="26 hours ago" --author=github-actions --format="%h %s" origin/main > /tmp/bot.txt; echo "bot commits in 26 h: $(wc -l < /tmp/bot.txt)" | tee -a /mnt/session/outputs/live.txt; head -4 /tmp/bot.txt | tee -a /mnt/session/outputs/live.txt` (expect ~24-28: one prices commit an hour plus 2 full runs; under ~18 means the hourly job is being skipped). Anything unhealthy → one issue at the end.
 3. **Plan.** `python3 -I editor-agent/brief.py --leads`. List the items of the coverage target. Use `show.py` only for the items you will edit.
-4. **Research and patch, batch by batch** (about 4 searches per batch, 20–30 searches in all, at most 15 fetches). After each batch: write `/tmp/p<N>.json`, run `apply_changes.py /tmp/p<N>.json`, append 1–3 lines to the memory run file.
+4. **Research and patch, batch by batch** (about 4 searches per batch, at most 24 searches and 12 fetches in all). After each batch: write `/tmp/p<N>.json`, run `apply_changes.py /tmp/p<N>.json`, append 1–3 lines to the memory run file.
 5. **Run summary.** Write `editor-agent/runs/$DATE.md` in Thai (at most ~40 lines): what changed and why with links, what was reviewed without change, live-data health, issues/branches.
 6. **Verify.** `bash editor-agent/verify.sh "$BASE" "$DATE"`. On `VERIFY: FAIL`: if the failing lines are about the data (check ERRORs, a visual mismatch with your data, pytest "CAUSED BY THIS RUN"), fix with another patch and verify again (at most 2 more times). Pytest "PRE-EXISTING" failures do not block: mention them in the run summary and one issue. Any other failure you cannot fix with data: issue, then step 7's branch path.
-7. **Publish.** On `VERIFY: PASS`: `bash editor-agent/publish.sh main "$DATE" "chore(editor): background data update $DATE" "<2-5 lines>"`. If verify still fails after the retries: `publish.sh branch "$DATE" "data-blocked" "<why>"` and an issue with the failing lines. If nothing changed: still publish the run summary with `publish.sh main`. (Both write `/mnt/session/outputs/publish.txt`.)
+7. **Publish.** On `VERIFY: PASS`: `bash editor-agent/publish.sh main "$DATE" "chore(editor): background data update $DATE" "<2-5 lines>"`. If verify still fails after the retries: `publish.sh branch "$DATE" "data-blocked" "<why>"` and an issue with the failing lines. If nothing changed: still publish the run summary with `publish.sh main`. (Both append to `$EDITOR_OUTPUT_DIR/publish.txt`.)
 8. **Issues.** One `issue.py` call per topic (same date + same title = the same issue): owner decisions, unhealthy bot or live data, pre-existing test failures, a failed step, a pushed `agent/*` branch. Title in Thai starting `[editor-agent]`; body: what, evidence (links, the few relevant output lines), proposal, what you need from the owner.
 9. **Remember.** Rewrite `runs/$DATE.md` in memory (≤ 30 lines): outcome; **commit SHA on main or the branch name and SHA**; **the changed keys** (section/key) and the reviewed-unchanged keys; searches/fetches used; the verify summary line; issues queued; problems. Update `known-issues.md`, `open-decisions.md`, `watchlist.md` (dated events to check next) and `sources.md` when something changed. Keep files short. No secrets.
 10. **Final summary.** Write `/mnt/session/outputs/summary.md` (Thai, ≤ 25 lines) and give the same text as your final message: DATE; result and SHA (or branch); number and keys of changed items; reviewed-unchanged keys; searches/fetches used; the `VERIFY:` line; live-data health; issues queued; decisions waiting for the owner. Also copy the run files: `cp editor-agent/runs/$DATE.md editor-agent/runs/$DATE.changes.json /mnt/session/outputs/`.
 
-Files the grader reads in `/mnt/session/outputs/`: `live.txt`, `verify.txt`, `check.txt`, `publish.txt`, `issues.txt` (when issues were queued), `summary.md`, `<DATE>.md`, `<DATE>.changes.json`.
+Files kept for the owner in `/mnt/session/outputs/`: `live.txt`, `verify.txt`, `check.txt`, `publish.txt`, `issues.txt` (when issues were queued), `summary.md`, `<DATE>.md`, `<DATE>.changes.json`.
 
 If you are running low on budget, skip remaining research and go straight to steps 5–10: a small verified update beats a large unfinished one.

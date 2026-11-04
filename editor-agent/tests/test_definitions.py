@@ -19,9 +19,9 @@ def test_agent_definition():
     p = L.agent_params()
     assert p["model"] == {"id": "claude-sonnet-5-5", "effort": "medium"}
     assert "Hard limits" in p["system"] and "force" in p["system"]
-    for must in ("git stash", "20–30 `web_search`", "15 `web_fetch`", "brief.py", "show.py", "apply_changes.py",
+    for must in ("git stash", "at most 24 `web_search`", "12 `web_fetch`", "brief.py", "show.py", "apply_changes.py",
                  "verify.sh", "publish.sh", "issue.py", "Never print whole files", "Substack", "stale_reason_th",
-                 "intensity ≥ 3", "/mnt/session/outputs/summary.md", "LIVE"):
+                 "intensity ≥ 3", "/mnt/session/outputs/summary.md", "LIVE", "do not look at those search results again"):
         assert must in p["system"], must
     ts = p["tools"][0]
     assert ts["type"] == "agent_toolset_20260401"
@@ -57,13 +57,14 @@ def test_deployment_definition():
     assert len(params["resources"][1]["instructions"]) <= 4096
 
 
-def test_kickoff_events():
+def test_kickoff_is_one_plain_message():
     ev = L.kickoff_events()
-    assert [e["type"] for e in ev] == ["user.message", "user.define_outcome"]
-    out = ev[1]
-    assert out["rubric"]["type"] == "text" and out["rubric"]["content"].count("\n1. ") == 1
-    assert 1 <= out["max_iterations"] <= 20
-    assert len(re.findall(r"^\d+\. \*\*", out["rubric"]["content"], re.M)) >= 8
+    assert [e["type"] for e in ev] == ["user.message"]          # no outcome grader / rubric loop
+    assert "24 searches" in ev[0]["content"][0]["text"]
+    d = L.read_json("deployment.json")
+    assert d["kickoff"] == {"message_file": "kickoff/message.md"}
+    params = L.deployment_params(LOCK, FAKE)
+    assert [e["type"] for e in params["initial_events"]] == ["user.message"]
 
 
 def test_token_never_in_digest_or_lock():
@@ -93,11 +94,12 @@ def test_schema_files_are_valid():
         jsonschema.Draft202012Validator.check_schema(json.loads(f.read_text(encoding="utf-8")))
 
 
-def test_rubric_uses_output_files():
-    r = L.read_text("kickoff/rubric.md")
+def test_run_checklist_is_documentation_only():
+    r = L.read_text("kickoff/run-checklist.md")
+    assert "documentation only" in r
     for f in ("live.txt", "verify.txt", "check.txt", "publish.txt", "summary.md", "changes.json"):
         assert f in r, f
-    assert "transcript" not in r.lower()
+    assert not (HERE / "kickoff" / "rubric.md").exists() and not (HERE / "kickoff" / "outcome.md").exists()
 
 
 def test_prompt_tools_exist():

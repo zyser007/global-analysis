@@ -12,8 +12,12 @@ MODE="${1:?usage: publish.sh main|branch DATE subject|topic body}"
 DATE="${2:?}"; SUBJ="${3:?}"; BODY="${4:-}"
 cd "$(dirname "$0")/.." || exit 2
 FILES=(data/world-data.json data/gold.json site/index.html "editor-agent/runs/$DATE.md" "editor-agent/runs/$DATE.changes.json")
-# outcome lines also go to /mnt/session/outputs/publish.txt in the Managed Agents sandbox (read by the grader)
-say() { echo "$*"; if [ -d /mnt/session ]; then mkdir -p /mnt/session/outputs; echo "$(date -u +%H:%MZ) $*" >> /mnt/session/outputs/publish.txt; fi; }
+# Outcome lines also go to <output dir>/publish.txt. Output dir: $EDITOR_OUTPUT_DIR; when that variable is unset and
+# this is the Managed Agents sandbox, /mnt/session/outputs. Set it to an empty string to disable (the tests do, so
+# a test run inside a session can never write into that session's outputs).
+OUTDIR="${EDITOR_OUTPUT_DIR-}"
+if [ -z "${EDITOR_OUTPUT_DIR+x}" ] && [ -d /mnt/session ]; then OUTDIR=/mnt/session/outputs; fi
+say() { echo "$*"; if [ -n "$OUTDIR" ]; then mkdir -p "$OUTDIR"; echo "$(date -u +%Y-%m-%dT%H:%MZ) $*" >> "$OUTDIR/publish.txt"; fi; }
 add_files() { for f in "${FILES[@]}"; do [ -e "$f" ] && git add -- "$f"; done; }
 
 if ! python3 -I editor-agent/check.py --scope-only --base HEAD >/tmp/publish-scope.log 2>&1; then

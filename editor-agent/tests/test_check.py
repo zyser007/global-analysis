@@ -243,7 +243,7 @@ def test_count_change_warns_about_e2e(repo):
     w["indicators"].pop()
     save(repo, "data/world-data.json", w)
     code, f = run(repo)
-    assert code == 0 and has(f, "the e2e suite expects 20", "WARN")
+    assert code == 0 and has(f, "the page layout was designed for 20", "WARN")
 
 
 # ----------------------------------------------------------------------------- diff vs base

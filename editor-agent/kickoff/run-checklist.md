@@ -1,11 +1,15 @@
-# Daily editor run - rubric (graded from files only)
+# Daily editor run - checklist (documentation only)
+
+Not sent to the API any more: runs start with the plain message in kickoff/message.md and no outcome grader
+(the grader's revision loop pushed run 3 over its $3 budget). Use this list when reviewing a run by hand, from
+the files in /mnt/session/outputs/ (Console: session -> Resources) and the repository.
 
 Evidence: the files in /mnt/session/outputs/ (live.txt, verify.txt, check.txt, publish.txt, issues.txt when present, summary.md, DATE.md, DATE.changes.json), the repository at /workspace/global-analysis (origin/main, or the agent/DATE-... branch named in publish.txt), and the memory store. DATE is the run's Asia/Bangkok date (in summary.md and in the file names). A criterion that does not apply passes when summary.md says why (for example nothing changed in 24 hours).
 
 1. **Health recorded.** live.txt holds the output of `check.py --live` (ends with a `check.py:` summary line) and the bot commits of the last ~26 hours; summary.md states whether the live data is healthy. Every WARN line in live.txt about stale files or failed bot runs has a matching line in issues.txt.
 2. **Changes recorded with sources.** DATE.changes.json exists, has date = DATE, and every entry in `changes`/`added` has at least one source with a URL and a `published` date not after DATE. No key appears both in an entry and in `reviewed_unchanged`.
 3. **Source quality.** No source URL in DATE.changes.json is a blog, Substack, Medium, social post, forum, SEO/market-commentary aggregator or chart/quote page; each entry's newest source is at most 7 days older than DATE, or the entry has confidence low and a `stale_reason_th`. (check.txt reports 0 errors, which covers this.)
-4. **Coverage.** DATE.changes.json `changes` + `reviewed_unchanged` together cover every conflict with intensity ≥ 3 and every level-3 chokepoint listed by `editor-agent/brief.py`, plus gold; summary.md reports 20–30 web_search calls (fewer only with a reason) and at most 15 web_fetch calls. No indicator marked LIVE by brief.py (Brent, gold spot, DXY, S&P 500) was changed.
+4. **Coverage.** DATE.changes.json `changes` + `reviewed_unchanged` together cover every conflict with intensity ≥ 3 and every level-3 chokepoint listed by `editor-agent/brief.py`, plus gold; summary.md reports at most 24 web_search and 12 web_fetch calls. No indicator marked LIVE by brief.py (Brent, gold spot, DXY, S&P 500) was changed.
 5. **Verified.** verify.txt ends with `VERIFY: PASS` and shows `check` with 0 errors, `pytest` passed (or failures marked PRE-EXISTING), and `visual` OK - or, if it ends with `VERIFY: FAIL`, criterion 6(b) applies.
 6. **Published within limits.** publish.txt contains either (a) `PUBLISHED main <sha>` after a VERIFY: PASS, and that commit on origin/main touches only data/world-data.json, data/gold.json, site/index.html and editor-agent/runs/DATE.*; or (b) `PUSHED branch agent/DATE-...` plus a queued issue in issues.txt explaining the failure; or (c) summary.md says nothing changed and only the run summary was published.
 7. **Run summary.** DATE.md is in Thai and lists what changed (with links), what was reviewed without change, live-data health and the issues/branches; it matches DATE.changes.json.

@@ -3,9 +3,9 @@
 #
 #   bash editor-agent/verify.sh "$BASE" "$DATE" [--e2e]
 #
-# Takes about 1-3 minutes without --e2e. In the Managed Agents sandbox (/mnt/session exists) the summary is also
-# written to /mnt/session/outputs/verify.txt and the full check.py output to /mnt/session/outputs/check.txt,
-# which is what the outcome grader reads.
+# Takes about 1-3 minutes without --e2e. The summary is also written to <output dir>/verify.txt and the full check.py
+# output to <output dir>/check.txt. Output dir: $EDITOR_OUTPUT_DIR; unset in the Managed Agents sandbox ->
+# /mnt/session/outputs; empty -> none. pytest runs with EDITOR_OUTPUT_DIR="" so tests never write there.
 #
 # Gates (any failure -> "VERIFY: FAIL", exit 1, do not publish to main):
 #   build      tools/splice_gold.py + tools/build.py
@@ -21,7 +21,9 @@ E2E="${3:-}"
 cd "$(dirname "$0")/.." || exit 2
 LOG=/tmp/verify
 rm -rf "$LOG"; mkdir -p "$LOG"
-OUT=""; if [ -d /mnt/session ]; then OUT=/mnt/session/outputs; mkdir -p "$OUT"; fi
+OUT="${EDITOR_OUTPUT_DIR-}"
+if [ -z "${EDITOR_OUTPUT_DIR+x}" ] && [ -d /mnt/session ]; then OUT=/mnt/session/outputs; fi
+if [ -n "$OUT" ]; then mkdir -p "$OUT"; fi
 
 run_checks() {
   local fail=() code bcode n START
@@ -44,18 +46,18 @@ run_checks() {
   code=$?
   echo "check   $(tail -1 "$LOG/check.log")"
   grep -E '^ERROR' "$LOG/check.log" | head -20 | sed 's/^/        /'
-  grep -E '^WARN' "$LOG/check.log" | grep -v 'e2e suite expects' | head -8 | sed 's/^/        /'
+  grep -E '^WARN' "$LOG/check.log" | head -8 | sed 's/^/        /'
   [ "$code" = 0 ] || fail+=(check)
 
   # ---- pytest (compare with BASE on failure)
-  python3 -m pytest updater/tests editor-agent/tests -q -p no:cacheprovider >"$LOG/pytest.log" 2>&1
+  EDITOR_OUTPUT_DIR= python3 -m pytest updater/tests editor-agent/tests -q -p no:cacheprovider >"$LOG/pytest.log" 2>&1
   code=$?
   echo "pytest  $(tail -1 "$LOG/pytest.log")"
   if [ "$code" != 0 ]; then
     grep -E '^FAILED|^ERROR' "$LOG/pytest.log" | head -10 | sed 's/^/        /'
     local wt="$LOG/base-tree"
     if git worktree add -q --detach "$wt" "$BASE" >/dev/null 2>&1; then
-      (cd "$wt" && python3 -m pytest updater/tests editor-agent/tests -q -p no:cacheprovider >"$LOG/pytest-base.log" 2>&1)
+      (cd "$wt" && EDITOR_OUTPUT_DIR= python3 -m pytest updater/tests editor-agent/tests -q -p no:cacheprovider >"$LOG/pytest-base.log" 2>&1)
       bcode=$?
       git worktree remove --force "$wt" >/dev/null 2>&1
       if [ "$bcode" != 0 ]; then

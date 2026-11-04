@@ -61,6 +61,8 @@ HEADLINES_MIN, HEADLINES_MAX = 12, 16
 MIN_NEWS_SEARCHES = 4                # a full run must search the news at least this often before submitting
 NEWS_TOPICS = ("Iran / Hormuz", "US markets, the Fed and US data", "the US midterm elections", "Ukraine-Russia", "China",
                "Thai politics and economy, the baht and Thai gold", "Yemen / Saudi Arabia")
+PRICES_STALE_MIN = 180               # prices.py runs hourly (and just before a full run): older market.json = price runs failing
+PRICES_STATUS_RECENT_MIN = 90        # a failed prices status this recent belongs to this workflow run (or the previous hour)
 MAX_REQUESTS = 5                     # first call + pause_turn continuations + one nudge + one schema fix
 DEADLINE_S = 11 * 60                 # the workflow job times out at 15 min
 
@@ -552,9 +554,33 @@ def build_docs(mode: str, prev: dict, result: dict, now: dt.datetime, news_searc
         else:
             docs["headlines"] = h
             news = f"ข่าวใหม่ {fresh} จาก {len(h['items'])} ข่าว"
-    message = clean_th(f"{summary} · {news} · {tail}" if summary else f"อัปเดตข่าวอัตโนมัติ {bkk_th(now)} · {news} · {tail}", 600)
-    docs["status"] = {"updated_at": iso(now), "run_count": int(prev["status"].get("run_count", 0)) + 1, "ok": True, "message_th": message}
+    ok, problems = prices_health(prev, now, age)
+    message = f"{summary} · {news} · {tail}" if summary else f"อัปเดตข่าวอัตโนมัติ {bkk_th(now)} · {news} · {tail}"
+    if problems:   # a price problem stays visible: it goes first and keeps ok=false
+        notes.append("prices: " + "; ".join(problems))
+        message = " · ".join(problems) + " · " + message
+    message = clean_th(message, 600)
+    docs["status"] = {"updated_at": iso(now), "run_count": int(prev["status"].get("run_count", 0)) + 1, "ok": ok, "message_th": message}
     return docs, notes
+
+
+def prices_health(prev: dict, now: dt.datetime, age_min: float | None) -> tuple[bool, list[str]]:
+    """The full run rewrites status.json after prices.py; keep a price failure visible instead of reporting ok=true.
+
+    - prices.py failed in this workflow run (or the previous hour): status.json then has ok=false and is recent;
+    - market.json has not been refreshed for more than PRICES_STALE_MIN minutes (the hourly price runs are failing).
+    """
+    problems: list[str] = []
+    st = prev.get("status") or {}
+    try:
+        st_age = (now.timestamp() - _ts(st["updated_at"])) / 60
+    except (KeyError, ValueError, TypeError):
+        st_age = None
+    if st.get("ok") is False and st_age is not None and 0 <= st_age <= PRICES_STATUS_RECENT_MIN:
+        problems.append("รอบดึงราคาล่าสุดไม่สำเร็จ: " + clean_th(str(st.get("message_th", "")), 200))
+    if age_min is not None and age_min > PRICES_STALE_MIN:
+        problems.append(f"ราคาไม่ได้อัปเดตมา {age_min / 60:.0f} ชม. (รอบดึงราคาทุกชั่วโมงอาจล้มเหลว)")
+    return not problems, problems
 
 
 def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_log: pathlib.Path | None = None,

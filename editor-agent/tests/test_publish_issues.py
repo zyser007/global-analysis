@@ -20,7 +20,7 @@ EA = HERE.parent
 FIX = HERE / "fixtures"
 REPO = EA.parent
 DATE = "2026-11-05"
-ENV = dict(os.environ, PATH=str(pathlib.Path(sys.executable).parent) + os.pathsep + os.environ.get("PATH", ""),
+ENV = dict(os.environ, EDITOR_OUTPUT_DIR="", PATH=str(pathlib.Path(sys.executable).parent) + os.pathsep + os.environ.get("PATH", ""),
            GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@x", GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@x")
 
 
@@ -231,14 +231,14 @@ def test_workflow_file():
 
 
 # ----------------------------------------------------------------------------- visual check helper, build placeholders
-def test_three_copy_check():
+def test_visual_sandbox_detection(monkeypatch):
     spec = importlib.util.spec_from_file_location("vc", EA / "visual_check.py")
     vc = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(vc)
-    good = b"/**\n * @license\n * Copyright 2010-2021 Three.js Authors\n */\nconst REVISION=\"128\";" + b" " * 400_000
-    assert vc.check_three(good)[0] == good
-    assert vc.check_three(b"<html>blocked</html>")[0] is None
-    assert vc.check_three(good.replace(b'"128"', b'"150"'))[0] is None
+    monkeypatch.setenv("VISUAL_IGNORE_HTTPS_ERRORS", "1")
+    assert vc.in_sandbox() is True
+    monkeypatch.delenv("VISUAL_IGNORE_HTTPS_ERRORS")
+    assert vc.in_sandbox() == (pathlib.Path("/opt/pw-browsers").is_dir() and pathlib.Path("/mnt/session").is_dir())
 
 
 def test_build_requires_placeholders(tmp_path):
@@ -258,3 +258,21 @@ def test_build_requires_placeholders(tmp_path):
     tpl.write_text(tpl.read_text(encoding="utf-8").replace("__WORLD_DATA__", '{"meta":{}}'), encoding="utf-8")
     r = subprocess.run([sys.executable, "-I", "tools/build.py"], cwd=root, capture_output=True, text=True)
     assert r.returncode != 0 and "__WORLD_DATA__" in (r.stderr + r.stdout)
+
+
+def test_outputs_only_when_asked(clone, tmp_path):
+    work, _ = clone
+    edit_data(work)
+    out = tmp_path / "outputs"
+    env = dict(ENV, EDITOR_OUTPUT_DIR=str(out))
+    r = subprocess.run(["bash", "editor-agent/publish.sh", "branch", DATE, "x", "y"], cwd=work, capture_output=True, text=True, env=env)
+    assert r.returncode == 0 and "PUSHED branch" in (out / "publish.txt").read_text()
+    body = tmp_path / "b.md"
+    body.write_text("b\n")
+    subprocess.run([sys.executable, "-I", "editor-agent/issue.py", "--date", DATE, "--title", "t", "--body-file", str(body)],
+                   cwd=work, capture_output=True, text=True, env=env, check=True)
+    assert "ISSUE-QUEUED" in (out / "issues.txt").read_text()
+    # with EDITOR_OUTPUT_DIR="" (how every test runs) nothing is written anywhere
+    (out / "publish.txt").unlink(); (out / "issues.txt").unlink()
+    subprocess.run(["bash", "editor-agent/publish.sh", "branch", DATE, "z", "y"], cwd=work, capture_output=True, text=True, env=ENV, check=True)
+    assert not (out / "publish.txt").exists() and os.environ.get("EDITOR_OUTPUT_DIR") == ""

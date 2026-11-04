@@ -57,7 +57,8 @@ PSEUDO_IDS = {"economy", "world", "disaster", "thailand"}
 GOLD_META_KEYS = {"as_of", "as_of_caption_th", "updated_th", "unit", "disclaimer_th", "sources"}
 ALLOWED_RUN_FILE = re.compile(r"^editor-agent/runs/\d{4}-\d{2}-\d{2}(\.md|\.changes\.json)$")
 ALLOWED_FILES = {WORLD, GOLD, PAGE}
-# counts the current e2e suite (e2e/tests/*.spec.js) hard-codes; changing them fails e2e, not the page
+# counts the page layout was designed for (overview tiles, lists); a change is allowed but worth a look. (e2e itself
+# runs on frozen fixture data in e2e/fixtures/, so data changes no longer break it.)
 E2E_COUNTS = {"conflicts": 25, "economies": 21, "indicators": 20, "analysis_th.points": 6, "analysis_th.risks": 4,
               "gold.forecasts.items": 6}
 
@@ -310,7 +311,7 @@ def check_world(w: dict, f: Findings, today: dt.date) -> None:
         for part in k.split("."):
             cur = cur.get(part, []) if isinstance(cur, dict) else []
         if isinstance(cur, list) and len(cur) != n:
-            f.warn(where + " " + k, "%d items, the e2e suite expects %d (e2e will fail; see editor-agent/README.md)" % (len(cur), n))
+            f.warn(where + " " + k, "%d items, the page layout was designed for %d" % (len(cur), n))
 
 
 def check_gold(g: dict, f: Findings, today: dt.date, now: dt.datetime) -> None:
@@ -373,7 +374,7 @@ def check_gold(g: dict, f: Findings, today: dt.date, now: dt.datetime) -> None:
             f.warn(where + " " + path, "title %r uses relative time (%s); name the dates instead" % (text, has_now_word(str(text))))
     n = len((g.get("forecasts", {}) or {}).get("items", []))
     if n != E2E_COUNTS["gold.forecasts.items"]:
-        f.warn(where + " forecasts.items", "%d items, the e2e suite expects %d" % (n, E2E_COUNTS["gold.forecasts.items"]))
+        f.warn(where + " forecasts.items", "%d items, the page layout was designed for %d" % (n, E2E_COUNTS["gold.forecasts.items"]))
 
 
 # ----------------------------------------------------------------------------- diff vs base

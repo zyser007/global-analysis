@@ -70,12 +70,10 @@ def memory_seed() -> dict[str, str]:
 
 
 def kickoff_events() -> list[dict]:
+    """One plain user.message. There is no outcome / rubric grader any more: it cost a revision loop per run and
+    could only see files; verify.sh + check.py are the gate. kickoff/run-checklist.md documents a good run."""
     k = read_json("deployment.json")["kickoff"]
-    return [
-        {"type": "user.message", "content": [{"type": "text", "text": read_text(k["message_file"])}]},
-        {"type": "user.define_outcome", "description": read_text(k["outcome_description_file"]).strip(),
-         "rubric": {"type": "text", "content": read_text(k["rubric_file"])}, "max_iterations": int(k["max_iterations"])},
-    ]
+    return [{"type": "user.message", "content": [{"type": "text", "text": read_text(k["message_file"])}]}]
 
 
 def github_token() -> str:

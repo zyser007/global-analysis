@@ -19,10 +19,11 @@ Checks, per viewport:
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
 
-three.js (pinned r128 on cdnjs) is fetched once with curl, checked, and served to the page from that copy via
-page routing. Reason: the Managed Agents sandbox re-signs outgoing TLS, which curl/git trust but Chromium does not
-(ERR_CERT_AUTHORITY_INVALID). Only that one URL is routed; certificate checks, console errors, page errors and
-failed requests stay as strict as before. If curl cannot get a valid copy, the page loads the CDN itself.
+In the Managed Agents sandbox (detected like e2e.sh: /opt/pw-browsers and /mnt/session exist, or
+VISUAL_IGNORE_HTTPS_ERRORS=1) the browser context ignores HTTPS certificate errors: the sandbox re-signs outgoing
+TLS (git and curl trust it, Chromium does not), which would otherwise break every external asset (three.js on
+cdnjs, Google Fonts). Console errors, page errors, failed same-origin requests and HTTP errors still fail the
+check, everywhere. Every problem line names its URL; failed external requests are listed as WARN with the URL.
 """
 from __future__ import annotations
 
@@ -31,6 +32,7 @@ import datetime as dt
 import functools
 import http.server
 import json
+import os
 import pathlib
 import shutil
 import socketserver
@@ -47,7 +49,6 @@ CASES = [
     {"name": "mobile-light", "w": 390, "h": 844, "scheme": "light"},
     {"name": "mobile-dark", "w": 390, "h": 844, "scheme": "dark"},
 ]
-THREE_URL = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
 LAUNCH_ARGS = ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"]
 
 
@@ -55,26 +56,10 @@ def thai_date(d: dt.date) -> str:
     return "%d %s %d" % (d.day, TH_MONTH_ABBR[d.month - 1], d.year + 543)
 
 
-def fetch_three() -> tuple[bytes | None, str]:
-    """The pinned three.js via curl (which trusts the sandbox's TLS re-signing), checked to really be r128."""
-    import subprocess
-
-    try:
-        r = subprocess.run(["curl", "-fsSL", "--max-time", "40", THREE_URL], capture_output=True)
-    except OSError as e:
-        return None, "curl not available: %s" % e
-    if r.returncode != 0:
-        return None, "curl failed: %s" % r.stderr.decode("utf-8", "replace").strip()[:160]
-    return check_three(r.stdout)
-
-
-def check_three(body: bytes) -> tuple[bytes | None, str]:
-    head = body[:2000].decode("utf-8", "replace")
-    if len(body) < 300_000 or "three.js" not in head.lower():
-        return None, "the downloaded file does not look like three.js (%d bytes)" % len(body)
-    if b'REVISION="128"' not in body and b"REVISION = '128'" not in body and b'"128"' not in body:
-        return None, "the downloaded three.js is not revision 128"
-    return body, "three.js r128 served from a checked curl copy (%d bytes)" % len(body)
+def in_sandbox() -> bool:
+    if os.environ.get("VISUAL_IGNORE_HTTPS_ERRORS") == "1":
+        return True
+    return pathlib.Path("/opt/pw-browsers").is_dir() and pathlib.Path("/mnt/session").is_dir()
 
 
 def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pathlib.Path]:
@@ -101,7 +86,6 @@ def main() -> int:
     ap.add_argument("--only", help="run one case by name, e.g. mobile-dark")
     ap.add_argument("--site", default=str(ROOT / "site"), help="folder served as /global-analysis/ (tests)")
     ap.add_argument("--data-root", default=str(ROOT), help="repo root whose data/*.json give the expectations (tests)")
-    ap.add_argument("--no-three-copy", action="store_true", help="let the page load three.js from the CDN itself")
     a = ap.parse_args()
 
     try:
@@ -129,12 +113,9 @@ def main() -> int:
     def add(level: str, case: str, what: str) -> None:
         findings.append({"level": level, "case": case, "what": what})
 
-    three, why = (None, "disabled by --no-three-copy") if a.no_three_copy else fetch_three()
-    add("INFO", "three.js", why if three else "page loads the CDN itself (%s)" % why)
-
-    def serve_three(route):
-        route.fulfill(status=200, body=three, headers={"content-type": "application/javascript; charset=utf-8",
-                                                       "access-control-allow-origin": "*"})
+    sandbox = in_sandbox()
+    add("INFO", "tls", "sandbox: HTTPS certificate errors ignored (TLS is re-signed by the sandbox egress)" if sandbox
+        else "HTTPS certificates checked normally")
 
     try:
         with sync_playwright() as p:
@@ -144,14 +125,24 @@ def main() -> int:
                     continue
                 mobile = c["w"] < 500
                 ctx = browser.new_context(viewport={"width": c["w"], "height": c["h"]}, color_scheme=c["scheme"],
-                                          device_scale_factor=2 if mobile else 1, is_mobile=mobile, has_touch=mobile)
-                if three:
-                    ctx.route(THREE_URL, serve_three)
+                                          device_scale_factor=2 if mobile else 1, is_mobile=mobile, has_touch=mobile,
+                                          ignore_https_errors=sandbox)
                 page = ctx.new_page()
                 errs: list[str] = []
-                page.on("console", lambda m, errs=errs: errs.append("console: " + m.text) if m.type == "error" else None)
+                ext: list[str] = []
+
+                def on_console(m, errs=errs):
+                    if m.type == "error":
+                        loc = (m.location or {}).get("url") or "?"
+                        errs.append("console: %s @ %s" % (m.text, loc))
+
+                def on_failed(r, errs=errs, ext=ext):
+                    line = "request failed: %s (%s)" % (r.url, r.failure or "?")
+                    (errs if r.url.startswith(url) else ext).append(line)
+
+                page.on("console", on_console)
                 page.on("pageerror", lambda e, errs=errs: errs.append("pageerror: " + str(e)))
-                page.on("requestfailed", lambda r, errs=errs: errs.append("request failed: " + r.url) if r.url.startswith(url) or "cdnjs" in r.url else None)
+                page.on("requestfailed", on_failed)
                 page.on("response", lambda r, errs=errs: errs.append("HTTP %d %s" % (r.status, r.url)) if r.status >= 400 and r.url.startswith(url) else None)
                 name = c["name"]
                 page.goto(url, wait_until="load")
@@ -225,6 +216,8 @@ def main() -> int:
                     page.screenshot(path=str(shots / ("%s-%s.png" % (name, tab))))
                 for e in errs:
                     add("ERROR", name, e)
+                for e in ext:
+                    add("WARN", name, e + " (external)")
                 ctx.close()
             browser.close()
     except Exception as e:  # a browser that cannot start is an environment problem the agent must report

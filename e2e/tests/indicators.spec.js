@@ -8,7 +8,8 @@ const { URL, writeData, resetData, collectErrors, repoll, seed } = require('./he
 
 const ROOT = path.join(__dirname, '..', '..');
 const LIVE_IND = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'live_indicators.json'), 'utf8'));
-const WORLD = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'world-data.json'), 'utf8'));
+// the served page embeds the frozen e2e/fixtures data (see serve.py), not the daily data/world-data.json
+const WORLD = JSON.parse(fs.readFileSync(path.join(ROOT, 'e2e', 'fixtures', 'world-data.json'), 'utf8'));
 const indicator = (label) => WORLD.indicators.find(i => i.label_th === label);
 const fmt = (v, m) => (m.prefix || '') + Number(v).toLocaleString('en-US', { minimumFractionDigits: m.decimals, maximumFractionDigits: m.decimals });
 const num = (s) => parseFloat(String(s).replace(/[^0-9.\-]/g, ''));

@@ -10,6 +10,8 @@ that lock.json already tracks, and it never archives or deletes anything).
   python3 editor-agent/setup.py --apply --deployment --refresh-token   push a rotated GitHub token
   python3 editor-agent/setup.py --pause | --unpause  pause / resume the daily schedule
   python3 editor-agent/setup.py --show               print the IDs and the deployment's next runs
+  python3 editor-agent/setup.py --print-deployment   print the exact deployment body --deployment would send
+                                                     (token redacted; no API call, no token file needed)
 
 Auth: ANTHROPIC_API_KEY="$(cat /Users/zyser/Documents/work/key/global_analysis)" python3 editor-agent/setup.py ...
 Creating agents, environments, memory stores and deployments costs nothing; sessions (runs) cost money.
@@ -110,6 +112,7 @@ def main() -> int:
     ap.add_argument("--pause", action="store_true")
     ap.add_argument("--unpause", action="store_true")
     ap.add_argument("--show", action="store_true")
+    ap.add_argument("--print-deployment", action="store_true")
     a = ap.parse_args()
     lock = L.load_lock()
 
@@ -118,6 +121,13 @@ def main() -> int:
         c = L.client()
         r = (c.beta.deployments.pause if a.pause else c.beta.deployments.unpause)(lock["deployment"]["id"])
         print("deployment %s: status %s, paused_reason %s" % (r.id, r.status, r.paused_reason))
+        return 0
+    if a.print_deployment:
+        import json
+
+        L.require(lock, "agent", "environment", "memory_store")
+        body = L.deployment_params(lock, "<REDACTED: read from %s at create time>" % L.read_json("deployment.json")["github_token_file"])
+        print(json.dumps(body, ensure_ascii=False, indent=1))
         return 0
     if a.show:
         for k in ("agent", "environment", "memory_store", "deployment"):

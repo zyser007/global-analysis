@@ -38,13 +38,21 @@ def slug_for(title: str) -> str:
     return s or "issue-" + hashlib.sha1(plain.strip().encode("utf-8")).hexdigest()[:8]
 
 
+def output_dir() -> pathlib.Path | None:
+    """$EDITOR_OUTPUT_DIR; unset in the Managed Agents sandbox -> /mnt/session/outputs; empty -> disabled (tests)."""
+    v = os.environ.get("EDITOR_OUTPUT_DIR")
+    if v is None:
+        return pathlib.Path("/mnt/session/outputs") if pathlib.Path("/mnt/session").is_dir() else None
+    return pathlib.Path(v) if v else None
+
+
 def report(line: str) -> None:
-    """Print the outcome; in the Managed Agents sandbox also append it to /mnt/session/outputs/issues.txt."""
+    """Print the outcome and append it to <output dir>/issues.txt."""
     print(line)
-    if pathlib.Path("/mnt/session").is_dir():
-        out = pathlib.Path("/mnt/session/outputs")
-        out.mkdir(parents=True, exist_ok=True)
-        with (out / "issues.txt").open("a", encoding="utf-8") as fh:
+    d = output_dir()
+    if d:
+        d.mkdir(parents=True, exist_ok=True)
+        with (d / "issues.txt").open("a", encoding="utf-8") as fh:
             fh.write(line + "\n")
 
 
