@@ -17,8 +17,11 @@ LOCK = {"agent": {"id": "agent_x", "version": 1}, "environment": {"id": "env_x"}
 
 def test_agent_definition():
     p = L.agent_params()
-    assert p["model"] == "claude-sonnet-5-5"
+    assert p["model"] == {"id": "claude-sonnet-5-5", "effort": "medium"}
     assert "Hard limits" in p["system"] and "force" in p["system"]
+    for must in ("git stash", "30 `web_search`", "15 `web_fetch`", "brief.py", "show.py", "apply_changes.py",
+                 "verify.sh", "publish.sh", "issue.py", "Never print whole files"):
+        assert must in p["system"], must
     ts = p["tools"][0]
     assert ts["type"] == "agent_toolset_20260401"
     assert ts["default_config"]["permission_policy"] == {"type": "auto"}
@@ -87,3 +90,8 @@ def test_schema_files_are_valid():
 
     for f in (HERE / "schema").glob("*.json"):
         jsonschema.Draft202012Validator.check_schema(json.loads(f.read_text(encoding="utf-8")))
+
+
+def test_prompt_tools_exist():
+    for name in ("brief.py", "show.py", "apply_changes.py", "check.py", "verify.sh", "publish.sh", "issue.py", "e2e.sh", "visual_check.py"):
+        assert (HERE / name).exists(), name

@@ -36,7 +36,8 @@ else
   echo "e2e.sh: using shim $shim -> ${full:-none} / ${shell:-none}"
 fi
 
-if ! timeout 60 node -e 'require("@playwright/test").chromium.launch({args:["--use-gl=angle","--use-angle=swiftshader"]}).then(b=>b.close()).catch(e=>{console.error(String(e).slice(0,600));process.exit(1)})'; then
+TO=""; command -v timeout >/dev/null 2>&1 && TO="timeout 60"
+if ! $TO node -e 'require("@playwright/test").chromium.launch({args:["--use-gl=angle","--use-angle=swiftshader"]}).then(b=>b.close()).catch(e=>{console.error(String(e).slice(0,600));process.exit(1)})'; then
   echo "e2e.sh: no usable Chromium for @playwright/test (environment problem, exit 3)" >&2
   exit 3
 fi

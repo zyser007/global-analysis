@@ -2,10 +2,10 @@
   "console_workspace": "default",
   "agent": {
     "id": "agent_01WXUDA398dYa3zKJdEfFYVk",
-    "version": 1,
-    "digest": "a09201cbef76277a"
+    "version": 2,
+    "digest": "8699d46cb8f4ff91"
   },
-  "updated_at": "2026-11-04T04:31:42Z",
+  "updated_at": "2026-11-04T04:58:07Z",
   "environment": {
     "id": "env_01Xhp1CuQaAhFftKYcTTtMHv",
     "digest": "cdfc7f796d4f03cf"

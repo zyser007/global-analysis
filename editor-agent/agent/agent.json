@@ -1,21 +1,59 @@
 {
   "name": "World Globe Editor",
   "description": "Daily editor for https://zyser007.github.io/global-analysis/ : researches the last 24 h and updates data/world-data.json and data/gold.json with dated sources, rebuilds and checks the page, pushes to main or opens a branch + issue.",
-  "model": "claude-sonnet-5-5",
+  "model": {
+    "id": "claude-sonnet-5-5",
+    "effort": "medium"
+  },
   "system_file": "agent/system_prompt.md",
   "tools": [
     {
       "type": "agent_toolset_20260401",
-      "default_config": {"enabled": true, "permission_policy": {"type": "auto"}},
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "auto"
+        }
+      },
       "configs": [
-        {"name": "read", "permission_policy": {"type": "always_allow"}},
-        {"name": "glob", "permission_policy": {"type": "always_allow"}},
-        {"name": "grep", "permission_policy": {"type": "always_allow"}},
-        {"type": "web_search", "name": "web_search", "enabled": true,
-         "user_location": {"type": "approximate", "timezone": "Asia/Bangkok"}},
-        {"type": "web_fetch", "name": "web_fetch", "enabled": true, "max_content_tokens": 8000}
+        {
+          "name": "read",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        },
+        {
+          "name": "glob",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        },
+        {
+          "name": "grep",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        },
+        {
+          "type": "web_search",
+          "name": "web_search",
+          "enabled": true,
+          "user_location": {
+            "type": "approximate",
+            "timezone": "Asia/Bangkok"
+          }
+        },
+        {
+          "type": "web_fetch",
+          "name": "web_fetch",
+          "enabled": true,
+          "max_content_tokens": 6000
+        }
       ]
     }
   ],
-  "metadata": {"repo": "zyser007/global-analysis", "managed_by": "editor-agent/setup.py"}
+  "metadata": {
+    "repo": "zyser007/global-analysis",
+    "managed_by": "editor-agent/setup.py"
+  }
 }

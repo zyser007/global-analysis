@@ -467,7 +467,7 @@ def check_diff(root: pathlib.Path, base: str, run_date: dt.date | None, w: dict,
                 f.error("world-data conflicts[%s]" % k, "removed, but headlines link to this id (updater/schema/headlines.schema.json): mark it ended instead")
         for k in wd["conflicts"]["added"]:
             if k not in ids:
-                f.warn("world-data conflicts[%s]" % k, "new id is not in the headlines conflict_id enum: open an issue to add it (code change, not on main)")
+                f.error("world-data conflicts[%s]" % k, "new id is not in the headlines conflict_id enum (updater tests fail): a new conflict needs a code change - put it on an agent/* branch with an issue, not on main")
 
     upd = parse_day(w.get("meta", {}).get("updated", ""))
     if upd and "world-data" in newest_source and newest_source["world-data"] > upd:
@@ -614,6 +614,7 @@ def run(argv: list[str] | None = None, root: pathlib.Path = ROOT) -> tuple[int, 
     ap.add_argument("--page", action="store_true")
     ap.add_argument("--scope", action="store_true")
     ap.add_argument("--all", action="store_true", help="--live --page --scope")
+    ap.add_argument("--scope-only", action="store_true", help="only the file-scope check (used by publish.sh)")
     ap.add_argument("--now", help="override the current time (ISO 8601, for tests)")
     ap.add_argument("--strict", action="store_true", help="warnings also fail")
     ap.add_argument("--json", action="store_true")
@@ -628,9 +629,15 @@ def run(argv: list[str] | None = None, root: pathlib.Path = ROOT) -> tuple[int, 
         ap.error("--run-date must be YYYY-MM-DD")
     if a.all:
         a.live = a.page = a.scope = True
-    base = a.base or ("HEAD" if (a.scope or run_date) else None)
+    base = a.base or ("HEAD" if (a.scope or a.scope_only or run_date) else None)
 
     f = Findings()
+    if a.scope_only:
+        check_scope(root, base or "HEAD", f)
+        failed = bool(f.errors)
+        for i in f.items:
+            print("%-5s %s: %s" % (i["level"], i["where"], i["what"]))
+        return (1 if failed else 0), f
     w = read_json(root, WORLD, f)
     g = read_json(root, GOLD, f)
     if isinstance(w, dict):

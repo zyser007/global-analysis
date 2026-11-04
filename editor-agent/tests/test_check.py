@@ -1,5 +1,6 @@
-"""Tests for editor-agent/check.py. No network: each test works on a throwaway git repo built from copies
-of the current data files.
+"""Tests for editor-agent/check.py. Hermetic: no network, and nothing is read from the working tree's data or git
+state - every test builds a throwaway git repo from the frozen copies in tests/fixtures/, so a run that is
+editing data/*.json can never make these tests fail.
 
 Run:  .venv/bin/python -m pytest editor-agent/tests -q
 """
@@ -14,8 +15,9 @@ import subprocess
 
 import pytest
 
-REPO = pathlib.Path(__file__).resolve().parents[2]
-spec = importlib.util.spec_from_file_location("editor_check", REPO / "editor-agent" / "check.py")
+HERE = pathlib.Path(__file__).resolve().parent
+FIX = HERE / "fixtures"
+spec = importlib.util.spec_from_file_location("editor_check", HERE.parent / "check.py")
 check = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(check)
 
@@ -70,7 +72,7 @@ def repo(tmp_path):
     (root / "data").mkdir(parents=True)
     for rel in ("data/world-data.json", "data/gold.json", "updater/schema/headlines.schema.json"):
         (root / rel).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(REPO / rel, root / rel)
+        shutil.copy(FIX / pathlib.Path(rel).name, root / rel)
     build_page(root)
     fresh_live(root)
     (root / "editor-agent" / "runs").mkdir(parents=True)
@@ -143,15 +145,15 @@ def test_month_and_now_detection():
 
 
 # ----------------------------------------------------------------------------- current files
-def test_current_repo_files_pass_schema_and_consistency():
-    code, f = check.run(["--now", NOW])
+def test_fixture_files_pass_schema_and_consistency(repo):
+    code, f = run(repo)
     assert not msgs(f), msgs(f)
     assert code == 0
 
 
-def test_current_files_validate_against_schemas():
-    assert check.schema_errors("world-data.schema.json", load(REPO, "data/world-data.json")) == []
-    assert check.schema_errors("gold.schema.json", load(REPO, "data/gold.json")) == []
+def test_fixture_files_validate_against_schemas():
+    assert check.schema_errors("world-data.schema.json", load(FIX, "world-data.json")) == []
+    assert check.schema_errors("gold.schema.json", load(FIX, "gold.json")) == []
 
 
 def test_fixture_is_clean(repo):
@@ -317,7 +319,7 @@ def test_removing_linked_conflict_fails(repo):
     assert code == 1 and has(f, "mark it ended instead")
 
 
-def test_new_crisis_needs_two_publishers(repo):
+def test_new_crisis_needs_two_publishers_and_a_headline_id(repo):
     w = load(repo, "data/world-data.json")
     new = copy.deepcopy(w["conflicts"][0])
     new.update(id="new_crisis", name_th="วิกฤตใหม่", sources=["https://www.reuters.com/a"], confidence="medium")
@@ -332,8 +334,12 @@ def test_new_crisis_needs_two_publishers(repo):
     two["sources"].append({"url": "https://apnews.com/b", "published": "2026-11-04"})
     write_run(repo, changes_doc([], added=[two]))
     code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
+    assert code == 1 and has(f, "not in the headlines conflict_id enum")   # needs a code change first
+    hs = load(repo, "updater/schema/headlines.schema.json")
+    hs["properties"]["items"]["items"]["properties"]["conflict_id"]["enum"].append("new_crisis")
+    save(repo, "updater/schema/headlines.schema.json", hs)
+    code, f = run(repo, "--base", "HEAD", "--run-date", RUN)
     assert code == 0, msgs(f)
-    assert has(f, "not in the headlines conflict_id enum", "WARN")
 
 
 def test_gold_change_needs_coverage_and_new_as_of(repo):
