@@ -986,6 +986,78 @@ test.describe('layout and comfort', () => {
     }
   });
 
+  // scrollWidth cannot see this: .reader{overflow-x:clip} and every rounded tile hide what sticks out, so measure the text itself
+  const CLIP_AUDIT = () => {
+    const W = document.documentElement.clientWidth, bad = [];
+    document.querySelectorAll('#reader .rd-sec.on *, #rd-tabs *, .topbar *').forEach((e) => {
+      if (e.closest('svg') || !e.checkVisibility()) return;
+      if (!Array.from(e.childNodes).some((x) => x.nodeType === 3 && x.textContent.trim())) return;
+      const rg = document.createRange(); rg.selectNodeContents(e);
+      const rs = Array.from(rg.getClientRects()); if (!rs.length) return;
+      const right = Math.max(...rs.map((r) => r.right)), left = Math.min(...rs.map((r) => r.left));
+      let clipped = right > W + 0.5 || left < -0.5;
+      for (let a = e; a && a !== document.body; a = a.parentElement) {
+        if (getComputedStyle(a).overflowX === 'visible') continue;
+        if (right > a.getBoundingClientRect().right + 1) clipped = true;
+        break;
+      }
+      if (clipped) bad.push(`${e.className || e.tagName} "${e.textContent.trim().slice(0, 18)}" r=${Math.round(right)}`);
+    });
+    return Array.from(new Set(bad)).slice(0, 6);
+  };
+  // the longest figures that could realistically sit in the four-number row: five digits and a large move
+  function longNumbers() {
+    const m = freshMarket(), at = iso(10 * MIN), row = (key, label_th, value, unit, change_th) => ({ key, label_th, value, unit, change_th, trend: 'up', as_of: at, source: 'https://example.com/' });
+    m.updated_at = iso(10 * MIN);
+    m.items = [row('gold_th', 'ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)', '104400', 'บาท', '+11,900 จากวันก่อน'), row('brent', 'น้ำมัน Brent', '116.40', '$/บาร์เรล', '−18.29% (−8.80) จากปิดก่อนหน้า'), row('usdthb', 'ดอลลาร์/บาท', '33.600', 'บาท/$', '−10.50% (−0.170) จากปิดก่อนหน้า'), row('set', 'ดัชนี SET', '11502.09', 'จุด', '+10.74% (+11.08)')];
+    return m;
+  }
+  for (const [engine, widths] of [['chromium', [320, 340, 360, 375, 390]], ['webkit', [320, 390]]]) {
+    test(`no text is cut off by the screen or its box at phone widths, from the front page through the six chapters, at every large type size (${engine})`, async ({ browser }) => {
+      let wk = null;
+      if (engine === 'webkit') { try { wk = await webkit.launch(); } catch (e) { test.skip(true, 'WebKit is not installed here: ' + String(e.message).slice(0, 80)); } }
+      writeFresh();
+      for (const [feed, doc] of [['today', null], ['long', longNumbers()]]) {
+        if (doc) writeData('market', doc);
+        const base = doc ? URL.mutable : URL.full;
+        for (const w of widths) {
+          for (const size of doc ? [3] : [3, 4, 5, 6]) {
+            const ctx = await (wk || browser).newContext({ ...FRESH, viewport: { width: w, height: 700 }, ...(wk ? {} : { isMobile: true, hasTouch: true }), reducedMotion: 'reduce' });
+            const page = await ctx.newPage();
+            await page.addInitScript((z) => { localStorage.setItem('world-read-size', z); }, String(size));
+            await page.goto(base + '?view=read'); await ready(page);
+            await page.evaluate(() => document.fonts.ready);
+            for (const c of doc ? ['front'] : PAGES) {
+              await page.evaluate((h) => { location.hash = h; }, c);
+              await expect.poll(() => onChapter(page)).toBe(SEC(c));
+              expect(await page.evaluate(CLIP_AUDIT), `${feed} figures, ${c} at ${w}px, type size ${size}`).toEqual([]);
+            }
+            await ctx.close();
+          }
+        }
+      }
+      if (wk) await wk.close();
+    });
+  }
+
+  test('"ขายออก" stays whole in a price row, and economy figures use the true minus sign', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    await page.goto(URL.full + '?view=read#prices'); await ready(page);
+    const nb = page.locator('#r-price-list li[data-key="gold_th"] .nm .rd-nb');
+    await expect(nb).toHaveText('ขายออก');
+    const lines = await nb.evaluate((e) => { const r = document.createRange(); r.selectNodeContents(e); return new Set(Array.from(r.getClientRects()).map((x) => Math.round(x.top))).size; });
+    expect(lines).toBe(1);
+    await go(page, 'economy');
+    for (const metric of [0, 1, 2, 3]) {
+      await page.click(`.rd-chips button[data-econ="${metric}"]`);
+      expect(await page.locator('#r-econ-list .val').allInnerTexts(), 'no ASCII hyphen before a figure').not.toContainEqual(expect.stringMatching(/^-/));
+    }
+    await page.click('.rd-chips button[data-econ="0"]');
+    const neg = world.economies.find((e) => e.gdp_growth_2026 < 0);
+    if (neg) await expect(page.locator(`#r-econ-list > li[data-iso="${neg.iso}"] .val`)).toHaveText(`−${Math.abs(neg.gdp_growth_2026).toFixed(1)}%`);
+    await ctx.close();
+  });
+
   test('map view header still fits at 360px with the switch in it', async ({ browser }) => {
     const { ctx, page } = await open(browser, 360, 740);
     await page.goto(URL.full + '?view=map');
