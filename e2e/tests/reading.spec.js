@@ -8,7 +8,8 @@ const path = require('path');
 const { URL, SHOTS, writeData, removeData, resetData, seed, collectErrors, noHScroll, repoll } = require('./helpers');
 
 // E2E_LIVE_EMBED=1 runs these against the page's own embedded data of today instead of the frozen copy (see serve.py)
-const EMBED = process.env.E2E_LIVE_EMBED === '1' ? path.join(__dirname, '..', '..', 'data') : path.join(__dirname, '..', 'fixtures');
+const LIVE_EMBED = process.env.E2E_LIVE_EMBED === '1';
+const EMBED = LIVE_EMBED ? path.join(__dirname, '..', '..', 'data') : path.join(__dirname, '..', 'fixtures');
 const world = JSON.parse(fs.readFileSync(path.join(EMBED, 'world-data.json'), 'utf8'));
 const goldFx = JSON.parse(fs.readFileSync(path.join(EMBED, 'gold.json'), 'utf8'));
 const FRESH = { storageState: { cookies: [], origins: [] } };
@@ -417,7 +418,7 @@ test.describe('the front page', () => {
   test('at 390x844 the masthead, date, headline, key numbers and every entry are on the first screen, with no scrolling', async ({ browser }) => {
     const { ctx, page } = await open(browser, 390, 844);
     const errors = collectErrors(page);
-    await page.clock.setFixedTime(new Date(FIXTURE_NOON));
+    if (!LIVE_EMBED) await page.clock.setFixedTime(new Date(FIXTURE_NOON));   // today's data is checked at today's clock
     await page.goto(URL.full + '?view=read'); await ready(page);
     await expect(page.locator('#r-banner')).toBeHidden();
     const r = await page.evaluate(() => {
@@ -748,7 +749,7 @@ test.describe('chapters', () => {
     expect(await page.locator('#r-gold .rd-srcs a').count()).toBe(2);
     await page.click('#vw-map');
     await page.click('.tab[data-tab="gold"]');
-    await expect(page.locator('#gold-tile-main .delta')).toContainText('+3.1%');   // map view untouched
+    if (!LIVE_EMBED) await expect(page.locator('#gold-tile-main .delta')).toContainText('+3.1%');   // map view untouched
     expect(errors).toEqual([]);
     await ctx.close();
   });
