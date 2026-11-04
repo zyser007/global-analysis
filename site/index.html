@@ -403,7 +403,7 @@ details.fold .fold-body p{margin:0 0 8px}
 
 /* ---------- reading view: a book page, not a dashboard (html[data-view="read"]; colour and size set before first paint by the script in <head>).
    Why each value is what it is: docs/reading-mode-research.md ---------- */
-html:not([data-view="read"]) .reader,html:not([data-view="read"]) .rd-aa{display:none}
+html:not([data-view="read"]) .reader,html:not([data-view="read"]) .rd-aa,html:not([data-view="read"]) .rd-progress{display:none}
 html[data-view="read"]{
   color-scheme:light;
   --rd-paper:#fbf7ee; --rd-ink:#322c26; --rd-ink-2:#625a4e; --rd-rule:#d8cfbe; --rd-line:#a89b85; --rd-warn:#8c3a14;
@@ -462,6 +462,9 @@ html[data-view="read"] .view-switch button:focus-visible,.rd-aa summary:focus-vi
 .rd-aa .rd-size-now{flex:0 0 auto;align-self:center;min-width:5.5em;text-align:center;color:var(--rd-ink-2)}
 .rd-aa .a-small{font-size:.875rem}
 .rd-aa .a-large{font-size:1.25rem}
+
+/* the thin hint of how far along the page you are; nothing moves but this line */
+.rd-progress{position:fixed;z-index:4;top:0;left:0;right:0;height:2px;pointer-events:none;background:var(--rd-line);opacity:.7;transform-origin:0 50%;transform:scaleX(0)}
 
 /* one column */
 .reader{max-width:var(--rd-measure);margin-inline:auto;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
@@ -568,6 +571,7 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
 </head>
 <body>
 
+<div class="rd-progress" id="rd-progress" aria-hidden="true"></div>
 <div class="app" id="app">
   <header class="topbar">
     <div>
@@ -2199,12 +2203,13 @@ function rdNotes(){
 /* --- chapters --- */
 function rdSection(id, title){
   var s = $(id); s.innerHTML = '';
+  s.setAttribute('data-rd-place', id);
   s.appendChild(h('div', {class:'rd-ch'}, [h('p', {class:'rd-ch-no', text:'บทที่ ' + RD_CHAPTER_NO[id]}), h('h2', {text:title})]));
   return s;
 }
 function rdHead(s, node){ if(node) s.querySelector('.rd-ch').appendChild(node); }
 function rdNewsRow(it){
-  return h('li', {'data-id':String(it.id || '')}, [
+  return h('li', {'data-id':String(it.id || ''), 'data-rd-place':'news-' + (it.id || it.title_th)}, [
     h('p', {class:'rd-title', text:String(it.title_th)}),
     h('div', {class:'rd-meta'}, [
       it.time ? h('span', {'data-rel':String(it.time), text:relTh(it.time)}) : null,
@@ -2216,7 +2221,7 @@ function rdLatest(N){
   var s = rdSection('r-latest', 'สถานการณ์ล่าสุด'), an = DATA.analysis_th || {}, items = newsItems();
   if(an.headline){
     rdHead(s, rdBasisLine());
-    s.appendChild(h('p', {class:'rd-lead', text:an.headline}));
+    s.appendChild(h('p', {class:'rd-lead', 'data-rd-place':'lead', text:an.headline}));
     if(N.basis) s.appendChild(rdNote(N.basis));
   }
   s.appendChild(h('h3', {text:'ข่าวล่าสุด'}));
@@ -2226,7 +2231,7 @@ function rdLatest(N){
     s.appendChild(h('ul', {class:'rd-rows', id:'r-news'}, items.slice(0, RD_NEWS_TOP).map(rdNewsRow)));
     if(items.length > RD_NEWS_TOP) s.appendChild(rdMore('news-all', 'อ่านข่าวอื่นอีก ' + (items.length - RD_NEWS_TOP) + ' ข่าว', '', [h('ul', {class:'rd-rows'}, items.slice(RD_NEWS_TOP).map(rdNewsRow))]));
   }
-  if(an.thailand) s.appendChild(h('div', {class:'rd-callout'}, [h('h3', {text:'มุมมองต่อไทย'}), h('p', {text:an.thailand})]));
+  if(an.thailand) s.appendChild(h('div', {class:'rd-callout', 'data-rd-place':'thailand'}, [h('h3', {text:'มุมมองต่อไทย'}), h('p', {text:an.thailand})]));
   if(an.points && an.points.length){ s.appendChild(h('h3', {text:'บทวิเคราะห์'})); s.appendChild(rdProse(an.points, 'analysis')); }
   if(an.risks && an.risks.length){ s.appendChild(h('h3', {text:'ความเสี่ยงที่ต้องจับตา'})); s.appendChild(rdProse(an.risks, 'risk')); }
 }
@@ -2266,7 +2271,7 @@ function rdPriceRow(o){
     o.when || null,
     o.source ? rdA(o.source, o.sourceLabel || rdHost(o.source)) : null
   ].filter(Boolean);
-  return h('tbody', {class:'rd-price', id:o.id || null, 'data-key':o.key || null}, [
+  return h('tbody', {class:'rd-price', id:o.id || null, 'data-key':o.key || null, 'data-rd-place':'price-' + (o.id || o.key)}, [
     h('tr', null, [h('th', {class:'nm', scope:'row', text:o.name}), h('td', {class:'val', text:o.value}), h('td', {class:'u', text:o.unit || ''})])
   ].concat(o.more || []).concat(small.length ? [h('tr', {class:'line2'}, [h('td', {colspan:'3'}, small)])] : []));
 }
@@ -2301,7 +2306,7 @@ function rdConflicts(N){
   var all = newsItems();
   function card(c){
     var i = Math.max(1, Math.min(5, c.intensity|0)), key = 'conf-' + (c.id || c.name_th), news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
-    return h('li', {class:'rd-conf', 'data-intensity':String(i)}, [
+    return h('li', {class:'rd-conf', 'data-intensity':String(i), 'data-rd-place':key}, [
       h('h3', {text:String(c.name_th)}),
       h('p', {class:'rd-level'}, [h('b', {text:RD_SEVERITY[i]}), ' · ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]),
       c.status_th ? h('p', {text:String(c.status_th)}) : null,
@@ -2334,7 +2339,7 @@ function rdDisasters(N){
   if(doc && !disasters.length) s.appendChild(h('p', {text:DZ_EMPTY_TH}));
   if(disasters.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-dz-list'}, disasters.map(function(it){
     var src = dzSources(it);
-    return h('li', {class:'rd-dz', 'data-id':String(it.id || '')}, [
+    return h('li', {class:'rd-dz', 'data-id':String(it.id || ''), 'data-rd-place':'dz-' + (it.id || it.title_th)}, [
       h('h3', {text:String(it.title_th)}),
       h('p', {class:'rd-level'}, [h('b', {text:dzAlertText(it.alert_level)}), DZ_TYPE_TH[it.type] ? ' · ' + DZ_TYPE_TH[it.type] : '', it.country_th ? ' · ' + String(it.country_th) : '']),
       it.severity_th ? h('p', {class:'rd-sev', text:String(it.severity_th)}) : null,
@@ -2362,13 +2367,13 @@ function rdEconomy(N){
       }))
     ]));
     s.appendChild(rdMore('econ-notes', 'อ่านหมายเหตุรายประเทศ ' + economies.length + ' ประเทศ', 'rd-group', [h('ul', {class:'rd-rows', id:'r-econ-notes'}, economies.map(function(e){
-      return h('li', {class:'rd-choke'}, [h('h4', {text:String(e.name_th)}), e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)]);
+      return h('li', {class:'rd-choke', 'data-rd-place':'econ-note-' + (e.iso || e.name_th)}, [h('h4', {text:String(e.name_th)}), e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)]);
     }))], 'ย่อหมายเหตุ'));
   }
   if(chokepoints.length){
     s.appendChild(h('h3', {text:'ช่องแคบและเส้นทางการค้า'}));
     s.appendChild(h('ul', {class:'rd-rows', id:'r-choke-list'}, chokepoints.map(function(c){
-      return h('li', {class:'rd-choke'}, [
+      return h('li', {class:'rd-choke', 'data-rd-place':'choke-' + c.name_th}, [
         h('h4', {text:String(c.name_th)}),
         h('p', {class:'rd-level'}, [h('b', {text:LEVEL_TH[c.level] || '—'}), ' · ระดับ ' + (c.level || 1) + ' จาก 3']),
         c.note_th ? h('p', {text:String(c.note_th)}) : null,
@@ -2402,6 +2407,53 @@ function rdBanner(N){
   b.textContent = parts.length ? 'ข้อมูลบางส่วนอาจไม่เป็นปัจจุบัน: ' + parts.join(' · ') + ' ดูข้อควรระวังในแต่ละหัวข้อ' : '';
 }
 
+/* --- keeping the reader's place: while new data arrives, when the type size changes, and on coming back to this tab --- */
+var RD_PLACE_KEY = 'world-read-place', RD_PLACE_MAX_MS = 12*3600*1000;
+var rdPlacePending = null, rdPlaceLast = null, rdMoved = false, rdSaveTimer = 0;
+function rdPlaceNow(){
+  if(viewMode !== 'read' || window.scrollY < 40) return null;
+  /* the first block that starts on screen; a block taller than the screen when none does */
+  var r = $('reader'), x = Math.round(document.documentElement.clientWidth/2), ys = [24, 72, 140, 220, 320], first = null;
+  for(var i=0; i<ys.length; i++){
+    var el = document.elementFromPoint(x, ys[i]);
+    var bl = el && r.contains(el) ? el.closest('[data-rd-place]') : null;
+    if(!bl) continue;
+    var p = {a:bl.getAttribute('data-rd-place'), o:Math.round(bl.getBoundingClientRect().top)};
+    if(p.o >= 0) return p;
+    if(!first) first = p;
+  }
+  return first;
+}
+function rdPlaceFind(a){
+  var all = $('reader').querySelectorAll('[data-rd-place]');
+  for(var i=0; i<all.length; i++) if(all[i].getAttribute('data-rd-place') === a && all[i].getClientRects().length) return all[i];
+  return null;
+}
+function rdPlaceApply(p){ var b = rdPlaceFind(p.a); if(!b) return false; window.scrollBy(0, Math.round(b.getBoundingClientRect().top) - p.o); return true; }
+function rdPlaceSave(){
+  if(viewMode !== 'read') return;
+  var p = rdPlaceNow();
+  try {
+    if(p){ p.t = Date.now(); p.open = Object.keys(rdOpen).filter(function(k){ return rdOpen[k]; }); sessionStorage.setItem(RD_PLACE_KEY, JSON.stringify(p)); }
+    else if(window.scrollY < 40) sessionStorage.removeItem(RD_PLACE_KEY);
+  } catch(e){}
+}
+function rdPlaceLoad(){
+  var p = null;
+  try { p = JSON.parse(sessionStorage.getItem(RD_PLACE_KEY) || 'null'); } catch(e){}
+  if(!p || typeof p.a !== 'string' || !(Date.now() - p.t < RD_PLACE_MAX_MS)) return null;
+  /* a link to a chapter says where to go; a reload of the same address does not */
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if(location.hash && !(nav && (nav.type === 'reload' || nav.type === 'back_forward'))) return null;
+  if(Array.isArray(p.open)) p.open.forEach(function(k){ rdOpen[k] = true; });
+  return p;
+}
+function rdPlaceRestore(){
+  if(!rdPlacePending || rdMoved || viewMode !== 'read') return;
+  if(rdPlaceApply(rdPlacePending)){ rdPlaceLast = rdPlacePending; if(live.polled) rdPlacePending = null; }
+  else if(live.polled) rdPlacePending = null;
+}
+
 /* --- page colour and type size (the same attributes the script in <head> sets before first paint) --- */
 var RD_THEMES = ['paper', 'sepia', 'night'], RD_SIZE_MAX = 6;
 var rdThemeChosen = false;
@@ -2428,23 +2480,41 @@ function rdSetTheme(t, chosen){
   rdPaintChrome(); rdPaintControls();
 }
 function rdSetSize(z){
+  var p = rdPlaceNow();
   z = Math.max(1, Math.min(RD_SIZE_MAX, z));
   rdRoot().setAttribute('data-rd-size', String(z));
   try { localStorage.setItem('world-read-size', String(z)); } catch(e){}
+  if(p) rdPlaceApply(p);
   rdPaintControls();
 }
-/* re-render only when the data or a warning changed; open sections stay open (rdOpen). Hidden while the map view is on. */
+/* the thin line at the top: how far down the page, and nothing else */
+var rdTicking = false;
+function rdProgress(){
+  var de = rdRoot(), max = de.scrollHeight - window.innerHeight;
+  $('rd-progress').style.transform = 'scaleX(' + (max > 0 ? Math.max(0, Math.min(1, window.scrollY/max)).toFixed(4) : 0) + ')';
+}
+function rdOnScroll(){
+  if(viewMode !== 'read') return;
+  if(!rdTicking){ rdTicking = true; requestAnimationFrame(function(){ rdTicking = false; rdProgress(); }); }
+  clearTimeout(rdSaveTimer);
+  rdSaveTimer = setTimeout(rdPlaceSave, 400);
+}
+
+/* re-render only when the data or a warning changed; open sections stay open (rdOpen) and the reader stays on the same item. Hidden while the map view is on. */
 function rdRefresh(force){
   if(force) rdDirty = true;
   if(viewMode !== 'read') return;
   var N = rdNotes(), sig = JSON.stringify([N.basis, N.price, N.news, N.dz, N.gold, live.offline]);
   if(!rdDirty && sig === rdSig) return;
   rdSig = sig; rdDirty = false;
+  var place = rdPlaceNow();
   rdBanner(N); rdLatest(N); rdPrices(N); rdConflicts(N); rdDisasters(N); rdEconomy(N); rdGold(N);
+  if(place) rdPlaceApply(place);
+  rdProgress();
 }
 (function initReader(){
   var r = $('reader'), aa = $('rd-aa');
-  r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k) rdOpen[k] = ev.target.open; }, true);
+  r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k){ rdOpen[k] = ev.target.open; rdProgress(); } }, true);
   $('r-to-map').addEventListener('click', function(){ setView('map'); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-rd-theme-set]'), function(b){ b.addEventListener('click', function(){ rdSetTheme(b.getAttribute('data-rd-theme-set'), true); }); });
   $('rd-size-down').addEventListener('click', function(){ rdSetSize(rdSize() - 1); });
@@ -2454,6 +2524,13 @@ function rdRefresh(force){
   /* until the reader picks a colour, a phone that turns dark at night takes the page with it */
   var mq = window.matchMedia('(prefers-color-scheme: dark)'), onScheme = function(){ if(!rdThemeChosen) rdSetTheme(mq.matches ? 'night' : 'paper', false); };
   if(mq.addEventListener) mq.addEventListener('change', onScheme);
+  window.addEventListener('scroll', rdOnScroll, {passive:true});
+  window.addEventListener('resize', rdOnScroll, {passive:true});
+  window.addEventListener('pagehide', rdPlaceSave);
+  ['wheel', 'touchmove'].forEach(function(n){ window.addEventListener(n, function(){ rdMoved = true; }, {passive:true, once:true}); });
+  rdPlacePending = rdPlaceLoad();
+  if(rdPlacePending && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(rdPlaceLast && !rdMoved) rdPlaceApply(rdPlaceLast); rdProgress(); });
   rdPaintChrome(); rdPaintControls();
 })();
 
@@ -2464,6 +2541,7 @@ function paintViewSwitch(){
 }
 function setView(v){
   var same = v === viewMode;
+  if(!same && v === 'map') rdPlaceLast = rdPlaceNow();
   viewMode = v;
   document.documentElement.setAttribute('data-view', v);
   paintViewSwitch();
@@ -2477,7 +2555,7 @@ function setView(v){
   if(same) return;
   window.scrollTo(0, 0);
   if(v === 'map'){ startGlobe(); if(currentTab === 'gold') goldLayout(); }
-  else rdRefresh(false);
+  else { rdRefresh(false); if(rdPlaceLast) rdPlaceApply(rdPlaceLast); rdProgress(); }
 }
 $('vw-read').addEventListener('click', function(){ setView('read'); });
 $('vw-map').addEventListener('click', function(){ setView('map'); });
@@ -2523,12 +2601,14 @@ function pollLive(){
     else if(changed.headlines) renderDisasterNews();
     live.polled = true;
     rdRefresh(Object.keys(changed).length > 0);
+    rdPlaceRestore();
     window.__liveState = {offline:live.offline, fetchError:live.fetchError, polls:(window.__liveState ? window.__liveState.polls : 0) + 1, failed:failed};
   }).then(function(){ polling = false; }, function(){ polling = false; });
 }
 (function initLive(){
   renderDisasters();
   rdRefresh(true);
+  rdPlaceRestore();
   if(viewMode === 'map') startGlobe();
   pollLive();
   setInterval(function(){ if(!document.hidden) pollLive(); }, POLL_MS);

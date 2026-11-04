@@ -664,6 +664,8 @@ test.describe('page colour and type size', () => {
     expect(await themeOf(page)).toBe('sepia');
     await page.click('#rd-size-down');
     expect((await sizeOf(page))[0]).toBe('2');
+    await page.evaluate(() => window.scrollTo(0, 3000));
+    await page.waitForTimeout(600);   // the place would be saved here
     expect(errors).toEqual([]);
     await ctx.close();
   });
@@ -679,6 +681,7 @@ test.describe('page colour and type size', () => {
     await page.click('#vw-map');
     await expectMap(page);
     await expect(page.locator('#rd-aa')).toBeHidden();
+    await expect(page.locator('#rd-progress')).toBeHidden();
     expect(await page.evaluate(() => [getComputedStyle(document.body).backgroundColor, getComputedStyle(document.body).fontSize, getComputedStyle(document.body).fontFamily, document.querySelector('meta[name="theme-color"][media*="light"]').content])).toEqual(want);
     await ctx.close();
   });
@@ -717,22 +720,31 @@ test.describe('page colour and type size', () => {
 });
 
 test.describe('reading without interruptions', () => {
-  test('nothing moves: no animation or transition on the page', async ({ browser }) => {
+  const placeTop = (page, sel) => page.locator(sel).evaluate((e) => Math.round(e.getBoundingClientRect().top));
+
+  test('nothing moves: no animation or transition on the page, and the progress line stays thin and out of the way', async ({ browser }) => {
     const { ctx, page } = await open(browser, 390, 844, { reducedMotion: 'reduce' });
     await page.goto(URL.full + '?view=read'); await ready(page);
     await openAll(page);
     const r = await page.evaluate(() => {
       const moving = [];
-      document.querySelectorAll('.topbar, .topbar *, #reader, #reader *').forEach((e) => {
+      document.querySelectorAll('.topbar, .topbar *, #reader, #reader *, #rd-progress').forEach((e) => {
         const cs = getComputedStyle(e);
         if (parseFloat(cs.transitionDuration) > 0 && cs.transitionProperty !== 'none') moving.push('transition ' + e.tagName + '.' + e.className);
         if (cs.animationName !== 'none') moving.push('animation ' + e.tagName + '.' + e.className);
       });
-      return { moving: moving.slice(0, 5), running: document.getAnimations().length, smooth: getComputedStyle(document.documentElement).scrollBehavior };
+      const p = document.getElementById('rd-progress'), cs = getComputedStyle(p);
+      return { moving: moving.slice(0, 5), running: document.getAnimations().length, smooth: getComputedStyle(document.documentElement).scrollBehavior, h: p.getBoundingClientRect().height, events: cs.pointerEvents, hidden: p.getAttribute('aria-hidden') };
     });
     expect(r.moving).toEqual([]);
     expect(r.running).toBe(0);
     expect(r.smooth).toBe('auto');
+    expect([r.h, r.events, r.hidden]).toEqual([2, 'none', 'true']);
+    const scale = () => page.locator('#rd-progress').evaluate((e) => new DOMMatrix(getComputedStyle(e).transform).a);
+    expect(await scale()).toBe(0);
+    await page.evaluate(() => window.scrollTo(0, (document.documentElement.scrollHeight - innerHeight) / 2));
+    await expect.poll(scale).toBeGreaterThan(0.4);
+    expect(await scale()).toBeLessThan(0.6);
     await ctx.close();
   });
 
@@ -744,6 +756,57 @@ test.describe('reading without interruptions', () => {
     const want = [].concat(...world.conflicts.map((c) => c.sources || []), ...world.economies.map((c) => c.sources || []), ...world.chokepoints.map((c) => c.sources || []));
     want.push(...seed('headlines').items.map((i) => i.source).filter(Boolean), ...seed('market').items.map((i) => i.source).filter(Boolean), ...seed('disasters').items.map((i) => i.source_url).filter(Boolean));
     expect(want.filter((u) => !hrefs.has(u))).toEqual([]);
+    await ctx.close();
+  });
+
+  test('new data arriving, or a change of type size, leaves the reader on the same item', async ({ browser }) => {
+    writeFresh();
+    const { ctx, page } = await open(browser, 390, 844);
+    await page.goto(URL.mutable + '?view=read'); await ready(page);
+    const card = page.locator('#r-conflict-list > li').nth(4);
+    await card.evaluate((e) => { e.scrollIntoView(); window.scrollBy(0, -60); });
+    await page.waitForTimeout(100);
+    const y0 = await card.evaluate((e) => Math.round(e.getBoundingClientRect().top));
+    const scroll0 = await page.evaluate(() => scrollY);
+
+    // eight more news rows above it
+    const hd = freshHeadlines();
+    for (let i = 3; i < 10; i++) hd.items.push({ id: 'n' + i, conflict_id: 'economy', title_th: 'ข่าวเพิ่มเติมที่ทำให้หน้ายาวขึ้น ' + i, time: iso(3 * HOUR), source: 'https://www.reuters.com/x' + i, source_name: 'Reuters' });
+    writeData('headlines', hd);
+    await repoll(page);
+    expect(Math.abs(await card.evaluate((e) => Math.round(e.getBoundingClientRect().top)) - y0), 'same place on screen').toBeLessThan(3);
+    expect(await page.evaluate(() => scrollY), 'the page itself grew above').not.toBe(scroll0);
+
+    await page.evaluate(() => document.getElementById('rd-size-up').click());
+    expect(Math.abs(await card.evaluate((e) => Math.round(e.getBoundingClientRect().top)) - y0), 'same place after a size change').toBeLessThan(3);
+    await ctx.close();
+  });
+
+  test('coming back to the tab returns to the same item with what was open still open; the top stays the top', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    const errors = collectErrors(page);
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    const card = page.locator('#r-conflict-list > li').nth(3);
+    await card.locator('summary').click();
+    await card.evaluate((e) => { e.scrollIntoView(); window.scrollBy(0, -80); });
+    await page.waitForTimeout(700);   // saved after the scroll settles
+    await page.reload(); await ready(page);
+    await expect(card.locator('.rd-more-b')).toBeVisible();
+    await expect.poll(() => card.evaluate((e) => Math.round(e.getBoundingClientRect().top))).toBeLessThan(160);
+    expect(await card.evaluate((e) => Math.round(e.getBoundingClientRect().top))).toBeGreaterThan(0);
+
+    // back at the top: the next load starts at the top
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(700);
+    await page.reload(); await ready(page);
+    expect(await page.evaluate(() => scrollY)).toBeLessThan(5);
+
+    // a link to a chapter wins over a saved place
+    await card.evaluate((e) => { e.scrollIntoView(); });
+    await page.waitForTimeout(700);
+    await page.goto(URL.full + '?view=read#r-economy'); await ready(page);
+    await expect.poll(() => page.locator('#r-economy').evaluate((e) => Math.round(e.getBoundingClientRect().top))).toBeLessThan(40);
+    expect(errors).toEqual([]);
     await ctx.close();
   });
 });
