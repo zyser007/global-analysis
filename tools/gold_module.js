@@ -263,7 +263,7 @@ function goldFoldTitle(title, asof){
 
   v.appendChild(h('h3', {class:'sec-title', text:'ราคาทองโลกปี 2569'}));
   v.appendChild(h('div', {class:'chart-wrap', id:'gold-chart-wrap'}, [
-    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุก 4 ชม.'})]),
+    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุกชั่วโมง'})]),
     h('div', {id:'gold-chart'}),
     h('div', {class:'chart-legend'}, [
       h('span', null, [h('i'), 'ราคาปิดเดือน / รายวัน']),

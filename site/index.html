@@ -555,7 +555,7 @@ details.rd-item > summary .st{display:block;font-size:15.5px;color:var(--rd-2);l
 /* ================= data & helpers ================= */
 var DATA = JSON.parse(document.getElementById('world-data').textContent);
 var LAND = JSON.parse(document.getElementById('land-dots').textContent);
-/* indicator tiles that market.json (updater/update.py, every 4 h) keeps live: tools/live_indicators.json, embedded by build.py */
+/* indicator tiles that market.json (updater/prices.py, hourly) keeps live: tools/live_indicators.json, embedded by build.py */
 var LIVE_IND = (function(){ try { var a = JSON.parse(document.getElementById('live-indicators').textContent); return Array.isArray(a) ? a : []; } catch(e){ return []; } })();
 var $ = function(id){ return document.getElementById(id); };
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1472,7 +1472,7 @@ function goldFoldTitle(title, asof){
 
   v.appendChild(h('h3', {class:'sec-title', text:'ราคาทองโลกปี 2569'}));
   v.appendChild(h('div', {class:'chart-wrap', id:'gold-chart-wrap'}, [
-    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุก 4 ชม.'})]),
+    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุกชั่วโมง'})]),
     h('div', {id:'gold-chart'}),
     h('div', {class:'chart-legend'}, [
       h('span', null, [h('i'), 'ราคาปิดเดือน / รายวัน']),
@@ -1663,7 +1663,9 @@ function goldHistory(doc){
    and fetched here; the render functions below are the same ones the artifact-db snapshots fed. */
 var live = { market:null, headlines:null, status:null, disasters:null, dzError:false, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false, polled:false, docErr:{} };
 var NEWS_SHOW = 6, HOT_MS = 24*3600*1000;
-var STALE_MS = 10*3600*1000;          /* market/status older than 10 h -> stale */
+/* the bot runs hourly, so 6 h means about five runs missed in a row; GitHub's late or skipped starts stay under it */
+var STALE_H = 6;
+var STALE_MS = STALE_H*3600*1000;     /* market/status older than this -> stale */
 var NEWS_STALE_MS = 14*3600*1000;     /* headlines are refreshed twice a day */
 var POLL_MS = 10*60*1000;
 (function(){ var m = /[?&]poll=(\d+)/.exec(location.search); if(m && +m[1] >= 1000) POLL_MS = +m[1]; })(); /* test hook: ?poll=<ms> */
@@ -1718,14 +1720,14 @@ function updateHeaderFlag(){
   dot.setAttribute('data-dot', liveStamp() || '');
   setDot(dot, liveStamp());
   var lu = lastUpdate();
-  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (lu ? ('อัปเดตล่าสุด ' + bkkDateTime(lu) + (isStale(liveStamp()) ? ' · ข้อมูลเก่ากว่า 10 ชม.' : '')) : 'รอข้อมูลสด');
+  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (lu ? ('อัปเดตล่าสุด ' + bkkDateTime(lu) + (isStale(liveStamp()) ? ' · ข้อมูลเก่ากว่า ' + STALE_H + ' ชม.' : '')) : 'รอข้อมูลสด');
   var foot = $('foot-live'); if(foot) foot.textContent = (lu && !live.offline) ? (' · อัปเดตล่าสุด ' + bkkDateTime(lu)) : '';
   /* header date: the last live update (Bangkok time), stale like the live flag; the embedded date only without live data */
   var up = $('updated'), liveUp = !!(lu && !live.offline), stale = liveUp && isStale(liveStamp());
   if(liveUp){ var bd = new Date(parseTs(lu) + 7*3600000); setUpdated('อัปเดต ' + bkkDateTime(lu), 'อัปเดต ' + bd.getUTCDate() + ' ' + TH_MONTHS[bd.getUTCMonth()] + ' ' + ('0'+bd.getUTCHours()).slice(-2) + ':' + ('0'+bd.getUTCMinutes()).slice(-2)); }
   else setUpdated(EMBEDDED_UPDATED_TH);
   up.classList.toggle('is-stale', stale);
-  up.title = liveUp ? (stale ? 'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน' : 'ราคาและข่าวอัปเดตอัตโนมัติทุก 4 ชม.') : 'ข้อมูลที่ฝังในหน้า (โหลดข้อมูลสดไม่สำเร็จ)';
+  up.title = liveUp ? (stale ? 'ข้อมูลเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน' : 'ราคาอัปเดตอัตโนมัติทุกชั่วโมง ข่าววันละ 2 รอบ') : 'ข้อมูลที่ฝังในหน้า (โหลดข้อมูลสดไม่สำเร็จ)';
 }
 
 function offlineText(){ return 'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'; }
@@ -1742,7 +1744,7 @@ function liveNote(){
   var st = live.status, m = live.market;
   if(st && st.ok === false && st.message_th) return {text:st.message_th, warn:true};
   if(live.fetchError) return {text:'โหลดข้อมูลรอบล่าสุดไม่สำเร็จ แสดงค่าล่าสุดที่ได้รับ', warn:true};
-  if(m && isStale(m.updated_at)) return {text:'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  if(m && isStale(m.updated_at)) return {text:'ข้อมูลเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
   return {text:(m && m.note_th) || '', warn:false};
 }
 function updateStaleNote(){
@@ -1857,7 +1859,7 @@ function updateHot(){
 }
 
 /* ================= disasters (data/disasters.json from updater/disasters.py: GDACS + USGS, no AI) ================= */
-var DZ_STALE_MS = 10*3600*1000;       /* refreshed every 4 h by the workflow */
+var DZ_STALE_MS = STALE_MS;           /* refreshed hourly by the same workflow run as the prices */
 var DZ_TYPE_TH = {earthquake:'แผ่นดินไหว', cyclone:'พายุหมุนเขตร้อน', flood:'น้ำท่วม', volcano:'ภูเขาไฟ', wildfire:'ไฟป่า', drought:'ภัยแล้ง'};
 var DZ_ALERT_TH = {red:'แดง', orange:'ส้ม', yellow:'เหลือง', green:'เขียว'};
 var DZ_RANK = {red:0, orange:1, yellow:2, green:3};
@@ -1929,7 +1931,7 @@ function dzNote(){
   var doc = live.disasters;
   if(doc && doc.ok === false && doc.message_th) return {text:String(doc.message_th), warn:true};
   if(doc && live.dzError) return {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
-  if(doc && isStale(doc.updated, DZ_STALE_MS)) return {text:'ข้อมูลภัยพิบัติเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  if(doc && isStale(doc.updated, DZ_STALE_MS)) return {text:'ข้อมูลภัยพิบัติเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
   return null;
 }
 function updateDzNote(){
@@ -1967,7 +1969,7 @@ function renderDzSummary(){
   ]);
   slot.appendChild(box);
 }
-function dzSrcNote(cls){ return h('p', {class:cls}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุก 4 ชม. ไม่ผ่าน AI']); }
+function dzSrcNote(cls){ return h('p', {class:cls}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุกชั่วโมง ไม่ผ่าน AI']); }
 var DZ_EMPTY_TH = 'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด';
 function renderDisasters(){
   var v = $('view-disasters'); if(!v) return;

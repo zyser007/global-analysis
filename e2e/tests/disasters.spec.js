@@ -156,7 +156,7 @@ test('failed feed, stale data, missing file and empty list (mobile 375 light)', 
   // 2. older than 10 h -> stale marker
   writeData('disasters', dzDoc({ updated: iso(11 * HOUR), checked: iso(11 * HOUR) }));
   await repoll(page);
-  await expect(note).toContainText('ข้อมูลภัยพิบัติเก่ากว่า 10 ชม.');
+  await expect(note).toContainText('ข้อมูลภัยพิบัติเก่ากว่า 6 ชม.');
   expect(await page.locator('#dz-head').getAttribute('class')).toContain('is-stale');
   expect(await page.locator('#dz-head .sdot').getAttribute('class')).toContain('stale');
   expect(await page.locator('#dz-head [data-age]').textContent()).toContain('(11 ชม. ที่แล้ว)');

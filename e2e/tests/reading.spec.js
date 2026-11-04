@@ -254,7 +254,7 @@ test.describe('content', () => {
     await card.locator('summary').click();
     await expect(card).toContainText('ข่าวทดสอบหนึ่งของยูเครน');
 
-    const m2 = freshMarket(); m2.updated_at = iso(7 * HOUR); m2.items[0].value = '120.50'; m2.items[0].as_of = iso(8 * HOUR);
+    const m2 = freshMarket(); m2.updated_at = iso(5 * HOUR); m2.items[0].value = '120.50'; m2.items[0].as_of = iso(8 * HOUR);
     writeData('market', m2);
     await repoll(page);
     await expect(page.locator('#r-prices .rd-fresh')).toContainText(bkk(m2.updated_at));
@@ -265,6 +265,13 @@ test.describe('content', () => {
     await expect(page.locator('#r-price-list > li[data-key="gold_th"] .chg')).toContainText('ค่าเดิม');
     expect(errors).toEqual([]);
     await ctx.close();
+  });
+
+  test('no stale update-cadence wording in the page source', () => {
+    for (const f of ['tools/template.html', 'tools/gold_module.js']) {
+      const src = fs.readFileSync(path.join(__dirname, '..', '..', f), 'utf8');
+      expect(src.match(/ทุก 4 ชม|every 4 h/g), f).toBeNull();
+    }
   });
 
   test('the reading-view code has no frozen dates', () => {
@@ -432,9 +439,9 @@ test.describe('failure honesty', () => {
     expect(await warns()).toEqual([]);
 
     // stale prices
-    writeData('market', { ...freshMarket(), updated_at: iso(11 * HOUR) });
+    writeData('market', { ...freshMarket(), updated_at: iso(7 * HOUR) });
     await repoll(page);
-    await expect(page.locator('#r-prices .rd-note.warn')).toContainText('เก่ากว่า 10 ชม.');
+    await expect(page.locator('#r-prices .rd-note.warn')).toContainText('เก่ากว่า 6 ชม.');
     await expect(page.locator('#r-banner')).toContainText('ราคา');
 
     // stale news
@@ -443,9 +450,9 @@ test.describe('failure honesty', () => {
     await expect(page.locator('#r-latest .rd-note.warn').last()).toContainText('เก่ากว่า 14 ชม.');
 
     // stale disasters
-    writeData('disasters', { ...freshDisasters(), updated: iso(11 * HOUR) });
+    writeData('disasters', { ...freshDisasters(), updated: iso(7 * HOUR) });
     await repoll(page);
-    await expect(page.locator('#r-disasters .rd-note.warn')).toContainText('เก่ากว่า 10 ชม.');
+    await expect(page.locator('#r-disasters .rd-note.warn')).toContainText('เก่ากว่า 6 ชม.');
 
     // disasters partly failed, in the feed's own words
     writeData('disasters', { ...freshDisasters(), ok: false, message_th: 'GDACS ล้มเหลวรอบนี้' });
