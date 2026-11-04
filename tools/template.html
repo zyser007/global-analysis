@@ -2253,7 +2253,7 @@ function rdItemTime(it, latest){
 }
 function rdPriceName(it){
   var nm = String(it.label_th || it.key || '');
-  return it.key==='gold_th' ? nm.replace(/\s*\([^)]*\)\s*$/, '') : nm;   /* the source link already names the association */
+  return it.key==='gold_th' ? nm.replace(/\s*\([^)]*\)\s*$/, '').replace(/^ทองคำแท่ง/, 'ทองแท่ง') : nm;   /* the source link already names the association */
 }
 /* Thai gold: "ประกาศครั้งที่ 46 เวลา 16:11 น. +50 บาท · +1,900 จากวันก่อน" -> "ประกาศ 16:11 น. · +1,900 จากวันก่อน",
    or with the date instead of the word when the announcement is not from today. Any other wording is shown as it is. */

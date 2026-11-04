@@ -283,7 +283,7 @@ test.describe('content', () => {
       expect(nums, k).toContain('tabular-nums');
     }
     // Thai gold: short name, the announcement time kept with its date because it is not from today, no second time beside it
-    await expect(row('gold_th').locator('.nm')).toHaveText('ทองคำแท่ง 96.5% ขายออก');
+    await expect(row('gold_th').locator('.nm')).toHaveText('ทองแท่ง 96.5% ขายออก');
     await expect(row('gold_th').locator('.chg')).toContainText(`${closeDay} ${clock} · +1,900 จากวันก่อน`);
     await expect(row('gold_th').locator('a')).toHaveText('goldtraders');
     await expect(row('gold_th').locator('.val')).toContainText('64,400');
