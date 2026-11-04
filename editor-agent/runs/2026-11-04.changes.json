@@ -1,0 +1,160 @@
+{
+ "date": "2026-11-04",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีใหญ่ 3 พ.ย. และกำหนดเจรจาอาบูดาบี",
+   "sources": [
+    {
+     "url": "https://www.npr.org/2026/11/03/g-s1-151439/russia-ukraine-war",
+     "published": "2026-11-03",
+     "publisher": "NPR/AP",
+     "title": "Death toll hits 29 after Russian strike on Ukrainian aid site"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/03/russia-pounds-ukraine-with-289-drones-and-17-ballistic-missiles-in-overnight-strikes-zelen",
+     "published": "2026-11-03",
+     "publisher": "Euronews",
+     "title": "Russia pounds Ukraine with 289 drones"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "AUS"
+   ],
+   "fields": [
+    "policy_rate",
+    "note_th"
+   ],
+   "summary_th": "RBA ขึ้นดอกเบี้ยเป็น 4.85%",
+   "sources": [
+    {
+     "url": "https://www.abc.net.au/news/2026-11-03/rba-lifts-interest-rates-november-2026-highest-rate-in-18-years/107340050",
+     "published": "2026-11-03",
+     "publisher": "ABC News",
+     "title": "RBA lifts interest rates to highest level in 18 years"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "indicators",
+   "keys": [
+    "น้ำมันดิบ Brent"
+   ],
+   "fields": [
+    "value",
+    "delta_th",
+    "trend",
+    "as_of"
+   ],
+   "summary_th": "Brent ลงจาก $117 ปลาย ต.ค.",
+   "sources": [
+    {
+     "url": "https://financefeeds.com/brent-crude-oil-price-110-monday-after-opec-plus-holds-december-targets-29-november-2027-meeting-bull-120-bear-104/",
+     "published": "2026-11-02",
+     "publisher": "FinanceFeeds (อ้าง Reuters/CNBC)",
+     "title": "Brent Crude $110: Falls 3 Percent After OPEC+ Hold"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "indicators",
+   "keys": [
+    "ทองคำ (spot)"
+   ],
+   "fields": [
+    "value",
+    "delta_th",
+    "trend",
+    "as_of"
+   ],
+   "summary_th": "อัปเดตราคาทอง",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/charts/gold",
+     "published": "2026-11-03",
+     "publisher": "Kitco",
+     "title": "Gold Price Today"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ราคาทองโลก $3,929 ณ 3 พ.ย.",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/charts/gold",
+     "published": "2026-11-03",
+     "publisher": "Kitco",
+     "title": "Gold Price Today"
+    },
+    {
+     "url": "https://www.kitco.com/news",
+     "published": "2026-11-03",
+     "publisher": "Kitco News",
+     "title": "Gold holding support above $3,900"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th"
+   ],
+   "summary_th": "ราคาทองโลก $3,929 ณ 3 พ.ย.",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/charts/gold",
+     "published": "2026-11-03",
+     "publisher": "Kitco",
+     "title": "Gold Price Today"
+    },
+    {
+     "url": "https://www.kitco.com/news",
+     "published": "2026-11-03",
+     "publisher": "Kitco News",
+     "title": "Gold holding support above $3,900"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "901d26b16cbbe43e50d59347706a1a367e1e131e",
+ "reviewed_unchanged": [
+  "GBR",
+  "THA",
+  "USA",
+  "gaza_israel",
+  "myanmar_civil_war",
+  "sudan_civil_war"
+ ]
+}
