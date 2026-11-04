@@ -1,7 +1,7 @@
-// Reading view (โหมดอ่านง่าย): the view switch, its defaults and memory, the six sections, typography,
-// failure honesty and the deferred globe. Every context here starts from an empty storage state, because
+// Reading view (โหมดอ่านง่าย, a book page): the view switch, its defaults and memory, the six chapters, typography,
+// page colours and type size, keeping the reader's place, failure honesty and the deferred globe. Every context here starts from an empty storage state, because
 // playwright.config.js stores the map view for the older specs.
-const { test, expect } = require('@playwright/test');
+const { test, expect, webkit } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
 const { URL, SHOTS, writeData, removeData, resetData, seed, collectErrors, noHScroll, repoll } = require('./helpers');
@@ -35,6 +35,12 @@ async function expectMap(page) {
   await expect(page.locator('#reader')).toBeHidden();
   await expect(page.locator('#vw-map')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#vw-read')).toHaveAttribute('aria-pressed', 'false');
+}
+// a stored page colour and type size, as if the reader had picked them earlier
+async function openAs(browser, w, h, theme, size, extra = {}) {
+  const o = await open(browser, w, h, extra);
+  await o.page.addInitScript(([t, z]) => { try { if (t) localStorage.setItem('world-read-theme', t); if (z) localStorage.setItem('world-read-size', z); } catch (e) { /* blocked */ } }, [theme, size ? String(size) : null]);
+  return o;
 }
 const openAll = (page) => page.evaluate(() => document.querySelectorAll('#reader details').forEach((d) => { d.open = true; }));
 
@@ -185,8 +191,8 @@ test.describe('content', () => {
 
       // 2 prices: one plain row per market item, with value, change and its own time
       const market = seed('market');
-      await expect(page.locator('#r-price-list > li')).toHaveCount(market.items.length);
-      const first = page.locator(`#r-price-list > li[data-key="${market.items[0].key}"]`);
+      await expect(page.locator('#r-price-list > tbody')).toHaveCount(market.items.length);
+      const first = page.locator(`#r-price-list > tbody[data-key="${market.items[0].key}"]`);
       await expect(first).toContainText(market.items[0].label_th);
       await expect(first.locator('a')).toHaveAttribute('href', market.items[0].source);
       await expect(page.locator('#r-prices .rd-fresh')).toContainText(bkk(market.updated_at));
@@ -200,7 +206,7 @@ test.describe('content', () => {
       expect(levels).toHaveLength(conf.length);
       expect(levels).toEqual(levels.slice().sort((a, b) => b - a));
       const more = page.locator('details[data-rd="conf-rest"]');
-      await expect(more.locator('> summary')).toContainText(`ดูอีก ${conf.length - high.length} รายการ`);
+      await expect(more.locator('> summary')).toContainText(`อ่านอีก ${conf.length - high.length} เรื่อง`);
       await expect(page.locator('#r-conflict-more')).toBeHidden();
       await more.locator('> summary').click();
       await expect(page.locator('#r-conflict-more')).toBeVisible();
@@ -228,27 +234,28 @@ test.describe('content', () => {
         await expect(page.locator('#r-dz-list > li').first().locator('.rd-level b')).toContainText('เตือนระดับ');
       }
 
-      // 5 economies and chokepoints: compact and collapsed, one row per record
+      // 5 economies: one table row per record, the notes and their sources behind one line. Chokepoints are on the page.
       expect(await page.locator('#r-economy details[open]').count()).toBe(0);
-      await expect(page.locator('#r-econ-list')).toBeHidden();
-      await page.locator('#r-economy details[data-rd="econ"] > summary').click();
-      await expect(page.locator('#r-econ-list > li')).toHaveCount(world.economies.length);
-      await expect(page.locator('#r-econ-list > li').first()).toContainText(world.economies[0].name_th);
-      await expect(page.locator('#r-econ-list > li').first().locator('.rd-more-b')).toBeHidden();
-      await page.locator('#r-economy details[data-rd="choke"] > summary').click();
+      await expect(page.locator('#r-econ-list tbody tr')).toHaveCount(world.economies.length);
+      await expect(page.locator('#r-econ-list tbody tr').first()).toContainText(world.economies[0].name_th);
+      await expect(page.locator('#r-econ-notes')).toBeHidden();
+      await page.locator('#r-economy details[data-rd="econ-notes"] > summary').click();
+      await expect(page.locator('#r-econ-notes > li')).toHaveCount(world.economies.length);
+      await expect(page.locator('#r-econ-notes > li').first()).toContainText(world.economies[0].note_th);
       await expect(page.locator('#r-choke-list > li')).toHaveCount(world.chokepoints.length);
+      await expect(page.locator('#r-choke-list')).toBeVisible();
 
       // 6 gold: Thai bar and world price
       await expect(page.locator('#r-gold-th')).toContainText('ทองคำแท่งไทย');
       await expect(page.locator('#r-gold-spot')).toContainText('ทองคำโลก');
-      await expect(page.locator('#r-gold-spot .val')).toContainText('$');
+      await expect(page.locator('#r-gold-spot')).toContainText('$');
 
       expect(errors).toEqual([]);
       await ctx.close();
     });
   }
 
-  test('prices are two lines each at 390px; a time shows only where it adds something', async ({ browser }) => {
+  test('prices read as a small table at 390px, digits lined up; a time shows only where it adds something', async ({ browser }) => {
     writeFresh();
     const dayAgo = iso(26 * HOUR);
     const M = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
@@ -264,11 +271,16 @@ test.describe('content', () => {
     ] });
     const { ctx, page } = await open(browser, 390, 844);
     await page.goto(URL.mutable + '?view=read'); await ready(page);
-    const row = (k) => page.locator(`#r-price-list > li[data-key="${k}"]`);
-    const heights = await page.locator('#r-price-list > li').evaluateAll((els) => els.map((e) => [e.getAttribute('data-key'), e.querySelector('.top').getBoundingClientRect().height, e.querySelector('.line2').getBoundingClientRect().height]));
-    for (const [k, top, line2] of heights) {
-      expect(top, k + ' name and value on one line').toBeLessThan(44);
-      if (k !== 'stuck') expect(line2, k + ' change and source on one line').toBeLessThan(44);   // a price that is behind may wrap for its time
+    const row = (k) => page.locator(`#r-price-list > tbody[data-key="${k}"]`);
+    await expect(page.locator('#r-price-list')).toHaveJSProperty('tagName', 'TABLE');
+    const cols = await page.locator('#r-price-list > tbody').evaluateAll((els) => els.map((e) => {
+      const v = e.querySelector('.val').getBoundingClientRect(), n = e.querySelector('.nm');
+      return [e.getAttribute('data-key'), v.right, n.tagName, n.getAttribute('scope'), getComputedStyle(e.querySelector('.val')).fontVariantNumeric];
+    }));
+    for (const [k, right, tag, scope, nums] of cols) {
+      expect(Math.abs(right - cols[0][1]), k + ' numbers end on the same line').toBeLessThan(0.6);
+      expect([tag, scope], k + ' a real row header').toEqual(['TH', 'row']);
+      expect(nums, k).toContain('tabular-nums');
     }
     // Thai gold: short name, the announcement time kept with its date because it is not from today, no second time beside it
     await expect(row('gold_th').locator('.nm')).toHaveText('ทองคำแท่ง 96.5% ขายออก');
@@ -276,9 +288,9 @@ test.describe('content', () => {
     await expect(row('gold_th').locator('a')).toHaveText('goldtraders');
     await expect(row('gold_th').locator('.val')).toContainText('64,400');
     // a closing date in the change text is enough; a stale item with no date of its own shows its time; fresh ones show none
-    await expect(row('spx').locator('.line2 > span')).toHaveCount(1);
-    await expect(row('stuck').locator('.line2 > span').nth(1)).toContainText('ณ ');
-    await expect(row('brent').locator('.line2 > span')).toHaveCount(1);
+    await expect(row('spx').locator('.line2 td > span')).toHaveCount(1);
+    await expect(row('stuck').locator('.line2 td > span').nth(1)).toContainText('ณ ');
+    await expect(row('brent').locator('.line2 td > span')).toHaveCount(1);
     await expect(row('usdthb').locator('a')).toHaveText('yahoo');
     await ctx.close();
   });
@@ -294,12 +306,13 @@ test.describe('content', () => {
     const { ctx, page } = await open(browser, 390, 844);
     const errors = collectErrors(page);
     await page.goto(URL.mutable + '?view=read'); await ready(page);
-    const inPrices = page.locator('#r-price-list > li[data-key="gold"]'), inGold = page.locator('#r-gold-spot');
+    const inPrices = page.locator('#r-price-list > tbody[data-key="gold"]'), inGold = page.locator('#r-gold-spot');
     await expect(inPrices.locator('.chg')).toContainText('+2.86% (+112.45) จากปิดก่อนหน้า');
     await expect(inGold.locator('.chg')).toContainText('+2.86% (+112.45) จากปิดก่อนหน้า');
     expect(await inGold.locator('.val').innerText()).toBe(await inPrices.locator('.val').innerText());
-    await expect(page.locator('#r-gold-th .val')).toContainText('64,400');
-    await expect(page.locator('#r-price-list > li[data-key="gold_th"] .chg')).toContainText('+1,900 จากวันก่อน');
+    expect(await inGold.locator('.u').innerText()).toBe(await inPrices.locator('.u').innerText());
+    await expect(page.locator('#r-gold-th .val').first()).toContainText('64,400');
+    await expect(page.locator('#r-price-list > tbody[data-key="gold_th"] .chg')).toContainText('+1,900 จากวันก่อน');
     await expect(page.locator('#r-gold-th')).toContainText('+1,900 จากวันก่อน');
     await expect(page.locator('#r-gold-th')).toContainText('เวลา 16:11 น.');
     await page.click('#vw-map');
@@ -354,10 +367,10 @@ test.describe('content', () => {
     writeData('market', m2);
     await repoll(page);
     await expect(page.locator('#r-prices .rd-fresh')).toContainText(bkk(m2.updated_at));
-    await expect(page.locator('#r-price-list > li[data-key="brent"]')).toContainText('120.50');
+    await expect(page.locator('#r-price-list > tbody[data-key="brent"]')).toContainText('120.50');
     await expect(card.locator('.rd-more-b')).toBeVisible();
     // a value kept after a failed fetch says so in the row itself
-    await expect(page.locator('#r-price-list > li[data-key="gold_th"] .chg')).toContainText('ค่าเดิม');
+    await expect(page.locator('#r-price-list > tbody[data-key="gold_th"] .chg')).toContainText('ค่าเดิม');
     expect(errors).toEqual([]);
     await ctx.close();
   });
@@ -380,25 +393,27 @@ test.describe('content', () => {
 });
 
 test.describe('layout and reading comfort', () => {
+  // compared with the fixed width: with isMobile, innerWidth grows along with content that is too wide
+  async function fitsWidth(page, w, label) {
+    const sw = await page.evaluate(() => [document.documentElement.scrollWidth, document.body.scrollWidth]);
+    expect(Math.max(...sw), `${w}px ${label}`).toBeLessThanOrEqual(w);
+    const wide = await page.evaluate((W) => Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
+      const r = e.getBoundingClientRect();
+      return e.checkVisibility() && r.width > 0 && (r.right > W + 0.5 || r.left < -0.5);   // a shut <details> keeps stale boxes
+    }).map((e) => e.tagName + '.' + e.className).slice(0, 8), w);
+    expect(wide, `${w}px ${label}`).toEqual([]);
+    expect(await page.evaluate(() => innerWidth), `${w}px ${label} layout not widened`).toBe(w);
+  }
   for (const w of [360, 390]) {
-    for (const scheme of ['light', 'dark']) {
-      test(`no horizontal overflow at ${w}px ${scheme}, closed and with everything open`, async ({ browser }) => {
-        const { ctx, page } = await open(browser, w, 800, { colorScheme: scheme });
+    for (const size of [1, 3, 4, 6]) {
+      test(`no horizontal overflow at ${w}px, type size ${size}, closed, with everything open and with the controls open`, async ({ browser }) => {
+        const { ctx, page } = await openAs(browser, w, 800, null, size);
         await page.goto(URL.full + '?view=read'); await ready(page);
-        // compared with the fixed width: with isMobile, innerWidth grows along with content that is too wide
-        const check = async (label) => {
-          const sw = await page.evaluate(() => [document.documentElement.scrollWidth, document.body.scrollWidth]);
-          expect(Math.max(...sw), `${w}px ${label}`).toBeLessThanOrEqual(w);
-          const wide = await page.evaluate((W) => Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
-            const r = e.getBoundingClientRect();
-            return r.width > 0 && (r.right > W + 0.5 || r.left < -0.5);
-          }).map((e) => e.tagName + '.' + e.className).slice(0, 8), w);
-          expect(wide, `${w}px ${label}`).toEqual([]);
-          expect(await page.evaluate(() => innerWidth), `${w}px ${label} layout not widened`).toBe(w);
-        };
-        await check('closed');
+        await fitsWidth(page, w, 'closed');
         await openAll(page);
-        await check('open');
+        await fitsWidth(page, w, 'open');
+        await page.evaluate(() => { document.getElementById('rd-aa').open = true; });
+        await fitsWidth(page, w, 'controls');
         await ctx.close();
       });
     }
@@ -417,27 +432,107 @@ test.describe('layout and reading comfort', () => {
     const { ctx, page } = await open(browser, 390, 844);
     await page.goto(URL.full + '?view=read'); await ready(page);
     await openAll(page);
-    const sizes = await page.evaluate(() => ['#r-news .rd-title', '#r-conflict-list > li > p:not(.rd-level)', '.rd-callout', '#r-conflict-list .rd-more-b > p'].map((sel) => {
+    const sizes = await page.evaluate(() => ['#r-news .rd-title', '#r-conflict-list > li > p:not(.rd-level)', '.rd-callout p', '#r-conflict-list .rd-more-b > p', '.rd-prose li'].map((sel) => {
       const cs = getComputedStyle(document.querySelector(sel));
       return { sel, size: parseFloat(cs.fontSize), lh: parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) };
     }));
     for (const s of sizes) {
-      expect(s.size, s.sel).toBeGreaterThanOrEqual(17);
-      expect(s.lh, s.sel).toBeGreaterThanOrEqual(1.6);
+      expect(s.size, s.sel).toBeGreaterThanOrEqual(18);
+      expect(s.lh, s.sel).toBeGreaterThanOrEqual(1.7);
     }
-    const small = await page.evaluate(() => Array.from(document.querySelectorAll('.view-switch button, #reader a, #reader summary, #reader button')).filter((e) => {
-      const r = e.getBoundingClientRect();
-      return r.width > 0 && r.height < 44;
-    }).map((e) => e.tagName + ':' + e.textContent.slice(0, 30) + ':' + Math.round(e.getBoundingClientRect().height)).slice(0, 10));
-    expect(small, 'interactive elements under 44px tall').toEqual([]);
     await ctx.close();
   });
+
+  for (const size of [1, 3, 6]) {
+    test(`tap targets stay 44px at type size ${size}`, async ({ browser }) => {
+      const { ctx, page } = await openAs(browser, 390, 844, null, size);
+      await page.goto(URL.full + '?view=read'); await ready(page);
+      await openAll(page);
+      await page.evaluate(() => { document.getElementById('rd-aa').open = true; });
+      const small = await page.evaluate(() => Array.from(document.querySelectorAll('.view-switch button, #reader a, #reader summary, #reader button, #rd-aa summary, #rd-aa button')).filter((e) => {
+        const r = e.getBoundingClientRect();
+        return r.width > 0 && r.height < 44;
+      }).map((e) => e.tagName + ':' + e.textContent.slice(0, 30) + ':' + Math.round(e.getBoundingClientRect().height)).slice(0, 10));
+      expect(small, 'interactive elements under 44px tall').toEqual([]);
+      await ctx.close();
+    });
+  }
+
+  test('a book page, not a dashboard: left-aligned text, no boxes, bars or colour fills on the items', async ({ browser }) => {
+    const { ctx, page } = await openAs(browser, 390, 844, 'paper');
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    await openAll(page);
+    const found = await page.evaluate(() => {
+      const paper = getComputedStyle(document.documentElement).backgroundColor, bad = [];
+      document.querySelectorAll('#reader *').forEach((e) => {
+        const cs = getComputedStyle(e);
+        if (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== paper) bad.push('fill ' + e.tagName + '.' + e.className);
+        if (parseFloat(cs.borderLeftWidth) > 0) bad.push('side bar ' + e.tagName + '.' + e.className);
+        if (parseFloat(cs.borderRadius) > 2) bad.push('rounded ' + e.tagName + '.' + e.className);
+        if (cs.boxShadow !== 'none') bad.push('shadow ' + e.tagName + '.' + e.className);
+      });
+      return { bad: bad.slice(0, 8), align: getComputedStyle(document.querySelector('.rd-prose li')).textAlign, status: getComputedStyle(document.querySelector('#r-conflict-list > li > p:not(.rd-level)')).textAlign };
+    });
+    expect(found.bad).toEqual([]);
+    expect(found.align, 'justified Thai breaks up vowel marks in a narrow column').not.toBe('justify');
+    expect(found.status).not.toBe('justify');
+    await ctx.close();
+  });
+
+  test('digits share one width in the figures', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    const w = await page.evaluate(async () => {
+      await document.fonts.ready;
+      const v = document.querySelector('#r-price-list .val'), probe = v.cloneNode(false);
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      v.parentNode.appendChild(probe);
+      const out = ['111111', '888888', '000000'].map((t) => { probe.textContent = t; return probe.getBoundingClientRect().width; });
+      probe.remove();
+      return out;
+    });
+    expect(Math.abs(w[0] - w[1])).toBeLessThan(0.6);
+    expect(Math.abs(w[0] - w[2])).toBeLessThan(0.6);
+    await ctx.close();
+  });
+
+  // the tallest Thai stacks (tone mark over an upper vowel, and marks below) must fit the line they sit on, so two lines never touch,
+  // and nothing around text may cut them off
+  for (const size of [1, 3, 6]) {
+    test(`Thai stacked marks fit their line and nothing clips them, type size ${size}`, async ({ browser }) => {
+      const { ctx, page } = await openAs(browser, 390, 844, null, size);
+      await page.goto(URL.full + '?view=read'); await ready(page);
+      await openAll(page);
+      const res = await page.evaluate(async () => {
+        await document.fonts.ready;
+        const cx = document.createElement('canvas').getContext('2d');
+        const STACK = 'ปุ๋ย ฟื้นฟู กิ๊ฟ ญี่ปุ่น ฎีกา ฏุ ปั้น ที่นี่ ผู้นำ น้ำ';
+        const sels = ['.topbar h1', '.topbar .sub', '.view-switch button', '.rd-toc a', '.rd-ch-no', '.rd-sec .rd-ch h2', '.rd-fresh', '.rd-sec h3', '.rd-lead', '.rd-title', '.rd-meta', '.rd-prose li', '.rd-level', '#r-conflict-list > li > p:not(.rd-level)', 'details.rd-more > summary', '.rd-srcs a', '.rd-kv dt', '.rd-kv dd', '.rd-choke h4', '.rd-table .nm', '.rd-table .val', '.rd-table .u', '.rd-table .line2 td', '.rd-econ thead th', '.rd-econ tbody th', '.rd-econ tbody th small', '.rd-econ tbody td', '.rd-note', '.rd-go'];
+        const tight = [], clipped = [];
+        for (const s of sels) {
+          const e = document.querySelector(s); if (!e) { tight.push('missing ' + s); continue; }
+          const cs = getComputedStyle(e);
+          cx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+          const m = cx.measureText(STACK), ink = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent, lh = parseFloat(cs.lineHeight);
+          if (!(ink <= lh)) tight.push(`${s}: ink ${ink.toFixed(1)} > line ${lh}`);
+        }
+        document.querySelectorAll('.topbar *, #reader *').forEach((e) => {
+          const cs = getComputedStyle(e);
+          if (e.getClientRects().length && e.textContent.trim() && (cs.overflowY === 'hidden' || cs.overflowY === 'clip' || cs.overflowX === 'hidden')) clipped.push(e.tagName + '.' + e.className);
+        });
+        return { tight, clipped: clipped.slice(0, 8), serif: getComputedStyle(document.body).fontFamily };
+      });
+      expect(res.tight).toEqual([]);
+      expect(res.clipped).toEqual([]);
+      await ctx.close();
+    });
+  }
 
   test('desktop line length is about 65 characters', async ({ browser }) => {
     const { ctx, page } = await open(browser, 1440, 900);
     await page.goto(URL.full + '?view=read'); await ready(page);
     const longest = await page.evaluate(() => {
-      const el = document.querySelector('.rd-callout span:last-child'), node = el.firstChild, range = document.createRange();
+      const el = document.querySelector('.rd-callout p'), node = el.firstChild, range = document.createRange();
       const lines = new Map();
       for (let i = 0; i < node.length; i++) {
         range.setStart(node, i); range.setEnd(node, i + 1);
@@ -454,29 +549,231 @@ test.describe('layout and reading comfort', () => {
     await ctx.close();
   });
 
-  for (const scheme of ['light', 'dark']) {
-    test(`text contrast is at least 4.5:1 (${scheme})`, async ({ browser }) => {
+  for (const theme of ['paper', 'sepia', 'night']) {
+    test(`text contrast is at least 4.5:1, and body text well above it (${theme})`, async ({ browser }) => {
       writeFresh(); writeData('market', { ...freshMarket(), updated_at: iso(20 * HOUR) });   // brings a warning on screen
-      const { ctx, page } = await open(browser, 390, 844, { colorScheme: scheme });
+      const { ctx, page } = await openAs(browser, 390, 844, theme);
       await page.goto(URL.mutable + '?view=read'); await ready(page);
       await openAll(page);
+      await page.evaluate(() => { document.getElementById('rd-aa').open = true; });
       const res = await page.evaluate(() => {
         const cv = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
         const rgba = (c) => { cv.clearRect(0, 0, 1, 1); cv.fillStyle = c; cv.fillRect(0, 0, 1, 1); const d = cv.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2], d[3] / 255]; };
         const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
         const bgOf = (e) => { for (; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c[3] > 0.99) return c; } return [255, 255, 255, 1]; };
-        const sels = ['.topbar h1', '.topbar .sub', '.view-switch button[aria-pressed="true"]', '.view-switch button[aria-pressed="false"]', '.rd-toc a', '.rd-fresh', '.rd-lead', '.rd-title', '.rd-meta', '.rd-meta a', '.rd-callout', '.rd-note', '.rd-note.warn', '.rd-banner', '.rd-price .nm', '.rd-price .val', '.rd-price .val .u', '.rd-price .chg', '.rd-level', '.rd-level b', 'details.rd-more > summary', 'details.rd-group > summary', 'details.rd-item .st', '.rd-srcs a', '.rd-go', '.rd-foot a', '.rd-sec > h2'];
-        return sels.map((s) => {
-          const e = document.querySelector(s); if (!e) return { s, missing: true };
-          const a = lum(rgba(getComputedStyle(e).color)), b = lum(bgOf(e));
-          return { s, ratio: +((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(2) };
-        });
+        const ratio = (e) => { const a = lum(rgba(getComputedStyle(e).color)), b = lum(bgOf(e)); return +((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(2); };
+        const sels = ['.topbar h1', '.topbar .sub', '.view-switch button[aria-pressed="true"]', '.view-switch button[aria-pressed="false"]', '#rd-aa summary', '.rd-aa-panel p', '.sw-paper', '.sw-sepia', '.sw-night', '#rd-size-up', '#rd-size-now', '.rd-toc a', '.rd-ch-no', '.rd-sec .rd-ch h2', '.rd-fresh', '.rd-lead', '.rd-title', '.rd-meta', '.rd-meta a', '.rd-callout p', '.rd-prose li', '.rd-note', '.rd-note.warn', '.rd-note.warn b', '.rd-banner', '.rd-table .nm', '.rd-table .val', '.rd-table .u', '.rd-table .line2 td', '.rd-table .line2 a', '.rd-table .chg', '.rd-econ thead th', '.rd-econ tbody th', '.rd-econ tbody th small', '.rd-econ tbody td', '.rd-level', '.rd-level b', 'details.rd-more > summary', 'details.rd-group > summary', '.rd-kv dt', '.rd-srcs a', '.rd-srcs-k', '.rd-go', '.rd-foot a'];
+        const all = sels.map((s) => { const e = document.querySelector(s); return e ? { s, ratio: ratio(e) } : { s, missing: true }; });
+        const body = ['.rd-prose li', '.rd-title', '.rd-table .val', '#r-conflict-list > li > p:not(.rd-level)'].map((s) => ({ s, ratio: ratio(document.querySelector(s)) }));
+        const page = getComputedStyle(document.documentElement).backgroundColor, ink = getComputedStyle(document.body).color;
+        return { all, body, page, ink };
       });
-      expect(res.filter((r) => r.missing), 'every checked element is on the page').toEqual([]);
-      expect(res.filter((r) => r.ratio < 4.5)).toEqual([]);
+      expect(res.all.filter((r) => r.missing), 'every checked element is on the page').toEqual([]);
+      expect(res.all.filter((r) => r.ratio < 4.5)).toEqual([]);
+      expect(res.body.filter((r) => r.ratio < 7), 'body text comfortably above the minimum').toEqual([]);
+      expect(res.body.filter((r) => r.ratio > 16), 'not pure black on pure white, nor its reverse').toEqual([]);
+      for (const c of [res.page, res.ink]) expect(['rgb(255, 255, 255)', 'rgb(0, 0, 0)']).not.toContain(c);
       await ctx.close();
     });
   }
+});
+
+test.describe('page colour and type size', () => {
+  const themeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-rd-theme'));
+  const sizeOf = (page) => page.evaluate(() => [document.documentElement.getAttribute('data-rd-size'), parseFloat(getComputedStyle(document.querySelector('.rd-prose li')).fontSize)]);
+
+  test('the first visit follows the phone: light takes paper, dark takes the warm night page, and a later change follows until the reader chooses', async ({ browser }) => {
+    const light = await open(browser, 390, 844, { colorScheme: 'light' });
+    await light.page.goto(URL.full + '?view=read'); await ready(light.page);
+    expect(await themeOf(light.page)).toBe('paper');
+    await light.page.emulateMedia({ colorScheme: 'dark' });
+    await expect.poll(() => themeOf(light.page)).toBe('night');
+    await light.page.click('#rd-aa summary');
+    await light.page.click('[data-rd-theme-set="sepia"]');
+    await light.page.emulateMedia({ colorScheme: 'light' });
+    await light.page.waitForTimeout(100);
+    expect(await themeOf(light.page), 'a chosen colour stays').toBe('sepia');
+    await light.ctx.close();
+    const dark = await open(browser, 390, 844, { colorScheme: 'dark' });
+    await dark.page.goto(URL.full + '?view=read'); await ready(dark.page);
+    expect(await themeOf(dark.page)).toBe('night');
+    expect(await dark.page.evaluate(() => localStorage.getItem('world-read-theme')), 'a default is not a choice').toBeNull();
+    await dark.ctx.close();
+  });
+
+  test('the controls are tucked away, and a chosen colour and size come back on the next visit before anything is painted', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844, { colorScheme: 'light' });
+    const errors = collectErrors(page);
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    await expect(page.locator('.rd-aa-panel')).toBeHidden();
+    await page.click('#rd-aa summary');
+    await expect(page.locator('.rd-aa-panel')).toBeVisible();
+    await expect(page.locator('[data-rd-theme-set="paper"]')).toHaveAttribute('aria-pressed', 'true');
+    await page.click('[data-rd-theme-set="night"]');
+    await expect(page.locator('[data-rd-theme-set="night"]')).toHaveAttribute('aria-pressed', 'true');
+    expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe('rgb(29, 26, 23)');
+    expect(await page.locator('meta[name="theme-color"]').first().getAttribute('content'), 'the browser bar takes the page colour').toBe('#1d1a17');
+    const before = (await sizeOf(page))[1];
+    await page.click('#rd-size-up'); await page.click('#rd-size-up');
+    expect((await sizeOf(page))[0]).toBe('5');
+    expect((await sizeOf(page))[1]).toBeGreaterThan(before);
+    await expect(page.locator('#rd-size-now')).toHaveText('ขนาด 5 จาก 6');
+    await page.click('#rd-size-up');
+    await expect(page.locator('#rd-size-up')).toBeDisabled();
+    expect(await page.evaluate(() => [localStorage.getItem('world-read-theme'), localStorage.getItem('world-read-size')])).toEqual(['night', '6']);
+    // a tap elsewhere and Escape both close it
+    await page.mouse.click(195, 500);
+    await expect(page.locator('.rd-aa-panel')).toBeHidden();
+    await page.click('#rd-aa summary');
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.rd-aa-panel')).toBeHidden();
+
+    // the head script sets both attributes, so the first paint already has them
+    await page.goto(URL.full + '?view=read');
+    expect(await themeOf(page)).toBe('night');
+    expect((await sizeOf(page))[0]).toBe('6');
+    await ready(page);
+    await page.click('#rd-aa summary');
+    for (let i = 0; i < 5; i++) await page.click('#rd-size-down');
+    await expect(page.locator('#rd-size-down')).toBeDisabled();
+    expect((await sizeOf(page))[0]).toBe('1');
+    expect(errors).toEqual([]);
+    await ctx.close();
+  });
+
+  test('nonsense in storage falls back to the defaults', async ({ browser }) => {
+    const { ctx, page } = await openAs(browser, 390, 844, 'pink', 99, { colorScheme: 'light' });
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    expect(await themeOf(page)).toBe('paper');
+    expect((await sizeOf(page))[0]).toBe('3');
+    await ctx.close();
+  });
+
+  test('blocked storage: the controls still work for this page and nothing breaks', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844, { colorScheme: 'dark' });
+    const errors = collectErrors(page);
+    await page.addInitScript(() => {
+      Storage.prototype.getItem = function () { throw new Error('blocked'); };
+      Storage.prototype.setItem = function () { throw new Error('blocked'); };
+      Storage.prototype.removeItem = function () { throw new Error('blocked'); };
+    });
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    expect(await themeOf(page)).toBe('night');
+    await page.click('#rd-aa summary');
+    await page.click('[data-rd-theme-set="sepia"]');
+    expect(await themeOf(page)).toBe('sepia');
+    await page.click('#rd-size-down');
+    expect((await sizeOf(page))[0]).toBe('2');
+    expect(errors).toEqual([]);
+    await ctx.close();
+  });
+
+  test('the colour and size stay out of the map view', async ({ browser }) => {
+    const plain = await open(browser, 1440, 900, { colorScheme: 'light' });
+    await plain.page.goto(URL.full + '?view=map');
+    const want = await plain.page.evaluate(() => [getComputedStyle(document.body).backgroundColor, getComputedStyle(document.body).fontSize, getComputedStyle(document.body).fontFamily, document.querySelector('meta[name="theme-color"][media*="light"]').content]);
+    await plain.ctx.close();
+    const { ctx, page } = await openAs(browser, 1440, 900, 'night', 6, { colorScheme: 'light' });
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    expect(await page.locator('meta[name="theme-color"][media*="light"]').getAttribute('content')).toBe('#1d1a17');
+    await page.click('#vw-map');
+    await expectMap(page);
+    await expect(page.locator('#rd-aa')).toBeHidden();
+    expect(await page.evaluate(() => [getComputedStyle(document.body).backgroundColor, getComputedStyle(document.body).fontSize, getComputedStyle(document.body).fontFamily, document.querySelector('meta[name="theme-color"][media*="light"]').content])).toEqual(want);
+    await ctx.close();
+  });
+
+  test('each view asks only for its own fonts', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    const asked = [];
+    page.on('request', (r) => { if (/fonts\.gstatic\.com/.test(r.url())) asked.push(r.url()); });
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    await page.waitForTimeout(500);
+    expect(asked.filter((u) => /ibmplex|notosansthai/i.test(u)), 'no sans-serif faces on a book page').toEqual([]);
+    await ctx.close();
+    const map = await open(browser, 1440, 900);
+    const asked2 = [];
+    map.page.on('request', (r) => { if (/fonts\.gstatic\.com/.test(r.url())) asked2.push(r.url()); });
+    await map.page.goto(URL.full + '?view=map'); await ready(map.page);
+    await map.page.waitForTimeout(500);
+    expect(asked2.filter((u) => /notoserifthai/i.test(u)), 'the map view does not fetch the book face').toEqual([]);
+    await map.ctx.close();
+  });
+
+  test('if the web font fails the page is still readable: a Thai system face, the same layout rules, no errors', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    const errors = collectErrors(page, [/fonts\.g/, /ERR_FAILED/]);
+    await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    const r = await page.evaluate(() => ({ family: getComputedStyle(document.body).fontFamily, h: document.querySelector('.rd-prose li').getBoundingClientRect().height, loaded: Array.from(document.fonts).filter((f) => f.status === 'loaded').length }));
+    expect(r.loaded, 'the web font really is blocked').toBe(0);
+    expect(r.family).toContain('Thonburi');
+    expect(r.h).toBeGreaterThan(50);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+    await page.screenshot({ path: path.join(SHOTS, 'reading-no-webfont-390.png') });
+    expect(errors).toEqual([]);
+    await ctx.close();
+  });
+});
+
+test.describe('reading without interruptions', () => {
+  test('nothing moves: no animation or transition on the page', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844, { reducedMotion: 'reduce' });
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    await openAll(page);
+    const r = await page.evaluate(() => {
+      const moving = [];
+      document.querySelectorAll('.topbar, .topbar *, #reader, #reader *').forEach((e) => {
+        const cs = getComputedStyle(e);
+        if (parseFloat(cs.transitionDuration) > 0 && cs.transitionProperty !== 'none') moving.push('transition ' + e.tagName + '.' + e.className);
+        if (cs.animationName !== 'none') moving.push('animation ' + e.tagName + '.' + e.className);
+      });
+      return { moving: moving.slice(0, 5), running: document.getAnimations().length, smooth: getComputedStyle(document.documentElement).scrollBehavior };
+    });
+    expect(r.moving).toEqual([]);
+    expect(r.running).toBe(0);
+    expect(r.smooth).toBe('auto');
+    await ctx.close();
+  });
+
+  test('every source link in the data can be reached on the page', async ({ browser }) => {
+    const { ctx, page } = await open(browser, 390, 844);
+    await page.goto(URL.full + '?view=read'); await ready(page);
+    await openAll(page);
+    const hrefs = new Set(await page.locator('#reader a').evaluateAll((els) => els.map((e) => e.getAttribute('href'))));
+    const want = [].concat(...world.conflicts.map((c) => c.sources || []), ...world.economies.map((c) => c.sources || []), ...world.chokepoints.map((c) => c.sources || []));
+    want.push(...seed('headlines').items.map((i) => i.source).filter(Boolean), ...seed('market').items.map((i) => i.source).filter(Boolean), ...seed('disasters').items.map((i) => i.source_url).filter(Boolean));
+    expect(want.filter((u) => !hrefs.has(u))).toEqual([]);
+    await ctx.close();
+  });
+});
+
+test.describe('iPhone engine', () => {
+  test('headless WebKit at 390px: page, controls, memory and width all hold', async () => {
+    let browser;
+    try { browser = await webkit.launch(); } catch (e) { test.skip(true, 'WebKit is not installed here: ' + String(e.message).slice(0, 80)); }
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, colorScheme: 'light', storageState: { cookies: [], origins: [] } });
+    const page = await ctx.newPage();
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto(URL.full); await ready(page);
+    await expectRead(page);
+    await expect(page.locator('#r-conflict-list > li').first()).toBeVisible();
+    const fits = async (label) => { const sw = await page.evaluate(() => [document.documentElement.scrollWidth, document.body.scrollWidth]); expect(Math.max(...sw), label).toBeLessThanOrEqual(390); };
+    await fits('closed');
+    await openAll(page);
+    await fits('open');
+    await page.tap('#rd-aa summary');
+    await expect(page.locator('.rd-aa-panel')).toBeVisible();
+    await page.tap('[data-rd-theme-set="night"]');
+    for (let i = 0; i < 3; i++) await page.tap('#rd-size-up');
+    await fits('largest type');
+    expect(await page.evaluate(() => [document.documentElement.getAttribute('data-rd-theme'), document.documentElement.getAttribute('data-rd-size'), localStorage.getItem('world-read-theme')])).toEqual(['night', '6', 'night']);
+    expect(await page.evaluate(() => Array.from(document.querySelectorAll('#r-price-list .val')).map((e) => e.getBoundingClientRect().right).every((r, i, a) => Math.abs(r - a[0]) < 0.6))).toBe(true);
+    await page.screenshot({ path: path.join(SHOTS, 'reading-webkit-night-large.png') });
+    expect(errors).toEqual([]);
+    await browser.close();
+  });
 });
 
 test.describe('failure honesty', () => {
@@ -496,7 +793,7 @@ test.describe('failure honesty', () => {
       await expect(page.locator('#r-disasters .rd-note.warn')).toContainText('โหลดข้อมูลภัยพิบัติไม่สำเร็จ');
       await expect(page.locator('#r-gold .rd-note.warn')).toContainText('โหลดราคาสดไม่สำเร็จ');
       // fallback prices are the embedded ones, labelled and dated, not shown as current
-      const rows = page.locator('#r-price-list > li');
+      const rows = page.locator('#r-price-list > tbody');
       expect(await rows.count()).toBeGreaterThan(0);
       await expect(rows.first()).toContainText('ค่าล่าสุดที่ฝังในหน้าเว็บ ณ');
       await expect(page.locator('#r-prices [data-age]')).toHaveCount(0);
@@ -645,8 +942,8 @@ test.describe('deferred globe', () => {
 
 test('screenshots of the reading view', async ({ browser }) => {
   for (const [name, w, h] of [['phone', 390, 844], ['desktop', 1440, 900]]) {
-    for (const scheme of ['light', 'dark']) {
-      const { ctx, page } = await open(browser, w, h, { colorScheme: scheme });
+    for (const scheme of ['paper', 'sepia', 'night']) {
+      const { ctx, page } = await openAs(browser, w, h, scheme);
       await page.goto(URL.full + '?view=read'); await ready(page);
       await page.waitForTimeout(500);
       await page.screenshot({ path: path.join(SHOTS, `reading-${name}-${scheme}-top.png`) });

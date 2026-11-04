@@ -12,6 +12,13 @@
   if(!v){ try { var s = localStorage.getItem('world-view'); if(s === 'read' || s === 'map') v = s; } catch(e){} }
   if(!v) v = window.matchMedia('(max-width: 600px)').matches ? 'read' : 'map';
   document.documentElement.setAttribute('data-view', v);
+  /* reading page colour and type size: the visitor's own choice; until then the phone's light or dark setting */
+  var t = null, z = null;
+  try { t = localStorage.getItem('world-read-theme'); z = localStorage.getItem('world-read-size'); } catch(e){}
+  if(t !== 'paper' && t !== 'sepia' && t !== 'night') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'paper';
+  if(!/^[1-6]$/.test(z || '')) z = '3';
+  document.documentElement.setAttribute('data-rd-theme', t);
+  document.documentElement.setAttribute('data-rd-size', z);
 })();
 </script>
 <meta name="description" content="ลูกโลก 3 มิติสรุปความขัดแย้ง เศรษฐกิจ ช่องแคบสำคัญ ราคาตลาดและทองคำ อัปเดตอัตโนมัติวันละหลายรอบ">
@@ -20,6 +27,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%230f1a2b' stroke='%233ea7b8' stroke-width='4'/%3E%3Cpath d='M8 32h48M32 4c-10 8-10 48 0 56M32 4c10 8 10 48 0 56' fill='none' stroke='%238fb3d9' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- the reading view's book face; two requests give two small static files, one request for both weights gives a variable font three times the size -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme: dark;
@@ -390,94 +401,169 @@ details.fold .fold-body p{margin:0 0 8px}
   html:not([data-view="read"]) .topbar .sub{grid-column:1 / -1;grid-row:2;margin:0}
 }
 
-/* ---------- reading view (html[data-view="read"], set before first paint by the script in <head>) ---------- */
-html:not([data-view="read"]) .reader{display:none}
-html[data-view="read"],html[data-view="read"] body{height:auto;min-height:100%;overflow:visible}
-html[data-view="read"] body{background:var(--surface);font-size:17px;overflow-wrap:break-word;word-break:normal}
-html[data-view="read"] .app{height:auto;display:block}
+/* ---------- reading view: a book page, not a dashboard (html[data-view="read"]; colour and size set before first paint by the script in <head>).
+   Why each value is what it is: docs/reading-mode-research.md ---------- */
+html:not([data-view="read"]) .reader,html:not([data-view="read"]) .rd-aa{display:none}
+html[data-view="read"]{
+  color-scheme:light;
+  --rd-paper:#fbf7ee; --rd-ink:#322c26; --rd-ink-2:#625a4e; --rd-rule:#d8cfbe; --rd-line:#a89b85; --rd-warn:#8c3a14;
+  --rd-font:"Noto Serif Thai","Thonburi","Leelawadee UI","Tahoma","Noto Sans Thai",serif;
+  --rd-base:1.125rem; --rd-scale:1; --rd-measure:34em; --rd-margin:clamp(24px,6.6vw,48px);
+  /* the header and the shared helpers keep working on the same page colours */
+  --bg:var(--rd-paper); --surface:var(--rd-paper); --text:var(--rd-ink); --text-2:var(--rd-ink-2); --muted:var(--rd-ink-2);
+  --border:var(--rd-rule); --border-strong:var(--rd-rule); --accent:var(--rd-ink); --warn:var(--rd-warn);
+  --font-body:var(--rd-font); --font-head:var(--rd-font);
+}
+html[data-view="read"][data-rd-theme="sepia"]{--rd-paper:#f3e9d4; --rd-ink:#3a2f24; --rd-ink-2:#655442; --rd-rule:#d3c4a6; --rd-line:#9f8c6d; --rd-warn:#853512}
+html[data-view="read"][data-rd-theme="night"]{color-scheme:dark; --rd-paper:#1d1a17; --rd-ink:#d6cdbe; --rd-ink-2:#a89d8c; --rd-rule:#3d372f; --rd-line:#6f6556; --rd-warn:#e0a177}
+@media (min-width:700px){ html[data-view="read"]{--rd-base:1.1875rem} }
+html[data-view="read"][data-rd-size="1"]{--rd-scale:.89}
+html[data-view="read"][data-rd-size="2"]{--rd-scale:.945}
+html[data-view="read"][data-rd-size="4"]{--rd-scale:1.11}
+html[data-view="read"][data-rd-size="5"]{--rd-scale:1.22}
+html[data-view="read"][data-rd-size="6"]{--rd-scale:1.33}
+html[data-view="read"],html[data-view="read"] body{height:auto;min-height:100%;overflow:visible;background:var(--rd-paper)}
+html[data-view="read"] body{color:var(--rd-ink);font-family:var(--rd-font);font-size:calc(var(--rd-base)*var(--rd-scale));font-weight:400;line-height:1.8;
+  overflow-wrap:break-word;word-break:normal;hyphens:none;text-align:start;font-variant-numeric:lining-nums tabular-nums}
+html[data-view="read"] ::selection{background:color-mix(in srgb,var(--rd-line) 45%,var(--rd-paper))}
+html[data-view="read"] .app{height:auto;display:block;padding:env(safe-area-inset-top,0px) max(var(--rd-margin),env(safe-area-inset-right,0px)) 0 max(var(--rd-margin),env(safe-area-inset-left,0px))}
 html[data-view="read"] .main{display:none}
-html[data-view="read"] .topbar{max-width:var(--rd-w);margin-inline:auto;padding-block:14px 10px;align-items:center}
-html[data-view="read"] .topbar .sub{font-size:14px;color:color-mix(in srgb,var(--text) 78%,var(--surface));white-space:normal;display:block}
+
+/* the title page: two small controls, then the book's title and the date of this edition */
+html[data-view="read"] .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 8px;max-width:var(--rd-measure);margin-inline:auto;padding-block:4px 0;position:relative}
+html[data-view="read"] .topbar > div:first-child{grid-column:1 / -1;grid-row:2;text-align:center;padding-top:clamp(20px,5vh,44px)}
+html[data-view="read"] .topbar h1{font-family:var(--rd-font);font-weight:600;font-size:1.9em;line-height:1.6;letter-spacing:0}
+html[data-view="read"] .topbar .sub{display:block;overflow:visible;white-space:normal;margin:.1em 0 0;font-size:.84em;line-height:1.7;color:var(--rd-ink-2)}
 html[data-view="read"] #counts,html[data-view="read"] #live-flag{display:none}
+html[data-view="read"] .live{display:inline}
 html[data-view="read"] .live::before{display:none}
-:root{--rd-w:37rem}
-.reader{max-width:var(--rd-w);margin-inline:auto;padding-bottom:calc(32px + env(safe-area-inset-bottom,0px));font-size:17px;line-height:1.8;
-  --rd-2:color-mix(in srgb,var(--text) 80%,var(--surface));--rd-link:color-mix(in srgb,var(--accent) 62%,var(--text));--rd-line:var(--border)}
-@media (min-width:700px){ .reader{font-size:18px} }
-.reader p{margin:0 0 12px}
-.reader ul{margin:0;padding:0;list-style:none}
-.reader a{color:var(--rd-link);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-.reader a:focus-visible,.reader summary:focus-visible,.reader button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-.rd-toc{display:flex;flex-wrap:wrap;gap:0 12px;padding-block:2px 10px}
-.rd-toc a{display:inline-flex;align-items:center;min-height:44px;font-size:16px}
-@media (max-width:520px){ .rd-toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px} }
-.rd-banner{margin:4px 0 14px;padding:12px 14px;border:2px solid var(--warn);border-radius:10px;color:var(--text);font-weight:500}
+html[data-view="read"] .badge-sample{grid-column:1 / -1;grid-row:3;justify-self:center;background:none;border:0;padding:0;font-size:.84em;line-height:1.7;font-weight:600;letter-spacing:0;color:var(--rd-warn)}
+html[data-view="read"] .view-switch{grid-column:1;grid-row:1;justify-self:start;border:0;border-radius:0;background:none;padding:0;gap:0;margin-left:-10px}
+html[data-view="read"] .view-switch button{min-height:44px;padding:0 10px;border-radius:0;background:none;color:var(--rd-ink-2);font-family:var(--rd-font);font-size:.9375rem;font-weight:400;line-height:1.7}
+html[data-view="read"] .view-switch button[aria-pressed="true"]{background:none;color:var(--rd-ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.3em}
+html[data-view="read"] .view-switch button:focus-visible,.rd-aa summary:focus-visible,.rd-aa button:focus-visible{outline:2px solid var(--rd-ink);outline-offset:-2px}
+
+/* page colour and type size: one small "Aa", nothing else stays on screen while reading */
+.rd-aa{grid-column:2;grid-row:1;justify-self:end}
+.rd-aa > summary{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-right:-10px;cursor:pointer;list-style:none;color:var(--rd-ink-2);font-size:1.0625rem;line-height:1.5;-webkit-user-select:none;user-select:none}
+.rd-aa > summary .a-s{font-size:.78em}
+.rd-aa > summary::-webkit-details-marker{display:none}
+.rd-aa[open] > summary{color:var(--rd-ink)}
+.rd-aa-panel{position:absolute;z-index:5;top:46px;right:0;width:min(19.5rem,100%);padding:12px 14px 14px;background:var(--rd-paper);border:1px solid var(--rd-rule);font-size:.9375rem;line-height:1.7}
+.rd-aa-panel p{margin:0;color:var(--rd-ink-2)}
+.rd-aa-row{display:flex;gap:6px;margin:2px 0 10px}
+.rd-aa-row:last-child{margin-bottom:0}
+.rd-aa button{flex:1 1 0;min-width:44px;min-height:44px;padding:0 6px;border:1px solid var(--rd-rule);border-radius:2px;background:none;color:var(--rd-ink);font-family:var(--rd-font);font-size:.9375rem;line-height:1.5;cursor:pointer}
+.rd-aa button[aria-pressed="true"]{border:2px solid var(--rd-ink);font-weight:600}
+.rd-aa button:disabled{color:var(--rd-ink-2);border-style:dashed;cursor:default}
+.rd-aa button.sw-paper{background:#fbf7ee;color:#322c26}
+.rd-aa button.sw-sepia{background:#f3e9d4;color:#3a2f24}
+.rd-aa button.sw-night{background:#1d1a17;color:#d6cdbe}
+.rd-aa .rd-size-now{flex:0 0 auto;align-self:center;min-width:5.5em;text-align:center;color:var(--rd-ink-2)}
+.rd-aa .a-small{font-size:.875rem}
+.rd-aa .a-large{font-size:1.25rem}
+
+/* one column */
+.reader{max-width:var(--rd-measure);margin-inline:auto;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+.reader p{margin:0 0 .85em}
+.reader ul,.reader ol{margin:0;padding:0;list-style:none}
+.reader h2,.reader h3,.reader h4{font-family:var(--rd-font);font-weight:600;letter-spacing:0}
+.reader a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+.reader a:focus-visible,.reader summary:focus-visible,.reader button:focus-visible{outline:2px solid var(--rd-ink);outline-offset:2px}
+
+/* contents: a short run of words under the title */
+.rd-toc{display:flex;flex-wrap:wrap;justify-content:center;column-gap:.9em;margin:.7em 0 0;font-size:.875em;line-height:1.7;color:var(--rd-ink-2)}
+.rd-toc li{display:inline-flex}
+.rd-toc a{display:inline-flex;align-items:center;gap:.35em;min-height:44px;text-decoration:none}
+.rd-toc a span:last-child{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
+.rd-banner{margin:1.4em 0 0;padding:.7em 0;border-block:1px solid var(--rd-warn);color:var(--rd-ink);font-size:.94em;line-height:1.75}
 .rd-banner[hidden]{display:none}
-.rd-sec{padding-block:26px 12px;border-top:1px solid var(--rd-line)}
-.rd-sec > h2{margin:0 0 4px;font-family:var(--font-head);font-weight:600;font-size:25px;line-height:1.45}
-.rd-sec h3{margin:26px 0 6px;font-family:var(--font-head);font-weight:600;font-size:20px;line-height:1.5}
-.rd-fresh{color:var(--rd-2);font-size:15.5px;line-height:1.65;margin-bottom:14px !important}
-.rd-note{font-size:16px;line-height:1.7;color:var(--rd-2)}
-.rd-note.warn{padding:10px 12px;border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface));color:var(--text);border-radius:0 8px 8px 0}
-.rd-note.warn b{font-weight:600}
-.rd-note a{display:inline-block;padding-block:10px;margin-block:-10px}
-.rd-lead{font-family:var(--font-head);font-weight:600;font-size:21px;line-height:1.65;margin-bottom:6px !important}
-.rd-callout{margin:22px 0 10px;padding:12px 14px;border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface));border-radius:0 8px 8px 0}
-.rd-callout .k{display:block;font-family:var(--font-head);font-weight:600;font-size:17px;line-height:1.6;margin-bottom:2px}
-.rd-bullets{display:grid;gap:12px}
-.rd-bullets li{padding-left:1em;position:relative}
-.rd-bullets li::before{content:"•";position:absolute;left:0}
-/* a line of small facts; a link inside keeps a 44px tap height without pushing the lines apart */
-.rd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;color:var(--rd-2);font-size:15.5px;line-height:1.65}
-.rd-meta a{display:inline-flex;align-items:center;min-height:44px;margin-block:-9px;overflow-wrap:anywhere}
-.rd-rows > li.rd-price{padding-block:9px}
-.rd-rows > li{padding-block:12px;border-top:1px solid var(--rd-line)}
-.rd-rows > li:first-child{border-top:0;padding-top:4px}
-.rd-title{margin:0 0 2px;font-weight:500;line-height:1.7}
-/* prices */
-.rd-price .top{display:flex;justify-content:space-between;align-items:baseline;gap:4px 14px;flex-wrap:wrap}
-.rd-price .nm{font-weight:500;line-height:1.6;min-width:0;flex:1 1 11em}
-.rd-price .val{font-family:var(--font-head);font-weight:600;font-size:1.15em;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.6}
-.rd-price .val .u{font-family:var(--font-body);font-weight:400;font-size:15px;margin-left:5px;color:var(--rd-2)}
-.rd-price .line2{gap:0 10px;color:var(--text)}
-.rd-price .line2 > span:not(.chg){color:var(--rd-2)}
-.rd-price .chg{font-size:15.5px;line-height:1.65}
-.rd-price div.chg{font-size:16px}
-.rd-price .chg.warn{font-weight:600}
-/* conflicts and disasters */
-.rd-conf h3,.rd-dz h3{margin:0 0 2px;font-size:19.5px}
-.rd-level{margin:0 0 6px !important;font-size:16px;line-height:1.65;color:var(--rd-2)}
-.rd-level b{font-family:var(--font-head);font-weight:600;color:var(--text)}
-.rd-sev{margin:0 0 4px !important;line-height:1.7}
-.rd-conf > p{margin-bottom:2px}
-.rd-conf{border-left:5px solid var(--rd-sev,var(--border));padding-left:12px}
-.rd-rows > li.rd-conf{border-top:0;margin-top:14px;padding-block:2px 4px}
-.rd-rows > li.rd-conf:first-child{margin-top:4px;padding-top:2px}
-/* collapsed blocks */
-details.rd-more{margin-top:6px}
-details.rd-more > summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding-block:8px;cursor:pointer;list-style:none;color:var(--rd-link);font-weight:500;line-height:1.55}
+
+/* chapters */
+.rd-sec{padding-top:clamp(52px,9vh,84px)}
+.rd-sec[hidden]{display:none}
+.rd-sec:first-of-type{padding-top:clamp(36px,6vh,60px)}
+.rd-ch{text-align:center;margin:0 0 1.5em}
+.rd-ch-no{margin:0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-sec .rd-ch h2{margin:0;font-size:1.5em;line-height:1.55;text-wrap:balance}
+.rd-fresh{margin:.35em 0 0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-sec h3{margin:2.1em 0 .35em;font-size:1.14em;line-height:1.65;text-wrap:pretty}
+.rd-sec h3 + .rd-fresh{margin:-.2em 0 .8em !important;text-align:start}
+.rd-lead{font-size:1.1em;line-height:1.8}
+.reader p,.rd-prose li,.rd-title{text-wrap:pretty}
+.rd-prose li{margin:0 0 .85em}
+.rd-note{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-note a{display:inline-block;padding-block:11px;margin-block:-11px}
+/* a warning stays body size and says what it is; no box, because the words are the message */
+.rd-note.warn{font-size:.94em;color:var(--rd-ink)}
+.rd-note.warn b{font-weight:600;color:var(--rd-warn)}
+.rd-rows > li{margin:0 0 1.15em}
+.rd-title{margin:0 !important}
+.rd-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .9em;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-meta a{display:inline-flex;align-items:center;min-height:44px;margin-block:-10px;align-self:center;overflow-wrap:anywhere}
+
+/* items that read like short sections */
+.rd-conf,.rd-dz,.rd-choke{margin:0 0 1.9em !important}
+.rd-conf h3,.rd-dz h3,.rd-choke h3,.rd-choke h4{margin:0 0 .15em;font-size:1.14em;line-height:1.65}
+.rd-level{margin:0 0 .45em !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-level b{font-weight:600;color:var(--rd-ink)}
+.rd-sev{margin:0 0 .15em !important}
+.rd-conf > p:not(.rd-level){margin-bottom:0}
+
+/* "read on": a few quiet words under the paragraph, one level deep */
+details.rd-more > summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;list-style:none;font-size:.9em;line-height:1.7;color:var(--rd-ink-2)}
+details.rd-more > summary > span{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
 details.rd-more > summary::-webkit-details-marker{display:none}
-details.rd-more > summary::after{content:"+";flex:0 0 auto;font-family:var(--font-head);font-size:24px;line-height:1}
-details.rd-more[open] > summary::after{content:"−"}
-details.rd-more > .rd-more-b{padding-block:4px 10px}
-details.rd-group{border:1px solid var(--border-strong);border-radius:10px;padding-inline:14px;margin-top:10px}
-details.rd-group > summary{color:var(--text);font-family:var(--font-head);font-weight:600;font-size:18px}
-details.rd-item{margin-top:0}
-details.rd-item > summary{color:var(--text);font-weight:400}
-details.rd-item > summary .nm{display:block;font-weight:600}
-details.rd-item > summary .nm b{font-family:var(--font-head);font-weight:600}
-details.rd-item > summary .st{display:block;font-size:15.5px;color:var(--rd-2);line-height:1.65}
-.rd-kv{margin:8px 0 12px}
-.rd-kv dt{font-weight:600;font-size:16px;line-height:1.6}
-.rd-kv dd{margin:0 0 8px}
-.rd-srcs{display:flex;flex-wrap:wrap;gap:0 14px;font-size:15.5px;margin-top:2px}
+details.rd-more .when-open{display:none}
+details.rd-more[open] > summary .when-open{display:inline}
+details.rd-more[open] > summary .when-shut{display:none}
+details.rd-more > .rd-more-b{padding-block:.1em .4em}
+details.rd-group{margin-top:-.4em}
+details.rd-group > .rd-more-b{padding-top:1.1em}
+.rd-kv{margin:.9em 0}
+.rd-kv dt{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-kv dd{margin:0 0 .5em}
+.rd-srcs-k{margin:.7em 0 0 !important;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-srcs{display:flex;flex-wrap:wrap;gap:0 .9em;font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
 .rd-srcs a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
-.rd-srcs-k{font-weight:600;font-size:16px;margin:8px 0 0 !important}
-/* gold */
-.rd-gold .val{font-size:1.3em}
-.rd-foot{padding-top:14px;border-top:1px solid var(--rd-line);display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+
+/* figures: a small table in a book, thin rules top and bottom, the digits lined up */
+.rd-table{width:100%;border-collapse:collapse;border-block:1px solid var(--rd-rule);margin:0 0 1em;font-variant-numeric:lining-nums tabular-nums}
+.rd-table th,.rd-table td{padding:0;text-align:start;font-weight:400;vertical-align:baseline}
+.rd-table caption{caption-side:top;text-align:start;font-size:.84em;line-height:1.75;color:var(--rd-ink-2);padding-bottom:.35em}
+.rd-price > tr:first-child > *{padding-top:.5em}
+.rd-price > tr:last-child > *{padding-bottom:.55em}
+.rd-table .nm{padding-right:.8em;line-height:1.6}
+.rd-table .val{text-align:right;white-space:nowrap;line-height:1.6}
+.rd-table .u{padding-left:.45em;width:1%;white-space:nowrap;font-size:.8em;line-height:1.6;color:var(--rd-ink-2)}
+.rd-table .line2 td{font-size:.84em;line-height:1.75;color:var(--rd-ink-2)}
+.rd-table .line2 td > span,.rd-table .line2 td > a{margin-right:.9em}
+.rd-table .line2 a{display:inline-block;padding-block:11px;margin-block:-11px}
+.rd-table .chg.warn{font-weight:600;color:var(--rd-ink)}
+.rd-table .sub-row th,.rd-table .sub-row td{font-size:.92em}
+.rd-econ th,.rd-econ td{padding-block:.3em;line-height:1.6}
+.rd-econ thead th{font-size:.76em;line-height:1.6;color:var(--rd-ink-2);text-align:right;vertical-align:bottom;padding-left:.5em;padding-block:.5em .35em}
+.rd-econ thead{border-bottom:1px solid var(--rd-rule)}
+.rd-econ thead tr:first-child th:first-child{text-align:start;padding-left:0}
+.rd-econ thead th.span{text-align:center;border-bottom:1px solid var(--rd-rule);padding-block:.5em .1em}
+.rd-econ thead tr:nth-child(2) th{padding-top:.15em}
+.rd-econ tbody th{padding-right:.4em;font-size:.92em;line-height:1.6}
+.rd-econ tbody th small{display:block;font-size:.84em;line-height:1.65;color:var(--rd-ink-2)}
+.rd-econ tbody td{text-align:right;white-space:nowrap;padding-left:.5em;font-size:.86em}
+/* large type on a phone: each country becomes a short paragraph, the column names move next to the figures */
+@media (max-width:480px){
+  html[data-rd-size="4"] .rd-econ thead,html[data-rd-size="5"] .rd-econ thead,html[data-rd-size="6"] .rd-econ thead{display:none}
+  html[data-rd-size="4"] .rd-econ tr,html[data-rd-size="5"] .rd-econ tr,html[data-rd-size="6"] .rd-econ tr{display:block;padding-block:.45em}
+  html[data-rd-size="4"] .rd-econ tbody,html[data-rd-size="5"] .rd-econ tbody,html[data-rd-size="6"] .rd-econ tbody,
+  html[data-rd-size="4"] .rd-econ tbody th,html[data-rd-size="5"] .rd-econ tbody th,html[data-rd-size="6"] .rd-econ tbody th{display:block;padding:0}
+  html[data-rd-size="4"] .rd-econ tbody td,html[data-rd-size="5"] .rd-econ tbody td,html[data-rd-size="6"] .rd-econ tbody td{display:inline-block;padding:0 .7em 0 0;white-space:nowrap;font-size:.84em;line-height:1.75}
+  html[data-rd-size="4"] .rd-econ tbody td::before,html[data-rd-size="5"] .rd-econ tbody td::before,html[data-rd-size="6"] .rd-econ tbody td::before{content:attr(data-l) " ";color:var(--rd-ink-2)}
+}
+
+/* the end of the book */
+.rd-foot{margin-top:clamp(48px,8vh,72px);padding-top:1.2em;border-top:1px solid var(--rd-rule);display:flex;flex-wrap:wrap;gap:0 1.4em;align-items:center;justify-content:center;font-size:.9em;line-height:1.7;color:var(--rd-ink-2)}
 .rd-foot a{display:inline-flex;align-items:center;min-height:44px}
-.rd-go{min-height:48px;padding:0 16px;border:1px solid var(--border-strong);border-radius:10px;background:none;color:var(--text);cursor:pointer;font-family:var(--font-head);font-weight:500;font-size:16px}
+.rd-go{min-height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer;font-family:var(--rd-font);font-size:1em;line-height:1.7;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rd-line);text-underline-offset:.28em}
 </style>
 </head>
 <body>
@@ -493,11 +579,35 @@ details.rd-item > summary .st{display:block;font-size:15.5px;color:var(--rd-2);l
       <button type="button" id="vw-read" aria-pressed="false">อ่านง่าย</button>
       <button type="button" id="vw-map" aria-pressed="false">ลูกโลก</button>
     </div>
+    <details class="rd-aa" id="rd-aa">
+      <summary aria-label="ปรับสีหน้ากระดาษและขนาดตัวอักษร"><span aria-hidden="true"><span class="a-s">ก</span>ก</span></summary>
+      <div class="rd-aa-panel">
+        <p id="rd-aa-theme">สีหน้ากระดาษ</p>
+        <div class="rd-aa-row" role="group" aria-labelledby="rd-aa-theme">
+          <button type="button" class="sw-paper" data-rd-theme-set="paper" aria-pressed="false">กระดาษ</button>
+          <button type="button" class="sw-sepia" data-rd-theme-set="sepia" aria-pressed="false">ซีเปีย</button>
+          <button type="button" class="sw-night" data-rd-theme-set="night" aria-pressed="false">กลางคืน</button>
+        </div>
+        <p id="rd-aa-size">ขนาดตัวอักษร</p>
+        <div class="rd-aa-row" role="group" aria-labelledby="rd-aa-size">
+          <button type="button" class="a-small" id="rd-size-down" aria-label="ลดขนาดตัวอักษร">ก−</button>
+          <span class="rd-size-now" id="rd-size-now" aria-live="polite">ขนาด 3 จาก 6</span>
+          <button type="button" class="a-large" id="rd-size-up" aria-label="เพิ่มขนาดตัวอักษร">ก+</button>
+        </div>
+      </div>
+    </details>
   </header>
 
-  <div class="reader" id="reader" aria-label="โหมดอ่านง่าย">
-    <nav class="rd-toc" aria-label="ไปยังหัวข้อ">
-      <a href="#r-latest">ล่าสุด</a><a href="#r-prices">ราคา</a><a href="#r-conflicts">ความขัดแย้ง</a><a href="#r-disasters">ภัยพิบัติ</a><a href="#r-economy">เศรษฐกิจ</a><a href="#r-gold">ทองคำ</a>
+  <div class="reader" id="reader" role="main" aria-label="โหมดอ่านง่าย">
+    <nav aria-label="สารบัญ">
+      <ol class="rd-toc">
+        <li><a href="#r-latest"><span aria-hidden="true">๑</span><span>ล่าสุด</span></a></li>
+        <li><a href="#r-prices"><span aria-hidden="true">๒</span><span>ราคา</span></a></li>
+        <li><a href="#r-conflicts"><span aria-hidden="true">๓</span><span>ความขัดแย้ง</span></a></li>
+        <li><a href="#r-disasters"><span aria-hidden="true">๔</span><span>ภัยพิบัติ</span></a></li>
+        <li><a href="#r-economy"><span aria-hidden="true">๕</span><span>เศรษฐกิจ</span></a></li>
+        <li><a href="#r-gold"><span aria-hidden="true">๖</span><span>ทองคำ</span></a></li>
+      </ol>
     </nav>
     <p class="rd-banner" id="r-banner" role="status" hidden></p>
     <section class="rd-sec" id="r-latest"></section>
@@ -2001,20 +2111,25 @@ function renderDisasters(){
   if(globe && globe.setDisasters) globe.setDisasters(disasters);
 }
 
-/* ================= reading view (one calm page, same data and same failure rules as the map view) ================= */
+/* ================= reading view (a book page; same data and same failure rules as the map view) ================= */
 /* words for the 1-5 severity of world-data.json; the number stays next to them */
 var RD_SEVERITY = {5:'รุนแรงที่สุด', 4:'รุนแรงมาก', 3:'รุนแรงปานกลาง', 2:'รุนแรงน้อย', 1:'รุนแรงน้อยมาก'};
 var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data every day */
 var RD_NEWS_TOP = 5;
-var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are open on the page */
+var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are on the page, the rest behind one quiet line */
 var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
+var RD_CHAPTER_NO = {'r-latest':'๑', 'r-prices':'๒', 'r-conflicts':'๓', 'r-disasters':'๔', 'r-economy':'๕', 'r-gold':'๖'};
 var rdOpen = {}, rdSig = null, rdDirty = true;
 function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
 function rdNote(n){ return n && n.text ? h('p', {class:'rd-note' + (n.warn ? ' warn' : ''), 'data-warn':n.warn ? '1' : null}, [n.warn ? h('b', {text:'ข้อควรระวัง: '}) : null, n.text]) : null; }
 function rdAge(iso){ return iso ? h('p', {class:'rd-fresh'}, [h('span', {'data-age':String(iso), text:ageText(iso)})]) : null; }
 function rdRel(iso, prefix){ return parseTs(iso)==null ? null : h('span', null, [(prefix || '') + bkkDateTime(iso) + ' (', h('span', {'data-rel':String(iso), text:relTh(iso)}), ')']); }
-function rdMore(key, label, cls, body){
-  var d = h('details', {class:'rd-more' + (cls ? ' ' + cls : ''), 'data-rd':key}, [h('summary', null, typeof label === 'string' ? [h('span', {text:label})] : [label]), h('div', {class:'rd-more-b'}, body)]);
+/* shut: a few words under the paragraph. open: the same place says "ย่อ". One level deep, except the group around the lesser conflicts. */
+function rdMore(key, shut, cls, body, opened){
+  var d = h('details', {class:'rd-more' + (cls ? ' ' + cls : ''), 'data-rd':key}, [
+    h('summary', null, [h('span', {class:'when-shut', text:shut}), h('span', {class:'when-open', text:opened || 'ย่อ'})]),
+    h('div', {class:'rd-more-b'}, body)
+  ]);
   if(rdOpen[key]) d.open = true;
   return d;
 }
@@ -2023,7 +2138,7 @@ function rdSources(urls){
   if(!urls.length) return null;
   return h('div', null, [h('p', {class:'rd-srcs-k', text:'แหล่งที่มา'}), h('div', {class:'rd-srcs'}, urls.map(function(u){ return rdA(u); }))]);
 }
-function rdBullets(items){ return h('ul', {class:'rd-bullets'}, (items||[]).map(function(p){ return h('li', {text:String(p)}); })); }
+function rdProse(items, place){ return h('ul', {class:'rd-prose'}, (items||[]).map(function(p, i){ return h('li', {'data-rd-place':place + '-' + i, text:String(p)}); })); }
 function rdKv(pairs){
   var dl = h('dl', {class:'rd-kv'});
   pairs.forEach(function(p){ if(p[1]==null || p[1]==='') return; dl.appendChild(h('dt', {text:p[0]})); dl.appendChild(h('dd', {text:String(p[1])})); });
@@ -2035,7 +2150,6 @@ function rdGroupedNum(v){
   var d = m[1] ? m[1].length-1 : 0;
   return Number(s).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
 }
-function rdGlyph(tr){ return tr==='up' ? '▲ ' : tr==='down' ? '▼ ' : ''; }
 
 /* --- how fresh each part really is --- */
 function rdBasisAge(){
@@ -2082,8 +2196,13 @@ function rdNotes(){
   return {vm:vm, basis:rdBasisNote(), price:rdPriceNote(), news:rdNewsNote(), dz:rdDzNote(), gold:rdGoldNote(vm)};
 }
 
-/* --- sections --- */
-function rdSection(id, title){ var s = $(id); s.innerHTML = ''; s.appendChild(h('h2', {text:title})); return s; }
+/* --- chapters --- */
+function rdSection(id, title){
+  var s = $(id); s.innerHTML = '';
+  s.appendChild(h('div', {class:'rd-ch'}, [h('p', {class:'rd-ch-no', text:'บทที่ ' + RD_CHAPTER_NO[id]}), h('h2', {text:title})]));
+  return s;
+}
+function rdHead(s, node){ if(node) s.querySelector('.rd-ch').appendChild(node); }
 function rdNewsRow(it){
   return h('li', {'data-id':String(it.id || '')}, [
     h('p', {class:'rd-title', text:String(it.title_th)}),
@@ -2096,7 +2215,7 @@ function rdNewsRow(it){
 function rdLatest(N){
   var s = rdSection('r-latest', 'สถานการณ์ล่าสุด'), an = DATA.analysis_th || {}, items = newsItems();
   if(an.headline){
-    s.appendChild(rdBasisLine());
+    rdHead(s, rdBasisLine());
     s.appendChild(h('p', {class:'rd-lead', text:an.headline}));
     if(N.basis) s.appendChild(rdNote(N.basis));
   }
@@ -2105,11 +2224,11 @@ function rdLatest(N){
   if(N.news) s.appendChild(rdNote(N.news));
   if(items.length){
     s.appendChild(h('ul', {class:'rd-rows', id:'r-news'}, items.slice(0, RD_NEWS_TOP).map(rdNewsRow)));
-    if(items.length > RD_NEWS_TOP) s.appendChild(rdMore('news-all', 'ข่าวอื่นอีก ' + (items.length - RD_NEWS_TOP) + ' ข่าว', '', [h('ul', {class:'rd-rows'}, items.slice(RD_NEWS_TOP).map(rdNewsRow))]));
+    if(items.length > RD_NEWS_TOP) s.appendChild(rdMore('news-all', 'อ่านข่าวอื่นอีก ' + (items.length - RD_NEWS_TOP) + ' ข่าว', '', [h('ul', {class:'rd-rows'}, items.slice(RD_NEWS_TOP).map(rdNewsRow))]));
   }
-  if(an.thailand) s.appendChild(h('div', {class:'rd-callout'}, [h('span', {class:'k', text:'มุมมองต่อไทย'}), h('span', {text:an.thailand})]));
-  if(an.points && an.points.length) s.appendChild(rdMore('analysis', 'อ่านบทวิเคราะห์ทั้งหมด', '', [rdBullets(an.points)]));
-  if(an.risks && an.risks.length) s.appendChild(rdMore('risks', 'ความเสี่ยงที่ต้องจับตา', '', [rdBullets(an.risks)]));
+  if(an.thailand) s.appendChild(h('div', {class:'rd-callout'}, [h('h3', {text:'มุมมองต่อไทย'}), h('p', {text:an.thailand})]));
+  if(an.points && an.points.length){ s.appendChild(h('h3', {text:'บทวิเคราะห์'})); s.appendChild(rdProse(an.points, 'analysis')); }
+  if(an.risks && an.risks.length){ s.appendChild(h('h3', {text:'ความเสี่ยงที่ต้องจับตา'})); s.appendChild(rdProse(an.risks, 'risk')); }
 }
 /* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo, goldtraders.or.th -> goldtraders */
 function rdHost(url){
@@ -2136,23 +2255,24 @@ function rdPriceName(it){
 function rdPriceChange(it){
   var s = it.change_th ? String(it.change_th) : '', t = parseTs(it.as_of);
   if(it.key!=='gold_th' || t==null) return s;
-  var m = /^ประกาศครั้งที่\s*\S+\s*เวลา\s*(\d{1,2}:\d{2}\s*น\.).*?·\s*(.+)$/.exec(s);
+  var m = /^ประกาศ(?:\s+\d{1,2}\s+\S+)?\s*ครั้งที่\s*\S+\s*เวลา\s*(\d{1,2}:\d{2}\s*น\.).*?·\s*(.+)$/.exec(s);
   if(!m) return s;
   return (bkkDay(t)===bkkDay(Date.now()) ? 'ประกาศ ' + m[1] : rdShortTime(t)) + ' · ' + m[2];
 }
+/* one figure as table rows: name, number, unit, then a small line with its change, its time when that adds something, and its source */
 function rdPriceRow(o){
-  return h('li', {class:'rd-price', 'data-key':o.key || null}, [
-    h('div', {class:'top'}, [h('span', {class:'nm', text:o.name}), h('span', {class:'val'}, [o.value, o.unit ? h('span', {class:'u', text:o.unit}) : null])]),
-    h('div', {class:'rd-meta line2'}, [
-      o.change ? h('span', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [rdGlyph(o.trend), o.change]) : null,
-      o.when,
-      o.source ? rdA(o.source, rdHost(o.source)) : null
-    ])
-  ]);
+  var small = [
+    o.change ? h('span', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [o.change]) : null,
+    o.when || null,
+    o.source ? rdA(o.source, o.sourceLabel || rdHost(o.source)) : null
+  ].filter(Boolean);
+  return h('tbody', {class:'rd-price', id:o.id || null, 'data-key':o.key || null}, [
+    h('tr', null, [h('th', {class:'nm', scope:'row', text:o.name}), h('td', {class:'val', text:o.value}), h('td', {class:'u', text:o.unit || ''})])
+  ].concat(o.more || []).concat(small.length ? [h('tr', {class:'line2'}, [h('td', {colspan:'3'}, small)])] : []));
 }
 function rdPrices(N){
   var s = rdSection('r-prices', 'ราคาสำคัญ'), m = live.market, items = (m && Array.isArray(m.items)) ? m.items : [];
-  if(!live.offline && m) s.appendChild(rdAge(m.updated_at));
+  if(!live.offline && m) rdHead(s, rdAge(m.updated_at));
   if(N.price) s.appendChild(rdNote(N.price));
   var rows = [];
   if(!live.offline){
@@ -2160,44 +2280,44 @@ function rdPrices(N){
     items.forEach(function(it){ var t = it && parseTs(it.as_of); if(t && t > latest) latest = t; });
     items.forEach(function(it, i){
       if(!it || typeof it !== 'object' || it.value==null) return;
-      rows.push(rdPriceRow({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:rdPriceChange(it), trend:it.trend, when:rdItemTime(it, latest), source:it.source}));
+      rows.push(rdPriceRow({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:rdPriceChange(it), when:rdItemTime(it, latest), source:it.source}));
     });
   }
   if(live.offline){
     /* no live file at all: the embedded values that have a live counterpart, each with its own date */
     (DATA.indicators||[]).forEach(function(ind){
       var map = LIVE_IND.filter(function(x){ return x && x.label === ind.label_th; })[0];
-      if(map) rows.push(rdPriceRow({key:'embedded-' + map.key, name:String(ind.label_th), value:String(ind.value), change:ind.delta_th ? String(ind.delta_th) : '', trend:ind.trend, when:ind.as_of ? h('span', {text:'ค่าล่าสุดที่ฝังในหน้าเว็บ ณ ' + thaiDate(ind.as_of)}) : null, source:ind.source}));
+      if(map) rows.push(rdPriceRow({key:'embedded-' + map.key, name:String(ind.label_th), value:String(ind.value), change:ind.delta_th ? String(ind.delta_th) : '', when:ind.as_of ? h('span', {text:'ค่าล่าสุดที่ฝังในหน้าเว็บ ณ ' + thaiDate(ind.as_of)}) : null, source:ind.source}));
     });
   }
-  if(rows.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-price-list'}, rows));
+  if(rows.length) s.appendChild(h('table', {class:'rd-table', id:'r-price-list'}, rows));
   if(!live.offline && m && m.note_th) s.appendChild(rdMore('price-note', 'หมายเหตุเรื่องแหล่งราคา', '', [h('p', {class:'rd-note', text:String(m.note_th)})]));
 }
 function rdConflicts(N){
   var s = rdSection('r-conflicts', 'ความขัดแย้ง');
-  s.appendChild(rdBasisLine());
-  s.appendChild(h('p', {class:'rd-note', text:'เรียงจากรุนแรงมากไปน้อย'}));
+  rdHead(s, rdBasisLine());
+  rdHead(s, h('p', {class:'rd-fresh', text:'เรียงจากรุนแรงมากไปน้อย'}));
   if(N.basis) s.appendChild(rdNote(N.basis));
   var all = newsItems();
   function card(c){
     var i = Math.max(1, Math.min(5, c.intensity|0)), key = 'conf-' + (c.id || c.name_th), news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
-    return h('li', {class:'rd-conf', style:'--rd-sev:' + intensityVar(i), 'data-intensity':String(i)}, [
+    return h('li', {class:'rd-conf', 'data-intensity':String(i)}, [
       h('h3', {text:String(c.name_th)}),
       h('p', {class:'rd-level'}, [h('b', {text:RD_SEVERITY[i]}), ' · ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]),
       c.status_th ? h('p', {text:String(c.status_th)}) : null,
-      rdMore(key, 'รายละเอียดและแหล่งที่มา', '', [
-        news.length ? h('div', null, [h('p', {class:'rd-srcs-k', text:'ข่าวล่าสุดของเรื่องนี้'}), h('ul', {class:'rd-rows'}, news.map(rdNewsRow))]) : null,
+      rdMore(key, 'อ่านต่อ', '', [
         c.summary_th ? h('p', {text:String(c.summary_th)}) : null,
         rdKv([['ผู้เสียชีวิต (ประมาณ)', c.deaths_est], ['ผู้พลัดถิ่น', c.displaced], ['ความน่าเชื่อถือของข้อมูล', CONF_TH[c.confidence]]]),
+        news.length ? h('div', null, [h('p', {class:'rd-srcs-k', text:'ข่าวล่าสุดของเรื่องนี้'}), h('ul', {class:'rd-rows'}, news.map(rdNewsRow))]) : null,
         rdSources(c.sources)
       ])
     ]);
   }
-  /* the most severe show first, the rest behind one button; conflicts is already sorted, so the order holds across both */
+  /* the most severe are on the page, the rest behind one line; conflicts is already sorted, so the order holds across both */
   var top = conflicts.filter(function(c){ return (c.intensity|0) >= RD_CONFLICT_TOP_LEVEL; }), rest = conflicts.filter(function(c){ return (c.intensity|0) < RD_CONFLICT_TOP_LEVEL; });
   if(!top.length){ top = rest; rest = []; }
   s.appendChild(h('ul', {class:'rd-rows', id:'r-conflict-list'}, top.map(card)));
-  if(rest.length) s.appendChild(rdMore('conf-rest', 'ดูอีก ' + rest.length + ' รายการ (ระดับ ' + (RD_CONFLICT_TOP_LEVEL-1) + ' ลงมา)', 'rd-group', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(card))]));
+  if(rest.length) s.appendChild(rdMore('conf-rest', 'อ่านอีก ' + rest.length + ' เรื่อง (ระดับ ' + (RD_CONFLICT_TOP_LEVEL-1) + ' ลงมา)', 'rd-group', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(card))], 'ย่อเรื่องที่เหลือ'));
 }
 /* the event's own dates from the data: one day with its age, or a start-end range */
 function rdDzDate(it){
@@ -2209,7 +2329,7 @@ function rdDzDate(it){
 }
 function rdDisasters(N){
   var s = rdSection('r-disasters', 'ภัยพิบัติล่าสุด'), doc = live.disasters;
-  if(doc) s.appendChild(rdAge(doc.updated));
+  if(doc) rdHead(s, rdAge(doc.updated));
   if(N.dz) s.appendChild(rdNote(N.dz));
   if(doc && !disasters.length) s.appendChild(h('p', {text:DZ_EMPTY_TH}));
   if(disasters.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-dz-list'}, disasters.map(function(it){
@@ -2223,24 +2343,39 @@ function rdDisasters(N){
   })));
   s.appendChild(dzSrcNote('rd-note'));
 }
+var RD_ECON_COLS = [['GDP 2026', 'gdp_growth_2026', true], ['GDP 2027 คาดการณ์', 'gdp_growth_2027', true], ['เงินเฟ้อ', 'inflation', false], ['ดอกเบี้ยนโยบาย', 'policy_rate', false]], RD_ECON_YEARS = ['2026', '2027 คาด'];   /* gdp_growth_ years */
 function rdEconomy(N){
   var s = rdSection('r-economy', 'เศรษฐกิจและช่องแคบ');
-  s.appendChild(rdBasisLine());
+  rdHead(s, rdBasisLine());
   if(N.basis) s.appendChild(rdNote(N.basis));
-  if(economies.length) s.appendChild(rdMore('econ', 'เศรษฐกิจรายประเทศ (' + economies.length + ')', 'rd-group', [h('ul', {class:'rd-rows', id:'r-econ-list'}, economies.map(function(e){
-    return h('li', null, [rdMore('econ-' + (e.iso || e.name_th), h('span', null, [
-      h('span', {class:'nm'}, [String(e.name_th) + ' · ', h('b', {text:HEALTH_TH[e.health] || '—'})]),
-      h('span', {class:'st', text:'GDP 2026 ' + pct(e.gdp_growth_2026) + ' · GDP 2027 (คาดการณ์) ' + pct(e.gdp_growth_2027) + ' · เงินเฟ้อ ' + num(e.inflation, '%') + ' · ดอกเบี้ยนโยบาย ' + num(e.policy_rate, '%')})
-    ]), 'rd-item', [e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)])]);
-  }))]));
-  if(chokepoints.length) s.appendChild(rdMore('choke', 'ช่องแคบและเส้นทางการค้า (' + chokepoints.length + ')', 'rd-group', [h('ul', {class:'rd-rows', id:'r-choke-list'}, chokepoints.map(function(c){
-    return h('li', null, [
-      h('p', {class:'rd-title'}, [h('b', {text:String(c.name_th)})]),
-      h('p', {class:'rd-level'}, [h('b', {text:LEVEL_TH[c.level] || '—'}), ' · ระดับ ' + (c.level || 1) + ' จาก 3']),
-      c.note_th ? h('p', {text:String(c.note_th)}) : null,
-      rdSources(c.sources)
-    ]);
-  }))]));
+  if(economies.length){
+    s.appendChild(h('h3', {text:'เศรษฐกิจรายประเทศ'}));
+    s.appendChild(h('table', {class:'rd-table rd-econ', id:'r-econ-list'}, [
+      h('thead', null, [
+        h('tr', null, [h('th', {scope:'col', rowspan:'2', text:'ประเทศ'}), h('th', {scope:'colgroup', colspan:'2', class:'span', text:'GDP'}), h('th', {scope:'col', rowspan:'2', text:'เงินเฟ้อ'}), h('th', {scope:'col', rowspan:'2', text:'ดอกเบี้ย'})]),
+        h('tr', null, RD_ECON_YEARS.map(function(y){ return h('th', {scope:'col', text:y}); }))
+      ]),
+      h('tbody', null, economies.map(function(e){
+        return h('tr', {'data-rd-place':'econ-' + (e.iso || e.name_th)}, [h('th', {scope:'row'}, [String(e.name_th), h('small', {text:HEALTH_TH[e.health] || '—'})])].concat(RD_ECON_COLS.map(function(c){
+          return h('td', {'data-l':c[0], text:c[2] ? pct(e[c[1]]) : num(e[c[1]], '%')});
+        })));
+      }))
+    ]));
+    s.appendChild(rdMore('econ-notes', 'อ่านหมายเหตุรายประเทศ ' + economies.length + ' ประเทศ', 'rd-group', [h('ul', {class:'rd-rows', id:'r-econ-notes'}, economies.map(function(e){
+      return h('li', {class:'rd-choke'}, [h('h4', {text:String(e.name_th)}), e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)]);
+    }))], 'ย่อหมายเหตุ'));
+  }
+  if(chokepoints.length){
+    s.appendChild(h('h3', {text:'ช่องแคบและเส้นทางการค้า'}));
+    s.appendChild(h('ul', {class:'rd-rows', id:'r-choke-list'}, chokepoints.map(function(c){
+      return h('li', {class:'rd-choke'}, [
+        h('h4', {text:String(c.name_th)}),
+        h('p', {class:'rd-level'}, [h('b', {text:LEVEL_TH[c.level] || '—'}), ' · ระดับ ' + (c.level || 1) + ' จาก 3']),
+        c.note_th ? h('p', {text:String(c.note_th)}) : null,
+        rdSources(c.sources)
+      ]);
+    })));
+  }
 }
 function rdGold(N){
   var s = rdSection('r-gold', 'ทองคำ'), vm = N.vm;
@@ -2248,20 +2383,15 @@ function rdGold(N){
   var g = GOLD, th = g.thai || {}, sl = rdGoldItem(goldState.live), tl = rdGoldItem(goldState.liveTh);
   if(N.gold) s.appendChild(rdNote(N.gold));
   var old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
+  var sub = function(name, v){ return h('tr', {class:'sub-row'}, [h('th', {class:'nm', scope:'row', text:name}), h('td', {class:'val', text:v}), h('td', {class:'u', text:'บาท'})]); };
   var rows = [];
-  if(tl || th.sell != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-th'}, [
-    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำแท่งไทย ขายออก'}), h('span', {class:'val'}, [tl ? rdGroupedNum(tl.value) : fmtN(th.sell), h('span', {class:'u', text:'บาท'})])]),
-    vm.buy && vm.buy.v != null ? h('div', {class:'chg', text:'รับซื้อ ' + fmtN(vm.buy.v) + ' บาท' + old(vm.buy)}) : null,
-    vm.orn && vm.orn.v != null ? h('div', {class:'chg', text:'ทองรูปพรรณ ขายออก ' + fmtN(vm.orn.v) + ' บาท' + old(vm.orn)}) : null,
-    tl && tl.change_th ? h('div', {class:'chg'}, [rdGlyph(tl.trend), String(tl.change_th)]) : null,
-    h('div', {class:'rd-meta'}, [tl ? rdRel(tl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(th.as_of)}), tl && tl.source ? rdA(tl.source) : (th.source_th ? h('span', {text:String(th.source_th)}) : null)])
-  ]));
-  if(sl || g.spot_now != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-spot'}, [
-    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำโลก (spot)'}), h('span', {class:'val'}, sl ? [rdGroupedNum(sl.value), sl.unit ? h('span', {class:'u', text:String(sl.unit)}) : null] : ['$' + fmtN(g.spot_now), h('span', {class:'u', text:'ต่อออนซ์'})])]),
-    sl && sl.change_th ? h('div', {class:'chg'}, [rdGlyph(sl.trend), String(sl.change_th)]) : null,
-    h('div', {class:'rd-meta'}, [sl ? rdRel(sl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(g.as_of)}), sl && sl.source ? rdA(sl.source) : null])
-  ]));
-  s.appendChild(h('ul', {class:'rd-rows'}, rows));
+  if(tl || th.sell != null) rows.push(rdPriceRow({id:'r-gold-th', name:'ทองคำแท่งไทย ขายออก', value:tl ? rdGroupedNum(tl.value) : fmtN(th.sell), unit:'บาท',
+    more:[vm.buy && vm.buy.v != null ? sub('รับซื้อ' + old(vm.buy), fmtN(vm.buy.v)) : null, vm.orn && vm.orn.v != null ? sub('ทองรูปพรรณ ขายออก' + old(vm.orn), fmtN(vm.orn.v)) : null].filter(Boolean),
+    change:tl && tl.change_th ? String(tl.change_th) : '', when:tl ? rdRel(tl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(th.as_of)}), source:tl && tl.source, sourceLabel:tl && tl.source ? domain(String(tl.source)) : null}));
+  if(sl || g.spot_now != null) rows.push(rdPriceRow({id:'r-gold-spot', name:'ทองคำโลก (spot)', value:sl ? rdGroupedNum(sl.value) : '$' + fmtN(g.spot_now), unit:sl ? (sl.unit ? String(sl.unit) : '') : 'ต่อออนซ์',
+    change:sl && sl.change_th ? String(sl.change_th) : '', when:sl ? rdRel(sl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(g.as_of)}), source:sl && sl.source, sourceLabel:sl && sl.source ? domain(String(sl.source)) : null}));
+  if(!tl && th.source_th && rows.length) rows[0].querySelector('.line2 td').appendChild(h('span', {text:String(th.source_th)}));
+  s.appendChild(h('table', {class:'rd-table'}, rows));
   if(g.disclaimer_th) s.appendChild(h('p', {class:'rd-note', text:String(g.disclaimer_th)}));
 }
 function rdBanner(N){
@@ -2270,6 +2400,38 @@ function rdBanner(N){
   [[N.news, 'ข่าว'], [N.price, 'ราคา'], [N.basis, 'ความขัดแย้งและเศรษฐกิจ'], [N.dz, 'ภัยพิบัติ'], [N.gold, 'ทองคำ']].forEach(function(p){ if(p[0] && p[0].warn) parts.push(p[1]); });
   b.hidden = !parts.length;
   b.textContent = parts.length ? 'ข้อมูลบางส่วนอาจไม่เป็นปัจจุบัน: ' + parts.join(' · ') + ' ดูข้อควรระวังในแต่ละหัวข้อ' : '';
+}
+
+/* --- page colour and type size (the same attributes the script in <head> sets before first paint) --- */
+var RD_THEMES = ['paper', 'sepia', 'night'], RD_SIZE_MAX = 6;
+var rdThemeChosen = false;
+try { rdThemeChosen = RD_THEMES.indexOf(localStorage.getItem('world-read-theme')) >= 0; } catch(e){}
+function rdRoot(){ return document.documentElement; }
+function rdSize(){ return +rdRoot().getAttribute('data-rd-size') || 3; }
+function rdPaintChrome(){
+  var metas = document.querySelectorAll('meta[name="theme-color"]'), paper = viewMode === 'read' ? getComputedStyle(rdRoot()).getPropertyValue('--rd-paper').trim() : '';
+  Array.prototype.forEach.call(metas, function(m){
+    if(!m.hasAttribute('data-map-color')) m.setAttribute('data-map-color', m.getAttribute('content'));
+    m.setAttribute('content', paper || m.getAttribute('data-map-color'));
+  });
+}
+function rdPaintControls(){
+  var t = rdRoot().getAttribute('data-rd-theme'), z = rdSize();
+  Array.prototype.forEach.call(document.querySelectorAll('[data-rd-theme-set]'), function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-rd-theme-set') === t)); });
+  $('rd-size-down').disabled = z <= 1;
+  $('rd-size-up').disabled = z >= RD_SIZE_MAX;
+  $('rd-size-now').textContent = 'ขนาด ' + z + ' จาก ' + RD_SIZE_MAX;
+}
+function rdSetTheme(t, chosen){
+  rdRoot().setAttribute('data-rd-theme', t);
+  if(chosen){ rdThemeChosen = true; try { localStorage.setItem('world-read-theme', t); } catch(e){} }
+  rdPaintChrome(); rdPaintControls();
+}
+function rdSetSize(z){
+  z = Math.max(1, Math.min(RD_SIZE_MAX, z));
+  rdRoot().setAttribute('data-rd-size', String(z));
+  try { localStorage.setItem('world-read-size', String(z)); } catch(e){}
+  rdPaintControls();
 }
 /* re-render only when the data or a warning changed; open sections stay open (rdOpen). Hidden while the map view is on. */
 function rdRefresh(force){
@@ -2281,9 +2443,18 @@ function rdRefresh(force){
   rdBanner(N); rdLatest(N); rdPrices(N); rdConflicts(N); rdDisasters(N); rdEconomy(N); rdGold(N);
 }
 (function initReader(){
-  var r = $('reader');
+  var r = $('reader'), aa = $('rd-aa');
   r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k) rdOpen[k] = ev.target.open; }, true);
   $('r-to-map').addEventListener('click', function(){ setView('map'); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-rd-theme-set]'), function(b){ b.addEventListener('click', function(){ rdSetTheme(b.getAttribute('data-rd-theme-set'), true); }); });
+  $('rd-size-down').addEventListener('click', function(){ rdSetSize(rdSize() - 1); });
+  $('rd-size-up').addEventListener('click', function(){ rdSetSize(rdSize() + 1); });
+  document.addEventListener('click', function(ev){ if(aa.open && !aa.contains(ev.target)) aa.open = false; });
+  document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape' && aa.open){ aa.open = false; aa.querySelector('summary').focus(); } });
+  /* until the reader picks a colour, a phone that turns dark at night takes the page with it */
+  var mq = window.matchMedia('(prefers-color-scheme: dark)'), onScheme = function(){ if(!rdThemeChosen) rdSetTheme(mq.matches ? 'night' : 'paper', false); };
+  if(mq.addEventListener) mq.addEventListener('change', onScheme);
+  rdPaintChrome(); rdPaintControls();
 })();
 
 /* ================= view switch ================= */
@@ -2296,6 +2467,7 @@ function setView(v){
   viewMode = v;
   document.documentElement.setAttribute('data-view', v);
   paintViewSwitch();
+  rdPaintChrome();
   try { localStorage.setItem('world-view', v); } catch(e){}
   /* the address always names the view on screen: it can be shared, and a reload keeps it */
   try {
