@@ -1,16 +1,32 @@
 {
- "updated_at": "2026-11-03T13:13:33Z",
+ "updated_at": "2026-11-04T01:13:07Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "ดัชนีดอลลาร์เด้งเล็กน้อยแต่ไม่ผ่าน 102 ตลาดจับตาเลือกตั้งกลางเทอม",
-   "time": "2026-11-03T12:14:00Z",
-   "source": "https://fxstreet.com/news/us-dollar-index-edges-up-within-range-with-midterm-elections-front-and-centre-202611031214",
-   "source_name": "FXStreet"
+   "title_th": "ผลเลือกตั้งกลางเทอมสหรัฐ: Ossoff ชนะที่จอร์เจีย เสียงข้างมากสภาล่างเอนไปทางเดโมแครต",
+   "time": "2026-11-04T00:30:00Z",
+   "source": "https://www.cnbc.com/2026/11/03/midterm-elections-2026-live-updates.html",
+   "source_name": "CNBC"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "วอลล์สตรีทปิดผสม หุ้นชิปดัน Nasdaq +0.8% ขณะ Dow ลบ รอผลเลือกตั้งกลางเทอม",
+   "time": "2026-11-03T21:30:00Z",
+   "source": "https://www.marketscreener.com/news/wall-street-closes-mixed-ahead-of-midterm-election-results-ce785fdedc8bf021",
+   "source_name": "MarketScreener"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีโครงสร้างพื้นฐานพลังงานยูเครนครั้งใหญ่สุดของปีนี้",
+   "time": "2026-11-03T12:30:00Z",
+   "source": "https://kyivindependent.com/ukraine-war-latest-russia-launches-biggest-mass-attack-on-ukraines-energy-infrastructure-this-year/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h4",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียยิงขีปนาวุธ-โดรนทั่วยูเครน ตายอย่างน้อย 29 ราย รวมโรงพยาบาลคาร์คิฟ เซเลนสกีขอแพทริออตเพิ่ม",
    "time": "2026-11-03T11:08:00Z",
@@ -18,7 +34,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "thailand",
    "title_th": "สมาคมค้าทองคำประกาศครั้งที่ 22 ทองแท่งขายออก 62,500 บาท ปิดตลาดสูงกว่าวันก่อน 100 บาท",
    "time": "2026-11-03T09:39:00Z",
@@ -26,28 +42,12 @@
    "source_name": "สยามนิวส์"
   },
   {
-   "id": "h4",
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "SET ปิด 1,491.01 จุด ลด 1.07% มูลค่าซื้อขาย 6.35 หมื่นล้านบาท รอผลเลือกตั้งกลางเทอมสหรัฐ",
    "time": "2026-11-03T09:30:00Z",
    "source": "https://www.infoquest.co.th/2026/673360",
    "source_name": "อินโฟเควสท์"
-  },
-  {
-   "id": "h5",
-   "conflict_id": "economy",
-   "title_th": "ทองคำทรงตัวใกล้ 3,900 ดอลลาร์ ตลาดประเมินความเสี่ยงตะวันออกกลางและเลือกตั้งสหรัฐ",
-   "time": "2026-11-03T09:00:00Z",
-   "source": "https://financefeeds.com/gold-price-today-3921-tuesday-midterm-election-day-jobs-report-6-november-bull-4075-bear-3830/",
-   "source_name": "FinanceFeeds"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สสหรัฐผสม Apple ร่วง ตลาดรอผลเลือกตั้งกลางเทอมและกำไรบิ๊กเทค",
-   "time": "2026-11-03T08:30:00Z",
-   "source": "https://www.investing.com/news/stock-market-news/us-stock-futures-mixed-as-apple-slides-midterms-loom-4994306",
-   "source_name": "Reuters/Investing.com"
   },
   {
    "id": "h7",
@@ -91,22 +91,6 @@
   },
   {
    "id": "h12",
-   "conflict_id": "economy",
-   "title_th": "ทองคำขยับใกล้ 3,950 ดอลลาร์ ตลาดรอผลเลือกตั้งกลางเทอมสหรัฐ",
-   "time": "2026-11-02T23:19:00Z",
-   "source": "https://www.fxstreet.com/news/gold-rises-to-near-3-950-as-traders-brace-for-us-midterm-election-202611022319",
-   "source_name": "FXStreet"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "economy",
-   "title_th": "Nasdaq 100 ปิด −1.39% เข้าสู่ภาวะปรับฐาน VIX พุ่งสูงสุดตั้งแต่ 10 มิ.ย. ก่อนเลือกตั้งกลางเทอม",
-   "time": "2026-11-02T21:00:00Z",
-   "source": "https://pro.thestreet.com/market-commentary/techs-monday-bounce-reverses-pushing-the-nasdaq-100-into-correction",
-   "source_name": "TheStreet"
-  },
-  {
-   "id": "h14",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านพร้อมเปิดฮอร์มุซภายใน 2 วัน หากสหรัฐยอมรับเงื่อนไข ย่นจาก 7 วันที่เสนอเมื่อเดือน ก.ย.",
    "time": "2026-11-02T11:30:00Z",
