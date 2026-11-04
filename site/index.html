@@ -1742,10 +1742,12 @@ function goldPaint(flashIt){
   /* Thai gold block */
   var kvb = $('gold-th-kv'); kvb.innerHTML = '';
   var old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
+  /* gold.json gives these three values without their own dates, so the label names the day of the week and the date of the record, never a fixed date */
+  var thWhen = ' (ข้อมูล ณ ' + GOLD_THAI_SHORT + ')';
   [kv('ทองแท่ง ขายออก', fmtN(vm.sell) + ' บาท'), kv('ทองแท่ง รับซื้อ', fmtN(vm.buy.v) + ' บาท' + old(vm.buy)),
-   kv('ทองรูปพรรณ ขายออก', fmtN(vm.orn.v) + ' บาท' + old(vm.orn)), kv('ปิดศุกร์ 30 ต.ค.', fmtN(th.friday_sell) + ' บาท'),
-   kv('ปรับเสาร์ 31 ต.ค.', signN(th.sat_change_baht, ' บาท')), kv('ปรับอาทิตย์ 1 พ.ย.', signN(th.sun_change_baht, ' บาท')),
-   kv('เปิดปี 2569', fmtN(th.year_open) + ' บาท'), kv('สถิติสูงสุด (' + (th.record_note_th||'') + ')', fmtN(th.record) + ' บาท'),
+   kv('ทองรูปพรรณ ขายออก', fmtN(vm.orn.v) + ' บาท' + old(vm.orn)), kv('ปิดวันศุกร์' + thWhen, fmtN(th.friday_sell) + ' บาท'),
+   kv('ปรับวันเสาร์' + thWhen, signN(th.sat_change_baht, ' บาท')), kv('ปรับวันอาทิตย์' + thWhen, signN(th.sun_change_baht, ' บาท')),
+   kv('เปิดปี ' + (new Date(Date.parse(g.as_of)).getUTCFullYear() + 543), fmtN(th.year_open) + ' บาท'), kv('สถิติสูงสุด (' + (th.record_note_th||'') + ')', fmtN(th.record) + ' บาท'),
    kv('ต่ำสุดของปี', fmtN(vm.thYearLow) + ' บาท'), kv('เปลี่ยนแปลงเดือน ต.ค. (รวมเสาร์)', signN(th.oct_change_baht, ' บาท')),
    kv('ตั้งแต่ต้นปี', signPct(vm.ytd)), kv('อัปเดต', thaiDateTime(vm.thAsOf) + ' · ' + (tl ? domain(String(tl.source||'')) : (th.source_th||'')))
   ].forEach(function(e){ kvb.appendChild(e); });
