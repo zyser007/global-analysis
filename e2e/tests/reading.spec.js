@@ -385,13 +385,16 @@ test.describe('layout and reading comfort', () => {
       test(`no horizontal overflow at ${w}px ${scheme}, closed and with everything open`, async ({ browser }) => {
         const { ctx, page } = await open(browser, w, 800, { colorScheme: scheme });
         await page.goto(URL.full + '?view=read'); await ready(page);
+        // compared with the fixed width: with isMobile, innerWidth grows along with content that is too wide
         const check = async (label) => {
-          await noHScroll(page, `${w}px ${label}`);
-          const wide = await page.evaluate(() => Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
+          const sw = await page.evaluate(() => [document.documentElement.scrollWidth, document.body.scrollWidth]);
+          expect(Math.max(...sw), `${w}px ${label}`).toBeLessThanOrEqual(w);
+          const wide = await page.evaluate((W) => Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
             const r = e.getBoundingClientRect();
-            return r.width > 0 && (r.right > innerWidth + 0.5 || r.left < -0.5);
-          }).map((e) => e.tagName + '.' + e.className).slice(0, 8));
+            return r.width > 0 && (r.right > W + 0.5 || r.left < -0.5);
+          }).map((e) => e.tagName + '.' + e.className).slice(0, 8), w);
           expect(wide, `${w}px ${label}`).toEqual([]);
+          expect(await page.evaluate(() => innerWidth), `${w}px ${label} layout not widened`).toBe(w);
         };
         await check('closed');
         await openAll(page);
@@ -404,7 +407,7 @@ test.describe('layout and reading comfort', () => {
   test('map view header still fits at 360px with the switch in it', async ({ browser }) => {
     const { ctx, page } = await open(browser, 360, 740);
     await page.goto(URL.full + '?view=map'); await ready(page);
-    await noHScroll(page, '360 map');
+    expect(await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth])).toEqual([360, 360]);
     const box = await page.locator('.view-switch').boundingBox();
     expect(box.x + box.width).toBeLessThanOrEqual(360);
     await ctx.close();

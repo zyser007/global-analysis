@@ -56,7 +56,7 @@ def test_reading_view_break_is_caught(tmp_path):
     p = site / "index.html"
     # a section with nothing to read and a line too wide, as bad data might cause; only the reading view shows them
     p.write_text(p.read_text(encoding="utf-8").replace(
-        "</body>", "<style>#r-gold *{visibility:hidden}.rd-go{width:900px}</style></body>"), encoding="utf-8")
+        "</body>", "<style>#r-gold *{visibility:hidden}#r-prices h2{width:900px}</style></body>"), encoding="utf-8")
     code, out = run_visual(site, tmp_path, only="reading-mobile")
     assert code == 1
     assert "empty or missing sections: r-gold" in out and "horizontal overflow" in out

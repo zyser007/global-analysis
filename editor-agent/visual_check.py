@@ -82,6 +82,7 @@ def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pat
 
 
 READING_NAME = "reading-mobile"
+READING_WIDTH = 390   # compared with this, not innerWidth: on a phone viewport innerWidth grows with content that is too wide
 READING_JS = """() => {
   const ids = ['r-latest', 'r-prices', 'r-conflicts', 'r-disasters', 'r-economy', 'r-gold'];
   document.querySelectorAll('#reader details').forEach((d) => { d.open = true; });
@@ -94,9 +95,9 @@ READING_JS = """() => {
     conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list > li'), chokepoints: n('#r-choke-list > li'),
     offline: !!(window.__liveState || {}).offline,
     banner: banner && !banner.hidden ? banner.textContent : '',
-    width: [document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth],
+    width: [document.documentElement.scrollWidth, document.body.scrollWidth],
     wide: Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
-      const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > innerWidth + 0.5 || r.left < -0.5);
+      const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > WIDTH + 0.5 || r.left < -0.5);
     }).map((e) => e.className || e.tagName).slice(0, 3),
   };
 }"""
@@ -105,7 +106,7 @@ READING_JS = """() => {
 def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.Path, add) -> None:
     """The reading view with today's data, every section open: six sections, no errors, no overflow. One phone case only."""
     import re
-    ctx = browser.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True,
+    ctx = browser.new_context(viewport={"width": READING_WIDTH, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True,
                               ignore_https_errors=sandbox)
     page = ctx.new_page()
     errs: list[str] = []
@@ -118,7 +119,7 @@ def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.
     except Exception:
         add("ERROR", READING_NAME, "the page never finished its first data load")
     page.screenshot(path=str(shots / (READING_NAME + ".png")))
-    r = page.evaluate(READING_JS)
+    r = page.evaluate(READING_JS.replace("WIDTH", str(READING_WIDTH)))
     for e in errs[:5]:
         add("ERROR", READING_NAME, e)
     if r["thin"]:
@@ -129,7 +130,7 @@ def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.
     bad = sorted(set(re.findall(r"\bnull\b|\bNaN\b|undefined|\[object Object\]", r["text"])))
     if bad:
         add("ERROR", READING_NAME, "page shows " + ", ".join(bad))
-    if max(r["width"][:2]) > r["width"][2] or r["wide"]:
+    if max(r["width"]) > READING_WIDTH or r["wide"]:
         add("ERROR", READING_NAME, "horizontal overflow: %s %s" % (r["width"], ", ".join(map(str, r["wide"]))))
     if r["offline"]:
         add("ERROR", READING_NAME, "offline: data/*.json did not load")
