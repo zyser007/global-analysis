@@ -1963,7 +1963,7 @@ function renderDzSummary(){
   });
   var go = function(){ showTab('disasters'); clearSelection(); if(isMobile() && sheetState==='low') setSheet('mid'); };
   var box = h('div', {class:'dz-sum', role:'button', tabindex:'0', onclick:go, onkeydown:function(ev){ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); go(); } }}, [
-    h('div', {class:'k'}, [h('span', {class:'tri'}), 'ภัยพิบัติขณะนี้', h('span', {class:'cnt', text:disasters.length + ' เหตุการณ์' + (nRed ? ' · เตือนแดง ' + nRed : '') + (nOr ? ' · ส้ม ' + nOr : '')})]),
+    h('div', {class:'k'}, [h('span', {class:'tri'}), 'ภัยพิบัติล่าสุด', h('span', {class:'cnt', text:disasters.length + ' เหตุการณ์' + (nRed ? ' · เตือนแดง ' + nRed : '') + (nOr ? ' · ส้ม ' + nOr : '')})]),
     ul,
     h('div', {class:'more', text:'ดูทั้งหมดในแท็บภัยพิบัติ →'})
   ]);
@@ -1978,7 +1978,7 @@ function renderDisasters(){
   v.innerHTML = '';
   var stamp = doc && doc.updated ? String(doc.updated) : '';
   var age = h('span', {class:'age'}, stamp ? [h('span', {class:'sdot ' + freshClass(stamp, DZ_STALE_MS), 'data-dzdot':stamp}), h('span', {'data-age':stamp, text:ageText(stamp)})] : []);
-  v.appendChild(h('div', {class:'live-head', id:'dz-head'}, [h('h3', {class:'sec-title', text:'ภัยพิบัติขณะนี้'}), age, h('span', {class:'note', hidden:''})]));
+  v.appendChild(h('div', {class:'live-head', id:'dz-head'}, [h('h3', {class:'sec-title', text:'ภัยพิบัติล่าสุด'}), age, h('span', {class:'note', hidden:''})]));
   if(!doc){
     v.appendChild(h('div', {class:'dz-empty', text: live.dzError ? 'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ' : 'กำลังโหลดข้อมูลภัยพิบัติ…'}));
   } else if(!disasters.length){
@@ -2151,8 +2151,16 @@ function rdConflicts(N){
   });
   s.appendChild(ul);
 }
+/* the event's own dates from the data: one day with its age, or a start-end range */
+function rdDzDate(it){
+  var a = parseTs(it.start), b = parseTs(it.end);
+  if(a==null) return null;
+  var d0 = bkkDay(a), d1 = (b!=null && b>a) ? bkkDay(b) : d0;
+  if(d1 !== d0) return h('span', {class:'rd-dz-date', text:thaiDate(d0) + ' – ' + thaiDate(d1)});
+  return h('span', {class:'rd-dz-date'}, [thaiDate(d0) + ' (', h('span', {'data-rel':String(it.start), text:relTh(it.start)}), ')']);
+}
 function rdDisasters(N){
-  var s = rdSection('r-disasters', 'ภัยพิบัติขณะนี้'), doc = live.disasters;
+  var s = rdSection('r-disasters', 'ภัยพิบัติล่าสุด'), doc = live.disasters;
   if(doc) s.appendChild(rdAge(doc.updated));
   if(N.dz) s.appendChild(rdNote(N.dz));
   if(doc && !disasters.length) s.appendChild(h('p', {text:DZ_EMPTY_TH}));
@@ -2162,7 +2170,7 @@ function rdDisasters(N){
       h('h3', {text:String(it.title_th)}),
       h('p', {class:'rd-level'}, [h('b', {text:dzAlertText(it.alert_level)}), DZ_TYPE_TH[it.type] ? ' · ' + DZ_TYPE_TH[it.type] : '', it.country_th ? ' · ' + String(it.country_th) : '']),
       it.severity_th ? h('p', {class:'rd-sev', text:String(it.severity_th)}) : null,
-      h('div', {class:'rd-meta'}, [dzWhen(it), it.updated ? h('span', {text:'ข้อมูลล่าสุด ' + bkkDateTime(it.updated)}) : null].concat(src.map(function(u, j){ var nm = j===0 ? it.source_name : it.alt_source_name; return rdA(u, nm ? String(nm) : domain(u)); })))
+      h('div', {class:'rd-meta'}, [rdDzDate(it)].concat(src.map(function(u, j){ var nm = j===0 ? it.source_name : it.alt_source_name; return rdA(u, nm ? String(nm) : domain(u)); })))
     ]);
   })));
   s.appendChild(dzSrcNote('rd-note'));

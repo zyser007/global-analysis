@@ -239,6 +239,32 @@ test.describe('content', () => {
     });
   }
 
+  test('disasters are called the latest, with each event\'s date or range from the data, and none is filtered out', async ({ browser }) => {
+    writeFresh();
+    const ended = '2026-10-01T05:00:00Z';
+    const doc = freshDisasters();
+    doc.items = [
+      { ...doc.items[0], id: 'range', title_th: 'พายุที่จบแล้ว', type: 'cyclone', alert_level: 'red', start: '2026-09-20T00:00:00Z', end: ended },
+      { ...doc.items[0], id: 'one', title_th: 'แผ่นดินไหวเก่า', type: 'earthquake', alert_level: 'orange', start: '2026-09-22T14:33:40Z', end: '2026-09-22T14:33:40Z' },
+    ];
+    writeData('disasters', doc);
+    const { ctx, page } = await open(browser, 390, 844);
+    const errors = collectErrors(page);
+    await page.goto(URL.mutable + '?view=read'); await ready(page);
+    await expect(page.locator('#r-disasters h2')).toHaveText('ภัยพิบัติล่าสุด');
+    await expect(page.locator('#r-dz-list > li')).toHaveCount(2);
+    await expect(page.locator('#r-dz-list > li[data-id="range"] .rd-dz-date')).toHaveText('20 ก.ย. 2569 – 1 ต.ค. 2569');
+    await expect(page.locator('#r-dz-list > li[data-id="one"] .rd-dz-date')).toContainText('22 ก.ย. 2569 (');
+    await expect(page.locator('#r-dz-list > li[data-id="one"] .rd-dz-date')).toContainText('วันที่แล้ว');
+    await page.click('#vw-map');
+    await page.click('.tab[data-tab="disasters"]');
+    await expect(page.locator('#dz-head .sec-title')).toHaveText('ภัยพิบัติล่าสุด');
+    const html = await (await page.request.get(URL.mutable)).text();
+    expect(html).not.toContain('ภัยพิบัติขณะนี้');
+    expect(errors).toEqual([]);
+    await ctx.close();
+  });
+
   test('open sections stay open when new data arrives, and dates follow the data', async ({ browser }) => {
     writeFresh();
     const { ctx, page } = await open(browser, 390, 844);
