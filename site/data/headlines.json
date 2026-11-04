@@ -1,24 +1,56 @@
 {
- "updated_at": "2026-11-04T01:13:07Z",
+ "updated_at": "2026-11-04T13:12:43Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "ผลเลือกตั้งกลางเทอมสหรัฐ: Ossoff ชนะที่จอร์เจีย เสียงข้างมากสภาล่างเอนไปทางเดโมแครต",
-   "time": "2026-11-04T00:30:00Z",
-   "source": "https://www.cnbc.com/2026/11/03/midterm-elections-2026-live-updates.html",
-   "source_name": "CNBC"
+   "title_th": "SET ปิด 1,502.09 จุด บวก 11.08 จุด แรงซื้อ DELTA และหุ้นบิ๊กแคปหนุนดัชนี",
+   "time": "2026-11-04T10:00:00Z",
+   "source": "https://www.kaohoon.com/summary/877856",
+   "source_name": "ข่าวหุ้นธุรกิจ"
   },
   {
    "id": "h2",
-   "conflict_id": "economy",
-   "title_th": "วอลล์สตรีทปิดผสม หุ้นชิปดัน Nasdaq +0.8% ขณะ Dow ลบ รอผลเลือกตั้งกลางเทอม",
-   "time": "2026-11-03T21:30:00Z",
-   "source": "https://www.marketscreener.com/news/wall-street-closes-mixed-ahead-of-midterm-election-results-ce785fdedc8bf021",
-   "source_name": "MarketScreener"
+   "conflict_id": "thailand",
+   "title_th": "ราคาทองในประเทศปิดตลาดพุ่ง 1,900 บาท ผันผวน 46 ครั้ง ตามราคาทองโลก",
+   "time": "2026-11-04T09:30:00Z",
+   "source": "https://www.bangkokbiznews.com/news/news-update/1259309",
+   "source_name": "กรุงเทพธุรกิจ"
   },
   {
    "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "ทองโลกพุ่งเกิน 2% กลับเหนือ 4,000 ดอลลาร์ ดอลลาร์อ่อน หลังเดโมแครตชนะเลือกตั้งกลางเทอม",
+   "time": "2026-11-04T08:00:00Z",
+   "source": "https://www.marketscreener.com/news/gold-jumps-over-2-on-softer-dollar-after-democratic-midterm-wins-ce785fded18cf321",
+   "source_name": "MarketScreener/Reuters"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "economy",
+   "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
+   "time": "2026-11-04T06:00:00Z",
+   "source": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "economy",
+   "title_th": "ตลาดอนุพันธ์ฟื้นตัว Dow futures พุ่งราว 800 จุด หลังเดโมแครตชนะ ผลตอบแทนพันธบัตรสหรัฐลดลง",
+   "time": "2026-11-04T05:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/03/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "gaza_israel",
+   "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
+   "time": "2026-11-03T18:47:00Z",
+   "source": "https://today.lorientlejour.com/article/1553181/israeli-strikes-kill-4-palestinians-in-gaza.html",
+   "source_name": "L'Orient Today/AFP"
+  },
+  {
+   "id": "h7",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีโครงสร้างพื้นฐานพลังงานยูเครนครั้งใหญ่สุดของปีนี้",
    "time": "2026-11-03T12:30:00Z",
@@ -26,7 +58,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h4",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียยิงขีปนาวุธ-โดรนทั่วยูเครน ตายอย่างน้อย 29 ราย รวมโรงพยาบาลคาร์คิฟ เซเลนสกีขอแพทริออตเพิ่ม",
    "time": "2026-11-03T11:08:00Z",
@@ -34,23 +66,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h5",
-   "conflict_id": "thailand",
-   "title_th": "สมาคมค้าทองคำประกาศครั้งที่ 22 ทองแท่งขายออก 62,500 บาท ปิดตลาดสูงกว่าวันก่อน 100 บาท",
-   "time": "2026-11-03T09:39:00Z",
-   "source": "https://siamnews.com/news/economy/56618",
-   "source_name": "สยามนิวส์"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "SET ปิด 1,491.01 จุด ลด 1.07% มูลค่าซื้อขาย 6.35 หมื่นล้านบาท รอผลเลือกตั้งกลางเทอมสหรัฐ",
-   "time": "2026-11-03T09:30:00Z",
-   "source": "https://www.infoquest.co.th/2026/673360",
-   "source_name": "อินโฟเควสท์"
-  },
-  {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้ข้อตกลงกับสหรัฐยังห่างไกล หลังสหรัฐโจมตีเชิงป้องกันที่เกาะ Qeshm",
    "time": "2026-11-03T08:00:00Z",
@@ -58,7 +74,7 @@
    "source_name": "Reuters/Cyprus Mail"
   },
   {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "รัฐมนตรีต่างประเทศอิหร่านระบุการเจรจากับซาอุฯ ยังต่อเนื่อง ขณะการสู้รบในเยเมนรุนแรงขึ้น",
    "time": "2026-11-03T07:31:00Z",
@@ -66,28 +82,12 @@
    "source_name": "Reuters/US News"
   },
   {
-   "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "น้ำมันฟื้นตัว Brent ราว 106 ดอลลาร์ หลังรายงานสหรัฐโจมตีเกาะ Qeshm ของอิหร่าน",
-   "time": "2026-11-03T07:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/03/oil-rises-after-report-of-us-strike-on-irans-qeshm-island.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน รัฐบาลเยเมนปรับ ครม. UN เตือนวิกฤตทวีความรุนแรง",
    "time": "2026-11-03T06:00:00Z",
    "source": "https://thenationalnews.com/news/mena/2026/11/03/yemen-reshuffles-cabinet-as-houthis-advance-towards-aden",
    "source_name": "The National"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "thailand",
-   "title_th": "เงินบาทแข็งค่าใกล้ 33.70 ต่อดอลลาร์ช่วงแรก ก่อนอ่อนกลับ เกาะติดเลือกตั้งกลางเทอมสหรัฐ",
-   "time": "2026-11-03T03:00:00Z",
-   "source": "https://www.dailynews.co.th/news/6327091/",
-   "source_name": "เดลินิวส์"
   },
   {
    "id": "h12",
