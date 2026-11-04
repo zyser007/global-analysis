@@ -1,0 +1,699 @@
+{
+ "date": "2026-11-04",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีครั้งใหญ่ 2–3 พ.ย. และกำหนดเจรจา",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/3/at-least-73-injured-as-russia-bombs-ukrainian-hospital-and-power-plants",
+     "published": "2026-11-03",
+     "publisher": "Al Jazeera",
+     "title": "At least 73 injured as Russia bombs Ukrainian hospital and power plants"
+    },
+    {
+     "url": "https://www.yahoo.com/news/world/articles/ukraine-russia-bombard-other-hours-151826959.html",
+     "published": "2026-11-03",
+     "publisher": "Newsweek via Yahoo",
+     "title": "Ukraine and Russia bombard each other hours after peace talks agreed"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีเกาะเกชม์และสถานะเจรจา",
+   "sources": [
+    {
+     "url": "https://www.cnn.com/2026/11/02/politics/us-strikes-iran-qeshm-island",
+     "published": "2026-11-03",
+     "publisher": "CNN",
+     "title": "US military conducts strikes on Iran's Qeshm Island in defensive operation"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/3/us-hits-qeshm-island-pezeshkian-signals-more-diplomacy-iran-war-latest",
+     "published": "2026-11-03",
+     "publisher": "Al Jazeera",
+     "title": "US hits Qeshm Island, Pezeshkian signals more diplomacy"
+    },
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-trump-good-call-netanyahu/?id=137762456",
+     "published": "2026-11-03",
+     "publisher": "ABC News",
+     "title": "Iran live updates"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตเหตุการณ์ฮอร์มุซ 2–3 พ.ย.",
+   "sources": [
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-trump-good-call-netanyahu/?id=137762456",
+     "published": "2026-11-03",
+     "publisher": "ABC News",
+     "title": "Iran live updates"
+    },
+    {
+     "url": "https://www.timesofisrael.com/us-carries-out-defensive-strikes-on-irans-qeshm-island-in-strait-of-hormuz/",
+     "published": "2026-11-03",
+     "publisher": "Times of Israel",
+     "title": "US carries out defensive strikes on Qeshm"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการรุกใกล้เอเดนและท่าทีของ UN",
+   "sources": [
+    {
+     "url": "https://www.thenationalnews.com/news/mena/2026/11/03/yemen-reshuffles-cabinet-as-houthis-advance-towards-aden/",
+     "published": "2026-11-03",
+     "publisher": "The National",
+     "title": "Yemen reshuffles cabinet as Houthis advance towards Aden"
+    },
+    {
+     "url": "https://english.news.cn/20261103/0f0ff36ad2ec4a07896bea8b33e7e2a9/c.html",
+     "published": "2026-11-03",
+     "publisher": "Xinhua",
+     "title": "Yemen's PLC chief reshuffles cabinet amid battlefield pressure"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "บับ อัล-มันดับ / ทะเลแดง"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตการรุกของฮูตีใกล้ช่องแคบ",
+   "sources": [
+    {
+     "url": "https://english.news.cn/20261103/0f0ff36ad2ec4a07896bea8b33e7e2a9/c.html",
+     "published": "2026-11-03",
+     "publisher": "Xinhua",
+     "title": "Yemen's PLC chief reshuffles cabinet amid battlefield pressure"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองโลก ทองไทย และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://tradingeconomics.com/commodity/gold",
+     "published": "2026-11-03",
+     "publisher": "Trading Economics",
+     "title": "Gold prices (Nov 3 commentary)"
+    },
+    {
+     "url": "https://www.thansettakij.com/finance/672900",
+     "published": "2026-11-04",
+     "publisher": "ฐานเศรษฐกิจ",
+     "title": "ราคาทองวันนี้ 4 พ.ย.2569 เปิดตลาดราคาทองเพิ่มขึ้น 450 บาท"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1716495/",
+     "published": "2026-11-04",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 4 พ.ย."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองโลก ทองไทย และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://tradingeconomics.com/commodity/gold",
+     "published": "2026-11-03",
+     "publisher": "Trading Economics",
+     "title": "Gold prices (Nov 3 commentary)"
+    },
+    {
+     "url": "https://www.thansettakij.com/finance/672900",
+     "published": "2026-11-04",
+     "publisher": "ฐานเศรษฐกิจ",
+     "title": "ราคาทองวันนี้ 4 พ.ย.2569 เปิดตลาดราคาทองเพิ่มขึ้น 450 บาท"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1716495/",
+     "published": "2026-11-04",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 4 พ.ย."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items.0",
+    "outlook_th.calendar_th.items.1",
+    "outlook_th.calendar_th.items.2"
+   ],
+   "summary_th": "อัปเดตราคาทองโลก ทองไทย และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://tradingeconomics.com/commodity/gold",
+     "published": "2026-11-03",
+     "publisher": "Trading Economics",
+     "title": "Gold prices (Nov 3 commentary)"
+    },
+    {
+     "url": "https://www.thansettakij.com/finance/672900",
+     "published": "2026-11-04",
+     "publisher": "ฐานเศรษฐกิจ",
+     "title": "ราคาทองวันนี้ 4 พ.ย.2569 เปิดตลาดราคาทองเพิ่มขึ้น 450 บาท"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1716495/",
+     "published": "2026-11-04",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 4 พ.ย."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตยอดผู้เสียชีวิตหลังหยุดยิงและการโจมตี 2–3 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.dawn.com/news/2041749/israeli-strikes-kill-five-palestinians-in-gaza",
+     "published": "2026-11-03",
+     "publisher": "Reuters via Dawn",
+     "title": "Israeli strikes kill five Palestinians in Gaza"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/3/israeli-forces-kill-four-in-gaza-as-fifth-palestinian-dies-of-wounds",
+     "published": "2026-11-03",
+     "publisher": "Al Jazeera",
+     "title": "Israeli forces kill four in Gaza as fifth Palestinian dies of wounds"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "lebanon_israel_hezbollah"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตยอดเสียชีวิตและสถานการณ์ตึงเครียด",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/middle-east/lebanon-caught-between-israeli-threats-and-hezbollahs-hard-line-stance-3009419",
+     "published": "2026-11-03",
+     "publisher": "Arab News",
+     "title": "Lebanon caught between Israeli threats and Hezbollah's hard-line stance"
+    },
+    {
+     "url": "https://www.securitycouncilreport.org/monthly-forecast/2026-11/lebanon-41.php",
+     "published": "2026-11-02",
+     "publisher": "Security Council Report",
+     "title": "Lebanon, November 2026 Monthly Forecast"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "drc_m23_frn"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตท่าทีของ FRN ต่อกระบวนการโดฮา",
+   "sources": [
+    {
+     "url": "https://allafrica.com/stories/202611040126.html",
+     "published": "2026-11-04",
+     "publisher": "allAfrica (The New Times)",
+     "title": "Goma - What Was Discussed Between Monusco Boss and Kabila-Led FRN"
+    },
+    {
+     "url": "https://aa.com.tr/en/africa/drc-rebels-threaten-to-abandon-doha-peace-talks-over-proposed-constitutional-referendum/4110599",
+     "published": "2026-11-03",
+     "publisher": "Anadolu Agency",
+     "title": "DRC rebels threaten to abandon Doha peace talks over proposed constitutional referendum"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "pakistan_afghanistan"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการปะทะและท่าทีทางการทูต",
+   "sources": [
+    {
+     "url": "https://www.pakistantoday.com.pk/2026/11/01/pakistan-slams-afghan-taliban-over-failure-to-curb-cross-border-terrorism",
+     "published": "2026-11-01",
+     "publisher": "Pakistan Today",
+     "title": "Pakistan slams Afghan Taliban over TTP sanctuaries"
+    },
+    {
+     "url": "https://www.fdd.org/analysis/afghanistan-pakistan-border-clashes-continue-amid-reported-pakistani-outreach-to-anti-taliban-groups/",
+     "published": "2026-10-30",
+     "publisher": "FDD Long War Journal",
+     "title": "Afghanistan-Pakistan border clashes continue"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "lebanon_israel_hezbollah"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "แก้ถ้อยคำ",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/middle-east/lebanon-caught-between-israeli-threats-and-hezbollahs-hard-line-stance-3009419",
+     "published": "2026-11-03",
+     "publisher": "Arab News",
+     "title": "Lebanon caught between Israeli threats and Hezbollah's hard-line stance"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "AUS"
+   ],
+   "fields": [
+    "policy_rate",
+    "note_th"
+   ],
+   "summary_th": "RBA ขึ้นดอกเบี้ยเป็น 4.85%",
+   "sources": [
+    {
+     "url": "https://www.rba.gov.au/media-releases/2026/mr-26-30.html",
+     "published": "2026-11-03",
+     "publisher": "RBA",
+     "title": "Statement by the Monetary Policy Board"
+    },
+    {
+     "url": "https://www.abc.net.au/news/2026-11-03/rba-lifts-interest-rates-november-2026-highest-rate-in-18-years/107340050",
+     "published": "2026-11-03",
+     "publisher": "ABC News",
+     "title": "RBA lifts interest rates to highest level in 18 years"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตเหตุการณ์ชายแดนไทยและการโจมตีทางอากาศ",
+   "sources": [
+    {
+     "url": "https://www.irrawaddy.com/news/burma/thai-military-chief-summons-myanmar-attache-over-border-fighting.html",
+     "published": "2026-11-03",
+     "publisher": "The Irrawaddy",
+     "title": "Thai Military Chief Summons Myanmar Attaché Over Border Fighting"
+    },
+    {
+     "url": "https://www.manilatimes.net/2026/11/01/world/asia-oceania/un-investigator-myanmar-junta-attacking-civilians/2458756",
+     "published": "2026-11-01",
+     "publisher": "AP via Manila Times",
+     "title": "UN investigator: Myanmar junta attacking civilians"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "haiti_gangs"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตปฏิบัติการของเอลซัลวาดอร์ (แหล่งเดียว)",
+   "sources": [
+    {
+     "url": "https://www.latintimes.com/el-salvador-ground-operation-against-gangs-haiti-600873",
+     "published": "2026-11-03",
+     "publisher": "Latin Times",
+     "title": "El Salvador Strikes Haiti's Gangs"
+    },
+    {
+     "url": "https://www.cfr.org/global-conflict-tracker/conflict/instability-haiti",
+     "published": "2026-11-03",
+     "publisher": "CFR",
+     "title": "Criminal Violence in Haiti"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "ยังไม่พบรายงานจากสำนักข่าวหลักที่ยืนยันปฏิบัติการ 2 พ.ย. ใช้ Latin Times และ CFR เป็นหลัก"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตโดรนโจมตีพลังงานและข้อกล่าวหาต่อเอธิโอเปีย",
+   "sources": [
+    {
+     "url": "https://sudantribune.com/article/320859",
+     "published": "2026-11-03",
+     "publisher": "Sudan Tribune",
+     "title": "Drone strike kills at least seven at South Kordofan fuel station"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/3/deadly-rsf-drone-strikes-reveal-deep-divisions-between-sudan-and-ethiopia",
+     "published": "2026-11-03",
+     "publisher": "Al Jazeera",
+     "title": "Deadly RSF drone attacks reveal deep divisions between Sudan and Ethiopia"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "THA"
+   ],
+   "fields": [
+    "inflation",
+    "note_th"
+   ],
+   "summary_th": "แก้ตัวเลขเงินเฟ้อเป็น CPI ก.ย.",
+   "sources": [
+    {
+     "url": "https://www.thaipost.net/economy-news/1083253/",
+     "published": "2026-10-06",
+     "publisher": "Thai Post / สนค.",
+     "title": "สนค.เผยเงินเฟ้อ ก.ย.69 เพิ่ม 2.82%"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/business/economics/1714825/",
+     "published": "2026-10-30",
+     "publisher": "The Bangkok Insight (สศค.)",
+     "title": "สศค. เผยเศรษฐกิจไทยเดือน ก.ย. 69"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "CPI ก.ย. ประกาศ 6 ต.ค. (เกิน 7 วัน) ตัวเลข ต.ค. ยังไม่ประกาศ คาดต้น พ.ย."
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "USA"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่ม JOLTS ผลเลือกตั้ง และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/03/job-openings-posted-big-september-gain-in-positive-sign-for-labor-market-ahead-of-payrolls-report.html",
+     "published": "2026-11-03",
+     "publisher": "CNBC",
+     "title": "Job openings posted big September gain"
+    },
+    {
+     "url": "https://www.cnn.com/2026/11/03/politics/live-news/midterm-election-congress",
+     "published": "2026-11-04",
+     "publisher": "CNN",
+     "title": "2026 Midterm Election Results Live: Democrats take control of Congress"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+     "published": "2026-11-04",
+     "publisher": "CBS News",
+     "title": "Live election results for the 2026 midterms"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ทะเลดำ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีเรือพาณิชย์ในทะเลดำ",
+   "sources": [
+    {
+     "url": "https://www.cnn.com/2026/11/03/europe/ukraine-black-sea-drone-attacks-intl",
+     "published": "2026-11-03",
+     "publisher": "CNN",
+     "title": "Russian drone attacks turn the Black Sea into the world's deadliest waterway"
+    },
+    {
+     "url": "https://safety4sea.com/ukraine-and-34-countries-seek-imo-action-over-escalating-black-sea-shipping-attacks/",
+     "published": "2026-11-02",
+     "publisher": "SAFETY4SEA (IMO Council submission, Reuters)",
+     "title": "Ukraine and 34 countries seek IMO action"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "nigeria_northeast_northwest"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตเหตุซุ่มโจมตีที่ซัมฟาราและปฏิบัติการที่คูคาวา",
+   "sources": [
+    {
+     "url": "https://www.timeslive.co.za/news/africa/2026-11-03-attackers-ambush-police-convoy-in-nigerias-zamfara-killing-eight/",
+     "published": "2026-11-03",
+     "publisher": "Reuters via TimesLive",
+     "title": "Attackers ambush police convoy in Nigeria's Zamfara, killing eight"
+    },
+    {
+     "url": "https://www.legit.ng/nigeria/1739043-troops-kill-high-profile-iswap-commander-2-arab-fighters/",
+     "published": "2026-11-01",
+     "publisher": "Legit.ng",
+     "title": "Troops Kill Senior ISWAP Commander"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "analysis_th",
+   "keys": [
+    "analysis_th"
+   ],
+   "fields": [
+    "points.0",
+    "points.4"
+   ],
+   "summary_th": "ปรับบทวิเคราะห์ตามผลเลือกตั้งและราคาน้ำมัน",
+   "sources": [
+    {
+     "url": "https://www.cnn.com/2026/11/03/politics/live-news/midterm-election-congress",
+     "published": "2026-11-04",
+     "publisher": "CNN",
+     "title": "2026 Midterm Election Results Live: Democrats take control of Congress"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+     "published": "2026-11-04",
+     "publisher": "CBS News",
+     "title": "Live election results for the 2026 midterms"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/3/explosions-hit-irans-qeshm-island-as-us-media-report-us-strikes-in-hormuz",
+     "published": "2026-11-03",
+     "publisher": "Al Jazeera",
+     "title": "Explosions hit Iran's Qeshm Island"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.0"
+   ],
+   "summary_th": "ปรับปฏิทินหลังผลเลือกตั้ง",
+   "sources": [
+    {
+     "url": "https://www.cnn.com/2026/11/03/politics/live-news/midterm-election-congress",
+     "published": "2026-11-04",
+     "publisher": "CNN",
+     "title": "2026 Midterm Election Results Live"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "somalia_al_shabaab"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการถอนทหารยูกันดาและอนาคตของ AUSSOM",
+   "sources": [
+    {
+     "url": "https://www.securitycouncilreport.org/monthly-forecast/2026-11/somalia-44.php",
+     "published": "2026-11-02",
+     "publisher": "Security Council Report",
+     "title": "Somalia, November 2026 Monthly Forecast"
+    },
+    {
+     "url": "https://kulu-media.com/african-union-somalia-bases-plan-uganda-withdrawal/",
+     "published": "2026-11-03",
+     "publisher": "Kulu Media (อ้าง Reuters/AP)",
+     "title": "African Union Somalia Bases Plan Follows Uganda Exit"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "haiti_gangs"
+   ],
+   "fields": [
+    "confidence"
+   ],
+   "summary_th": "ปรับความมั่นใจของรายการเป็นต่ำตามแหล่งเดียว",
+   "sources": [
+    {
+     "url": "https://www.latintimes.com/el-salvador-ground-operation-against-gangs-haiti-600873",
+     "published": "2026-11-03",
+     "publisher": "Latin Times",
+     "title": "El Salvador Strikes Haiti's Gangs"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "ปฏิบัติการ 2 พ.ย. ยังมีแหล่งเดียว (Latin Times)"
+  }
+ ],
+ "base_commit": "030e41c52e7ff2782e9399c332d69936684396c6",
+ "reviewed_unchanged": [
+  "burkina_faso",
+  "ethiopia_eritrea_tigray",
+  "mali_sahel",
+  "niger_tillaberi"
+ ]
+}
