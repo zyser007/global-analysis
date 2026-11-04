@@ -16,6 +16,8 @@ Checks, per viewport:
   - overview tiles / points / risks, conflict and economy list lengths = the data
   - no 'null' / 'NaN' / 'undefined' text in any tab, every tab has content
   - no horizontal scroll and no element wider than the panel
+One more case, reading-mobile: ?view=read at 390x844 with every section open: the six sections have content, the
+conflict, economy and chokepoint counts = the data, no errors, no bad text, no overflow.
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
 
@@ -77,6 +79,63 @@ def serve(site: pathlib.Path) -> tuple[str, http.server.ThreadingHTTPServer, pat
     srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), functools.partial(Quiet, directory=str(tmp)))   # no getfqdn()
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return "http://127.0.0.1:%d/global-analysis/" % srv.server_address[1], srv, tmp
+
+
+READING_NAME = "reading-mobile"
+READING_JS = """() => {
+  const ids = ['r-latest', 'r-prices', 'r-conflicts', 'r-disasters', 'r-economy', 'r-gold'];
+  document.querySelectorAll('#reader details').forEach((d) => { d.open = true; });
+  const n = (sel) => document.querySelectorAll(sel).length;
+  const reader = document.getElementById('reader');
+  const banner = document.getElementById('r-banner');
+  return {
+    thin: ids.filter((id) => { const e = document.getElementById(id); return !e || e.innerText.trim().length < 40; }),
+    text: reader ? reader.innerText : '',
+    conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list > li'), chokepoints: n('#r-choke-list > li'),
+    offline: !!(window.__liveState || {}).offline,
+    banner: banner && !banner.hidden ? banner.textContent : '',
+    width: [document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth],
+    wide: Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
+      const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > innerWidth + 0.5 || r.left < -0.5);
+    }).map((e) => e.className || e.tagName).slice(0, 3),
+  };
+}"""
+
+
+def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.Path, add) -> None:
+    """The reading view with today's data, every section open: six sections, no errors, no overflow. One phone case only."""
+    import re
+    ctx = browser.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True,
+                              ignore_https_errors=sandbox)
+    page = ctx.new_page()
+    errs: list[str] = []
+    page.on("console", lambda m: errs.append("console: %s" % m.text[:160]) if m.type == "error" else None)
+    page.on("pageerror", lambda e: errs.append("pageerror: " + str(e)[:160]))
+    page.on("response", lambda r: errs.append("HTTP %d %s" % (r.status, r.url)) if r.status >= 400 and r.url.startswith(url) else None)
+    page.goto(url + "?view=read", wait_until="load")
+    try:
+        page.wait_for_function("() => ((window.__liveState || {}).polls || 0) > 0", timeout=15000)
+    except Exception:
+        add("ERROR", READING_NAME, "the page never finished its first data load")
+    page.screenshot(path=str(shots / (READING_NAME + ".png")))
+    r = page.evaluate(READING_JS)
+    for e in errs[:5]:
+        add("ERROR", READING_NAME, e)
+    if r["thin"]:
+        add("ERROR", READING_NAME, "empty or missing sections: " + ", ".join(r["thin"]))
+    for what, key in (("conflicts", "conflicts"), ("economies", "economies"), ("chokepoints", "chokepoints")):
+        if r[key] != len(world.get(what, [])):
+            add("ERROR", READING_NAME, "%s: %d on the page, %d in the data" % (what, r[key], len(world.get(what, []))))
+    bad = sorted(set(re.findall(r"\bnull\b|\bNaN\b|undefined|\[object Object\]", r["text"])))
+    if bad:
+        add("ERROR", READING_NAME, "page shows " + ", ".join(bad))
+    if max(r["width"][:2]) > r["width"][2] or r["wide"]:
+        add("ERROR", READING_NAME, "horizontal overflow: %s %s" % (r["width"], ", ".join(map(str, r["wide"]))))
+    if r["offline"]:
+        add("ERROR", READING_NAME, "offline: data/*.json did not load")
+    elif r["banner"]:
+        add("WARN", READING_NAME, r["banner"][:120])
+    ctx.close()
 
 
 def main() -> int:
@@ -219,6 +278,8 @@ def main() -> int:
                 for e in ext:
                     add("WARN", name, e + " (external)")
                 ctx.close()
+            if not a.only or a.only == READING_NAME:
+                check_reading(browser, url, world, sandbox, shots, add)
             browser.close()
     except Exception as e:  # a browser that cannot start is an environment problem the agent must report
         add("ERROR", "browser", "%s: %s" % (type(e).__name__, str(e)[:400]))
