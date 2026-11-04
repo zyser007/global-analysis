@@ -145,7 +145,7 @@ def main() -> int:
                 page.on("requestfailed", on_failed)
                 page.on("response", lambda r, errs=errs: errs.append("HTTP %d %s" % (r.status, r.url)) if r.status >= 400 and r.url.startswith(url) else None)
                 name = c["name"]
-                page.goto(url, wait_until="load")
+                page.goto(url + "?view=map", wait_until="load")   # the map view is what these cases check; phones default to the reading view
                 page.wait_for_timeout(3500)
 
                 def count(sel: str) -> int:
