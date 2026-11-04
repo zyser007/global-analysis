@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>สถานการณ์โลก</title>
+<script>
+/* which view to paint: ?view= (a shared link), then the visitor's own choice, then the screen width */
+(function(){
+  var v = null, m = /[?&]view=(read|map)(?:&|$)/.exec(location.search);
+  if(m) v = m[1];
+  if(!v){ try { var s = localStorage.getItem('world-view'); if(s === 'read' || s === 'map') v = s; } catch(e){} }
+  if(!v) v = window.matchMedia('(max-width: 600px)').matches ? 'read' : 'map';
+  document.documentElement.setAttribute('data-view', v);
+})();
+</script>
 <meta name="description" content="ลูกโลก 3 มิติสรุปความขัดแย้ง เศรษฐกิจ ช่องแคบสำคัญ ราคาตลาดและทองคำ อัปเดตอัตโนมัติวันละหลายรอบ">
 <meta name="theme-color" content="#0a0f17" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#e9eef5" media="(prefers-color-scheme: light)">
@@ -363,6 +373,111 @@ details.fold .fold-body p{margin:0 0 8px}
 }
 @media (max-width:360px){ .tiles{grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){ .panel{transition:none} }
+
+/* ---------- view switch (both views) ---------- */
+.view-switch{flex:0 0 auto;display:inline-flex;gap:2px;padding:2px;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface)}
+.view-switch button{min-width:44px;min-height:44px;padding:0 12px;border:0;border-radius:9px;background:none;color:var(--text);font-family:var(--font-head);font-size:15px;font-weight:500;line-height:1.3;white-space:nowrap;cursor:pointer}
+.view-switch button[aria-pressed="true"]{background:var(--text);color:var(--surface);font-weight:600}
+.view-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:360px){ .view-switch button{padding:0 9px;font-size:14.5px} }
+/* map view on a phone: the status line keeps its full width under the title and the switch */
+@media (max-width:860px){
+  html:not([data-view="read"]) .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:2px 8px}
+  html:not([data-view="read"]) .topbar > div:first-child{display:contents}
+  html:not([data-view="read"]) .topbar h1{grid-column:1;grid-row:1}
+  html:not([data-view="read"]) .topbar .badge-sample{grid-column:2;grid-row:1}
+  html:not([data-view="read"]) .topbar .view-switch{grid-column:3;grid-row:1}
+  html:not([data-view="read"]) .topbar .sub{grid-column:1 / -1;grid-row:2;margin:0}
+}
+
+/* ---------- reading view (html[data-view="read"], set before first paint by the script in <head>) ---------- */
+html:not([data-view="read"]) .reader{display:none}
+html[data-view="read"],html[data-view="read"] body{height:auto;min-height:100%;overflow:visible}
+html[data-view="read"] body{background:var(--surface);font-size:17px;overflow-wrap:break-word;word-break:normal}
+html[data-view="read"] .app{height:auto;display:block}
+html[data-view="read"] .main{display:none}
+html[data-view="read"] .topbar{max-width:var(--rd-w);margin-inline:auto;padding-block:14px 10px;align-items:center}
+html[data-view="read"] .topbar .sub{font-size:14px;color:color-mix(in srgb,var(--text) 78%,var(--surface));white-space:normal;display:block}
+html[data-view="read"] #counts,html[data-view="read"] #live-flag{display:none}
+html[data-view="read"] .live::before{display:none}
+:root{--rd-w:37rem}
+.reader{max-width:var(--rd-w);margin-inline:auto;padding-bottom:calc(32px + env(safe-area-inset-bottom,0px));font-size:17px;line-height:1.8;
+  --rd-2:color-mix(in srgb,var(--text) 80%,var(--surface));--rd-link:color-mix(in srgb,var(--accent) 62%,var(--text));--rd-line:var(--border)}
+@media (min-width:700px){ .reader{font-size:18px} }
+.reader p{margin:0 0 12px}
+.reader ul{margin:0;padding:0;list-style:none}
+.reader a{color:var(--rd-link);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.reader a:focus-visible,.reader summary:focus-visible,.reader button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.rd-toc{display:flex;flex-wrap:wrap;gap:0 12px;padding-block:2px 10px}
+.rd-toc a{display:inline-flex;align-items:center;min-height:44px;font-size:16px}
+@media (max-width:520px){ .rd-toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px} }
+.rd-banner{margin:4px 0 14px;padding:12px 14px;border:2px solid var(--warn);border-radius:10px;color:var(--text);font-weight:500}
+.rd-banner[hidden]{display:none}
+.rd-sec{padding-block:26px 12px;border-top:1px solid var(--rd-line)}
+.rd-sec > h2{margin:0 0 4px;font-family:var(--font-head);font-weight:600;font-size:25px;line-height:1.45}
+.rd-sec h3{margin:26px 0 6px;font-family:var(--font-head);font-weight:600;font-size:20px;line-height:1.5}
+.rd-fresh{color:var(--rd-2);font-size:15.5px;line-height:1.65;margin-bottom:14px !important}
+.rd-note{font-size:16px;line-height:1.7;color:var(--rd-2)}
+.rd-note.warn{padding:10px 12px;border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface));color:var(--text);border-radius:0 8px 8px 0}
+.rd-note.warn b{font-weight:600}
+.rd-note a{display:inline-block;padding-block:10px;margin-block:-10px}
+.rd-lead{font-family:var(--font-head);font-weight:600;font-size:21px;line-height:1.65;margin-bottom:6px !important}
+.rd-callout{margin:22px 0 10px;padding:12px 14px;border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface));border-radius:0 8px 8px 0}
+.rd-callout .k{display:block;font-family:var(--font-head);font-weight:600;font-size:17px;line-height:1.6;margin-bottom:2px}
+.rd-bullets{display:grid;gap:12px}
+.rd-bullets li{padding-left:1em;position:relative}
+.rd-bullets li::before{content:"•";position:absolute;left:0}
+/* a line of small facts; a link inside keeps a 44px tap height without pushing the lines apart */
+.rd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;color:var(--rd-2);font-size:15.5px;line-height:1.65}
+.rd-meta a{display:inline-flex;align-items:center;min-height:44px;margin-block:-9px;overflow-wrap:anywhere}
+.rd-rows > li.rd-price{padding-block:9px}
+.rd-rows > li{padding-block:12px;border-top:1px solid var(--rd-line)}
+.rd-rows > li:first-child{border-top:0;padding-top:4px}
+.rd-title{margin:0 0 2px;font-weight:500;line-height:1.7}
+/* prices */
+.rd-price .top{display:flex;justify-content:space-between;align-items:baseline;gap:4px 14px;flex-wrap:wrap}
+.rd-price .nm{font-weight:500;line-height:1.6;min-width:0;flex:1 1 11em}
+.rd-price .val{font-family:var(--font-head);font-weight:600;font-size:1.15em;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.6}
+.rd-price .val .u{font-family:var(--font-body);font-weight:400;font-size:15px;margin-left:5px;color:var(--rd-2)}
+.rd-price .line2{gap:0 10px;color:var(--text)}
+.rd-price .line2 > span:not(.chg){color:var(--rd-2)}
+.rd-price .chg{font-size:15.5px;line-height:1.65}
+.rd-price div.chg{font-size:16px}
+.rd-price .chg.warn{font-weight:600}
+/* conflicts and disasters */
+.rd-conf h3,.rd-dz h3{margin:0 0 2px;font-size:19.5px}
+.rd-level{margin:0 0 6px !important;font-size:16px;line-height:1.65;color:var(--rd-2)}
+.rd-level b{font-family:var(--font-head);font-weight:600;color:var(--text)}
+.rd-sev{margin:0 0 4px !important;line-height:1.7}
+.rd-conf > p{margin-bottom:2px}
+.rd-conf{border-left:5px solid var(--rd-sev,var(--border));padding-left:12px}
+.rd-rows > li.rd-conf{border-top:0;margin-top:14px;padding-block:2px 4px}
+.rd-rows > li.rd-conf:first-child{margin-top:4px;padding-top:2px}
+/* collapsed blocks */
+details.rd-more{margin-top:6px}
+details.rd-more > summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding-block:8px;cursor:pointer;list-style:none;color:var(--rd-link);font-weight:500;line-height:1.55}
+details.rd-more > summary::-webkit-details-marker{display:none}
+details.rd-more > summary::after{content:"+";flex:0 0 auto;font-family:var(--font-head);font-size:24px;line-height:1}
+details.rd-more[open] > summary::after{content:"−"}
+details.rd-more > .rd-more-b{padding-block:4px 10px}
+details.rd-group{border:1px solid var(--border-strong);border-radius:10px;padding-inline:14px;margin-top:10px}
+details.rd-group > summary{color:var(--text);font-family:var(--font-head);font-weight:600;font-size:18px}
+details.rd-item{margin-top:0}
+details.rd-item > summary{color:var(--text);font-weight:400}
+details.rd-item > summary .nm{display:block;font-weight:600}
+details.rd-item > summary .nm b{font-family:var(--font-head);font-weight:600}
+details.rd-item > summary .st{display:block;font-size:15.5px;color:var(--rd-2);line-height:1.65}
+.rd-kv{margin:8px 0 12px}
+.rd-kv dt{font-weight:600;font-size:16px;line-height:1.6}
+.rd-kv dd{margin:0 0 8px}
+.rd-srcs{display:flex;flex-wrap:wrap;gap:0 14px;font-size:15.5px;margin-top:2px}
+.rd-srcs a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
+.rd-srcs-k{font-weight:600;font-size:16px;margin:8px 0 0 !important}
+/* gold */
+.rd-gold .val{font-size:1.3em}
+.rd-foot{padding-top:14px;border-top:1px solid var(--rd-line);display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.rd-foot a{display:inline-flex;align-items:center;min-height:44px}
+.rd-go{min-height:48px;padding:0 16px;border:1px solid var(--border-strong);border-radius:10px;background:none;color:var(--text);cursor:pointer;font-family:var(--font-head);font-weight:500;font-size:16px}
 </style>
 </head>
 <body>
@@ -374,7 +489,25 @@ details.fold .fold-body p{margin:0 0 8px}
       <p class="sub"><span class="live" id="updated"><span class="u-full">อัปเดต —</span><span class="u-short">อัปเดต —</span></span><span id="live-flag" title="ชั้นข้อมูลสด">สด <span class="sdot" id="live-flag-dot"></span></span><span id="counts"><span class="full"></span><span class="short"></span></span></p>
     </div>
     <span class="badge-sample" id="sample-badge" hidden>ข้อมูลตัวอย่าง</span>
+    <div class="view-switch" role="group" aria-label="เลือกมุมมอง">
+      <button type="button" id="vw-read" aria-pressed="false">อ่านง่าย</button>
+      <button type="button" id="vw-map" aria-pressed="false">ลูกโลก</button>
+    </div>
   </header>
+
+  <div class="reader" id="reader" aria-label="โหมดอ่านง่าย">
+    <nav class="rd-toc" aria-label="ไปยังหัวข้อ">
+      <a href="#r-latest">ล่าสุด</a><a href="#r-prices">ราคา</a><a href="#r-conflicts">ความขัดแย้ง</a><a href="#r-disasters">ภัยพิบัติ</a><a href="#r-economy">เศรษฐกิจ</a><a href="#r-gold">ทองคำ</a>
+    </nav>
+    <p class="rd-banner" id="r-banner" role="status" hidden></p>
+    <section class="rd-sec" id="r-latest"></section>
+    <section class="rd-sec" id="r-prices"></section>
+    <section class="rd-sec" id="r-conflicts"></section>
+    <section class="rd-sec" id="r-disasters"></section>
+    <section class="rd-sec" id="r-economy"></section>
+    <section class="rd-sec" id="r-gold"></section>
+    <div class="rd-foot"><button type="button" class="rd-go" id="r-to-map">ดูบนลูกโลกและตัวชี้วัดทั้งหมด</button><a href="#title">กลับขึ้นด้านบน</a></div>
+  </div>
 
   <main class="main" id="main">
     <section class="stage" id="stage" aria-label="ลูกโลก 3 มิติ">
@@ -417,7 +550,8 @@ details.fold .fold-body p{margin:0 0 8px}
 <script type="application/json" id="live-indicators">__LIVE_INDICATORS__</script>
 <script type="application/json" id="land-dots">__LAND_DOTS__</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- inert on purpose (an unknown type is never fetched): startGlobe() loads this URL the first time the map view is shown -->
+<script type="text/x-deferred" id="three-src" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
 'use strict';
@@ -425,10 +559,11 @@ details.fold .fold-body p{margin:0 0 8px}
 /* ================= data & helpers ================= */
 var DATA = JSON.parse(document.getElementById('world-data').textContent);
 var LAND = JSON.parse(document.getElementById('land-dots').textContent);
-/* indicator tiles that market.json (updater/update.py, every 4 h) keeps live: tools/live_indicators.json, embedded by build.py */
+/* indicator tiles that market.json (updater/prices.py, hourly) keeps live: tools/live_indicators.json, embedded by build.py */
 var LIVE_IND = (function(){ try { var a = JSON.parse(document.getElementById('live-indicators').textContent); return Array.isArray(a) ? a : []; } catch(e){ return []; } })();
 var $ = function(id){ return document.getElementById(id); };
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var viewMode = document.documentElement.getAttribute('data-view') === 'read' ? 'read' : 'map';   /* set by the script in <head> */
 
 var TH_MONTHS = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 function thaiDate(iso){
@@ -1003,7 +1138,7 @@ function createGlobe(stage){
   var lastT = performance.now();
   function tick(now){
     requestAnimationFrame(tick);
-    if(document.hidden) return;
+    if(document.hidden || viewMode === 'read') return;
     var dt = Math.min(0.05, (now-lastT)/1000); lastT = now;
     var t = now/1000;
     pinsConf.material.uniforms.uTime.value = t; pinsEcon.material.uniforms.uTime.value = t; pinsChoke.material.uniforms.uTime.value = t; if(pinsDz) pinsDz.material.uniforms.uTime.value = t;
@@ -1029,14 +1164,36 @@ function createGlobe(stage){
   return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setDisasters:setDisasters, setHot:function(flags){ pinsConf.userData.setHot(flags); } };
 }
 
-if(typeof THREE !== 'undefined' && webglOK()){
-  try { globe = createGlobe($('stage')); } catch(err){ globe = null; renderFallback(); }
-} else {
-  renderFallback();
+/* three.js and the WebGL scene wait until the map view is first shown, so the reading view never downloads them.
+   A globe that arrives late picks up what already happened: layer buttons, disasters, hot conflicts, the selection. */
+var globeStarted = false;
+function startGlobe(){
+  if(globeStarted) return;
+  globeStarted = true;
+  function build(){
+    if(typeof THREE !== 'undefined' && webglOK()){
+      try { globe = createGlobe($('stage')); } catch(err){ globe = null; renderFallback(); }
+    } else {
+      renderFallback();
+    }
+    if(!globe) return;
+    LAYER_BUTTONS.forEach(function(pair){ if($(pair[0]).getAttribute('aria-pressed') !== 'true') globe.setLayer(pair[1], false); });
+    if(disasters.length) globe.setDisasters(disasters);
+    updateHot();
+    if(selected){
+      var rec = selected.kind==='conflict' ? conflicts[selected.idx] : selected.kind==='econ' ? economies[selected.idx] : selected.kind==='disaster' ? disasters[selected.idx] : chokepoints[selected.idx];
+      if(rec){ globe.flyTo(rec.lat, rec.lon); globe.highlight(rec.lat, rec.lon, selected.kind); }
+    }
+  }
+  var s = document.createElement('script');
+  s.src = $('three-src').getAttribute('src');
+  s.onload = build; s.onerror = build;
+  document.head.appendChild(s);
 }
 
 /* ================= stage buttons ================= */
-[['tg-conflicts','conflict'],['tg-disasters','disaster'],['tg-economies','econ'],['tg-chokepoints','choke']].forEach(function(pair){
+var LAYER_BUTTONS = [['tg-conflicts','conflict'],['tg-disasters','disaster'],['tg-economies','econ'],['tg-chokepoints','choke']];
+LAYER_BUTTONS.forEach(function(pair){
   var b = $(pair[0]);
   b.addEventListener('click', function(){
     var on = b.getAttribute('aria-pressed')!=='true';
@@ -1319,7 +1476,7 @@ function goldFoldTitle(title, asof){
 
   v.appendChild(h('h3', {class:'sec-title', text:'ราคาทองโลกปี 2569'}));
   v.appendChild(h('div', {class:'chart-wrap', id:'gold-chart-wrap'}, [
-    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุก 4 ชม.'})]),
+    h('div', {class:'chart-title'}, [h('span', {text:'ราคาปิดปลายเดือน ต่อด้วยรายวันล่าสุด (ดอลลาร์/ออนซ์)'}), h('span', {class:'note', text:(g.series_2026.note_th||'') + ' · รายวันจากระบบอัปเดตทุกชั่วโมง'})]),
     h('div', {id:'gold-chart'}),
     h('div', {class:'chart-legend'}, [
       h('span', null, [h('i'), 'ราคาปิดเดือน / รายวัน']),
@@ -1508,9 +1665,11 @@ function goldHistory(doc){
 /* ================= live layer (static JSON, polled) ================= */
 /* site/data/{market,headlines,status}.json are rewritten by updater/update.py (GitHub Actions)
    and fetched here; the render functions below are the same ones the artifact-db snapshots fed. */
-var live = { market:null, headlines:null, status:null, disasters:null, dzError:false, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false };
+var live = { market:null, headlines:null, status:null, disasters:null, dzError:false, offline:false, fetchError:false, everLoaded:false, raw:{}, seenNews:{}, newsExpanded:false, polled:false, docErr:{} };
 var NEWS_SHOW = 6, HOT_MS = 24*3600*1000;
-var STALE_MS = 10*3600*1000;          /* market/status older than 10 h -> stale */
+/* the bot runs hourly, so 6 h means about five runs missed in a row; GitHub's late or skipped starts stay under it */
+var STALE_H = 6;
+var STALE_MS = STALE_H*3600*1000;     /* market/status older than this -> stale */
 var NEWS_STALE_MS = 14*3600*1000;     /* headlines are refreshed twice a day */
 var POLL_MS = 10*60*1000;
 (function(){ var m = /[?&]poll=(\d+)/.exec(location.search); if(m && +m[1] >= 1000) POLL_MS = +m[1]; })(); /* test hook: ?poll=<ms> */
@@ -1556,6 +1715,7 @@ function refreshAges(){
   updateDzNote();
   updateHot();
   updateHeaderFlag();
+  rdRefresh(false);
 }
 setInterval(refreshAges, 60000);
 
@@ -1564,20 +1724,21 @@ function updateHeaderFlag(){
   dot.setAttribute('data-dot', liveStamp() || '');
   setDot(dot, liveStamp());
   var lu = lastUpdate();
-  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (lu ? ('อัปเดตล่าสุด ' + bkkDateTime(lu) + (isStale(liveStamp()) ? ' · ข้อมูลเก่ากว่า 10 ชม.' : '')) : 'รอข้อมูลสด');
+  $('live-flag').title = live.offline ? 'โหมดออฟไลน์' : (lu ? ('อัปเดตล่าสุด ' + bkkDateTime(lu) + (isStale(liveStamp()) ? ' · ข้อมูลเก่ากว่า ' + STALE_H + ' ชม.' : '')) : 'รอข้อมูลสด');
   var foot = $('foot-live'); if(foot) foot.textContent = (lu && !live.offline) ? (' · อัปเดตล่าสุด ' + bkkDateTime(lu)) : '';
   /* header date: the last live update (Bangkok time), stale like the live flag; the embedded date only without live data */
   var up = $('updated'), liveUp = !!(lu && !live.offline), stale = liveUp && isStale(liveStamp());
   if(liveUp){ var bd = new Date(parseTs(lu) + 7*3600000); setUpdated('อัปเดต ' + bkkDateTime(lu), 'อัปเดต ' + bd.getUTCDate() + ' ' + TH_MONTHS[bd.getUTCMonth()] + ' ' + ('0'+bd.getUTCHours()).slice(-2) + ':' + ('0'+bd.getUTCMinutes()).slice(-2)); }
   else setUpdated(EMBEDDED_UPDATED_TH);
   up.classList.toggle('is-stale', stale);
-  up.title = liveUp ? (stale ? 'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน' : 'ราคาและข่าวอัปเดตอัตโนมัติทุก 4 ชม.') : 'ข้อมูลที่ฝังในหน้า (โหลดข้อมูลสดไม่สำเร็จ)';
+  up.title = liveUp ? (stale ? 'ข้อมูลเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน' : 'ราคาอัปเดตอัตโนมัติทุกชั่วโมง ข่าววันละ 2 รอบ') : 'ข้อมูลที่ฝังในหน้า (โหลดข้อมูลสดไม่สำเร็จ)';
 }
 
+function offlineText(){ return 'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'; }
 function renderOffline(){
   live.offline = true;
   var slot = $('live-slot'); slot.innerHTML = ''; tickerEls = {};
-  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:'โหมดออฟไลน์ · ข้อมูล ณ ' + thaiDate(DATA.meta && DATA.meta.updated) + ' · โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ'})]));
+  slot.appendChild(h('div', {class:'offline-bar'}, [h('span', {class:'sdot old'}), h('span', {text:offlineText()})]));
   goldLive([]); indLive([]);
   updateHeaderFlag();
 }
@@ -1587,7 +1748,7 @@ function liveNote(){
   var st = live.status, m = live.market;
   if(st && st.ok === false && st.message_th) return {text:st.message_th, warn:true};
   if(live.fetchError) return {text:'โหลดข้อมูลรอบล่าสุดไม่สำเร็จ แสดงค่าล่าสุดที่ได้รับ', warn:true};
-  if(m && isStale(m.updated_at)) return {text:'ข้อมูลเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  if(m && isStale(m.updated_at)) return {text:'ข้อมูลเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
   return {text:(m && m.note_th) || '', warn:false};
 }
 function updateStaleNote(){
@@ -1702,7 +1863,7 @@ function updateHot(){
 }
 
 /* ================= disasters (data/disasters.json from updater/disasters.py: GDACS + USGS, no AI) ================= */
-var DZ_STALE_MS = 10*3600*1000;       /* refreshed every 4 h by the workflow */
+var DZ_STALE_MS = STALE_MS;           /* refreshed hourly by the same workflow run as the prices */
 var DZ_TYPE_TH = {earthquake:'แผ่นดินไหว', cyclone:'พายุหมุนเขตร้อน', flood:'น้ำท่วม', volcano:'ภูเขาไฟ', wildfire:'ไฟป่า', drought:'ภัยแล้ง'};
 var DZ_ALERT_TH = {red:'แดง', orange:'ส้ม', yellow:'เหลือง', green:'เขียว'};
 var DZ_RANK = {red:0, orange:1, yellow:2, green:3};
@@ -1770,13 +1931,17 @@ function renderDisasterDetail(d, it){
     ? 'ระดับเตือน PAGER ของ USGS ประเมินจากจำนวนผู้เสียชีวิตและความเสียหายทางเศรษฐกิจที่คาดว่าจะเกิด'
     : 'ระดับเตือนของ GDACS ประเมินผลกระทบด้านมนุษยธรรม: แดง = สูง อาจต้องการความช่วยเหลือระหว่างประเทศ · ส้ม = ปานกลาง · เขียว = ต่ำ'}));
 }
+function dzNote(){
+  var doc = live.disasters;
+  if(doc && doc.ok === false && doc.message_th) return {text:String(doc.message_th), warn:true};
+  if(doc && live.dzError) return {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
+  if(doc && isStale(doc.updated, DZ_STALE_MS)) return {text:'ข้อมูลภัยพิบัติเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  return null;
+}
 function updateDzNote(){
   var head = $('dz-head'); if(!head) return;
-  var note = head.querySelector('.note'), doc = live.disasters, n = null;
+  var note = head.querySelector('.note'), doc = live.disasters, n = dzNote();
   var stale = !!(doc && isStale(doc.updated, DZ_STALE_MS));
-  if(doc && doc.ok === false && doc.message_th) n = {text:String(doc.message_th), warn:true};
-  else if(doc && live.dzError) n = {text:'โหลดข้อมูลภัยพิบัติรอบล่าสุดไม่สำเร็จ แสดงรายการล่าสุดที่ได้รับ', warn:true};
-  else if(stale) n = {text:'ข้อมูลภัยพิบัติเก่ากว่า 10 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
   note.hidden = !n; note.textContent = n ? n.text : ''; note.classList.toggle('warn', !!(n && n.warn));
   head.classList.toggle('is-stale', stale);
 }
@@ -1802,12 +1967,14 @@ function renderDzSummary(){
   });
   var go = function(){ showTab('disasters'); clearSelection(); if(isMobile() && sheetState==='low') setSheet('mid'); };
   var box = h('div', {class:'dz-sum', role:'button', tabindex:'0', onclick:go, onkeydown:function(ev){ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); go(); } }}, [
-    h('div', {class:'k'}, [h('span', {class:'tri'}), 'ภัยพิบัติขณะนี้', h('span', {class:'cnt', text:disasters.length + ' เหตุการณ์' + (nRed ? ' · เตือนแดง ' + nRed : '') + (nOr ? ' · ส้ม ' + nOr : '')})]),
+    h('div', {class:'k'}, [h('span', {class:'tri'}), 'ภัยพิบัติล่าสุด', h('span', {class:'cnt', text:disasters.length + ' เหตุการณ์' + (nRed ? ' · เตือนแดง ' + nRed : '') + (nOr ? ' · ส้ม ' + nOr : '')})]),
     ul,
     h('div', {class:'more', text:'ดูทั้งหมดในแท็บภัยพิบัติ →'})
   ]);
   slot.appendChild(box);
 }
+function dzSrcNote(cls){ return h('p', {class:cls}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุกชั่วโมง ไม่ผ่าน AI']); }
+var DZ_EMPTY_TH = 'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด';
 function renderDisasters(){
   var v = $('view-disasters'); if(!v) return;
   var doc = live.disasters;
@@ -1815,11 +1982,11 @@ function renderDisasters(){
   v.innerHTML = '';
   var stamp = doc && doc.updated ? String(doc.updated) : '';
   var age = h('span', {class:'age'}, stamp ? [h('span', {class:'sdot ' + freshClass(stamp, DZ_STALE_MS), 'data-dzdot':stamp}), h('span', {'data-age':stamp, text:ageText(stamp)})] : []);
-  v.appendChild(h('div', {class:'live-head', id:'dz-head'}, [h('h3', {class:'sec-title', text:'ภัยพิบัติขณะนี้'}), age, h('span', {class:'note', hidden:''})]));
+  v.appendChild(h('div', {class:'live-head', id:'dz-head'}, [h('h3', {class:'sec-title', text:'ภัยพิบัติล่าสุด'}), age, h('span', {class:'note', hidden:''})]));
   if(!doc){
     v.appendChild(h('div', {class:'dz-empty', text: live.dzError ? 'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ' : 'กำลังโหลดข้อมูลภัยพิบัติ…'}));
   } else if(!disasters.length){
-    v.appendChild(h('div', {class:'dz-empty', text:'ขณะนี้ไม่มีภัยพิบัติที่ GDACS เตือนระดับส้มหรือแดง และไม่มีแผ่นดินไหวสำคัญจาก USGS ในสัปดาห์ล่าสุด'}));
+    v.appendChild(h('div', {class:'dz-empty', text:DZ_EMPTY_TH}));
   } else {
     var l = h('div', {class:'list dz'});
     disasters.forEach(function(it, i){ l.appendChild(dzRow(it, i)); });
@@ -1827,12 +1994,322 @@ function renderDisasters(){
   }
   v.appendChild(h('div', {id:'dz-news'}));
   renderDisasterNews();
-  v.appendChild(h('p', {class:'dz-src'}, ['ที่มา: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' (ระบบเตือนภัยพิบัติโลกของสหภาพยุโรปและสหประชาชาติ เฉพาะเตือนระดับส้มและแดง) และ ', h('a', {href:'https://earthquake.usgs.gov/earthquakes/map/', target:'_blank', rel:'noopener noreferrer', text:'USGS'}), ' (แผ่นดินไหวสำคัญในสัปดาห์ล่าสุด) ดึงอัตโนมัติทุก 4 ชม. ไม่ผ่าน AI']));
+  v.appendChild(dzSrcNote('dz-src'));
   updateDzNote();
   renderDzSummary();
   $('counts').querySelector('.full').textContent = COUNTS_FULL + (doc ? ' · ' + disasters.length + ' ภัยพิบัติ' : '');
   if(globe && globe.setDisasters) globe.setDisasters(disasters);
 }
+
+/* ================= reading view (one calm page, same data and same failure rules as the map view) ================= */
+/* words for the 1-5 severity of world-data.json; the number stays next to them */
+var RD_SEVERITY = {5:'รุนแรงที่สุด', 4:'รุนแรงมาก', 3:'รุนแรงปานกลาง', 2:'รุนแรงน้อย', 1:'รุนแรงน้อยมาก'};
+var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data every day */
+var RD_NEWS_TOP = 5;
+var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are open on the page */
+var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
+var rdOpen = {}, rdSig = null, rdDirty = true;
+function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
+function rdNote(n){ return n && n.text ? h('p', {class:'rd-note' + (n.warn ? ' warn' : ''), 'data-warn':n.warn ? '1' : null}, [n.warn ? h('b', {text:'ข้อควรระวัง: '}) : null, n.text]) : null; }
+function rdAge(iso){ return iso ? h('p', {class:'rd-fresh'}, [h('span', {'data-age':String(iso), text:ageText(iso)})]) : null; }
+function rdRel(iso, prefix){ return parseTs(iso)==null ? null : h('span', null, [(prefix || '') + bkkDateTime(iso) + ' (', h('span', {'data-rel':String(iso), text:relTh(iso)}), ')']); }
+function rdMore(key, label, cls, body){
+  var d = h('details', {class:'rd-more' + (cls ? ' ' + cls : ''), 'data-rd':key}, [h('summary', null, typeof label === 'string' ? [h('span', {text:label})] : [label]), h('div', {class:'rd-more-b'}, body)]);
+  if(rdOpen[key]) d.open = true;
+  return d;
+}
+function rdSources(urls){
+  urls = (urls||[]).filter(function(u){ return typeof u === 'string' && u; });
+  if(!urls.length) return null;
+  return h('div', null, [h('p', {class:'rd-srcs-k', text:'แหล่งที่มา'}), h('div', {class:'rd-srcs'}, urls.map(function(u){ return rdA(u); }))]);
+}
+function rdBullets(items){ return h('ul', {class:'rd-bullets'}, (items||[]).map(function(p){ return h('li', {text:String(p)}); })); }
+function rdKv(pairs){
+  var dl = h('dl', {class:'rd-kv'});
+  pairs.forEach(function(p){ if(p[1]==null || p[1]==='') return; dl.appendChild(h('dt', {text:p[0]})); dl.appendChild(h('dd', {text:String(p[1])})); });
+  return dl.children.length ? dl : null;
+}
+function rdGroupedNum(v){
+  var s = String(v==null ? '' : v), m = /^-?\d+(\.\d+)?$/.exec(s);
+  if(!m) return s || '—';
+  var d = m[1] ? m[1].length-1 : 0;
+  return Number(s).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+}
+function rdGlyph(tr){ return tr==='up' ? '▲ ' : tr==='down' ? '▼ ' : ''; }
+
+/* --- how fresh each part really is --- */
+function rdBasisAge(){
+  var iso = DATA.meta && DATA.meta.updated, t = Date.parse((iso||'') + 'T00:00:00Z');
+  return isNaN(t) ? null : Math.round((Date.parse(bkkDay(Date.now()) + 'T00:00:00Z') - t)/86400000);
+}
+function rdBasisLine(){
+  var d = rdBasisAge(), when = d==null ? '' : d<=0 ? ' (วันนี้)' : d===1 ? ' (เมื่อวาน)' : ' (' + d + ' วันที่แล้ว)';
+  return h('p', {class:'rd-fresh'}, ['ข้อมูล ณ ' + BASIS_TH + when + ' · AI บรรณาธิการทบทวนวันละครั้ง']);
+}
+function rdBasisNote(){
+  var d = rdBasisAge();
+  return (d!=null && d > RD_BASIS_STALE_DAYS) ? {text:'ข้อมูลส่วนนี้ไม่ได้ทบทวนมาแล้ว ' + d + ' วัน', warn:true} : null;
+}
+function rdPriceNote(){
+  if(live.offline) return {text:'โหลดราคาสดไม่สำเร็จ จะลองใหม่อัตโนมัติ', warn:true};
+  if(!live.polled) return {text:'กำลังโหลดราคาล่าสุด…', warn:false};
+  var n = liveNote();
+  return n.warn ? n : null;
+}
+function rdNewsNote(){
+  var hd = live.headlines, err = !!(live.docErr && live.docErr.headlines);
+  if(!hd) return err ? {text:'โหลดข่าวล่าสุดไม่สำเร็จ จะลองใหม่อัตโนมัติ', warn:true} : live.polled ? null : {text:'กำลังโหลดข่าวล่าสุด…', warn:false};
+  if(err) return {text:'โหลดข่าวรอบล่าสุดไม่สำเร็จ แสดงข่าวล่าสุดที่ได้รับ', warn:true};
+  if(isStale(hd.updated_at, NEWS_STALE_MS)) return {text:'ข่าวเก่ากว่า 14 ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน', warn:true};
+  return null;
+}
+function rdDzNote(){
+  if(!live.disasters) return live.dzError ? {text:'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ', warn:true} : live.polled ? null : {text:'กำลังโหลดข้อมูลภัยพิบัติ…', warn:false};
+  return dzNote();
+}
+/* the market.json item, as listed under prices, so the page never shows two values or two changes for the same gold */
+function rdGoldItem(it){ return (it && !live.offline && liveNum(it) > 0 && parseTs(it.as_of) != null) ? it : null; }
+function rdGoldNote(vm){
+  if(!vm) return null;
+  if(live.offline) return {text:'โหลดราคาสดไม่สำเร็จ แสดงค่าล่าสุดที่ฝังในหน้าเว็บ ตามเวลาที่ระบุ', warn:true};
+  var sp = rdGoldItem(goldState.live), th = rdGoldItem(goldState.liveTh);
+  var spStale = !!(sp && goldStale(sp.as_of, 'spot')), thStale = !!(th && goldStale(th.as_of, 'th'));
+  if(spStale || thStale) return {text:'ข้อมูลเก่า ไม่มีราคาใหม่เกิน ' + GOLD_STALE_H + ' ชั่วโมงทำการ: ' + [thStale ? 'ทองคำแท่งไทย' : null, spStale ? 'ทองคำโลก' : null].filter(Boolean).join(' และ '), warn:true};
+  return null;
+}
+function rdNotes(){
+  var vm = GOLD ? goldVM() : null;
+  return {vm:vm, basis:rdBasisNote(), price:rdPriceNote(), news:rdNewsNote(), dz:rdDzNote(), gold:rdGoldNote(vm)};
+}
+
+/* --- sections --- */
+function rdSection(id, title){ var s = $(id); s.innerHTML = ''; s.appendChild(h('h2', {text:title})); return s; }
+function rdNewsRow(it){
+  return h('li', {'data-id':String(it.id || '')}, [
+    h('p', {class:'rd-title', text:String(it.title_th)}),
+    h('div', {class:'rd-meta'}, [
+      it.time ? h('span', {'data-rel':String(it.time), text:relTh(it.time)}) : null,
+      it.source ? rdA(it.source, it.source_name ? String(it.source_name) : domain(String(it.source))) : (it.source_name ? h('span', {text:String(it.source_name)}) : null)
+    ])
+  ]);
+}
+function rdLatest(N){
+  var s = rdSection('r-latest', 'สถานการณ์ล่าสุด'), an = DATA.analysis_th || {}, items = newsItems();
+  if(an.headline){
+    s.appendChild(rdBasisLine());
+    s.appendChild(h('p', {class:'rd-lead', text:an.headline}));
+    if(N.basis) s.appendChild(rdNote(N.basis));
+  }
+  s.appendChild(h('h3', {text:'ข่าวล่าสุด'}));
+  if(live.headlines) s.appendChild(rdAge(live.headlines.updated_at));
+  if(N.news) s.appendChild(rdNote(N.news));
+  if(items.length){
+    s.appendChild(h('ul', {class:'rd-rows', id:'r-news'}, items.slice(0, RD_NEWS_TOP).map(rdNewsRow)));
+    if(items.length > RD_NEWS_TOP) s.appendChild(rdMore('news-all', 'ข่าวอื่นอีก ' + (items.length - RD_NEWS_TOP) + ' ข่าว', '', [h('ul', {class:'rd-rows'}, items.slice(RD_NEWS_TOP).map(rdNewsRow))]));
+  }
+  if(an.thailand) s.appendChild(h('div', {class:'rd-callout'}, [h('span', {class:'k', text:'มุมมองต่อไทย'}), h('span', {text:an.thailand})]));
+  if(an.points && an.points.length) s.appendChild(rdMore('analysis', 'อ่านบทวิเคราะห์ทั้งหมด', '', [rdBullets(an.points)]));
+  if(an.risks && an.risks.length) s.appendChild(rdMore('risks', 'ความเสี่ยงที่ต้องจับตา', '', [rdBullets(an.risks)]));
+}
+/* a shorter link text so a price keeps to two lines: finance.yahoo.com -> yahoo, goldtraders.or.th -> goldtraders */
+function rdHost(url){
+  var p = domain(String(url)).split('.');
+  return (p.length > 2 && p[p.length-2].length <= 3) ? p[p.length-3] : p[Math.max(0, p.length-2)];
+}
+/* a change text that already says when (a closing date, an announcement time) needs no time beside it */
+function rdNamesTime(s){
+  s = String(s || '');
+  return /เวลา\s*\d/.test(s) || TH_MONTHS.some(function(m){ return s.indexOf(' ' + m) >= 0; });
+}
+function rdShortTime(t){ var d = new Date(t + 7*3600000); return thaiDayShort(t) + ' ' + ('0'+d.getUTCHours()).slice(-2) + ':' + ('0'+d.getUTCMinutes()).slice(-2) + ' น.'; }
+function rdItemTime(it, latest){
+  var t = parseTs(it.as_of);
+  if(t==null || latest-t <= RD_PRICE_OLD_MS || rdNamesTime(it.change_th)) return null;
+  return h('span', {text:'ณ ' + rdShortTime(t)});
+}
+function rdPriceName(it){
+  var nm = String(it.label_th || it.key || '');
+  return it.key==='gold_th' ? nm.replace(/\s*\([^)]*\)\s*$/, '') : nm;   /* the source link already names the association */
+}
+/* Thai gold: "ประกาศครั้งที่ 46 เวลา 16:11 น. +50 บาท · +1,900 จากวันก่อน" -> "ประกาศ 16:11 น. · +1,900 จากวันก่อน",
+   or with the date instead of the word when the announcement is not from today. Any other wording is shown as it is. */
+function rdPriceChange(it){
+  var s = it.change_th ? String(it.change_th) : '', t = parseTs(it.as_of);
+  if(it.key!=='gold_th' || t==null) return s;
+  var m = /^ประกาศครั้งที่\s*\S+\s*เวลา\s*(\d{1,2}:\d{2}\s*น\.).*?·\s*(.+)$/.exec(s);
+  if(!m) return s;
+  return (bkkDay(t)===bkkDay(Date.now()) ? 'ประกาศ ' + m[1] : rdShortTime(t)) + ' · ' + m[2];
+}
+function rdPriceRow(o){
+  return h('li', {class:'rd-price', 'data-key':o.key || null}, [
+    h('div', {class:'top'}, [h('span', {class:'nm', text:o.name}), h('span', {class:'val'}, [o.value, o.unit ? h('span', {class:'u', text:o.unit}) : null])]),
+    h('div', {class:'rd-meta line2'}, [
+      o.change ? h('span', {class:'chg' + (/^ค่าเดิม/.test(o.change) ? ' warn' : '')}, [rdGlyph(o.trend), o.change]) : null,
+      o.when,
+      o.source ? rdA(o.source, rdHost(o.source)) : null
+    ])
+  ]);
+}
+function rdPrices(N){
+  var s = rdSection('r-prices', 'ราคาสำคัญ'), m = live.market, items = (m && Array.isArray(m.items)) ? m.items : [];
+  if(!live.offline && m) s.appendChild(rdAge(m.updated_at));
+  if(N.price) s.appendChild(rdNote(N.price));
+  var rows = [];
+  if(!live.offline){
+    var latest = 0;
+    items.forEach(function(it){ var t = it && parseTs(it.as_of); if(t && t > latest) latest = t; });
+    items.forEach(function(it, i){
+      if(!it || typeof it !== 'object' || it.value==null) return;
+      rows.push(rdPriceRow({key:String(it.key || i), name:rdPriceName(it), value:rdGroupedNum(it.value), unit:it.unit ? String(it.unit) : '', change:rdPriceChange(it), trend:it.trend, when:rdItemTime(it, latest), source:it.source}));
+    });
+  }
+  if(live.offline){
+    /* no live file at all: the embedded values that have a live counterpart, each with its own date */
+    (DATA.indicators||[]).forEach(function(ind){
+      var map = LIVE_IND.filter(function(x){ return x && x.label === ind.label_th; })[0];
+      if(map) rows.push(rdPriceRow({key:'embedded-' + map.key, name:String(ind.label_th), value:String(ind.value), change:ind.delta_th ? String(ind.delta_th) : '', trend:ind.trend, when:ind.as_of ? h('span', {text:'ค่าล่าสุดที่ฝังในหน้าเว็บ ณ ' + thaiDate(ind.as_of)}) : null, source:ind.source}));
+    });
+  }
+  if(rows.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-price-list'}, rows));
+  if(!live.offline && m && m.note_th) s.appendChild(rdMore('price-note', 'หมายเหตุเรื่องแหล่งราคา', '', [h('p', {class:'rd-note', text:String(m.note_th)})]));
+}
+function rdConflicts(N){
+  var s = rdSection('r-conflicts', 'ความขัดแย้ง');
+  s.appendChild(rdBasisLine());
+  s.appendChild(h('p', {class:'rd-note', text:'เรียงจากรุนแรงมากไปน้อย'}));
+  if(N.basis) s.appendChild(rdNote(N.basis));
+  var all = newsItems();
+  function card(c){
+    var i = Math.max(1, Math.min(5, c.intensity|0)), key = 'conf-' + (c.id || c.name_th), news = all.filter(function(x){ return c.id && String(x.conflict_id||'')===c.id; }).slice(0, 3);
+    return h('li', {class:'rd-conf', style:'--rd-sev:' + intensityVar(i), 'data-intensity':String(i)}, [
+      h('h3', {text:String(c.name_th)}),
+      h('p', {class:'rd-level'}, [h('b', {text:RD_SEVERITY[i]}), ' · ระดับ ' + i + ' จาก 5' + (TYPE_TH[c.type] ? ' · ' + TYPE_TH[c.type] : '')]),
+      c.status_th ? h('p', {text:String(c.status_th)}) : null,
+      rdMore(key, 'รายละเอียดและแหล่งที่มา', '', [
+        news.length ? h('div', null, [h('p', {class:'rd-srcs-k', text:'ข่าวล่าสุดของเรื่องนี้'}), h('ul', {class:'rd-rows'}, news.map(rdNewsRow))]) : null,
+        c.summary_th ? h('p', {text:String(c.summary_th)}) : null,
+        rdKv([['ผู้เสียชีวิต (ประมาณ)', c.deaths_est], ['ผู้พลัดถิ่น', c.displaced], ['ความน่าเชื่อถือของข้อมูล', CONF_TH[c.confidence]]]),
+        rdSources(c.sources)
+      ])
+    ]);
+  }
+  /* the most severe show first, the rest behind one button; conflicts is already sorted, so the order holds across both */
+  var top = conflicts.filter(function(c){ return (c.intensity|0) >= RD_CONFLICT_TOP_LEVEL; }), rest = conflicts.filter(function(c){ return (c.intensity|0) < RD_CONFLICT_TOP_LEVEL; });
+  if(!top.length){ top = rest; rest = []; }
+  s.appendChild(h('ul', {class:'rd-rows', id:'r-conflict-list'}, top.map(card)));
+  if(rest.length) s.appendChild(rdMore('conf-rest', 'ดูอีก ' + rest.length + ' รายการ (ระดับ ' + (RD_CONFLICT_TOP_LEVEL-1) + ' ลงมา)', 'rd-group', [h('ul', {class:'rd-rows', id:'r-conflict-more'}, rest.map(card))]));
+}
+/* the event's own dates from the data: one day with its age, or a start-end range */
+function rdDzDate(it){
+  var a = parseTs(it.start), b = parseTs(it.end);
+  if(a==null) return null;
+  var d0 = bkkDay(a), d1 = (b!=null && b>a) ? bkkDay(b) : d0;
+  if(d1 !== d0) return h('span', {class:'rd-dz-date', text:thaiDate(d0) + ' – ' + thaiDate(d1)});
+  return h('span', {class:'rd-dz-date'}, [thaiDate(d0) + ' (', h('span', {'data-rel':String(it.start), text:relTh(it.start)}), ')']);
+}
+function rdDisasters(N){
+  var s = rdSection('r-disasters', 'ภัยพิบัติล่าสุด'), doc = live.disasters;
+  if(doc) s.appendChild(rdAge(doc.updated));
+  if(N.dz) s.appendChild(rdNote(N.dz));
+  if(doc && !disasters.length) s.appendChild(h('p', {text:DZ_EMPTY_TH}));
+  if(disasters.length) s.appendChild(h('ul', {class:'rd-rows', id:'r-dz-list'}, disasters.map(function(it){
+    var src = dzSources(it);
+    return h('li', {class:'rd-dz', 'data-id':String(it.id || '')}, [
+      h('h3', {text:String(it.title_th)}),
+      h('p', {class:'rd-level'}, [h('b', {text:dzAlertText(it.alert_level)}), DZ_TYPE_TH[it.type] ? ' · ' + DZ_TYPE_TH[it.type] : '', it.country_th ? ' · ' + String(it.country_th) : '']),
+      it.severity_th ? h('p', {class:'rd-sev', text:String(it.severity_th)}) : null,
+      h('div', {class:'rd-meta'}, [rdDzDate(it)].concat(src.map(function(u, j){ var nm = j===0 ? it.source_name : it.alt_source_name; return rdA(u, nm ? String(nm) : domain(u)); })))
+    ]);
+  })));
+  s.appendChild(dzSrcNote('rd-note'));
+}
+function rdEconomy(N){
+  var s = rdSection('r-economy', 'เศรษฐกิจและช่องแคบ');
+  s.appendChild(rdBasisLine());
+  if(N.basis) s.appendChild(rdNote(N.basis));
+  if(economies.length) s.appendChild(rdMore('econ', 'เศรษฐกิจรายประเทศ (' + economies.length + ')', 'rd-group', [h('ul', {class:'rd-rows', id:'r-econ-list'}, economies.map(function(e){
+    return h('li', null, [rdMore('econ-' + (e.iso || e.name_th), h('span', null, [
+      h('span', {class:'nm'}, [String(e.name_th) + ' · ', h('b', {text:HEALTH_TH[e.health] || '—'})]),
+      h('span', {class:'st', text:'GDP 2026 ' + pct(e.gdp_growth_2026) + ' · GDP 2027 (คาดการณ์) ' + pct(e.gdp_growth_2027) + ' · เงินเฟ้อ ' + num(e.inflation, '%') + ' · ดอกเบี้ยนโยบาย ' + num(e.policy_rate, '%')})
+    ]), 'rd-item', [e.note_th ? h('p', {text:String(e.note_th)}) : null, rdSources(e.sources)])]);
+  }))]));
+  if(chokepoints.length) s.appendChild(rdMore('choke', 'ช่องแคบและเส้นทางการค้า (' + chokepoints.length + ')', 'rd-group', [h('ul', {class:'rd-rows', id:'r-choke-list'}, chokepoints.map(function(c){
+    return h('li', null, [
+      h('p', {class:'rd-title'}, [h('b', {text:String(c.name_th)})]),
+      h('p', {class:'rd-level'}, [h('b', {text:LEVEL_TH[c.level] || '—'}), ' · ระดับ ' + (c.level || 1) + ' จาก 3']),
+      c.note_th ? h('p', {text:String(c.note_th)}) : null,
+      rdSources(c.sources)
+    ]);
+  }))]));
+}
+function rdGold(N){
+  var s = rdSection('r-gold', 'ทองคำ'), vm = N.vm;
+  if(!GOLD || !vm){ s.hidden = true; return; }
+  var g = GOLD, th = g.thai || {}, sl = rdGoldItem(goldState.live), tl = rdGoldItem(goldState.liveTh);
+  if(N.gold) s.appendChild(rdNote(N.gold));
+  var old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
+  var rows = [];
+  if(tl || th.sell != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-th'}, [
+    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำแท่งไทย ขายออก'}), h('span', {class:'val'}, [tl ? rdGroupedNum(tl.value) : fmtN(th.sell), h('span', {class:'u', text:'บาท'})])]),
+    vm.buy && vm.buy.v != null ? h('div', {class:'chg', text:'รับซื้อ ' + fmtN(vm.buy.v) + ' บาท' + old(vm.buy)}) : null,
+    vm.orn && vm.orn.v != null ? h('div', {class:'chg', text:'ทองรูปพรรณ ขายออก ' + fmtN(vm.orn.v) + ' บาท' + old(vm.orn)}) : null,
+    tl && tl.change_th ? h('div', {class:'chg'}, [rdGlyph(tl.trend), String(tl.change_th)]) : null,
+    h('div', {class:'rd-meta'}, [tl ? rdRel(tl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(th.as_of)}), tl && tl.source ? rdA(tl.source) : (th.source_th ? h('span', {text:String(th.source_th)}) : null)])
+  ]));
+  if(sl || g.spot_now != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-spot'}, [
+    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำโลก (spot)'}), h('span', {class:'val'}, sl ? [rdGroupedNum(sl.value), sl.unit ? h('span', {class:'u', text:String(sl.unit)}) : null] : ['$' + fmtN(g.spot_now), h('span', {class:'u', text:'ต่อออนซ์'})])]),
+    sl && sl.change_th ? h('div', {class:'chg'}, [rdGlyph(sl.trend), String(sl.change_th)]) : null,
+    h('div', {class:'rd-meta'}, [sl ? rdRel(sl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(g.as_of)}), sl && sl.source ? rdA(sl.source) : null])
+  ]));
+  s.appendChild(h('ul', {class:'rd-rows'}, rows));
+  if(g.disclaimer_th) s.appendChild(h('p', {class:'rd-note', text:String(g.disclaimer_th)}));
+}
+function rdBanner(N){
+  var b = $('r-banner'), parts = [];
+  if(live.offline){ b.textContent = offlineText(); b.hidden = false; return; }
+  [[N.news, 'ข่าว'], [N.price, 'ราคา'], [N.basis, 'ความขัดแย้งและเศรษฐกิจ'], [N.dz, 'ภัยพิบัติ'], [N.gold, 'ทองคำ']].forEach(function(p){ if(p[0] && p[0].warn) parts.push(p[1]); });
+  b.hidden = !parts.length;
+  b.textContent = parts.length ? 'ข้อมูลบางส่วนอาจไม่เป็นปัจจุบัน: ' + parts.join(' · ') + ' ดูข้อควรระวังในแต่ละหัวข้อ' : '';
+}
+/* re-render only when the data or a warning changed; open sections stay open (rdOpen). Hidden while the map view is on. */
+function rdRefresh(force){
+  if(force) rdDirty = true;
+  if(viewMode !== 'read') return;
+  var N = rdNotes(), sig = JSON.stringify([N.basis, N.price, N.news, N.dz, N.gold, live.offline]);
+  if(!rdDirty && sig === rdSig) return;
+  rdSig = sig; rdDirty = false;
+  rdBanner(N); rdLatest(N); rdPrices(N); rdConflicts(N); rdDisasters(N); rdEconomy(N); rdGold(N);
+}
+(function initReader(){
+  var r = $('reader');
+  r.addEventListener('toggle', function(ev){ var k = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-rd'); if(k) rdOpen[k] = ev.target.open; }, true);
+  $('r-to-map').addEventListener('click', function(){ setView('map'); });
+})();
+
+/* ================= view switch ================= */
+function paintViewSwitch(){
+  $('vw-read').setAttribute('aria-pressed', String(viewMode === 'read'));
+  $('vw-map').setAttribute('aria-pressed', String(viewMode === 'map'));
+}
+function setView(v){
+  var same = v === viewMode;
+  viewMode = v;
+  document.documentElement.setAttribute('data-view', v);
+  paintViewSwitch();
+  try { localStorage.setItem('world-view', v); } catch(e){}
+  /* the address always names the view on screen: it can be shared, and a reload keeps it */
+  try {
+    var q = new URLSearchParams(location.search); q.set('view', v);
+    history.replaceState(null, '', location.pathname + '?' + q.toString() + location.hash);
+  } catch(e){}
+  if(same) return;
+  window.scrollTo(0, 0);
+  if(v === 'map'){ startGlobe(); if(currentTab === 'gold') goldLayout(); }
+  else rdRefresh(false);
+}
+$('vw-read').addEventListener('click', function(){ setView('read'); });
+$('vw-map').addEventListener('click', function(){ setView('map'); });
+paintViewSwitch();
 
 /* fetch one doc; resolves to {name, text, data} or {name, error} */
 function fetchDoc(name){
@@ -1855,6 +2332,7 @@ function pollLive(){
     var dzHadError = live.dzError;
     res.forEach(function(r){
       if(r.name==='disasters') live.dzError = !!r.error;
+      live.docErr[r.name] = !!r.error;
       if(r.error){ if(!SIDE_DOCS[r.name]) failed++; return; }
       if(live.raw[r.name] !== r.text){ live.raw[r.name] = r.text; live[r.name] = r.data; changed[r.name] = true; }
     });
@@ -1871,11 +2349,15 @@ function pollLive(){
     if(changed.gold_history) goldHistory(live.gold_history);
     if(changed.disasters || dzHadError !== live.dzError || (live.dzError && !live.disasters)) renderDisasters();
     else if(changed.headlines) renderDisasterNews();
+    live.polled = true;
+    rdRefresh(Object.keys(changed).length > 0);
     window.__liveState = {offline:live.offline, fetchError:live.fetchError, polls:(window.__liveState ? window.__liveState.polls : 0) + 1, failed:failed};
   }).then(function(){ polling = false; }, function(){ polling = false; });
 }
 (function initLive(){
   renderDisasters();
+  rdRefresh(true);
+  if(viewMode === 'map') startGlobe();
   pollLive();
   setInterval(function(){ if(!document.hidden) pollLive(); }, POLL_MS);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden && Date.now()-lastPoll > 2000) pollLive(); });

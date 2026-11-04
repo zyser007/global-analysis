@@ -182,7 +182,7 @@ test('failed run, stale data and a failed re-poll keep the last data with a warn
   const old = market1(); old.updated_at = iso(11*HOUR);
   writeData('market', old); writeData('status', { updated_at: iso(11*HOUR), run_count: 43, ok: true, message_th: 'สำเร็จ' });
   await repoll(page);
-  await expect(note).toContainText('ข้อมูลเก่ากว่า 10 ชม.');
+  await expect(note).toContainText('ข้อมูลเก่ากว่า 6 ชม.');
   expect(await page.locator('#live-slot .live-head .sdot').getAttribute('class')).toContain('stale');
   expect(await page.locator('#live-flag-dot').getAttribute('class')).toContain('stale');
   expect(await page.locator('#live-slot .live-head').getAttribute('class')).toContain('is-stale');

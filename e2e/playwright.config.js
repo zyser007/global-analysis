@@ -12,6 +12,11 @@ module.exports = defineConfig({
   use: {
     browserName: 'chromium',
     headless: true,
+    // the specs written for the map view keep testing it on phone viewports too (phones default to the reading view):
+    // a stored choice of "map" on every test server. reading.spec.js starts from an empty storage state.
+    storageState: { cookies: [], origins: Object.values(PORTS).map((port) => ({
+      origin: `http://127.0.0.1:${port}`, localStorage: [{ name: 'world-view', value: 'map' }],
+    })) },
     // E2E_IGNORE_CERT_ERRORS=1 only inside the Managed Agents sandbox (editor-agent/e2e.sh sets it): its egress
     // re-signs TLS, so Chromium rejects cdnjs (three.js). Every other request in these tests is plain http to 127.0.0.1.
     launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']
