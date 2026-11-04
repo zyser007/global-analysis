@@ -67,9 +67,14 @@ def main(argv: list[str] | None = None, root: pathlib.Path = T.ROOT) -> int:
         for i, k in enumerate(w["chokepoints"]):
             out.append("%d | %s | L%d | %s" % (i, k["name_th"], k["level"], last_mention([k["note_th"]], ref)))
     if want("indicators"):
-        out.append("## indicators (index | label | value | trend | as_of)")
+        live = {}
+        lp = root / "tools" / "live_indicators.json"
+        if lp.exists():
+            live = {m["label"]: m["key"] for m in json.loads(lp.read_text(encoding="utf-8"))}
+        out.append("## indicators (index | label | value | trend | as_of) - LIVE = the page shows market.json's value: skip it")
         for i, it in enumerate(w["indicators"]):
-            out.append("%d | %s | %s | %s | %s" % (i, cut(it["label_th"], 50), cut(it["value"], 18), it["trend"], it["as_of"]))
+            tag = " | LIVE market.json:%s" % live[it["label_th"]] if it["label_th"] in live else ""
+            out.append("%d | %s | %s | %s | %s%s" % (i, cut(it["label_th"], 50), cut(it["value"], 18), it["trend"], it["as_of"], tag))
     if want("analysis"):
         a = w["analysis_th"]
         out.append("## analysis_th: %d points, %d risks, last mention %s | headline: %s" % (

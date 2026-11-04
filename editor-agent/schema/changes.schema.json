@@ -29,7 +29,8 @@
         "fields": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "summary_th": {"type": "string", "minLength": 1},
         "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
-        "confidence": {"enum": ["high", "medium", "low"]}
+        "confidence": {"enum": ["high", "medium", "low"]},
+        "stale_reason_th": {"type": "string", "minLength": 1, "description": "why no source from the last 7 days exists (only with confidence low)"}
       }
     }
   },

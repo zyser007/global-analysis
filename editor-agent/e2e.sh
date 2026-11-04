@@ -36,6 +36,9 @@ else
   echo "e2e.sh: using shim $shim -> ${full:-none} / ${shell:-none}"
 fi
 
+# inside the Managed Agents sandbox the egress re-signs TLS and Chromium rejects cdnjs (three.js): let only
+# this browser accept it there (see e2e/playwright.config.js). Elsewhere certificates are checked as usual.
+if [ -d /opt/pw-browsers ] && [ -d /mnt/session ]; then export E2E_IGNORE_CERT_ERRORS=1; echo "e2e.sh: sandbox detected, E2E_IGNORE_CERT_ERRORS=1"; fi
 TO=""; command -v timeout >/dev/null 2>&1 && TO="timeout 60"
 if ! $TO node -e 'require("@playwright/test").chromium.launch({args:["--use-gl=angle","--use-angle=swiftshader"]}).then(b=>b.close()).catch(e=>{console.error(String(e).slice(0,600));process.exit(1)})'; then
   echo "e2e.sh: no usable Chromium for @playwright/test (environment problem, exit 3)" >&2

@@ -62,6 +62,50 @@ E2E_COUNTS = {"conflicts": 25, "economies": 21, "indicators": 20, "analysis_th.p
               "gold.forecasts.items": 6}
 
 
+# Sources that may not back a fact (blogs, newsletters, social posts, SEO / market-commentary aggregators,
+# chart and quote pages). A listed domain also covers its subdomains.
+BLOCKED_SOURCE_DOMAINS = (
+    "substack.com", "medium.com", "blogspot.com", "wordpress.com", "tumblr.com", "quora.com", "reddit.com",
+    "x.com", "twitter.com", "facebook.com", "instagram.com", "tiktok.com", "threads.net",
+    "pomegra.io", "financefeeds.com", "babypips.com", "hoa.org.uk", "fxstreet.com", "fxempire.com",
+    "investinglive.com", "money.co.uk", "goldprice.org", "tradingview.com",
+)
+BLOCKED_SOURCE_PATH = re.compile(r"/(charts?|quotes?|symbols?|live-?prices?|price-?charts?)(/|$|\?)", re.I)
+MAX_SOURCE_AGE_DAYS = 7
+
+
+def source_problem(url: str) -> str | None:
+    """Why a URL may not be used as a dated source for a fact, or None."""
+    h = host(url)
+    for d in BLOCKED_SOURCE_DOMAINS:
+        if h == d or h.endswith("." + d):
+            return "%s is a blocked source type (blog / newsletter / social / aggregator): use an established outlet or the primary source" % h
+    path = re.sub(r"^https?://[^/]+", "", url.strip())
+    if BLOCKED_SOURCE_PATH.search(path):
+        return "%s is a chart or quote page, not a dated report: cite the news article or the official release" % url
+    return None
+
+
+def entry_source_problems(e: dict, run_date: dt.date) -> list[str]:
+    """Problems with the sources of one changes.json entry (blocked sources, stale or future dates)."""
+    out = []
+    days = []
+    for s in e.get("sources", []) or []:
+        p = source_problem(str(s.get("url", "")))
+        if p:
+            out.append(p)
+        d = parse_day(s.get("published", ""))
+        if d is not None:
+            if d > run_date:
+                out.append("source %s is dated %s, after the run date" % (s.get("url"), d))
+            days.append(d)
+    if days and (run_date - max(days)).days > MAX_SOURCE_AGE_DAYS:
+        if not (e.get("confidence") == "low" and str(e.get("stale_reason_th") or "").strip()):
+            out.append("newest source is %s, more than %d days before the run: find a current source, or set confidence low and "
+                       "stale_reason_th explaining why no newer one exists" % (max(days), MAX_SOURCE_AGE_DAYS))
+    return out
+
+
 # ----------------------------------------------------------------------------- helpers
 class Findings:
     def __init__(self) -> None:
@@ -412,19 +456,22 @@ def check_diff(root: pathlib.Path, base: str, run_date: dt.date | None, w: dict,
         return [e for e in entries(kind) if e.get("file") == file and e.get("section") == section and key in e.get("keys", [])]
 
     newest_source: dict[str, dt.date] = {}
+    changed_keys_listed: set[str] = set()
     for kind in ("changes", "added", "removed"):
         for e in entries(kind):
+            lab = "%s %s/%s %s" % (kind, e.get("file"), e.get("section"), ",".join(e.get("keys", []))[:80])
+            for p in entry_source_problems(e, run_date):
+                f.error("changes " + lab, p)
+            changed_keys_listed |= set(e.get("keys", []))
             for s in e.get("sources", []):
                 d = parse_day(s.get("published", ""))
-                lab = "%s %s/%s %s" % (kind, e.get("file"), e.get("section"), ",".join(e.get("keys", []))[:80])
                 if d is None:
                     continue
-                if d > run_date:
-                    f.error("changes " + lab, "source %s is dated %s, after the run date" % (s.get("url"), d))
-                elif (run_date - d).days > 7:
-                    f.warn("changes " + lab, "source %s is %d days old for a 24-hour update" % (s.get("url"), (run_date - d).days))
                 fk = e.get("file", "")
                 newest_source[fk] = max(newest_source.get(fk, d), d)
+    both = sorted(set(ch.get("reviewed_unchanged", []) or []) & changed_keys_listed)
+    if both:
+        f.error(ch_path.name, "listed as changed and as reviewed_unchanged at the same time: %s" % ", ".join(both))
 
     def require(kind: str, file: str, section: str, key: str, item: dict | None, min_sources: int = 1) -> None:
         lab = "%s %s[%s]" % (file, section, key)

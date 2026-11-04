@@ -65,6 +65,9 @@ def norm_sources(ch: dict, where: str, required: int) -> list[dict]:
     return [{k: s[k] for k in ("url", "published", "publisher", "title") if s.get(k)} for s in src]
 
 
+RUN_DATE: dt.date | None = None   # set by apply_patch; used to vet sources
+
+
 def entry(file: str, section: str, key: str, fields: list[str], ch: dict, sources: list[dict]) -> dict:
     conf = ch.get("confidence", "medium")
     if conf not in ("high", "medium", "low"):
@@ -72,8 +75,15 @@ def entry(file: str, section: str, key: str, fields: list[str], ch: dict, source
     summary = str(ch.get("summary_th") or "").strip()
     if not summary:
         raise PatchError("%s[%s]: summary_th is required" % (section, key))
-    return {"file": file, "section": section, "keys": [key], "fields": fields, "summary_th": summary,
-            "sources": sources, "confidence": conf}
+    e = {"file": file, "section": section, "keys": [key], "fields": fields, "summary_th": summary,
+         "sources": sources, "confidence": conf}
+    if str(ch.get("stale_reason_th") or "").strip():
+        e["stale_reason_th"] = str(ch["stale_reason_th"]).strip()
+    if RUN_DATE is not None:
+        probs = C.entry_source_problems(e, RUN_DATE)
+        if probs:
+            raise PatchError("%s[%s]: %s" % (section, key, "; ".join(probs)))
+    return e
 
 
 def put_sources(item: dict, sources: list[dict]) -> int:
@@ -94,6 +104,8 @@ def apply_patch(patch: dict, root: pathlib.Path, now: dt.datetime | None = None)
     date = C.parse_day(date_s)
     if not date:
         raise PatchError("date must be YYYY-MM-DD")
+    global RUN_DATE
+    RUN_DATE = date
     w, wfmt = T.load(root, "world-data")
     g, gfmt = T.load(root, "gold")
     w, g = copy.deepcopy(w), copy.deepcopy(g)
@@ -227,9 +239,15 @@ def apply_patch(patch: dict, root: pathlib.Path, now: dt.datetime | None = None)
     doc.setdefault("changes", []).extend(entries)
     if added:
         doc.setdefault("added", []).extend(added)
-    rev = patch.get("reviewed_unchanged") or []
-    if rev:
-        doc["reviewed_unchanged"] = sorted(set(doc.get("reviewed_unchanged", [])) | {str(x) for x in rev})
+    # reviewed_unchanged and the changed keys stay disjoint: a key that changed (in any patch of this run) is not "unchanged"
+    changed = {k for kind in ("changes", "added", "removed") for e in doc.get(kind, []) for k in e.get("keys", [])}
+    rev = {str(x) for x in (patch.get("reviewed_unchanged") or [])}
+    dropped = sorted(rev & changed)
+    reviewed = (set(doc.get("reviewed_unchanged", [])) | rev) - changed
+    if reviewed or "reviewed_unchanged" in doc:
+        doc["reviewed_unchanged"] = sorted(reviewed)
+    if dropped:
+        log.append("not listed as reviewed_unchanged because they changed: %s" % ", ".join(dropped))
     se = C.schema_errors("changes.schema.json", doc)
     if se:
         raise PatchError("changes.json would be invalid: " + "; ".join(se[:5]))

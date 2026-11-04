@@ -19,8 +19,9 @@ def test_agent_definition():
     p = L.agent_params()
     assert p["model"] == {"id": "claude-sonnet-5-5", "effort": "medium"}
     assert "Hard limits" in p["system"] and "force" in p["system"]
-    for must in ("git stash", "30 `web_search`", "15 `web_fetch`", "brief.py", "show.py", "apply_changes.py",
-                 "verify.sh", "publish.sh", "issue.py", "Never print whole files"):
+    for must in ("git stash", "20–30 `web_search`", "15 `web_fetch`", "brief.py", "show.py", "apply_changes.py",
+                 "verify.sh", "publish.sh", "issue.py", "Never print whole files", "Substack", "stale_reason_th",
+                 "intensity ≥ 3", "/mnt/session/outputs/summary.md", "LIVE"):
         assert must in p["system"], must
     ts = p["tools"][0]
     assert ts["type"] == "agent_toolset_20260401"
@@ -92,6 +93,14 @@ def test_schema_files_are_valid():
         jsonschema.Draft202012Validator.check_schema(json.loads(f.read_text(encoding="utf-8")))
 
 
+def test_rubric_uses_output_files():
+    r = L.read_text("kickoff/rubric.md")
+    for f in ("live.txt", "verify.txt", "check.txt", "publish.txt", "summary.md", "changes.json"):
+        assert f in r, f
+    assert "transcript" not in r.lower()
+
+
 def test_prompt_tools_exist():
-    for name in ("brief.py", "show.py", "apply_changes.py", "check.py", "verify.sh", "publish.sh", "issue.py", "e2e.sh", "visual_check.py"):
+    for name in ("brief.py", "show.py", "apply_changes.py", "check.py", "verify.sh", "publish.sh", "issue.py", "e2e.sh",
+                 "visual_check.py", "open_issues.py"):
         assert (HERE / name).exists(), name
