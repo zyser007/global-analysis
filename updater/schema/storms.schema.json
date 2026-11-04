@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "storms.schema.json",
+  "title": "site/data/storms.json",
+  "description": "Tropical cyclone tracks and wind areas from GDACS, written by updater/storms.py without AI. Loaded by the page only when the storm and rain layer is switched on.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["updated", "checked", "ok", "message_th", "feed", "items"],
+  "$defs": {
+    "time": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"},
+    "url": {"type": "string", "pattern": "^https://[^\\s\"]+$"},
+    "text": {"type": "string", "pattern": "^[^\"]*$"},
+    "ring": {
+      "type": "array",
+      "maxItems": 36,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [{"type": "number", "minimum": -90, "maximum": 90}, {"type": "number", "minimum": -180, "maximum": 180}]
+      }
+    }
+  },
+  "properties": {
+    "updated": {"$ref": "#/$defs/time", "description": "last time the storm list was read successfully"},
+    "checked": {"$ref": "#/$defs/time", "description": "last run, successful or not"},
+    "ok": {"type": "boolean", "description": "the list and every geometry worked this round"},
+    "message_th": {"$ref": "#/$defs/text", "description": "Thai note for the page when something failed, else empty"},
+    "feed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ok", "fetched", "count", "url"],
+      "properties": {
+        "ok": {"type": "boolean"},
+        "fetched": {"anyOf": [{"$ref": "#/$defs/time"}, {"type": "null"}]},
+        "count": {"type": "integer", "minimum": 0},
+        "url": {"$ref": "#/$defs/url"},
+        "error": {"$ref": "#/$defs/text"}
+      }
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "event_id", "episode", "name", "alert_level", "ongoing", "lat", "lon", "start", "end", "updated",
+                     "wind_kmh", "agency", "country_th", "source_url", "track", "wind_areas", "cone"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^gdacs-tc-[0-9]+$"},
+          "event_id": {"type": "integer"},
+          "episode": {"type": "integer", "description": "GDACS episode: a new one means a new advisory"},
+          "name": {"allOf": [{"$ref": "#/$defs/text"}, {"minLength": 1, "maxLength": 60}]},
+          "alert_level": {"enum": ["red", "orange", "yellow", "green", null]},
+          "ongoing": {"type": "boolean", "description": "GDACS iscurrent"},
+          "lat": {"type": "number", "minimum": -90, "maximum": 90},
+          "lon": {"type": "number", "minimum": -180, "maximum": 180},
+          "start": {"$ref": "#/$defs/time"},
+          "end": {"$ref": "#/$defs/time", "description": "time of the latest advisory GDACS used"},
+          "updated": {"$ref": "#/$defs/time"},
+          "wind_kmh": {"type": ["integer", "null"], "description": "GDACS severity: the storm's highest wind so far"},
+          "agency": {"$ref": "#/$defs/text", "description": "who GDACS took the track from (JTWC, NOAA, RSMC)"},
+          "country_th": {"$ref": "#/$defs/text"},
+          "source_url": {"$ref": "#/$defs/url"},
+          "track": {
+            "type": "array",
+            "maxItems": 120,
+            "description": "[lat, lon, 1 when the segment leading here is a forecast else 0], from the start of the storm",
+            "items": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [{"type": "number", "minimum": -90, "maximum": 90}, {"type": "number", "minimum": -180, "maximum": 180}, {"enum": [0, 1]}]
+            }
+          },
+          "wind_areas": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "outlines of the areas GDACS gives for winds of 60, 90 and 120 km/h",
+            "properties": {"60": {"$ref": "#/$defs/ring"}, "90": {"$ref": "#/$defs/ring"}, "120": {"$ref": "#/$defs/ring"}}
+          },
+          "cone": {"$ref": "#/$defs/ring", "description": "outline of the forecast uncertainty cone"}
+        }
+      }
+    }
+  }
+}
