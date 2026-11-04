@@ -16,8 +16,9 @@ Checks, per viewport:
   - overview tiles / points / risks, conflict and economy list lengths = the data
   - no 'null' / 'NaN' / 'undefined' text in any tab, every tab has content
   - no horizontal scroll and no element wider than the panel
-One more case, reading-mobile: ?view=read at 390x844 with every section open: the six sections have content, the
-conflict, economy and chokepoint counts = the data, no errors, no bad text, no overflow.
+One more case, reading-mobile: ?view=read at 390x844 with every section open: the six chapters have content, the
+conflict, economy (table rows and notes) and chokepoint counts = the data, no errors, no bad text, no overflow, and the
+page is still a book page: figures in tables, the page colour and the book face in force, every colour readable at 4.5:1.
 Screenshots go to --shots (default editor-agent/shots/, which .gitignore already excludes).
 Exit 1 on any ERROR.
 
@@ -92,12 +93,21 @@ READING_JS = """() => {
   return {
     thin: ids.filter((id) => { const e = document.getElementById(id); return !e || e.innerText.trim().length < 40; }),
     text: reader ? reader.innerText : '',
-    conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list > li'), chokepoints: n('#r-choke-list > li'),
+    conflicts: n('#r-conflicts li.rd-conf'), economies: n('#r-econ-list tbody tr'), econNotes: n('#r-econ-notes > li'), chokepoints: n('#r-choke-list > li'),
+    priceTable: n('table#r-price-list tbody[data-key]'),
+    fontFamily: getComputedStyle(document.body).fontFamily,
+    contrast: ['.topbar h1', '.rd-toc a', '.rd-fresh', '.rd-prose li', '.rd-level', '.rd-table .val', '.rd-table .line2 td', 'details.rd-more > summary', '.rd-note'].map((s) => {
+      const e = document.querySelector(s); if (!e) return [s, 0];
+      const v = (c) => { const m = c.match(/[0-9.]+/g).map(Number).slice(0, 3); return m.map((x) => (x /= 255) <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4)); };
+      const l = (c) => { const a = v(c); return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2]; };
+      const a = l(getComputedStyle(e).color), b = l(getComputedStyle(document.body).backgroundColor);
+      return [s, (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)];
+    }),
     offline: !!(window.__liveState || {}).offline,
     banner: banner && !banner.hidden ? banner.textContent : '',
     width: [document.documentElement.scrollWidth, document.body.scrollWidth],
     wide: Array.from(document.querySelectorAll('.topbar *, #reader *')).filter((e) => {
-      const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > WIDTH + 0.5 || r.left < -0.5);
+      const r = e.getBoundingClientRect(); return e.checkVisibility() && r.width > 0 && (r.right > WIDTH + 0.5 || r.left < -0.5);
     }).map((e) => e.className || e.tagName).slice(0, 3),
   };
 }"""
@@ -124,9 +134,16 @@ def check_reading(browser, url: str, world: dict, sandbox: bool, shots: pathlib.
         add("ERROR", READING_NAME, e)
     if r["thin"]:
         add("ERROR", READING_NAME, "empty or missing sections: " + ", ".join(r["thin"]))
-    for what, key in (("conflicts", "conflicts"), ("economies", "economies"), ("chokepoints", "chokepoints")):
+    for what, key in (("conflicts", "conflicts"), ("economies", "economies"), ("economies", "econNotes"), ("chokepoints", "chokepoints")):
         if r[key] != len(world.get(what, [])):
-            add("ERROR", READING_NAME, "%s: %d on the page, %d in the data" % (what, r[key], len(world.get(what, []))))
+            add("ERROR", READING_NAME, "%s (%s): %d on the page, %d in the data" % (what, key, r[key], len(world.get(what, []))))
+    if not r["priceTable"] and not r["offline"]:
+        add("ERROR", READING_NAME, "the prices are not in their table")
+    if "Noto Serif Thai" not in r["fontFamily"]:
+        add("ERROR", READING_NAME, "the book face is not in force: " + r["fontFamily"][:80])
+    low = ["%s %.2f" % (x, c) for x, c in r["contrast"] if c < 4.5]
+    if low:
+        add("ERROR", READING_NAME, "text below 4.5:1: " + ", ".join(low))
     bad = sorted(set(re.findall(r"\bnull\b|\bNaN\b|undefined|\[object Object\]", r["text"])))
     if bad:
         add("ERROR", READING_NAME, "page shows " + ", ".join(bad))
