@@ -605,12 +605,12 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
   <div class="reader" id="reader" role="main" aria-label="โหมดอ่านง่าย">
     <nav aria-label="สารบัญ">
       <ol class="rd-toc">
-        <li><a href="#r-latest"><span aria-hidden="true">๑</span><span>ล่าสุด</span></a></li>
-        <li><a href="#r-prices"><span aria-hidden="true">๒</span><span>ราคา</span></a></li>
-        <li><a href="#r-conflicts"><span aria-hidden="true">๓</span><span>ความขัดแย้ง</span></a></li>
-        <li><a href="#r-disasters"><span aria-hidden="true">๔</span><span>ภัยพิบัติ</span></a></li>
-        <li><a href="#r-economy"><span aria-hidden="true">๕</span><span>เศรษฐกิจ</span></a></li>
-        <li><a href="#r-gold"><span aria-hidden="true">๖</span><span>ทองคำ</span></a></li>
+        <li><a href="#r-latest"><span aria-hidden="true">1</span><span>ล่าสุด</span></a></li>
+        <li><a href="#r-prices"><span aria-hidden="true">2</span><span>ราคา</span></a></li>
+        <li><a href="#r-conflicts"><span aria-hidden="true">3</span><span>ความขัดแย้ง</span></a></li>
+        <li><a href="#r-disasters"><span aria-hidden="true">4</span><span>ภัยพิบัติ</span></a></li>
+        <li><a href="#r-economy"><span aria-hidden="true">5</span><span>เศรษฐกิจ</span></a></li>
+        <li><a href="#r-gold"><span aria-hidden="true">6</span><span>ทองคำ</span></a></li>
       </ol>
     </nav>
     <p class="rd-banner" id="r-banner" role="status" hidden></p>
@@ -2122,7 +2122,7 @@ var RD_BASIS_STALE_DAYS = 2;   /* the editor agent reviews the background data e
 var RD_NEWS_TOP = 5;
 var RD_CONFLICT_TOP_LEVEL = 4;       /* levels from this one up are on the page, the rest behind one quiet line */
 var RD_PRICE_OLD_MS = 3*3600*1000;   /* a price this much older than the newest one shows its own time */
-var RD_CHAPTER_NO = {'r-latest':'๑', 'r-prices':'๒', 'r-conflicts':'๓', 'r-disasters':'๔', 'r-economy':'๕', 'r-gold':'๖'};
+var RD_CHAPTER_NO = {'r-latest':'1', 'r-prices':'2', 'r-conflicts':'3', 'r-disasters':'4', 'r-economy':'5', 'r-gold':'6'};
 var rdOpen = {}, rdSig = null, rdDirty = true;
 function rdA(url, label){ return h('a', {href:String(url), target:'_blank', rel:'noopener noreferrer', text:label || domain(String(url))}); }
 function rdNote(n){ return n && n.text ? h('p', {class:'rd-note' + (n.warn ? ' warn' : ''), 'data-warn':n.warn ? '1' : null}, [n.warn ? h('b', {text:'ข้อควรระวัง: '}) : null, n.text]) : null; }
