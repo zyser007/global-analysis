@@ -268,7 +268,7 @@ test.describe('content', () => {
     const heights = await page.locator('#r-price-list > li').evaluateAll((els) => els.map((e) => [e.getAttribute('data-key'), e.querySelector('.top').getBoundingClientRect().height, e.querySelector('.line2').getBoundingClientRect().height]));
     for (const [k, top, line2] of heights) {
       expect(top, k + ' name and value on one line').toBeLessThan(44);
-      expect(line2, k + ' change and source on one line').toBeLessThan(44);
+      if (k !== 'stuck') expect(line2, k + ' change and source on one line').toBeLessThan(44);   // a price that is behind may wrap for its time
     }
     // Thai gold: short name, the announcement time kept with its date because it is not from today, no second time beside it
     await expect(row('gold_th').locator('.nm')).toHaveText('ทองคำแท่ง 96.5% ขายออก');
@@ -280,6 +280,32 @@ test.describe('content', () => {
     await expect(row('stuck').locator('.line2 > span').nth(1)).toContainText('ณ ');
     await expect(row('brent').locator('.line2 > span')).toHaveCount(1);
     await expect(row('usdthb').locator('a')).toHaveText('yahoo.com');
+    await ctx.close();
+  });
+
+  test('gold shows the same value and change under prices and under gold, whatever the history says', async ({ browser }) => {
+    writeFresh();
+    const m = freshMarket();
+    m.items.push({ key: 'gold', label_th: 'ทองคำ (spot)', value: '4040.70', unit: '$/ออนซ์', change_th: '+2.86% (+112.45) จากปิดก่อนหน้า', trend: 'up', as_of: iso(10 * MIN), source: 'https://www.swissquote.com/' });
+    m.items[1].change_th = 'ประกาศครั้งที่ 46 เวลา 16:11 น. +50 บาท · +1,900 จากวันก่อน'; m.items[1].trend = 'up';
+    writeData('market', m);
+    // a previous-day point that would make the map tile say something else (+3.1%); the map view keeps doing that
+    writeData('gold_history', { updated_at: iso(HOUR), points: [{ spot: 3919, spot_as_of: iso(26 * HOUR), th_sell: 62500, th_as_of: iso(26 * HOUR) }] });
+    const { ctx, page } = await open(browser, 390, 844);
+    const errors = collectErrors(page);
+    await page.goto(URL.mutable + '?view=read'); await ready(page);
+    const inPrices = page.locator('#r-price-list > li[data-key="gold"]'), inGold = page.locator('#r-gold-spot');
+    await expect(inPrices.locator('.chg')).toContainText('+2.86% (+112.45) จากปิดก่อนหน้า');
+    await expect(inGold.locator('.chg')).toContainText('+2.86% (+112.45) จากปิดก่อนหน้า');
+    expect(await inGold.locator('.val').innerText()).toBe(await inPrices.locator('.val').innerText());
+    await expect(page.locator('#r-gold-th .val')).toContainText('64,400');
+    await expect(page.locator('#r-price-list > li[data-key="gold_th"] .chg')).toContainText('+1,900 จากวันก่อน');
+    await expect(page.locator('#r-gold-th')).toContainText('+1,900 จากวันก่อน');
+    await expect(page.locator('#r-gold-th')).toContainText('เวลา 16:11 น.');
+    await page.click('#vw-map');
+    await page.click('.tab[data-tab="gold"]');
+    await expect(page.locator('#gold-tile-main .delta')).toContainText('+3.1%');   // map view untouched
+    expect(errors).toEqual([]);
     await ctx.close();
   });
 

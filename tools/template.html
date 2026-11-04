@@ -2067,10 +2067,14 @@ function rdDzNote(){
   if(!live.disasters) return live.dzError ? {text:'โหลดข้อมูลภัยพิบัติไม่สำเร็จ จะลองใหม่อัตโนมัติ', warn:true} : live.polled ? null : {text:'กำลังโหลดข้อมูลภัยพิบัติ…', warn:false};
   return dzNote();
 }
+/* the market.json item, as listed under prices, so the page never shows two values or two changes for the same gold */
+function rdGoldItem(it){ return (it && !live.offline && liveNum(it) > 0 && parseTs(it.as_of) != null) ? it : null; }
 function rdGoldNote(vm){
   if(!vm) return null;
   if(live.offline) return {text:'โหลดราคาสดไม่สำเร็จ แสดงค่าล่าสุดที่ฝังในหน้าเว็บ ตามเวลาที่ระบุ', warn:true};
-  if(vm.spotStale || vm.thStale) return {text:'ข้อมูลเก่า ไม่มีราคาใหม่เกิน ' + GOLD_STALE_H + ' ชั่วโมงทำการ: ' + [vm.thStale ? 'ทองคำแท่งไทย' : null, vm.spotStale ? 'ทองคำโลก' : null].filter(Boolean).join(' และ '), warn:true};
+  var sp = rdGoldItem(goldState.live), th = rdGoldItem(goldState.liveTh);
+  var spStale = !!(sp && goldStale(sp.as_of, 'spot')), thStale = !!(th && goldStale(th.as_of, 'th'));
+  if(spStale || thStale) return {text:'ข้อมูลเก่า ไม่มีราคาใหม่เกิน ' + GOLD_STALE_H + ' ชั่วโมงทำการ: ' + [thStale ? 'ทองคำแท่งไทย' : null, spStale ? 'ทองคำโลก' : null].filter(Boolean).join(' และ '), warn:true};
   return null;
 }
 function rdNotes(){
@@ -2241,25 +2245,21 @@ function rdEconomy(N){
 function rdGold(N){
   var s = rdSection('r-gold', 'ทองคำ'), vm = N.vm;
   if(!GOLD || !vm){ s.hidden = true; return; }
-  var g = GOLD, th = g.thai || {}, sl = vm.sl, tl = vm.tl;
+  var g = GOLD, th = g.thai || {}, sl = rdGoldItem(goldState.live), tl = rdGoldItem(goldState.liveTh);
   if(N.gold) s.appendChild(rdNote(N.gold));
   var old = function(x){ return x.live ? '' : ' (ค่า ' + GOLD_THAI_SHORT + ')'; };
-  var thChange = !tl ? '' : vm.thRef ? (vm.thDay ? signN(vm.thDay, ' บาท') + ' จาก ' + thaiDayShort(vm.thRef.t) : 'ไม่เปลี่ยนจาก ' + thaiDayShort(vm.thRef.t)) : vm.thDayText;
-  var thTrend = !tl ? '' : vm.thRef ? trendOf(vm.thDay) : vm.thTrend;
-  var spotChange = !sl ? '' : vm.dayRef ? signPct(vm.dayPct) + ' จาก ' + thaiDayShort(vm.dayRef.t) : vm.dayText;
-  var spotTrend = !sl ? '' : vm.dayPct != null ? trendOf(vm.dayPct) : vm.dayTrend;
   var rows = [];
-  if(vm.sell != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-th'}, [
-    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำแท่งไทย ขายออก'}), h('span', {class:'val'}, [fmtN(vm.sell), h('span', {class:'u', text:'บาท'})])]),
+  if(tl || th.sell != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-th'}, [
+    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำแท่งไทย ขายออก'}), h('span', {class:'val'}, [tl ? rdGroupedNum(tl.value) : fmtN(th.sell), h('span', {class:'u', text:'บาท'})])]),
     vm.buy && vm.buy.v != null ? h('div', {class:'chg', text:'รับซื้อ ' + fmtN(vm.buy.v) + ' บาท' + old(vm.buy)}) : null,
     vm.orn && vm.orn.v != null ? h('div', {class:'chg', text:'ทองรูปพรรณ ขายออก ' + fmtN(vm.orn.v) + ' บาท' + old(vm.orn)}) : null,
-    thChange ? h('div', {class:'chg'}, [rdGlyph(thTrend), String(thChange)]) : null,
-    h('div', {class:'rd-meta'}, [tl ? rdRel(vm.thAsOf, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(vm.thAsOf)}), tl && tl.source ? rdA(tl.source) : (th.source_th ? h('span', {text:String(th.source_th)}) : null)])
+    tl && tl.change_th ? h('div', {class:'chg'}, [rdGlyph(tl.trend), String(tl.change_th)]) : null,
+    h('div', {class:'rd-meta'}, [tl ? rdRel(tl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(th.as_of)}), tl && tl.source ? rdA(tl.source) : (th.source_th ? h('span', {text:String(th.source_th)}) : null)])
   ]));
-  if(vm.spot != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-spot'}, [
-    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำโลก (spot)'}), h('span', {class:'val'}, ['$' + fmtN(vm.spot), h('span', {class:'u', text:'ต่อออนซ์'})])]),
-    spotChange ? h('div', {class:'chg'}, [rdGlyph(spotTrend), String(spotChange)]) : null,
-    h('div', {class:'rd-meta'}, [sl ? rdRel(vm.spotAsOf, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(vm.spotAsOf)}), sl && sl.source ? rdA(sl.source) : null])
+  if(sl || g.spot_now != null) rows.push(h('li', {class:'rd-price rd-gold', id:'r-gold-spot'}, [
+    h('div', {class:'top'}, [h('span', {class:'nm', text:'ทองคำโลก (spot)'}), h('span', {class:'val'}, sl ? [rdGroupedNum(sl.value), sl.unit ? h('span', {class:'u', text:String(sl.unit)}) : null] : ['$' + fmtN(g.spot_now), h('span', {class:'u', text:'ต่อออนซ์'})])]),
+    sl && sl.change_th ? h('div', {class:'chg'}, [rdGlyph(sl.trend), String(sl.change_th)]) : null,
+    h('div', {class:'rd-meta'}, [sl ? rdRel(sl.as_of, 'ณ ') : h('span', {text:'ณ ' + thaiDateTime(g.as_of)}), sl && sl.source ? rdA(sl.source) : null])
   ]));
   s.appendChild(h('ul', {class:'rd-rows'}, rows));
   if(g.disclaimer_th) s.appendChild(h('p', {class:'rd-note', text:String(g.disclaimer_th)}));
