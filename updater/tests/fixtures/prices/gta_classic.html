@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="facebook-domain-verification" content="tb7cnduowrp0w8oja15d5g6bln9qdu" /><link rel="icon" href="/GTAicon.png" /><title>
+	Gold Traders Association : สมาคมค้าทองคำ  - ราคาทองคำวันนี้ ราคาทองตอนนี้
+</title>
+    
+    
+    
+    <script src="Scripts/jquery-1.4.1.min.js" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+    
+<style>
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1000px;
+  height: 834px;
+  display: none;
+  z-index: 9999;
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#boxes #dialog {
+  width: 1000px;
+  height: 834px;
+  padding: 0px;
+  background-color: #ffffff;
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 15pt;
+}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+$(document).ready(function() {	
+
+var id = '#dialog';
+	
+//Get the screen height and width
+var maskHeight = $(document).height();
+var maskWidth = $(window).width();
+	
+//Set heigth and width to mask to fill up the whole screen
+$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+//transition effect
+$('#mask').fadeIn(500);	
+$('#mask').fadeTo("slow",0.9);	
+	
+//Get the window height and width
+var winH = $(window).height();
+var winW = $(window).width();
+              
+//Set the popup window to center
+$(id).css('top',  winH/2-$(id).height()/2);
+$(id).css('left', winW/2-$(id).width()/2);
+	
+//transition effect
+$(id).fadeIn(2000); 	
+	
+//if close button is clicked
+$('.window .close').click(function (e) {
+//Cancel the link behavior
+e.preventDefault();
+
+$('#mask').hide();
+$('.window').hide();
+});
+
+//if mask is clicked
+$('#mask').click(function () {
+$(this).hide();
+$('.window').hide();
+});
+
+//if boxes is clicked
+$('#boxes').click(function () {
+$(this).hide();
+$('.window').hide();
+});
+	
+});
+</script>
+	
+	
+	
+	
+    <script type="2e0ce52909a1f332f502ecb6-text/javascript">
+        $(function () {
+            $('body').delay(500).queue(function () {
+                $('#NavigationMenu').removeClass('noDisplay');
+            });
+        })
+
+        
+    </script>
+
+    
+<link href="App_Themes/Front_Theme/Front_Style.bak.20251025%20(2).css" type="text/css" rel="stylesheet" /><link href="App_Themes/Front_Theme/Front_Style.css" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=IScDSMKoVaKfm-h0_JtDo5B3rwzU6_UJcQxOSDQrXTnuOEgXbpHh7IqkwcT2-ky2d4oHLHWvSpoV0ufCb48f5QdLKs6ULuUXWymXRme8gWGVlZIQIoiuL2sreTW7ByyXdNpDpWktXQnWzXARBim7hQ2&amp;t=634714884146624249" type="text/css" rel="stylesheet" /></head>
+<body>
+<!--
+	<div id="boxes">
+  <div id="dialog" class="window close">
+    <img src="popup_image.jpg" height="100%" />
+  </div>
+  <div id="mask"></div>
+</div>
+-->
+	
+
+    <form method="post" action="./UpdatePriceList.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=_w5HQZqpvDOc9U9ZBk3O74EoJfvqokDCs0-SwOrZv6P0nktfILOPvrVOc7PjcUEgTLGexROC18_xmWw5SKhxIUusctIfmpXPPcuTLOFNNz41&amp;t=637100574060000000" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=RRnKO4BvdWE-K_Lc1c2XoITv_vwKNWA5cQ4GU1fEfNE8MHgExuDHrMihFL9rVfKFOyfbMh7OfyUiGHnKf_RuG7vNT-DrfRVscYJE11o0kOuwBOOnw_mPM4mE2o5EwuNZwV5dZwlAfizC-7vDtfZnjg2&amp;t=ffffffff93f2983c" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+//<![CDATA[
+var __cultureInfo = {"name":"th-TH","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"฿","NaNSymbol":"NaN","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":0,"PercentNegativePattern":0,"NegativeInfinitySymbol":"-Infinity","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"Infinity","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["๐","๑","๒","๓","๔","๕","๖","๗","๘","๙"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402275599999)\/","AlgorithmType":1,"Eras":[1],"TwoDigitYearMax":2572,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"d MMMM yyyy H:mm:ss","LongDatePattern":"d MMMM yyyy","LongTimePattern":"H:mm:ss","MonthDayPattern":"dd MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"d/M/yyyy","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM yyyy","AbbreviatedDayNames":["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],"ShortestDayNames":["อ","จ","อ","พ","พ","ศ","ส"],"DayNames":["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],"AbbreviatedMonthNames":["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""],"MonthNames":["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],"IsReadOnly":true,"NativeCalendarName":"พุทธศักราช","AbbreviatedMonthGenitiveNames":["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""],"MonthGenitiveNames":["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""]},"eras":[1,"พ.ศ.",null,-543]};//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=fd0Hc_QurXUOzcjYDsbtW_6Qc8EesytZ89TmEp3eQ-QopORTJSzcVVrUDrp9qmx-kme2afPpatPFkERVvIb1dwH4QqCCyPamFNLs1kfcHkjqAQSELjLl5A5ViUpZfyoI0&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=9CgKZFPvDgm5KvxE0cdCtwMadSPNXT0RwZyf_Wr7wzQhMkHdI4GRpeKupQw6jEF3zr2fOeNxi5RG0qa33OJG72ZsnDxrLRutX4Cv5dZIFqwq6k9sqhDBBrvwE3z4riLr_kTg-3HNcEorfiSiS2i2VA2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=p_k8ztDAcz22YiJ4oLGxHgmTlsHWM_S8a9YKc5NbFr8RFNkUmTg8M9mjqdkgPPRSgORDNw6eFM9sE-Mxn4QSTZHmr0eV4gBs_AN_ELzVGOT--dIE4jipWGAn1U2ACKk10&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=zXSBUIP7Qh_T5D1C6Dw7Y5zU01RE7-8SZiYcV3YrwxN2_uOKE-9PLz3WPw5c6JOi0XIcyt7DMRdMuVadhGvs7iRtbn6V7uVhBULErrNB83eO4fXuS5Jz1_KXNzTXyidS0&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=CqnN7atxdA9P-pzlpiGGuqpHRvpPka3GvMR7l49Nju9_L5SRN6q8dkXm2Q9C_t633jE2bKdPqJM1MFDWsMXsoYx4kn2k4ipO61ZC7IU024ZyZKRgLgcicgAAYIkVrU_K2LkdLC4Anaf_7IQSEfRQZw2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=MVJv_Y23mXBPyNiStcGKM40tDrz0AcorvWClIckp58YabC8OolKqILX3jzgygHF1c0SEPy0H4kbhS6pvlD9hXnLQN-dswEWTgkAmzfpAls69fSRx9uzWyenmb-ntXjJnpZXn-gAYH7WyMX6jdtaZBQ2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=cRzaLNSw3r66TKpv0JmnhL4ZWwoKjrBK2MoCxtchVT1Atb3dOfyXvFin1BQyU_5ZXt5D2T3z2LVqPvk-PuqXZd2ihSCfBc9rs9oMHSHTJNWBAOneFcd4-pyqeXiBgoLRxfWwdsSSltQwKRTjKVT-zg2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=j8sc_7w-oqJPw3QQppP-lPKaAr0xorHW6Kfarg6HNn8zyYHBbuAjmd--hGgmpIZnetXYld0LsnyUIc8mr3PwVMZQ4EWpGCiS50cpzwq-EpJQVuhYlhHyM18A-YBFyX4HtWzJApN0syKZY37L4KNsLw2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=bOnDlyJTx7m2E0eMtui571dcbqy07x9tdxhgo2c5UmlsSvHjjfo4S4V3pjQLsd2uuXsnNx_wb323cMr9JycN8e4Gy535ggXtg0p9Rp8k6-dtFV_GLYNQdCj9ymCVyBCUYXvqrYHd-_Bbm-sIG4rZFg2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=h5E99MG55L0_PmbxOletL8Qc20lG3Uy5A0zIVowWQp5bSwQL82_LNGDyfaj8bMXTTSqKMP1Tagt0FEQQDo9ZluraWKyZCyL5h_v3iqPK_sx6fEX-Fps1s-cmzEnMbN9SmGhsTDqwGB_Fn7vA6bLJOw2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script src="/ScriptResource.axd?d=btIq72SBwj03YV81xLohmtO-V_6nrY-3h24Um_W6DBxAShgNH0MIV8_hs7ZOLOh6Oa01pGRusOxdCteBaF4Xcc3iVMzFIKiji7Ql4kOCLlNAaRTz0fTGA-xiK-N9mG-E3Ij6laQFqziGJ-GWyZwiNA2&amp;t=ffffffffdd783992" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="792DF422" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="YEGT8FaEiFyos/DUsvolot72BR/DOEw68SWbbChx0YPdENTRQLpKKcynYMyPa4INTo5vmQCc3JJa1gw1KeDlPWISI7IWkMOkcoqF1DfPmpl3vMXYmQHZA/as8Fhupz5O4bmQ882xHnV/qoNdCb6m/kYEfNRjFYw2VxelXghxtM29UkmbJIoCW9o3n/ZD7I+5ohlqO2JcEg6OsemTpMHM8A==" />
+</div>	
+    <div class = "page"  style="position:relative">
+
+        <table class = "lo-header">
+			<!--<tr><td colspan="2"><img src="960x150 GRC-01.jpg" alt="work from home by covid-19" width="100%"></td></tr>-->
+			<!--<tr><td colspan="2"><a href="http://goldtraders.or.th/ArticleView.aspx?gp=1&id=1065"><img src="movehead.gif" alt="สมาคมค้าทองคำ ย้าย ที่ทำการ"></a></td></tr>-->
+            <tr>
+                <td class="lo-header-left"><img src="App_Images/HeadGTA_L.jpg" alt=""/></td>
+                <td class="lo-header-right">
+          
+        <div id="Uc_channelA_BannerListView_Uc_banner_0_pBanner_0" style="height:90px;width:600px;">
+	
+    <div id="Uc_channelA_BannerListView_Uc_banner_0_divBanner_0" style="width:600px;height:90px;"><a href='https://www.goldtraders.or.th/seminar-at-rayong-15-11-2026' target='bank' rel='nofollow' ><img  src='/uploads/banner/Gold-Business-Next-2027-15112026-Banner-600x90.jpg' height ='90px' width='600px' /> </a></div>
+    
+
+</div>
+
+    
+
+                </td>
+            </tr>
+        </table>
+        <div class="clear"/>
+        <div class="clear hideSkiplink" >
+            
+            <a href="#NavigationMenu_SkipLink"><img alt="Skip Navigation Links" src="/WebResource.axd?d=q1dk7LuPuwbfa0puKCPSArH010i138zMGlfSc_71CqmYAqXadPaHknFzdHoXFOlfTmZ9ZVWDJNbKAyBRwRuykUCn4IgLW1zPEkVcNI6nvNU1&amp;t=637100574060000000" width="0" height="0" style="border-width:0px;" /></a><div class="menu noDisplay" id="NavigationMenu">
+	<ul class="level1">
+		<li><a class="level1" href="./">หน้าแรก</a></li><li><a class="popout level1">ราคาทองคำ</a><ul class="level2">
+			<li><a class="level2" href="DailyPrices.aspx">ราคาทองประจำวัน</a></li><li><a class="level2" href="UpdatePriceList.aspx">การปรับเปลี่ยนระหว่างวัน</a></li><li><a class="level2" href="AvgPriceList.aspx">ราคาทองคำถัวเฉลี่ย</a></li><li><a class="level2" href="TaxArchiveList.aspx">คำนวณภาษีร้านทอง</a></li><li><a class="level2" href="ChartPrices.aspx">กราฟต่างประเทศ</a></li>
+		</ul></li><li><a class="popout level1">เกี่ยวกับ</a><ul class="level2">
+			<li><a class="popout level2">เกี่ยวกับสมาคม</a><ul class="level3">
+				<li><a class="level3" href="PageView.aspx?page=1">ประวัติสมาคม</a></li><li><a class="level3" href="PageView.aspx?page=2">คณะผู้บริหาร</a></li><li><a class="level3" href="MemberZones.aspx">ทำเนียบสมาชิก</a></li><li><a class="level3" href="PageView.aspx?page=3">การสมัครสมาชิก</a></li><li><a class="level3" href="PageView.aspx?page=9">ข้อบังคับ, คำสั่ง, ประกาศ</a></li><li><a class="level3" href="PageView.aspx?page=10">วันหยุดประจำปี</a></li><li><a class="level3" href="PageView.aspx?page=11">วารสารทองคำ</a></li><li><a class="level3" href="PageView.aspx?page=4">ติดต่อสมาคม</a></li>
+			</ul></li><li><a class="popout level2">เกี่ยวกับทองคำ</a><ul class="level3">
+				<li><a class="level3" href="PageView.aspx?page=6">ประวัติศาสตร์ทองคำ</a></li><li><a class="level3" href="PageView.aspx?page=5">คุณสมบัติและประโยชน์</a></li><li><a class="level3" href="PageView.aspx?page=13">ประเภทของสินค้า</a></li><li><a class="level3" href="PageView.aspx?page=12">ช่องทางตรวจสอบราคา</a></li><li><a class="level3" href="FAQs.aspx">คำถามที่พบบ่อย</a></li>
+			</ul></li>
+		</ul></li><li><a class="popout level1">บทความ</a><ul class="level2">
+			<li><a class="level2" href="ArticleList.aspx?type=1">ข่าวสารกิจกรรมสมาคม</a></li><li><a class="level2" href="ArticleList.aspx?type=2">บทความที่น่าสนใจ</a></li><li><a class="level2" href="ArticleList.aspx?type=3">ข่าวราคาทองคำ</a></li>
+		</ul></li><li><a class="level1" href="https://board.goldtraders.or.th">กระดานสนทนา</a></li><li><a class="level1" href="Downloads.aspx">ดาวน์โหลด</a></li><li><a class="level1" href="goldresearch">รายงานวิจัยทองคำ</a></li><li><a class="level1" href="Magazine">วารสารทองคำ</a></li><li><a class="level1" href="seminars.aspx">สัมมนา-ฝึกอบรม</a></li>
+	</ul>
+</div><a id="NavigationMenu_SkipLink"></a>
+            
+            
+            
+            
+        </div>
+        <div class="clear"/>
+        <div class="codeblock-marquee"><span id="cb_marquee_lblCode"><marquee>                                                                                                                                                     
+<span style="color:#0000CD;">
+
+*** หมายเหตุ : ราคารับซื้อคืนทองรูปพรรณ ตามหลักเกณฑ์ สคบ.กำหนดให้ร้านทองสามารถหักได้ไม่เกิน 5% จากราคาทองคำแท่งรับซื้อในวันนั้น ๆ ทั้งนี้หลักเกณฑ์ดังกล่าวใช้เฉพาะกรณีซื้อ-ขายร้านเดิมเท่านั้น ***    
+    
+ </marquee>
+
+</span></div>
+        
+        <div class="clear"/>
+        <div class = "main" > 
+            <table class = "lo-content">
+                <tr>
+                    <td> 
+                        <div class ="detailpage">
+                            <script type="2e0ce52909a1f332f502ecb6-text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$DetailPlace$UpdatePriceListUpdatePanel','DetailPlace_UpdatePriceListUpdatePanel'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+                            
+    <div class ="pagedetail-panel" style="overflow:auto;">
+    <div class="codeblock-panel"><span id="DetailPlace_cb_top_lblCode"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<!-- GTA_2020_UpdatePriceList_ทองระหว่างวัน -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3068236045838527"
+     data-ad-slot="3897346084"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</span></div>
+	<div id="DetailPlace_UpdatePriceListUpdatePanel">
+	
+		<h3 class ="center">การปรับเปลี่ยนระหว่างวัน</h3>
+        <h5>ประจำวันที่ 
+           <input name="ctl00$DetailPlace$txtDate" type="text" id="DetailPlace_txtDate" disabled="disabled" class="aspNetDisabled" /><input type="image" name="ctl00$DetailPlace$btnDate" id="DetailPlace_btnDate" src="App_Images/Icons/calendar_icon.gif" />
+           
+           <input id="DetailPlace_chkToDate" type="checkbox" name="ctl00$DetailPlace$chkToDate" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$DetailPlace$chkToDate\&#39;,\&#39;\&#39;)&#39;, 0)" data-cf-modified-2e0ce52909a1f332f502ecb6-="" /><label for="DetailPlace_chkToDate">ถึงวันที่ </label> 
+           
+           
+           <input type="submit" name="ctl00$DetailPlace$btnSearch" value="ค้นหา" id="DetailPlace_btnSearch" />
+                    
+            
+            </h5>
+            <p>
+            </p>
+            <div>
+		<table cellspacing="2" cellpadding="2" id="DetailPlace_MainGridView" style="color:Black;background-color:LightGoldenrodYellow;border-color:Tan;border-width:3px;border-style:None;font-family:Tahoma,Verdana;font-size:8pt;width:100%;">
+			<tr style="background-color:#EEDC82;font-weight:bold;">
+				<td align="center" colspan="2">ช่วงเวลา</td><td align="center" colspan="2">ทองแท่ง</td><td align="center" colspan="2">ทองรูปพรรณ</td><td align="center" colspan="3"></td>
+			</tr><tr style="background-color:#EEDC82;font-weight:bold;">
+				<th scope="col">เวลา</th><th scope="col">ครั้งที่</th><th scope="col">รับซื้อ (บาท)</th><th scope="col">ขายออก (บาท)</th><th scope="col">รับซื้อ (บาท)</th><th scope="col">ขายออก (บาท)</th><th scope="col">Gold Spot</th><th scope="col">Baht / US$</th><th scope="col">ขึ้น / ลง</th>
+			</tr><tr>
+				<td align="center">04/11/2569 13:03</td><td align="center">28</td><td align="right">63,750.00</td><td align="right">63,950.00</td><td align="right">62,474.36</td><td align="right">64,750.00</td><td align="right">4,008.00</td><td align="right">33.71</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 13:02</td><td align="center">27</td><td align="right">63,700.00</td><td align="right">63,900.00</td><td align="right">62,428.88</td><td align="right">64,700.00</td><td align="right">4,005.00</td><td align="right">33.71</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 13:00</td><td align="center">26</td><td align="right">63,650.00</td><td align="right">63,850.00</td><td align="right">62,383.40</td><td align="right">64,650.00</td><td align="right">4,001.00</td><td align="right">33.71</td><td align="right">-50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:55</td><td align="center">25</td><td align="right">63,700.00</td><td align="right">63,900.00</td><td align="right">62,428.88</td><td align="right">64,700.00</td><td align="right">4,005.00</td><td align="right">33.71</td><td align="right">100</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:53</td><td align="center">24</td><td align="right">63,600.00</td><td align="right">63,800.00</td><td align="right">62,322.76</td><td align="right">64,600.00</td><td align="right">3,998.00</td><td align="right">33.71</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:50</td><td align="center">23</td><td align="right">63,550.00</td><td align="right">63,750.00</td><td align="right">62,277.28</td><td align="right">64,550.00</td><td align="right">3,996.00</td><td align="right">33.70</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:49</td><td align="center">22</td><td align="right">63,500.00</td><td align="right">63,700.00</td><td align="right">62,231.80</td><td align="right">64,500.00</td><td align="right">3,993.00</td><td align="right">33.70</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:48</td><td align="center">21</td><td align="right">63,450.00</td><td align="right">63,650.00</td><td align="right">62,186.32</td><td align="right">64,450.00</td><td align="right">3,989.00</td><td align="right">33.71</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:47</td><td align="center">20</td><td align="right">63,400.00</td><td align="right">63,600.00</td><td align="right">62,125.68</td><td align="right">64,400.00</td><td align="right">3,986.00</td><td align="right">33.71</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:40</td><td align="center">19</td><td align="right">63,350.00</td><td align="right">63,550.00</td><td align="right">62,080.20</td><td align="right">64,350.00</td><td align="right">3,982.00</td><td align="right">33.71</td><td align="right">-50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:37</td><td align="center">18</td><td align="right">63,400.00</td><td align="right">63,600.00</td><td align="right">62,125.68</td><td align="right">64,400.00</td><td align="right">3,984.00</td><td align="right">33.72</td><td align="right">100</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:36</td><td align="center">17</td><td align="right">63,300.00</td><td align="right">63,500.00</td><td align="right">62,034.72</td><td align="right">64,300.00</td><td align="right">3,978.00</td><td align="right">33.72</td><td align="right">150</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:35</td><td align="center">16</td><td align="right">63,150.00</td><td align="right">63,350.00</td><td align="right">61,883.12</td><td align="right">64,150.00</td><td align="right">3,967.00</td><td align="right">33.73</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:32</td><td align="center">15</td><td align="right">63,100.00</td><td align="right">63,300.00</td><td align="right">61,837.64</td><td align="right">64,100.00</td><td align="right">3,963.00</td><td align="right">33.74</td><td align="right">100</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:21</td><td align="center">14</td><td align="right">63,000.00</td><td align="right">63,200.00</td><td align="right">61,746.68</td><td align="right">64,000.00</td><td align="right">3,956.00</td><td align="right">33.75</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 12:19</td><td align="center">13</td><td align="right">62,950.00</td><td align="right">63,150.00</td><td align="right">61,686.04</td><td align="right">63,950.00</td><td align="right">3,953.00</td><td align="right">33.75</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 12:06</td><td align="center">12</td><td align="right">62,900.00</td><td align="right">63,100.00</td><td align="right">61,640.56</td><td align="right">63,900.00</td><td align="right">3,950.00</td><td align="right">33.75</td><td align="right">-50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 11:50</td><td align="center">11</td><td align="right">62,950.00</td><td align="right">63,150.00</td><td align="right">61,686.04</td><td align="right">63,950.00</td><td align="right">3,954.00</td><td align="right">33.74</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 11:49</td><td align="center">10</td><td align="right">62,900.00</td><td align="right">63,100.00</td><td align="right">61,640.56</td><td align="right">63,900.00</td><td align="right">3,951.00</td><td align="right">33.74</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 11:46</td><td align="center">9</td><td align="right">62,850.00</td><td align="right">63,050.00</td><td align="right">61,595.08</td><td align="right">63,850.00</td><td align="right">3,947.00</td><td align="right">33.74</td><td align="right">100</td>
+			</tr><tr>
+				<td align="center">04/11/2569 11:40</td><td align="center">8</td><td align="right">62,750.00</td><td align="right">62,950.00</td><td align="right">61,488.96</td><td align="right">63,750.00</td><td align="right">3,940.00</td><td align="right">33.75</td><td align="right">-100</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 11:11</td><td align="center">7</td><td align="right">62,850.00</td><td align="right">63,050.00</td><td align="right">61,595.08</td><td align="right">63,850.00</td><td align="right">3,949.00</td><td align="right">33.73</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 11:08</td><td align="center">6</td><td align="right">62,800.00</td><td align="right">63,000.00</td><td align="right">61,549.60</td><td align="right">63,800.00</td><td align="right">3,946.00</td><td align="right">33.73</td><td align="right">100</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 10:55</td><td align="center">5</td><td align="right">62,700.00</td><td align="right">62,900.00</td><td align="right">61,443.48</td><td align="right">63,700.00</td><td align="right">3,939.00</td><td align="right">33.73</td><td align="right">50</td>
+			</tr><tr>
+				<td align="center">04/11/2569 10:17</td><td align="center">4</td><td align="right">62,650.00</td><td align="right">62,850.00</td><td align="right">61,398.00</td><td align="right">63,650.00</td><td align="right">3,937.00</td><td align="right">33.73</td><td align="right">50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 10:05</td><td align="center">3</td><td align="right">62,600.00</td><td align="right">62,800.00</td><td align="right">61,352.52</td><td align="right">63,600.00</td><td align="right">3,933.00</td><td align="right">33.73</td><td align="right">-100</td>
+			</tr><tr>
+				<td align="center">04/11/2569 09:54</td><td align="center">2</td><td align="right">62,700.00</td><td align="right">62,900.00</td><td align="right">61,443.48</td><td align="right">63,700.00</td><td align="right">3,939.00</td><td align="right">33.73</td><td align="right">-50</td>
+			</tr><tr style="background-color:PaleGoldenrod;">
+				<td align="center">04/11/2569 09:12</td><td align="center">1</td><td align="right">62,750.00</td><td align="right">62,950.00</td><td align="right">61,488.96</td><td align="right">63,750.00</td><td align="right">3,942.00</td><td align="right">33.73</td><td align="right">450</td>
+			</tr>
+		</table>
+	</div>
+    
+</div>        
+    </div>
+    
+    
+
+    
+
+                            <br />
+                        </div>
+                        <div class="image-panel" style="width:600px; margin:auto;bottom:0;">
+          
+        <div id="Uc_channelL_BannerListView_Uc_banner_0_pBanner_0" style="height:80px;width:600px;">
+	
+    <div id="Uc_channelL_BannerListView_Uc_banner_0_divBanner_0" style="width:600px;height:80px;"><a href='https://ses7.amlo.go.th/' target='bank' rel='nofollow' ><img  src='/uploads/banner/amlo030221_02.jpg' height ='80px' width='600px' /> </a></div>
+    
+
+</div>
+
+    
+
+                                <img src="App_Images/advertisement.gif" alt=""/>
+                        </div>
+                    </td>
+                    <td class="lo-content-right"><div class="image-panel" style="margin-bottom: 1px;">
+          
+        <div id="Uc_channelM_BannerListView_Uc_banner_0_pBanner_0" style="height:200px;width:190px;">
+	
+    <div id="Uc_channelM_BannerListView_Uc_banner_0_divBanner_0" style="width:190px;height:200px;"><a href='https://nggtrade.com' target='bank' rel='nofollow' ><img  src='/uploads/banner/NGG_Banner011124.gif' height ='200px' width='190px' /> </a></div>
+    
+
+</div>
+
+    
+        <div style='margin: 6px auto' />  
+        <div id="Uc_channelM_BannerListView_Uc_banner_1_pBanner_1" style="height:200px;width:190px;">
+	
+    <div id="Uc_channelM_BannerListView_Uc_banner_1_divBanner_1" style="width:190px;height:200px;"><a href='https://shininggold.com/' target='bank' rel='nofollow' ><img  src='/uploads/banner/shininggold_banner_260825.gif' height ='200px' width='190px' /> </a></div>
+    
+
+</div>
+
+    
+        <div style='margin: 6px auto' />  
+        <div id="Uc_channelM_BannerListView_Uc_banner_2_pBanner_2" style="height:200px;width:190px;">
+	
+    <div id="Uc_channelM_BannerListView_Uc_banner_2_divBanner_2" style="width:190px;height:200px;"><a href='https://www.ylgbullion.co.th/th' target='bank' rel='nofollow' ><img  src='/uploads/banner/Banner_YLG_310124.jpg' height ='200px' width='190px' /> </a></div>
+    
+
+</div>
+
+    
+
+                        <img src="App_Images/advertisement.gif" alt=""/>
+                    </div>
+                    <div>
+                        <iframe style="BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; WIDTH: 190px; HEIGHT: 230px; OVERFLOW: hidden; BORDER-TOP: medium none; BORDER-RIGHT: medium none" src="https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fhome.php%23%21%2Fpages%2Fthxngkha%2F155612041122772&width=190&colorscheme=light&show_faces=true&stream=false&header=false&height=340"></iframe>
+                    </div>
+                    <p style="text-align:center;">
+                        <a target="_blank" href="https://www.facebook.com/goldtraders"><img border="0" alt="" width="38" height="38" src="App_Images/Icons/facebook.gif" /></a>
+                        <a target="_blank" href="https://twitter.com/#!/Goldprice_GTA"><img border="0" alt="" width="38" height="38" src="App_Images/Icons/twitter.png" /></a>
+                        <a target="_blank" href="https://www.youtube.com/user/GoldtradersThailand"><img border="0" alt="" width="38" height="38" src="App_Images/Icons/youtube.png" /></a>
+                        <!--<a target="_blank" href="https://plus.google.com/111007572373771040060"><img border="0" alt="" width="38" height="38" src="App_Images/Icons/googleplus.png" /></a>-->
+                    </p>
+			<div class="codeblock-panel"><span id="cb_leftbottom_lblCode"></span></div>
+                    
+                    
+                        
+                    </td>                    
+                </tr>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div class="codeblock-panel" style="float:left"><span id="cb_stat1_lblCode"><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQF1J1ZBXJ" type="2e0ce52909a1f332f502ecb6-text/javascript"></script>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZQF1J1ZBXJ');
+</script></span></div>
+            <label style ="font-size: 14px; font-style :italic  "> สมาคมค้าทองคำ</label>, เลขที่ 33/124 อาคาร วอลล์สตรีท ทาวเวอร์ ชั้น 24 ห้อง 2404 ถนนสุรวงศ์ แขวงสุริยวงศ์ เขตบางรัก กรุงเทพฯ 10500<br />
+            โทรศัพท์ 0-2020-9000 โทรสาร 0-2020-9099
+            Email: <a href="/cdn-cgi/l/email-protection#bfdcd0d1cbdedccbffd8d0d3dbcbcddedbdacdcc91d0cd91cbd7"><span class="__cf_email__" data-cfemail="32515d5c4653514672555d5e56464053565740411c5d401c465a">[email&#160;protected]</span></a> Website: <a href="https://www.goldtraders.or.th">www.goldtraders.or.th</a>
+
+        </div>
+    </div>
+    
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="2e0ce52909a1f332f502ecb6-text/javascript">new Sys.WebForms.Menu({ element: 'NavigationMenu', disappearAfter: 500, orientation: 'horizontal', tabIndex: 0, disabled: false });</script>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"button":$get("DetailPlace_btnDate"),"id":"DetailPlace_Calendar1","popupPosition":4,"selectedDate":"Wed, 04 Nov 2026 13:09:29 GMT"}, null, null, $get("DetailPlace_txtDate"));
+});
+//]]>
+</script>
+</form>
+	
+	<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-17986489-1', 'goldtraders.or.th');
+ga('send', 'pageview');
+</script>
+<script type="2e0ce52909a1f332f502ecb6-text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "lvfu2hl86m");
+</script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="2e0ce52909a1f332f502ecb6-|49" defer></script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a55173348d0249e3',t:'MTc5Mzc3MjU2Nw=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a55173348d0249e3',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

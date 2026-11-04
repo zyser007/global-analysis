@@ -5,13 +5,14 @@
     full     -- site/ as is (index.html + data/*.json)
     nodata   -- index.html only: every data/*.json request 404s (offline path)
     mutable  -- like full; the tests rewrite the JSON files in e2e/.srv/mutable/global-analysis/data/
+  E2E_SITE=/path/to/site  serves another copy of site/ (e.g. one whose data/ was written by updater/prices.py --data-dir)
 """
-import functools, http.server, pathlib, shutil, sys
+import functools, http.server, os, pathlib, shutil, sys
 
 mode, port = sys.argv[1], int(sys.argv[2])
 assert mode in ("full", "nodata", "mutable"), mode
 here = pathlib.Path(__file__).resolve().parent
-site = here.parent / "site"
+site = pathlib.Path(os.environ["E2E_SITE"]).resolve() if os.environ.get("E2E_SITE") else here.parent / "site"
 root = here / ".srv" / mode
 dest = root / "global-analysis"
 if root.exists():

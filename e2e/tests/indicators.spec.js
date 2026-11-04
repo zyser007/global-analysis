@@ -1,4 +1,4 @@
-// Indicator tiles mapped in tools/live_indicators.json take their value from market.json (updated every 4 h)
+// Indicator tiles mapped in tools/live_indicators.json take their value from market.json (updated every hour)
 // when the market item is newer than the indicator's as_of day; otherwise (or offline) the static value stays.
 // Expectations are read from the data files, so a data update does not break this spec.
 const { test, expect } = require('@playwright/test');

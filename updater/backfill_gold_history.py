@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Rebuild site/data/gold_history.json from the git history of site/data/market.json (one point per distinct
-gold / gold_th as_of, the same rule update.py uses on every run). No network, no API key.
+gold / gold_th as_of, the same rule prices.py uses on every run). No network, no API key.
 
     python -I updater/backfill_gold_history.py            # write site/data/gold_history.json
     python -I updater/backfill_gold_history.py --check    # print what it would write, change nothing
@@ -15,7 +15,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import update  # noqa: E402
+import livedata as update  # noqa: E402 - shared helpers (paths, validation, gold history)
 
 MARKET_PATH = "site/data/market.json"
 

@@ -6,7 +6,8 @@ const BASE_PORT = +(process.env.E2E_PORT || 18731);
 const PORTS = { full: BASE_PORT, nodata: BASE_PORT + 1, mutable: BASE_PORT + 2 };
 const URL = Object.fromEntries(Object.entries(PORTS).map(([m, p]) => [m, `http://127.0.0.1:${p}/global-analysis/`]));
 const SHOTS = path.join(__dirname, '..', 'shots');
-const SEED = path.join(__dirname, '..', '..', 'site', 'data');
+// E2E_SITE=/path/to/site runs the suite against another copy of site/ (serve.py reads it too)
+const SEED = process.env.E2E_SITE ? path.join(path.resolve(process.env.E2E_SITE), 'data') : path.join(__dirname, '..', '..', 'site', 'data');
 const MUT = path.join(__dirname, '..', '.srv', 'mutable', 'global-analysis', 'data');
 fs.mkdirSync(SHOTS, { recursive: true });
 

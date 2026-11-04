@@ -162,12 +162,15 @@ const MIN = 60000, HOUR = 3600000;
 function market(now, gold, goldTh) {
   const m = seed('market');
   m.updated_at = iso(now - 25*MIN);
-  m.items = m.items.map(it => it.key === 'gold' ? { ...it, ...gold } : it.key === 'gold_th' ? { ...it, ...goldTh } : it);
+  // buy / ornament_sell only from the test's own quote (the live file has them on every announcement now)
+  const bare = ({ buy, ornament_sell, ...rest }) => rest;
+  m.items = m.items.map(it => it.key === 'gold' ? { ...bare(it), ...gold } : it.key === 'gold_th' ? { ...bare(it), ...goldTh } : it);
   for (const k of ['gold', 'gold_th']) { const it = m.items.find(x => x.key === k); if (it.buy == null) delete it.buy; if (it.ornament_sell == null) delete it.ornament_sell; }
   return m;
 }
-// gold_history.json as backfilled from the run commits (2 Nov 07:45Z .. 4 Nov 01:10Z)
-const HIST = () => seed('gold_history');
+// gold_history.json as backfilled from the run commits (2 Nov 07:45Z .. 4 Nov 01:10Z); the bot appends a point
+// every hour now, so later points are cut off to keep the expectations below tied to that snapshot
+const HIST = () => { const h = seed('gold_history'); h.points = h.points.filter(p => p.time <= '2026-11-04T05:00:00Z'); return h; };
 function serve(now, m, hist = HIST(), statusAt = now - 25*MIN) {
   resetData();
   writeData('market', m);

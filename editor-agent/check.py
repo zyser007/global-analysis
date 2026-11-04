@@ -587,8 +587,11 @@ def check_live(root: pathlib.Path, w: Any, g: Any, f: Findings, now: dt.datetime
         t = parse_instant(ts or "")
         return None if t is None else (now - t).total_seconds() / 3600
 
-    limits = (("status", "updated_at", 6), ("market", "updated_at", 6), ("headlines", "updated_at", 14),
-              ("disasters", "updated", 6), ("gold_history", "updated_at", 6))
+    # the bot runs every hour (prices from free direct feeds + disasters, minute 7) and adds headlines with Claude at
+    # 08:00 / 20:00 Bangkok, so about 26 bot commits a day; 3 h allows for GitHub's late or skipped cron starts.
+    # gold_history only moves when the gold as_of moves (not while gold is shut), so it keeps the older 6 h limit.
+    limits = (("status", "updated_at", 3), ("market", "updated_at", 3), ("headlines", "updated_at", 14),
+              ("disasters", "updated", 3), ("gold_history", "updated_at", 6))
     docs: dict[str, Any] = {}
     for name, fld, lim in limits:
         rel = "%s/%s.json" % (LIVE_DIR, name)
@@ -645,7 +648,9 @@ def check_live(root: pathlib.Path, w: Any, g: Any, f: Findings, now: dt.datetime
         recent = [r for r in rows if (age_h(r.get("time_utc")) or 1e9) <= 24]
         failed = [r for r in recent if r.get("ok") != "yes"]
         cost = sum(float(r.get("cost_usd") or 0) for r in recent)
-        f.info(COST_LOG, "last 24 h: %d bot run(s), %d failed, $%.2f" % (len(recent), len(failed), cost))
+        n_prices = sum(1 for r in recent if r.get("mode") == "prices")
+        f.info(COST_LOG, "last 24 h: %d bot run(s) (%d hourly price runs, expect ~24; %d full runs, expect 2), %d failed, $%.2f"
+               % (len(recent), n_prices, len(recent) - n_prices, len(failed), cost))
         if not recent:
             f.warn(COST_LOG, "no bot run in the last 24 hours")
         for r in failed:

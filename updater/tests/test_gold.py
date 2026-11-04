@@ -16,7 +16,9 @@ ROOT = HERE.parent.parent
 sys.path.insert(0, str(ROOT / "updater"))
 import update  # noqa: E402
 import backfill_gold_history as backfill  # noqa: E402
-from test_update import FakeClient, NOW, SEED, market_input, resp, seed, submit_block  # noqa: E402
+import prices  # noqa: E402
+from test_prices import FEED_NOW, FixtureFetch, edit_json  # noqa: E402
+from test_update import NOW, SEED, seed  # noqa: E402
 
 UTC = dt.timezone.utc
 
@@ -82,46 +84,40 @@ def test_schema_allows_extras_only_on_gold_th():
     assert update.validate_doc("market", bad2)
 
 
-def test_prompt_and_tool_ask_for_buy_and_ornament_from_the_same_announcement():
-    p = update.system_prompt()
-    assert "ornament_sell" in p and "same Gold Traders Association announcement" in p and "never estimate" in p
-    items = update.submit_tool("prices")["input_schema"]["properties"]["market"]["properties"]["items"]["properties"]
-    assert set(items["gold_th"]["properties"]) >= {"buy", "ornament_sell"}
-    assert "buy" not in items["gold"]["properties"] and "buy" not in items["gold_th"]["required"]
+def test_buy_and_ornament_come_from_the_same_announcement_as_the_sell():
+    q = prices.parse_gta_latest(edit_json("gta_latest.json", lambda d: None), now=FEED_NOW, page="p")
+    assert (q.value, q.extra["buy"], q.extra["ornament_sell"], q.extra["seq"]) == (63950, 63750, 64750, 28)
 
 
-def _run_with(data_dir, gold_th_sub, now=NOW):
-    mi = market_input(1.0)
-    mi["items"]["gold_th"].update(gold_th_sub)
-    data = update.normalize_submission("prices", {"market": mi})
-    assert update.submission_errors("prices", data) == []
-    client = FakeClient([resp([submit_block("submit_prices", data)])])
-    assert update.run("prices", data_dir, client=client, cost_log=data_dir / "cost.csv", now=now) == 0
+def _run_with(data_dir, gta: dict, now=FEED_NOW):
+    """prices.py on the saved feed responses, with fields of the GTA announcement replaced."""
+    def patch(d):
+        d.update(gta)
+    fetch = FixtureFetch(override={"gta_latest.json": edit_json("gta_latest.json", patch)})
+    assert prices.run(data_dir, fetch=fetch, now=now, cost_log=data_dir / "cost.csv") == 0
     return json.loads((data_dir / "market.json").read_text(encoding="utf-8"))
 
 
 def test_run_keeps_valid_extras_as_numbers(data_dir, capsys):
-    sell = float(next(i for i in seed("market")["items"] if i["key"] == "gold_th")["value"])
-    m = _run_with(data_dir, {"buy": f"{sell - 200:,.0f}", "ornament_sell": sell + 800})
+    m = _run_with(data_dir, {"bL_SellPrice": 62700.0, "bL_BuyPrice": 62500.0, "oM965_SellPrice": 63500.0})
     it = th_item(m)
-    assert it["buy"] == sell - 200 and it["ornament_sell"] == sell + 800
+    assert (it["value"], it["buy"], it["ornament_sell"]) == ("62700", 62500, 63500)
     assert isinstance(it["buy"], int) and "dropped" not in capsys.readouterr().out
 
 
 def test_run_drops_implausible_extras_but_keeps_the_item(data_dir, capsys):
-    sell = float(next(i for i in seed("market")["items"] if i["key"] == "gold_th")["value"])
-    m = _run_with(data_dir, {"buy": sell - 5000, "ornament_sell": sell + 9000})
+    m = _run_with(data_dir, {"bL_SellPrice": 62700.0, "bL_BuyPrice": 57700.0, "oM965_SellPrice": 71700.0})
     it = th_item(m)
-    assert "buy" not in it and "ornament_sell" not in it and float(it["value"]) == sell
+    assert "buy" not in it and "ornament_sell" not in it and it["value"] == "62700"
     out = capsys.readouterr().out
     assert "dropped buy" in out and "dropped ornament_sell" in out
 
 
-def test_unreadable_extras_are_dropped_before_validation():
-    data = update.normalize_submission("prices", {"market": {**market_input(), "items": {
-        **market_input()["items"], "gold_th": {**market_input()["items"]["gold_th"], "buy": "n/a", "ornament_sell": None}}}})
-    assert "buy" not in data["market"]["items"]["gold_th"] and "ornament_sell" not in data["market"]["items"]["gold_th"]
-    assert update.submission_errors("prices", data) == []
+def test_unreadable_extras_are_dropped_before_validation(data_dir):
+    m = _run_with(data_dir, {"bL_BuyPrice": "n/a", "oM965_SellPrice": None})
+    it = th_item(m)
+    assert it["value"] == "63950" and "buy" not in it and "ornament_sell" not in it
+    assert update.validate_doc("market", m) == []
 
 
 def test_stale_gold_th_keeps_its_own_old_extras():
@@ -201,9 +197,10 @@ def test_history_cap_holds_through_append():
 def test_run_appends_history_and_skips_when_as_of_did_not_move(data_dir):
     _run_with(data_dir, {})
     h = json.loads((data_dir / "gold_history.json").read_text(encoding="utf-8"))
-    assert len(h["points"]) == 1 and h["points"][0]["spot_as_of"] == "2026-11-02T12:30:00Z"
+    assert len(h["points"]) == 1 and h["points"][0]["spot_as_of"] == "2026-11-04T06:09:07Z"
+    assert h["points"][0]["th_as_of"] == "2026-11-04T06:03:00Z" and h["points"][0]["th_sell"] == 63950
     assert update.validate_doc(update.HISTORY, h) == []
-    _run_with(data_dir, {}, now=NOW + dt.timedelta(hours=4))     # same as_of again
+    _run_with(data_dir, {}, now=FEED_NOW + dt.timedelta(hours=1))     # same as_of again
     assert json.loads((data_dir / "gold_history.json").read_text(encoding="utf-8")) == h
     assert not list(data_dir.glob("*.tmp"))
 

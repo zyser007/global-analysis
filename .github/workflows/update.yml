@@ -1,15 +1,16 @@
 name: Update live data
 
 on:
-  # Cron is UTC. full = 08:00 / 20:00 Bangkok, prices = 12:00 / 16:00 / 00:00 / 04:00 Bangkok.
-  # เปิดแล้ว 2 พ.ย. 2569 หลังรันทดลองผ่าน
+  # Cron is UTC. prices = every hour at minute 7 (free direct feeds, no AI, updater/prices.py);
+  # full = 08:00 / 20:00 Bangkok: the prices first, then headlines + run summary with Claude (updater/update.py full).
+  # GitHub may start a scheduled run several minutes late; that is fine.
   schedule:
     - cron: "0 1,13 * * *"        # full
-    - cron: "0 5,9,17,21 * * *"   # prices
+    - cron: "7 * * * *"           # prices
   workflow_dispatch:
     inputs:
       mode:
-        description: "prices = ราคาอย่างเดียว (ค้นเว็บ ≤ 6 ครั้ง) · full = ราคา + ข่าว + สถานะ (ค้นเว็บ ≤ 20 ครั้ง)"
+        description: "prices = ราคา 13 รายการจากแหล่งข้อมูลฟรีโดยตรง (ไม่ใช้ AI ไม่มีค่าใช้จ่าย) · full = ราคา + ข่าว + สถานะ (ค้นเว็บ ≤ 14 ครั้ง)"
         type: choice
         options: [prices, full]
         default: prices
@@ -27,6 +28,7 @@ jobs:
     timeout-minutes: 15
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
+      deploy: ${{ steps.commit.outputs.deploy }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,7 +57,7 @@ jobs:
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "mode: $mode"
 
-      # Free GDACS + USGS feeds, no AI and no key. Runs in every mode and never blocks the Claude update
+      # Free GDACS + USGS feeds, no AI and no key. Runs every hour and never blocks the price or news update
       # (or is blocked by it): a failed feed keeps its previous events and says so in disasters.json.
       - name: Refresh disasters (GDACS + USGS)
         id: disasters
@@ -68,14 +70,22 @@ jobs:
         continue-on-error: true   # a broken market/headlines/status file must not stop the disasters commit
         run: python -I updater/update.py --dry-run
 
-      - name: Run the updater
-        id: run
+      # Free direct quote feeds (CNBC, Cboe, Nikkei Indexes, Gold Traders Association, CoinGecko, Yahoo, US Treasury ...),
+      # no AI and no key. A key whose feeds all fail keeps its previous value; more than 6 failed keys = ok=false.
+      - name: Refresh prices (direct feeds)
+        id: prices
         if: steps.check.outcome == 'success'
+        continue-on-error: true   # a failed run still writes status.json (ok=false); commit it, then fail the job
+        timeout-minutes: 5
+        run: python -I updater/prices.py
+
+      - name: Refresh headlines with Claude
+        id: run
+        if: steps.mode.outputs.mode == 'full' && steps.check.outcome == 'success'
         continue-on-error: true   # a failed run still writes status.json (ok=false); commit it, then fail the job
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MODE: ${{ steps.mode.outputs.mode }}
-        run: python -I updater/update.py "$MODE"
+        run: python -I updater/update.py full
 
       - name: Commit changed data
         id: commit
@@ -89,9 +99,12 @@ jobs:
           if [ -f site/data/gold_history.json ]; then git add site/data/gold_history.json; fi
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
             echo "no data changes"
             exit 0
           fi
+          # only a change under site/ needs a Pages deploy (the cost log is not published)
+          if git diff --cached --quiet -- site/; then deploy=false; else deploy=true; fi
           git commit -m "chore(data): ${MODE} update $(date -u +%Y-%m-%dT%H:%MZ)"
           for i in 1 2 3; do
             if git push origin HEAD:main; then break; fi
@@ -100,23 +113,26 @@ jobs:
             if [ "$i" = 3 ]; then exit 1; fi
           done
           echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
 
       - name: Fail the job if a step failed
-        if: steps.check.outcome == 'failure' || steps.run.outcome == 'failure' || steps.disasters.outcome == 'failure'
+        if: steps.check.outcome == 'failure' || steps.prices.outcome == 'failure' || steps.run.outcome == 'failure' || steps.disasters.outcome == 'failure'
         env:
           CHECK: ${{ steps.check.outcome }}
+          PRICES: ${{ steps.prices.outcome }}
           RUN: ${{ steps.run.outcome }}
           DISASTERS: ${{ steps.disasters.outcome }}
         run: |
-          if [ "$CHECK" = "failure" ]; then echo "::error::the current market/headlines/status files are invalid - the Claude update was skipped. See the dry-run log above."; fi
-          if [ "$RUN" = "failure" ]; then echo "::error::update.py failed - the old prices and headlines were kept and status.json says ok=false. See the log above."; fi
+          if [ "$CHECK" = "failure" ]; then echo "::error::the current market/headlines/status files are invalid - the price and news updates were skipped. See the dry-run log above."; fi
+          if [ "$PRICES" = "failure" ]; then echo "::error::prices.py failed (more than 6 keys without a feed, or a timeout) - the old prices were kept and status.json says ok=false. See the log above."; fi
+          if [ "$RUN" = "failure" ]; then echo "::error::update.py full failed - the old headlines were kept and status.json says ok=false. See the log above."; fi
           if [ "$DISASTERS" = "failure" ]; then echo "::error::disasters.py could not read GDACS or USGS - the previous disasters.json was kept (ok=false). See the log above."; fi
           exit 1
 
   # Pushes made with GITHUB_TOKEN do not trigger other workflows, so deploy Pages from here.
   deploy:
     needs: update
-    if: always() && needs.update.outputs.changed == 'true'
+    if: always() && needs.update.outputs.deploy == 'true'
     permissions:
       contents: read
       pages: write
