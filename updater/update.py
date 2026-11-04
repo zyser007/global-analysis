@@ -20,6 +20,10 @@ Design
   > 15% from the previous value -> previous value kept and flagged in change_th). Files are
   written atomically and only when everything is valid; on any failure the old market/headlines
   stay and status.json gets ok=false with a Thai message.
+- gold_th may carry the bar buy price and the ornament sell price of the same announcement; they are
+  dropped (the item is kept) unless 0 < sell - buy <= 1000 and sell < ornament_sell <= sell + 2500.
+- Every run that writes market.json appends a gold point (spot + Thai sell, with their as_of) to
+  site/data/gold_history.json for the gold tab's chart; a broken history file never fails the run.
 - Token usage, web-search count and an estimated USD cost are printed, appended to
   updater/cost-log.csv and written to $GITHUB_STEP_SUMMARY when set.
 - The API key is read only from $ANTHROPIC_API_KEY and is never printed.
@@ -45,6 +49,12 @@ DATA_DIR = ROOT / "site" / "data"
 SCHEMA_DIR = ROOT / "updater" / "schema"
 COST_LOG = ROOT / "updater" / "cost-log.csv"
 DOCS = ("market", "headlines", "status")
+HISTORY = "gold_history"             # site/data/gold_history.json: gold points for the chart (not fatal when broken)
+HISTORY_CAP = 400                    # points kept in gold_history.json
+HISTORY_FULL_DAYS = 30               # newer points stay as they are; older ones thin out to the last point of each Bangkok day
+GOLD_TH_EXTRA = ("buy", "ornament_sell")
+BUY_SPREAD_MAX = 1000                # baht: 0 < sell - buy <= this
+ORNAMENT_PREMIUM_MAX = 2500          # baht: sell < ornament_sell <= sell + this
 
 MODEL = "claude-sonnet-5-5"          # user's choice (cost); fallbacks="default" may serve a declined turn on claude-sonnet-5
 EFFORT = "medium"                    # skill: medium for multistep tool use on Sonnet 5.5
@@ -214,7 +224,7 @@ def sanity_market(prev: dict, new_items: dict[str, dict], max_move: float = MAX_
             out.append(copy.deepcopy(old))      # an older quote never replaces a newer one
             notes.append(f"{key}: as_of {as_of} is older than the previous {old['as_of']}")
             continue
-        out.append({
+        item = {
             "key": key,
             "label_th": old["label_th"],
             "value": normalize_value(sub["value"]),
@@ -223,8 +233,35 @@ def sanity_market(prev: dict, new_items: dict[str, dict], max_move: float = MAX_
             "trend": sub.get("trend") if sub.get("trend") in ("up", "down", "flat") else "flat",
             "as_of": as_of if ISO_RE.match(as_of) else old["as_of"],
             "source": source if re.match(r"^https?://\S+$", source) and '"' not in source else old["source"],
-        })
+        }
+        if key == "gold_th":   # only from this submission: an old buy price never sits next to a new sell price
+            for f in GOLD_TH_EXTRA:
+                n = parse_number(sub.get(f))
+                if n is not None:
+                    item[f] = int(n) if n == int(n) else n
+        out.append(item)
     return out, notes
+
+
+def scrub_gold_th(market: dict) -> list[str]:
+    """Drop gold_th buy / ornament_sell (in place) unless 0 < sell - buy <= 1000 and sell < ornament_sell <= sell + 2500.
+    The item itself always stays. Returns notes about dropped fields."""
+    notes = []
+    for it in market.get("items") or []:
+        if not isinstance(it, dict) or it.get("key") != "gold_th":
+            continue
+        sell = parse_number(it.get("value"))
+        for f in GOLD_TH_EXTRA:
+            if f not in it:
+                continue
+            v = it[f]
+            n = None if isinstance(v, bool) or not isinstance(v, (int, float)) else float(v)
+            ok = sell is not None and n is not None and (
+                0 < sell - n <= BUY_SPREAD_MAX if f == "buy" else sell < n <= sell + ORNAMENT_PREMIUM_MAX)
+            if not ok:
+                del it[f]
+                notes.append(f"gold_th: dropped {f}={v!r} (sell {it.get('value')})")
+    return notes
 
 
 STALE_PREFIX = "ค่าเดิม รอยืนยัน"
@@ -351,7 +388,7 @@ Find the latest quote for every market item, then call the submit tool exactly o
 7. For the markets that are trading now (see the session list in the user turn), returning the previous value is a failure unless every fetch and search for that item failed; in that case say in change_th what you tried. Keep the previous value and as_of only when the market has not traded since the previous as_of (closed session, weekend, holiday). Say so in change_th.
 
 ## Submitting
-The submit tool's input must follow its schema exactly: "market" is an object with "note_th" and "items", and "items" is an object keyed by the 13 market keys below (not a list), each with value, change_th, trend, as_of and source. In mode "full", "headlines" is a list of objects. Pass objects as objects, not as JSON strings.
+The submit tool's input must follow its schema exactly: "market" is an object with "note_th" and "items", and "items" is an object keyed by the 13 market keys below (not a list), each with value, change_th, trend, as_of and source (gold_th may also carry buy and ornament_sell). In mode "full", "headlines" is a list of objects. Pass objects as objects, not as JSON strings.
 
 ## Market items (key: meaning)
 {keys}
@@ -362,6 +399,7 @@ Rules for every market item:
 - For a market that is trading now (gold, oil, FX, the dollar index, US yields, Bitcoin) the value should be from the last hour or two. For a session that closed today (SET, Nikkei, and US indexes after their close) use today's close with the close time as as_of.
 - change_th: short Thai text, at most about 140 characters: the change versus the previous close or the last update, with the reason when it is clear (for example "−2.7% วันนี้ จากปิดศุกร์ 113.43 หลังอิหร่านเสนอเปิดฮอร์มุซ"). Use the Unicode minus sign (−) for negative numbers in Thai text.
 - trend: "up", "down" or "flat" for the move described in change_th.
+- gold_th only: also give buy (the 96.5% gold bar BUY price, รับซื้อ) and ornament_sell (the 96.5% gold ornament SELL price, ทองรูปพรรณ ขายออก) as plain numbers in baht, taken from the same Gold Traders Association announcement as the sell value. Leave a field out when that announcement does not show it; never estimate or derive them from the sell price.
 - A value that moves more than 15% from the previous value, or an as_of older than the previous one, is rejected automatically and the old item is kept, so double-check large moves against a second source before reporting them.
 - note_th: one or two Thai sentences on what this round covers (which prices are intraday and which are closes), in the style of the previous note_th.
 
@@ -388,8 +426,8 @@ status_message_th: one Thai paragraph (at most about 400 characters) saying what
 - This is an information page, not investment advice; do not add recommendations."""
 
 
-def _item_schema() -> dict:
-    return {
+def _item_schema(gold_th: bool = False) -> dict:
+    schema = {
         "type": "object",
         "additionalProperties": False,
         "required": ["value", "change_th", "trend", "as_of", "source"],
@@ -401,6 +439,10 @@ def _item_schema() -> dict:
             "source": {"type": "string", "description": "https URL"},
         },
     }
+    if gold_th:   # optional, same announcement as value; omit when not shown
+        schema["properties"]["buy"] = {"type": "number", "description": "96.5% bar BUY price in baht, same announcement as value"}
+        schema["properties"]["ornament_sell"] = {"type": "number", "description": "96.5% ornament SELL price in baht, same announcement as value"}
+    return schema
 
 
 def _market_schema() -> dict:
@@ -414,7 +456,7 @@ def _market_schema() -> dict:
                 "type": "object",
                 "additionalProperties": False,
                 "required": list(MARKET_KEYS),
-                "properties": {k: _item_schema() for k in MARKET_KEYS},
+                "properties": {k: _item_schema(k == "gold_th") for k in MARKET_KEYS},
             },
         },
     }
@@ -760,9 +802,17 @@ def normalize_submission(mode: str, data: Any) -> Any:
             for k, v in items.items():
                 v = _maybe_json(v)
                 if isinstance(v, dict):
-                    v = {f: x for f, x in v.items() if f in ITEM_FIELDS}
+                    extra = GOLD_TH_EXTRA if k == "gold_th" else ()
+                    v = {f: x for f, x in v.items() if f in ITEM_FIELDS or f in extra}
                     if isinstance(v.get("value"), (int, float)) and not isinstance(v.get("value"), bool):
                         v["value"] = str(v["value"])
+                    for f in extra:      # "62,300" -> 62300.0; unreadable or null -> dropped, the item stays
+                        if f in v:
+                            n = parse_number(v[f])
+                            if n is None:
+                                del v[f]
+                            else:
+                                v[f] = n
                 fixed[k] = v
             items = fixed
         if items is not None:
@@ -908,8 +958,10 @@ def load_previous(data_dir: pathlib.Path) -> tuple[dict, list[str]]:
     return prev, errs
 
 
-def write_docs(data_dir: pathlib.Path, docs: dict[str, dict]) -> None:
-    """Validate everything first, then replace the files atomically (temp file + os.replace)."""
+def write_docs(data_dir: pathlib.Path, docs: dict[str, dict]) -> list[str]:
+    """Validate everything first, then replace the files atomically (temp file + os.replace).
+    gold_th's optional buy / ornament_sell are checked here and dropped when implausible; returns those notes."""
+    notes = scrub_gold_th(docs["market"]) if isinstance(docs.get("market"), dict) else []
     for name, doc in docs.items():
         errs = validate_doc(name, doc)
         if errs:
@@ -927,6 +979,80 @@ def write_docs(data_dir: pathlib.Path, docs: dict[str, dict]) -> None:
         for tmp in tmp_paths.values():
             if os.path.exists(tmp):
                 os.unlink(tmp)
+    return notes
+
+
+# ----------------------------------------------------------------- gold history (chart points)
+def _bkk_day(s: str) -> str:
+    return (dt.datetime.fromisoformat(s.replace("Z", "+00:00")) + dt.timedelta(hours=7)).strftime("%Y-%m-%d")
+
+
+def history_point(market: dict) -> dict | None:
+    """The gold point of one market.json: spot + Thai sell with their own as_of; None if either is unusable."""
+    items = {i.get("key"): i for i in market.get("items") or [] if isinstance(i, dict)}
+    g, t = items.get("gold"), items.get("gold_th")
+    if not g or not t:
+        return None
+    spot, sell = parse_number(g.get("value")), parse_number(t.get("value"))
+    stamps = (str(market.get("updated_at") or ""), str(g.get("as_of") or ""), str(t.get("as_of") or ""))
+    if not spot or not sell or spot <= 0 or sell <= 0 or not all(ISO_RE.match(x) for x in stamps):
+        return None
+    return {"time": stamps[0], "spot": int(spot) if spot == int(spot) else spot, "spot_as_of": stamps[1],
+            "th_sell": int(sell) if sell == int(sell) else sell, "th_as_of": stamps[2]}
+
+
+def compact_history(points: list[dict], now: dt.datetime, cap: int = HISTORY_CAP,
+                    full_days: int = HISTORY_FULL_DAYS) -> list[dict]:
+    """Points newer than `full_days` stay; older ones thin out to the last point of each Bangkok day
+    (what the chart and the day change need); then only the newest `cap` points are kept."""
+    cut = now.timestamp() - full_days * 86400
+    old = [p for p in points if _ts(p["time"]) < cut]
+    keep = [p for i, p in enumerate(old) if i == len(old) - 1 or _bkk_day(old[i + 1]["time"]) != _bkk_day(p["time"])]
+    out = keep + [p for p in points if _ts(p["time"]) >= cut]
+    return out[-cap:] if cap > 0 else out
+
+
+def append_history(hist: dict | None, market: dict, now: dt.datetime, cap: int = HISTORY_CAP) -> tuple[dict, bool]:
+    """Add the gold point of `market` to `hist` (None = a new file). Skipped (changed=False) when neither
+    as_of moved since the last point. Returns (the new history doc, changed)."""
+    points = [copy.deepcopy(p) for p in (hist or {}).get("points") or []]
+    pt = history_point(market)
+    if pt is None:
+        return {"updated_at": (hist or {}).get("updated_at") or iso(now), "points": points}, False
+    if points and (points[-1]["spot_as_of"], points[-1]["th_as_of"]) == (pt["spot_as_of"], pt["th_as_of"]):
+        return {"updated_at": hist["updated_at"], "points": points}, False
+    points.append(pt)
+    return {"updated_at": iso(now), "points": compact_history(points, now, cap)}, True
+
+
+def load_history(data_dir: pathlib.Path) -> tuple[dict | None, str | None]:
+    """(doc, None) for a valid file, (None, None) when there is none yet, (None, problem) when it is broken."""
+    path = data_dir / f"{HISTORY}.json"
+    if not path.exists():
+        return None, None
+    try:
+        doc = load_json(path)
+    except (OSError, ValueError) as e:
+        return None, f"cannot read {path.name}: {e}"
+    errs = validate_doc(HISTORY, doc)
+    return (None, "; ".join(errs[:3])) if errs else (doc, None)
+
+
+def history_docs(data_dir: pathlib.Path, docs: dict[str, dict], now: dt.datetime) -> tuple[dict[str, dict], list[str]]:
+    """The gold_history doc to write with this run's market.json ({} when nothing to add). A broken history
+    file is left alone and reported, never fatal."""
+    if "market" not in docs:
+        return {}, []
+    hist, problem = load_history(data_dir)
+    if problem:
+        return {}, [f"{HISTORY}: left unchanged, file is invalid ({_short(problem, 200)})"]
+    new, changed = append_history(hist, docs["market"], now)
+    if not changed:
+        return {}, [f"{HISTORY}: gold as_of unchanged, no new point"]
+    errs = validate_doc(HISTORY, new)
+    if errs:   # pragma: no cover - points are built from a validated market doc
+        return {}, [f"{HISTORY}: new point not written ({_short('; '.join(errs), 200)})"]
+    return {HISTORY: new}, []
 
 
 def failure_status(prev_status: dict | None, message_th: str, now: dt.datetime) -> dict:
@@ -996,7 +1122,9 @@ def run(mode: str, data_dir: pathlib.Path = DATA_DIR, client: Any = None, cost_l
             print(f"prices are {age:.0f} min old: this full run researches news only")
         result, news_searched = call_model(client, mode, prev, now, usage, skip_prices)
         docs, notes, changed = build_docs(mode, prev, result, now, skip_prices, news_searched)
-        write_docs(data_dir, docs)
+        extra, hist_notes = history_docs(data_dir, docs, now)
+        notes += write_docs(data_dir, {**docs, **extra}) + hist_notes
+        docs.update(extra)
     except UpdateError as e:
         print(f"update FAILED: {e}", file=sys.stderr)
         try:
@@ -1028,7 +1156,20 @@ def dry_run(data_dir: pathlib.Path = DATA_DIR) -> int:
           f"headlines {len(h['items'])} (updated {h['updated_at']}), status run {s['run_count']} ok={s['ok']}")
     print(f"dry run: model {MODEL}, effort {EFFORT}, search caps {MAX_SEARCHES}, fetch caps {MAX_FETCHES}, no API call made")
     print(disasters_check_line(data_dir))
+    print(history_check_line(data_dir))
     return 0
+
+
+def history_check_line(data_dir: pathlib.Path) -> str:
+    """gold_history.json is checked but never fails the dry run (the chart falls back to the embedded series)."""
+    doc, problem = load_history(data_dir)
+    if problem:
+        return f"dry run: {HISTORY}.json INVALID (not fatal; the next run leaves it unchanged)\n  {problem}"
+    if doc is None:
+        return f"dry run: {HISTORY}.json not present (the next run that writes market.json starts it)"
+    pts = doc["points"]
+    span = f", {pts[0]['spot_as_of']} .. {pts[-1]['spot_as_of']}" if pts else ""
+    return f"dry run: {HISTORY}.json OK - {len(pts)} points{span}"
 
 
 def disasters_check_line(data_dir: pathlib.Path) -> str:

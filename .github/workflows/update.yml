@@ -86,6 +86,7 @@ jobs:
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add site/data/market.json site/data/headlines.json site/data/status.json updater/cost-log.csv
           if [ -f site/data/disasters.json ]; then git add site/data/disasters.json; fi
+          if [ -f site/data/gold_history.json ]; then git add site/data/gold_history.json; fi
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "no data changes"

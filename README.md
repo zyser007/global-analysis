@@ -12,6 +12,11 @@ GDACS (เหตุการณ์เตือนระดับส้มแล�
 แผ่นดินไหวที่อยู่ในทั้งสองแหล่งจะแสดงครั้งเดียว ชื่อเหตุการณ์ภาษาไทยสร้างจากแม่แบบ รันทุกรอบของงานตั้งเวลา (ทุก 4 ชม.) แยกจากตัวอัปเดตที่ใช้ Claude
 
 ข้อมูลพื้นฐาน (ความขัดแย้ง เศรษฐกิจ ช่องแคบ) และบทวิเคราะห์ทองคำ (`data/gold.json`) ฝังอยู่ในหน้าเว็บตอนสร้าง ไม่ได้อัปเดตอัตโนมัติ
+หน้าเว็บจึงติดป้ายวันที่ของข้อมูลชุดนี้ไว้ (`meta.basis_th` ใน `data/world-data.json` และ “บทวิเคราะห์ ณ …” ในแท็บทองคำ)
+
+แท็บ **ทองคำ** ใช้ราคาสดจาก `market.json` (`gold`, `gold_th` พร้อม `buy` และ `ornament_sell` ถ้าประกาศเดียวกันมีให้) แทนค่าที่ฝังไว้เมื่อ `as_of` ใหม่กว่า
+ทุกรอบที่เขียน `market.json` ตัวอัปเดตจะต่อจุดราคาใน `site/data/gold_history.json` (ข้ามรอบที่ `as_of` ไม่เปลี่ยน เก็บไม่เกิน 400 จุด) ให้กราฟและการเปลี่ยนแปลงรายวัน
+สร้างไฟล์นี้ใหม่จากประวัติ git ได้ด้วย `.venv/bin/python -I updater/backfill_gold_history.py`
 เนื้อหาเป็นข้อมูลประกอบการติดตามข่าว ไม่ใช่คำแนะนำการลงทุน
 
 ## โครงสร้าง
@@ -19,10 +24,10 @@ GDACS (เหตุการณ์เตือนระดับส้มแล�
 ```
 site/                  สิ่งที่เผยแพร่ขึ้น Pages (ทุก path เป็นแบบสัมพัทธ์ ใช้ใต้ /global-analysis/ ได้)
   index.html           หน้าเว็บที่สร้างจาก tools/build.py (อย่าแก้ตรง ๆ)
-  data/*.json          ราคา ข่าว สถานะรอบอัปเดต ภัยพิบัติ (บอตเขียนทับ)
+  data/*.json          ราคา ข่าว สถานะรอบอัปเดต ภัยพิบัติ ประวัติราคาทอง (บอตเขียนทับ)
 tools/                 ต้นฉบับหน้าเว็บ: template.html, gold_module.js, splice_gold.py, build.py, land_dots.*
 data/                  world-data.json, gold.json (ข้อมูลที่ฝังในหน้า)
-updater/               update.py, disasters.py, schema/*.json, tests/, requirements*.txt, cost-log.csv
+updater/               update.py, disasters.py, backfill_gold_history.py, schema/*.json, tests/, requirements*.txt, cost-log.csv
 e2e/                   ทดสอบหน้าเว็บแบบไม่เปิดหน้าต่างด้วย Playwright
 .github/workflows/     update.yml (อัปเดตข้อมูล) และ pages.yml (เผยแพร่หน้าเว็บ)
 ```

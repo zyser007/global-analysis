@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gold_history.schema.json",
+  "title": "site/data/gold_history.json",
+  "description": "one point per successful updater run whose gold or gold_th as_of changed; read by the gold tab's chart and day-change tiles",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "updated_at",
+    "points"
+  ],
+  "properties": {
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "points": {
+      "type": "array",
+      "maxItems": 400,
+      "description": "oldest first",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "time",
+          "spot",
+          "spot_as_of",
+          "th_sell",
+          "th_as_of"
+        ],
+        "properties": {
+          "time": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$",
+            "description": "run time (market.json updated_at)"
+          },
+          "spot": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "gold spot, USD per troy ounce"
+          },
+          "spot_as_of": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "th_sell": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Thai 96.5% bar sell price, baht"
+          },
+          "th_as_of": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
+          }
+        }
+      }
+    }
+  }
+}

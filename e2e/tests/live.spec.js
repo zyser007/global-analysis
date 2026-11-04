@@ -52,7 +52,7 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     const ctx = await browser.newContext(ctxOpts('dark'));
     const page = await ctx.newPage();
     const errors = []; const allowed = [];
-    page.on('console', m => { if (m.type() !== 'error') return; const t = m.text() + ' ' + (m.location().url || ''); (/404/.test(t) && /data\/(market|headlines|status|disasters)\.json/.test(t) ? allowed : errors).push(t); });
+    page.on('console', m => { if (m.type() !== 'error') return; const t = m.text() + ' ' + (m.location().url || ''); (/404/.test(t) && /data\/(market|headlines|status|disasters|gold_history)\.json/.test(t) ? allowed : errors).push(t); });
     page.on('pageerror', e => errors.push('pageerror: ' + e.message));
     await page.goto(URL.nodata); await page.waitForTimeout(2500);
     expect(errors).toEqual([]);
@@ -63,8 +63,11 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     expect(await page.locator('#news-slot').isHidden()).toBe(true);
     expect(await page.locator('#live-flag-dot').getAttribute('class')).toContain('old');
     expect(await page.locator('#foot-live').textContent()).toBe('');
-    // embedded data is still all there
-    expect(await page.locator('#updated').textContent()).toBe('อัปเดต 2 พ.ย. 2569');
+    // embedded data is still all there; the header falls back to the embedded date
+    expect(await page.locator('#updated .u-full').textContent()).toBe('อัปเดต 2 พ.ย. 2569');
+    expect(await page.locator('#updated').getAttribute('class')).not.toContain('is-stale');
+    await expect(page).toHaveTitle('สถานการณ์โลก');
+    expect(await page.locator('#title').textContent()).toBe('สถานการณ์โลก');
     expect(await page.locator('#view-overview .tile').count()).toBe(20);
     await page.click('.tab[data-tab="conflicts"]');
     expect(await page.locator('#view-conflicts .item').count()).toBe(25);
@@ -85,7 +88,10 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     await page.goto(URL.mutable);
     await expect(page.locator('#live-slot .ticker .tk')).toHaveCount(11);
     // relative fetches resolve under the Pages sub-path
-    expect([...new Set(reqs)].sort()).toEqual(['/global-analysis/data/disasters.json', '/global-analysis/data/headlines.json', '/global-analysis/data/market.json', '/global-analysis/data/status.json']);
+    expect([...new Set(reqs)].sort()).toEqual(['/global-analysis/data/disasters.json', '/global-analysis/data/gold_history.json', '/global-analysis/data/headlines.json', '/global-analysis/data/market.json', '/global-analysis/data/status.json']);
+    // page title stays undated; the header date is the last live update in Bangkok time
+    await expect(page).toHaveTitle('สถานการณ์โลก');
+    expect(await page.locator('#title').textContent()).toBe('สถานการณ์โลก');
     expect(await page.locator('#live-slot .tk[data-key="brent"] .v').textContent()).toBe('116.4');
     expect(await page.locator('#live-slot .tk[data-key="spx"] .tk-c').getAttribute('class')).toContain('down');
     expect(await page.locator('#live-slot .live-head .sdot').getAttribute('class')).toContain('fresh');
@@ -96,6 +102,10 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     const bkk = new Date(Date.parse(st.updated_at) + 7*HOUR);
     expect(age).toContain(('0' + bkk.getUTCHours()).slice(-2) + ':');
     expect(age).toContain(String(bkk.getUTCFullYear() + 543));
+    const TH_M = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+    const hdr = 'อัปเดต ' + bkk.getUTCDate() + ' ' + TH_M[bkk.getUTCMonth()] + ' ' + (bkk.getUTCFullYear() + 543) + ' ' + ('0' + bkk.getUTCHours()).slice(-2) + ':' + ('0' + bkk.getUTCMinutes()).slice(-2) + ' น.';
+    expect(await page.locator('#updated .u-full').textContent()).toBe(hdr);
+    expect(await page.locator('#updated').getAttribute('class')).not.toContain('is-stale');
     expect(await page.locator('#live-slot .live-head .note').innerText()).toBe('ราคาจากงานตั้งเวลา วันละ 6 รอบ');
     expect(await page.locator('#live-flag-dot').getAttribute('class')).toContain('fresh');
     const sub = await page.evaluate(() => { const s = document.querySelector('.topbar .sub'); return [s.scrollWidth, s.clientWidth, s.getBoundingClientRect().height]; });
@@ -128,6 +138,9 @@ for (const vp of [{ name: 'desktop', w: 1280, h: 800, dpr: 1 }, { name: 'mobile'
     expect(await page.locator('#live-slot .tk[data-key="gold"] .v').textContent()).toBe('3,861.20');
     expect(await page.locator('#live-slot .tk[data-key="wti"] .v').textContent()).toBe('112.8');
     expect(await page.locator('#live-slot .live-head [data-age]').textContent()).toMatch(/\((1 นาทีที่แล้ว|เมื่อสักครู่)\)$/);
+    { const b2 = new Date(Date.now() - MIN + 7*HOUR), b3 = new Date(Date.now() + 7*HOUR);   // the new status time (a minute ago, give or take the poll)
+      const hd = await page.locator('#updated .u-full').textContent();
+      expect([b2, b3].some(b => hd.includes(('0' + b.getUTCHours()).slice(-2) + ':'))).toBe(true); }
     expect(await page.locator('#news-slot .news li').count()).toBe(13);
     expect(await page.locator('#news-slot .news li').first().innerText()).toContain('ด่วน');
     await page.click('.tab[data-tab="gold"]');
@@ -174,6 +187,9 @@ test('failed run, stale data and a failed re-poll keep the last data with a warn
   expect(await page.locator('#live-flag-dot').getAttribute('class')).toContain('stale');
   expect(await page.locator('#live-slot .live-head').getAttribute('class')).toContain('is-stale');
   expect(await page.locator('#live-slot .live-head [data-age]').textContent()).toContain('(11 ชม. ที่แล้ว)');
+  // the header date shows the same old time and is marked stale like the live flag
+  expect(await page.locator('#updated').getAttribute('class')).toContain('is-stale');
+  expect(await page.locator('#updated .u-full').textContent()).toMatch(/^อัปเดต \d{1,2} \S+ 25\d\d \d\d:\d\d น\.$/);
   await page.evaluate(() => document.getElementById('main').style.setProperty('--sheet-h', '90%'));
   await page.waitForTimeout(400);
   await noHScroll(page, 'stale');
@@ -191,6 +207,7 @@ test('failed run, stale data and a failed re-poll keep the last data with a warn
   await repoll(page);
   await expect(note).toHaveText('ราคาจากงานตั้งเวลา วันละ 6 รอบ');
   expect(await note.getAttribute('class')).not.toContain('warn');
+  expect(await page.locator('#updated').getAttribute('class')).not.toContain('is-stale');
   expect(errors).toEqual([]);
   await ctx.close();
 });

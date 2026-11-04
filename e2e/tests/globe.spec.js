@@ -66,6 +66,12 @@ for (const c of cases) {
     expect(await page.locator('#view-overview .points > li').count()).toBe(6);
     expect(await page.locator('#view-overview .risks > li').count()).toBe(4);
     expect(await page.locator('#view-overview .callout').count()).toBe(1);
+    // the background analysis and chokepoints carry their snapshot date (not "now")
+    expect(await page.locator('#view-overview .basis-note').count()).toBe(2);
+    expect(await page.locator('#view-overview .basis-note').first().innerText()).toContain('ข้อมูลพื้นฐาน ณ 31 ต.ค.–2 พ.ย. 2569');
+    expect(await page.locator('#footnote').innerText()).toContain('ณ 31 ต.ค.–2 พ.ย. 2569');
+    await expect(page).toHaveTitle('สถานการณ์โลก');
+    expect(await page.locator('#title').textContent()).toBe('สถานการณ์โลก');
     await noNullText(page, 'overview');
     // screenshot of the analysis section
     if (mobile) { await page.evaluate(() => document.getElementById('main').style.setProperty('--sheet-h', '90%')); await page.waitForTimeout(400); }
@@ -80,6 +86,8 @@ for (const c of cases) {
     await page.click('.tab[data-tab="conflicts"]');
     const items = await page.locator('#view-conflicts .item').evaluateAll(els => els.map(e => ({ lvl: +e.querySelector('.meta b').textContent.replace(/\D/g, ''), st: e.querySelector('.st').textContent, nm: e.querySelector('.nm').textContent })));
     expect(items.length).toBe(25);
+    await expect(page.locator('#view-conflicts .basis-note')).toBeVisible();
+    expect(await page.locator('#view-conflicts .basis-note').innerText()).toContain('ข้อมูลพื้นฐาน ณ 31 ต.ค.–2 พ.ย. 2569');
     for (let i = 1; i < items.length; i++) expect(items[i].lvl, 'sorted desc at ' + i).toBeLessThanOrEqual(items[i - 1].lvl);
     expect(items[0].lvl).toBe(5); expect(items[items.length - 1].lvl).toBe(1);
     const gaza = items.find(x => x.nm.startsWith('กาซา')); expect(gaza.st.startsWith('หยุดยิง')).toBe(true);
@@ -122,11 +130,14 @@ for (const c of cases) {
     await page.click('#view-detail .back');
     await page.click('.tab[data-tab="economies"]');
     expect(await page.locator('#view-economies .item').count()).toBe(21);
+    await expect(page.locator('#view-economies .basis-note')).toBeVisible();
+    expect(await page.locator('#view-economies .basis-note').innerText()).toContain('ข้อมูลพื้นฐาน ณ 31 ต.ค.–2 พ.ย. 2569');
     await noNullText(page, 'economies list');
     const argText = await page.locator('#view-economies .item', { hasText: 'อาร์เจนตินา' }).innerText();
     expect(argText).toContain('—');
     await page.locator('#view-economies .item', { hasText: 'อาร์เจนตินา' }).click();
     await noNullText(page, 'argentina card');
+    expect(await page.locator('#view-detail .basis-note').innerText()).toContain('ข้อมูลพื้นฐาน ณ 31 ต.ค.–2 พ.ย. 2569');
     await page.waitForTimeout(1200);
     await page.screenshot({ path: path.join(SHOTS, `${c.name}-argentina.png`) });
     await noHScroll(page, 'end');

@@ -88,6 +88,41 @@
           "source": {
             "type": "string",
             "pattern": "^https?://[^\\s\\\"]+$"
+          },
+          "buy": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "gold_th only, optional: 96.5% bar BUY price (baht) from the same Gold Traders Association announcement as value"
+          },
+          "ornament_sell": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "gold_th only, optional: 96.5% ornament SELL price (baht) from the same announcement as value"
+          }
+        },
+        "if": {
+          "properties": {
+            "key": {
+              "not": {
+                "const": "gold_th"
+              }
+            }
+          }
+        },
+        "then": {
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "buy"
+                ]
+              },
+              {
+                "required": [
+                  "ornament_sell"
+                ]
+              }
+            ]
           }
         }
       }
