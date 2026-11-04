@@ -3180,6 +3180,9 @@ function igPlay(kind, idx, rows, instantWanted){
     var co = igCountItem($('fx-coord'), 0, 620); if(co) plan.push(co);
     arcs.forEach(function(r, i){ plan.push({at:Math.round(landing[i]*1000), fire:function(){ igLabelEls[i].classList.add('on'); globe.fxLabelsMeasure(); }}); });
   }
+  /* the sequence ends after the last CSS transition: .play comes off only when nothing is still moving */
+  var lastIn = 0; plan.forEach(function(p){ if(!p.dur) lastIn = Math.max(lastIn, p.at); });
+  plan.push({at:lastIn+950, fire:function(){}});
   IG.items = plan; IG.state = 'play'; IG.t0 = performance.now();
   var last = 0; plan.forEach(function(p){ last = Math.max(last, p.at+(p.dur||0)); });
   IG.timer = setTimeout(function(){ if(IG.state==='play'){ igEndAll(); IG.state = 'done'; } }, last+2500);   /* a throttled tab never leaves the card half drawn */
