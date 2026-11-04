@@ -52,6 +52,7 @@
   --al-red:var(--bad); --al-orange:var(--i2); --al-yellow:var(--i1); --al-green:var(--good); --al-none:var(--muted);
   /* the three kinds of arc on the globe */
   --fx-data:#6ff0c4; --fx-mention:#ffb454; --fx-geo:#a9c3e6;
+  --rain1:#4f9dff; --rain2:#38e1ff; --rain3:#f2fbff; --storm:#ff7ad9; --storm-cone:#9aa9bd;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
@@ -65,6 +66,7 @@
     --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
     --choke:#b07d05;
     --fx-data:#067a5e; --fx-mention:#a85600; --fx-geo:#3d5a82;
+    --rain1:#5a95dd; --rain2:#0f6ad1; --rain3:#0b2a78; --storm:#b3268f; --storm-cone:#5d6c80;
     --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
     --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
     --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
@@ -82,6 +84,7 @@
   --h-strong:#1f9d5a; --h-stable:#2f78c2; --h-weak:#b9780c; --h-crisis:#d23f3a;
   --choke:#b07d05;
   --fx-data:#067a5e; --fx-mention:#a85600; --fx-geo:#3d5a82;
+  --rain1:#5a95dd; --rain2:#0f6ad1; --rain3:#0b2a78; --storm:#b3268f; --storm-cone:#5d6c80;
   --disaster:#7637cc; --disaster-soft:rgba(118,55,204,.12);
   --gold:#8a6200; --gold-glow:#b8891c; --gold-soft:rgba(138,98,0,.12);
   --globe-fill:#d3dfee; --globe-rim:#2a8f9a; --globe-dot:#2f4f7d; --globe-grid:#bccbdd; --space:#dde5ef;
@@ -613,11 +616,11 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
 .ig-line{display:flex;justify-content:space-between;align-items:baseline;gap:4px 10px;flex-wrap:wrap;font-size:12.5px;line-height:1.55;color:var(--text-2)}
 .ig-line b{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
 .ig-line + .ig-line,.ig-strip + .ig-line,.ig-bar + .ig-line,.ig-dots + .ig-line,.ig-fact + .ig-line{margin-top:7px}
-.ig-note{font-size:11.5px;line-height:1.55;color:var(--muted);margin:5px 0 0}
+.detail .ig-note{font-size:11.5px;line-height:1.55;color:var(--muted);margin:5px 0 0}
 .ig-note a{color:var(--muted)}
-.ig-fact{font-size:12.5px;line-height:1.6;color:var(--text-2);margin:0 0 3px}
+.detail .ig-fact{font-size:12.5px;line-height:1.6;color:var(--text-2);margin:0 0 3px}
 .ig-fact b{font-family:var(--font-head);font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
-.ig-quote{margin:5px 0 0;padding:4px 0 4px 9px;border-left:2px solid var(--fx-mention);font-size:12px;line-height:1.6;color:var(--text-2)}
+.detail .ig-quote{margin:5px 0 0;padding:4px 0 4px 9px;border-left:2px solid var(--fx-mention);font-size:12px;line-height:1.6;color:var(--text-2)}
 .ig-seg{display:flex;gap:4px;margin:2px 0 4px}
 .ig-seg i{flex:1 1 0;height:9px;border-radius:3px;background:color-mix(in srgb,var(--fx) 14%,var(--border))}
 .ig-seg i.on{background:var(--fx);box-shadow:0 0 8px color-mix(in srgb,var(--fx) 65%,transparent)}
@@ -659,9 +662,9 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
 .ig-key b{font-weight:600}
 .ig-key .k-data{color:var(--fx-data)} .ig-key .k-geo{color:var(--fx-geo)} .ig-key .k-mention{color:var(--fx-mention)}
 .ig .fold{margin-top:12px}
-.ig > .basis-note{margin:10px 0 0}
-.ig > .status{margin:8px 0 0;line-height:1.65}
-.ig > .ig-dim + p{margin:12px 0 0}
+.detail .ig > .basis-note{margin:10px 0 0}
+.detail .ig > .status{margin:8px 0 0;line-height:1.65}
+.detail .ig > .ig-dim + p{margin:12px 0 0}
 .ig > .kv{margin-top:12px}
 .ig > .news-more{margin:12px 0 4px}
 #card-latest:not(:empty){margin-top:10px}
@@ -741,7 +744,10 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
   .stage.has-fx .chip{flex:0 0 auto}
   .stage.has-fx .chip.primary{margin-left:0}
   .fx-bar{left:6px;right:6px;bottom:6px;padding:4px 10px 5px;gap:8px}
-  .fx-bar .nm{font-size:12.5px}
+  .fx-bar .nm{font-size:12.5px;-webkit-line-clamp:1}
+  .ig[data-kind="disaster"] .chips .pill:nth-child(2){display:none}
+  .ig-gauge .s{font-size:10px}
+  .ig-gauge .b .dz-ic,.ig-gauge .b .dz-ic svg{width:24px;height:24px}
   .fx-bar .bv{font-size:18px}
   .fx-lb{font-size:11px;max-width:150px;padding:1px 7px}
   .ig h2{font-size:17px}
@@ -753,6 +759,42 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
   .detail .back{padding-bottom:4px}
 }
 @media (max-width:360px){ .ig-stats{grid-template-columns:minmax(0,1fr)} }
+
+/* ---------- storm and rain layer ---------- */
+.chip.wx .sw{background:var(--storm);box-shadow:0 0 0 2px color-mix(in srgb,var(--rain2) 45%,transparent)}
+.wx-labels{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.wx-labels[hidden]{display:none}
+.wx-lb{position:absolute;left:0;top:0;padding:1px 7px;border:1px solid var(--storm);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);font-size:11px;font-weight:500;line-height:1.6;color:var(--text);text-decoration:none;white-space:nowrap;pointer-events:auto;will-change:transform}
+.wx-box{position:absolute;left:10px;bottom:10px;z-index:2;width:min(340px,calc(100% - 20px));max-height:calc(100% - 96px);overflow-y:auto;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border-strong);border-radius:12px;font-size:11.5px;line-height:1.6;color:var(--text-2)}
+.wx-box[hidden]{display:none}
+.wx-box summary{display:flex;align-items:center;gap:6px;min-height:34px;padding:4px 10px;cursor:pointer;list-style:none;font-family:var(--font-head);font-weight:600;font-size:12px;line-height:1.5;color:var(--text)}
+.wx-s{display:flex;flex-direction:column;min-width:0}
+.wx-s .s2{font-family:var(--font-body);font-weight:400;font-size:10.5px;line-height:1.5;color:var(--text-2)}
+.wx-box summary.warn .s2{color:var(--warn)}
+.wx-box summary::-webkit-details-marker{display:none}
+.wx-box summary::after{content:"+";margin-left:auto;color:var(--muted);font-size:16px;line-height:1}
+.wx-box[open] summary::after{content:"−"}
+.wx-box summary.warn,.wx-box .warn{color:var(--warn)}
+.wx-b{padding:0 10px 9px}
+.wx-b p{margin:0 0 5px}
+.wx-b a{color:var(--text-2)}
+.wx-b b{font-weight:600;color:var(--text)}
+.wx-key{display:flex;flex-wrap:wrap;gap:2px 10px;margin:0 0 5px}
+.wx-key span{display:inline-flex;align-items:center;gap:4px}
+.wx-key i{display:inline-block;width:8px;height:8px;border-radius:50%}
+.wx-key i.h{background:none;border:1.5px solid var(--storm)}
+.wx-list{list-style:none;margin:0 0 5px;padding:0}
+.wx-fine{font-size:10.5px;line-height:1.55;color:var(--muted);margin:0}
+.wx-fine a{color:var(--muted)}
+.stage.wx-on .legend{display:none}
+.stage.wx-on.has-fx .wx-box{bottom:calc(var(--fxbar,62px) + 16px)}
+@media (max-width:860px){
+  .wx-box{left:6px;bottom:6px;width:calc(100% - 12px);max-height:calc(100% - 64px)}
+  .stage.wx-on.has-fx .wx-box{bottom:calc(var(--fxbar,48px) + 10px)}
+  .stage.wx-on.has-fx .wx-s .s2{display:none}
+  .stage.wx-on.has-fx .wx-box summary{min-height:26px;padding-block:1px}
+  .stage.has-fx .wx-lb{visibility:hidden !important}
+}
 </style>
 </head>
 <body>
@@ -816,11 +858,14 @@ details.rd-group > .rd-more-b{padding-top:1.1em}
         <button class="chip" id="tg-disasters" aria-pressed="true" type="button"><span class="sw tri"></span>ภัยพิบัติ</button>
         <button class="chip" id="tg-economies" aria-pressed="true" type="button"><span class="sw" style="background:var(--h-stable)"></span>เศรษฐกิจ</button>
         <button class="chip" id="tg-chokepoints" aria-pressed="true" type="button"><span class="sw" style="background:var(--choke)"></span>ช่องแคบ</button>
+        <button class="chip wx" id="tg-weather" aria-pressed="false" type="button" title="เส้นทางพายุและฝนล่าสุด"><span class="sw"></span>พายุและฝน</button>
         <button class="chip gold" id="btn-gold" type="button" title="ราคาทองคำและบทวิเคราะห์"><span class="sw"></span>ทองคำ</button>
         <button class="chip primary" id="btn-thai" type="button">หมุนไปที่ไทย</button>
       </div>
+      <div class="wx-labels" id="wx-labels" hidden></div>
       <div class="fx-hud" id="fx-hud" hidden aria-hidden="true"></div>
       <div class="legend" id="legend-stage"></div>
+      <details class="wx-box" id="wx-box" hidden></details>
       <div class="hint">ลากเพื่อหมุน · เลื่อนเพื่อซูม · แตะหมุดเพื่อดูรายละเอียด</div>
       <div class="fallback" id="fallback"></div>
     </section>
@@ -1171,7 +1216,8 @@ function readTokens(){
     space:g('--space'), fill:g('--globe-fill'), rim:g('--globe-rim'), dot:g('--globe-dot'), grid:g('--globe-grid'), accent:g('--accent'),
     intensity:[g('--i1'),g('--i2'),g('--i3'),g('--i4'),g('--i5')],
     health:{strong:g('--h-strong'), stable:g('--h-stable'), weak:g('--h-weak'), crisis:g('--h-crisis')},
-    choke:g('--choke'), disaster:g('--disaster'), goldGlow:g('--gold-glow')
+    choke:g('--choke'), disaster:g('--disaster'), goldGlow:g('--gold-glow'),
+    rain:[g('--rain1'),g('--rain2'),g('--rain3')], storm:g('--storm'), stormCone:g('--storm-cone')
   };
 }
 
@@ -1410,8 +1456,12 @@ function createGlobe(stage){
   function fxLabels(els, arcs){
     fx.labels.length = 0; fx.order.length = 0;
     els.forEach(function(el, i){
-      var a = fx.labels[i] = {el:el, pos:new T.Vector3(), w:el.offsetWidth||120, h:el.offsetHeight||22, x:-1, y:-1, ax:0, ay:0, shown:true};
+      var a = fx.labels[i] = {el:el, pos:new T.Vector3(), w:el.offsetWidth||120, h:el.offsetHeight||22, x:-1, y:-1, ax:0, ay:0, shown:true, along:[new T.Vector3(), new T.Vector3(), new T.Vector3()]};
       toVec(arcs[i].lat, arcs[i].lon, R*1.02, a.pos);
+      /* three points on the arc itself: a target behind the horizon hangs its label on the part of the arc still in view */
+      toVec(fx.lat, fx.lon, 1, fxV0); toVec(arcs[i].lat, arcs[i].lon, 1, fxV1);
+      var ang = Math.acos(Math.max(-1, Math.min(1, fxV0.dot(fxV1)))), sn = Math.sin(ang)||1e-6, lift = 0.015 + 0.24*ang/Math.PI;
+      [0.3, 0.5, 0.7].forEach(function(t, j){ a.along[j].copy(fxV0).multiplyScalar(Math.sin((1-t)*ang)/sn).addScaledVector(fxV1, Math.sin(t*ang)/sn).normalize().multiplyScalar(R*1.012 + lift*Math.sin(Math.PI*t)); });
       fx.order[i] = i;
     });
   }
@@ -1456,7 +1506,9 @@ function createGlobe(stage){
     for(i=0;i<n;i++){
       L = fx.labels[i];
       L.vis = L.pos.dot(camera.position) > R*R*1.02;
-      if(L.vis){ projV.copy(L.pos).project(camera); var px = (projV.x+1)*0.5*W, py = (1-projV.y)*0.5*H; L.ax = px < W*0.6 ? px+9 : px-L.w-9; L.ay = py-L.h/2; L.ax = Math.max(4, Math.min(W-L.w-4, L.ax)); }
+      var anchor = L.pos;
+      if(!L.vis){ for(j=2;j>=0;j--){ if(L.along[j].dot(camera.position) > R*R*1.02){ anchor = L.along[j]; L.vis = true; break; } } }
+      if(L.vis){ projV.copy(anchor).project(camera); var px = (projV.x+1)*0.5*W, py = (1-projV.y)*0.5*H; L.ax = px < W*0.6 ? px+9 : px-L.w-9; L.ay = py-L.h/2; L.ax = Math.max(4, Math.min(W-L.w-4, L.ax)); }
     }
     /* keep the labels apart: top to bottom, each pushed below whatever it overlaps. No allocation */
     for(i=1;i<n;i++){ var v = ord[i]; for(j=i-1;j>=0 && fx.labels[ord[j]].ay>fx.labels[v].ay;j--) ord[j+1] = ord[j]; ord[j+1] = v; }
@@ -1465,7 +1517,7 @@ function createGlobe(stage){
       if(!L.vis) continue;
       L.ay = Math.max(fx.safeTop, L.ay);
       for(j=0;j<i;j++){ Q = fx.labels[ord[j]]; if(Q.vis && L.ax<Q.ax+Q.w+3 && Q.ax<L.ax+L.w+3 && L.ay<Q.ay+Q.h+2 && Q.ay<L.ay+L.h+2) L.ay = Q.ay+Q.h+3; }
-      L.vis = L.ay + L.h < H - (fx.safeBottom||60);
+      L.ay = Math.min(L.ay, H - (fx.safeBottom||60) - L.h);
     }
     for(i=0;i<n;i++){
       L = fx.labels[i];
@@ -1483,6 +1535,87 @@ function createGlobe(stage){
   function fxStats(){
     var objs = 0; scene.traverse(function(){ objs++; });
     return {calls:renderer.info.render.calls, points:renderer.info.render.points, triangles:renderer.info.render.triangles, objects:objs, geometries:renderer.info.memory.geometries, textures:renderer.info.memory.textures, programs:renderer.info.programs ? renderer.info.programs.length : 0, arcDots:fx.dots, arcs:fx.arcs, focus:fx.amt, camDist:cam.dist, fitDist:fitDist, camLat:cam.lat, camLon:cam.lon};
+  }
+
+  /* --- storm and rain layer: dots like the land, three objects at most, drawn only while the layer is on --- */
+  var wxMats = {
+    rain:new T.ShaderMaterial({ transparent:true, depthWrite:false,
+      uniforms:{uTime:{value:0}, uShim:{value:reduceMotion?0:1}, uPR:{value:renderer.getPixelRatio()}, uC1:{value:new T.Color(tok.rain[0])}, uC2:{value:new T.Color(tok.rain[1])}, uC3:{value:new T.Color(tok.rain[2])}},
+      vertexShader:'attribute float aB; attribute float aPh; uniform float uPR; uniform float uTime; uniform float uShim; uniform vec3 uC1; uniform vec3 uC2; uniform vec3 uC3; varying vec3 vC; varying float vA; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vec3 n = normalize(normalMatrix*normalize(position)); float face = max(dot(n, normalize(-mv.xyz)),0.0); vC = aB<1.5 ? uC1 : aB<2.5 ? uC2 : uC3; vA = (0.2+0.8*smoothstep(0.0,0.3,face))*(0.58+0.14*aB+uShim*0.18*sin(uTime*1.5+aPh*6.283)); gl_Position = projectionMatrix*mv; gl_PointSize = (1.35+0.45*aB)*uPR*(3.4/(-mv.z)); }',
+      fragmentShader:'varying vec3 vC; varying float vA; void main(){ vec2 d = gl_PointCoord-0.5; if(dot(d,d)>0.25) discard; gl_FragColor = vec4(vC, clamp(vA,0.0,1.0)); }' }),
+    storm:new T.ShaderMaterial({ transparent:true, depthWrite:false,
+      uniforms:{uPR:{value:renderer.getPixelRatio()}},
+      vertexShader:'attribute vec3 aColor; attribute float aSize; attribute float aA; attribute float aHollow; uniform float uPR; varying vec3 vC; varying float vA; varying float vH; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vC = aColor; vA = aA; vH = aHollow; gl_Position = projectionMatrix*mv; gl_PointSize = aSize*uPR*(3.0/(-mv.z)); }',
+      fragmentShader:'varying vec3 vC; varying float vA; varying float vH; void main(){ float r = length(gl_PointCoord-0.5)*2.0; if(r>1.0) discard; float a = vH>0.5 ? 1.0-smoothstep(0.0,0.3,abs(r-0.68)) : 1.0-smoothstep(0.72,1.0,r); gl_FragColor = vec4(vC, a*vA); }' }),
+    swirl:new T.ShaderMaterial({ transparent:true, depthWrite:false,
+      uniforms:{uTime:{value:0}, uSpin:{value:reduceMotion?0:1}, uPR:{value:renderer.getPixelRatio()}, uColor:{value:new T.Color(tok.storm)}},
+      vertexShader:'attribute vec3 aCenter; attribute vec3 aPolar; uniform float uTime; uniform float uSpin; uniform float uPR; varying float vA; void main(){ vec3 n = normalize(aCenter); vec3 t = normalize(cross(abs(n.y)<0.95 ? vec3(0.0,1.0,0.0) : vec3(1.0,0.0,0.0), n)); vec3 b = cross(n,t); float ang = aPolar.x+uSpin*uTime*1.1*aPolar.z; vec3 p = n*1.024+(t*cos(ang)+b*sin(ang))*aPolar.y; vec4 mv = modelViewMatrix*vec4(p,1.0); vec3 nn = normalize(normalMatrix*n); float face = dot(nn, normalize(-mv.xyz)); vA = (aPolar.y<0.001 ? 1.0 : 1.0-aPolar.y/0.075*0.6)*smoothstep(0.02,0.2,face); gl_Position = projectionMatrix*mv; gl_PointSize = (aPolar.y<0.001 ? 5.5 : 2.6)*uPR*(3.0/(-mv.z)); }',
+      fragmentShader:'uniform vec3 uColor; varying float vA; void main(){ if(vA<0.02) discard; vec2 d = gl_PointCoord-0.5; if(dot(d,d)>0.25) discard; gl_FragColor = vec4(uColor, vA); }' })
+  };
+  var wx = {on:false, rain:null, storm:null, swirl:null, cells:null, storms:null, labels:[], rainDots:0, stormDots:0, swirlDots:0};
+  function wxDrop(name){ var o = wx[name]; if(o){ scene.remove(o); o.geometry.dispose(); wx[name] = null; } }
+  function wxBuildRain(){
+    wxDrop('rain'); wx.rainDots = 0;
+    var c = wx.cells; if(!wx.on || !c || !c.length) return;
+    var n = c.length/3, pos = new Float32Array(n*3), bk = new Float32Array(n), ph = new Float32Array(n), v = new T.Vector3();
+    for(var i=0;i<n;i++){ toVec(c[i*3], c[i*3+1], R*1.012, v); pos[i*3]=v.x; pos[i*3+1]=v.y; pos[i*3+2]=v.z; bk[i]=c[i*3+2]; ph[i]=(i*0.61803)%1; }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos,3)); g.setAttribute('aB', new T.BufferAttribute(bk,1)); g.setAttribute('aPh', new T.BufferAttribute(ph,1));
+    wx.rain = new T.Points(g, wxMats.rain); wx.rainDots = n; scene.add(wx.rain);
+  }
+  function wxBuildStorms(){
+    wxDrop('storm'); wxDrop('swirl'); wx.stormDots = wx.swirlDots = 0;
+    var items = wx.storms; if(!wx.on || !items || !items.length) return;
+    var P = [], C = [], S = [], A = [], H = [], cc = new T.Color(), a = new T.Vector3(), b = new T.Vector3(), m = new T.Vector3();
+    function dot(v, col, size, al, hollow){ cc.set(col); P.push(v.x,v.y,v.z); C.push(cc.r,cc.g,cc.b); S.push(size); A.push(al); H.push(hollow); }
+    function line(la0, lo0, la1, lo1, col, size, al, hollow, stepDeg, rad){
+      toVec(la0, lo0, 1, a); toVec(la1, lo1, 1, b);
+      var ang = Math.acos(Math.max(-1, Math.min(1, a.dot(b)))), nn = Math.max(1, Math.ceil(ang/DEG/stepDeg)), sn = Math.sin(ang)||1e-6;
+      for(var i=0;i<nn;i++){ var t = i/nn; if(ang<1e-5) m.copy(a); else m.copy(a).multiplyScalar(Math.sin((1-t)*ang)/sn).addScaledVector(b, Math.sin(t*ang)/sn); m.normalize().multiplyScalar(rad); dot(m, col, size, al, hollow); }
+    }
+    function ring(pts, col, size, al, step){ if(!pts || pts.length<3) return; for(var i=0;i<pts.length;i++){ var p = pts[i], q = pts[(i+1)%pts.length]; line(p[0],p[1],q[0],q[1],col,size,al,0,step,R*1.014); } }
+    var areas = [['60',tok.intensity[0],0.55],['90',tok.intensity[1],0.75],['120',tok.intensity[3],0.95]];
+    var swC = [], swP = [];
+    items.forEach(function(it){
+      ring(it.cone, tok.stormCone, 1.8, 0.5, 1.5);
+      areas.forEach(function(ar){ ring((it.wind_areas||{})[ar[0]], ar[1], 2.2, ar[2], 0.8); });
+      var t = it.track||[];
+      for(var i=1;i<t.length;i++){ var fc = t[i][2]===1; line(t[i-1][0],t[i-1][1],t[i][0],t[i][1], tok.storm, fc?3.4:3.8, fc?0.8:1, fc?1:0, fc?1.1:0.45, R*1.018); }
+      if(it.ongoing){
+        toVec(it.lat, it.lon, 1, a);
+        var dir = it.lat>=0 ? 1 : -1;   /* cyclones turn counter-clockwise in the north, clockwise in the south */
+        swC.push(a.x,a.y,a.z); swP.push(0,0,dir);
+        for(var arm=0;arm<3;arm++) for(var k=1;k<=24;k++){ var f = k/24; swC.push(a.x,a.y,a.z); swP.push(arm*2.094 + dir*f*2.6, 0.012+f*0.063, dir); }
+      }
+    });
+    if(P.length){
+      var g = new T.BufferGeometry();
+      g.setAttribute('position', new T.Float32BufferAttribute(P,3)); g.setAttribute('aColor', new T.Float32BufferAttribute(C,3)); g.setAttribute('aSize', new T.Float32BufferAttribute(S,1)); g.setAttribute('aA', new T.Float32BufferAttribute(A,1)); g.setAttribute('aHollow', new T.Float32BufferAttribute(H,1));
+      wx.storm = new T.Points(g, wxMats.storm); wx.stormDots = P.length/3; scene.add(wx.storm);
+    }
+    if(swC.length){
+      var s = new T.BufferGeometry(), cf = new T.Float32BufferAttribute(swC,3);
+      s.setAttribute('position', cf); s.setAttribute('aCenter', cf); s.setAttribute('aPolar', new T.Float32BufferAttribute(swP,3));
+      wx.swirl = new T.Points(s, wxMats.swirl); wx.swirl.frustumCulled = false; wx.swirlDots = swC.length/3; scene.add(wx.swirl);
+    }
+  }
+  function setWeather(on, cells, storms, labels){
+    var wasOn = wx.on, sameRain = cells===wx.cells, sameStorms = storms===wx.storms;
+    wx.on = on; wx.cells = cells; wx.storms = storms;
+    wx.labels = (labels||[]).map(function(l){ var q = new T.Vector3(); toVec(l.lat, l.lon, R*1.03, q); return {el:l.el, pos:q, w:l.el.offsetWidth||90, h:l.el.offsetHeight||20, x:-1, y:-1, shown:true}; });
+    if(wasOn!==on || !sameRain) wxBuildRain();
+    if(wasOn!==on || !sameStorms) wxBuildStorms();
+  }
+  function wxTick(t){
+    wxMats.rain.uniforms.uTime.value = t; wxMats.swirl.uniforms.uTime.value = t;
+    for(var i=0;i<wx.labels.length;i++){
+      var L = wx.labels[i], vis = L.pos.dot(camera.position) > R*R*1.03;
+      if(vis){
+        projV.copy(L.pos).project(camera);
+        var x = Math.max(4, Math.min(stW-L.w-4, (projV.x+1)*0.5*stW + 10)), y = (1-projV.y)*0.5*stH - L.h/2;
+        if(Math.abs(x-L.x)>0.4 || Math.abs(y-L.y)>0.4){ L.x = x; L.y = y; L.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)'; }
+      }
+      if(L.shown!==vis){ L.shown = vis; L.el.style.visibility = vis ? '' : 'hidden'; }
+    }
   }
 
   /* --- camera / controls --- */
@@ -1582,6 +1715,7 @@ function createGlobe(stage){
   function applyTheme(){
     tok = readTokens();
     renderer.setClearColor(new T.Color(tok.space), 1);
+    wxMats.rain.uniforms.uC1.value.set(tok.rain[0]); wxMats.rain.uniforms.uC2.value.set(tok.rain[1]); wxMats.rain.uniforms.uC3.value.set(tok.rain[2]); wxMats.swirl.uniforms.uColor.value.set(tok.storm); if(wx.on) wxBuildStorms();
     bodyMat.uniforms.uFill.value.set(tok.fill); bodyMat.uniforms.uRim.value.set(tok.rim); atmoMat.uniforms.uRim.value.set(tok.rim);
     landMat.uniforms.uColor.value.set(tok.dot); scene.userData.gridMat.color.set(tok.grid); hiMat.color.set(tok.accent);
     pinsConf.userData.recolor(tok); pinsEcon.userData.recolor(tok); pinsChoke.userData.recolor(tok); pinsGold.userData.recolor(tok); if(pinsDz) pinsDz.userData.recolor(tok);
@@ -1612,6 +1746,7 @@ function createGlobe(stage){
     }
     if(hi.visible){ var s = 1 + 0.18*Math.sin(t*3.0); hi.scale.set(s,s,1); }
     if(fx.active) fxTick(now, dt, t);
+    if(wx.on) wxTick(t);
     renderer.render(scene, camera);
   }
   resize();
@@ -1619,7 +1754,7 @@ function createGlobe(stage){
   requestAnimationFrame(tick);
 
   return { flyTo:flyTo, highlight:highlight, setLayer:setLayer, setDisasters:setDisasters, setHot:function(flags){ pinsConf.userData.setHot(flags); },
-    fxPlay:fxPlay, fxLabels:fxLabels, fxLabelsMeasure:fxLabelsMeasure, fxClear:fxClear, fxStats:fxStats };
+    fxPlay:fxPlay, fxLabels:fxLabels, fxLabelsMeasure:fxLabelsMeasure, fxClear:fxClear, fxStats:fxStats, setWeather:setWeather, wxStats:function(){ return {on:wx.on, rainDots:wx.rainDots, stormDots:wx.stormDots, swirlDots:wx.swirlDots}; } };
 }
 
 /* three.js and the WebGL scene wait until the map view is first shown, so the reading view never downloads them.
@@ -1638,6 +1773,7 @@ function startGlobe(){
     LAYER_BUTTONS.forEach(function(pair){ if($(pair[0]).getAttribute('aria-pressed') !== 'true') globe.setLayer(pair[1], false); });
     if(disasters.length) globe.setDisasters(disasters);
     updateHot();
+    if(WX.on) wxApply();
     if(selected){
       var rec = igRec(selected.kind, selected.idx);
       if(rec){ globe.highlight(rec.lat, rec.lon, selected.kind); var late = igRelations(selected.kind, selected.idx); late.arcs = igPickArcs(late); igPlay(selected.kind, selected.idx, late, true); }
@@ -2918,15 +3054,17 @@ function igCard(kind, idx, rows){
   dims.forEach(function(d){ c.appendChild(d); });
   if(ln) c.appendChild(ln);
   tail.slice(headN).forEach(function(n){ if(n) c.appendChild(n); });
+  Array.prototype.forEach.call(c.children, function(n){ if(n.className.indexOf('ig-stats')<0 && !n.classList.contains('ig-rv')) n.classList.add('ig-rv'); });
   return c;
 }
 
 /* ----- the sequence ----- */
 var IG = {state:'idle', raf:0, timer:0, items:[], t0:0, card:null, plays:0, cancels:0, arcs:[], kind:null, idx:null};
 /* animate one number: every digit run rolls up to its true value, the text around it stays */
-function igCountItem(el, at, dur){
+function igCountItem(el, at, dur, firstOnly){
   var finalText = el.textContent, parts = [], re = /\d[\d,]*(?:\.\d+)?/g, m, last = 0;
   while((m = re.exec(finalText))){
+    if(firstOnly && parts.length) break;
     parts.push(finalText.slice(last, m.index));
     var s = m[0], dec = s.indexOf('.')>=0 ? s.length-s.indexOf('.')-1 : 0;
     parts.push({v:Number(s.replace(/,/g,'')), dec:dec, comma:s.indexOf(',')>=0});
@@ -3018,12 +3156,13 @@ function igPlay(kind, idx, rows, instantWanted){
       if(!el){ el = h('button', {class:'fx-lb', type:'button', tabindex:'-1'}, [h('span', {class:'g'}), h('span', {class:'n'}), h('span', {class:'w'})]); box.appendChild(el); igLabelEls[i] = el; }
       el.style.setProperty('--c', relColor[r.rel]);
       el.setAttribute('data-rel', r.rel);
-      el.children[0].textContent = IG_REL[r.rel].g; el.children[1].textContent = r.name; el.children[2].textContent = IG_REL[r.rel].th;
+      el.children[0].textContent = IG_REL[r.rel].g; el.children[1].textContent = String(r.name).replace(/\s*\([^)]*\)\s*$/, ''); el.children[2].textContent = IG_REL[r.rel].th;
       el.onclick = igGo(r);
       el.classList.toggle('on', instant);
     });
     for(var li=arcs.length;li<igLabelEls.length;li++){ igLabelEls[li].classList.remove('on'); }
     globe.fxLabels(arcs.length ? igLabelEls.slice(0, arcs.length) : [], arcs);
+    $('stage').style.setProperty('--fxbar', $('fx-bar').offsetHeight + 'px');
   }
   if(instant){ IG.state = 'done'; IG.items = []; return; }
   /* the plan, in ms from the click */
@@ -3037,7 +3176,7 @@ function igPlay(kind, idx, rows, instantWanted){
   });
   if(globe){
     hud.classList.remove('run'); void hud.offsetWidth; hud.classList.add('run');
-    var bv = igCountItem($('fx-bar-v'), 260, 900); if(bv){ bv.el.textContent = bv.finalText.replace(/\d/g, '0'); plan.push(bv); }
+    var bv = igCountItem($('fx-bar-v'), 260, 900, true); if(bv){ bv.step(0); plan.push(bv); }
     var co = igCountItem($('fx-coord'), 0, 620); if(co) plan.push(co);
     arcs.forEach(function(r, i){ plan.push({at:Math.round(landing[i]*1000), fire:function(){ igLabelEls[i].classList.add('on'); globe.fxLabelsMeasure(); }}); });
   }
@@ -3063,9 +3202,159 @@ window.__globeFx = {
   get plays(){ return IG.plays; }, get cancels(){ return IG.cancels; },
   stats:function(){ return globe ? globe.fxStats() : null; },
   relations:function(kind, idx){ return igRelations(kind, idx).map(function(r){ return {rel:r.rel, kind:r.kind, idx:r.idx, name:r.name, text:r.text, quote:r.quote||'', src:r.src||''}; }); },
-  counts:function(){ return {conflict:conflicts.length, econ:economies.length, choke:chokepoints.length, disaster:disasters.length}; }
+  counts:function(){ return {conflict:conflicts.length, econ:economies.length, choke:chokepoints.length, disaster:disasters.length}; },
+  weather:function(){ return {gl:globe ? globe.wxStats() : null, rainAt:WX.rainAt, rainMsg:WX.rainMsg, requests:WX.requests, busy:WX.rainBusy, storms:WX.storms ? WX.storms.length : null, stormsErr:WX.stormsErr}; }
 };
 window.__igSelect = function(kind, idx){ select(kind, idx); };
+
+/* ================= storm and rain layer (only fetched after the chip is pressed; off by default) ================= */
+/* Storms: data/storms.json, written hourly by updater/storms.py from GDACS.
+   Rain: one small PNG straight from NASA GIBS (CORS is open, no key, nothing committed to the repo), the IMERG 30-minute
+   estimate. The newest time is found by asking from a few hours ago backwards: a time not published yet comes back blank.
+   Each pixel colour maps to a rate through the layer's own colour table (GIBS GPM_Precipitation_Rate.xml):
+   rrggbb then a class, 0 = under 0.2, 1 = 0.2 to 1, 2 = 1 to 5, 3 = 5 or more mm/hr. */
+var RAIN_PALETTE = '00764e000784b0007b480007e450008142000833e000863a00089360008c320008e2e00091290009424000971f000991a1009c141009f0f100a209100a503103a700109aa00110ad00117b00011eb200126b50012db800135bb0013dbd00145c00014ec300156c60015fc800168cb00172ce0017bd100185d40018fd600199d9001a3dc001aedf001b8e1001c3e4002cfe7002daea002e6ec002efed002f2e6002f5e0002f7d9002fad2002fdca002ffc2012ffb9042ffb0062ffa8092ffa00c2ff980f2ff90112ff88142ff81172ff7a1a2ff731c2ff6c1f2ff65222ff5f252ff59272ff532a2ff4d2d2ff47302ff42333ff342c3ff26263ff20203ff1a1a3ff13133ff0d0d3ff07073ff01013fa00003f300003ed00003e700003e100003da00003d400003ce00003c800003c200003bb00003b500003af00003a900003a2000039c00003960000390000038a0000383000037d00003770000371000036a0000364000035e00003580000352000034b0000345000033f0000339000033300003b1faee0aefaef0aaf9ef0a7f8f00a4f8f10a1f7f209ef6f309bf5f4098f4f4095f1f3092eef208febf108ce7f0089e4ef186e0ee184dded181d9ec17ed5ea17cd1e9179cde8176c9e6174c5e5171c1e416fbde216db8e116ab4df168b0dd166abdc163a7da161a2d815f9ed715d99d515b95d315990d11578ccf15587cd15383cb1517ec914f7ac714d75c514f73c424d70c524c6dc624b6ac724a66c924963ca2485fcb2465ccc24558cd24454ce24350d02424cd124048d223f44d323e40d423f3dd52413cd72433bd824539d924838da24a37db24d36dc25035de25334df25632e025931e125c30e225f2fe42632ee53662de636a2be736a25e836a1fe836b19e936d14e936f12e537010e13720fdd3740dd93750cd53770bd13780acc3790ac737a0ac137a09bc37b09b737b09b237b09ac37a08a737a08a2379089d37808983770792376078d37407883720683370067d36e067836c0673369056e3660569363056335e045d3590456354044f34f04483490342344033c33f033633a03303';
+var WX = {on:false, storms:null, stormsDoc:null, stormsErr:false, cells:null, rainAt:null, rainMsg:'', rainBusy:false, rainTried:0, timer:0, requests:0, lastRain:0, labels:[]};
+var WX_RAIN_URL = 'https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=IMERG_Precipitation_Rate_30min&CRS=EPSG:4326&BBOX=-90,-180,90,180&WIDTH=360&HEIGHT=180&FORMAT=image/png&TIME=';
+var WX_RAIN_FROM_H = 3.5, WX_RAIN_TRIES = 22, WX_RAIN_STALE_H = 12, WX_RAIN_REFRESH_MS = 30*60*1000;
+var wxPal = null;
+function wxClass(r, g, b){
+  if(!wxPal){ wxPal = {}; for(var i=0;i+7<=RAIN_PALETTE.length;i+=7) wxPal[RAIN_PALETTE.substr(i,6)] = +RAIN_PALETTE.charAt(i+6); }
+  var k = ('0'+r.toString(16)).slice(-2)+('0'+g.toString(16)).slice(-2)+('0'+b.toString(16)).slice(-2);
+  return k in wxPal ? wxPal[k] : 0;
+}
+/* the 1-degree picture becomes dots about 2 degrees apart, wider near the poles so the dots stay evenly spread like the land dots */
+function wxCells(img){
+  var w = img.width, ht = img.height, d = img.data, any = false, out = [], y, x, i;
+  for(i=3;i<d.length;i+=4){ if(d[i]>0){ any = true; break; } }
+  if(!any) return null;
+  var sy = Math.max(1, Math.round(ht/90));
+  for(y=0;y<ht;y+=sy){
+    var lat = 90-(y+sy/2)*180/ht, sx = Math.max(1, Math.round(w/180/Math.max(0.2, Math.cos(lat*Math.PI/180))));
+    for(x=0;x<w;x+=sx){
+      var best = 0;
+      for(var yy=y;yy<Math.min(ht,y+sy);yy++) for(var xx=x;xx<Math.min(w,x+sx);xx++){
+        var o = (yy*w+xx)*4;
+        if(d[o+3]>0){ var c = wxClass(d[o],d[o+1],d[o+2]); if(c>best) best = c; }
+      }
+      if(best) out.push(+lat.toFixed(2), +((x+sx/2)*360/w-180).toFixed(2), best);
+    }
+  }
+  return out;
+}
+function wxDecode(blob){
+  return new Promise(function(ok, no){
+    var u = URL.createObjectURL(blob), im = new Image();
+    im.onload = function(){
+      try {
+        var c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight;
+        var x = c.getContext('2d', {willReadFrequently:true}); x.drawImage(im, 0, 0);
+        var data = x.getImageData(0, 0, c.width, c.height); URL.revokeObjectURL(u); ok(data);
+      } catch(e){ URL.revokeObjectURL(u); no(e); }
+    };
+    im.onerror = function(){ URL.revokeObjectURL(u); no(new Error('not an image')); };
+    im.src = u;
+  });
+}
+function wxIso(t){ return new Date(t).toISOString().replace(/\.\d+Z$/, 'Z'); }
+function wxLoadRain(){
+  if(WX.rainBusy || typeof fetch!=='function') return;
+  WX.rainBusy = true;
+  var step = 30*60000, t0 = Math.floor((Date.now()-WX_RAIN_FROM_H*3600000)/step)*step;
+  function attempt(n){
+    if(n>=WX_RAIN_TRIES){ WX.rainBusy = false; WX.rainMsg = 'ไม่พบภาพฝนใน ' + Math.round(WX_RAIN_FROM_H+WX_RAIN_TRIES/2) + ' ชม. ล่าสุด'; wxPaint(); return; }
+    var at = t0-n*step; WX.requests++; WX.rainTried = n+1;
+    return fetch(WX_RAIN_URL + wxIso(at), {cache:'default'}).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.blob();
+    }).then(wxDecode).then(function(img){
+      var cells = wxCells(img);
+      if(!cells) return attempt(n+1);
+      WX.cells = cells; WX.rainAt = wxIso(at); WX.rainMsg = ''; WX.rainBusy = false; WX.lastRain = Date.now();
+      wxApply(); wxPaint();
+    });
+  }
+  Promise.resolve().then(function(){ return attempt(0); }).catch(function(){
+    WX.rainBusy = false;
+    WX.rainMsg = WX.cells ? 'โหลดภาพฝนรอบล่าสุดไม่สำเร็จ แสดงภาพล่าสุดที่ได้รับ' : 'โหลดภาพฝนไม่สำเร็จ จะลองใหม่อัตโนมัติ';
+    wxPaint();
+  });
+}
+function wxLoadStorms(){
+  return fetchDoc('storms').then(function(r){
+    if(r.error){ WX.stormsErr = true; wxPaint(); return; }
+    WX.stormsErr = false;
+    var items = Array.isArray(r.data.items) ? r.data.items.filter(function(x){ return x && typeof x.lat==='number' && typeof x.lon==='number' && x.name; }) : [];
+    WX.stormsDoc = r.data; WX.storms = items;
+    wxApply(); wxPaint();
+  });
+}
+function wxRefresh(){
+  if(!WX.on || document.hidden) return;
+  wxLoadStorms();
+  if(!WX.cells || Date.now()-WX.lastRain >= WX_RAIN_REFRESH_MS) wxLoadRain();
+}
+function wxApply(){
+  if(!globe) return;
+  var box = $('wx-labels'), labels = [];
+  box.innerHTML = '';
+  box.hidden = !WX.on;
+  if(WX.on) (WX.storms||[]).forEach(function(it){
+    var el = h('a', {class:'wx-lb', href:String(it.source_url||'https://www.gdacs.org/'), target:'_blank', rel:'noopener noreferrer', text:it.name + (it.wind_kmh ? ' · ' + it.wind_kmh + ' กม./ชม.' : '')});
+    box.appendChild(el); labels.push({lat:it.lat, lon:it.lon, el:el});
+  });
+  globe.setWeather(WX.on, WX.on ? WX.cells : null, WX.on ? WX.storms : null, labels);
+}
+function wxStormLines(){
+  var doc = WX.stormsDoc, out = [], warn = null;
+  if(!doc) return {warn:WX.stormsErr ? 'โหลดข้อมูลพายุไม่สำเร็จ จะลองใหม่อัตโนมัติ' : '', nodes:[]};
+  if(WX.stormsErr) warn = 'โหลดข้อมูลพายุรอบล่าสุดไม่สำเร็จ แสดงข้อมูลล่าสุดที่ได้รับ';
+  else if(doc.ok===false && doc.message_th) warn = String(doc.message_th);
+  else if(isStale(doc.updated)) warn = 'ข้อมูลพายุเก่ากว่า ' + STALE_H + ' ชม. ระบบอัปเดตอัตโนมัติอาจหยุดทำงาน';
+  var items = WX.storms||[];
+  out.push(h('p', {'data-wx-storm':''}, [h('b', {text:'พายุหมุนเขตร้อน'}), items.length ? ' ' + items.length + ' ลูก' : ' ไม่มีในขณะนี้', ' · ตรวจล่าสุด ' + bkkDateTime(doc.updated)]));
+  if(items.length){
+    var ul = h('ul', {class:'wx-list'});
+    items.forEach(function(it){ ul.appendChild(h('li', null, [h('a', {href:String(it.source_url||'https://www.gdacs.org/'), target:'_blank', rel:'noopener noreferrer', text:String(it.name)}), (it.wind_kmh ? ' ลมสูงสุด ' + it.wind_kmh + ' กม./ชม.' : '') + (it.ongoing ? ' · ยังติดตามอยู่' : ' · สิ้นสุดแล้ว') + ' · ข้อมูล ณ ' + bkkDateTime(it.end) + (it.agency ? ' (' + it.agency + ')' : '')])); });
+    out.push(ul);
+    out.push(h('div', {class:'wx-key'}, [h('span', null, [h('i', {style:'background:var(--storm)'}), 'เส้นทางที่ผ่านมา']), h('span', null, [h('i', {class:'h'}), 'คาดการณ์']), h('span', null, [h('i', {style:'background:var(--i1)'}), 'ลม 60']), h('span', null, [h('i', {style:'background:var(--i2)'}), '90']), h('span', null, [h('i', {style:'background:var(--i4)'}), '120 กม./ชม.'])]));
+  }
+  return {warn:warn, nodes:out};
+}
+function wxPaint(){
+  var box = $('wx-box'); if(!box) return;
+  box.hidden = !WX.on;
+  if(!WX.on) return;
+  var wasOpen = box.getAttribute('data-touched') ? box.open : false;
+  var s = wxStormLines(), rainStale = WX.rainAt && isStale(WX.rainAt, WX_RAIN_STALE_H*3600000);
+  var rainWarn = WX.rainMsg || (rainStale ? 'ภาพฝนล่าสุดเก่ากว่า ' + WX_RAIN_STALE_H + ' ชม.' : '');
+  var sumTxt = (WX.rainAt ? 'ฝน ณ ' + bkkDateTime(WX.rainAt) : WX.rainBusy ? 'กำลังโหลดฝน…' : 'ไม่มีภาพฝน') + ' · พายุ ' + (WX.storms ? WX.storms.length : '—') + ' ลูก';
+  var sumWarn = s.warn || rainWarn;
+  var body = h('div', {class:'wx-b'}, [
+    s.warn ? h('p', {class:'warn', 'data-wx-warn':'storm', text:s.warn}) : null,
+    rainWarn ? h('p', {class:'warn', 'data-wx-warn':'rain', text:rainWarn}) : null
+  ].concat(s.nodes, [
+    h('p', {'data-wx-rain':''}, [h('b', {text:'ฝนและหิมะ'}), WX.rainAt ? ' ภาพ ณ ' + bkkDateTime(WX.rainAt) + ' (' : ' ยังไม่มีภาพ', WX.rainAt ? h('span', {'data-rel':WX.rainAt, text:relTh(WX.rainAt)}) : null, WX.rainAt ? ')' : null]),
+    h('div', {class:'wx-key'}, [h('span', null, [h('i', {style:'background:var(--rain1)'}), '0.2–1']), h('span', null, [h('i', {style:'background:var(--rain2)'}), '1–5']), h('span', null, [h('i', {style:'background:var(--rain3);box-shadow:0 0 0 1px var(--border-strong)'}), '5 มม./ชม. ขึ้นไป'])]),
+    h('p', {class:'wx-fine'}, ['ฝนเป็นค่าประมาณจากดาวเทียมของช่วงเวลาที่ผ่านมา ไม่ใช่พยากรณ์และไม่ใช่ค่าจากสถานีวัด แต่ละจุดคือค่าสูงสุดในช่องราว 2 องศา ', 'เส้นคาดการณ์พายุมาจากหน่วยงานที่ GDACS อ้างถึง วงหมุนเป็นสัญลักษณ์ตำแหน่ง ไม่ใช่ขนาดจริง ', h('b', {text:'ไม่ควรใช้ตัดสินใจเรื่องความปลอดภัย'}), ' โปรดดูประกาศของ', h('a', {href:'https://www.tmd.go.th/', target:'_blank', rel:'noopener noreferrer', text:'กรมอุตุนิยมวิทยา'})]),
+    h('p', {class:'wx-fine', 'data-wx-credit':''}, ['ภาพฝน: ', h('a', {href:'https://earthdata.nasa.gov/gibs', target:'_blank', rel:'noopener noreferrer', text:'บริการ GIBS'}), ' และ ', h('a', {href:'https://gpm.nasa.gov/data/imerg', target:'_blank', rel:'noopener noreferrer', text:'IMERG'}), ' ของ NASA · พายุ: ', h('a', {href:'https://www.gdacs.org/', target:'_blank', rel:'noopener noreferrer', text:'GDACS'}), ' ไม่ได้รับการรับรองจากหน่วยงานเหล่านี้'])
+  ]));
+  box.innerHTML = '';
+  box.appendChild(h('summary', {class:sumWarn ? 'warn' : '', onclick:function(){ box.setAttribute('data-touched', '1'); }}, [
+    h('span', {class:'wx-s'}, [h('span', {class:'s1', text:sumTxt}), h('span', {class:'s2', text:sumWarn ? sumWarn : 'ไม่ใช่พยากรณ์ · ที่มา NASA GIBS/IMERG และ GDACS'})])
+  ]));
+  box.appendChild(body);
+  box.open = wasOpen;
+}
+$('tg-weather').addEventListener('click', function(){
+  var on = this.getAttribute('aria-pressed')!=='true';
+  this.setAttribute('aria-pressed', String(on));
+  WX.on = on;
+  $('stage').classList.toggle('wx-on', on);
+  clearInterval(WX.timer);
+  wxApply(); wxPaint();
+  if(on){ wxRefresh(); WX.timer = setInterval(wxRefresh, POLL_MS); }
+});
 
 /* ================= reading view (a book page; same data and same failure rules as the map view) ================= */
 /* words for the 1-5 severity of world-data.json; the number stays next to them */
