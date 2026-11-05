@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-05T14:16:01Z",
- "checked": "2026-11-05T14:16:01Z",
+ "updated": "2026-11-05T15:15:24Z",
+ "checked": "2026-11-05T15:15:24Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-05T14:16:01Z",
-   "count": 5,
+   "fetched": "2026-11-05T15:15:24Z",
+   "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-21&toDate=2026-11-06&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-05T14:16:01Z",
+   "fetched": "2026-11-05T15:15:24Z",
    "count": 0,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -37,27 +37,6 @@
    "severity_value": 157.41,
    "severity_unit": "km/h",
    "source_url": "https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=10&eventtype=TC",
-   "source_name": "GDACS"
-  },
-  {
-   "id": "gdacs-eq-1573141",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 7.0 ในจีน",
-   "country": "China",
-   "country_th": "จีน",
-   "countries": [
-    "China"
-   ],
-   "lat": 32.3805,
-   "lon": 93.7797,
-   "start": "2026-10-22T14:33:40Z",
-   "end": "2026-10-22T14:33:40Z",
-   "updated": "2026-11-04T02:04:22Z",
-   "alert_level": "orange",
-   "severity_th": "ขนาด 7.0 ลึก 18 กม.",
-   "severity_value": 7.0,
-   "severity_unit": "M",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1573141&episodeid=1741837&eventtype=EQ",
    "source_name": "GDACS"
   },
   {
