@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-05",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตสถานะเจรจา การโจมตีเกชม์ และการโจมตีเรือ",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/4/iran-says-us-reply-to-hormuz-plan-unconvincing-trump-confirms-strikes",
+     "published": "2026-11-04",
+     "publisher": "Al Jazeera",
+     "title": "Iran says US reply to Hormuz plan unconvincing; Trump confirms strikes"
+    },
+    {
+     "url": "https://gulfnews.com/world/mena/middle-east-conflict-trump-warns-of-heavy-hit-as-iran-says-americans-voted-no-to-war-1.500735100",
+     "published": "2026-11-04",
+     "publisher": "Gulf News",
+     "title": "Iran warns against war as Trump signals heavy hit and tankers catch fire near Hormuz"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีเรือ 3–4 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/4/iran-says-us-reply-to-hormuz-plan-unconvincing-trump-confirms-strikes",
+     "published": "2026-11-04",
+     "publisher": "Al Jazeera",
+     "title": "Iran says US reply to Hormuz plan unconvincing"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/",
+     "published": "2026-11-04",
+     "publisher": "CBS News",
+     "title": "Iran plays down hope for deal after new U.S. strikes"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มคณะเจรจารัสเซียและการประชุมยุโรป",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/03/russia-ukraine-peace-talks-abu-dhabi-trump-putin-xi.html",
+     "published": "2026-11-03",
+     "publisher": "CNBC",
+     "title": "Russia confirms new Ukraine peace talks"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอตหลังกลับเหนือ 4,000 ดอลลาร์",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/",
+     "published": "2026-11-04",
+     "publisher": "Kitco",
+     "title": "Kitco gold news"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "ปรับ % ลงจากจุดสูงสุดให้ตรงกับสปอตใหม่",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/",
+     "published": "2026-11-04",
+     "publisher": "Kitco",
+     "title": "Kitco gold news"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "99785a258152425256c455475ea86aaa65876fb7",
+ "reviewed_unchanged": [
+  "gaza_israel",
+  "myanmar_civil_war",
+  "sudan_civil_war",
+  "yemen_houthi_saudi"
+ ]
+}
