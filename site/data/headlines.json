@@ -1,8 +1,56 @@
 {
- "updated_at": "2026-11-05T01:14:16Z",
+ "updated_at": "2026-11-05T13:13:17Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "Wall Street ผสมหลังแรงซื้อหลังเลือกตั้งแผ่วลง น้ำมันขยับขึ้น หุ้นกลุ่มเซมิคอนดักเตอร์ปรับลง",
+   "time": "2026-11-05T12:53:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-november-5-dow-sp-500-nasdaq-oil-falls-090519607.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียและยูเครนโจมตีทางอากาศโต้ตอบ ขณะการเจรจาฟื้นฟูและหลักประกันความมั่นคงเริ่มใหม่ที่บรัสเซลส์",
+   "time": "2026-11-05T08:00:00Z",
+   "source": "https://www.allsides.com/news/2026-11-05-0800/ukraine-war-russia-and-ukraine-trade-airstrikes-reconstruction-and-security-talks-resume-brussels",
+   "source_name": "AllSides"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านระบุคำตอบสหรัฐต่อเงื่อนไขฮอร์มุซ ไม่น่าเชื่อถือ ขณะกาตาร์ผลักดันข้อตกลงชั่วคราวที่แคบลง",
+   "time": "2026-11-05T06:00:00Z",
+   "source": "https://houseofsaud.com/iran-rejects-us-hormuz-reply-qatar-interim-deal-nov5/",
+   "source_name": "House of Saud"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "economy",
+   "title_th": "Wall Street คาดหวังหุ้นสหรัฐขึ้นปลายปี หลังผลเลือกตั้งกลางเทอม",
+   "time": "2026-11-05T05:00:00Z",
+   "source": "https://www.bloomberg.com/news/newsletters/2026-11-05/wall-street-bets-on-year-end-us-stocks-rally",
+   "source_name": "Bloomberg"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "thailand",
+   "title_th": "เงินบาทแข็งค่าขึ้นเปิดตลาด ราว 33.44 บาทต่อดอลลาร์ แข็งค่า 0.48%",
+   "time": "2026-11-05T04:30:00Z",
+   "source": "https://www.brecorder.com/news/40447537/thai-bahtus-dollar-stronger-on-thursday",
+   "source_name": "Business Recorder"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "taiwan_strait",
+   "title_th": "ไต้หวันตรวจพบกิจกรรมทางทหารจีนเพิ่มขึ้น",
+   "time": "2026-11-04T16:00:00Z",
+   "source": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/04/2003867122",
+   "source_name": "Taipei Times"
+  },
+  {
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้คำตอบสหรัฐต่อแผนฮอร์มุซ ไม่น่าเชื่อถือ ทรัมป์ยืนยันโจมตี เจรจาทางอ้อมยังดำเนินต่อ",
    "time": "2026-11-04T15:00:00Z",
@@ -10,7 +58,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h2",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ขู่ โจมตีหนัก หากอิหร่านปฏิเสธข้อตกลงนิวเคลียร์ เรือบรรทุกน้ำมันไฟลุกใกล้ฮอร์มุซ",
    "time": "2026-11-04T12:00:00Z",
@@ -18,23 +66,7 @@
    "source_name": "Gulf News"
   },
   {
-   "id": "h3",
-   "conflict_id": "thailand",
-   "title_th": "ทองคำแท่งในประเทศปิด 64,400 บาท เพิ่มขึ้น 1,900 บาท ตามราคาทองโลก",
-   "time": "2026-11-04T10:00:00Z",
-   "source": "https://nationthailand.com/business/trading-investment/40073106",
-   "source_name": "Nation Thailand"
-  },
-  {
-   "id": "h4",
-   "conflict_id": "economy",
-   "title_th": "SET ปิด 1,502.09 จุด บวก 11.08 จุด แรงซื้อ DELTA และหุ้นบิ๊กแคปหนุนดัชนี",
-   "time": "2026-11-04T10:00:00Z",
-   "source": "https://www.kaohoon.com/summary/877856",
-   "source_name": "ข่าวหุ้นธุรกิจ"
-  },
-  {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "economy",
    "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
    "time": "2026-11-04T06:00:00Z",
@@ -42,15 +74,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "ตลาดอนุพันธ์ฟื้นตัว Dow futures พุ่งราว 800 จุด หลังเดโมแครตชนะ ผลตอบแทนพันธบัตรสหรัฐลดลง",
-   "time": "2026-11-04T05:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/03/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h7",
+   "id": "h10",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
    "time": "2026-11-03T18:47:00Z",
@@ -58,36 +82,12 @@
    "source_name": "L'Orient Today/AFP"
   },
   {
-   "id": "h8",
+   "id": "h11",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีโครงสร้างพื้นฐานพลังงานยูเครนครั้งใหญ่สุดของปีนี้",
    "time": "2026-11-03T12:30:00Z",
    "source": "https://kyivindependent.com/ukraine-war-latest-russia-launches-biggest-mass-attack-on-ukraines-energy-infrastructure-this-year/",
    "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียยิงขีปนาวุธ-โดรนทั่วยูเครน ตายอย่างน้อย 29 ราย รวมโรงพยาบาลคาร์คิฟ เซเลนสกีขอแพทริออตเพิ่ม",
-   "time": "2026-11-03T11:08:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/3/at-least-73-injured-as-russia-bombs-ukrainian-hospital-and-power-plants",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านชี้ข้อตกลงกับสหรัฐยังห่างไกล หลังสหรัฐโจมตีเชิงป้องกันที่เกาะ Qeshm",
-   "time": "2026-11-03T08:00:00Z",
-   "source": "https://cyprus-mail.com/2026/11/03/iran-us-deal-still-out-of-reach-despite-diplomatic-push",
-   "source_name": "Reuters/Cyprus Mail"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "รัฐมนตรีต่างประเทศอิหร่านระบุการเจรจากับซาอุฯ ยังต่อเนื่อง ขณะการสู้รบในเยเมนรุนแรงขึ้น",
-   "time": "2026-11-03T07:31:00Z",
-   "source": "https://www.usnews.com/news/world/articles/2026-11-03/irans-foreign-minister-says-talks-with-saudi-arabia-are-ongoing-yemen-fighting-intensifies",
-   "source_name": "Reuters/US News"
   },
   {
    "id": "h12",
