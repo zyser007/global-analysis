@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-05T07:16:58Z",
- "checked": "2026-11-05T07:16:58Z",
+ "updated": "2026-11-05T08:21:01Z",
+ "checked": "2026-11-05T08:21:01Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-05T07:16:58Z",
+   "fetched": "2026-11-05T08:21:01Z",
    "count": 5,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-21&toDate=2026-11-06&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-05T07:16:58Z",
-   "count": 1,
+   "fetched": "2026-11-05T08:21:01Z",
+   "count": 0,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -172,25 +172,6 @@
    "severity_unit": "km2",
    "source_url": "https://www.gdacs.org/report.aspx?eventid=1018332&episodeid=26&eventtype=DR",
    "source_name": "GDACS"
-  },
-  {
-   "id": "usgs-us7000ttxz",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 6.4 บริเวณเกาะอีสเตอร์",
-   "country": "",
-   "country_th": "เกาะอีสเตอร์",
-   "countries": [],
-   "lat": -36.4058,
-   "lon": -98.0489,
-   "start": "2026-10-29T07:49:50Z",
-   "end": "2026-10-29T07:49:50Z",
-   "updated": "2026-10-30T10:38:47Z",
-   "alert_level": "green",
-   "severity_th": "ขนาด 6.4 ลึก 10 กม.",
-   "severity_value": 6.4,
-   "severity_unit": "M",
-   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz",
-   "source_name": "USGS"
   }
  ]
 }
