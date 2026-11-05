@@ -1,8 +1,32 @@
 {
- "updated_at": "2026-11-04T13:12:43Z",
+ "updated_at": "2026-11-05T01:14:16Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านชี้คำตอบสหรัฐต่อแผนฮอร์มุซ ไม่น่าเชื่อถือ ทรัมป์ยืนยันโจมตี เจรจาทางอ้อมยังดำเนินต่อ",
+   "time": "2026-11-04T15:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/4/iran-says-us-reply-to-hormuz-plan-unconvincing-trump-confirms-strikes",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์ขู่ โจมตีหนัก หากอิหร่านปฏิเสธข้อตกลงนิวเคลียร์ เรือบรรทุกน้ำมันไฟลุกใกล้ฮอร์มุซ",
+   "time": "2026-11-04T12:00:00Z",
+   "source": "https://gulfnews.com/world/mena/middle-east-conflict-trump-warns-of-heavy-hit-as-iran-says-americans-voted-no-to-war-1.500735100",
+   "source_name": "Gulf News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "thailand",
+   "title_th": "ทองคำแท่งในประเทศปิด 64,400 บาท เพิ่มขึ้น 1,900 บาท ตามราคาทองโลก",
+   "time": "2026-11-04T10:00:00Z",
+   "source": "https://nationthailand.com/business/trading-investment/40073106",
+   "source_name": "Nation Thailand"
+  },
+  {
+   "id": "h4",
    "conflict_id": "economy",
    "title_th": "SET ปิด 1,502.09 จุด บวก 11.08 จุด แรงซื้อ DELTA และหุ้นบิ๊กแคปหนุนดัชนี",
    "time": "2026-11-04T10:00:00Z",
@@ -10,23 +34,7 @@
    "source_name": "ข่าวหุ้นธุรกิจ"
   },
   {
-   "id": "h2",
-   "conflict_id": "thailand",
-   "title_th": "ราคาทองในประเทศปิดตลาดพุ่ง 1,900 บาท ผันผวน 46 ครั้ง ตามราคาทองโลก",
-   "time": "2026-11-04T09:30:00Z",
-   "source": "https://www.bangkokbiznews.com/news/news-update/1259309",
-   "source_name": "กรุงเทพธุรกิจ"
-  },
-  {
-   "id": "h3",
-   "conflict_id": "economy",
-   "title_th": "ทองโลกพุ่งเกิน 2% กลับเหนือ 4,000 ดอลลาร์ ดอลลาร์อ่อน หลังเดโมแครตชนะเลือกตั้งกลางเทอม",
-   "time": "2026-11-04T08:00:00Z",
-   "source": "https://www.marketscreener.com/news/gold-jumps-over-2-on-softer-dollar-after-democratic-midterm-wins-ce785fded18cf321",
-   "source_name": "MarketScreener/Reuters"
-  },
-  {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "economy",
    "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
    "time": "2026-11-04T06:00:00Z",
@@ -34,7 +42,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h5",
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "ตลาดอนุพันธ์ฟื้นตัว Dow futures พุ่งราว 800 จุด หลังเดโมแครตชนะ ผลตอบแทนพันธบัตรสหรัฐลดลง",
    "time": "2026-11-04T05:00:00Z",
@@ -42,7 +50,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
    "time": "2026-11-03T18:47:00Z",
@@ -50,7 +58,7 @@
    "source_name": "L'Orient Today/AFP"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีโครงสร้างพื้นฐานพลังงานยูเครนครั้งใหญ่สุดของปีนี้",
    "time": "2026-11-03T12:30:00Z",
@@ -58,7 +66,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียยิงขีปนาวุธ-โดรนทั่วยูเครน ตายอย่างน้อย 29 ราย รวมโรงพยาบาลคาร์คิฟ เซเลนสกีขอแพทริออตเพิ่ม",
    "time": "2026-11-03T11:08:00Z",
@@ -66,7 +74,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้ข้อตกลงกับสหรัฐยังห่างไกล หลังสหรัฐโจมตีเชิงป้องกันที่เกาะ Qeshm",
    "time": "2026-11-03T08:00:00Z",
@@ -74,7 +82,7 @@
    "source_name": "Reuters/Cyprus Mail"
   },
   {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "รัฐมนตรีต่างประเทศอิหร่านระบุการเจรจากับซาอุฯ ยังต่อเนื่อง ขณะการสู้รบในเยเมนรุนแรงขึ้น",
    "time": "2026-11-03T07:31:00Z",
@@ -82,20 +90,12 @@
    "source_name": "Reuters/US News"
   },
   {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน รัฐบาลเยเมนปรับ ครม. UN เตือนวิกฤตทวีความรุนแรง",
    "time": "2026-11-03T06:00:00Z",
    "source": "https://thenationalnews.com/news/mena/2026/11/03/yemen-reshuffles-cabinet-as-houthis-advance-towards-aden",
    "source_name": "The National"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านพร้อมเปิดฮอร์มุซภายใน 2 วัน หากสหรัฐยอมรับเงื่อนไข ย่นจาก 7 วันที่เสนอเมื่อเดือน ก.ย.",
-   "time": "2026-11-02T11:30:00Z",
-   "source": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions",
-   "source_name": "Euronews"
   }
  ]
 }
