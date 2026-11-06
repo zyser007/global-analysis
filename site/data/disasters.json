@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-06T02:19:33Z",
- "checked": "2026-11-06T02:19:33Z",
+ "updated": "2026-11-06T03:16:54Z",
+ "checked": "2026-11-06T03:16:54Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-06T02:19:33Z",
+   "fetched": "2026-11-06T03:16:54Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-22&toDate=2026-11-07&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-06T02:19:33Z",
+   "fetched": "2026-11-06T03:16:54Z",
    "count": 0,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
