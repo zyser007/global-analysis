@@ -1,16 +1,40 @@
 {
- "updated_at": "2026-11-06T01:13:23Z",
+ "updated_at": "2026-11-06T13:12:56Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "Dow ร่วงราว 1,800 จุด Nasdaq เข้าสู่ภาวะปรับฐาน เทขายหุ้น AI และชิป ลบกำไรหลังเลือกตั้ง",
-   "time": "2026-11-05T20:00:00Z",
-   "source": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-november-5-dow-sp-500-nasdaq-plunge-chip-stocks-melt-down-193726491.html",
-   "source_name": "Yahoo Finance"
+   "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก เทขายหุ้นเทคฯ ทำมูลค่าหายราว 2.5 ล้านล้านดอลลาร์ หวั่นกฎระเบียบ AI หลังเดโมแครตชนะเลือกตั้ง",
+   "time": "2026-11-05T21:00:00Z",
+   "source": "https://www.cnn.com/2026/11/05/investing/tech-heavy-nasdaq-plunges",
+   "source_name": "CNN"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Nasdaq ร่วงหนักสุดรายวันในรอบ 19 เดือน ตลาดกังวลกฎระเบียบศูนย์ข้อมูล AI และหุ้นชิป",
+   "time": "2026-11-05T20:30:00Z",
+   "source": "https://www.investing.com/news/stock-market-news/sp-500-futures-steady-after-midterm-rally-nasdaq-lags-on-chip-weakness-5003237",
+   "source_name": "Reuters via Investing.com"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "ตลาดหุ้นดิ่งลดแรงกดดันที่เฟดจะขึ้นดอกเบี้ยในเดือนธันวาคม ตามรายงานของ CNBC",
+   "time": "2026-11-05T14:30:00Z",
+   "source": "https://www.cnbc.com/2026/11/04/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านระบุเรือบรรทุกน้ำมันถูกโจมตีที่ช่องแคบฮอร์มุซ ท่ามกลางความกังวลสหรัฐโจมตีรอบใหม่",
+   "time": "2026-11-05T12:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h5",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียและยูเครนโจมตีทางอากาศโต้ตอบ ขณะการเจรจาฟื้นฟูและหลักประกันความมั่นคงเริ่มใหม่ที่บรัสเซลส์",
    "time": "2026-11-05T08:00:00Z",
@@ -18,15 +42,7 @@
    "source_name": "AllSides"
   },
   {
-   "id": "h3",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านระบุคำตอบสหรัฐต่อเงื่อนไขฮอร์มุซ ไม่น่าเชื่อถือ ขณะกาตาร์ผลักดันข้อตกลงชั่วคราวที่แคบลง",
-   "time": "2026-11-05T06:00:00Z",
-   "source": "https://houseofsaud.com/iran-rejects-us-hormuz-reply-qatar-interim-deal-nov5/",
-   "source_name": "House of Saud"
-  },
-  {
-   "id": "h4",
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "Wall Street คาดหวังหุ้นสหรัฐขึ้นปลายปี หลังผลเลือกตั้งกลางเทอม",
    "time": "2026-11-05T05:00:00Z",
@@ -34,15 +50,7 @@
    "source_name": "Bloomberg"
   },
   {
-   "id": "h5",
-   "conflict_id": "thailand",
-   "title_th": "เงินบาทแข็งค่าขึ้นเปิดตลาด ราว 33.44 บาทต่อดอลลาร์ แข็งค่า 0.48%",
-   "time": "2026-11-05T04:30:00Z",
-   "source": "https://www.brecorder.com/news/40447537/thai-bahtus-dollar-stronger-on-thursday",
-   "source_name": "Business Recorder"
-  },
-  {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "taiwan_strait",
    "title_th": "ไต้หวันตรวจพบกิจกรรมทางทหารจีนเพิ่มขึ้น",
    "time": "2026-11-04T16:00:00Z",
@@ -50,7 +58,7 @@
    "source_name": "Taipei Times"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้คำตอบสหรัฐต่อแผนฮอร์มุซ ไม่น่าเชื่อถือ ทรัมป์ยืนยันโจมตี เจรจาทางอ้อมยังดำเนินต่อ",
    "time": "2026-11-04T15:00:00Z",
@@ -58,7 +66,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ขู่ โจมตีหนัก หากอิหร่านปฏิเสธข้อตกลงนิวเคลียร์ เรือบรรทุกน้ำมันไฟลุกใกล้ฮอร์มุซ",
    "time": "2026-11-04T12:00:00Z",
@@ -66,7 +74,7 @@
    "source_name": "Gulf News"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "economy",
    "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
    "time": "2026-11-04T06:00:00Z",
@@ -74,20 +82,12 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
    "time": "2026-11-03T18:47:00Z",
    "source": "https://today.lorientlejour.com/article/1553181/israeli-strikes-kill-4-palestinians-in-gaza.html",
    "source_name": "L'Orient Today/AFP"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีโครงสร้างพื้นฐานพลังงานยูเครนครั้งใหญ่สุดของปีนี้",
-   "time": "2026-11-03T12:30:00Z",
-   "source": "https://kyivindependent.com/ukraine-war-latest-russia-launches-biggest-mass-attack-on-ukraines-energy-infrastructure-this-year/",
-   "source_name": "Kyiv Independent"
   },
   {
    "id": "h12",
