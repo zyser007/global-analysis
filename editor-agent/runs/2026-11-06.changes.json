@@ -1,0 +1,444 @@
+{
+ "date": "2026-11-06",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "indicators",
+   "keys": [
+    "ดอกเบี้ย BoE (อังกฤษ)"
+   ],
+   "fields": [
+    "value",
+    "delta_th",
+    "trend",
+    "as_of",
+    "source"
+   ],
+   "summary_th": "BoE ขึ้นดอกเบี้ยเป็น 4.00% (5 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/05/interest-rates-inflation-uk.html",
+     "published": "2026-11-05",
+     "publisher": "CNBC",
+     "title": "Bank of England hikes interest rate for the first time since Iran war"
+    },
+    {
+     "url": "https://commonslibrary.parliament.uk/research-briefings/sn02802/",
+     "published": "2026-11-05",
+     "publisher": "House of Commons Library",
+     "title": "Interest rates and monetary policy"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "GBR"
+   ],
+   "fields": [
+    "policy_rate",
+    "note_th"
+   ],
+   "summary_th": "อัปเดตผลประชุม BoE 5 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/05/interest-rates-inflation-uk.html",
+     "published": "2026-11-05",
+     "publisher": "CNBC",
+     "title": "Bank of England hikes interest rate"
+    },
+    {
+     "url": "https://commonslibrary.parliament.uk/research-briefings/sn02802/",
+     "published": "2026-11-05",
+     "publisher": "House of Commons Library",
+     "title": "Interest rates and monetary policy"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ทองคำปิด 5 พ.ย. ราว 4,088 ดอลลาร์ ปฏิทินใหม่",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-05/gold-holds-gains-silver-slips-wall-street-plunges-fed-hike-bets-ease-kitco",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold holds gains, silver slips as Wall Street plunges"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-05/gold-prices-holding-above-4100-weekly-jobless-claims-rise-189k",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold prices holding above $4,100"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_day_pct"
+   ],
+   "fields": [
+    "change_day_pct"
+   ],
+   "summary_th": "ทองคำปิด 5 พ.ย. ราว 4,088 ดอลลาร์ ปฏิทินใหม่",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-05/gold-holds-gains-silver-slips-wall-street-plunges-fed-hike-bets-ease-kitco",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold holds gains, silver slips as Wall Street plunges"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-05/gold-prices-holding-above-4100-weekly-jobless-claims-rise-189k",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold prices holding above $4,100"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "ทองคำปิด 5 พ.ย. ราว 4,088 ดอลลาร์ ปฏิทินใหม่",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-05/gold-holds-gains-silver-slips-wall-street-plunges-fed-hike-bets-ease-kitco",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold holds gains, silver slips as Wall Street plunges"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-05/gold-prices-holding-above-4100-weekly-jobless-claims-rise-189k",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold prices holding above $4,100"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items"
+   ],
+   "summary_th": "ทองคำปิด 5 พ.ย. ราว 4,088 ดอลลาร์ ปฏิทินใหม่",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-05/gold-holds-gains-silver-slips-wall-street-plunges-fed-hike-bets-ease-kitco",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold holds gains, silver slips as Wall Street plunges"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-05/gold-prices-holding-above-4100-weekly-jobless-claims-rise-189k",
+     "published": "2026-11-05",
+     "publisher": "Kitco News",
+     "title": "Gold prices holding above $4,100"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุซาปอริชเชีย 43 ราย และสถานะเจรจา",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/world/melania-trump-urges-humanity-over-war-with-ukraine-russia-officials-3010047",
+     "published": "2026-11-05",
+     "publisher": "Reuters via Arab News",
+     "title": "Melania Trump urges humanity over war"
+    },
+    {
+     "url": "https://www.kyivpost.com/post/89282",
+     "published": "2026-11-05",
+     "publisher": "Kyiv Post",
+     "title": "Spain pledges €437M in military aid"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเหตุเรือและการไกล่เกลี่ย 5 พ.ย.",
+   "sources": [
+    {
+     "url": "https://gulfnews.com/world/mena/middle-east-conflict-trump-warns-of-heavy-hit-as-iran-says-americans-voted-no-to-war-1.500735100",
+     "published": "2026-11-05",
+     "publisher": "Gulf News",
+     "title": "Iran warns against war as Trump signals heavy hit"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/4/iran-says-us-reply-to-hormuz-plan-unconvincing-trump-confirms-strikes",
+     "published": "2026-11-04",
+     "publisher": "Al Jazeera",
+     "title": "Iran says US reply to Hormuz plan unconvincing"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มแคมเปญโดรน RSF และการสู้รบนอร์ทคอร์โดฟาน",
+   "sources": [
+    {
+     "url": "https://www.criticalthreats.org/analysis/russia-rsf-saf-sudan-tplf-eritrea-ethiopia",
+     "published": "2026-11-05",
+     "publisher": "Critical Threats",
+     "title": "Africa File, November 5, 2026"
+    },
+    {
+     "url": "https://sudantribune.com/article/320943",
+     "published": "2026-11-05",
+     "publisher": "Sudan Tribune",
+     "title": "Sudan army intercepts 180 drones as war targets infrastructure"
+    },
+    {
+     "url": "https://www.anews.com.tr/middle-east/2026/11/05/sudanese-army-regains-control-of-2-areas-in-north-kordofan-after-clashes-with-rsf",
+     "published": "2026-11-05",
+     "publisher": "Anadolu",
+     "title": "Sudanese army regains control of 2 areas in North Kordofan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตแนวรบ วิเคราะห์สงครามถ่วงเวลา และข้อเรียกร้องของฮูตี",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/5/a-month-after-yemen-government-offensive-began-war-of-attrition-takes-hold",
+     "published": "2026-11-05",
+     "publisher": "Al Jazeera",
+     "title": "A month after Yemen government offensive began, war of attrition takes hold"
+    },
+    {
+     "url": "https://www.siasat.com/houthis-demand-usd-51-bn-saudi-recognition-to-end-attacks-3570239/",
+     "published": "2026-11-05",
+     "publisher": "Siasat (citing WSJ)",
+     "title": "Houthis demand USD 51 bn, Saudi recognition to end attacks"
+    },
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-02/yemens-houthis-advance-to-within-80-km-of-aden-sources-say",
+     "published": "2026-11-02",
+     "publisher": "Reuters via US News",
+     "title": "Houthis advance to within 80 km of Aden"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีทางอากาศ 1 และ 3 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.france24.com/en/asia-pacific/20261105-myanmar-civilians-under-fire-from-military-junta",
+     "published": "2026-11-05",
+     "publisher": "France 24",
+     "title": "Myanmar: Civilians under fire from military junta"
+    },
+    {
+     "url": "https://premierchristian.news/us/news/article/three-students-killed-in-military-airstrike-on-bible-college-in-myanmar",
+     "published": "2026-11-05",
+     "publisher": "Premier Christian News (citing CSW)",
+     "title": "Three students killed in military airstrike on Bible college"
+    },
+    {
+     "url": "https://myanmar-now.org/en/news/at-least-8-civilians-killed-by-myanmar-junta-airstrikes-near-mon-karen-border/",
+     "published": "2026-11-05",
+     "publisher": "Myanmar Now",
+     "title": "Top UN court to rule Nov 19 on Myanmar/Rohingya genocide case"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตยอดผู้เสียชีวิต 5 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/5/four-people-including-a-child-killed-in-israeli-attacks-on-gaza",
+     "published": "2026-11-05",
+     "publisher": "Al Jazeera",
+     "title": "Four people, including a child, killed in Israeli attacks on Gaza"
+    },
+    {
+     "url": "https://www.arabnews.pk/middle-east/israeli-fire-kills-four-in-gaza-including-child-civil-defense-3006193",
+     "published": "2026-11-05",
+     "publisher": "AFP via Arab News",
+     "title": "Israeli fire kills four in Gaza, including child"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ทะเลดำ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มการจมของ Contship Jet และการเสนอต่อ IMO",
+   "sources": [
+    {
+     "url": "https://safety4sea.com/ukraine-and-34-countries-seek-imo-action-over-escalating-black-sea-shipping-attacks/",
+     "published": "2026-11-04",
+     "publisher": "SAFETY4SEA",
+     "title": "Ukraine and 34 countries seek IMO action"
+    },
+    {
+     "url": "https://gcaptain.com/war-comes-to-natos-black-sea-coast-and-shipping-starts-saying-no/",
+     "published": "2026-11-04",
+     "publisher": "gCaptain",
+     "title": "War Comes to NATO's Black Sea Coast"
+    },
+    {
+     "url": "https://www.marinelink.com/news/black-sea-maritime-war-spreads-nato-faces-544091",
+     "published": "2026-11-03",
+     "publisher": "MarineLink",
+     "title": "Black Sea Maritime War Spreads"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "pakistan_afghanistan"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มการปะทะกุรรัม 5 พ.ย.",
+   "sources": [
+    {
+     "url": "https://tribune.com.pk/story/2638850/army-foils-ttp-infiltration-attempt-in-kurram-retaliates-to-unprovoked-afghan-firing-state-media",
+     "published": "2026-11-05",
+     "publisher": "Express Tribune",
+     "title": "Army foils TTP infiltration attempt in Kurram"
+    },
+    {
+     "url": "https://www.pakistantoday.com.pk/2026/11/01/pakistan-slams-afghan-taliban-over-failure-to-curb-cross-border-terrorism",
+     "published": "2026-11-01",
+     "publisher": "Pakistan Today",
+     "title": "Pakistan slams Afghan Taliban over TTP sanctuaries"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "lebanon_israel_hezbollah"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตี 4 พ.ย. และยอดตาย",
+   "sources": [
+    {
+     "url": "https://www.24newshd.tv/04-Nov-2026/lebanon-says-israeli-strike-kills-one-south",
+     "published": "2026-11-04",
+     "publisher": "AFP via 24NewsHD",
+     "title": "Lebanon says Israeli strike kills one in south"
+    },
+    {
+     "url": "https://www.arabnews.com/middle-east/lebanon-caught-between-israeli-threats-and-hezbollahs-hard-line-stance-3009419",
+     "published": "2026-11-05",
+     "publisher": "Arab News",
+     "title": "Lebanon caught between Israeli threats and Hezbollah's hard-line stance"
+    },
+    {
+     "url": "https://www.dropsitenews.com/p/gop-infighting-trump-hegseth-civil-society-iran-saudi-syria-defense",
+     "published": "2026-11-05",
+     "publisher": "Drop Site News",
+     "title": "Drop Site Daily"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "4ba92dfce74b29cf3a7cb3f2f9995dc82288152d",
+ "reviewed_unchanged": [
+  "burkina_faso",
+  "drc_m23_frn",
+  "ethiopia_eritrea_tigray",
+  "haiti_gangs",
+  "mali_sahel",
+  "niger_tillaberi",
+  "nigeria_northeast_northwest",
+  "somalia_al_shabaab",
+  "taiwan_strait",
+  "thailand_cambodia"
+ ]
+}
