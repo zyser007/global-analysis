@@ -1,8 +1,48 @@
 {
- "updated_at": "2026-11-06T13:12:56Z",
+ "updated_at": "2026-11-07T01:12:45Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "Nasdaq ฟื้นราว 1% หลังวันที่แย่ที่สุดในรอบ 18 เดือน นักลงทุนช้อนหุ้นเทคฯ ขณะ Dow ย่อตัว",
+   "time": "2026-11-06T20:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/05/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์ระบุจะตัดสินใจเร็วๆ นี้ว่าจะสั่งโจมตีอิหร่านรอบใหม่หรือทำข้อตกลง ขณะผู้ไกล่เกลี่ยกดดันให้เจรจา",
+   "time": "2026-11-06T15:00:00Z",
+   "source": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "สหรัฐจ้างงานเดือนต.ค. 165,000 ตำแหน่ง สูงกว่าคาดมาก อัตราว่างงาน 4.1% ทำให้โอกาสเฟดขึ้นดอกเบี้ยเดือนธ.ค. ยังอยู่",
+   "time": "2026-11-06T13:58:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-friday-november-6-dow-sp-500-nasdaq-jobs-report-earnings-135953863.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "economy",
+   "title_th": "Nikkei ปิดลบราว 6% ที่ 57,435 จุด เข้าสู่ภาวะหมี ร่วงเกิน 20% จากจุดสูงสุดช่วงฤดูร้อน",
+   "time": "2026-11-06T07:00:00Z",
+   "source": "https://www.fxleaders.com/news/2026/11/06/nikkei-plunges-6-to-57435-in-worst-weekly-loss-since-pandemic-peak/",
+   "source_name": "FX Leaders"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "economy",
+   "title_th": "ตลาดหุ้นเอเชียทรุด Nikkei ร่วงราว 7% Kospi ลดลงกว่า 8% จนต้องหยุดซื้อขาย หลัง Nasdaq เข้าสู่ภาวะปรับฐาน",
+   "time": "2026-11-06T06:00:00Z",
+   "source": "https://www.thenationalnews.com/business/markets/2026/11/06/nasdaq-plunges-5-as-investors-dump-ai-stocks-after-midterms/",
+   "source_name": "The National"
+  },
+  {
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก เทขายหุ้นเทคฯ ทำมูลค่าหายราว 2.5 ล้านล้านดอลลาร์ หวั่นกฎระเบียบ AI หลังเดโมแครตชนะเลือกตั้ง",
    "time": "2026-11-05T21:00:00Z",
@@ -10,23 +50,7 @@
    "source_name": "CNN"
   },
   {
-   "id": "h2",
-   "conflict_id": "economy",
-   "title_th": "Nasdaq ร่วงหนักสุดรายวันในรอบ 19 เดือน ตลาดกังวลกฎระเบียบศูนย์ข้อมูล AI และหุ้นชิป",
-   "time": "2026-11-05T20:30:00Z",
-   "source": "https://www.investing.com/news/stock-market-news/sp-500-futures-steady-after-midterm-rally-nasdaq-lags-on-chip-weakness-5003237",
-   "source_name": "Reuters via Investing.com"
-  },
-  {
-   "id": "h3",
-   "conflict_id": "economy",
-   "title_th": "ตลาดหุ้นดิ่งลดแรงกดดันที่เฟดจะขึ้นดอกเบี้ยในเดือนธันวาคม ตามรายงานของ CNBC",
-   "time": "2026-11-05T14:30:00Z",
-   "source": "https://www.cnbc.com/2026/11/04/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h4",
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านระบุเรือบรรทุกน้ำมันถูกโจมตีที่ช่องแคบฮอร์มุซ ท่ามกลางความกังวลสหรัฐโจมตีรอบใหม่",
    "time": "2026-11-05T12:00:00Z",
@@ -34,7 +58,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h5",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียและยูเครนโจมตีทางอากาศโต้ตอบ ขณะการเจรจาฟื้นฟูและหลักประกันความมั่นคงเริ่มใหม่ที่บรัสเซลส์",
    "time": "2026-11-05T08:00:00Z",
@@ -42,15 +66,7 @@
    "source_name": "AllSides"
   },
   {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "Wall Street คาดหวังหุ้นสหรัฐขึ้นปลายปี หลังผลเลือกตั้งกลางเทอม",
-   "time": "2026-11-05T05:00:00Z",
-   "source": "https://www.bloomberg.com/news/newsletters/2026-11-05/wall-street-bets-on-year-end-us-stocks-rally",
-   "source_name": "Bloomberg"
-  },
-  {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "taiwan_strait",
    "title_th": "ไต้หวันตรวจพบกิจกรรมทางทหารจีนเพิ่มขึ้น",
    "time": "2026-11-04T16:00:00Z",
@@ -58,7 +74,7 @@
    "source_name": "Taipei Times"
   },
   {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้คำตอบสหรัฐต่อแผนฮอร์มุซ ไม่น่าเชื่อถือ ทรัมป์ยืนยันโจมตี เจรจาทางอ้อมยังดำเนินต่อ",
    "time": "2026-11-04T15:00:00Z",
@@ -66,15 +82,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์ขู่ โจมตีหนัก หากอิหร่านปฏิเสธข้อตกลงนิวเคลียร์ เรือบรรทุกน้ำมันไฟลุกใกล้ฮอร์มุซ",
-   "time": "2026-11-04T12:00:00Z",
-   "source": "https://gulfnews.com/world/mena/middle-east-conflict-trump-warns-of-heavy-hit-as-iran-says-americans-voted-no-to-war-1.500735100",
-   "source_name": "Gulf News"
-  },
-  {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "economy",
    "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
    "time": "2026-11-04T06:00:00Z",
@@ -82,7 +90,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
    "time": "2026-11-03T18:47:00Z",
@@ -90,7 +98,7 @@
    "source_name": "L'Orient Today/AFP"
   },
   {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน รัฐบาลเยเมนปรับ ครม. UN เตือนวิกฤตทวีความรุนแรง",
    "time": "2026-11-03T06:00:00Z",
