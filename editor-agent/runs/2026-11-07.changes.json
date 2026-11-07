@@ -1,0 +1,258 @@
+{
+ "date": "2026-11-07",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "USA"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "ใส่ผลจ้างงานสหรัฐ ต.ค. และโอกาส Fed ขึ้นดอกเบี้ย ธ.ค.",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/06/jobs-report-october-2026.html",
+     "published": "2026-11-06",
+     "publisher": "CNBC",
+     "title": "U.S. economy added 165,000 jobs in October"
+    },
+    {
+     "url": "https://www.bls.gov/news.release/empsit.nr0.htm",
+     "published": "2026-11-06",
+     "publisher": "BLS",
+     "title": "Employment Situation Summary - October 2026"
+    },
+    {
+     "url": "https://www.benzinga.com/markets/economic-data/26/11/62974776/october-jobs-report-nonfarm-payrolls-unemployment-rate",
+     "published": "2026-11-06",
+     "publisher": "Benzinga",
+     "title": "October Jobs Report"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ปรับราคาทองและปฏิทินหลังตัวเลขจ้างงานสหรัฐ",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-06/wall-street-split-gold-following-dems-midterm-rout-main-street-bulls",
+     "published": "2026-11-06",
+     "publisher": "Kitco News",
+     "title": "Wall Street split on gold following Dems' midterm rout"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/06/jobs-report-october-2026.html",
+     "published": "2026-11-06",
+     "publisher": "CNBC",
+     "title": "US jobs October"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items.1",
+    "outlook_th.calendar_th.items.2"
+   ],
+   "summary_th": "ปรับราคาทองและปฏิทินหลังตัวเลขจ้างงานสหรัฐ",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-06/wall-street-split-gold-following-dems-midterm-rout-main-street-bulls",
+     "published": "2026-11-06",
+     "publisher": "Kitco News",
+     "title": "Wall Street split on gold following Dems' midterm rout"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/06/jobs-report-october-2026.html",
+     "published": "2026-11-06",
+     "publisher": "CNBC",
+     "title": "US jobs October"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตสถานะ 3–6 พ.ย.: ทรัมป์ว่าจะตัดสินใจเร็ว ๆ นี้ ทูตอิหร่านพบปูติน โอมานเสนอควบคุมช่องแคบร่วม",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-06",
+     "publisher": "CBS News",
+     "title": "Iran War Updates: Trump touts imminent decision on new strikes"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-midterms-strait-of-hormuz/",
+     "published": "2026-11-06",
+     "publisher": "CBS News",
+     "title": "More ships attacked in Persian Gulf"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุเรือถูกโจมตี 5–6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-06",
+     "publisher": "CBS News",
+     "title": "Iran War Updates"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "THA"
+   ],
+   "fields": [
+    "inflation",
+    "note_th"
+   ],
+   "summary_th": "ใส่เงินเฟ้อ ต.ค. 3.9% เกินเป้า ธปท.",
+   "sources": [
+    {
+     "url": "https://www.nationthailand.com/business/economy/40073171",
+     "published": "2026-11-06",
+     "publisher": "The Nation Thailand",
+     "title": "Thai inflation rises to 3.90% in October as fuel costs jump"
+    },
+    {
+     "url": "https://english.news.cn/20261106/684ecbfbda4d4f37a04feae1eb932ad2/c.html",
+     "published": "2026-11-06",
+     "publisher": "Xinhua",
+     "title": "Thailand's headline inflation jumps 3.9 pct in October"
+    },
+    {
+     "url": "https://www.bloomberg.com/news/articles/2026-11-06/thailand-inflation-accelerates-to-3-9-breaching-bot-target",
+     "published": "2026-11-06",
+     "publisher": "Bloomberg",
+     "title": "Thailand Inflation Surges to 3.9%"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการสู้รบและการสกัดขีปนาวุธ 4–6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/4/yemeni-government-forces-claim-control-of-strategic-al-jawf-mountain-range",
+     "published": "2026-11-04",
+     "publisher": "Al Jazeera",
+     "title": "Yemeni government forces claim control of strategic al-Jawf mountain range"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-06",
+     "publisher": "CBS News",
+     "title": "Iran War Updates (Najran interception)"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "indicators",
+   "keys": [
+    "ค่าระวางตู้ (Drewry WCI)"
+   ],
+   "fields": [
+    "value",
+    "delta_th",
+    "trend",
+    "as_of"
+   ],
+   "summary_th": "Drewry WCI 5 พ.ย. $4,389",
+   "sources": [
+    {
+     "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry",
+     "published": "2026-11-05",
+     "publisher": "Drewry",
+     "title": "World Container Index - 05 Nov"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองไทย 6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kaohoon.com/news/878436",
+     "published": "2026-11-06",
+     "publisher": "Kaohoon",
+     "title": "ทองคำเช้านี้ปรับลง 750 บ."
+    },
+    {
+     "url": "https://www.ch7.com/th/news/200642/",
+     "published": "2026-11-06",
+     "publisher": "CH7",
+     "title": "เปิดตลาดราคาทอง ปรับลง 850 บาท"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "3bde4c180cc78adca7084d4c927e5f1001f51702",
+ "reviewed_unchanged": [
+  "gaza_israel",
+  "lebanon_israel_hezbollah",
+  "myanmar_civil_war",
+  "pakistan_afghanistan",
+  "sudan_civil_war",
+  "ukraine_russia"
+ ]
+}
