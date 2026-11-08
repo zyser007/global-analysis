@@ -1,0 +1,207 @@
+{
+ "date": "2026-11-08",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีเคียฟ 6–7 พ.ย. และยอดตายโคมิชูวาคา",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/news/zelenskyy-russia-attacks-us-talks/",
+     "published": "2026-11-07",
+     "publisher": "CBS News/AP",
+     "title": "Zelenskyy accuses Russia of ramping up attacks on Ukraine ahead of U.S. talks"
+    },
+    {
+     "url": "https://www.bostonglobe.com/2026/11/07/world/drone-missile-attacks-wound-9-ukraine-prepares-talks-with-russia-us/",
+     "published": "2026-11-07",
+     "publisher": "AP",
+     "title": "Drone and missile attacks wound 9 as Ukraine prepares for talks with Russia and the US"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/03/russia-ukraine-peace-talks-abu-dhabi-trump-putin-xi.html",
+     "published": "2026-11-03",
+     "publisher": "CNBC",
+     "title": "Russia confirms new Ukraine peace talks"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "เพิ่มการโจมตีเกชม์ 6 พ.ย. และร่างข้อตกลงกาตาร์",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/07/trump-us-minor-strikes-iran-qeshm-island.html",
+     "published": "2026-11-07",
+     "publisher": "CNBC",
+     "title": "Trump says U.S. carried out minor strikes on Iran as missiles hit Qeshm Island"
+    },
+    {
+     "url": "https://wlos.com/news/nation-world/trump-confirms-new-us-strikes-on-iran-near-strait-of-hormuz-war-conflict-nuclear-weapon-tehran-ceasefire-deal-negotiations-gasoline-gas-fuel-oil-midterms-midterm-elections-politics-20-million-reward-pete-hegseth-president-donald-trump",
+     "published": "2026-11-07",
+     "publisher": "AP/TNND",
+     "title": "Trump confirms new US strikes on Iran near Strait of Hormuz"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-07",
+     "publisher": "CBS News",
+     "title": "Live Updates: U.S. expands naval blockade"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตเหตุเรือ 6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-07",
+     "publisher": "CBS News",
+     "title": "Live Updates"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีใกล้ซานา 7 พ.ย. และยอดพลเรือนตายตามฮูตี",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/7/yemeni-govt-forces-report-advances-as-houthis-say-deadly-strikes-hit-sanaa",
+     "published": "2026-11-07",
+     "publisher": "Al Jazeera",
+     "title": "Yemeni gov't forces report advances as Houthis say deadly strikes hit Sanaa"
+    },
+    {
+     "url": "https://www.thestandard.com.hk/world/article/347841/Houthi-run-health-ministry-says-airstrikes-it-blames-on-Saudi-Arabia-kill-27-near-Yemen-capital",
+     "published": "2026-11-07",
+     "publisher": "Reuters via The Standard",
+     "title": "Houthi-run health ministry says airstrikes it blames on Saudi Arabia kill 27 near Yemen capital"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองไทย 7 พ.ย. และสปอตปิดสัปดาห์",
+   "sources": [
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1717666/",
+     "published": "2026-11-07",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 7 พ.ย. ประกาศครั้งเดียว"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/56872",
+     "published": "2026-11-07",
+     "publisher": "Siamnews",
+     "title": "สรุปราคาทองคำ 7 พ.ย.2569"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองไทย 7 พ.ย. และสปอตปิดสัปดาห์",
+   "sources": [
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1717666/",
+     "published": "2026-11-07",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 7 พ.ย. ประกาศครั้งเดียว"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/56872",
+     "published": "2026-11-07",
+     "publisher": "Siamnews",
+     "title": "สรุปราคาทองคำ 7 พ.ย.2569"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มรายงาน Reuters 2 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/11/02/newborn-among-15-killed-as-myanmar-military-strikes-maternity-clinic-and-school-sources-say",
+     "published": "2026-11-02",
+     "publisher": "Reuters via The Star",
+     "title": "Newborn among 15 killed as Myanmar military strikes maternity clinic and school"
+    },
+    {
+     "url": "https://www.france24.com/en/asia-pacific/20261105-myanmar-civilians-under-fire-from-military-junta",
+     "published": "2026-11-05",
+     "publisher": "France 24",
+     "title": "Myanmar: Civilians under fire from military junta"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "d15f76437e0c26316da42dfa3d7c98fc972e3b40",
+ "reviewed_unchanged": [
+  "THA",
+  "gaza_israel",
+  "lebanon_israel_hezbollah",
+  "pakistan_afghanistan",
+  "sudan_civil_war"
+ ]
+}
