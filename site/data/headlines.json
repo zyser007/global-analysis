@@ -1,8 +1,24 @@
 {
- "updated_at": "2026-11-07T01:12:45Z",
+ "updated_at": "2026-11-08T01:12:47Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียยิงโดรน 172 ลำและขีปนาวุธใส่ยูเครน โจมตีสถานีไฟฟ้าย่อยที่เชื่อมโรงไฟฟ้านิวเคลียร์กับเคียฟ ดับเจ็บ 37 ราย",
+   "time": "2026-11-07T10:50:00Z",
+   "source": "https://kyivindependent.com/russian-attacks-kill-2-injure-37-across-ukraine-over-past-day-hit-substations-connecting-nuclear-power-plants-to-kyiv/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์ยืนยันสหรัฐโจมตีจำกัดระบบป้องกันภัยทางอากาศบนเกาะเกชม์ของอิหร่าน และบอกว่าอิหร่านอยากได้ข้อตกลง",
+   "time": "2026-11-07T08:00:00Z",
+   "source": "https://www.rferl.org/a/iran-live-blog-trump-middle-east/33803414.html",
+   "source_name": "RFE/RL"
+  },
+  {
+   "id": "h3",
    "conflict_id": "economy",
    "title_th": "Nasdaq ฟื้นราว 1% หลังวันที่แย่ที่สุดในรอบ 18 เดือน นักลงทุนช้อนหุ้นเทคฯ ขณะ Dow ย่อตัว",
    "time": "2026-11-06T20:00:00Z",
@@ -10,7 +26,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h2",
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุจะตัดสินใจเร็วๆ นี้ว่าจะสั่งโจมตีอิหร่านรอบใหม่หรือทำข้อตกลง ขณะผู้ไกล่เกลี่ยกดดันให้เจรจา",
    "time": "2026-11-06T15:00:00Z",
@@ -18,7 +34,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "economy",
    "title_th": "สหรัฐจ้างงานเดือนต.ค. 165,000 ตำแหน่ง สูงกว่าคาดมาก อัตราว่างงาน 4.1% ทำให้โอกาสเฟดขึ้นดอกเบี้ยเดือนธ.ค. ยังอยู่",
    "time": "2026-11-06T13:58:00Z",
@@ -26,7 +42,7 @@
    "source_name": "Yahoo Finance"
   },
   {
-   "id": "h4",
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "Nikkei ปิดลบราว 6% ที่ 57,435 จุด เข้าสู่ภาวะหมี ร่วงเกิน 20% จากจุดสูงสุดช่วงฤดูร้อน",
    "time": "2026-11-06T07:00:00Z",
@@ -34,15 +50,7 @@
    "source_name": "FX Leaders"
   },
   {
-   "id": "h5",
-   "conflict_id": "economy",
-   "title_th": "ตลาดหุ้นเอเชียทรุด Nikkei ร่วงราว 7% Kospi ลดลงกว่า 8% จนต้องหยุดซื้อขาย หลัง Nasdaq เข้าสู่ภาวะปรับฐาน",
-   "time": "2026-11-06T06:00:00Z",
-   "source": "https://www.thenationalnews.com/business/markets/2026/11/06/nasdaq-plunges-5-as-investors-dump-ai-stocks-after-midterms/",
-   "source_name": "The National"
-  },
-  {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "economy",
    "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก เทขายหุ้นเทคฯ ทำมูลค่าหายราว 2.5 ล้านล้านดอลลาร์ หวั่นกฎระเบียบ AI หลังเดโมแครตชนะเลือกตั้ง",
    "time": "2026-11-05T21:00:00Z",
@@ -50,7 +58,7 @@
    "source_name": "CNN"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านระบุเรือบรรทุกน้ำมันถูกโจมตีที่ช่องแคบฮอร์มุซ ท่ามกลางความกังวลสหรัฐโจมตีรอบใหม่",
    "time": "2026-11-05T12:00:00Z",
@@ -58,23 +66,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียและยูเครนโจมตีทางอากาศโต้ตอบ ขณะการเจรจาฟื้นฟูและหลักประกันความมั่นคงเริ่มใหม่ที่บรัสเซลส์",
-   "time": "2026-11-05T08:00:00Z",
-   "source": "https://www.allsides.com/news/2026-11-05-0800/ukraine-war-russia-and-ukraine-trade-airstrikes-reconstruction-and-security-talks-resume-brussels",
-   "source_name": "AllSides"
-  },
-  {
    "id": "h9",
-   "conflict_id": "taiwan_strait",
-   "title_th": "ไต้หวันตรวจพบกิจกรรมทางทหารจีนเพิ่มขึ้น",
-   "time": "2026-11-04T16:00:00Z",
-   "source": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/04/2003867122",
-   "source_name": "Taipei Times"
-  },
-  {
-   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านชี้คำตอบสหรัฐต่อแผนฮอร์มุซ ไม่น่าเชื่อถือ ทรัมป์ยืนยันโจมตี เจรจาทางอ้อมยังดำเนินต่อ",
    "time": "2026-11-04T15:00:00Z",
@@ -82,7 +74,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h11",
+   "id": "h10",
    "conflict_id": "economy",
    "title_th": "เดโมแครตกวาดชัยเลือกตั้งกลางเทอม คาดคุมทั้งสภาล่างและวุฒิสภา ตามการประเมินของ CBS News",
    "time": "2026-11-04T06:00:00Z",
@@ -90,7 +82,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h12",
+   "id": "h11",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีฉนวนกาซา ผู้เสียชีวิตอย่างน้อย 4 ราย ใน 48 ชั่วโมงรวม 15 ราย",
    "time": "2026-11-03T18:47:00Z",
@@ -98,7 +90,7 @@
    "source_name": "L'Orient Today/AFP"
   },
   {
-   "id": "h13",
+   "id": "h12",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน รัฐบาลเยเมนปรับ ครม. UN เตือนวิกฤตทวีความรุนแรง",
    "time": "2026-11-03T06:00:00Z",
