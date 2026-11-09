@@ -1,0 +1,206 @@
+{
+ "date": "2026-11-09",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "summary_th"
+   ],
+   "summary_th": "เพิ่มรายละเอียดยุโรปเข้าร่วมเจรจาอาบูดาบี",
+   "sources": [
+    {
+     "url": "https://www.npr.org/2026/11/08/nx-s1-6034014/europe-join-us-brokered-ukraine-talks-abu-dhabi-russia",
+     "published": "2026-11-08",
+     "publisher": "NPR",
+     "title": "Europe to join U.S.-brokered Ukraine talks in Abu Dhabi"
+    },
+    {
+     "url": "https://www.cbsnews.com/news/zelenskyy-russia-attacks-us-talks/",
+     "published": "2026-11-08",
+     "publisher": "CBS News",
+     "title": "Zelenskyy accuses Russia of ramping up attacks ahead of U.S. talks"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตท่าทีทรัมป์และรูบิโอ 8 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/08/trump-iran-strikes-unlikely-talks-hormuz.html",
+     "published": "2026-11-08",
+     "publisher": "CNBC",
+     "title": "Trump says renewed Iran strikes highly unlikely if talks progress"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+     "published": "2026-11-08",
+     "publisher": "CBS News",
+     "title": "Live Updates: Iran war"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่ม Task Force Iron Gate 8 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/08/trump-iran-strikes-unlikely-talks-hormuz.html",
+     "published": "2026-11-08",
+     "publisher": "CNBC",
+     "title": "Trump says renewed Iran strikes highly unlikely if talks progress"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ทองปิดสัปดาห์ ~4,071 ราคาทองไทย 64,800 ปฏิทิน 9–13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-06/wall-street-split-gold-following-dems-midterm-rout-main-street-bulls",
+     "published": "2026-11-06",
+     "publisher": "Kitco News",
+     "title": "Wall Street split on gold following Dems' midterm rout"
+    },
+    {
+     "url": "https://gtadmin.goldtraders.or.th/grc-gold-survey-9-13-nov-2026/",
+     "published": "2026-11-08",
+     "publisher": "สมาคมค้าทองคำ",
+     "title": "ผลสำรวจ GRC 9-13 พ.ย.2569"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "ทองปิดสัปดาห์ ~4,071 ราคาทองไทย 64,800 ปฏิทิน 9–13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-06/wall-street-split-gold-following-dems-midterm-rout-main-street-bulls",
+     "published": "2026-11-06",
+     "publisher": "Kitco News",
+     "title": "Wall Street split on gold following Dems' midterm rout"
+    },
+    {
+     "url": "https://gtadmin.goldtraders.or.th/grc-gold-survey-9-13-nov-2026/",
+     "published": "2026-11-08",
+     "publisher": "สมาคมค้าทองคำ",
+     "title": "ผลสำรวจ GRC 9-13 พ.ย.2569"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items"
+   ],
+   "summary_th": "ทองปิดสัปดาห์ ~4,071 ราคาทองไทย 64,800 ปฏิทิน 9–13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-06/wall-street-split-gold-following-dems-midterm-rout-main-street-bulls",
+     "published": "2026-11-06",
+     "publisher": "Kitco News",
+     "title": "Wall Street split on gold following Dems' midterm rout"
+    },
+    {
+     "url": "https://gtadmin.goldtraders.or.th/grc-gold-survey-9-13-nov-2026/",
+     "published": "2026-11-08",
+     "publisher": "สมาคมค้าทองคำ",
+     "title": "ผลสำรวจ GRC 9-13 พ.ย.2569"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "summary_th"
+   ],
+   "summary_th": "เพิ่มข้อมูลปฏิบัติการยะไข่และกำหนดการ ICJ 19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.france24.com/en/asia-pacific/20261105-myanmar-civilians-under-fire-from-military-junta",
+     "published": "2026-11-05",
+     "publisher": "France 24",
+     "title": "Myanmar: Civilians under fire from military junta"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ทะเลดำ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มรัสเซียอ้างโจมตีเรือ 3 ลำ 8 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-08/russia-says-hit-power-substations-in-ukraine-and-three-ships-in-black-sea",
+     "published": "2026-11-08",
+     "publisher": "Reuters via U.S. News",
+     "title": "Russia Says Hit Power Substations in Ukraine and Three Ships in Black Sea"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "03612307a2fb6dbbbc1a1576edd4e069c3b104e0",
+ "reviewed_unchanged": [
+  "BRA",
+  "THA",
+  "gaza_israel",
+  "lebanon_israel_hezbollah",
+  "sudan_civil_war",
+  "yemen_houthi_saudi"
+ ]
+}
