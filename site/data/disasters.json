@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-09T03:18:48Z",
- "checked": "2026-11-09T03:18:48Z",
+ "updated": "2026-11-09T04:18:36Z",
+ "checked": "2026-11-09T04:18:36Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-09T03:18:48Z",
+   "fetched": "2026-11-09T04:18:36Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-09-25&toDate=2026-11-10&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-09T03:18:48Z",
-   "count": 0,
+   "fetched": "2026-11-09T04:18:36Z",
+   "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -151,6 +151,27 @@
    "severity_unit": "km2",
    "source_url": "https://www.gdacs.org/report.aspx?eventid=1018332&episodeid=26&eventtype=DR",
    "source_name": "GDACS"
+  },
+  {
+   "id": "usgs-us7000tx16",
+   "type": "earthquake",
+   "title_th": "แผ่นดินไหวขนาด 6.4 ในหมู่เกาะโซโลมอน",
+   "country": "Solomon Islands",
+   "country_th": "หมู่เกาะโซโลมอน",
+   "countries": [
+    "Solomon Islands"
+   ],
+   "lat": -10.8669,
+   "lon": 165.5616,
+   "start": "2026-11-09T03:34:59Z",
+   "end": "2026-11-09T03:34:59Z",
+   "updated": "2026-11-09T04:08:33Z",
+   "alert_level": "green",
+   "severity_th": "ขนาด 6.4 ลึก 17 กม.",
+   "severity_value": 6.4,
+   "severity_unit": "M",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tx16",
+   "source_name": "USGS"
   }
  ]
 }
