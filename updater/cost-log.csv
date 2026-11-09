@@ -169,3 +169,4 @@ time_utc,mode,ok,model,requests,input_tokens,output_tokens,cache_write_tokens,ca
 2026-11-09T12:21:41Z,prices,yes,free-feeds,15,0,0,0,0,0,0.0000,vix: moved +39.6% (16.78 -> 23.43),0,7
 2026-11-09T13:15:08Z,prices,yes,free-feeds,15,0,0,0,0,0,0.0000,vix: moved +36.4% (16.78 -> 22.89),0,7
 2026-11-09T13:15:14Z,full,yes,claude-sonnet-5-5,1,12,4398,22382,56275,12,0.2256,,0,
+2026-11-09T13:17:21Z,prices,yes,free-feeds,16,0,0,0,0,0,0.0000,gold_th: as_of 2026-11-09T09:10:00Z is older than the previous 2026-11-09T10:02:00Z; vix: moved +36.8% (16.78 -> 22.95),0,7
