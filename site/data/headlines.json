@@ -1,8 +1,24 @@
 {
- "updated_at": "2026-11-09T13:15:14Z",
+ "updated_at": "2026-11-10T01:13:07Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "ตลาดหุ้นสหรัฐพุ่ง Brent ร่วงกว่า 5% หลังทรัมป์ลดโอกาสโจมตีอิหร่าน ขณะ Nvidia ปรับลงจากการสอบสวนภายใน",
+   "time": "2026-11-09T21:00:00Z",
+   "source": "https://www.thestar.com.my/business/business-news/2026/11/10/stocks-jump-as-oil-tumbles-nvidia-falls-amid-internal-probe",
+   "source_name": "Reuters (The Star)"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "สหรัฐตั้งหน่วย Task Force Iron Gate สกัดเส้นทางขนส่งทางบกเข้าอิหร่าน เสริมการปิดล้อมทางทะเล อิหร่านชี้เป็นแค่ถ้อยคำ",
+   "time": "2026-11-09T14:00:00Z",
+   "source": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h3",
    "conflict_id": "economy",
    "title_th": "หุ้น Nvidia ร่วงเกือบ 5% ก่อนตลาดเปิด หลังบริษัทตั้งคณะสอบสวน CEO เจนเซน หวง กรณีความสัมพันธ์กับหญิงที่ถูกระบุว่าเป็นสายลับจีน",
    "time": "2026-11-09T12:00:00Z",
@@ -10,7 +26,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h2",
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านปกป้องข้อเสนอเจรจาสันติภาพสองวัน หลังสหรัฐปฏิเสธเงื่อนไขที่ระบุว่าเกินกว่าเหตุ",
    "time": "2026-11-09T10:00:00Z",
@@ -18,15 +34,7 @@
    "source_name": "NBC News"
   },
   {
-   "id": "h3",
-   "conflict_id": "economy",
-   "title_th": "น้ำมันลดลงต่อ หลังทรัมป์ระบุการโจมตีอิหร่านรอบใหม่ มีโอกาสน้อยมาก ขณะ Brent ทรุดหนักสุดรายสัปดาห์นับแต่ปี 2020",
-   "time": "2026-11-09T08:00:00Z",
-   "source": "https://www.ibtimes.co.uk/oil-prices-slip-trump-iran-strikes-unlikely-1830965",
-   "source_name": "IBTimes"
-  },
-  {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "เยเมนเรียกร้องอิหร่านหยุดส่งอาวุธให้ฮูตี และถอนที่ปรึกษาทางทหารออกจากประเทศ",
    "time": "2026-11-09T05:51:00Z",
@@ -34,7 +42,15 @@
    "source_name": "Arab News"
   },
   {
-   "id": "h5",
+   "id": "h6",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "CNN: สหรัฐและอิหร่านเจรจาลับเพื่อหลีกเลี่ยงสงครามรอบใหม่ หลังผลเลือกตั้งกลางเทอมกดดันทรัมป์",
+   "time": "2026-11-09T05:00:00Z",
+   "source": "https://www.cnn.com/2026/11/09/middleeast/iran-us-talks-explainer-intl",
+   "source_name": "CNN"
+  },
+  {
+   "id": "h7",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "รายงานระบุเครื่องบินซาอุฯ โจมตีเยเมน ผู้เสียชีวิตอย่างน้อย 40 ราย ส่วนใหญ่เป็นผู้หญิงและเด็ก",
    "time": "2026-11-08T18:00:00Z",
@@ -42,7 +58,7 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h6",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ชี้โอกาสสั่งโจมตีอิหร่านรอบใหม่ มีน้อยมาก หากการเจรจานิวเคลียร์และการเปิดช่องแคบฮอร์มุซคืบหน้า",
    "time": "2026-11-08T16:00:00Z",
@@ -50,15 +66,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h7",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ซาอุดีอาระเบียสกัดขีปนาวุธ อาคารอารามโกในริยาดได้รับความเสียหาย",
-   "time": "2026-11-08T09:00:00Z",
-   "source": "https://www.audacy.com/1210wpht/news/world/mideast-news-november-8-2026-090d96e25872f5c63e105b9dd3e5dc60",
-   "source_name": "AP"
-  },
-  {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "disaster",
    "title_th": "เตือนน้ำทะเลหนุนสูงเจ้าพระยา 9-17 พ.ย. อาจท่วมพื้นที่ริมน้ำและคลองต่ำในกรุงเทพฯ ขณะภาคใต้ฝนตกหนัก",
    "time": "2026-11-08T05:00:00Z",
@@ -66,20 +74,12 @@
    "source_name": "Thaiger"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "lebanon_israel_hezbollah",
    "title_th": "กองทัพอิสราเอลโจมตีเป้าหมายในเลบานอนตอนใต้และซีเรียตอนใต้พร้อมกัน",
    "time": "2026-11-07T14:00:00Z",
    "source": "https://middleeasteye.net/live-blog/live-blog-update/israeli-forces-strike-targets-syria-and-lebanon-simultaneously",
    "source_name": "Middle East Eye"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์ยืนยันสหรัฐโจมตีเล็กน้อยในอิหร่าน หลังมีรายงานขีปนาวุธตกที่เกาะเกชม์ใกล้ช่องแคบฮอร์มุซ",
-   "time": "2026-11-07T12:00:00Z",
-   "source": "https://cnbc.com/2026/11/07/trump-us-minor-strikes-iran-qeshm-island.html",
-   "source_name": "CNBC"
   },
   {
    "id": "h11",
