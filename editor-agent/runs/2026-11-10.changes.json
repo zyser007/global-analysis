@@ -1,0 +1,492 @@
+{
+ "date": "2026-11-10",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "summary_th",
+    "status_th"
+   ],
+   "summary_th": "อัปเดตกำหนดและองค์ประกอบการเจรจาอาบูดาบี",
+   "sources": [
+    {
+     "url": "https://www.axios.com/2026/11/09/ukraine-russia-zelensky-putin-peace-abu-dhabi",
+     "published": "2026-11-09",
+     "publisher": "Axios",
+     "title": "White House cautiously upbeat about Russia-Ukraine peace talks"
+    },
+    {
+     "url": "https://edition.cnn.com/2026/11/09/europe/russia-ukraine-us-peace-talks-preview-intl",
+     "published": "2026-11-09",
+     "publisher": "CNN",
+     "title": "Ukraine peace talks to restart after 9 months"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/09/eu-to-send-joint-team-to-ukraine-russia-peace-talks-in-abu-dhabi",
+     "published": "2026-11-09",
+     "publisher": "Euronews",
+     "title": "EU to send joint team to Abu Dhabi"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/9/no-concession-what-to-expect-from-russia-us-ukraine-talks-in-abu-dhabi",
+     "published": "2026-11-09",
+     "publisher": "Al Jazeera",
+     "title": "What to expect from Abu Dhabi talks"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตท่าทีทรัมป์หลังพบนายกฯ กาตาร์ 9 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/9/trump-calls-iran-war-effectively-over-after-talks-with-qatar-pm",
+     "published": "2026-11-09",
+     "publisher": "Al Jazeera",
+     "title": "Trump calls Iran war effectively over"
+    },
+    {
+     "url": "https://www.cnn.com/2026/11/09/middleeast/iran-us-talks-explainer-intl",
+     "published": "2026-11-09",
+     "publisher": "CNN",
+     "title": "US and Iran quietly negotiating"
+    },
+    {
+     "url": "https://www.nbcnews.com/world/iran/iran-defends-2-day-proposal-peace-talks-us-rejects-outrageous-conditio-rcna608263",
+     "published": "2026-11-09",
+     "publisher": "NBC News",
+     "title": "Iran defends 2-day proposal"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตสถานะการปิดล้อมและการเดินเรือ",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/9/qatar-pm-to-meet-trump-whats-the-latest-on-us-iran-negotiations",
+     "published": "2026-11-09",
+     "publisher": "Al Jazeera",
+     "title": "Qatar PM to meet Trump"
+    },
+    {
+     "url": "https://www.hngn.com/articles/273722/20261109/trump-says-iran-decision-coming-soon-advisers-split.htm",
+     "published": "2026-11-09",
+     "publisher": "HNGN",
+     "title": "Qatar PM Meets Trump"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตยอดตายและสถานการณ์ 7–9 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.newarab.com/news/saudi-airstrikes-kill-40-yemen-mostly-women-and-children",
+     "published": "2026-11-09",
+     "publisher": "The New Arab",
+     "title": "Saudi airstrikes kill 40 in Yemen"
+    },
+    {
+     "url": "https://www.newarab.com/news/trump-sees-positive-momentum-iran-deal-after-qatar-talks",
+     "published": "2026-11-09",
+     "publisher": "The New Arab",
+     "title": "Trump sees positive momentum (live)"
+    },
+    {
+     "url": "https://www.outlookindia.com/international/yemen-war-2026-houthi-rebels-offensive-saudi-led-coalition-taiz-lahij-aden-conflict",
+     "published": "2026-11-08",
+     "publisher": "Outlook India (AP)",
+     "title": "Yemen War Explained"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการรบที่คอร์โดฟาน 5–6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://darfur24.com/en/2026/11/06/rival-forces-dispute-control-of-north-kordofan-areas/",
+     "published": "2026-11-06",
+     "publisher": "Darfur24",
+     "title": "Rival Forces Dispute Control of North Kordofan Areas"
+    },
+    {
+     "url": "https://english.aawsat.com/arab-world/5338514-sudanese-army-rsf-clash-fierce-battles-kordofan",
+     "published": "2026-11-07",
+     "publisher": "Asharq Al-Awsat",
+     "title": "Sudanese Army, RSF Clash in Fierce Battles in Kordofan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "CHN"
+   ],
+   "fields": [
+    "inflation",
+    "note_th"
+   ],
+   "summary_th": "CPI/PPI ต.ค. ออก 9 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/09/china-wholesale-inflation-rises-consumer.html",
+     "published": "2026-11-09",
+     "publisher": "CNBC",
+     "title": "China wholesale inflation hits highest in more than four years"
+    },
+    {
+     "url": "https://news.cgtn.com/news/2026-11-09/China-s-October-CPI-up-0-7-PPI-rises-5-7--1RVFvJks2Fa/p.html",
+     "published": "2026-11-09",
+     "publisher": "CGTN (NBS data)",
+     "title": "China's October CPI up 0.7%, PPI rises 5.7%"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีทางอากาศ 7 พ.ย. และยอด ต.ค.",
+   "sources": [
+    {
+     "url": "https://www.france24.com/en/asia-pacific/20261105-myanmar-civilians-under-fire-from-military-junta",
+     "published": "2026-11-05",
+     "publisher": "France 24",
+     "title": "Myanmar: Civilians under fire from military junta"
+    },
+    {
+     "url": "https://moemaka.net/eng/2026/11/november-8-2026-m-cdm-domestic-news/",
+     "published": "2026-11-08",
+     "publisher": "m.CDM (Myanmar local media)",
+     "title": "November 8, 2026 domestic news"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "pakistan_afghanistan"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มรายงานปะทะ 7–8 พ.ย.",
+   "sources": [
+    {
+     "url": "https://thekabultribune.com/en/0011497",
+     "published": "2026-11-08",
+     "publisher": "Kabul Tribune",
+     "title": "Pakistan Says 12 Militants, Soldier Killed in Border Clashes With Afghan Taliban"
+    },
+    {
+     "url": "https://www.afintl.com/en/202611072239",
+     "published": "2026-11-07",
+     "publisher": "Afghanistan International",
+     "title": "ISIS Operates From Safe Havens In Pakistan, Says Taliban"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "แหล่งข่าวหลักเป็นรายงานฝ่ายเดียวของรัฐบาลปากีสถานและสื่อท้องถิ่น ไม่มีแหล่งอิสระยืนยัน"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ราคาทองและทองไทย 9 พ.ย. ปฏิทิน CPI",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-09/gold-silver-rise-iran-diplomacy-pressures-crude-dollar-weakens-kitco-am",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold, silver rise as Iran diplomacy pressures crude, dollar weakens - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-09/gold-and-silver-prices-extend-post-election-rebound-central-banks-pace-beat",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold and silver prices extend post-election rebound - Heraeus"
+    },
+    {
+     "url": "https://www.thairath.co.th/money/investment/gold/2971278",
+     "published": "2026-11-09",
+     "publisher": "ไทยรัฐ (อ้างสมาคมค้าทองคำ)",
+     "title": "เช็กราคาทองวันนี้ 9 พฤศจิกายน 2569"
+    },
+    {
+     "url": "https://today.line.me/th/v3/article/vXLL9Wj",
+     "published": "2026-11-10",
+     "publisher": "LINE TODAY (อ้างสมาคมค้าทองคำ)",
+     "title": "ราคาทองวันนี้ 9 พ.ย. ผันผวน 23 ครั้ง"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "ราคาทองและทองไทย 9 พ.ย. ปฏิทิน CPI",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-09/gold-silver-rise-iran-diplomacy-pressures-crude-dollar-weakens-kitco-am",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold, silver rise as Iran diplomacy pressures crude, dollar weakens - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-09/gold-and-silver-prices-extend-post-election-rebound-central-banks-pace-beat",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold and silver prices extend post-election rebound - Heraeus"
+    },
+    {
+     "url": "https://www.thairath.co.th/money/investment/gold/2971278",
+     "published": "2026-11-09",
+     "publisher": "ไทยรัฐ (อ้างสมาคมค้าทองคำ)",
+     "title": "เช็กราคาทองวันนี้ 9 พฤศจิกายน 2569"
+    },
+    {
+     "url": "https://today.line.me/th/v3/article/vXLL9Wj",
+     "published": "2026-11-10",
+     "publisher": "LINE TODAY (อ้างสมาคมค้าทองคำ)",
+     "title": "ราคาทองวันนี้ 9 พ.ย. ผันผวน 23 ครั้ง"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items.0",
+    "outlook_th.calendar_th.items.2"
+   ],
+   "summary_th": "ราคาทองและทองไทย 9 พ.ย. ปฏิทิน CPI",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-09/gold-silver-rise-iran-diplomacy-pressures-crude-dollar-weakens-kitco-am",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold, silver rise as Iran diplomacy pressures crude, dollar weakens - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-09/gold-and-silver-prices-extend-post-election-rebound-central-banks-pace-beat",
+     "published": "2026-11-09",
+     "publisher": "Kitco News",
+     "title": "Gold and silver prices extend post-election rebound - Heraeus"
+    },
+    {
+     "url": "https://www.thairath.co.th/money/investment/gold/2971278",
+     "published": "2026-11-09",
+     "publisher": "ไทยรัฐ (อ้างสมาคมค้าทองคำ)",
+     "title": "เช็กราคาทองวันนี้ 9 พฤศจิกายน 2569"
+    },
+    {
+     "url": "https://today.line.me/th/v3/article/vXLL9Wj",
+     "published": "2026-11-10",
+     "publisher": "LINE TODAY (อ้างสมาคมค้าทองคำ)",
+     "title": "ราคาทองวันนี้ 9 พ.ย. ผันผวน 23 ครั้ง"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "nigeria_northeast_northwest"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มรายงานปฏิบัติการกูกาวา 31 ต.ค.",
+   "sources": [
+    {
+     "url": "https://ua.news/en/dovkolo-svitu/u-nigeriyi-zaiavili-pro-likvidatsiiu-chotirokh-komandiriv-iswap-anadolu-agency",
+     "published": "2026-11-02",
+     "publisher": "Anadolu Agency (via UA.News)",
+     "title": "Nigeria says four ISWAP commanders killed in Borno"
+    },
+    {
+     "url": "https://prnigeria.com/2026/11/09/nationwide-troops-kill/",
+     "published": "2026-11-09",
+     "publisher": "PRNigeria (Defence HQ statement)",
+     "title": "Troops Kill 58 Terrorists in One Week"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "ตัวเลขทั้งหมดมาจากแถลงของกองทัพไนจีเรีย ยังไม่มีแหล่งอิสระยืนยัน"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "haiti_gangs"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุปฏิบัติการตำรวจ/เอลซัลวาดอร์ และข้อเสนอเจรจาของแก๊ง",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/7/one-less-gang-leader-haitis-prime-minister-celebrates-police-operation",
+     "published": "2026-11-07",
+     "publisher": "Al Jazeera",
+     "title": "One less gang leader: Haiti's prime minister celebrates police operation"
+    },
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-06/powerful-haitian-gang-reaches-out-to-state-disarmament-group-as-gunfights-persist",
+     "published": "2026-11-06",
+     "publisher": "AP via U.S. News",
+     "title": "Powerful Haitian Gang Reaches Out to State Disarmament Group"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ethiopia_eritrea_tigray"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตแนวรบทิเกรย์ 1–6 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.criticalthreats.org/briefs/ethiopia-war-security-review/november-6-2026",
+     "published": "2026-11-06",
+     "publisher": "Critical Threats",
+     "title": "Ethiopia War Security Review, November 6, 2026"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "haiti_gangs"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุปฏิบัติการตำรวจ/เอลซัลวาดอร์ และข้อเสนอเจรจาของแก๊ง",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/7/one-less-gang-leader-haitis-prime-minister-celebrates-police-operation",
+     "published": "2026-11-07",
+     "publisher": "Al Jazeera",
+     "title": "One less gang leader: Haiti's prime minister celebrates police operation"
+    },
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-06/powerful-haitian-gang-reaches-out-to-state-disarmament-group-as-gunfights-persist",
+     "published": "2026-11-06",
+     "publisher": "AP via U.S. News",
+     "title": "Powerful Haitian Gang Reaches Out to State Disarmament Group"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "แก้คำเวลาไม่ระบุวันที่",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/9/trump-calls-iran-war-effectively-over-after-talks-with-qatar-pm",
+     "published": "2026-11-09",
+     "publisher": "Al Jazeera",
+     "title": "Trump calls Iran war effectively over"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "c9f5c6d0237bfcb9db9271697dc77a354be91ec0",
+ "reviewed_unchanged": [
+  "burkina_faso",
+  "drc_m23_frn",
+  "gaza_israel",
+  "lebanon_israel_hezbollah",
+  "mali_sahel",
+  "niger_tillaberi",
+  "somalia_al_shabaab"
+ ]
+}
