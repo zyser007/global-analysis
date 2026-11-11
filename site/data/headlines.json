@@ -1,8 +1,24 @@
 {
- "updated_at": "2026-11-11T01:12:44Z",
+ "updated_at": "2026-11-11T13:13:03Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมันสองลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เป็นครั้งที่สามของเดือนนี้",
+   "time": "2026-11-11T08:00:00Z",
+   "source": "https://www.intellinews.com/iran-s-irgc-says-two-more-tankers-hit-mines-in-strait-of-hormuz-483977",
+   "source_name": "bne IntelliNews"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "ukraine_russia",
+   "title_th": "กองทัพอากาศยูเครนระบุรัสเซียโจมตีข้ามคืนด้วยขีปนาวุธ Kh-59/69 และโดรนแบบชาเฮดราว 163 ลำ",
+   "time": "2026-11-11T06:00:00Z",
+   "source": "https://oskarhallgrimsson.substack.com/p/ukraine-desk-note-11-november-2026",
+   "source_name": "Ukraine desk note"
+  },
+  {
+   "id": "h3",
    "conflict_id": "economy",
    "title_th": "หุ้นสหรัฐปิดลบ หลังเงินเฟ้อสหรัฐร้อนแรงเกินคาด ดันผลตอบแทนพันธบัตรเข้าใกล้ 5% และเพิ่มโอกาสเฟดขึ้นดอกเบี้ย",
    "time": "2026-11-10T21:00:00Z",
@@ -10,7 +26,7 @@
    "source_name": "Yahoo Finance"
   },
   {
-   "id": "h2",
+   "id": "h4",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ซาอุดีอาระเบียสกัดขีปนาวุธที่ยิงใส่ริยาด หลังฮูตีโจมตีท่อส่งน้ำมัน",
    "time": "2026-11-10T12:00:00Z",
@@ -18,7 +34,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านระบุช่องแคบฮอร์มุซจะปิดต่อไปจนกว่าสหรัฐตอบสนองข้อเรียกร้อง",
    "time": "2026-11-10T10:00:00Z",
@@ -26,15 +42,7 @@
    "source_name": "Haaretz"
   },
   {
-   "id": "h4",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "Adnoc แจ้งเรือถูกโจมตีในน่านน้ำ UAE ขณะอิหร่านถูกรายงานว่ายังยิงเรือบรรทุกที่ผ่านฮอร์มุซ",
-   "time": "2026-11-10T08:00:00Z",
-   "source": "https://www.khaleejtimes.com/world/mena/us-israel-iran-saudi-arabia-yemen-war-live-updates-november-10-2026",
-   "source_name": "Khaleej Times"
-  },
-  {
-   "id": "h5",
+   "id": "h6",
    "conflict_id": "thailand",
    "title_th": "บาทไทยเคลื่อนไหวแทบไม่เปลี่ยนแปลงเมื่อเทียบดอลลาร์ ขณะ UBS มองเศรษฐกิจไทยได้แรงหนุนจากการลงทุนและบาทแข็ง",
    "time": "2026-11-10T08:00:00Z",
@@ -42,23 +50,7 @@
    "source_name": "Business Recorder"
   },
   {
-   "id": "h6",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีด้วยโดรนใส่คริวยีรีห์ และยิงถล่มภูมิภาคเคียฟ ผู้เสียชีวิตหนึ่งราย รวมเด็กบาดเจ็บ",
-   "time": "2026-11-10T06:00:00Z",
-   "source": "https://ua.news/en/war-vs-rf/rosiia-obstriliala-kiyivshchinu-odna-liudina-zaginula-sered-poranenikh-ditina",
-   "source_name": "UA.news"
-  },
-  {
    "id": "h7",
-   "conflict_id": "economy",
-   "title_th": "ตลาดหุ้นสหรัฐพุ่ง Brent ร่วงกว่า 5% หลังทรัมป์ลดโอกาสโจมตีอิหร่าน ขณะ Nvidia ปรับลงจากการสอบสวนภายใน",
-   "time": "2026-11-09T21:00:00Z",
-   "source": "https://www.thestar.com.my/business/business-news/2026/11/10/stocks-jump-as-oil-tumbles-nvidia-falls-amid-internal-probe",
-   "source_name": "Reuters (The Star)"
-  },
-  {
-   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "สหรัฐตั้งหน่วย Task Force Iron Gate สกัดเส้นทางขนส่งทางบกเข้าอิหร่าน เสริมการปิดล้อมทางทะเล อิหร่านชี้เป็นแค่ถ้อยคำ",
    "time": "2026-11-09T14:00:00Z",
@@ -66,7 +58,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h9",
+   "id": "h8",
    "conflict_id": "economy",
    "title_th": "หุ้น Nvidia ร่วงเกือบ 5% ก่อนตลาดเปิด หลังบริษัทตั้งคณะสอบสวน CEO เจนเซน หวง กรณีความสัมพันธ์กับหญิงที่ถูกระบุว่าเป็นสายลับจีน",
    "time": "2026-11-09T12:00:00Z",
@@ -74,7 +66,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h10",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านปกป้องข้อเสนอเจรจาสันติภาพสองวัน หลังสหรัฐปฏิเสธเงื่อนไขที่ระบุว่าเกินกว่าเหตุ",
    "time": "2026-11-09T10:00:00Z",
@@ -82,7 +74,7 @@
    "source_name": "NBC News"
   },
   {
-   "id": "h11",
+   "id": "h10",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "เยเมนเรียกร้องอิหร่านหยุดส่งอาวุธให้ฮูตี และถอนที่ปรึกษาทางทหารออกจากประเทศ",
    "time": "2026-11-09T05:51:00Z",
@@ -90,7 +82,7 @@
    "source_name": "Arab News"
   },
   {
-   "id": "h12",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "CNN: สหรัฐและอิหร่านเจรจาลับเพื่อหลีกเลี่ยงสงครามรอบใหม่ หลังผลเลือกตั้งกลางเทอมกดดันทรัมป์",
    "time": "2026-11-09T05:00:00Z",
@@ -98,7 +90,7 @@
    "source_name": "CNN"
   },
   {
-   "id": "h13",
+   "id": "h12",
    "conflict_id": "disaster",
    "title_th": "เตือนน้ำทะเลหนุนสูงเจ้าพระยา 9-17 พ.ย. อาจท่วมพื้นที่ริมน้ำและคลองต่ำในกรุงเทพฯ ขณะภาคใต้ฝนตกหนัก",
    "time": "2026-11-08T05:00:00Z",
