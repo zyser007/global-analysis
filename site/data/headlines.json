@@ -1,8 +1,40 @@
 {
- "updated_at": "2026-11-12T01:14:18Z",
+ "updated_at": "2026-11-12T13:12:40Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "สื่ออิสราเอลรายงานทรัมป์-เนทันยาฮูโทรศัพท์ถกเถียงรุนแรง เรื่องจะกลับมาทำสงครามกับอิหร่านหรือเดินหน้าเจรจา",
+   "time": "2026-11-12T12:53:00Z",
+   "source": "https://www.foxnews.com/live-news/iran-war-news-trump-israel-hormuz-november-12",
+   "source_name": "Fox News"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "gaza_israel",
+   "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
+   "time": "2026-11-12T10:00:00Z",
+   "source": "https://www.newarab.com/news/iran-touts-new-missile-city-israel-continues-bomb-gaza",
+   "source_name": "The New Arab"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
+   "time": "2026-11-12T08:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/12/fighting-intensifies-in-yemen-as-houthis-deny-targeting-mecca",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "economy",
+   "title_th": "Nvidia ร่วงราว 8% หลังปิดตลาด ท่ามกลางความปั่นป่วนด้านผู้บริหาร ฉุดหุ้นกลุ่มโครงสร้างพื้นฐาน AI และฟิวเจอร์สสหรัฐ",
+   "time": "2026-11-12T01:00:00Z",
+   "source": "https://www.home.saxo/en-mena/content/articles/macro/market-quick-take---nvidia-stumble-weighs-on-sentiment---12-november-2026-12112026",
+   "source_name": "Saxo Bank"
+  },
+  {
+   "id": "h5",
    "conflict_id": "economy",
    "title_th": "Wall Street พุ่ง Nasdaq ขึ้นราว 1.6% S&P 500 ขึ้น 1.3% หลัง CoreWeave และ Nvidia ดีดกลับ จุดกระแสหุ้น AI",
    "time": "2026-11-11T21:00:00Z",
@@ -10,15 +42,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h2",
-   "conflict_id": "gaza_israel",
-   "title_th": "กองกำลังอิสราเอลสังหารชาวปาเลสไตน์อย่างน้อย 7-8 คนในกาซา รวมพ่อและลูกชายวัย 13 ปี",
-   "time": "2026-11-11T13:00:00Z",
-   "source": "https://www.justsecurity.org/164111/early-edition-november-11-2026/",
-   "source_name": "Just Security"
-  },
-  {
-   "id": "h3",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ประธานสภาอิหร่าน ฆาลีบาฟ ชี้ช่องแคบฮอร์มุซจะไม่กลับสู่สถานะก่อนสงครามอีก",
    "time": "2026-11-11T12:00:00Z",
@@ -26,23 +50,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "กองกำลังเยเมนและฮูตีโจมตีตอบโต้กัน ต่างอ้างสร้างความสูญเสียหนัก ฮูตีระบุถูกโจมตีทางอากาศ 109 ครั้งที่ซานา",
-   "time": "2026-11-11T11:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/11/yemeni-forces-houthis-exchange-attacks-claim-to-inflict-heavy-losses",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h5",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์อ้างสหรัฐชนะสงครามอิหร่านแล้ว แต่ต้องการ “ชัยชนะโดยสมบูรณ์”",
-   "time": "2026-11-11T10:00:00Z",
-   "source": "https://www.timesofisrael.com/liveblog-november-11-2026/",
-   "source_name": "Times of Israel"
-  },
-  {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียและยูเครนโจมตีตอบโต้ ประเทศบอลติกเตือนภัยโดรน รัสเซียอ้างสกัดโดรน 146 ลำเหนือเลนินกราด",
    "time": "2026-11-11T10:00:00Z",
@@ -50,7 +58,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมันสองลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เป็นครั้งที่สามของเดือนนี้",
    "time": "2026-11-11T08:00:00Z",
@@ -58,20 +66,12 @@
    "source_name": "bne IntelliNews"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "economy",
    "title_th": "หุ้นสหรัฐปิดลบ หลังเงินเฟ้อสหรัฐร้อนแรงเกินคาด ดันผลตอบแทนพันธบัตรเข้าใกล้ 5% และเพิ่มโอกาสเฟดขึ้นดอกเบี้ย",
    "time": "2026-11-10T21:00:00Z",
    "source": "https://finance.yahoo.com/markets/article/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
    "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ซาอุดีอาระเบียสกัดขีปนาวุธที่ยิงใส่ริยาด หลังฮูตีโจมตีท่อส่งน้ำมัน",
-   "time": "2026-11-10T12:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/10/saudi-arabia-downs-missiles-fired-at-riyadh-after-houthi-attack-on-pipeline",
-   "source_name": "Al Jazeera"
   },
   {
    "id": "h10",
@@ -91,14 +91,6 @@
   },
   {
    "id": "h12",
-   "conflict_id": "economy",
-   "title_th": "หุ้น Nvidia ร่วงเกือบ 5% ก่อนตลาดเปิด หลังบริษัทตั้งคณะสอบสวน CEO เจนเซน หวง กรณีความสัมพันธ์กับหญิงที่ถูกระบุว่าเป็นสายลับจีน",
-   "time": "2026-11-09T12:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/09/nvidia-jensen-huang-chinese-spy-investigation.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h13",
    "conflict_id": "disaster",
    "title_th": "เตือนน้ำทะเลหนุนสูงเจ้าพระยา 9-17 พ.ย. อาจท่วมพื้นที่ริมน้ำและคลองต่ำในกรุงเทพฯ ขณะภาคใต้ฝนตกหนัก",
    "time": "2026-11-08T05:00:00Z",
