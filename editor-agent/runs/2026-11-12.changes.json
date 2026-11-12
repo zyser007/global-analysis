@@ -1,0 +1,330 @@
+{
+ "date": "2026-11-12",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตผลการเจรจาอาบูดาบีสิ้นสุด 11 พ.ย. และกำหนดการเดินทางของทูตสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/russia-ukraine-talks-in-abu-dhabi-end-with-prisoner-exchange-agreement",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Russia-Ukraine talks in Abu Dhabi end with prisoner exchange agreement"
+    },
+    {
+     "url": "https://www.nbcnews.com/world/middle-east/us-russia-ukraine-start-second-day-abu-dhabi-peace-talks-rcna608714",
+     "published": "2026-11-11",
+     "publisher": "NBC News",
+     "title": "Russia and Ukraine agree to a large prisoner exchange as talks conclude with no major breakthrough"
+    },
+    {
+     "url": "https://www.atlanticcouncil.org/content-series/fastthinking/where-the-russia-ukraine-peace-talks-stand-after-abu-dhabi/",
+     "published": "2026-11-11",
+     "publisher": "Atlantic Council",
+     "title": "Where the Russia-Ukraine peace talks stand after Abu Dhabi"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th",
+    "summary_th"
+   ],
+   "summary_th": "อัปเดตท่าทีรูบิโอ/อิหร่านและการโจมตีเรือ 10–11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/iran-denies-talks-with-us-says-hormuz-will-stay-shut-until-demands-are-met",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Iran denies talks with US, says Hormuz will stay shut until demands are met"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/strait-of-hormuz-will-never-return-to-pre-war-status-ghalibaf",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Hormuz Strait will never return to pre-war status, Ghalibaf says"
+    },
+    {
+     "url": "https://www.dawn.com/news/2043645/iran-urges-us-to-meet-terms-for-hormuz-opening",
+     "published": "2026-11-11",
+     "publisher": "Dawn (Reuters/AFP)",
+     "title": "Iran urges US to meet terms for Hormuz opening"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีเรือและท่าทีอิหร่าน 10–11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/strait-of-hormuz-will-never-return-to-pre-war-status-ghalibaf",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Hormuz Strait will never return to pre-war status"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/9/iran-stands-by-demands-to-end-the-war-as-us-ramps-up-military-pressure",
+     "published": "2026-11-09",
+     "publisher": "Al Jazeera",
+     "title": "Iran stands by demands to end the war as US ramps up military pressure"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "ปรับสถานะตามรายงานการสู้รบคอร์โดฟาน 5–8 พ.ย. (ข้ออ้างขัดกัน)",
+   "sources": [
+    {
+     "url": "https://darfur24.com/en/2026/11/06/rival-forces-dispute-control-of-north-kordofan-areas/",
+     "published": "2026-11-06",
+     "publisher": "Darfur24",
+     "title": "Rival Forces Dispute Control of North Kordofan Areas"
+    },
+    {
+     "url": "https://english.aawsat.com/arab-world/5338514-sudanese-army-rsf-clash-fierce-battles-kordofan",
+     "published": "2026-11-07",
+     "publisher": "Asharq Al-Awsat",
+     "title": "Sudanese Army, RSF Clash in Fierce Battles in Kordofan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ปรับราคาทองและปฏิทินหลัง CPI สหรัฐและผลเจรจาอาบูดาบี",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-11/gold-gains-after-steep-drop-hawkish-central-bank-signals-weigh",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Kitco News",
+     "title": "Gold gains after steep drop, but hawkish central bank signals weigh"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-11/gold-prices-fall-below-4000-analysts-warn-further-losses-toward-3900",
+     "published": "2026-11-11",
+     "publisher": "Kitco News",
+     "title": "Gold prices fall below $4,000 as analysts warn of further losses toward $3,900"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-11/gold-prices-find-solid-support-4000-standard-chartered-sees-rally-4650-year",
+     "published": "2026-11-11",
+     "publisher": "Kitco News",
+     "title": "Gold prices find solid support at $4,000 as Standard Chartered sees rally to $4,650"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.2",
+    "outlook_th.calendar_th.items.3"
+   ],
+   "summary_th": "ปรับราคาทองและปฏิทินหลัง CPI สหรัฐและผลเจรจาอาบูดาบี",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-11/gold-gains-after-steep-drop-hawkish-central-bank-signals-weigh",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Kitco News",
+     "title": "Gold gains after steep drop, but hawkish central bank signals weigh"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-11/gold-prices-fall-below-4000-analysts-warn-further-losses-toward-3900",
+     "published": "2026-11-11",
+     "publisher": "Kitco News",
+     "title": "Gold prices fall below $4,000 as analysts warn of further losses toward $3,900"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-11/gold-prices-find-solid-support-4000-standard-chartered-sees-rally-4650-year",
+     "published": "2026-11-11",
+     "publisher": "Kitco News",
+     "title": "Gold prices find solid support at $4,000 as Standard Chartered sees rally to $4,650"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตยอดตายและเหตุโจมตี 10–11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Israeli strikes hit tent camp as five killed in Gaza"
+    },
+    {
+     "url": "https://www.thenationalnews.com/news/mena/2026/11/11/father-and-son-among-at-least-seven-killed-in-israeli-attacks-on-gaza/",
+     "published": "2026-11-11",
+     "publisher": "The National",
+     "title": "Father and son among at least seven killed in Israeli attacks on Gaza"
+    },
+    {
+     "url": "https://www.arabnews.pk/world/israeli-strikes-kill-three-people-including-two-brothers-in-gaza-medics-say-3006758",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Arab News",
+     "title": "Israeli strikes kill three people including two brothers in Gaza, medics say"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีซาอุดีฯ 8–11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/10/saudi-arabia-downs-missiles-fired-at-riyadh-after-houthi-attack-on-pipeline",
+     "published": "2026-11-10",
+     "publisher": "Al Jazeera",
+     "title": "Saudi Arabia downs missiles fired at Riyadh after Houthi attack on pipeline"
+    },
+    {
+     "url": "https://www.yahoo.com/news/world/articles/saudi-arabia-intercepts-houthi-missiles-195031157.html",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Yahoo News",
+     "title": "Saudi Arabia intercepts Houthi missiles, drones; group denies targeting Mecca"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/8/saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-eastern-province",
+     "published": "2026-11-08",
+     "publisher": "Al Jazeera",
+     "title": "Saudi Aramco building in Riyadh damaged in attempted attack"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ethiopia_eritrea_tigray"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มแถลงการณ์ G7 (9–10 พ.ย.) และปรับรายละเอียดช่วงวันที่รายงานปะทะ",
+   "sources": [
+    {
+     "url": "https://addisstandard.com/g7-warns-of-regional-escalation-risk-as-ethiopia-eritrea-tensions-worsen/",
+     "published": "2026-11-11",
+     "publisher": "Addis Standard",
+     "title": "G7 warns of regional escalation risk as Ethiopia-Eritrea tensions worsen"
+    },
+    {
+     "url": "https://www.criticalthreats.org/briefs/ethiopia-war-security-review/november-6-2026",
+     "published": "2026-11-06",
+     "publisher": "Critical Threats",
+     "title": "Ethiopia War Security Review, November 6, 2026"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ทะเลดำ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีท่าเรือชอร์โนมอร์สค์ 11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.yahoo.com/news/world/articles/four-killed-russian-attack-black-200332000.html",
+     "published": "2026-11-11",
+     "publisher": "dpa via Yahoo News",
+     "title": "Four killed in Russian attack on Black Sea port city, Ukraine says"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "summary_th"
+   ],
+   "summary_th": "แก้คำเวลาสัมพัทธ์",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/iran-denies-talks-with-us-says-hormuz-will-stay-shut-until-demands-are-met",
+     "published": "2026-11-11",
+     "publisher": "Al Jazeera",
+     "title": "Iran denies talks with US, says Hormuz will stay shut until demands are met"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "34a81e40b5fbfa0c8d53c36962d37060d84a7a42",
+ "reviewed_unchanged": [
+  "burkina_faso",
+  "drc_m23_frn",
+  "haiti_gangs",
+  "lebanon_israel_hezbollah",
+  "mali_sahel",
+  "myanmar_civil_war",
+  "niger_tillaberi",
+  "pakistan_afghanistan",
+  "somalia_al_shabaab"
+ ]
+}
