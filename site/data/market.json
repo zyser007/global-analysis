@@ -1,57 +1,57 @@
 {
- "updated_at": "2026-11-13T03:17:15Z",
- "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 13 พ.ย. 2569 10:17 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท, ยีลด์ 10 ปี, SET · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, VIX, Nikkei 225 · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 5 · ใช้แหล่งสำรอง: ทองคำแท่งไทย, Nikkei 225",
+ "updated_at": "2026-11-13T04:16:51Z",
+ "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 13 พ.ย. 2569 11:16 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท, ยีลด์ 10 ปี, SET, Nikkei 225 · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, VIX · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 7 · ใช้แหล่งสำรอง: ทองคำแท่งไทย",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "95.52",
+   "value": "95.57",
    "unit": "$/บาร์เรล",
-   "change_th": "−0.31% (−0.30) จากปิดก่อนหน้า",
+   "change_th": "−0.26% (−0.25) จากปิดก่อนหน้า",
    "trend": "down",
-   "as_of": "2026-11-13T03:07:10Z",
+   "as_of": "2026-11-13T04:06:41Z",
    "source": "https://www.cnbc.com/quotes/@LCO.1"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "88.19",
+   "value": "88.31",
    "unit": "$/บาร์เรล",
-   "change_th": "−0.62% (−0.55) จากปิดก่อนหน้า",
+   "change_th": "−0.48% (−0.43) จากปิดก่อนหน้า",
    "trend": "down",
-   "as_of": "2026-11-13T03:06:59Z",
+   "as_of": "2026-11-13T04:06:40Z",
    "source": "https://www.cnbc.com/quotes/@CL.1"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3914.89",
+   "value": "3913.52",
    "unit": "$/ออนซ์",
-   "change_th": "+0.99% (+38.54) จากปิดก่อนหน้า",
+   "change_th": "+0.96% (+37.17) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-13T03:17:15Z",
+   "as_of": "2026-11-13T04:16:51Z",
    "source": "https://www.swissquote.com/"
   },
   {
    "key": "gold_th",
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
-   "value": "62800",
+   "value": "62900",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งที่ 5 เวลา 10:01 น. +50 บาท",
+   "change_th": "ประกาศครั้งที่ 7 เวลา 10:40 น. +50 บาท",
    "trend": "up",
-   "as_of": "2026-11-13T03:01:00Z",
+   "as_of": "2026-11-13T03:40:00Z",
    "source": "https://classic.goldtraders.or.th/UpdatePriceList.aspx",
-   "buy": 62600,
-   "ornament_sell": 63600
+   "buy": 62700,
+   "ornament_sell": 63700
   },
   {
    "key": "dxy",
    "label_th": "ดัชนีดอลลาร์ (DXY)",
-   "value": "103.166",
+   "value": "103.180",
    "unit": "จุด",
-   "change_th": "−0.01% (−0.007) จากปิดก่อนหน้า",
+   "change_th": "+0.01% (+0.007) จากปิดก่อนหน้า",
    "trend": "flat",
-   "as_of": "2026-11-13T03:17:15Z",
+   "as_of": "2026-11-13T04:16:51Z",
    "source": "https://www.cnbc.com/quotes/.DXY"
   },
   {
@@ -77,11 +77,11 @@
   {
    "key": "btc",
    "label_th": "Bitcoin",
-   "value": "69671",
+   "value": "68778",
    "unit": "$",
-   "change_th": "−5.40% (−3,974) ใน 24 ชม.",
+   "change_th": "−6.68% (−4,922) ใน 24 ชม.",
    "trend": "down",
-   "as_of": "2026-11-13T03:16:53Z",
+   "as_of": "2026-11-13T04:16:10Z",
    "source": "https://www.coingecko.com/en/coins/bitcoin"
   },
   {
@@ -91,17 +91,17 @@
    "unit": "บาท/$",
    "change_th": "−0.18% (−0.060) จากปิดก่อนหน้า",
    "trend": "down",
-   "as_of": "2026-11-13T03:17:00Z",
+   "as_of": "2026-11-13T04:16:51Z",
    "source": "https://www.cnbc.com/quotes/THB="
   },
   {
    "key": "us10y",
    "label_th": "ยีลด์พันธบัตรสหรัฐ 10 ปี",
-   "value": "5.125",
+   "value": "5.131",
    "unit": "%",
-   "change_th": "+2.2 bp จากปิดก่อนหน้า",
+   "change_th": "+2.8 bp จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-13T03:17:15Z",
+   "as_of": "2026-11-13T04:16:51Z",
    "source": "https://www.cnbc.com/quotes/US10Y"
   },
   {
@@ -117,22 +117,22 @@
   {
    "key": "set",
    "label_th": "ดัชนี SET",
-   "value": "1503.86",
+   "value": "1504.73",
    "unit": "จุด",
-   "change_th": "+0.32% (+4.80) จากปิดก่อนหน้า",
+   "change_th": "+0.38% (+5.67) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-13T03:02:23Z",
+   "as_of": "2026-11-13T04:02:06Z",
    "source": "https://www.cnbc.com/quotes/.SETI"
   },
   {
    "key": "nikkei",
    "label_th": "Nikkei 225",
-   "value": "61816.72",
+   "value": "61278.41",
    "unit": "จุด",
-   "change_th": "ปิดภาคเช้า 13 พ.ย. +1.64% (+997.36)",
+   "change_th": "+0.75% (+459.05) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-13T02:35:03Z",
-   "source": "https://finance.yahoo.com/quote/^N225/"
+   "as_of": "2026-11-13T04:16:51Z",
+   "source": "https://indexes.nikkei.co.jp/en/nkave"
   }
  ]
 }
