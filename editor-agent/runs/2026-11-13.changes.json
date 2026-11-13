@@ -1,0 +1,469 @@
+{
+ "date": "2026-11-13",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 12 พ.ย.: ตามรายงานของ Al Jazeera และ Reuters (ผ่าน Moscow Times) ปูตินระบุว่าชายแดนกับยูเครนคือเส้นควบคุมและปฏิเสธกองกำลังยุโรปในยูเครน เคียฟปฏิเสธข้อเรียกร้องให้ถอนจากดอนบาสทั้งหมด สหภาพยุโรปเตรียมคว่ำบาตรรัสเซียเพิ่ม 150 หน่วยงานและ 50 ธนาคาร (ฝรั่งเศส 12 พ.ย. จะอนุมัติวันจันทร์ 16 พ.ย.) เซเลนสกีแจ้งว่าระบบ Starshield ถูกจำกัดความเร็ว ทำให้สกัดโดรนได้ยากขึ้น (12 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/12/us-envoys-arrive-in-moscow-for-russia-ukraine-talks-with-putin",
+     "published": "2026-11-12",
+     "publisher": "Al Jazeera",
+     "title": "US envoys and Putin agree to continue Russia-Ukraine peace talks"
+    },
+    {
+     "url": "https://www.themoscowtimes.com/2026/11/12/us-envoy-says-new-round-of-talks-agreed-after-kremlin-meeting-a94236",
+     "published": "2026-11-12",
+     "publisher": "Reuters via Moscow Times",
+     "title": "U.S. Envoy Says New Round of Talks Agreed After Kremlin Meeting"
+    },
+    {
+     "url": "https://edition.cnn.com/2026/11/12/politics/ukraine-witkoff-kushner-putin-peace-talks-intl",
+     "published": "2026-11-12",
+     "publisher": "CNN",
+     "title": "Witkoff and Kushner to meet Zelensky after talks with Putin"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 12 พ.ย.: ตามรายงานของ NPR/CBC (Reuters) การโจมตี Nasser ทำให้แผนกศัลยกรรมที่รองรับประชากรราวครึ่งของกาซาใช้การไม่ได้ ยอดตายรวมตั้งแต่ 7 ต.ค. 2023 เกิน 74,600 ราย (กระทรวงสาธารณสุขกาซา) อิสราเอลคุมอย่างน้อย 60% ของกาซา (NPR) ยูเอ็นรายงานว่าน้ำท่วมกระทบผู้คนอย่างน้อย 106,000 คน (UNICEF 11 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.npr.org/2026/11/12/nx-s1-6038339/israeli-strike-gaza-hospital",
+     "published": "2026-11-12",
+     "publisher": "NPR",
+     "title": "An Israeli strike on a Gaza hospital kills 6 people"
+    },
+    {
+     "url": "https://www.cbc.ca/news/world/israeli-strike-on-gaza-hospital-kills-six-people-9.7418729",
+     "published": "2026-11-12",
+     "publisher": "CBC/Reuters",
+     "title": "Israeli strike on a Gaza hospital kills 6 people"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza",
+     "published": "2026-11-12",
+     "publisher": "Al Jazeera",
+     "title": "Israeli strike on Gaza's Nasser Hospital kills surgeon, five others"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเหตุโจมตีซาอุดีฯ–ฮูตี 11–12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.jpost.com/middle-east/article-914637",
+     "published": "2026-11-12",
+     "publisher": "Reuters via Jerusalem Post",
+     "title": "Saudi Arabia says debris from Houthi missiles fell in Mecca"
+    },
+    {
+     "url": "https://www.al-monitor.com/originals/2026/11/saudi-arabia-intercepts-houthi-missiles-drones-group-denies-targeting-mecca",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Al-Monitor",
+     "title": "Saudi Arabia intercepts Houthi missiles, drones; group denies targeting Mecca"
+    },
+    {
+     "url": "https://www.newarab.com/news/houthis-deny-targeting-mecca-amid-saudi-missile-interceptions",
+     "published": "2026-11-12",
+     "publisher": "The New Arab",
+     "title": "Houthis deny targeting Mecca"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตสถานะสงครามอิหร่านและการเจรจา 12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.foxnews.com/live-news/rubio-iran-war-strikes-economic-crackdown-continues-11-11-26",
+     "published": "2026-11-12",
+     "publisher": "Fox News (citing Reuters, Ynet)",
+     "title": "Trump, Netanyahu clash in explosive call over Iran war"
+    },
+    {
+     "url": "https://www.pbs.org/newshour/world/u-s-strikes-iranian-targets-in-strait-of-hormuz-u-s-official-tells-ap",
+     "published": "2026-11-10",
+     "publisher": "AP via PBS",
+     "title": "U.S. strikes Iranian targets in Strait of Hormuz"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอตและทองไทย 12 พ.ย. และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-12/gold-silver-slide-treasury-yields-surge-fed-hike-concerns-intensify-kitco",
+     "published": "2026-11-12",
+     "publisher": "Kitco News",
+     "title": "Gold, silver slide as Treasury yields surge, Fed hike concerns intensify - Kitco PM Report"
+    },
+    {
+     "url": "https://www.kaohoon.com/news/880240",
+     "published": "2026-11-12",
+     "publisher": "Kaohoon (สมาคมค้าทองคำ)",
+     "title": "ทองคำ เช้านี้ปรับลง 750 บ. รูปพรรณ ขายออก 64,600 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.3",
+    "outlook_th.calendar_th.items.4",
+    "outlook_th.calendar_th.items.5"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอตและทองไทย 12 พ.ย. และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-12/gold-silver-slide-treasury-yields-surge-fed-hike-concerns-intensify-kitco",
+     "published": "2026-11-12",
+     "publisher": "Kitco News",
+     "title": "Gold, silver slide as Treasury yields surge, Fed hike concerns intensify - Kitco PM Report"
+    },
+    {
+     "url": "https://www.kaohoon.com/news/880240",
+     "published": "2026-11-12",
+     "publisher": "Kaohoon (สมาคมค้าทองคำ)",
+     "title": "ทองคำ เช้านี้ปรับลง 750 บ. รูปพรรณ ขายออก 64,600 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอตและทองไทย 12 พ.ย. และปฏิทิน",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-12/gold-silver-slide-treasury-yields-surge-fed-hike-concerns-intensify-kitco",
+     "published": "2026-11-12",
+     "publisher": "Kitco News",
+     "title": "Gold, silver slide as Treasury yields surge, Fed hike concerns intensify - Kitco PM Report"
+    },
+    {
+     "url": "https://www.kaohoon.com/news/880240",
+     "published": "2026-11-12",
+     "publisher": "Kaohoon (สมาคมค้าทองคำ)",
+     "title": "ทองคำ เช้านี้ปรับลง 750 บ. รูปพรรณ ขายออก 64,600 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการสู้รบในคอร์โดฟานเหนือ",
+   "sources": [
+    {
+     "url": "https://darfur24.com/en/2026/11/06/rival-forces-dispute-control-of-north-kordofan-areas/",
+     "published": "2026-11-06",
+     "publisher": "Darfur24",
+     "title": "Rival Forces Dispute Control of North Kordofan Areas"
+    },
+    {
+     "url": "https://english.aawsat.com/arab-world/5338514-sudanese-army-rsf-clash-fierce-battles-kordofan",
+     "published": "2026-11-07",
+     "publisher": "Asharq Al-Awsat",
+     "title": "Sudanese Army, RSF Clash in Fierce Battles in Kordofan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีทางอากาศและการสู้รบ 1–10 พ.ย.",
+   "sources": [
+    {
+     "url": "https://myanmar-now.org/en/news/category/news/",
+     "published": "2026-11-10",
+     "publisher": "Myanmar Now",
+     "title": "Myanmar military airstrikes on schools in Sagaing kill 11; fighting intensifies near Sagaing-Kachin border"
+    },
+    {
+     "url": "https://www.france24.com/en/asia-pacific/20261105-myanmar-civilians-under-fire-from-military-junta",
+     "published": "2026-11-05",
+     "publisher": "France 24",
+     "title": "Myanmar: Civilians under fire from military junta"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "GBR"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มตัวเลข GDP ไตรมาส 3 ของ ONS (12 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/12/uk-gdp-third-quarter-2026.html",
+     "published": "2026-11-12",
+     "publisher": "CNBC",
+     "title": "UK GDP grows 0.7% in third quarter of 2026"
+    },
+    {
+     "url": "https://www.trustnet.com/news/13488218/uk-gdp-expands-07-in-q3-as-tech-sector-leads-growth",
+     "published": "2026-11-12",
+     "publisher": "Trustnet (ONS data)",
+     "title": "UK GDP expands 0.7% in Q3 as tech sector leads growth"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "BRA"
+   ],
+   "fields": [
+    "inflation",
+    "note_th"
+   ],
+   "summary_th": "อัปเดตเงินเฟ้อ IPCA ต.ค. ของบราซิล (12 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/inflacao-perde-forca-e-fica-em-014-em-outubro-conta-de-luz-cai",
+     "published": "2026-11-12",
+     "publisher": "Agência Brasil (IBGE)",
+     "title": "Inflação perde força e fica em 0,14% em outubro"
+    },
+    {
+     "url": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/inflacao-ipca-12-novembro-2026/",
+     "published": "2026-11-12",
+     "publisher": "CNN Brasil",
+     "title": "Inflação sobe 0,14% em outubro, aponta IBGE"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "indicators",
+   "keys": [
+    "ค่าระวางตู้ (Drewry WCI)"
+   ],
+   "fields": [
+    "value",
+    "delta_th",
+    "trend",
+    "as_of"
+   ],
+   "summary_th": "Drewry WCI รอบ 12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry",
+     "published": "2026-11-12",
+     "publisher": "Drewry",
+     "title": "World Container Index - 12 Nov"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "pakistan_afghanistan"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุซุ่มโจมตีที่โคฮาต 11 พ.ย. และการปะทะชายแดน",
+   "sources": [
+    {
+     "url": "https://www.longwarjournal.org/archives/2026/11/taliban-pakistan-border-clashes-continue-ttp-attack-kills-10-pakistani-police.php",
+     "published": "2026-11-12",
+     "publisher": "FDD's Long War Journal",
+     "title": "Taliban-Pakistan border clashes continue, TTP attack kills 10 Pakistani police"
+    },
+    {
+     "url": "https://www.manilatimes.net/2026/11/13/world/asia-oceania/convoy-attack-leaves-10-police-officers-dead-in-pakistan/2468397",
+     "published": "2026-11-12",
+     "publisher": "AFP via Manila Times",
+     "title": "Convoy attack leaves 10 police officers dead in Pakistan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "lebanon_israel_hezbollah"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีของอิสราเอลและท่าทีเฮซบอลเลาะห์ 11–12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/12/us-election-results-could-be-positive-for-lebanon-hezbollah-chief-says",
+     "published": "2026-11-12",
+     "publisher": "Al Jazeera",
+     "title": "US election results could be positive for Lebanon, Hezbollah chief says"
+    },
+    {
+     "url": "https://ua.news/en/dovkolo-svitu/izrayil-zavdav-aviaudariv-i-proviv-pidrivi-na-pivdni-livanu-anadolu-agency",
+     "published": "2026-11-12",
+     "publisher": "Anadolu via UA.News",
+     "title": "Israel carries out airstrikes and explosions in southern Lebanon"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตเหตุโจมตีเรือและปริมาณขนส่ง 12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-12/gold-silver-extend-losses-fed-hike-bets-lift-dollar-treasury-yields-kitco",
+     "published": "2026-11-12",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as Fed hike bets lift dollar, Treasury yields - Kitco AM Report"
+    },
+    {
+     "url": "https://www.foxnews.com/live-news/rubio-iran-war-strikes-economic-crackdown-continues-11-11-26",
+     "published": "2026-11-12",
+     "publisher": "Fox News (citing Reuters)",
+     "title": "Trump, Netanyahu clash in explosive call over Iran war"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "บับ อัล-มันดับ / ทะเลแดง"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มการโจมตียานบูตามที่ฮูตีอ้าง 11 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.al-monitor.com/originals/2026/11/saudi-arabia-intercepts-houthi-missiles-drones-group-denies-targeting-mecca",
+     "published": "2026-11-11",
+     "publisher": "Reuters via Al-Monitor",
+     "title": "Saudi Arabia intercepts Houthi missiles, drones; group denies targeting Mecca"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "ปรับ % ต่ำกว่าจุดสูงสุดให้ตรงกับสปอต 3,876",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-12/gold-silver-slide-treasury-yields-surge-fed-hike-concerns-intensify-kitco",
+     "published": "2026-11-12",
+     "publisher": "Kitco News",
+     "title": "Gold, silver slide - Kitco PM Report"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "dde6c9c95849615d2bef7e0ed1b14d2b3ce01b73",
+ "reviewed_unchanged": [
+  "THA",
+  "burkina_faso",
+  "drc_m23_frn",
+  "ethiopia_eritrea_tigray",
+  "haiti_gangs",
+  "mali_sahel",
+  "niger_tillaberi",
+  "nigeria_northeast_northwest",
+  "somalia_al_shabaab"
+ ]
+}
