@@ -1,8 +1,32 @@
 {
- "updated_at": "2026-11-12T13:12:40Z",
+ "updated_at": "2026-11-13T01:12:45Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "กองทัพอิหร่านระบุเรือบรรทุกน้ำมัน 4 ลำถูกระเบิดในช่องแคบฮอร์มุซ แม้การจราจรฟื้นตัวและตลาดคาดการณ์ลดตึงเครียด",
+   "time": "2026-11-13T01:00:00Z",
+   "source": "https://www.brecorder.com/news/40448684/four-tankers-struck-by-explosions-in-hormuz-iran",
+   "source_name": "Business Recorder"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Dow ปิดลบหลังเทขายช่วงบ่าย ขณะ Nvidia ร่วงจากข่าว CEO ลาออก และผลตอบแทนพันธบัตรสหรัฐเกิน 5%",
+   "time": "2026-11-12T21:00:00Z",
+   "source": "https://www.bbntimes.com/financial/dow-jones-falls-to-52-297-09-as-afternoon-selling-erases-gains-after-nvidia-ceo-exit",
+   "source_name": "BBN Times"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "ทองคำและเงินร่วง ผลตอบแทนพันธบัตรสหรัฐพุ่ง ความกังวลเฟดขึ้นดอกเบี้ยแรงขึ้น",
+   "time": "2026-11-12T21:00:00Z",
+   "source": "https://www.kitco.com/news/article/2026-11-12/gold-silver-slide-treasury-yields-surge-fed-hike-concerns-intensify-kitco",
+   "source_name": "Kitco"
+  },
+  {
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "สื่ออิสราเอลรายงานทรัมป์-เนทันยาฮูโทรศัพท์ถกเถียงรุนแรง เรื่องจะกลับมาทำสงครามกับอิหร่านหรือเดินหน้าเจรจา",
    "time": "2026-11-12T12:53:00Z",
@@ -10,7 +34,7 @@
    "source_name": "Fox News"
   },
   {
-   "id": "h2",
+   "id": "h5",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
@@ -18,7 +42,7 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h3",
+   "id": "h6",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
    "time": "2026-11-12T08:00:00Z",
@@ -26,7 +50,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
+   "id": "h7",
    "conflict_id": "economy",
    "title_th": "Nvidia ร่วงราว 8% หลังปิดตลาด ท่ามกลางความปั่นป่วนด้านผู้บริหาร ฉุดหุ้นกลุ่มโครงสร้างพื้นฐาน AI และฟิวเจอร์สสหรัฐ",
    "time": "2026-11-12T01:00:00Z",
@@ -34,15 +58,7 @@
    "source_name": "Saxo Bank"
   },
   {
-   "id": "h5",
-   "conflict_id": "economy",
-   "title_th": "Wall Street พุ่ง Nasdaq ขึ้นราว 1.6% S&P 500 ขึ้น 1.3% หลัง CoreWeave และ Nvidia ดีดกลับ จุดกระแสหุ้น AI",
-   "time": "2026-11-11T21:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/10/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h6",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ประธานสภาอิหร่าน ฆาลีบาฟ ชี้ช่องแคบฮอร์มุซจะไม่กลับสู่สถานะก่อนสงครามอีก",
    "time": "2026-11-11T12:00:00Z",
@@ -50,7 +66,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียและยูเครนโจมตีตอบโต้ ประเทศบอลติกเตือนภัยโดรน รัสเซียอ้างสกัดโดรน 146 ลำเหนือเลนินกราด",
    "time": "2026-11-11T10:00:00Z",
@@ -58,7 +74,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมันสองลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เป็นครั้งที่สามของเดือนนี้",
    "time": "2026-11-11T08:00:00Z",
@@ -66,28 +82,12 @@
    "source_name": "bne IntelliNews"
   },
   {
-   "id": "h9",
-   "conflict_id": "economy",
-   "title_th": "หุ้นสหรัฐปิดลบ หลังเงินเฟ้อสหรัฐร้อนแรงเกินคาด ดันผลตอบแทนพันธบัตรเข้าใกล้ 5% และเพิ่มโอกาสเฟดขึ้นดอกเบี้ย",
-   "time": "2026-11-10T21:00:00Z",
-   "source": "https://finance.yahoo.com/markets/article/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
-   "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านระบุช่องแคบฮอร์มุซจะปิดต่อไปจนกว่าสหรัฐตอบสนองข้อเรียกร้อง",
-   "time": "2026-11-10T10:00:00Z",
-   "source": "https://www.haaretz.com/middle-east-news/iran/2026-11-10/ty-article/iran-says-strait-of-hormuz-will-stay-closed-until-u-s-meets-demands/000001a1-c658-df80-a9e3-e6fc56fb0000",
-   "source_name": "Haaretz"
-  },
-  {
    "id": "h11",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "สหรัฐตั้งหน่วย Task Force Iron Gate สกัดเส้นทางขนส่งทางบกเข้าอิหร่าน เสริมการปิดล้อมทางทะเล อิหร่านชี้เป็นแค่ถ้อยคำ",
-   "time": "2026-11-09T14:00:00Z",
-   "source": "https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/",
-   "source_name": "CBS News"
+   "conflict_id": "economy",
+   "title_th": "ส่วนเกินดุลการค้าจีนทะลุ 1 ล้านล้านดอลลาร์เป็นปีที่สองติดต่อกัน ส่งออกเดือนต.ค. พุ่ง 35% จากกระแส AI",
+   "time": "2026-11-10T08:00:00Z",
+   "source": "https://www.abc.net.au/news/2026-11-11/china-trade-surpasses-1-trillion-for-second-straight-year/107372090",
+   "source_name": "ABC News"
   },
   {
    "id": "h12",
