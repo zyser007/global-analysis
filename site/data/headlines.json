@@ -1,8 +1,32 @@
 {
- "updated_at": "2026-11-13T13:12:42Z",
+ "updated_at": "2026-11-14T01:13:05Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "Wall Street ปิดลบวันศุกร์ S&P 500 −0.4% หุ้น AI ถูกเทขาย แต่ทั้งสัปดาห์ยังบวกราว 2.5%",
+   "time": "2026-11-13T21:30:00Z",
+   "source": "https://whdh.com/news/stocks-fall-but-wall-street-notches-a-winning-week-after-several-turbulent-days/",
+   "source_name": "AP (WHDH)"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
+   "time": "2026-11-13T18:00:00Z",
+   "source": "https://www.abc.net.au/news/2026-11-13/trump-says-us-does-not-need-iran-deal/107380892",
+   "source_name": "ABC News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตียูเครนหลายภูมิภาค เสียชีวิตอย่างน้อย 3 คน บาดเจ็บกว่า 20 คน หลังเซเลนสกีพบทูตสหรัฐ",
+   "time": "2026-11-13T15:00:00Z",
+   "source": "https://www.euronews.com/2026/11/13/at-least-three-killed-and-more-than-20-injured-in-russian-strikes-on-ukraine",
+   "source_name": "Euronews"
+  },
+  {
+   "id": "h4",
    "conflict_id": "economy",
    "title_th": "ฟิวเจอร์สสหรัฐทรงตัว รอดูดัชนีราคาขายส่ง หวั่นเงินเฟ้อกดดันเฟดขึ้นดอกเบี้ยแรง ทองลงใกล้ 3,873 ดอลลาร์",
    "time": "2026-11-13T12:00:00Z",
@@ -10,7 +34,7 @@
    "source_name": "TipRanks"
   },
   {
-   "id": "h2",
+   "id": "h5",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC อ้างทำลายเรดาร์เตือนภัยของสหรัฐในบาห์เรน หลังเกิดโจมตีเมืองท่าซิริกใกล้ฮอร์มุซ ตึงเครียดพุ่ง",
    "time": "2026-11-13T11:47:00Z",
@@ -18,7 +42,7 @@
    "source_name": "RFE/RL"
   },
   {
-   "id": "h3",
+   "id": "h6",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีโอเดสซา ผู้เสียชีวิต 2 คน บาดเจ็บ 5 คน",
    "time": "2026-11-13T09:00:00Z",
@@ -26,7 +50,7 @@
    "source_name": "UNN"
   },
   {
-   "id": "h4",
+   "id": "h7",
    "conflict_id": "economy",
    "title_th": "ตลาดจับตาเฟดอาจขึ้นดอกเบี้ย 50 bp เดือนหน้า ผลตอบแทนพันธบัตรสหรัฐ 2 ปีสูงสุดรอบ 1 เดือน ดอลลาร์แข็งค่า",
    "time": "2026-11-13T04:00:00Z",
@@ -34,7 +58,7 @@
    "source_name": "Reuters"
   },
   {
-   "id": "h5",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "กองทัพอิหร่านระบุเรือบรรทุกน้ำมัน 4 ลำถูกระเบิดในช่องแคบฮอร์มุซ แม้การจราจรฟื้นตัวและตลาดคาดการณ์ลดตึงเครียด",
    "time": "2026-11-13T01:00:00Z",
@@ -42,15 +66,7 @@
    "source_name": "Business Recorder"
   },
   {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "Dow ปิดลบหลังเทขายช่วงบ่าย ขณะ Nvidia ร่วงจากข่าว CEO ลาออก และผลตอบแทนพันธบัตรสหรัฐเกิน 5%",
-   "time": "2026-11-12T21:00:00Z",
-   "source": "https://www.bbntimes.com/financial/dow-jones-falls-to-52-297-09-as-afternoon-selling-erases-gains-after-nvidia-ceo-exit",
-   "source_name": "BBN Times"
-  },
-  {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "สื่ออิสราเอลรายงานทรัมป์-เนทันยาฮูโทรศัพท์ถกเถียงรุนแรง เรื่องจะกลับมาทำสงครามกับอิหร่านหรือเดินหน้าเจรจา",
    "time": "2026-11-12T12:53:00Z",
@@ -58,7 +74,7 @@
    "source_name": "Fox News"
   },
   {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
@@ -66,7 +82,7 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h9",
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
    "time": "2026-11-12T08:00:00Z",
@@ -74,7 +90,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h10",
+   "id": "h12",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ประธานสภาอิหร่าน ฆาลีบาฟ ชี้ช่องแคบฮอร์มุซจะไม่กลับสู่สถานะก่อนสงครามอีก",
    "time": "2026-11-11T12:00:00Z",
@@ -82,15 +98,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h11",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียและยูเครนโจมตีตอบโต้ ประเทศบอลติกเตือนภัยโดรน รัสเซียอ้างสกัดโดรน 146 ลำเหนือเลนินกราด",
-   "time": "2026-11-11T10:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/11/russia-claims-interception-of-146-drones-in-leningrad-region",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "economy",
    "title_th": "ส่วนเกินดุลการค้าจีนทะลุ 1 ล้านล้านดอลลาร์เป็นปีที่สองติดต่อกัน ส่งออกเดือนต.ค. พุ่ง 35% จากกระแส AI",
    "time": "2026-11-10T08:00:00Z",
@@ -98,7 +106,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h13",
+   "id": "h14",
    "conflict_id": "disaster",
    "title_th": "เตือนน้ำทะเลหนุนสูงเจ้าพระยา 9-17 พ.ย. อาจท่วมพื้นที่ริมน้ำและคลองต่ำในกรุงเทพฯ ขณะภาคใต้ฝนตกหนัก",
    "time": "2026-11-08T05:00:00Z",
