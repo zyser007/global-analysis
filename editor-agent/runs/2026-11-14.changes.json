@@ -1,0 +1,354 @@
+{
+ "date": "2026-11-14",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "13 พ.ย.: การโจมตีข้ามฝั่งต่อเนื่องระหว่างที่ทูตสหรัฐเดินสายเจรจา; ยุโรปจะเข้าร่วมโต๊ะเจรจาตามคำของคุชเนอร์",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/13/russia-and-ukraine-report-overnight-attacks-amid-us-diplomatic-push",
+     "published": "2026-11-13",
+     "publisher": "Al Jazeera",
+     "title": "Russia and Ukraine report overnight attacks amid US diplomatic push"
+    },
+    {
+     "url": "https://theprint.in/world/russian-strikes-kill-one-in-zaporizhzhia-two-in-odesa/3098399/",
+     "published": "2026-11-13",
+     "publisher": "Reuters via ThePrint",
+     "title": "Russian strikes kill one in Zaporizhzhia, two in Odesa"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/13/at-least-three-killed-and-more-than-20-injured-in-russian-strikes-on-ukraine",
+     "published": "2026-11-13",
+     "publisher": "Euronews",
+     "title": "At least three killed and more than 20 injured in Russian strikes on Ukraine"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเหตุเรดาร์บาห์เรนและซิริก (13 พ.ย.) ท่าทีทรัมป์ และทุ่นระเบิดในฮอร์มุซ",
+   "sources": [
+    {
+     "url": "https://www.rferl.org/a/iran-us-sirik-bahrain-war-nuclear-talks/33897951.html",
+     "published": "2026-11-13",
+     "publisher": "RFE/RL",
+     "title": "CENTCOM Denies Iranian Claim It Struck A US Radar In Bahrain"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/13/iran-says-it-struck-us-radar-site-in-bahrain",
+     "published": "2026-11-13",
+     "publisher": "Al Jazeera",
+     "title": "US denies Iran's claim it hit two radar sites in Bahrain"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุทุ่นระเบิด 12–13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.military.com/us-military-downs-2-iranian-attack-drones-as-iran-claims-a-strike-on-a-us-radar-in-bahrain",
+     "published": "2026-11-13",
+     "publisher": "AP via Military.com",
+     "title": "US Military Downs 2 Iranian Attack Drones"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหวคอร์โดฟานตาม Critical Threats 12 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.criticalthreats.org/analysis/fgs-sfc-al-shabaab-somalia-sudan-saf-rsf",
+     "published": "2026-11-12",
+     "publisher": "Critical Threats",
+     "title": "Africa File, November 12, 2026"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทอง PPI 13 พ.ย. และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-13/rate-hike-bets-keep-gold-track-its-worst-week-four-months",
+     "published": "2026-11-13",
+     "publisher": "Reuters via Kitco News",
+     "title": "Rate hike bets keep gold on track for its worst week in four months"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/gold-rebounds-13-month-low-ppi-complicates-fed-outlook-kitco-am-report",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Gold rebounds from 13-month low as PPI complicates Fed outlook"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_day_pct"
+   ],
+   "fields": [
+    "change_day_pct"
+   ],
+   "summary_th": "อัปเดตราคาทอง PPI 13 พ.ย. และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-13/rate-hike-bets-keep-gold-track-its-worst-week-four-months",
+     "published": "2026-11-13",
+     "publisher": "Reuters via Kitco News",
+     "title": "Rate hike bets keep gold on track for its worst week in four months"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/gold-rebounds-13-month-low-ppi-complicates-fed-outlook-kitco-am-report",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Gold rebounds from 13-month low as PPI complicates Fed outlook"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_week_pct"
+   ],
+   "fields": [
+    "change_week_pct"
+   ],
+   "summary_th": "อัปเดตราคาทอง PPI 13 พ.ย. และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-13/rate-hike-bets-keep-gold-track-its-worst-week-four-months",
+     "published": "2026-11-13",
+     "publisher": "Reuters via Kitco News",
+     "title": "Rate hike bets keep gold on track for its worst week in four months"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/gold-rebounds-13-month-low-ppi-complicates-fed-outlook-kitco-am-report",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Gold rebounds from 13-month low as PPI complicates Fed outlook"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "อัปเดตราคาทอง PPI 13 พ.ย. และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-13/rate-hike-bets-keep-gold-track-its-worst-week-four-months",
+     "published": "2026-11-13",
+     "publisher": "Reuters via Kitco News",
+     "title": "Rate hike bets keep gold on track for its worst week in four months"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/gold-rebounds-13-month-low-ppi-complicates-fed-outlook-kitco-am-report",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Gold rebounds from 13-month low as PPI complicates Fed outlook"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.5"
+   ],
+   "summary_th": "อัปเดตราคาทอง PPI 13 พ.ย. และโอกาสขึ้นดอกเบี้ย",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/off-the-wire/2026-11-13/rate-hike-bets-keep-gold-track-its-worst-week-four-months",
+     "published": "2026-11-13",
+     "publisher": "Reuters via Kitco News",
+     "title": "Rate hike bets keep gold on track for its worst week in four months"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/gold-rebounds-13-month-low-ppi-complicates-fed-outlook-kitco-am-report",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Gold rebounds from 13-month low as PPI complicates Fed outlook"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "ราคาทองไทยปิดตลาด 13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.thairath.co.th/news/society/2972323",
+     "published": "2026-11-13",
+     "publisher": "Thairath",
+     "title": "อัปเดตราคาทองวันนี้ 13 พ.ย. 69 ปิดตลาดปรับลง 550 บาท"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/57342",
+     "published": "2026-11-13",
+     "publisher": "Siamnews",
+     "title": "ราคาทองวันนี้ 13 พ.ย. 2569 ประกาศ 24 ครั้ง ปิดลบ 150 บาท"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีโรงพยาบาลนัสเซอร์ 12 พ.ย. และยอดผู้เสียชีวิตตั้งแต่หยุดยิง",
+   "sources": [
+    {
+     "url": "https://www.nbcnews.com/world/middle-east/israeli-strike-gaza-nasser-hospital-abu-shaira-doctor-hamas-rcna608932",
+     "published": "2026-11-13",
+     "publisher": "NBC News",
+     "title": "Israeli strike on Gaza's Nasser Hospital kills at least six people"
+    },
+    {
+     "url": "https://www.aa.com.tr/en/middle-east/israeli-attacks-kill-2-palestinians-injure-8-in-gaza-amid-ceasefire-violations/4124535",
+     "published": "2026-11-13",
+     "publisher": "Anadolu Agency",
+     "title": "Israeli attacks kill 6 Palestinians, injure around 20 in Gaza despite ceasefire"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มข้ออ้างโจมตีท่อส่งน้ำมันซาอุฯ (12 พ.ย.) และยอดผู้พลัดถิ่น IOM",
+   "sources": [
+    {
+     "url": "https://www.yemenmonitor.com/en/Details/ArtMID/908/ArticleID/187726",
+     "published": "2026-11-13",
+     "publisher": "Yemen Monitor (Reuters)",
+     "title": "Houthis Claim Attack on Pumping Station Along Saudi Arabia's East–West Oil Pipeline"
+    },
+    {
+     "url": "https://www.democracynow.org/2026/11/13/headlines/houthis_claim_fresh_attacks_on_saudi_oil_facilities_including_east_west_pipeline",
+     "published": "2026-11-13",
+     "publisher": "Democracy Now",
+     "title": "Houthis Claim Fresh Attacks on Saudi Oil Facilities"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/liveblog/2026/11/13/iran-war-live-riyadh-china-discuss-houthis-as-group-claims-aramco-attacks",
+     "published": "2026-11-13",
+     "publisher": "Al Jazeera",
+     "title": "Iran war live: fighting rages in Yemen; IOM says 340,000 displaced"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "pakistan_afghanistan"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโคฮาต 11 พ.ย. และปฏิบัติการของกองทัพปากีสถาน (13 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/13/pakistan-military-reports-it-killed-74-terrorists-during-raids",
+     "published": "2026-11-13",
+     "publisher": "Al Jazeera",
+     "title": "Pakistan military reports it killed 74 'terrorists' during raids"
+    },
+    {
+     "url": "https://www.fdd.org/analysis/taliban-pakistan-border-clashes-continue-ttp-attack-kills-10-pakistani-police/",
+     "published": "2026-11-12",
+     "publisher": "FDD Long War Journal",
+     "title": "Taliban–Pakistan border clashes continue, TTP attack kills 10 Pakistani police"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "e8b8ad0a1b969caecc18b81609158108cf6910a8",
+ "reviewed_unchanged": [
+  "THA",
+  "USA",
+  "lebanon_israel_hezbollah",
+  "myanmar_civil_war"
+ ]
+}
