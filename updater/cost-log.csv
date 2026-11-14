@@ -298,3 +298,4 @@ time_utc,mode,ok,model,requests,input_tokens,output_tokens,cache_write_tokens,ca
 2026-11-14T02:18:43Z,prices,yes,free-feeds,16,0,0,0,0,0,0.0000,brent: as_of 2026-11-13T21:59:30Z is older than the previous 2026-11-13T23:00:00Z,0,2
 2026-11-14T03:15:53Z,prices,yes,free-feeds,16,0,0,0,0,0,0.0000,"brent: as_of 2026-11-13T21:59:30Z is older than the previous 2026-11-13T23:00:00Z; gold_history: gold as_of unchanged, no new point",0,1
 2026-11-14T04:16:06Z,prices,yes,free-feeds,16,0,0,0,0,0,0.0000,"brent: as_of 2026-11-13T21:59:30Z is older than the previous 2026-11-13T23:00:00Z; gold_history: gold as_of unchanged, no new point",0,1
+2026-11-14T05:13:32Z,prices,yes,free-feeds,17,0,0,0,0,0,0.0000,"wti: as_of 2026-11-13T22:00:00Z is older than the previous 2026-11-13T23:13:44Z; set: as_of 2026-11-13T09:49:43Z is older than the previous 2026-11-13T10:03:15Z; gold_history: gold as_of unchanged, no",0,3
