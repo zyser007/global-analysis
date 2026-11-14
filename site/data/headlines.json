@@ -1,8 +1,40 @@
 {
- "updated_at": "2026-11-14T01:13:05Z",
+ "updated_at": "2026-11-14T13:10:52Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เกิดระเบิดและไฟไหม้",
+   "time": "2026-11-14T08:11:00Z",
+   "source": "https://gulfnews.com/world/mena/iran-guards-say-two-oil-tankers-hit-by-mines-in-hormuz-1.500746966",
+   "source_name": "Gulf News"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "กองทัพเรืออิหร่านเตือนเรือบรรทุกน้ำมันอย่าเข้าเขตหวงห้ามทางตะวันออกของฮอร์มุซ หลังมีเรือชนทุ่นระเบิด",
+   "time": "2026-11-14T07:00:00Z",
+   "source": "https://www.arabnews.com/middle-east/irans-navy-says-oil-tanker-on-fire-after-hitting-mine-in-hormuz-3011782",
+   "source_name": "Arab News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "Al Jazeera รายงานสดสงครามอิหร่าน: เรือบรรทุกน้ำมันลำที่ 5 ถูกรายงานว่าโดนโจมตีรอบฮอร์มุซใน 24 ชม.",
+   "time": "2026-11-14T06:00:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/14/iran-war-live-fighting-grips-yemen-as-qatar-turkiye-sign-defence-deal",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีโรงไฟฟ้าและโครงข่ายพลังงานในเขตโอเดสซาอีกครั้ง ครัวเรือนเกือบ 50,000 แห่งไฟดับ",
+   "time": "2026-11-14T05:00:00Z",
+   "source": "https://glavnoe.in.ua/en/news-en/russia-strikes-energy-infrastructure-in-odesa-region-again-leaving-nearly-50000-households-without-power",
+   "source_name": "Glavnoe"
+  },
+  {
+   "id": "h5",
    "conflict_id": "economy",
    "title_th": "Wall Street ปิดลบวันศุกร์ S&P 500 −0.4% หุ้น AI ถูกเทขาย แต่ทั้งสัปดาห์ยังบวกราว 2.5%",
    "time": "2026-11-13T21:30:00Z",
@@ -10,7 +42,7 @@
    "source_name": "AP (WHDH)"
   },
   {
-   "id": "h2",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
    "time": "2026-11-13T18:00:00Z",
@@ -18,7 +50,15 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h3",
+   "id": "h7",
+   "conflict_id": "world",
+   "title_th": "ตุรกีและกาตาร์ลงนามข้อตกลงป้องกันร่วมกัน ย้ำท่าทีเป็นหนึ่งเดียวหากถูกโจมตี",
+   "time": "2026-11-13T17:00:00Z",
+   "source": "https://aljazeera.com/news/2026/11/13/turkiye-and-qatar-sign-mutual-defence-agreement",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตียูเครนหลายภูมิภาค เสียชีวิตอย่างน้อย 3 คน บาดเจ็บกว่า 20 คน หลังเซเลนสกีพบทูตสหรัฐ",
    "time": "2026-11-13T15:00:00Z",
@@ -26,15 +66,7 @@
    "source_name": "Euronews"
   },
   {
-   "id": "h4",
-   "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สสหรัฐทรงตัว รอดูดัชนีราคาขายส่ง หวั่นเงินเฟ้อกดดันเฟดขึ้นดอกเบี้ยแรง ทองลงใกล้ 3,873 ดอลลาร์",
-   "time": "2026-11-13T12:00:00Z",
-   "source": "https://www.tipranks.com/news/todays-wholesale-price-report-could-tip-the-fed-toward-a-half-point-hike",
-   "source_name": "TipRanks"
-  },
-  {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC อ้างทำลายเรดาร์เตือนภัยของสหรัฐในบาห์เรน หลังเกิดโจมตีเมืองท่าซิริกใกล้ฮอร์มุซ ตึงเครียดพุ่ง",
    "time": "2026-11-13T11:47:00Z",
@@ -42,39 +74,15 @@
    "source_name": "RFE/RL"
   },
   {
-   "id": "h6",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีโอเดสซา ผู้เสียชีวิต 2 คน บาดเจ็บ 5 คน",
-   "time": "2026-11-13T09:00:00Z",
-   "source": "https://unn.ua/en/news/russian-attack-on-odesa-claims-the-lives-of-two-people-five-injured",
-   "source_name": "UNN"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "economy",
-   "title_th": "ตลาดจับตาเฟดอาจขึ้นดอกเบี้ย 50 bp เดือนหน้า ผลตอบแทนพันธบัตรสหรัฐ 2 ปีสูงสุดรอบ 1 เดือน ดอลลาร์แข็งค่า",
-   "time": "2026-11-13T04:00:00Z",
-   "source": "https://investing.com/news/economy-news/stocks-recover-from-nvidia-whiplash-dollar-climbs-with-us-yields-5023929",
-   "source_name": "Reuters"
-  },
-  {
-   "id": "h8",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "กองทัพอิหร่านระบุเรือบรรทุกน้ำมัน 4 ลำถูกระเบิดในช่องแคบฮอร์มุซ แม้การจราจรฟื้นตัวและตลาดคาดการณ์ลดตึงเครียด",
-   "time": "2026-11-13T01:00:00Z",
-   "source": "https://www.brecorder.com/news/40448684/four-tankers-struck-by-explosions-in-hormuz-iran",
-   "source_name": "Business Recorder"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "สื่ออิสราเอลรายงานทรัมป์-เนทันยาฮูโทรศัพท์ถกเถียงรุนแรง เรื่องจะกลับมาทำสงครามกับอิหร่านหรือเดินหน้าเจรจา",
-   "time": "2026-11-12T12:53:00Z",
-   "source": "https://www.foxnews.com/live-news/iran-war-news-trump-israel-hormuz-november-12",
-   "source_name": "Fox News"
-  },
-  {
    "id": "h10",
+   "conflict_id": "thailand",
+   "title_th": "อนุทินเตรียมต้อนรับนายกรัฐมนตรีจีน หลี่ เฉียง เยือนไทยอย่างเป็นทางการ",
+   "time": "2026-11-13T10:00:00Z",
+   "source": "https://www.thaienquirer.com/76093/thai-enquirer-news-summary-november-13-2026/",
+   "source_name": "Thai Enquirer"
+  },
+  {
+   "id": "h11",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
@@ -82,19 +90,11 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
    "time": "2026-11-12T08:00:00Z",
    "source": "https://www.aljazeera.com/news/2026/11/12/fighting-intensifies-in-yemen-as-houthis-deny-targeting-mecca",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ประธานสภาอิหร่าน ฆาลีบาฟ ชี้ช่องแคบฮอร์มุซจะไม่กลับสู่สถานะก่อนสงครามอีก",
-   "time": "2026-11-11T12:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/11/strait-of-hormuz-will-never-return-to-pre-war-status-ghalibaf",
    "source_name": "Al Jazeera"
   },
   {
