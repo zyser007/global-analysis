@@ -1,0 +1,210 @@
+{
+ "date": "2026-11-15",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเหตุเรือบรรทุกน้ำมัน 3 ลำชนทุ่นระเบิดที่ฮอร์มุซ (14 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/middle-east/iran-reports-three-incidents-of-oil-tankers-hit-by-mines-in-hormuz-3011782",
+     "published": "2026-11-14",
+     "publisher": "Arab News (Reuters)",
+     "title": "Iran reports three incidents of oil tankers hit by mines in Hormuz"
+    },
+    {
+     "url": "https://theprint.in/world/irans-navy-says-three-tankers-on-fire-after-hitting-mines-in-hormuz/3099065/",
+     "published": "2026-11-14",
+     "publisher": "Reuters via ThePrint",
+     "title": "Iran's navy says three tankers on fire after hitting mines in Hormuz"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุเรือ 3 ลำชนทุ่นระเบิด 14 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/middle-east/iran-reports-three-incidents-of-oil-tankers-hit-by-mines-in-hormuz-3011782",
+     "published": "2026-11-14",
+     "publisher": "Arab News (Reuters)",
+     "title": "Iran reports three incidents of oil tankers hit by mines in Hormuz"
+    },
+    {
+     "url": "https://english.news.cn/20261115/d7f4817b41254d28b5642351c9f073cb/c.html",
+     "published": "2026-11-14",
+     "publisher": "Xinhua",
+     "title": "Iran's Army says 2 violating oil tankers caught fire after hitting mines east of Hormuz Strait"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตผลเจรจา เชลย โจมตี 13–14 พ.ย. และกำหนดประชุมสามฝ่ายเซินเจิ้น",
+   "sources": [
+    {
+     "url": "https://www.rferl.org/a/zelenskyy-us-floated-trading-donbas-for-nato-membership/33898583.html",
+     "published": "2026-11-14",
+     "publisher": "RFE/RL",
+     "title": "Zelenskyy: US Floated Trading Donbas For NATO Membership"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/13/russia-and-ukraine-report-overnight-attacks-amid-us-diplomatic-push",
+     "published": "2026-11-13",
+     "publisher": "Al Jazeera",
+     "title": "Russia and Ukraine report overnight attacks amid US diplomatic push"
+    },
+    {
+     "url": "https://www.aa.com.tr/en/russia-ukraine-war/more-than-10-killed-as-russia-ukraine-trade-accusations-following-overnight-strikes-abu-dhabi-talks/4123775",
+     "published": "2026-11-13",
+     "publisher": "Anadolu",
+     "title": "Over 10 killed as Russia, Ukraine trade accusations"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "sentiment"
+   ],
+   "fields": [
+    "sentiment.survey_th",
+    "sentiment.bearish",
+    "sentiment.bullish",
+    "sentiment.neutral",
+    "sentiment.retail_bullish"
+   ],
+   "summary_th": "อัปเดตผลสำรวจ Kitco 13 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-13/wall-street-bears-abound-after-inflation-sours-fed-outlook-main-street",
+     "published": "2026-11-13",
+     "publisher": "Kitco News",
+     "title": "Wall Street bears abound after inflation sours Fed outlook, Main Street abandons bullish bias"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มการยึดอัล-คูวายและประเมินดุลกำลังคอร์โดฟาน (13–14 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/14/how-saf-successes-in-sudans-kordofan-could-turn-tide-against-the-rsf",
+     "published": "2026-11-14",
+     "publisher": "Al Jazeera",
+     "title": "How SAF successes in Sudan's Kordofan could turn tide against the RSF"
+    },
+    {
+     "url": "https://www.sudanspost.com/sudanese-army-advances-on-al-nahud-after-major-gains-in-west-kordofan/",
+     "published": "2026-11-14",
+     "publisher": "Sudans Post",
+     "title": "Sudanese army advances on Al-Nahud after major gains in West Kordofan"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตี 14 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.wsls.com/news/2026/11/14/israeli-drone-strike-kills-2-palestinians-in-gaza-and-other-mideast-news/",
+     "published": "2026-11-14",
+     "publisher": "AP via WSLS",
+     "title": "Israeli drone strike kills 2 Palestinians in Gaza"
+    },
+    {
+     "url": "https://www.timesofisrael.com/liveblog-november-14-2026/",
+     "published": "2026-11-14",
+     "publisher": "Times of Israel",
+     "title": "Liveblog November 14, 2026"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items.0",
+    "outlook_th.calendar_th.items.1",
+    "outlook_th.calendar_th.items.2",
+    "outlook_th.calendar_th.items.3",
+    "outlook_th.calendar_th.items.4",
+    "outlook_th.calendar_th.items.5"
+   ],
+   "summary_th": "เขียนปฏิทินสัปดาห์ 16–20 พ.ย. ใหม่",
+   "sources": [
+    {
+     "url": "https://www.marketscreener.com/news/week-ahead-for-fx-bonds-fed-minutes-u-k-data-in-focus-ce785ed9d189f12d",
+     "published": "2026-11-14",
+     "publisher": "MarketScreener (Reuters)",
+     "title": "Week Ahead for FX, Bonds: Fed Minutes, U.K. Data in Focus"
+    },
+    {
+     "url": "https://www.newsquawk.com/headlines/week-in-focus--16-20th-november-2026-highlights-include-us-retail-sales-fomc-minutes-chinese-activity-data-pboc-lpr-rba-minutes-uk-inflation-and-uk-jobs",
+     "published": "2026-11-14",
+     "publisher": "Newsquawk",
+     "title": "Week in Focus 16-20 November 2026"
+    },
+    {
+     "url": "https://www.kiplinger.com/investing/economy/this-weeks-economic-calendar",
+     "published": "2026-11-14",
+     "publisher": "Kiplinger",
+     "title": "Economic Data This Week (November 16-20)"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "c2bb6509b3661418ecd1b2eeac5a2540129622d2",
+ "reviewed_unchanged": [
+  "lebanon_israel_hezbollah",
+  "myanmar_civil_war",
+  "pakistan_afghanistan",
+  "yemen_houthi_saudi"
+ ]
+}
