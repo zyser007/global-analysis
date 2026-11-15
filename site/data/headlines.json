@@ -1,8 +1,24 @@
 {
- "updated_at": "2026-11-14T13:10:52Z",
+ "updated_at": "2026-11-15T01:12:58Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "lebanon_israel_hezbollah",
+   "title_th": "อิสราเอลเพิ่มความรุนแรงการโจมตีทั่วภาคใต้ของเลบานอน",
+   "time": "2026-11-14T12:00:00Z",
+   "source": "https://english.globalarabnetwork.com/2026/11/14/israeli-military-intensifies-strikes-across-southern-lebanon/",
+   "source_name": "Global Arab Network"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนยิงโดรนเกือบ 1,200 ลำใส่รัสเซีย ขณะการเจรจาที่สหรัฐนำหารือกรอบความมั่นคงยุโรปที่กว้างขึ้น",
+   "time": "2026-11-14T09:00:00Z",
+   "source": "https://www.pbs.org/newshour/world/ukraine-fires-nearly-1200-drones-at-russia-as-u-s-led-talks-consider-wider-european-security",
+   "source_name": "PBS NewsHour"
+  },
+  {
+   "id": "h3",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เกิดระเบิดและไฟไหม้",
    "time": "2026-11-14T08:11:00Z",
@@ -10,7 +26,7 @@
    "source_name": "Gulf News"
   },
   {
-   "id": "h2",
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "กองทัพเรืออิหร่านเตือนเรือบรรทุกน้ำมันอย่าเข้าเขตหวงห้ามทางตะวันออกของฮอร์มุซ หลังมีเรือชนทุ่นระเบิด",
    "time": "2026-11-14T07:00:00Z",
@@ -18,7 +34,7 @@
    "source_name": "Arab News"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "iran_us_israel_war",
    "title_th": "Al Jazeera รายงานสดสงครามอิหร่าน: เรือบรรทุกน้ำมันลำที่ 5 ถูกรายงานว่าโดนโจมตีรอบฮอร์มุซใน 24 ชม.",
    "time": "2026-11-14T06:00:00Z",
@@ -26,15 +42,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีโรงไฟฟ้าและโครงข่ายพลังงานในเขตโอเดสซาอีกครั้ง ครัวเรือนเกือบ 50,000 แห่งไฟดับ",
-   "time": "2026-11-14T05:00:00Z",
-   "source": "https://glavnoe.in.ua/en/news-en/russia-strikes-energy-infrastructure-in-odesa-region-again-leaving-nearly-50000-households-without-power",
-   "source_name": "Glavnoe"
-  },
-  {
-   "id": "h5",
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "Wall Street ปิดลบวันศุกร์ S&P 500 −0.4% หุ้น AI ถูกเทขาย แต่ทั้งสัปดาห์ยังบวกราว 2.5%",
    "time": "2026-11-13T21:30:00Z",
@@ -42,7 +50,7 @@
    "source_name": "AP (WHDH)"
   },
   {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
    "time": "2026-11-13T18:00:00Z",
@@ -50,7 +58,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "world",
    "title_th": "ตุรกีและกาตาร์ลงนามข้อตกลงป้องกันร่วมกัน ย้ำท่าทีเป็นหนึ่งเดียวหากถูกโจมตี",
    "time": "2026-11-13T17:00:00Z",
@@ -58,31 +66,15 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตียูเครนหลายภูมิภาค เสียชีวิตอย่างน้อย 3 คน บาดเจ็บกว่า 20 คน หลังเซเลนสกีพบทูตสหรัฐ",
-   "time": "2026-11-13T15:00:00Z",
-   "source": "https://www.euronews.com/2026/11/13/at-least-three-killed-and-more-than-20-injured-in-russian-strikes-on-ukraine",
-   "source_name": "Euronews"
-  },
-  {
    "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC อ้างทำลายเรดาร์เตือนภัยของสหรัฐในบาห์เรน หลังเกิดโจมตีเมืองท่าซิริกใกล้ฮอร์มุซ ตึงเครียดพุ่ง",
-   "time": "2026-11-13T11:47:00Z",
-   "source": "https://www.rferl.org/a/iran-us-sirik-bahrain-war-nuclear-talks/33897951.html",
-   "source_name": "RFE/RL"
+   "conflict_id": "thailand",
+   "title_th": "อนุทินต้อนรับนายกรัฐมนตรีจีน หลี่ เฉียง ที่ทำเนียบรัฐบาล ในการเยือนไทยอย่างเป็นทางการ",
+   "time": "2026-11-13T10:00:00Z",
+   "source": "https://www.khaosodenglish.com/featured/2026/11/13/anutin-welcomes-chinese-premier-li-qiang-to-government-house/",
+   "source_name": "Khaosod English"
   },
   {
    "id": "h10",
-   "conflict_id": "thailand",
-   "title_th": "อนุทินเตรียมต้อนรับนายกรัฐมนตรีจีน หลี่ เฉียง เยือนไทยอย่างเป็นทางการ",
-   "time": "2026-11-13T10:00:00Z",
-   "source": "https://www.thaienquirer.com/76093/thai-enquirer-news-summary-november-13-2026/",
-   "source_name": "Thai Enquirer"
-  },
-  {
-   "id": "h11",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
@@ -90,7 +82,7 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h12",
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
    "time": "2026-11-12T08:00:00Z",
@@ -98,15 +90,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h13",
-   "conflict_id": "economy",
-   "title_th": "ส่วนเกินดุลการค้าจีนทะลุ 1 ล้านล้านดอลลาร์เป็นปีที่สองติดต่อกัน ส่งออกเดือนต.ค. พุ่ง 35% จากกระแส AI",
-   "time": "2026-11-10T08:00:00Z",
-   "source": "https://www.abc.net.au/news/2026-11-11/china-trade-surpasses-1-trillion-for-second-straight-year/107372090",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h14",
+   "id": "h12",
    "conflict_id": "disaster",
    "title_th": "เตือนน้ำทะเลหนุนสูงเจ้าพระยา 9-17 พ.ย. อาจท่วมพื้นที่ริมน้ำและคลองต่ำในกรุงเทพฯ ขณะภาคใต้ฝนตกหนัก",
    "time": "2026-11-08T05:00:00Z",
