@@ -1,48 +1,56 @@
 {
- "updated_at": "2026-11-15T13:10:35Z",
+ "updated_at": "2026-11-16T01:16:24Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "yemen_houthi_saudi",
-   "title_th": "กองกำลังพันธมิตรซาอุฯ ระบุสกัดขีปนาวุธ 2 ลูกที่ยิงไปริยาด ขณะรบในมารีบและอัล-เญาฟ์รุนแรง ผู้พลัดถิ่นเกิน 3.4 แสนคน",
-   "time": "2026-11-15T02:59:06Z",
-   "source": "https://www.aljazeera.com/news/2026/11/15/saudi-led-coalition-intercepts-two-missiles-two-drones-in-riyadh",
-   "source_name": "Al Jazeera"
+   "title_th": "ซาอุฯ ระบุสกัดขีปนาวุธฮูตี 2 ลูกที่ยิงมุ่งริยาด ขณะบาห์เรนออกเตือนภัย หลังอิหร่านอ้างโจมตีด้วยโดรน",
+   "time": "2026-11-16T01:00:00Z",
+   "source": "https://gulfnews.com/world/mena/middle-east-conflict-saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-as-bahrain-issues-threat-alert-1.500747797",
+   "source_name": "Gulf News"
   },
   {
    "id": "h2",
    "conflict_id": "iran_us_israel_war",
-   "title_th": "บาห์เรนระบุสกัดการโจมตีทางอากาศของอิหร่านได้ ขณะเตหะรานอ้างโจมตีฐานทัพสหรัฐ",
-   "time": "2026-11-15T00:30:00Z",
-   "source": "https://www.irishtimes.com/world/middle-east/2026/11/15/bahrain-intercepts-iranian-aerial-attacks-as-tehran-says-it-attacked-us-base/",
-   "source_name": "Irish Times"
+   "title_th": "อิหร่านขู่อาจโจมตีก่อน ไม่รอสหรัฐลงมือ รองรัฐมนตรีต่างประเทศชี้วอชิงตันอาจซื้อเวลาด้วยการเจรจา",
+   "time": "2026-11-16T00:30:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/16/iran-war-live-tehran-warns-it-may-strike-first-before-another-us-attack",
+   "source_name": "Al Jazeera"
   },
   {
    "id": "h3",
    "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านเตือนชาติอ่าวอย่าสนับสนุนสหรัฐ ประธานสภาขู่ขยายขอบเขตความขัดแย้งหากวอชิงตัน “ทำผิดพลาด”",
-   "time": "2026-11-15T00:00:08Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/15/iran-war-live-israel-vows-gaza-offensive-policy-despite-caretaker-status",
-   "source_name": "Al Jazeera"
+   "title_th": "รายงานระบุกองทัพสหรัฐเตรียมส่งเรือบรรทุกเครื่องบินลำที่ 3 ไปตะวันออกกลาง เสริมกำลังพล",
+   "time": "2026-11-16T00:00:00Z",
+   "source": "https://www.timesofisrael.com/liveblog-november-16-2026/",
+   "source_name": "The Times of Israel"
   },
   {
    "id": "h4",
-   "conflict_id": "lebanon_israel_hezbollah",
-   "title_th": "อิสราเอลเพิ่มความรุนแรงการโจมตีทั่วภาคใต้ของเลบานอน",
-   "time": "2026-11-14T12:00:00Z",
-   "source": "https://english.globalarabnetwork.com/2026/11/14/israeli-military-intensifies-strikes-across-southern-lebanon/",
-   "source_name": "Global Arab Network"
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีหนักในแคว้นโอเดสซา ยูเครนระบุเสียชีวิต 4 บาดเจ็บ 69 ในรอบวัน ใช้โดรนพิสัยไกล 132 ลำ",
+   "time": "2026-11-15T18:00:00Z",
+   "source": "https://kyivindependent.com/russia-launches-mass-attack-on-odesa-oblast-as-strikes-kill-4-injure-69-across-ukraine-over-past-day/",
+   "source_name": "Kyiv Independent"
   },
   {
    "id": "h5",
    "conflict_id": "ukraine_russia",
-   "title_th": "ยูเครนยิงโดรนเกือบ 1,200 ลำใส่รัสเซีย ขณะการเจรจาที่สหรัฐนำหารือกรอบความมั่นคงยุโรปที่กว้างขึ้น",
-   "time": "2026-11-14T09:00:00Z",
-   "source": "https://www.pbs.org/newshour/world/ukraine-fires-nearly-1200-drones-at-russia-as-u-s-led-talks-consider-wider-european-security",
-   "source_name": "PBS NewsHour"
+   "title_th": "ยูเครนโจมตีโรงงานปิโตรเคมีและโรงกลั่นน้ำมันใหญ่ 2 แห่งในตาตาร์สถาน รวมโรงงานเฮลิคอปเตอร์ของรัสเซีย",
+   "time": "2026-11-15T09:00:00Z",
+   "source": "https://kyivindependent.com/fire-reported-at-industrial-facility-in-russias-tatarstan-amid-drone-attack/",
+   "source_name": "Kyiv Independent"
   },
   {
    "id": "h6",
+   "conflict_id": "thailand",
+   "title_th": "อนุทินนำคณะร่วมประชุมสุดยอดอาเซียนที่มะนิลา เสนอยุทธศาสตร์ 3 ข้อ เสริมการค้าและการลงทุนในภูมิภาค",
+   "time": "2026-11-15T06:00:00Z",
+   "source": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/11/15/anutin-pushes-three-point-asean-strategy-in-manila-to-boost-trade-and-investment",
+   "source_name": "The Star"
+  },
+  {
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เกิดระเบิดและไฟไหม้",
    "time": "2026-11-14T08:11:00Z",
@@ -50,7 +58,7 @@
    "source_name": "Gulf News"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "economy",
    "title_th": "Wall Street ปิดลบวันศุกร์ S&P 500 −0.4% หุ้น AI ถูกเทขาย แต่ทั้งสัปดาห์ยังบวกราว 2.5%",
    "time": "2026-11-13T21:30:00Z",
@@ -58,7 +66,7 @@
    "source_name": "AP (WHDH)"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
    "time": "2026-11-13T18:00:00Z",
@@ -66,7 +74,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "world",
    "title_th": "ตุรกีและกาตาร์ลงนามข้อตกลงป้องกันร่วมกัน ย้ำท่าทีเป็นหนึ่งเดียวหากถูกโจมตี",
    "time": "2026-11-13T17:00:00Z",
@@ -74,7 +82,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "thailand",
    "title_th": "อนุทินต้อนรับนายกรัฐมนตรีจีน หลี่ เฉียง ที่ทำเนียบรัฐบาล ในการเยือนไทยอย่างเป็นทางการ",
    "time": "2026-11-13T10:00:00Z",
@@ -82,20 +90,12 @@
    "source_name": "Khaosod English"
   },
   {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
    "source": "https://www.newarab.com/news/iran-touts-new-missile-city-israel-continues-bomb-gaza",
    "source_name": "The New Arab"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "การสู้รบในเยเมนรุนแรงขึ้น ฮูตีปฏิเสธว่าโจมตีเมกกะ ขณะซาอุดีอาระเบียระบุสกัดขีปนาวุธและโดรน",
-   "time": "2026-11-12T08:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/12/fighting-intensifies-in-yemen-as-houthis-deny-targeting-mecca",
-   "source_name": "Al Jazeera"
   }
  ]
 }
