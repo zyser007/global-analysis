@@ -1,8 +1,32 @@
 {
- "updated_at": "2026-11-16T01:16:24Z",
+ "updated_at": "2026-11-16T13:29:22Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC อ้างเรือบรรทุกน้ำมันอีก 2 ลำชนทุ่นระเบิดในฮอร์มุซ รวม 6 ลำใน 2 วัน หลังใช้เส้นทางที่อิหร่านไม่อนุญาต",
+   "time": "2026-11-16T10:00:00Z",
+   "source": "https://oilprice.com/Latest-Energy-News/World-News/Iran-Claims-Two-More-Oil-Tankers-Hit-Mines-in-Strait-of-Hormuz.html",
+   "source_name": "OilPrice.com"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Nikkei ร่วง 2.42% หลัง GDP ญี่ปุ่นไตรมาส 3 หดตัวเกินคาด ขณะหุ้นเอเชียส่วนใหญ่ปรับลง",
+   "time": "2026-11-16T06:30:00Z",
+   "source": "https://www.cnbc.com/2026/11/15/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "กองทัพเรืออิหร่านระบุเรือบรรทุกน้ำมันลุกไหม้หลังชนทุ่นระเบิดทางตะวันออกของช่องแคบฮอร์มุซ Reuters ยังตรวจสอบไม่ได้",
+   "time": "2026-11-16T03:00:00Z",
+   "source": "https://www.arabnews.com/middle-east/irans-navy-says-oil-tanker-on-fire-after-hitting-mine-east-of-hormuz-3012121",
+   "source_name": "Arab News"
+  },
+  {
+   "id": "h4",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ซาอุฯ ระบุสกัดขีปนาวุธฮูตี 2 ลูกที่ยิงมุ่งริยาด ขณะบาห์เรนออกเตือนภัย หลังอิหร่านอ้างโจมตีด้วยโดรน",
    "time": "2026-11-16T01:00:00Z",
@@ -10,7 +34,7 @@
    "source_name": "Gulf News"
   },
   {
-   "id": "h2",
+   "id": "h5",
    "conflict_id": "iran_us_israel_war",
    "title_th": "อิหร่านขู่อาจโจมตีก่อน ไม่รอสหรัฐลงมือ รองรัฐมนตรีต่างประเทศชี้วอชิงตันอาจซื้อเวลาด้วยการเจรจา",
    "time": "2026-11-16T00:30:00Z",
@@ -18,7 +42,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h3",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "รายงานระบุกองทัพสหรัฐเตรียมส่งเรือบรรทุกเครื่องบินลำที่ 3 ไปตะวันออกกลาง เสริมกำลังพล",
    "time": "2026-11-16T00:00:00Z",
@@ -26,7 +50,7 @@
    "source_name": "The Times of Israel"
   },
   {
-   "id": "h4",
+   "id": "h7",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีหนักในแคว้นโอเดสซา ยูเครนระบุเสียชีวิต 4 บาดเจ็บ 69 ในรอบวัน ใช้โดรนพิสัยไกล 132 ลำ",
    "time": "2026-11-15T18:00:00Z",
@@ -34,7 +58,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h5",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนโจมตีโรงงานปิโตรเคมีและโรงกลั่นน้ำมันใหญ่ 2 แห่งในตาตาร์สถาน รวมโรงงานเฮลิคอปเตอร์ของรัสเซีย",
    "time": "2026-11-15T09:00:00Z",
@@ -42,7 +66,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h6",
+   "id": "h9",
    "conflict_id": "thailand",
    "title_th": "อนุทินนำคณะร่วมประชุมสุดยอดอาเซียนที่มะนิลา เสนอยุทธศาสตร์ 3 ข้อ เสริมการค้าและการลงทุนในภูมิภาค",
    "time": "2026-11-15T06:00:00Z",
@@ -50,15 +74,7 @@
    "source_name": "The Star"
   },
   {
-   "id": "h7",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดในช่องแคบฮอร์มุซ เกิดระเบิดและไฟไหม้",
-   "time": "2026-11-14T08:11:00Z",
-   "source": "https://gulfnews.com/world/mena/iran-guards-say-two-oil-tankers-hit-by-mines-in-hormuz-1.500746966",
-   "source_name": "Gulf News"
-  },
-  {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "economy",
    "title_th": "Wall Street ปิดลบวันศุกร์ S&P 500 −0.4% หุ้น AI ถูกเทขาย แต่ทั้งสัปดาห์ยังบวกราว 2.5%",
    "time": "2026-11-13T21:30:00Z",
@@ -66,7 +82,7 @@
    "source_name": "AP (WHDH)"
   },
   {
-   "id": "h9",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
    "time": "2026-11-13T18:00:00Z",
@@ -74,7 +90,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h10",
+   "id": "h12",
    "conflict_id": "world",
    "title_th": "ตุรกีและกาตาร์ลงนามข้อตกลงป้องกันร่วมกัน ย้ำท่าทีเป็นหนึ่งเดียวหากถูกโจมตี",
    "time": "2026-11-13T17:00:00Z",
@@ -82,15 +98,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h11",
-   "conflict_id": "thailand",
-   "title_th": "อนุทินต้อนรับนายกรัฐมนตรีจีน หลี่ เฉียง ที่ทำเนียบรัฐบาล ในการเยือนไทยอย่างเป็นทางการ",
-   "time": "2026-11-13T10:00:00Z",
-   "source": "https://www.khaosodenglish.com/featured/2026/11/13/anutin-welcomes-chinese-premier-li-qiang-to-government-house/",
-   "source_name": "Khaosod English"
-  },
-  {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีกาซาหนักขึ้น ผู้เสียชีวิตอย่างน้อย 9 คน รวมอย่างน้อย 6 คนจากการโจมตีที่ศูนย์การแพทย์นาสเซอร์",
    "time": "2026-11-12T10:00:00Z",
