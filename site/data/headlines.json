@@ -1,16 +1,72 @@
 {
- "updated_at": "2026-11-17T01:14:58Z",
+ "updated_at": "2026-11-17T13:13:10Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "iran_us_israel_war",
-   "title_th": "กองทัพเรืออิหร่านระบุเรือบรรทุกน้ำมันลำที่ 4 ในรอบ 24 ชม. ชนทุ่นระเบิดทางตะวันออกของฮอร์มุซ",
-   "time": "2026-11-16T22:00:00Z",
-   "source": "http://www.jpost.com/middle-east/iran-news/article-915102",
-   "source_name": "The Jerusalem Post"
+   "title_th": "ทรัมป์ระบุสหรัฐกำลังตรวจสอบข่าวกรองว่าอิหร่านอาจวางแผนโจมตีวอชิงตันด้วยระเบิดสกปรก",
+   "time": "2026-11-17T10:00:00Z",
+   "source": "https://www.bloomberg.com/news/articles/2026-11-17/trump-says-us-looking-into-any-iran-attack-plan-for-washington",
+   "source_name": "Bloomberg"
   },
   {
    "id": "h2",
+   "conflict_id": "thailand",
+   "title_th": "SET ปิดวันนี้ลง 1.66% ที่ 1,474.68 จุด ตามแรงขายหุ้นเอเชียและความกังวลตลาดสหรัฐ",
+   "time": "2026-11-17T09:30:00Z",
+   "source": "https://www.thaienquirer.com/76190/thai-enquirer-news-summary-november-17-2026/",
+   "source_name": "Thai Enquirer"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์เตรียมหารือสงครามอิหร่านกับสีจิ้นผิงและปูติน ระหว่างเดินทางเยือนเอเชียสัปดาห์นี้",
+   "time": "2026-11-17T09:00:00Z",
+   "source": "https://www.thenationalnews.com/news/mena/2026/11/17/trump-to-discuss-iran-war-with-xi-and-putin-as-he-begins-asia-trip/",
+   "source_name": "The National"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนโจมตีสะพานเคิร์ชสู่ไครเมียเป็นคืนที่สอง ทำให้สะพานปิดใช้งาน เซเลนสกีเรียกปฏิบัติการไม่เคยมีมาก่อน",
+   "time": "2026-11-17T08:00:00Z",
+   "source": "https://www.cbsnews.com/news/ukraine-war-russia-crimea-kerch-bridge-kyiv/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียยิงขีปนาวุธใส่สะพานในเคียฟและโจมตีทั่วยูเครน ไฟดับในเมืองหลวง มอสโกอ้างสกัดโดรนกว่า 2,000 ลำ",
+   "time": "2026-11-17T07:00:00Z",
+   "source": "https://www.npr.org/2026/11/17/g-s1-153946/russia-ukraine-war",
+   "source_name": "NPR"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "วิเคราะห์: สงครามสหรัฐ-อิสราเอลกับอิหร่านกำลังกลายเป็นความขัดแย้งแช่แข็งหรือไม่ ขณะทรัมป์ไม่รีบหาข้อตกลง",
+   "time": "2026-11-17T06:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/17/is-the-us-israel-war-on-iran-turning-into-a-frozen-conflict",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h7",
+   "conflict_id": "economy",
+   "title_th": "หุ้นสหรัฐเตรียมรับสัปดาห์ชี้ชะตา AI: Nvidia รายงานผลวันอังคาร และ Anthropic เตรียมเข้าตลาด หลัง Nasdaq ร่วงเกิน 2%",
+   "time": "2026-11-17T04:00:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h8",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "กองทัพเรืออิหร่านระบุเรือบรรทุกน้ำมันลำที่ 4 ในรอบ 24 ชม. ชนทุ่นระเบิดทางตะวันออกของฮอร์มุซ",
+   "time": "2026-11-16T22:00:00Z",
+   "source": "https://www.yahoo.com/news/world/articles/iran-reports-fourth-tanker-damaged-004848151.html",
+   "source_name": "Yahoo News (dpa)"
+  },
+  {
+   "id": "h9",
    "conflict_id": "economy",
    "title_th": "Wall Street ร่วงหนักวันจันทร์ S&P 500 −1.9% Nasdaq −2.5% ก่อน Nvidia รายงานผลและ Anthropic เข้าตลาด VIX พุ่ง 19%",
    "time": "2026-11-16T21:30:00Z",
@@ -18,7 +74,7 @@
    "source_name": "CNN"
   },
   {
-   "id": "h3",
+   "id": "h10",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียระบุสกัดโดรนยูเครน 1,336 ลำ มากที่สุดนับตั้งแต่เริ่มสงครามเต็มรูปแบบ",
    "time": "2026-11-16T15:20:00Z",
@@ -26,7 +82,7 @@
    "source_name": "PBS NewsHour (AP)"
   },
   {
-   "id": "h4",
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกคืบชายฝั่งใต้เยเมนมุ่งหน้าเอเดน ซาอุฯ ปลดผู้บัญชาการและปรับโครงสร้างผู้นำทหาร",
    "time": "2026-11-16T14:00:00Z",
@@ -34,15 +90,7 @@
    "source_name": "The New Arab"
   },
   {
-   "id": "h5",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC อ้างเรือบรรทุกน้ำมันอีก 2 ลำชนทุ่นระเบิดในฮอร์มุซ รวม 6 ลำใน 2 วัน หลังใช้เส้นทางที่อิหร่านไม่อนุญาต",
-   "time": "2026-11-16T10:00:00Z",
-   "source": "https://oilprice.com/Latest-Energy-News/World-News/Iran-Claims-Two-More-Oil-Tankers-Hit-Mines-in-Strait-of-Hormuz.html",
-   "source_name": "OilPrice.com"
-  },
-  {
-   "id": "h6",
+   "id": "h12",
    "conflict_id": "iran_us_israel_war",
    "title_th": "UKMTO ระบุเรือบรรทุกน้ำมัน 2 ลำเกิดไฟไหม้ห้องเครื่องในฮอร์มุซ ขณะเรือบรรทุกเครื่องบินสหรัฐลำที่ 3 เดินทางถึงตะวันออกกลาง",
    "time": "2026-11-16T08:43:00Z",
@@ -50,60 +98,12 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h7",
-   "conflict_id": "economy",
-   "title_th": "Nikkei ร่วง 2.42% หลัง GDP ญี่ปุ่นไตรมาส 3 หดตัวเกินคาด ขณะหุ้นเอเชียส่วนใหญ่ปรับลง",
-   "time": "2026-11-16T06:30:00Z",
-   "source": "https://www.cnbc.com/2026/11/15/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h8",
+   "id": "h13",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ซาอุฯ ระบุสกัดขีปนาวุธฮูตี 2 ลูกที่ยิงมุ่งริยาด ขณะบาห์เรนออกเตือนภัย หลังอิหร่านอ้างโจมตีด้วยโดรน",
    "time": "2026-11-16T01:00:00Z",
    "source": "https://gulfnews.com/world/mena/middle-east-conflict-saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-as-bahrain-issues-threat-alert-1.500747797",
    "source_name": "Gulf News"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านขู่อาจโจมตีก่อน ไม่รอสหรัฐลงมือ รองรัฐมนตรีต่างประเทศชี้วอชิงตันอาจซื้อเวลาด้วยการเจรจา",
-   "time": "2026-11-16T00:30:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/16/iran-war-live-tehran-warns-it-may-strike-first-before-another-us-attack",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีหนักในแคว้นโอเดสซา ยูเครนระบุเสียชีวิต 4 บาดเจ็บ 69 ในรอบวัน ใช้โดรนพิสัยไกล 132 ลำ",
-   "time": "2026-11-15T18:00:00Z",
-   "source": "https://kyivindependent.com/russia-launches-mass-attack-on-odesa-oblast-as-strikes-kill-4-injure-69-across-ukraine-over-past-day/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "thailand",
-   "title_th": "อนุทินนำคณะร่วมประชุมสุดยอดอาเซียนที่มะนิลา เสนอยุทธศาสตร์ 3 ข้อ เสริมการค้าและการลงทุนในภูมิภาค",
-   "time": "2026-11-15T06:00:00Z",
-   "source": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/11/15/anutin-pushes-three-point-asean-strategy-in-manila-to-boost-trade-and-investment",
-   "source_name": "The Star"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์ระบุสหรัฐไม่จำเป็นต้องมีข้อตกลงกับอิหร่าน ชี้กลยุทธ์รอและคงสถานการณ์ไว้",
-   "time": "2026-11-13T18:00:00Z",
-   "source": "https://www.abc.net.au/news/2026-11-13/trump-says-us-does-not-need-iran-deal/107380892",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "world",
-   "title_th": "ตุรกีและกาตาร์ลงนามข้อตกลงป้องกันร่วมกัน ย้ำท่าทีเป็นหนึ่งเดียวหากถูกโจมตี",
-   "time": "2026-11-13T17:00:00Z",
-   "source": "https://aljazeera.com/news/2026/11/13/turkiye-and-qatar-sign-mutual-defence-agreement",
-   "source_name": "Al Jazeera"
   }
  ]
 }
