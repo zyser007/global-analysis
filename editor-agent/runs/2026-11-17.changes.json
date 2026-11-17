@@ -1,0 +1,223 @@
+{
+ "date": "2026-11-17",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุเรือบรรทุกน้ำมัน 16 พ.ย. และการเสริมกำลังสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.euronews.com/2026/11/16/us-and-iran-slide-closer-to-fresh-all-out-war-as-new-exchange-of-fire-increases",
+     "published": "2026-11-16",
+     "publisher": "Euronews",
+     "title": "US and Iran slide closer to fresh all-out war"
+    },
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-tanker-attacked-strait-hormuz-ukmto/?id=138171071&entryId=138171210",
+     "published": "2026-11-16",
+     "publisher": "ABC News",
+     "title": "Iran live updates: Tankers attacked in Strait of Hormuz, UKMTO says"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุ 16 พ.ย.",
+   "sources": [
+    {
+     "url": "https://oilprice.com/Latest-Energy-News/World-News/Iran-Claims-Two-More-Oil-Tankers-Hit-Mines-in-Strait-of-Hormuz.html",
+     "published": "2026-11-16",
+     "publisher": "OilPrice.com",
+     "title": "Iran Claims Two More Oil Tankers Hit Mines in Strait of Hormuz"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/16/us-and-iran-slide-closer-to-fresh-all-out-war-as-new-exchange-of-fire-increases",
+     "published": "2026-11-16",
+     "publisher": "Euronews",
+     "title": "US and Iran slide closer"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตี 15–16 พ.ย. และมาตรการคว่ำบาตรอียู",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/16/russian-attacks-kill-three-in-ukraine-eu-accuses-moscow-of-prolonging-war",
+     "published": "2026-11-16",
+     "publisher": "Al Jazeera",
+     "title": "Russian attacks kill three in Ukraine, EU accuses Moscow of prolonging war"
+    },
+    {
+     "url": "https://abcnews.com/International/ukraine-fires-1336-drones-russia-wars-largest-attacks/story?id=138171397",
+     "published": "2026-11-16",
+     "publisher": "ABC News",
+     "title": "Ukraine fires 1,336 drones into Russia"
+    },
+    {
+     "url": "https://kyivindependent.com/ukraine-war-latest-russia-launches-mass-attack-on-odesa-oblast-as-ukraine-strikes-airfield-drone-launch-site-in-russia/",
+     "published": "2026-11-15",
+     "publisher": "Kyiv Independent",
+     "title": "Russia launches mass attack on Odesa Oblast"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "JPN"
+   ],
+   "fields": [
+    "note_th",
+    "gdp_growth_2026"
+   ],
+   "summary_th": "GDP Q3 ญี่ปุ่นหดตัว",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/16/japan-q3-gdp-energy-oil-prices.html",
+     "published": "2026-11-16",
+     "publisher": "CNBC",
+     "title": "Japan's economy contracts, third quarter GDP misses expectations"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "ฮูตีรุกใกล้เอเดน ซาอุฯ เปลี่ยนผู้บัญชาการ",
+   "sources": [
+    {
+     "url": "https://www.al-monitor.com/originals/2026/11/yemens-saudi-backed-forces-retreat-defend-aden-houthis-advance-what-know",
+     "published": "2026-11-16",
+     "publisher": "Al-Monitor",
+     "title": "Yemen's Saudi-backed forces retreat to defend Aden as Houthis advance"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/16/saudi-arabia-dismisses-commander-of-coalition-forces-fighting-houthis",
+     "published": "2026-11-16",
+     "publisher": "Al Jazeera",
+     "title": "Saudi Arabia dismisses commander of coalition forces fighting Houthis"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "บับ อัล-มันดับ / ทะเลแดง"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตแนวรบ",
+   "sources": [
+    {
+     "url": "https://www.al-monitor.com/originals/2026/11/yemens-saudi-backed-forces-retreat-defend-aden-houthis-advance-what-know",
+     "published": "2026-11-16",
+     "publisher": "Al-Monitor",
+     "title": "Yemen's Saudi-backed forces retreat to defend Aden as Houthis advance"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/16/saudi-arabia-dismisses-commander-of-coalition-forces-fighting-houthis",
+     "published": "2026-11-16",
+     "publisher": "Al Jazeera",
+     "title": "Saudi Arabia dismisses commander of coalition forces fighting Houthis"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "กองทัพยึดอัล-คูเวย์",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/14/how-saf-successes-in-sudans-kordofan-could-turn-tide-against-the-rsf",
+     "published": "2026-11-14",
+     "publisher": "Al Jazeera",
+     "title": "How SAF successes in Sudan's Kordofan could turn tide against the RSF"
+    },
+    {
+     "url": "https://www.aa.com.tr/en/middle-east/sudanese-army-downs-4th-drone-in-week-as-troops-advance-against-rsf-in-west-kordofan/4116366",
+     "published": "2026-11-15",
+     "publisher": "Anadolu Agency",
+     "title": "Sudanese army downs 4th drone in week"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "ราคาทองไทยปิดตลาด 16 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.thairath.co.th/news/society/2972863",
+     "published": "2026-11-16",
+     "publisher": "Thairath",
+     "title": "อัปเดตราคาทองวันนี้ 16 พ.ย. 69 ปิดตลาดลด 400 บาท"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721217/",
+     "published": "2026-11-16",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 16 พ.ย. ปิดตลาดร่วงลง 400 บาท"
+    }
+   ],
+   "confidence": "high"
+  }
+ ],
+ "base_commit": "4a6d491eb70fdeb2f88fe9933048969ccbd14dc2",
+ "reviewed_unchanged": [
+  "gaza_israel",
+  "lebanon_israel_hezbollah"
+ ]
+}
