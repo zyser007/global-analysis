@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-16T23:12:05Z",
- "checked": "2026-11-16T23:12:05Z",
+ "updated": "2026-11-17T00:35:48Z",
+ "checked": "2026-11-17T00:35:48Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-16T23:12:05Z",
+   "fetched": "2026-11-17T00:35:48Z",
    "count": 5,
-   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-02&toDate=2026-11-17&pagesize=100&pagenumber=1"
+   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-03&toDate=2026-11-18&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-16T23:12:05Z",
+   "fetched": "2026-11-17T00:35:48Z",
    "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -31,7 +31,7 @@
    "lon": 86.7,
    "start": "2026-11-16T18:00:00Z",
    "end": "2026-11-16T18:00:00Z",
-   "updated": "2026-11-16T22:50:41Z",
+   "updated": "2026-11-17T00:05:40Z",
    "alert_level": "orange",
    "severity_th": "ลมสูงสุด 93 กม./ชม.",
    "severity_value": 92.59,
@@ -195,7 +195,7 @@
    "lon": 131.4868,
    "start": "2026-11-16T21:11:20Z",
    "end": "2026-11-16T21:11:20Z",
-   "updated": "2026-11-16T22:44:35Z",
+   "updated": "2026-11-16T23:18:03Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.6 ลึก 68 กม.",
    "severity_value": 6.6,
