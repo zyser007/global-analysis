@@ -1,8 +1,48 @@
 {
- "updated_at": "2026-11-17T13:13:10Z",
+ "updated_at": "2026-11-18T01:14:12Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "Nvidia รายงานกำไรไตรมาสสูงกว่าคาด หุ้นชิปและกลุ่มคลาวด์ AI ปรับขึ้นหลังตลาดปิด",
+   "time": "2026-11-17T21:30:00Z",
+   "source": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434",
+   "source_name": "Investing.com"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "สหรัฐโจมตีเกาะเกชม์ของอิหร่านในช่องแคบฮอร์มุซ ตามคำระบุของเจ้าหน้าที่อิหร่าน",
+   "time": "2026-11-17T14:00:00Z",
+   "source": "https://www.arabnews.com/middle-east/us-attacks-irans-qeshm-island-in-strait-of-hormuz-official-3012499",
+   "source_name": "Arab News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "รัฐมนตรีต่างประเทศอิหร่านและโอมานหารือความมั่นคงฮอร์มุซ ขณะการโจมตีเรือบรรทุกน้ำมันเพิ่มขึ้น",
+   "time": "2026-11-17T13:00:00Z",
+   "source": "https://oilprice.com/Latest-Energy-News/World-News/Iran-and-Oman-Hold-Talks-on-Strait-of-Hormuz-Security-as-Tanker-Attacks-Surge.html",
+   "source_name": "OilPrice.com"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "ฮูตีรุกใกล้เอเดน กลุ่มแบ่งแยกดินแดนใต้เยเมนฟื้นบทบาท ขณะซาอุฯ ปรับโครงสร้างกองบัญชาการ",
+   "time": "2026-11-17T11:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/17/houthi-advance-on-aden-sparks-resurgence-of-yemens-southern-separatists",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "world",
+   "title_th": "ทรัมป์เดินทางถึงเอเชีย เตรียมพบสีจิ้นผิงและปูตินที่เซินเจิ้น พร้อมหารือประเด็นอิหร่าน",
+   "time": "2026-11-17T10:30:00Z",
+   "source": "https://www.cnbc.com/2026/11/17/trump-iran-asia-trip-china.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐกำลังตรวจสอบข่าวกรองว่าอิหร่านอาจวางแผนโจมตีวอชิงตันด้วยระเบิดสกปรก",
    "time": "2026-11-17T10:00:00Z",
@@ -10,7 +50,7 @@
    "source_name": "Bloomberg"
   },
   {
-   "id": "h2",
+   "id": "h7",
    "conflict_id": "thailand",
    "title_th": "SET ปิดวันนี้ลง 1.66% ที่ 1,474.68 จุด ตามแรงขายหุ้นเอเชียและความกังวลตลาดสหรัฐ",
    "time": "2026-11-17T09:30:00Z",
@@ -18,15 +58,7 @@
    "source_name": "Thai Enquirer"
   },
   {
-   "id": "h3",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์เตรียมหารือสงครามอิหร่านกับสีจิ้นผิงและปูติน ระหว่างเดินทางเยือนเอเชียสัปดาห์นี้",
-   "time": "2026-11-17T09:00:00Z",
-   "source": "https://www.thenationalnews.com/news/mena/2026/11/17/trump-to-discuss-iran-war-with-xi-and-putin-as-he-begins-asia-trip/",
-   "source_name": "The National"
-  },
-  {
-   "id": "h4",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนโจมตีสะพานเคิร์ชสู่ไครเมียเป็นคืนที่สอง ทำให้สะพานปิดใช้งาน เซเลนสกีเรียกปฏิบัติการไม่เคยมีมาก่อน",
    "time": "2026-11-17T08:00:00Z",
@@ -34,7 +66,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียยิงขีปนาวุธใส่สะพานในเคียฟและโจมตีทั่วยูเครน ไฟดับในเมืองหลวง มอสโกอ้างสกัดโดรนกว่า 2,000 ลำ",
    "time": "2026-11-17T07:00:00Z",
@@ -42,23 +74,7 @@
    "source_name": "NPR"
   },
   {
-   "id": "h6",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "วิเคราะห์: สงครามสหรัฐ-อิสราเอลกับอิหร่านกำลังกลายเป็นความขัดแย้งแช่แข็งหรือไม่ ขณะทรัมป์ไม่รีบหาข้อตกลง",
-   "time": "2026-11-17T06:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/17/is-the-us-israel-war-on-iran-turning-into-a-frozen-conflict",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "economy",
-   "title_th": "หุ้นสหรัฐเตรียมรับสัปดาห์ชี้ชะตา AI: Nvidia รายงานผลวันอังคาร และ Anthropic เตรียมเข้าตลาด หลัง Nasdaq ร่วงเกิน 2%",
-   "time": "2026-11-17T04:00:00Z",
-   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html",
-   "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "กองทัพเรืออิหร่านระบุเรือบรรทุกน้ำมันลำที่ 4 ในรอบ 24 ชม. ชนทุ่นระเบิดทางตะวันออกของฮอร์มุซ",
    "time": "2026-11-16T22:00:00Z",
@@ -66,7 +82,7 @@
    "source_name": "Yahoo News (dpa)"
   },
   {
-   "id": "h9",
+   "id": "h11",
    "conflict_id": "economy",
    "title_th": "Wall Street ร่วงหนักวันจันทร์ S&P 500 −1.9% Nasdaq −2.5% ก่อน Nvidia รายงานผลและ Anthropic เข้าตลาด VIX พุ่ง 19%",
    "time": "2026-11-16T21:30:00Z",
@@ -74,36 +90,20 @@
    "source_name": "CNN"
   },
   {
-   "id": "h10",
+   "id": "h12",
+   "conflict_id": "lebanon_israel_hezbollah",
+   "title_th": "อิสราเอลโจมตีทางตะวันออกของเลบานอน อ้างเป้าหมายคลังอาวุธของฮิซบอลเลาะห์",
+   "time": "2026-11-16T18:00:00Z",
+   "source": "https://english.alarabiya.net/amp/News/middle-east/2026/11/16/israel-strikes-east-lebanon-says-targeting-hezbollah-arms",
+   "source_name": "Al Arabiya"
+  },
+  {
+   "id": "h13",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียระบุสกัดโดรนยูเครน 1,336 ลำ มากที่สุดนับตั้งแต่เริ่มสงครามเต็มรูปแบบ",
    "time": "2026-11-16T15:20:00Z",
    "source": "https://www.pbs.org/newshour/world/russia-says-its-defenses-intercepted-over-1300-ukrainian-drones-in-a-major-attack",
    "source_name": "PBS NewsHour (AP)"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ฮูตีรุกคืบชายฝั่งใต้เยเมนมุ่งหน้าเอเดน ซาอุฯ ปลดผู้บัญชาการและปรับโครงสร้างผู้นำทหาร",
-   "time": "2026-11-16T14:00:00Z",
-   "source": "https://www.newarab.com/news/houthis-seize-ground-yemen-israeli-strikes-target-lebanon",
-   "source_name": "The New Arab"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "UKMTO ระบุเรือบรรทุกน้ำมัน 2 ลำเกิดไฟไหม้ห้องเครื่องในฮอร์มุซ ขณะเรือบรรทุกเครื่องบินสหรัฐลำที่ 3 เดินทางถึงตะวันออกกลาง",
-   "time": "2026-11-16T08:43:00Z",
-   "source": "https://abcnews.com/International/live-updates/iran-live-updates-tanker-attacked-strait-hormuz-ukmto/?id=138171071",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ซาอุฯ ระบุสกัดขีปนาวุธฮูตี 2 ลูกที่ยิงมุ่งริยาด ขณะบาห์เรนออกเตือนภัย หลังอิหร่านอ้างโจมตีด้วยโดรน",
-   "time": "2026-11-16T01:00:00Z",
-   "source": "https://gulfnews.com/world/mena/middle-east-conflict-saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-as-bahrain-issues-threat-alert-1.500747797",
-   "source_name": "Gulf News"
   }
  ]
 }
