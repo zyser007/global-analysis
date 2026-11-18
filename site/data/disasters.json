@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-17T23:13:25Z",
- "checked": "2026-11-17T23:13:25Z",
+ "updated": "2026-11-18T00:36:12Z",
+ "checked": "2026-11-18T00:36:12Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-17T23:13:25Z",
+   "fetched": "2026-11-18T00:36:12Z",
    "count": 5,
-   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-03&toDate=2026-11-18&pagesize=100&pagenumber=1"
+   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-04&toDate=2026-11-19&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-17T23:13:25Z",
+   "fetched": "2026-11-18T00:36:12Z",
    "count": 1,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -186,11 +186,11 @@
    "countries": [
     "Indonesia"
    ],
-   "lat": -6.0804,
+   "lat": -6.0602,
    "lon": 131.4868,
    "start": "2026-11-16T21:11:20Z",
    "end": "2026-11-16T21:11:20Z",
-   "updated": "2026-11-17T21:18:55Z",
+   "updated": "2026-11-18T00:35:05Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.6 ลึก 68 กม.",
    "severity_value": 6.6,
