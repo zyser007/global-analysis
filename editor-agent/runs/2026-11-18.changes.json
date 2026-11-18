@@ -1,0 +1,449 @@
+{
+ "date": "2026-11-18",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 17 พ.ย.: ยูเครนโจมตีสะพานเคิร์ช รัสเซียตอบโต้ด้วยขีปนาวุธใส่สะพานในเคียฟ ก่อนการพบทรัมป์–ปูติน–สี 19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.npr.org/2026/11/17/g-s1-153946/russia-ukraine-war",
+     "published": "2026-11-17",
+     "publisher": "NPR/AP",
+     "title": "Ukraine strikes major Russian bridge"
+    },
+    {
+     "url": "https://abcnews.com/International/ukraine-attacks-crimean-bridge-2nd-consecutive-night-officials/story?id=138201512",
+     "published": "2026-11-17",
+     "publisher": "ABC News",
+     "title": "Ukraine launches unprecedented strike on Crimean bridge"
+    },
+    {
+     "url": "https://www.military.com/ukraine-strikes-section-of-russias-crimean-bridge-two-days-before-putin-meets-trump-xi",
+     "published": "2026-11-17",
+     "publisher": "Military.com",
+     "title": "Kerch Bridge road span"
+    },
+    {
+     "url": "https://www.cnn.com/2026/11/17/europe/ukraine-russia-kerch-bridge-intl-hnk",
+     "published": "2026-11-17",
+     "publisher": "CNN",
+     "title": "Ukraine strike collapses section of bridge"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 17 พ.ย.: ยิงตอบโต้สหรัฐ–อิหร่านเมืองเกชม์/บาห์เรน โอมานหารือ ไม่มีข้อตกลง",
+   "sources": [
+    {
+     "url": "https://www.cbc.ca/news/world/iran-us-war-bahrain-drones-dirty-bomb-report-9.7424686",
+     "published": "2026-11-17",
+     "publisher": "CBC/Reuters",
+     "title": "Iran and U.S. trade fire"
+    },
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-tanker-attacked-strait-hormuz-ukmto/?id=138171071",
+     "published": "2026-11-17",
+     "publisher": "ABC News",
+     "title": "Iran live updates"
+    },
+    {
+     "url": "https://www.thenationalnews.com/news/mena/2026/11/17/iran-will-pay-a-price-if-dirty-bomb-is-detonated-in-us/",
+     "published": "2026-11-17",
+     "publisher": "The National",
+     "title": "Iran will pay a price"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีเรือ 17 พ.ย. และปริมาณผ่านช่องแคบ",
+   "sources": [
+    {
+     "url": "https://www.cbc.ca/news/world/iran-us-war-bahrain-drones-dirty-bomb-report-9.7424686",
+     "published": "2026-11-17",
+     "publisher": "CBC/Reuters",
+     "title": "Iran and U.S. trade fire"
+    },
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-tanker-attacked-strait-hormuz-ukmto/?id=138171071",
+     "published": "2026-11-17",
+     "publisher": "ABC News",
+     "title": "Iran live updates"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 17 พ.ย.: เสริมกำลังป้องกันเอเดน ร่างกฎหมายระบุฮูตีเป็นองค์กรก่อการร้าย",
+   "sources": [
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-17/saudi-backed-forces-in-yemen-beef-up-defenses-outside-aden-to-thwart-houthis-and-other-mideast-news",
+     "published": "2026-11-17",
+     "publisher": "AP",
+     "title": "Saudi-backed forces bolster defenses near Aden"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/17/yemen-army-reports-661-attacks-on-houthis-amid-houthi-push-towards-aden",
+     "published": "2026-11-17",
+     "publisher": "Al Jazeera",
+     "title": "Yemeni army reports 661 attacks"
+    },
+    {
+     "url": "https://www.middleeastmonitor.com/20261117-saudi-king-replaces-coalition-commander-as-houthis-advance-toward-yemens-aden/",
+     "published": "2026-11-17",
+     "publisher": "Middle East Monitor",
+     "title": "Saudi King replaces coalition commander"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดต 16–17 พ.ย.: กองทัพรุกเวสต์คอร์โดฟาน",
+   "sources": [
+    {
+     "url": "https://www.sudanspost.com/territorial-control-map-sudan-conflict-as-of-november-17-2026/",
+     "published": "2026-11-17",
+     "publisher": "Sudans Post",
+     "title": "Territorial Control Map Nov 17"
+    },
+    {
+     "url": "https://www.middleeastmonitor.com/20261116-sudanese-army-says-it-seized-5-areas-from-rsf-in-west-kordofan/",
+     "published": "2026-11-16",
+     "publisher": "Middle East Monitor/Anadolu",
+     "title": "Sudanese army seizes 5 areas"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองไทยและ spot ปิด 17 พ.ย. และผลยอดค้าปลีกสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.bangkokbiznews.com/news/news-update/1261182",
+     "published": "2026-11-17",
+     "publisher": "Bangkok Biz News",
+     "title": "ราคาทองวันนี้ (17 พ.ย. 69) ปิดตลาด"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721651/",
+     "published": "2026-11-17",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 17 พ.ย. ปิดตลาด"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-17/gold-struggles-near-one-year-lows-silver-rebounds-stocks-slide-fed-hike",
+     "published": "2026-11-17",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near one-year lows"
+    },
+    {
+     "url": "https://www.census.gov/retail/sales.html",
+     "published": "2026-11-17",
+     "publisher": "US Census Bureau",
+     "title": "Advance Monthly Retail Trade Oct 2026"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "year_low"
+   ],
+   "fields": [
+    "year_low"
+   ],
+   "summary_th": "อัปเดตราคาทองไทยและ spot ปิด 17 พ.ย. และผลยอดค้าปลีกสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.bangkokbiznews.com/news/news-update/1261182",
+     "published": "2026-11-17",
+     "publisher": "Bangkok Biz News",
+     "title": "ราคาทองวันนี้ (17 พ.ย. 69) ปิดตลาด"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721651/",
+     "published": "2026-11-17",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 17 พ.ย. ปิดตลาด"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-17/gold-struggles-near-one-year-lows-silver-rebounds-stocks-slide-fed-hike",
+     "published": "2026-11-17",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near one-year lows"
+    },
+    {
+     "url": "https://www.census.gov/retail/sales.html",
+     "published": "2026-11-17",
+     "publisher": "US Census Bureau",
+     "title": "Advance Monthly Retail Trade Oct 2026"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.year_low",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองไทยและ spot ปิด 17 พ.ย. และผลยอดค้าปลีกสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.bangkokbiznews.com/news/news-update/1261182",
+     "published": "2026-11-17",
+     "publisher": "Bangkok Biz News",
+     "title": "ราคาทองวันนี้ (17 พ.ย. 69) ปิดตลาด"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721651/",
+     "published": "2026-11-17",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 17 พ.ย. ปิดตลาด"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-17/gold-struggles-near-one-year-lows-silver-rebounds-stocks-slide-fed-hike",
+     "published": "2026-11-17",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near one-year lows"
+    },
+    {
+     "url": "https://www.census.gov/retail/sales.html",
+     "published": "2026-11-17",
+     "publisher": "US Census Bureau",
+     "title": "Advance Monthly Retail Trade Oct 2026"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items"
+   ],
+   "summary_th": "อัปเดตราคาทองไทยและ spot ปิด 17 พ.ย. และผลยอดค้าปลีกสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.bangkokbiznews.com/news/news-update/1261182",
+     "published": "2026-11-17",
+     "publisher": "Bangkok Biz News",
+     "title": "ราคาทองวันนี้ (17 พ.ย. 69) ปิดตลาด"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721651/",
+     "published": "2026-11-17",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 17 พ.ย. ปิดตลาด"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-17/gold-struggles-near-one-year-lows-silver-rebounds-stocks-slide-fed-hike",
+     "published": "2026-11-17",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near one-year lows"
+    },
+    {
+     "url": "https://www.census.gov/retail/sales.html",
+     "published": "2026-11-17",
+     "publisher": "US Census Bureau",
+     "title": "Advance Monthly Retail Trade Oct 2026"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "CHN"
+   ],
+   "fields": [
+    "note_th",
+    "health"
+   ],
+   "summary_th": "เพิ่มตัวเลขกิจกรรมเศรษฐกิจ ต.ค. (NBS 16 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.business-standard.com/world-news/china-s-economy-slows-in-oct-as-factory-output-retail-sales-miss-forecasts-126111600592_1.html",
+     "published": "2026-11-16",
+     "publisher": "Reuters via Business Standard",
+     "title": "China's economy slows in Oct"
+    },
+    {
+     "url": "https://www.globaltimes.cn/page/202611/1374405.shtml",
+     "published": "2026-11-16",
+     "publisher": "Global Times (NBS data)",
+     "title": "China's economy generally stable in October"
+    },
+    {
+     "url": "https://www.intellinews.com/china-s-shoppers-shut-their-wallets-as-growth-wobbles-485263",
+     "published": "2026-11-16",
+     "publisher": "bne IntelliNews",
+     "title": "China's shoppers shut their wallets"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "THA"
+   ],
+   "fields": [
+    "gdp_growth_2026",
+    "gdp_growth_2027",
+    "note_th"
+   ],
+   "summary_th": "อัปเดต GDP ไทย Q3 และประมาณการ สศช. 16 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.bangkokbiznews.com/economics/1260920",
+     "published": "2026-11-16",
+     "publisher": "Bangkok Biz News",
+     "title": "สภาพัฒน์แถลงจีดีพีไตรมาส 3 ปี 2569 ขยายตัว 2.9%"
+    },
+    {
+     "url": "https://www.thaipbs.or.th/news/content/572792",
+     "published": "2026-11-16",
+     "publisher": "Thai PBS",
+     "title": "สภาพัฒน์ฯ ปรับเพิ่ม GDP ปี 69 โต 2.5%"
+    },
+    {
+     "url": "https://www.dailynews.co.th/news/6363443/",
+     "published": "2026-11-16",
+     "publisher": "Daily News",
+     "title": "สภาพัฒน์ เปิด GDP ไตรมาส 3"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการสู้รบใกล้โมเม็กและมติอาเซียน",
+   "sources": [
+    {
+     "url": "https://www.bnionline.net/en/news/fighting-resumes-near-momeik-myanmar-junta-launches-heavy-airstrikes",
+     "published": "2026-11-16",
+     "publisher": "Burma News International",
+     "title": "Fighting Resumes Near Momeik"
+    },
+    {
+     "url": "https://moemaka.net/eng/2026/11/november-16-2026-m-cdm-domestic-news/",
+     "published": "2026-11-16",
+     "publisher": "m.CDM",
+     "title": "November 16 domestic news"
+    }
+   ],
+   "confidence": "low",
+   "stale_reason_th": "แหล่งข่าวส่วนใหญ่เป็นสื่อท้องถิ่นและกลุ่มต่อต้าน ยืนยันอิสระไม่ได้ ตัวเลข MDSI จากสองแหล่งไม่ตรงกัน"
+  },
+  {
+   "file": "world-data",
+   "section": "analysis_th",
+   "keys": [
+    "analysis_th"
+   ],
+   "fields": [
+    "points.0",
+    "thailand"
+   ],
+   "summary_th": "ปรับบทวิเคราะห์ด้วยราคา Brent และ GDP ไทย Q3",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-17/gold-struggles-near-one-year-lows-silver-rebounds-stocks-slide-fed-hike",
+     "published": "2026-11-17",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near one-year lows"
+    },
+    {
+     "url": "https://www.thaipbs.or.th/news/content/572792",
+     "published": "2026-11-16",
+     "publisher": "Thai PBS",
+     "title": "สภาพัฒน์ฯ ปรับเพิ่ม GDP ปี 69 โต 2.5%"
+    },
+    {
+     "url": "https://www.cbc.ca/news/world/iran-us-war-bahrain-drones-dirty-bomb-report-9.7424686",
+     "published": "2026-11-17",
+     "publisher": "CBC/Reuters",
+     "title": "Iran and U.S. trade fire"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "0a0d7079c45d963febf3169fd8fa2b9591ee43bf",
+ "reviewed_unchanged": [
+  "gaza_israel",
+  "lebanon_israel_hezbollah",
+  "pakistan_afghanistan"
+ ]
+}
