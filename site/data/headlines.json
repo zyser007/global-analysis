@@ -1,16 +1,48 @@
 {
- "updated_at": "2026-11-18T01:14:12Z",
+ "updated_at": "2026-11-18T13:12:56Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "Nvidia รายงานกำไรไตรมาสสูงกว่าคาด หุ้นชิปและกลุ่มคลาวด์ AI ปรับขึ้นหลังตลาดปิด",
-   "time": "2026-11-17T21:30:00Z",
-   "source": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434",
-   "source_name": "Investing.com"
+   "title_th": "Nvidia ทำกำไรเกินคาด หุ้นปรับขึ้นราว 4% ก่อนตลาดเปิด แม้ซีอีโอเจนเซน หวงลาออก หนุนกลุ่ม neocloud",
+   "time": "2026-11-18T11:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/18/nvidia-stock-earnings.html",
+   "source_name": "CNBC"
   },
   {
    "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านขยายการโจมตีเพื่อนบ้านอ่าวเปอร์เซีย ยิงฐานทัพอากาศสหรัฐในคูเวตและเป้าหมายในบาห์เรน ตอบโต้การโจมตีของสหรัฐ",
+   "time": "2026-11-18T10:00:00Z",
+   "source": "https://www.washingtonpost.com/world/2026/11/18/iran-us-kuwait-gulf-attacks-bahrain/5023d6f6-e333-11f1-a99e-b3e3805c6b8b_story.html",
+   "source_name": "Washington Post"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "economy",
+   "title_th": "หัวหน้า IEA ชี้ไม่มีเส้นทางที่น่าเชื่อถือให้ช่องแคบฮอร์มุซกลับสู่สภาพก่อนสงคราม ความเชื่อมั่นถูกทำลาย",
+   "time": "2026-11-18T09:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/18/iea-strait-hormuz-energy-risk.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "world",
+   "title_th": "ทรัมป์ถึงเซินเจิ้น พบสีจิ้นผิงและปูตินในเวที APEC ท่ามกลางประเด็นอาวุธนิวเคลียร์ ยูเครน และความตึงเครียดสหรัฐ-จีน",
+   "time": "2026-11-18T05:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/18/trump-xi-putin-china-apec.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนเปิดฉากโจมตีด้วยโดรนครั้งใหญ่ที่สุดต่อรัสเซียนับตั้งแต่เริ่มสงคราม",
+   "time": "2026-11-17T22:00:00Z",
+   "source": "https://www.nbcnews.com/world/ukraine/ukraine-launches-biggest-drone-attack-russia-war-began-rcna609555",
+   "source_name": "NBC News"
+  },
+  {
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "สหรัฐโจมตีเกาะเกชม์ของอิหร่านในช่องแคบฮอร์มุซ ตามคำระบุของเจ้าหน้าที่อิหร่าน",
    "time": "2026-11-17T14:00:00Z",
@@ -18,7 +50,7 @@
    "source_name": "Arab News"
   },
   {
-   "id": "h3",
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "รัฐมนตรีต่างประเทศอิหร่านและโอมานหารือความมั่นคงฮอร์มุซ ขณะการโจมตีเรือบรรทุกน้ำมันเพิ่มขึ้น",
    "time": "2026-11-17T13:00:00Z",
@@ -26,7 +58,7 @@
    "source_name": "OilPrice.com"
   },
   {
-   "id": "h4",
+   "id": "h8",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน กลุ่มแบ่งแยกดินแดนใต้เยเมนฟื้นบทบาท ขณะซาอุฯ ปรับโครงสร้างกองบัญชาการ",
    "time": "2026-11-17T11:00:00Z",
@@ -34,15 +66,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h5",
-   "conflict_id": "world",
-   "title_th": "ทรัมป์เดินทางถึงเอเชีย เตรียมพบสีจิ้นผิงและปูตินที่เซินเจิ้น พร้อมหารือประเด็นอิหร่าน",
-   "time": "2026-11-17T10:30:00Z",
-   "source": "https://www.cnbc.com/2026/11/17/trump-iran-asia-trip-china.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h6",
+   "id": "h9",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ทรัมป์ระบุสหรัฐกำลังตรวจสอบข่าวกรองว่าอิหร่านอาจวางแผนโจมตีวอชิงตันด้วยระเบิดสกปรก",
    "time": "2026-11-17T10:00:00Z",
@@ -50,15 +74,7 @@
    "source_name": "Bloomberg"
   },
   {
-   "id": "h7",
-   "conflict_id": "thailand",
-   "title_th": "SET ปิดวันนี้ลง 1.66% ที่ 1,474.68 จุด ตามแรงขายหุ้นเอเชียและความกังวลตลาดสหรัฐ",
-   "time": "2026-11-17T09:30:00Z",
-   "source": "https://www.thaienquirer.com/76190/thai-enquirer-news-summary-november-17-2026/",
-   "source_name": "Thai Enquirer"
-  },
-  {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "ukraine_russia",
    "title_th": "ยูเครนโจมตีสะพานเคิร์ชสู่ไครเมียเป็นคืนที่สอง ทำให้สะพานปิดใช้งาน เซเลนสกีเรียกปฏิบัติการไม่เคยมีมาก่อน",
    "time": "2026-11-17T08:00:00Z",
@@ -66,7 +82,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h9",
+   "id": "h11",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียยิงขีปนาวุธใส่สะพานในเคียฟและโจมตีทั่วยูเครน ไฟดับในเมืองหลวง มอสโกอ้างสกัดโดรนกว่า 2,000 ลำ",
    "time": "2026-11-17T07:00:00Z",
@@ -74,15 +90,7 @@
    "source_name": "NPR"
   },
   {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "กองทัพเรืออิหร่านระบุเรือบรรทุกน้ำมันลำที่ 4 ในรอบ 24 ชม. ชนทุ่นระเบิดทางตะวันออกของฮอร์มุซ",
-   "time": "2026-11-16T22:00:00Z",
-   "source": "https://www.yahoo.com/news/world/articles/iran-reports-fourth-tanker-damaged-004848151.html",
-   "source_name": "Yahoo News (dpa)"
-  },
-  {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "economy",
    "title_th": "Wall Street ร่วงหนักวันจันทร์ S&P 500 −1.9% Nasdaq −2.5% ก่อน Nvidia รายงานผลและ Anthropic เข้าตลาด VIX พุ่ง 19%",
    "time": "2026-11-16T21:30:00Z",
@@ -90,20 +98,12 @@
    "source_name": "CNN"
   },
   {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "lebanon_israel_hezbollah",
    "title_th": "อิสราเอลโจมตีทางตะวันออกของเลบานอน อ้างเป้าหมายคลังอาวุธของฮิซบอลเลาะห์",
    "time": "2026-11-16T18:00:00Z",
    "source": "https://english.alarabiya.net/amp/News/middle-east/2026/11/16/israel-strikes-east-lebanon-says-targeting-hezbollah-arms",
    "source_name": "Al Arabiya"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียระบุสกัดโดรนยูเครน 1,336 ลำ มากที่สุดนับตั้งแต่เริ่มสงครามเต็มรูปแบบ",
-   "time": "2026-11-16T15:20:00Z",
-   "source": "https://www.pbs.org/newshour/world/russia-says-its-defenses-intercepted-over-1300-ukrainian-drones-in-a-major-attack",
-   "source_name": "PBS NewsHour (AP)"
   }
  ]
 }
