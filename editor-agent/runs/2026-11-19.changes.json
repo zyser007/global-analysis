@@ -1,0 +1,527 @@
+{
+ "date": "2026-11-19",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุการณ์ 18 พ.ย. และการประชุม APEC",
+   "sources": [
+    {
+     "url": "https://kyivindependent.com/2-russian-oil-refineries-reportedly-targeted-in-overnight-drone-attack-on-krasnodar-krai/",
+     "published": "2026-11-18",
+     "publisher": "Kyiv Independent",
+     "title": "Ukrainian General Staff confirms overnight attack on 2 Russian oil refineries in Krasnodar Krai"
+    },
+    {
+     "url": "https://www.ukrinform.net/rubric-ato",
+     "published": "2026-11-18",
+     "publisher": "Ukrinform",
+     "title": "War"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/18/trump-xi-putin-china-apec.html",
+     "published": "2026-11-18",
+     "publisher": "CNBC",
+     "title": "Trump arrives in China for historic meeting with Xi, Putin"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มการโจมตีคูเวต/บาห์เรน 17–18 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/18/kuwait-bahrain-face-new-iran-attacks-after-us-strike-on-qeshm-island",
+     "published": "2026-11-18",
+     "publisher": "Al Jazeera",
+     "title": "Kuwait, Bahrain face new Iran attacks after US strike on Qeshm Island"
+    },
+    {
+     "url": "https://www.huffpost.com/entry/iran-widens-gulf-attacks_n_6afd76a5e4b0e902c23c65f6",
+     "published": "2026-11-18",
+     "publisher": "AP",
+     "title": "Iran Widens Gulf Attacks, Firing On U.S. Air Base In Kuwait And At Targets In Bahrain"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/18/trump-iran-war-hormuz-oil-.html",
+     "published": "2026-11-18",
+     "publisher": "CNBC",
+     "title": "Iran says army targets U.S. drone and missile sites in Kuwait as Gulf attacks mount"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหว 17–18 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/18/houthis-advance-on-aden-as-saudi-coalition-targets-military-sites",
+     "published": "2026-11-18",
+     "publisher": "Al Jazeera",
+     "title": "Saudi coalition hits 60 Houthi military sites; Taiz sees 'fierce battles'"
+    },
+    {
+     "url": "https://www.france24.com/en/middle-east/20261118-yemen-why-the-houthis-may-besiege-aden-rather-than-storm-it",
+     "published": "2026-11-18",
+     "publisher": "France 24",
+     "title": "Yemen: Why the Houthis may besiege Aden rather than storm it"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/17/yemen-army-reports-661-attacks-on-houthis-amid-houthi-push-towards-aden",
+     "published": "2026-11-17",
+     "publisher": "Al Jazeera",
+     "title": "Yemeni army reports 661 attacks on Houthis as group advances towards Aden"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุการณ์ 18 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-gulf-retaliation-strikes-strait-of-hormuz/",
+     "published": "2026-11-18",
+     "publisher": "CBS News",
+     "title": "Iran War Updates: Gulf states and tankers under fire"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/11/18/trump-iran-war-hormuz-oil-.html",
+     "published": "2026-11-18",
+     "publisher": "CNBC",
+     "title": "Iran says army targets U.S. drone and missile sites in Kuwait as Gulf attacks mount"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มปฏิบัติการภาคพื้นดิน 18 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.nbcnews.com/world/gaza/israel-tanks-gaza-ground-operation-ceasefire-hamas-rcna609979",
+     "published": "2026-11-18",
+     "publisher": "Reuters via NBC News",
+     "title": "Israeli tanks roll into central Gaza in first ground operation since ceasefire began"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/18/palestinians-flee-refugee-camp-as-israel-begins-operation-in-central-gaza",
+     "published": "2026-11-18",
+     "publisher": "Al Jazeera",
+     "title": "Three killed as Israel launches first ground push since 'ceasefire' began"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "lebanon_israel_hezbollah"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มข่าว 18 พ.ย.",
+   "sources": [
+    {
+     "url": "https://english.news.cn/20261118/53bfd278136d457c9c382e6469e79517/c.html",
+     "published": "2026-11-18",
+     "publisher": "Xinhua",
+     "title": "Israeli defense minister threatens seizure of more land in Lebanon, Syria, Gaza"
+    },
+    {
+     "url": "https://www.jpost.com/israel-news/defense-news/article-915274",
+     "published": "2026-11-18",
+     "publisher": "Jerusalem Post",
+     "title": "Katz: Israel may keep hold on Gaza, Lebanon, Syria security zones indefinitely"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มรายงาน Amnesty และสถานการณ์คอร์โดฟาน",
+   "sources": [
+    {
+     "url": "https://www.amnesty.org/en/latest/news/2026/11/sudan-devastating-rsf-drone-strikes-on-civilians-in-el-obeid-should-be-investigated-as-war-crimes/",
+     "published": "2026-11-18",
+     "publisher": "Amnesty International",
+     "title": "Sudan: Devastating RSF drone strikes on civilians in El Obeid should be investigated as war crimes"
+    },
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/14/how-saf-successes-in-sudans-kordofan-could-turn-tide-against-the-rsf",
+     "published": "2026-11-14",
+     "publisher": "Al Jazeera",
+     "title": "How SAF successes in Sudan's Kordofan could turn tide against the RSF"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_day_pct"
+   ],
+   "fields": [
+    "change_day_pct"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "year_low"
+   ],
+   "fields": [
+    "year_low"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "intraday_low"
+   ],
+   "fields": [
+    "intraday_low"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_note_th"
+   ],
+   "fields": [
+    "spot_note_th"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "year_low_note_th"
+   ],
+   "fields": [
+    "year_low_note_th"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.2",
+    "outlook_th.calendar_th.items.4"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.note_th"
+   ],
+   "summary_th": "ทองสปอตต่ำสุดรอบกว่า 1 ปีหลังรายงานประชุมเฟด; ปฏิทิน 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-18/gold-plunges-below-3750-silver-tumbles-hawkish-fed-minutes-pressure-metals",
+     "published": "2026-11-18",
+     "publisher": "Kitco News",
+     "title": "Gold plunges below $3,750, silver tumbles as hawkish Fed minutes pressure metals"
+    },
+    {
+     "url": "http://www.kitco.com/news/off-the-wire/2026-11-18/gold-drops-2-over-one-year-low-hawkish-fed-signals-boost-dollar",
+     "published": "2026-11-18",
+     "publisher": "Reuters via Kitco",
+     "title": "Gold drops 2% to over one-year low as hawkish Fed signals boost dollar"
+    },
+    {
+     "url": "https://www.thebangkokinsight.com/news/stock-finance/finance/1721759/",
+     "published": "2026-11-18",
+     "publisher": "The Bangkok Insight",
+     "title": "ราคาทองวันนี้ 18 พ.ย. เปิดตลาดดิ่งอีก 750 บาท"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "GBR"
+   ],
+   "fields": [
+    "inflation",
+    "note_th",
+    "health"
+   ],
+   "summary_th": "CPI ต.ค. 3.6% (ONS 18 พ.ย.)",
+   "sources": [
+    {
+     "url": "https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/october2026",
+     "published": "2026-11-18",
+     "publisher": "ONS",
+     "title": "Consumer price inflation, UK: October 2026"
+    },
+    {
+     "url": "https://moneyweek.com/economy/news/live/inflation-cpi-october-2026-report",
+     "published": "2026-11-18",
+     "publisher": "MoneyWeek",
+     "title": "Live: Inflation rose by 3.6% in October"
+    }
+   ],
+   "confidence": "high"
+  }
+ ],
+ "base_commit": "ed99e9ddddc15aa2adc14f1f7bd360441e2a2d88",
+ "reviewed_unchanged": [
+  "myanmar_civil_war",
+  "pakistan_afghanistan"
+ ]
+}
