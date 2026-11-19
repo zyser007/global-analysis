@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-19T08:19:10Z",
- "checked": "2026-11-19T08:19:10Z",
+ "updated": "2026-11-19T09:16:43Z",
+ "checked": "2026-11-19T09:16:43Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-19T08:19:10Z",
+   "fetched": "2026-11-19T09:16:43Z",
    "count": 5,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-05&toDate=2026-11-20&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-19T08:19:10Z",
+   "fetched": "2026-11-19T09:16:43Z",
    "count": 2,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -27,16 +27,16 @@
    "countries": [
     "India"
    ],
-   "lat": 14.6,
-   "lon": 86.2,
+   "lat": 15.1,
+   "lon": 85.4,
    "start": "2026-11-16T18:00:00Z",
-   "end": "2026-11-19T00:00:00Z",
-   "updated": "2026-11-19T02:22:58Z",
+   "end": "2026-11-19T06:00:00Z",
+   "updated": "2026-11-19T08:20:59Z",
    "alert_level": "orange",
    "severity_th": "ลมสูงสุด 83 กม./ชม.",
    "severity_value": 83.33,
    "severity_unit": "km/h",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001351&episodeid=10&eventtype=TC",
+   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001351&episodeid=11&eventtype=TC",
    "source_name": "GDACS"
   },
   {
