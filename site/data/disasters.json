@@ -1,44 +1,23 @@
 {
- "updated": "2026-11-19T19:11:42Z",
- "checked": "2026-11-19T19:11:42Z",
+ "updated": "2026-11-19T20:15:01Z",
+ "checked": "2026-11-19T20:15:01Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-19T19:11:42Z",
-   "count": 5,
+   "fetched": "2026-11-19T20:15:01Z",
+   "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-05&toDate=2026-11-20&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-19T19:11:42Z",
+   "fetched": "2026-11-19T20:15:01Z",
    "count": 2,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
  "items": [
-  {
-   "id": "gdacs-tc-1001351",
-   "type": "cyclone",
-   "title_th": "พายุหมุนเขตร้อน AKVAN-26 ลมสูงสุด 83 กม./ชม. กระทบอินเดีย",
-   "country": "India",
-   "country_th": "อินเดีย",
-   "countries": [
-    "India"
-   ],
-   "lat": 16.0,
-   "lon": 85.3,
-   "start": "2026-11-16T18:00:00Z",
-   "end": "2026-11-19T12:00:00Z",
-   "updated": "2026-11-19T19:05:04Z",
-   "alert_level": "orange",
-   "severity_th": "ลมสูงสุด 83 กม./ชม.",
-   "severity_value": 83.33,
-   "severity_unit": "km/h",
-   "source_url": "https://www.gdacs.org/report.aspx?eventid=1001351&episodeid=12&eventtype=TC",
-   "source_name": "GDACS"
-  },
   {
    "id": "gdacs-dr-1027450",
    "type": "drought",
