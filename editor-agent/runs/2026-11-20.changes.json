@@ -1,0 +1,240 @@
+{
+ "date": "2026-11-20",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มผลการประชุมไตรภาคีเซินเจิ้น 19 พ.ย. และสะพานเคิร์ช",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/news/trump-xi-putin-china-apec-summit/",
+     "published": "2026-11-19",
+     "publisher": "CBS News",
+     "title": "Trump, Xi and Putin sit down for a rare 3-way meeting in China"
+    },
+    {
+     "url": "https://www.cbc.ca/news/world/trump-xi-putin-apec-meeting-9.7427718",
+     "published": "2026-11-19",
+     "publisher": "CBC/Reuters",
+     "title": "Xi-Trump-Putin statement after APEC meeting"
+    },
+    {
+     "url": "https://www.ukrinform.net/rubric-ato",
+     "published": "2026-11-19",
+     "publisher": "Ukrinform",
+     "title": "War – Kerch bridge Neptune strike 19 Nov"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุการณ์ฮอร์มุซ 19 พ.ย. และท่าทีใน APEC",
+   "sources": [
+    {
+     "url": "https://gulfnews.com/world/mena/middle-east-war-riyadh-skyscraper-damaged-tanker-hit-near-oman-as-trump-weighs-fresh-iran-strikes-1.500752996",
+     "published": "2026-11-19",
+     "publisher": "Gulf News",
+     "title": "Riyadh skyscraper damaged, tanker hit near Oman"
+    },
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-gulf-retaliation-strikes-strait-of-hormuz/",
+     "published": "2026-11-19",
+     "publisher": "CBS News",
+     "title": "Iran War Updates"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตฮอร์มุซ 19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://gulfnews.com/world/mena/middle-east-war-riyadh-skyscraper-damaged-tanker-hit-near-oman-as-trump-weighs-fresh-iran-strikes-1.500752996",
+     "published": "2026-11-19",
+     "publisher": "Gulf News",
+     "title": "Riyadh skyscraper damaged, tanker hit near Oman"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ทองสปอต 19 พ.ย. และผลข้อมูลสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-19/gold-struggles-near-3700-despite-weaker-philly-fed-renewed-hormuz-tensions",
+     "published": "2026-11-19",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near $3,700 despite weaker Philly Fed - Kitco AM Report"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.items.4"
+   ],
+   "summary_th": "ทองสปอต 19 พ.ย. และผลข้อมูลสหรัฐ",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-19/gold-struggles-near-3700-despite-weaker-philly-fed-renewed-hormuz-tensions",
+     "published": "2026-11-19",
+     "publisher": "Kitco News",
+     "title": "Gold struggles near $3,700 despite weaker Philly Fed - Kitco AM Report"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "ปฏิบัติการรถถังข้ามเส้นเหลือง 18–19 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.usnews.com/news/world/articles/2026-11-19/israel-says-it-concludes-gaza-tank-raid",
+     "published": "2026-11-19",
+     "publisher": "Reuters (US News)",
+     "title": "Israel says it concludes Gaza tank raid"
+    },
+    {
+     "url": "https://www.nbcnews.com/world/middle-east/gaza-ceasefire-tested-israel-tanks-cross-yellow-line-ground-raid-rcna610169",
+     "published": "2026-11-19",
+     "publisher": "NBC News",
+     "title": "Gaza ceasefire tested as Israeli tanks cross yellow line"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "กฎหมายก่อการร้ายและตัวเลข UN",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/17/yemen-army-reports-661-attacks-on-houthis-amid-houthi-push-towards-aden",
+     "published": "2026-11-17",
+     "publisher": "Al Jazeera",
+     "title": "Yemeni army reports 661 attacks on Houthis"
+    },
+    {
+     "url": "https://www.hngn.com/articles/273884/20261119/houthis-near-aden-saudi-arabia-replaces-yemen-war-commander.htm",
+     "published": "2026-11-19",
+     "publisher": "HNGN",
+     "title": "Houthis Near Aden as Saudi Arabia Replaces Yemen War Commander"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "sudan_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "Amnesty เอล-โอเบด และกองทัพรุกคอร์โดฟาน",
+   "sources": [
+    {
+     "url": "https://www.amnesty.org/en/latest/news/2026/11/sudan-devastating-rsf-drone-strikes-on-civilians-in-el-obeid-should-be-investigated-as-war-crimes/",
+     "published": "2026-11-18",
+     "publisher": "Amnesty International",
+     "title": "RSF drone strikes in El Obeid should be investigated as war crimes"
+    },
+    {
+     "url": "https://www.hngn.com/articles/273887/20261119/sudans-army-advances-kordofan-drone-strikes-kill-civilians.htm",
+     "published": "2026-11-19",
+     "publisher": "HNGN",
+     "title": "Sudan's Army Advances in Kordofan"
+    },
+    {
+     "url": "https://sudantribune.com/article/321423",
+     "published": "2026-11-19",
+     "publisher": "Sudan Tribune",
+     "title": "Amnesty calls for war crimes probe into RSF drone strikes"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "analysis_th",
+   "keys": [
+    "analysis_th"
+   ],
+   "fields": [
+    "points.4"
+   ],
+   "summary_th": "เพิ่มผลประชุมไตรภาคีเซินเจิ้น",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/news/trump-xi-putin-china-apec-summit/",
+     "published": "2026-11-19",
+     "publisher": "CBS News",
+     "title": "Trump, Xi and Putin sit down for a rare 3-way meeting"
+    },
+    {
+     "url": "https://www.cbc.ca/news/world/trump-xi-putin-apec-meeting-9.7427718",
+     "published": "2026-11-19",
+     "publisher": "CBC/Reuters",
+     "title": "Xi-Trump-Putin statement after APEC meeting"
+    }
+   ],
+   "confidence": "high"
+  }
+ ],
+ "base_commit": "26195e84a948d41bd42f1726fe48587bbd4b49b9",
+ "reviewed_unchanged": [
+  "GBR",
+  "THA",
+  "myanmar_civil_war",
+  "pakistan_afghanistan"
+ ]
+}
