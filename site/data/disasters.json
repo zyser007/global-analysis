@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-20T00:33:28Z",
- "checked": "2026-11-20T00:33:28Z",
+ "updated": "2026-11-20T01:12:30Z",
+ "checked": "2026-11-20T01:12:30Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-20T00:33:28Z",
+   "fetched": "2026-11-20T01:12:30Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-06&toDate=2026-11-21&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-20T00:33:28Z",
+   "fetched": "2026-11-20T01:12:30Z",
    "count": 2,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -165,11 +165,11 @@
    "countries": [
     "Indonesia"
    ],
-   "lat": -6.0602,
-   "lon": 131.4868,
+   "lat": -6.0208,
+   "lon": 131.4593,
    "start": "2026-11-16T21:11:20Z",
    "end": "2026-11-16T21:11:20Z",
-   "updated": "2026-11-18T00:37:54Z",
+   "updated": "2026-11-20T00:45:09Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.6 ลึก 68 กม.",
    "severity_value": 6.6,
@@ -186,13 +186,13 @@
    "countries": [
     "Romania"
    ],
-   "lat": 45.6863,
-   "lon": 26.452,
+   "lat": 45.6816,
+   "lon": 26.4521,
    "start": "2026-11-18T00:48:56Z",
    "end": "2026-11-18T00:48:56Z",
-   "updated": "2026-11-18T23:03:58Z",
+   "updated": "2026-11-20T01:05:58Z",
    "alert_level": null,
-   "severity_th": "ขนาด 5.3 ลึก 130 กม.",
+   "severity_th": "ขนาด 5.3 ลึก 132 กม.",
    "severity_value": 5.3,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8",

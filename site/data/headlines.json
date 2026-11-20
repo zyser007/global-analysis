@@ -1,16 +1,32 @@
 {
- "updated_at": "2026-11-19T01:13:09Z",
+ "updated_at": "2026-11-20T01:12:39Z",
  "items": [
   {
    "id": "h1",
-   "conflict_id": "economy",
-   "title_th": "S&P 500 หลุดแนวรับสำคัญ หลังรายงานการประชุม Fed ส่งสัญญาณขึ้นดอกเบี้ยอีก ผลตอบแทนพันธบัตร 10 ปีราว 5.10%",
-   "time": "2026-11-18T21:30:00Z",
-   "source": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
-   "source_name": "Motley Fool"
+   "conflict_id": "world",
+   "title_th": "ทรัมป์ออกจากจีนหลังประชุมสุดยอดสามฝ่ายกับสีจิ้นผิงและปูตินที่เซินเจิ้น",
+   "time": "2026-11-20T00:00:00Z",
+   "source": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
+   "source_name": "NBC News"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "ข้อพิพาทเซมิคอนดักเตอร์และแร่หายากสหรัฐ-จีนยังติดขัด แม้ทรัมป์พบสีจิ้นผิงที่ APEC",
+   "time": "2026-11-19T12:15:00Z",
+   "source": "https://finance.yahoo.com/markets/article/stalemates-over-semiconductors-and-rare-earth-minerals-appear-little-changed-as-trump-heads-home-from-china-121555352.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "world",
+   "title_th": "ทรัมป์ สี และปูตินประชุมสามฝ่ายที่จีนเป็นครั้งแรก แต่ผลลัพธ์ที่เป็นรูปธรรมมีไม่มาก",
+   "time": "2026-11-19T10:00:00Z",
+   "source": "https://www.cbsnews.com/news/trump-xi-putin-china-apec-summit/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "สหรัฐและอิหร่านตอบโต้ทวีความรุนแรง รัฐอ่าวและเรือบรรทุกน้ำมันถูกโจมตี สหรัฐยิงฐานขีปนาวุธ IRGC บนเกาะเกชม์",
    "time": "2026-11-18T19:00:00Z",
@@ -18,7 +34,7 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "gaza_israel",
    "title_th": "กองทัพอิสราเอลส่งรถถังเข้าพื้นที่กลางฉนวนกาซาที่ฮามาสควบคุม ครั้งแรกนับแต่หยุดยิงเดือนต.ค. 2025",
    "time": "2026-11-18T18:00:00Z",
@@ -26,7 +42,7 @@
    "source_name": "Jerusalem Post"
   },
   {
-   "id": "h4",
+   "id": "h6",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียและยูเครนเจรจาได้ข้อตกลงแลกเปลี่ยนเชลย แต่ยังไม่มีความคืบหน้าในการยุติสงคราม",
    "time": "2026-11-18T17:00:00Z",
@@ -34,28 +50,12 @@
    "source_name": "NBC News"
   },
   {
-   "id": "h5",
+   "id": "h7",
    "conflict_id": "lebanon_israel_hezbollah",
    "title_th": "คัตซ์ย้ำอิสราเอลจะคงเขตความมั่นคงในกาซา เลบานอนใต้ และซีเรียไม่มีกำหนด จนกว่ากองกำลังญิฮาดถูกทำลาย",
    "time": "2026-11-18T16:00:00Z",
    "source": "https://www.jpost.com/israel-news/defense-news/article-915274",
    "source_name": "Jerusalem Post"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "ผลตอบแทนพันธบัตรสหรัฐ 10 ปีผ่านระดับ 5% ต่อเนื่อง นักลงทุนจับตาวัฏจักรขึ้นดอกเบี้ยของ Fed",
-   "time": "2026-11-18T15:15:00Z",
-   "source": "https://finance.yahoo.com/economy/policy/articles/us-10-yield-set-historic-151500006.html",
-   "source_name": "Bloomberg via Yahoo Finance"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านอ้างเรือบรรทุกน้ำมันอย่างน้อย 3 ลำชนทุ่นระเบิดและลุกไหม้ใกล้ช่องแคบฮอร์มุซ โดยไม่มีหลักฐานยืนยัน",
-   "time": "2026-11-18T15:00:00Z",
-   "source": "https://en.ilsole24ore.com/art/war-latest-news-iran-drone-attack-us-base-kuwait-AJiP8NKC",
-   "source_name": "Il Sole 24 Ore"
   },
   {
    "id": "h8",
