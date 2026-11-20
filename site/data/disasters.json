@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-20T11:13:51Z",
- "checked": "2026-11-20T11:13:51Z",
+ "updated": "2026-11-20T12:20:19Z",
+ "checked": "2026-11-20T12:20:19Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-20T11:13:51Z",
+   "fetched": "2026-11-20T12:20:19Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-06&toDate=2026-11-21&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-20T11:13:51Z",
+   "fetched": "2026-11-20T12:20:19Z",
    "count": 3,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -169,12 +169,33 @@
    "lon": -121.2207,
    "start": "2026-11-20T06:49:16Z",
    "end": "2026-11-20T06:49:16Z",
-   "updated": "2026-11-20T11:11:21Z",
+   "updated": "2026-11-20T12:05:25Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.0 ลึก 7 กม.",
-   "severity_value": 5.0,
+   "severity_value": 4.98,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75468702",
+   "source_name": "USGS"
+  },
+  {
+   "id": "usgs-us7000tyw8",
+   "type": "earthquake",
+   "title_th": "แผ่นดินไหวขนาด 5.3 ในโรมาเนีย",
+   "country": "Romania",
+   "country_th": "โรมาเนีย",
+   "countries": [
+    "Romania"
+   ],
+   "lat": 45.6816,
+   "lon": 26.4521,
+   "start": "2026-11-18T00:48:56Z",
+   "end": "2026-11-18T00:48:56Z",
+   "updated": "2026-11-20T11:55:40Z",
+   "alert_level": "green",
+   "severity_th": "ขนาด 5.3 ลึก 132 กม.",
+   "severity_value": 5.3,
+   "severity_unit": "M",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8",
    "source_name": "USGS"
   },
   {
@@ -196,27 +217,6 @@
    "severity_value": 6.6,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tymu",
-   "source_name": "USGS"
-  },
-  {
-   "id": "usgs-us7000tyw8",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 5.3 ในโรมาเนีย",
-   "country": "Romania",
-   "country_th": "โรมาเนีย",
-   "countries": [
-    "Romania"
-   ],
-   "lat": 45.6816,
-   "lon": 26.4521,
-   "start": "2026-11-18T00:48:56Z",
-   "end": "2026-11-18T00:48:56Z",
-   "updated": "2026-11-20T01:05:58Z",
-   "alert_level": null,
-   "severity_th": "ขนาด 5.3 ลึก 132 กม.",
-   "severity_value": 5.3,
-   "severity_unit": "M",
-   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8",
    "source_name": "USGS"
   }
  ]
