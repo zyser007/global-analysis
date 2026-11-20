@@ -1,16 +1,72 @@
 {
- "updated_at": "2026-11-20T01:12:39Z",
+ "updated_at": "2026-11-20T13:12:36Z",
  "items": [
   {
    "id": "h1",
-   "conflict_id": "world",
-   "title_th": "ทรัมป์ออกจากจีนหลังประชุมสุดยอดสามฝ่ายกับสีจิ้นผิงและปูตินที่เซินเจิ้น",
-   "time": "2026-11-20T00:00:00Z",
-   "source": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
-   "source_name": "NBC News"
+   "conflict_id": "economy",
+   "title_th": "ผลตอบแทนพันธบัตรสหรัฐ 10 ปีลดลงกว่า 7 bp เหลือราว 4.97% ขณะนักลงทุนหนีไปสินทรัพย์ปลอดภัย",
+   "time": "2026-11-20T13:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/20/treasury-yields-bonds-inflation.html",
+   "source_name": "CNBC"
   },
   {
    "id": "h2",
+   "conflict_id": "ukraine_russia",
+   "title_th": "การโจมตีของรัสเซียวันเดียวทำผู้เสียชีวิต 12 ราย บาดเจ็บ 82 ราย ทั่วยูเครน",
+   "time": "2026-11-20T10:00:00Z",
+   "source": "https://kyivindependent.com/russian-attacks-kill-12-injure-82-across-ukraine-over-past-day-as-country-reels-from-mass-overnight-strike/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IEA เตือนสงครามเก้าเดือนทำความเชื่อมั่นต่อช่องแคบฮอร์มุซพังทลาย อาจกระทบตลาดพลังงานไปอีกหลายปี",
+   "time": "2026-11-20T09:00:00Z",
+   "source": "https://www.baltimoresun.com/2026/11/20/iran-war-could-leave-consumers-with-years-of-uncertainty-over-energy-costs/",
+   "source_name": "Baltimore Sun"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
+   "time": "2026-11-20T08:00:00Z",
+   "source": "https://kyivindependent.com/poland-reports-airspace-violation-during-russian-attack-on-ukraine-investigates-debris-crash/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "economy",
+   "title_th": "Nikkei ดิ่งกว่า 3,000 จุด ปิดต่ำกว่า 57,000 ครั้งแรกในรอบ 7 เดือน หลังหุ้นเทคฯ วอลล์สตรีทร่วง",
+   "time": "2026-11-20T07:00:00Z",
+   "source": "https://jen.jiji.com/business/markets/2026112000935/",
+   "source_name": "Jiji Press"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านเพิ่มการโจมตีเรือบรรทุกน้ำมันในช่องแคบฮอร์มุซ ขณะราคาน้ำมันอ่อนตัวจากอุปทานล้นตลาด",
+   "time": "2026-11-20T06:00:00Z",
+   "source": "https://www.japantimes.co.jp/news/2026/11/20/world/iran-hormuz-attacks-oil-prices/",
+   "source_name": "The Japan Times"
+  },
+  {
+   "id": "h7",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีทางอากาศครั้งใหญ่ใส่ยูเครน สะพานในเคียฟถูกโจมตี เสียชีวิตอย่างน้อย 8 ราย",
+   "time": "2026-11-20T05:00:00Z",
+   "source": "https://kyivindependent.com/russia-launches-mass-missile-attack-against-ukraine-after-putin-vows-revenge/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h8",
+   "conflict_id": "thailand",
+   "title_th": "ดัชนี SET ปิดวันที่ 19 พ.ย. ที่ 1,472.64 จุด เกือบทรงตัว มูลค่าซื้อขายราว 6.5 หมื่นล้านบาท",
+   "time": "2026-11-20T00:30:00Z",
+   "source": "https://thaienquirer.com/76314/thai-enquirer-news-summary-november-20-2026",
+   "source_name": "Thai Enquirer"
+  },
+  {
+   "id": "h9",
    "conflict_id": "economy",
    "title_th": "ข้อพิพาทเซมิคอนดักเตอร์และแร่หายากสหรัฐ-จีนยังติดขัด แม้ทรัมป์พบสีจิ้นผิงที่ APEC",
    "time": "2026-11-19T12:15:00Z",
@@ -18,76 +74,20 @@
    "source_name": "Yahoo Finance"
   },
   {
-   "id": "h3",
-   "conflict_id": "world",
-   "title_th": "ทรัมป์ สี และปูตินประชุมสามฝ่ายที่จีนเป็นครั้งแรก แต่ผลลัพธ์ที่เป็นรูปธรรมมีไม่มาก",
-   "time": "2026-11-19T10:00:00Z",
-   "source": "https://www.cbsnews.com/news/trump-xi-putin-china-apec-summit/",
-   "source_name": "CBS News"
-  },
-  {
-   "id": "h4",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
-   "title_th": "สหรัฐและอิหร่านตอบโต้ทวีความรุนแรง รัฐอ่าวและเรือบรรทุกน้ำมันถูกโจมตี สหรัฐยิงฐานขีปนาวุธ IRGC บนเกาะเกชม์",
-   "time": "2026-11-18T19:00:00Z",
-   "source": "https://www.cbsnews.com/live-updates/iran-war-us-gulf-retaliation-strikes-strait-of-hormuz/",
-   "source_name": "CBS News"
+   "title_th": "วิกฤตอ่าวทวีความตึงเครียด อิหร่านโจมตีบาห์เรน เรือ ADNOC ถูกโจมตี สหรัฐตอบโต้เกาะเกชม์",
+   "time": "2026-11-19T12:00:00Z",
+   "source": "https://gulfnews.com/world/mena/middle-east-war-iran-attacks-bahrain-kuwait-drone-threats-keep-gulf-on-high-alert-as-us-hits-irans-qeshm-1.500751444",
+   "source_name": "Gulf News"
   },
   {
-   "id": "h5",
+   "id": "h11",
    "conflict_id": "gaza_israel",
    "title_th": "กองทัพอิสราเอลส่งรถถังเข้าพื้นที่กลางฉนวนกาซาที่ฮามาสควบคุม ครั้งแรกนับแต่หยุดยิงเดือนต.ค. 2025",
    "time": "2026-11-18T18:00:00Z",
    "source": "https://jpost.com/israel-news/defense-news/article-915349",
    "source_name": "Jerusalem Post"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียและยูเครนเจรจาได้ข้อตกลงแลกเปลี่ยนเชลย แต่ยังไม่มีความคืบหน้าในการยุติสงคราม",
-   "time": "2026-11-18T17:00:00Z",
-   "source": "https://www.nbcnews.com/world/russia-ukraine-news",
-   "source_name": "NBC News"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "lebanon_israel_hezbollah",
-   "title_th": "คัตซ์ย้ำอิสราเอลจะคงเขตความมั่นคงในกาซา เลบานอนใต้ และซีเรียไม่มีกำหนด จนกว่ากองกำลังญิฮาดถูกทำลาย",
-   "time": "2026-11-18T16:00:00Z",
-   "source": "https://www.jpost.com/israel-news/defense-news/article-915274",
-   "source_name": "Jerusalem Post"
-  },
-  {
-   "id": "h8",
-   "conflict_id": "world",
-   "title_th": "ทรัมป์พบสีจิ้นผิงและปูตินที่เซินเจิ้น ประชุม APEC เริ่มขึ้นท่ามกลางข้อพิพาทชิป AI และสงครามยูเครน",
-   "time": "2026-11-18T14:00:00Z",
-   "source": "https://abcnews.com/Politics/live-updates/trump-asia-trip-2026/?id=138187702",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "economy",
-   "title_th": "Nvidia ทำกำไรเกินคาด หุ้นปรับขึ้นราว 4% ก่อนตลาดเปิด แม้ซีอีโอเจนเซน หวงลาออก หนุนกลุ่ม neocloud",
-   "time": "2026-11-18T11:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/18/nvidia-stock-earnings.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านขยายการโจมตีเพื่อนบ้านอ่าวเปอร์เซีย ยิงฐานทัพอากาศสหรัฐในคูเวตและเป้าหมายในบาห์เรน ตอบโต้การโจมตีของสหรัฐ",
-   "time": "2026-11-18T10:00:00Z",
-   "source": "https://www.washingtonpost.com/world/2026/11/18/iran-us-kuwait-gulf-attacks-bahrain/5023d6f6-e333-11f1-a99e-b3e3805c6b8b_story.html",
-   "source_name": "Washington Post"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "ukraine_russia",
-   "title_th": "ยูเครนเปิดฉากโจมตีด้วยโดรนครั้งใหญ่ที่สุดต่อรัสเซียนับตั้งแต่เริ่มสงคราม",
-   "time": "2026-11-17T22:00:00Z",
-   "source": "https://www.nbcnews.com/world/ukraine/ukraine-launches-biggest-drone-attack-russia-war-began-rcna609555",
-   "source_name": "NBC News"
   },
   {
    "id": "h12",
