@@ -1,0 +1,324 @@
+{
+ "date": "2026-11-21",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มเหตุขีปนาวุธรัสเซียตกในโปแลนด์ 20 พ.ย.",
+   "sources": [
+    {
+     "url": "https://kyivindependent.com/poland-reports-airspace-violation-during-russian-attack-on-ukraine-investigates-debris-crash/",
+     "published": "2026-11-20",
+     "publisher": "Kyiv Independent",
+     "title": "Poland reports airspace violation during Russian attack on Ukraine"
+    },
+    {
+     "url": "https://www.cbsnews.com/news/ukraine-war-russia-intentional-provocation-poland-missiles-nato/",
+     "published": "2026-11-20",
+     "publisher": "CBS News",
+     "title": "Missiles land in Poland"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มคำกล่าวอ้างเรือชนทุ่นระเบิดที่ฮอร์มุซ",
+   "sources": [
+    {
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-gulf-retaliation-strikes-strait-of-hormuz/",
+     "published": "2026-11-20",
+     "publisher": "CBS News",
+     "title": "Iran war live updates"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "intraday_low"
+   ],
+   "fields": [
+    "intraday_low"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "year_low"
+   ],
+   "fields": [
+    "year_low"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "year_low_note_th"
+   ],
+   "fields": [
+    "year_low_note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_day_pct"
+   ],
+   "fields": [
+    "change_day_pct"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_week_pct"
+   ],
+   "fields": [
+    "change_week_pct"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_note_th"
+   ],
+   "fields": [
+    "spot_note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "sentiment"
+   ],
+   "fields": [
+    "sentiment.survey_th",
+    "sentiment.bearish",
+    "sentiment.bullish",
+    "sentiment.neutral",
+    "sentiment.retail_bullish"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "outlook_th"
+   ],
+   "fields": [
+    "outlook_th.calendar_th.title_th",
+    "outlook_th.calendar_th.items"
+   ],
+   "summary_th": "อัปเดตราคาทองสปอต ผลสำรวจ Kitco 20 พ.ย. และปฏิทินสัปดาห์หน้า",
+   "sources": [
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/gold-heads-worst-week-eight-months-silver-slides-below-42-kitco-am-report",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Gold heads for worst week in eight months - Kitco AM Report"
+    },
+    {
+     "url": "https://www.kitco.com/news/article/2026-11-20/wall-street-stays-bearish-after-golds-slide-3500-main-street-pessimism",
+     "published": "2026-11-20",
+     "publisher": "Kitco News",
+     "title": "Wall Street stays bearish after gold's slide to $3,500"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "190928d6e390cd29925a224e070d29342422e29b",
+ "reviewed_unchanged": [
+  "gaza_israel",
+  "myanmar_civil_war",
+  "pakistan_afghanistan",
+  "sudan_civil_war",
+  "yemen_houthi_saudi"
+ ]
+}
