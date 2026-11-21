@@ -1,16 +1,48 @@
 {
- "updated_at": "2026-11-21T01:13:19Z",
+ "updated_at": "2026-11-21T13:10:43Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "S&P 500 และ Dow ปิดเข้าสู่ภาวะปรับฐาน Nasdaq ร่วง 5.28% ติดลบตั้งแต่ต้นปี จากแรงขายหุ้น AI",
-   "time": "2026-11-20T21:30:00Z",
-   "source": "https://www.cnbc.com/2026/11/19/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
+   "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก แรงขาย AI ลบกำไรปีนี้ของ Nasdaq หมด Dow และ S&P 500 เข้าสู่ภาวะปรับฐาน",
+   "time": "2026-11-20T21:00:00Z",
+   "source": "https://www.foxbusiness.com/markets/wall-street-suffers-historic-losses-dow-sp-500-plunge-correction-territory",
+   "source_name": "Fox Business"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "CNBC วิเคราะห์ 5 ปัจจัยเบื้องหลังการเทขายจน S&P 500 เข้าสู่ภาวะปรับฐาน",
+   "time": "2026-11-20T20:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/20/sp-500-correction-market-sell-off.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "กองกำลังพันธมิตรซาอุฯ และฮูตีขู่ทิ้งระเบิดท่าเรือสำคัญของกันและกัน",
+   "time": "2026-11-20T15:00:00Z",
+   "source": "https://aljazeera.com/news/2026/11/20/saudi-coalition-and-houthis-exchange-threats-to-bomb-key-ports",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "การโจมตีในช่องแคบฮอร์มุซสูงสุดนับตั้งแต่สงครามอิหร่านเริ่มต้น",
+   "time": "2026-11-20T12:00:00Z",
+   "source": "https://abcnews.com/International/strait-hormuz-attacks-increased-highest-level-iran-war/story?id=138304456",
+   "source_name": "ABC News"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "เรือบรรทุกน้ำมันถูกโจมตีในฮอร์มุซ ขณะขีปนาวุธถล่มเกาะเกชม์ของอิหร่าน",
+   "time": "2026-11-20T11:00:00Z",
+   "source": "https://www.arabnews.com/middle-east/tanker-hit-in-strait-of-hormuz-as-missile-strikes-irans-qeshm-island-3013176",
+   "source_name": "Arab News"
+  },
+  {
+   "id": "h6",
    "conflict_id": "thailand",
    "title_th": "ราคาทองไทยร่วง 2,500 บาท ทองคำแท่งขายออก 57,400 บาท จากดอลลาร์แข็งและความกังวลเฟดขึ้นดอกเบี้ย",
    "time": "2026-11-20T10:30:00Z",
@@ -18,7 +50,7 @@
    "source_name": "Nation Thailand"
   },
   {
-   "id": "h3",
+   "id": "h7",
    "conflict_id": "ukraine_russia",
    "title_th": "การโจมตีของรัสเซียวันเดียวทำผู้เสียชีวิต 12 ราย บาดเจ็บ 82 ราย ทั่วยูเครน",
    "time": "2026-11-20T10:00:00Z",
@@ -26,15 +58,15 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h4",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IEA เตือนสงครามเก้าเดือนทำความเชื่อมั่นต่อช่องแคบฮอร์มุซพังทลาย อาจกระทบตลาดพลังงานไปอีกหลายปี",
-   "time": "2026-11-20T09:00:00Z",
-   "source": "https://www.baltimoresun.com/2026/11/20/iran-war-could-leave-consumers-with-years-of-uncertainty-over-energy-costs/",
-   "source_name": "Baltimore Sun"
+   "id": "h8",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีสะพาน 3 แห่งในเคียฟ ผู้เสียชีวิตอย่างน้อย 9 ราย",
+   "time": "2026-11-20T08:30:00Z",
+   "source": "https://kyivindependent.com/ukraine-war-latest-russia-strikes-3-kyiv-bridges-in-massive-aerial-assault-on-ukraine-at-least-9-dead/",
+   "source_name": "Kyiv Independent"
   },
   {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
    "time": "2026-11-20T08:00:00Z",
@@ -42,23 +74,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h6",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านเพิ่มการโจมตีเรือบรรทุกน้ำมันในช่องแคบฮอร์มุซ ขณะราคาน้ำมันอ่อนตัวจากอุปทานล้นตลาด",
-   "time": "2026-11-20T06:00:00Z",
-   "source": "https://www.japantimes.co.jp/news/2026/11/20/world/iran-hormuz-attacks-oil-prices/",
-   "source_name": "The Japan Times"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีทางอากาศครั้งใหญ่ใส่ยูเครน สะพานในเคียฟถูกโจมตี เสียชีวิตอย่างน้อย 8 ราย",
-   "time": "2026-11-20T05:00:00Z",
-   "source": "https://kyivindependent.com/russia-launches-mass-missile-attack-against-ukraine-after-putin-vows-revenge/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h8",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "เจ้าหน้าที่สหรัฐ: อิหร่านใช้ขีปนาวุธร้ายแรงขึ้นโจมตีเรือในฮอร์มุซ ขณะสหรัฐเสริมกำลังในภูมิภาค",
    "time": "2026-11-19T18:00:00Z",
@@ -66,44 +82,20 @@
    "source_name": "Jerusalem Post"
   },
   {
-   "id": "h9",
-   "conflict_id": "economy",
-   "title_th": "ข้อพิพาทเซมิคอนดักเตอร์และแร่หายากสหรัฐ-จีนยังติดขัด แม้ทรัมป์พบสีจิ้นผิงที่ APEC",
-   "time": "2026-11-19T12:15:00Z",
-   "source": "https://finance.yahoo.com/markets/article/stalemates-over-semiconductors-and-rare-earth-minerals-appear-little-changed-as-trump-heads-home-from-china-121555352.html",
-   "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "วิกฤตอ่าวทวีความตึงเครียด อิหร่านโจมตีบาห์เรน เรือ ADNOC ถูกโจมตี สหรัฐตอบโต้เกาะเกชม์",
-   "time": "2026-11-19T12:00:00Z",
-   "source": "https://gulfnews.com/world/mena/middle-east-war-iran-attacks-bahrain-kuwait-drone-threats-keep-gulf-on-high-alert-as-us-hits-irans-qeshm-1.500751444",
-   "source_name": "Gulf News"
-  },
-  {
    "id": "h11",
+   "conflict_id": "gaza_israel",
+   "title_th": "รมว.กลาโหมอิสราเอลระบุจะคงกำลังในกาซา เลบานอน และซีเรียต่อไปไม่มีกำหนด",
+   "time": "2026-11-19T10:00:00Z",
+   "source": "https://www.middleeasteye.net/live-blog/live-blog-update/israeli-defence-minister-says-israel-will-indefinitely-occupy-gaza",
+   "source_name": "Middle East Eye"
+  },
+  {
+   "id": "h12",
    "conflict_id": "gaza_israel",
    "title_th": "กองทัพอิสราเอลส่งรถถังเข้าพื้นที่กลางฉนวนกาซาที่ฮามาสควบคุม ครั้งแรกนับแต่หยุดยิงเดือนต.ค. 2025",
    "time": "2026-11-18T18:00:00Z",
    "source": "https://jpost.com/israel-news/defense-news/article-915349",
    "source_name": "Jerusalem Post"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "gaza_israel",
-   "title_th": "อิสราเอลเปิดปฏิบัติการภาคพื้นดินใกล้ค่ายบูเรจและนุเซย์รัตในกาซา แม้มีข้อตกลงหยุดยิง",
-   "time": "2026-11-18T14:15:00Z",
-   "source": "https://www.middleeasteye.net/live-blog/live-blog-update/israel-launches-assault-targeting-residential-areas-gaza-despite",
-   "source_name": "Middle East Eye"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ฮูตีรุกใกล้เอเดน กลุ่มแบ่งแยกดินแดนใต้เยเมนฟื้นบทบาท ขณะซาอุฯ ปรับโครงสร้างกองบัญชาการ",
-   "time": "2026-11-17T11:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/17/houthi-advance-on-aden-sparks-resurgence-of-yemens-southern-separatists",
-   "source_name": "Al Jazeera"
   }
  ]
 }
