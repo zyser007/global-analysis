@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-21T11:12:14Z",
- "checked": "2026-11-21T11:12:14Z",
+ "updated": "2026-11-21T12:18:32Z",
+ "checked": "2026-11-21T12:18:32Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-21T11:12:14Z",
+   "fetched": "2026-11-21T12:18:32Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-07&toDate=2026-11-22&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-21T11:12:14Z",
+   "fetched": "2026-11-21T12:18:32Z",
    "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -186,13 +186,13 @@
    "countries": [
     "Timor Leste"
    ],
-   "lat": -7.7563,
-   "lon": 127.5428,
-   "start": "2026-11-21T09:42:10Z",
-   "end": "2026-11-21T09:42:10Z",
-   "updated": "2026-11-21T10:51:59Z",
+   "lat": -7.7324,
+   "lon": 127.5407,
+   "start": "2026-11-21T09:42:09Z",
+   "end": "2026-11-21T09:42:09Z",
+   "updated": "2026-11-21T12:17:23Z",
    "alert_level": "green",
-   "severity_th": "ขนาด 6.8 ลึก 143 กม.",
+   "severity_th": "ขนาด 6.8 ลึก 132 กม.",
    "severity_value": 6.8,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucij",
@@ -211,7 +211,7 @@
    "lon": -75.9779,
    "start": "2026-11-21T00:09:19Z",
    "end": "2026-11-21T00:09:19Z",
-   "updated": "2026-11-21T10:50:23Z",
+   "updated": "2026-11-21T11:31:51Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.7 ลึก 108 กม.",
    "severity_value": 6.7,
