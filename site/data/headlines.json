@@ -1,16 +1,24 @@
 {
- "updated_at": "2026-11-20T13:12:36Z",
+ "updated_at": "2026-11-21T01:13:19Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "ผลตอบแทนพันธบัตรสหรัฐ 10 ปีลดลงกว่า 7 bp เหลือราว 4.97% ขณะนักลงทุนหนีไปสินทรัพย์ปลอดภัย",
-   "time": "2026-11-20T13:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/20/treasury-yields-bonds-inflation.html",
+   "title_th": "S&P 500 และ Dow ปิดเข้าสู่ภาวะปรับฐาน Nasdaq ร่วง 5.28% ติดลบตั้งแต่ต้นปี จากแรงขายหุ้น AI",
+   "time": "2026-11-20T21:30:00Z",
+   "source": "https://www.cnbc.com/2026/11/19/stock-market-today-live-updates.html",
    "source_name": "CNBC"
   },
   {
    "id": "h2",
+   "conflict_id": "thailand",
+   "title_th": "ราคาทองไทยร่วง 2,500 บาท ทองคำแท่งขายออก 57,400 บาท จากดอลลาร์แข็งและความกังวลเฟดขึ้นดอกเบี้ย",
+   "time": "2026-11-20T10:30:00Z",
+   "source": "https://www.nationthailand.com/business/economy/40073716",
+   "source_name": "Nation Thailand"
+  },
+  {
+   "id": "h3",
    "conflict_id": "ukraine_russia",
    "title_th": "การโจมตีของรัสเซียวันเดียวทำผู้เสียชีวิต 12 ราย บาดเจ็บ 82 ราย ทั่วยูเครน",
    "time": "2026-11-20T10:00:00Z",
@@ -18,7 +26,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h3",
+   "id": "h4",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IEA เตือนสงครามเก้าเดือนทำความเชื่อมั่นต่อช่องแคบฮอร์มุซพังทลาย อาจกระทบตลาดพลังงานไปอีกหลายปี",
    "time": "2026-11-20T09:00:00Z",
@@ -26,20 +34,12 @@
    "source_name": "Baltimore Sun"
   },
   {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "ukraine_russia",
    "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
    "time": "2026-11-20T08:00:00Z",
    "source": "https://kyivindependent.com/poland-reports-airspace-violation-during-russian-attack-on-ukraine-investigates-debris-crash/",
    "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h5",
-   "conflict_id": "economy",
-   "title_th": "Nikkei ดิ่งกว่า 3,000 จุด ปิดต่ำกว่า 57,000 ครั้งแรกในรอบ 7 เดือน หลังหุ้นเทคฯ วอลล์สตรีทร่วง",
-   "time": "2026-11-20T07:00:00Z",
-   "source": "https://jen.jiji.com/business/markets/2026112000935/",
-   "source_name": "Jiji Press"
   },
   {
    "id": "h6",
@@ -59,11 +59,11 @@
   },
   {
    "id": "h8",
-   "conflict_id": "thailand",
-   "title_th": "ดัชนี SET ปิดวันที่ 19 พ.ย. ที่ 1,472.64 จุด เกือบทรงตัว มูลค่าซื้อขายราว 6.5 หมื่นล้านบาท",
-   "time": "2026-11-20T00:30:00Z",
-   "source": "https://thaienquirer.com/76314/thai-enquirer-news-summary-november-20-2026",
-   "source_name": "Thai Enquirer"
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "เจ้าหน้าที่สหรัฐ: อิหร่านใช้ขีปนาวุธร้ายแรงขึ้นโจมตีเรือในฮอร์มุซ ขณะสหรัฐเสริมกำลังในภูมิภาค",
+   "time": "2026-11-19T18:00:00Z",
+   "source": "https://www.jpost.com/middle-east/iran-news/article-915531",
+   "source_name": "Jerusalem Post"
   },
   {
    "id": "h9",
@@ -91,6 +91,14 @@
   },
   {
    "id": "h12",
+   "conflict_id": "gaza_israel",
+   "title_th": "อิสราเอลเปิดปฏิบัติการภาคพื้นดินใกล้ค่ายบูเรจและนุเซย์รัตในกาซา แม้มีข้อตกลงหยุดยิง",
+   "time": "2026-11-18T14:15:00Z",
+   "source": "https://www.middleeasteye.net/live-blog/live-blog-update/israel-launches-assault-targeting-residential-areas-gaza-despite",
+   "source_name": "Middle East Eye"
+  },
+  {
+   "id": "h13",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ฮูตีรุกใกล้เอเดน กลุ่มแบ่งแยกดินแดนใต้เยเมนฟื้นบทบาท ขณะซาอุฯ ปรับโครงสร้างกองบัญชาการ",
    "time": "2026-11-17T11:00:00Z",

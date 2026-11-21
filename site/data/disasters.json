@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-21T00:34:14Z",
- "checked": "2026-11-21T00:34:14Z",
+ "updated": "2026-11-21T01:13:10Z",
+ "checked": "2026-11-21T01:13:10Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-21T00:34:14Z",
+   "fetched": "2026-11-21T01:13:10Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-07&toDate=2026-11-22&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-21T00:34:14Z",
+   "fetched": "2026-11-21T01:13:10Z",
    "count": 4,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -157,6 +157,27 @@
    "source_name": "GDACS"
   },
   {
+   "id": "usgs-us6000ucfm",
+   "type": "earthquake",
+   "title_th": "แผ่นดินไหวขนาด 6.7 ในเปรู",
+   "country": "Peru",
+   "country_th": "เปรู",
+   "countries": [
+    "Peru"
+   ],
+   "lat": -10.8548,
+   "lon": -75.9779,
+   "start": "2026-11-21T00:09:19Z",
+   "end": "2026-11-21T00:09:19Z",
+   "updated": "2026-11-21T01:06:07Z",
+   "alert_level": "green",
+   "severity_th": "ขนาด 6.7 ลึก 108 กม.",
+   "severity_value": 6.7,
+   "severity_unit": "M",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucfm",
+   "source_name": "USGS"
+  },
+  {
    "id": "usgs-nc75468702",
    "type": "earthquake",
    "title_th": "แผ่นดินไหวขนาด 5.0 ในสหรัฐฯ",
@@ -169,7 +190,7 @@
    "lon": -121.2207,
    "start": "2026-11-20T06:49:16Z",
    "end": "2026-11-20T06:49:16Z",
-   "updated": "2026-11-20T23:59:56Z",
+   "updated": "2026-11-21T01:08:20Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.0 ลึก 7 กม.",
    "severity_value": 4.98,
@@ -217,27 +238,6 @@
    "severity_value": 6.6,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tymu",
-   "source_name": "USGS"
-  },
-  {
-   "id": "usgs-us6000ucfm",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 6.7 ในเปรู",
-   "country": "Peru",
-   "country_th": "เปรู",
-   "countries": [
-    "Peru"
-   ],
-   "lat": -10.8548,
-   "lon": -75.9779,
-   "start": "2026-11-21T00:09:19Z",
-   "end": "2026-11-21T00:09:19Z",
-   "updated": "2026-11-21T00:33:32Z",
-   "alert_level": null,
-   "severity_th": "ขนาด 6.7 ลึก 108 กม.",
-   "severity_value": 6.7,
-   "severity_unit": "M",
-   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucfm",
    "source_name": "USGS"
   }
  ]
