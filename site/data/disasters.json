@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-21T10:13:32Z",
- "checked": "2026-11-21T10:13:32Z",
+ "updated": "2026-11-21T11:12:14Z",
+ "checked": "2026-11-21T11:12:14Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-21T10:13:32Z",
+   "fetched": "2026-11-21T11:12:14Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-07&toDate=2026-11-22&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-21T10:13:32Z",
-   "count": 5,
+   "fetched": "2026-11-21T11:12:14Z",
+   "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -157,6 +157,27 @@
    "source_name": "GDACS"
   },
   {
+   "id": "usgs-us6000ucly",
+   "type": "earthquake",
+   "title_th": "แผ่นดินไหวขนาด 5.9 ในจีน",
+   "country": "China",
+   "country_th": "จีน",
+   "countries": [
+    "China"
+   ],
+   "lat": 37.1958,
+   "lon": 96.6398,
+   "start": "2026-11-21T10:45:33Z",
+   "end": "2026-11-21T10:45:33Z",
+   "updated": "2026-11-21T11:09:02Z",
+   "alert_level": "yellow",
+   "severity_th": "ขนาด 5.9 ลึก 10 กม.",
+   "severity_value": 5.9,
+   "severity_unit": "M",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucly",
+   "source_name": "USGS"
+  },
+  {
    "id": "usgs-us6000ucij",
    "type": "earthquake",
    "title_th": "แผ่นดินไหวขนาด 6.8 ในTimor Leste",
@@ -169,7 +190,7 @@
    "lon": 127.5428,
    "start": "2026-11-21T09:42:10Z",
    "end": "2026-11-21T09:42:10Z",
-   "updated": "2026-11-21T10:10:46Z",
+   "updated": "2026-11-21T10:51:59Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.8 ลึก 143 กม.",
    "severity_value": 6.8,
@@ -190,7 +211,7 @@
    "lon": -75.9779,
    "start": "2026-11-21T00:09:19Z",
    "end": "2026-11-21T00:09:19Z",
-   "updated": "2026-11-21T08:42:47Z",
+   "updated": "2026-11-21T10:50:23Z",
    "alert_level": "green",
    "severity_th": "ขนาด 6.7 ลึก 108 กม.",
    "severity_value": 6.7,
@@ -211,7 +232,7 @@
    "lon": -121.2083,
    "start": "2026-11-20T06:49:16Z",
    "end": "2026-11-20T06:49:16Z",
-   "updated": "2026-11-21T07:12:46Z",
+   "updated": "2026-11-21T10:47:31Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.0 ลึก 6 กม.",
    "severity_value": 4.98,
