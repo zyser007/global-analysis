@@ -1,8 +1,24 @@
 {
- "updated_at": "2026-11-21T13:10:43Z",
+ "updated_at": "2026-11-22T01:13:24Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียถล่มเคียฟด้วยขีปนาวุธและโดรน ผู้เสียชีวิต 3 ราย สะพานและโครงสร้างพื้นฐานเสียหาย",
+   "time": "2026-11-21T04:00:00Z",
+   "source": "https://uk.news.yahoo.com/ukraine-russia-war-latest-kyiv-042352979.html",
+   "source_name": "Yahoo News UK"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "CNBC: นักลงทุนเตรียมรับมือความผันผวนสัปดาห์หน้า จับตาข้อมูลเงินเฟ้อและความเสี่ยงที่เฟดอาจขึ้นดอกเบี้ย 0.5%",
+   "time": "2026-11-20T22:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/20/stock-market-next-week-outlook-for-nov-23-27-2026.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h3",
    "conflict_id": "economy",
    "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก แรงขาย AI ลบกำไรปีนี้ของ Nasdaq หมด Dow และ S&P 500 เข้าสู่ภาวะปรับฐาน",
    "time": "2026-11-20T21:00:00Z",
@@ -10,7 +26,7 @@
    "source_name": "Fox Business"
   },
   {
-   "id": "h2",
+   "id": "h4",
    "conflict_id": "economy",
    "title_th": "CNBC วิเคราะห์ 5 ปัจจัยเบื้องหลังการเทขายจน S&P 500 เข้าสู่ภาวะปรับฐาน",
    "time": "2026-11-20T20:00:00Z",
@@ -18,7 +34,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h3",
+   "id": "h5",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "กองกำลังพันธมิตรซาอุฯ และฮูตีขู่ทิ้งระเบิดท่าเรือสำคัญของกันและกัน",
    "time": "2026-11-20T15:00:00Z",
@@ -26,7 +42,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "การโจมตีในช่องแคบฮอร์มุซสูงสุดนับตั้งแต่สงครามอิหร่านเริ่มต้น",
    "time": "2026-11-20T12:00:00Z",
@@ -34,7 +50,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h5",
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "เรือบรรทุกน้ำมันถูกโจมตีในฮอร์มุซ ขณะขีปนาวุธถล่มเกาะเกชม์ของอิหร่าน",
    "time": "2026-11-20T11:00:00Z",
@@ -42,15 +58,7 @@
    "source_name": "Arab News"
   },
   {
-   "id": "h6",
-   "conflict_id": "thailand",
-   "title_th": "ราคาทองไทยร่วง 2,500 บาท ทองคำแท่งขายออก 57,400 บาท จากดอลลาร์แข็งและความกังวลเฟดขึ้นดอกเบี้ย",
-   "time": "2026-11-20T10:30:00Z",
-   "source": "https://www.nationthailand.com/business/economy/40073716",
-   "source_name": "Nation Thailand"
-  },
-  {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "การโจมตีของรัสเซียวันเดียวทำผู้เสียชีวิต 12 ราย บาดเจ็บ 82 ราย ทั่วยูเครน",
    "time": "2026-11-20T10:00:00Z",
@@ -58,7 +66,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีสะพาน 3 แห่งในเคียฟ ผู้เสียชีวิตอย่างน้อย 9 ราย",
    "time": "2026-11-20T08:30:00Z",
@@ -66,7 +74,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "ukraine_russia",
    "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
    "time": "2026-11-20T08:00:00Z",
@@ -74,7 +82,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "เจ้าหน้าที่สหรัฐ: อิหร่านใช้ขีปนาวุธร้ายแรงขึ้นโจมตีเรือในฮอร์มุซ ขณะสหรัฐเสริมกำลังในภูมิภาค",
    "time": "2026-11-19T18:00:00Z",
@@ -82,7 +90,7 @@
    "source_name": "Jerusalem Post"
   },
   {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "gaza_israel",
    "title_th": "รมว.กลาโหมอิสราเอลระบุจะคงกำลังในกาซา เลบานอน และซีเรียต่อไปไม่มีกำหนด",
    "time": "2026-11-19T10:00:00Z",
@@ -90,12 +98,20 @@
    "source_name": "Middle East Eye"
   },
   {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "gaza_israel",
    "title_th": "กองทัพอิสราเอลส่งรถถังเข้าพื้นที่กลางฉนวนกาซาที่ฮามาสควบคุม ครั้งแรกนับแต่หยุดยิงเดือนต.ค. 2025",
    "time": "2026-11-18T18:00:00Z",
    "source": "https://jpost.com/israel-news/defense-news/article-915349",
    "source_name": "Jerusalem Post"
+  },
+  {
+   "id": "h14",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "ฮูตีรุกคืบใกล้เอเดน กลุ่มแบ่งแยกดินแดนใต้เยเมนฟื้นบทบาท ขณะซาอุฯ ปรับโครงสร้างกองบัญชาการ",
+   "time": "2026-11-17T12:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/17/houthi-advance-on-aden-sparks-resurgence-of-yemens-southern-separatists",
+   "source_name": "Al Jazeera"
   }
  ]
 }
