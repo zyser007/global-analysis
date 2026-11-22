@@ -1,0 +1,131 @@
+{
+ "date": "2026-11-22",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตการโจมตีเรือที่ฮอร์มุซ 21–22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/21/tankers-hit-in-strait-of-hormuz-as-iran-tightens-grip-on-shipping",
+     "published": "2026-11-21",
+     "publisher": "Al Jazeera",
+     "title": "Tankers hit in Strait of Hormuz as Iran tightens grip on shipping"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "เพิ่มเหตุโจมตีเรือ 21–22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/21/tankers-hit-in-strait-of-hormuz-as-iran-tightens-grip-on-shipping",
+     "published": "2026-11-21",
+     "publisher": "Al Jazeera",
+     "title": "Tankers hit in Strait of Hormuz as Iran tightens grip on shipping"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มการขู่โจมตีท่าเรือ 20 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/20/saudi-coalition-and-houthis-exchange-threats-to-bomb-key-ports",
+     "published": "2026-11-20",
+     "publisher": "Al Jazeera",
+     "title": "Saudi coalition and Houthis exchange threats to bomb key ports"
+    },
+    {
+     "url": "https://www.thenews.pk/story/1449937-saudi-ports-airports-and-oil-facilities-face-growing-houthi-threats-amid-yemen-escalation",
+     "published": "2026-11-21",
+     "publisher": "The News (Reuters)",
+     "title": "Saudi ports, airports and oil facilities face growing Houthi threats"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.buy",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.sat_change_baht",
+    "thai.year_low",
+    "thai.note_th"
+   ],
+   "summary_th": "อัปเดตราคาทองไทย 21 พ.ย. 09:11 น.",
+   "sources": [
+    {
+     "url": "https://www.thairath.co.th/news/society/2973784",
+     "published": "2026-11-21",
+     "publisher": "ไทยรัฐ (อ้างสมาคมค้าทองคำ)",
+     "title": "ราคาทองวันนี้ 21 พ.ย. 2569"
+    },
+    {
+     "url": "https://www.thansettakij.com/general-news/674310",
+     "published": "2026-11-21",
+     "publisher": "ฐานเศรษฐกิจ",
+     "title": "ราคาทองวันนี้ 21 พ.ย. 69"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "economies",
+   "keys": [
+    "JPN"
+   ],
+   "fields": [
+    "inflation"
+   ],
+   "summary_th": "CPI พื้นฐานญี่ปุ่น ต.ค. 2.2% (20 พ.ย.) ตลาดให้โอกาสขึ้นดอกเบี้ย BoJ ธ.ค. 72%",
+   "sources": [
+    {
+     "url": "https://www.cnbc.com/2026/11/20/japan-inflation-cpi-october.html",
+     "published": "2026-11-20",
+     "publisher": "CNBC",
+     "title": "Japan inflation October"
+    }
+   ],
+   "confidence": "high"
+  }
+ ],
+ "base_commit": "6ade2671ea40bec6c487478551d0470838d34e83",
+ "reviewed_unchanged": [
+  "GBR",
+  "gaza_israel",
+  "myanmar_civil_war",
+  "sudan_civil_war",
+  "ukraine_russia"
+ ]
+}
