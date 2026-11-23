@@ -1,0 +1,97 @@
+{
+ "date": "2026-11-23",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหว 22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.washingtonpost.com/business/2026/11/22/russia-ukraine-war-kaliningrad-baltic-fleet-drones/5a2b5adc-e66e-11f1-8db0-6f1e3c389e7c_story.html",
+     "published": "2026-11-22",
+     "publisher": "Washington Post",
+     "title": "Russia-Ukraine war"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหว 22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://abcnews.com/International/live-updates/iran-live-updates-tanker-attacked-strait-hormuz-ukmto/?id=138171071",
+     "published": "2026-11-22",
+     "publisher": "ABC News",
+     "title": "Iran live updates: tanker attacked in Strait of Hormuz"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหว 22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.arabnews.com/opinion/houthi-attacks-on-economic-facilities-and-saudi-arabias-options-3013492",
+     "published": "2026-11-22",
+     "publisher": "Arab News",
+     "title": "Houthi attacks on economic facilities and Saudi Arabia's options"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "เพิ่มความเคลื่อนไหว 22 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.aljazeera.com/news/2026/11/22/displaced-palestinians-protest-as-israeli-air-strikes-continue-in-gaza",
+     "published": "2026-11-22",
+     "publisher": "Al Jazeera",
+     "title": "Displaced Palestinians protest as Israeli air strikes continue in Gaza"
+    },
+    {
+     "url": "https://www.aa.com.tr/en/middle-east/israeli-attacks-kill-3-gazans-injure-4-in-latest-ceasefire-violation/4133706",
+     "published": "2026-11-22",
+     "publisher": "Anadolu Agency",
+     "title": "Israeli attacks kill 3 Gazans in latest ceasefire violation"
+    }
+   ],
+   "confidence": "medium"
+  }
+ ],
+ "base_commit": "c7aca093257be05e2a6766f37337583255b2a210",
+ "reviewed_unchanged": [
+  "chokepoints/1",
+  "myanmar_civil_war",
+  "sudan_civil_war"
+ ]
+}
