@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-23T20:14:06Z",
- "checked": "2026-11-23T20:14:06Z",
+ "updated": "2026-11-23T21:13:16Z",
+ "checked": "2026-11-23T21:13:16Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-23T20:14:06Z",
+   "fetched": "2026-11-23T21:13:16Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-09&toDate=2026-11-24&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-23T20:14:06Z",
-   "count": 7,
+   "fetched": "2026-11-23T21:13:16Z",
+   "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -272,33 +272,12 @@
    "lon": 26.4521,
    "start": "2026-11-18T00:48:56Z",
    "end": "2026-11-18T00:48:56Z",
-   "updated": "2026-11-21T18:44:11Z",
+   "updated": "2026-11-23T20:30:05Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.3 ลึก 132 กม.",
    "severity_value": 5.3,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8",
-   "source_name": "USGS"
-  },
-  {
-   "id": "usgs-us7000tymu",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 6.6 ในอินโดนีเซีย",
-   "country": "Indonesia",
-   "country_th": "อินโดนีเซีย",
-   "countries": [
-    "Indonesia"
-   ],
-   "lat": -6.0208,
-   "lon": 131.4593,
-   "start": "2026-11-16T21:11:20Z",
-   "end": "2026-11-16T21:11:20Z",
-   "updated": "2026-11-20T00:45:09Z",
-   "alert_level": "green",
-   "severity_th": "ขนาด 6.6 ลึก 68 กม.",
-   "severity_value": 6.6,
-   "severity_unit": "M",
-   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tymu",
    "source_name": "USGS"
   }
  ]
