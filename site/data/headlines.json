@@ -1,8 +1,40 @@
 {
- "updated_at": "2026-11-23T01:14:26Z",
+ "updated_at": "2026-11-23T13:14:30Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "ฟิวเจอร์สหุ้นสหรัฐดีดแรง หลังตลาดลดความกังวลเฟดขึ้นดอกเบี้ยครั้งใหญ่เดือนธันวาคม",
+   "time": "2026-11-23T07:28:00Z",
+   "source": "https://www.fxstreet.com/news/dow-jones-futures-bounce-up-as-investors-pare-back-aggressive-fed-tightening-expectations-202611230728",
+   "source_name": "FXStreet"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "ukraine_russia",
+   "title_th": "NBC: ยูเครนอ้างจมเรือรบรัสเซียนอกชายฝั่งลิเบีย ขยายสมรภูมิสู่แอฟริกาเหนือ",
+   "time": "2026-11-23T06:00:00Z",
+   "source": "https://www.nbcnews.com/world/ukraine/ukraine-sinks-russian-warship-merkury-libya-naval-drones-war-rcna610822",
+   "source_name": "NBC News"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ABC: เตหะรานระบุช่องแคบฮอร์มุซจะปลอดภัยหากข้อเรียกร้องได้รับการตอบสนอง ท่ามกลางการโจมตีที่พุ่งสูง",
+   "time": "2026-11-22T17:47:00Z",
+   "source": "https://abcnews.com/International/live-updates/iran-live-updates-tehran-strait-hormuz-safe-demands/?id=138369648",
+   "source_name": "ABC News"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "Al Jazeera วิเคราะห์เบื้องหลังการยกระดับโจมตีของอิหร่านในอ่าวเปอร์เซีย",
+   "time": "2026-11-22T12:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/22/whats-behind-irans-escalation-of-attacks-in-the-gulf",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h5",
    "conflict_id": "ukraine_russia",
    "title_th": "เซเลนสกีชี้สหรัฐล่าช้าเรื่อง Patriot เข้าใจยาก ขณะรัสเซียยิงขีปนาวุธ 165 ลูกในสัปดาห์เดียว",
    "time": "2026-11-22T11:00:00Z",
@@ -10,7 +42,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h2",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "Al Jazeera: เรือบรรทุกน้ำมันลุกไหม้ในฮอร์มุซ ขณะ IRGC เตือนภัยความไม่สงบภายในอิหร่าน",
    "time": "2026-11-22T10:00:00Z",
@@ -18,7 +50,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h3",
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "CNN: การโจมตีของอิหร่านในช่องแคบฮอร์มุซอยู่ในระดับสูงสุดนับแต่สงครามเริ่มต้น",
    "time": "2026-11-22T09:00:00Z",
@@ -26,23 +58,7 @@
    "source_name": "CNN"
   },
   {
-   "id": "h4",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ทรัมป์ระบุต้องการข้อตกลงถาวรกับอิหร่าน พร้อมเตือนว่าการเคลื่อนไหวครั้งต่อไปอาจไม่มีการแจ้งล่วงหน้า",
-   "time": "2026-11-22T08:00:00Z",
-   "source": "https://www.cbsnews.com/live-updates/iran-war-trump-tehran-denies-chemical-weapons/",
-   "source_name": "CBS News"
-  },
-  {
-   "id": "h5",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "บาห์เรนสกัดการโจมตีจากอิหร่าน ขณะเตหะรานเตรียมเรือน้ำมัน 14 ลำฝ่าการปิดล้อมของกองทัพเรือสหรัฐ",
-   "time": "2026-11-22T07:00:00Z",
-   "source": "https://gulfnews.com/world/mena/middle-east-conflict-bahrain-intercepts-iranian-attacks-as-tehran-prepares-14-oil-tankers-to-breach-us-naval-blockade-1.500756662",
-   "source_name": "Gulf News"
-  },
-  {
-   "id": "h6",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "โดรนรัสเซียโจมตีอาคารที่พักในเขตเคียฟ ผู้เสียชีวิต 7 ราย ครอบครัวรอผู้กู้ภัย",
    "time": "2026-11-22T06:00:00Z",
@@ -50,7 +66,7 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h7",
+   "id": "h9",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "กองกำลังพันธมิตรนำโดยซาอุฯ ยิงสกัดขีปนาวุธฮูตี 3 ลูกที่พุ่งเป้าไปยังริยาด",
    "time": "2026-11-21T12:00:00Z",
@@ -58,7 +74,15 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
+   "id": "h10",
+   "conflict_id": "thailand",
+   "title_th": "ราคาทองไทยร่วงเกือบ 3,000 บาท ท่ามกลางดอลลาร์แข็งค่าและความกังวลเฟดขึ้นดอกเบี้ย",
+   "time": "2026-11-21T03:00:00Z",
+   "source": "https://www.pattayamail.com/latestnews/news/thai-gold-prices-plunge-nearly-3000-baht-amid-dollar-strength-572481",
+   "source_name": "Pattaya Mail"
+  },
+  {
+   "id": "h11",
    "conflict_id": "economy",
    "title_th": "CNBC: นักลงทุนเตรียมรับมือความผันผวนสัปดาห์หน้า จับตาข้อมูลเงินเฟ้อและความเสี่ยงที่เฟดอาจขึ้นดอกเบี้ย 0.5%",
    "time": "2026-11-20T22:00:00Z",
@@ -66,15 +90,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h9",
-   "conflict_id": "economy",
-   "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก แรงขาย AI ลบกำไรปีนี้ของ Nasdaq หมด Dow และ S&P 500 เข้าสู่ภาวะปรับฐาน",
-   "time": "2026-11-20T21:00:00Z",
-   "source": "https://www.foxbusiness.com/markets/wall-street-suffers-historic-losses-dow-sp-500-plunge-correction-territory",
-   "source_name": "Fox Business"
-  },
-  {
-   "id": "h10",
+   "id": "h12",
    "conflict_id": "economy",
    "title_th": "CNBC วิเคราะห์ 5 ปัจจัยเบื้องหลังการเทขายจน S&P 500 เข้าสู่ภาวะปรับฐาน",
    "time": "2026-11-20T20:00:00Z",
@@ -82,31 +98,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h11",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "กองกำลังพันธมิตรซาอุฯ และฮูตีขู่ทิ้งระเบิดท่าเรือสำคัญของกันและกัน",
-   "time": "2026-11-20T15:00:00Z",
-   "source": "https://aljazeera.com/news/2026/11/20/saudi-coalition-and-houthis-exchange-threats-to-bomb-key-ports",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีสะพาน 3 แห่งในเคียฟ ผู้เสียชีวิตอย่างน้อย 9 ราย",
-   "time": "2026-11-20T08:30:00Z",
-   "source": "https://kyivindependent.com/ukraine-war-latest-russia-strikes-3-kyiv-bridges-in-massive-aerial-assault-on-ukraine-at-least-9-dead/",
-   "source_name": "Kyiv Independent"
-  },
-  {
    "id": "h13",
-   "conflict_id": "ukraine_russia",
-   "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
-   "time": "2026-11-20T08:00:00Z",
-   "source": "https://kyivindependent.com/poland-reports-airspace-violation-during-russian-attack-on-ukraine-investigates-debris-crash/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h14",
    "conflict_id": "gaza_israel",
    "title_th": "รมว.กลาโหมอิสราเอลระบุจะคงกำลังในกาซา เลบานอน และซีเรียต่อไปไม่มีกำหนด",
    "time": "2026-11-19T10:00:00Z",
