@@ -1,8 +1,56 @@
 {
- "updated_at": "2026-11-22T13:10:57Z",
+ "updated_at": "2026-11-23T01:14:26Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "ukraine_russia",
+   "title_th": "เซเลนสกีชี้สหรัฐล่าช้าเรื่อง Patriot เข้าใจยาก ขณะรัสเซียยิงขีปนาวุธ 165 ลูกในสัปดาห์เดียว",
+   "time": "2026-11-22T11:00:00Z",
+   "source": "https://kyivindependent.com/ukraine-war-latest-us-delays-on-patriot-missiles-difficult-to-understand-as-russia-fires-165-missiles-in-single-week-zelensky-says/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "Al Jazeera: เรือบรรทุกน้ำมันลุกไหม้ในฮอร์มุซ ขณะ IRGC เตือนภัยความไม่สงบภายในอิหร่าน",
+   "time": "2026-11-22T10:00:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/22/iran-war-live-tankers-set-ablaze-in-hormuz-as-irgc-warns-of-unrest-threat",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "CNN: การโจมตีของอิหร่านในช่องแคบฮอร์มุซอยู่ในระดับสูงสุดนับแต่สงครามเริ่มต้น",
+   "time": "2026-11-22T09:00:00Z",
+   "source": "https://cnn.com/2026/11/22/middleeast/hormuz-attacks-highest-levels-iran-war-intl",
+   "source_name": "CNN"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ทรัมป์ระบุต้องการข้อตกลงถาวรกับอิหร่าน พร้อมเตือนว่าการเคลื่อนไหวครั้งต่อไปอาจไม่มีการแจ้งล่วงหน้า",
+   "time": "2026-11-22T08:00:00Z",
+   "source": "https://www.cbsnews.com/live-updates/iran-war-trump-tehran-denies-chemical-weapons/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "บาห์เรนสกัดการโจมตีจากอิหร่าน ขณะเตหะรานเตรียมเรือน้ำมัน 14 ลำฝ่าการปิดล้อมของกองทัพเรือสหรัฐ",
+   "time": "2026-11-22T07:00:00Z",
+   "source": "https://gulfnews.com/world/mena/middle-east-conflict-bahrain-intercepts-iranian-attacks-as-tehran-prepares-14-oil-tankers-to-breach-us-naval-blockade-1.500756662",
+   "source_name": "Gulf News"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "ukraine_russia",
+   "title_th": "โดรนรัสเซียโจมตีอาคารที่พักในเขตเคียฟ ผู้เสียชีวิต 7 ราย ครอบครัวรอผู้กู้ภัย",
+   "time": "2026-11-22T06:00:00Z",
+   "source": "https://kyivindependent.com/apartment-building-destroyed-in-kyiv-oblast-following-russian-drone-attack/",
+   "source_name": "Kyiv Independent"
+  },
+  {
+   "id": "h7",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "กองกำลังพันธมิตรนำโดยซาอุฯ ยิงสกัดขีปนาวุธฮูตี 3 ลูกที่พุ่งเป้าไปยังริยาด",
    "time": "2026-11-21T12:00:00Z",
@@ -10,23 +58,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h2",
-   "conflict_id": "thailand",
-   "title_th": "ราคาทองคำในไทยร่วงเกือบ 3,000 บาท จากแรงกดดันดอลลาร์แข็งค่าและความกังวลเฟดขึ้นดอกเบี้ย",
-   "time": "2026-11-21T06:00:00Z",
-   "source": "https://www.pattayamail.com/latestnews/news/thai-gold-prices-plunge-nearly-3000-baht-amid-dollar-strength-572481",
-   "source_name": "Pattaya Mail"
-  },
-  {
-   "id": "h3",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียถล่มเคียฟด้วยขีปนาวุธและโดรน ผู้เสียชีวิต 3 ราย สะพานและโครงสร้างพื้นฐานเสียหาย",
-   "time": "2026-11-21T04:00:00Z",
-   "source": "https://uk.news.yahoo.com/ukraine-russia-war-latest-kyiv-042352979.html",
-   "source_name": "Yahoo News UK"
-  },
-  {
-   "id": "h4",
+   "id": "h8",
    "conflict_id": "economy",
    "title_th": "CNBC: นักลงทุนเตรียมรับมือความผันผวนสัปดาห์หน้า จับตาข้อมูลเงินเฟ้อและความเสี่ยงที่เฟดอาจขึ้นดอกเบี้ย 0.5%",
    "time": "2026-11-20T22:00:00Z",
@@ -34,7 +66,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "economy",
    "title_th": "ตลาดหุ้นสหรัฐดิ่งหนัก แรงขาย AI ลบกำไรปีนี้ของ Nasdaq หมด Dow และ S&P 500 เข้าสู่ภาวะปรับฐาน",
    "time": "2026-11-20T21:00:00Z",
@@ -42,7 +74,7 @@
    "source_name": "Fox Business"
   },
   {
-   "id": "h6",
+   "id": "h10",
    "conflict_id": "economy",
    "title_th": "CNBC วิเคราะห์ 5 ปัจจัยเบื้องหลังการเทขายจน S&P 500 เข้าสู่ภาวะปรับฐาน",
    "time": "2026-11-20T20:00:00Z",
@@ -50,7 +82,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h7",
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "กองกำลังพันธมิตรซาอุฯ และฮูตีขู่ทิ้งระเบิดท่าเรือสำคัญของกันและกัน",
    "time": "2026-11-20T15:00:00Z",
@@ -58,31 +90,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h8",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "การโจมตีในช่องแคบฮอร์มุซสูงสุดนับตั้งแต่สงครามอิหร่านเริ่มต้น",
-   "time": "2026-11-20T12:00:00Z",
-   "source": "https://abcnews.com/International/strait-hormuz-attacks-increased-highest-level-iran-war/story?id=138304456",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "เรือบรรทุกน้ำมันถูกโจมตีในฮอร์มุซ ขณะขีปนาวุธถล่มเกาะเกชม์ของอิหร่าน",
-   "time": "2026-11-20T11:00:00Z",
-   "source": "https://www.arabnews.com/middle-east/tanker-hit-in-strait-of-hormuz-as-missile-strikes-irans-qeshm-island-3013176",
-   "source_name": "Arab News"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "ukraine_russia",
-   "title_th": "การโจมตีของรัสเซียวันเดียวทำผู้เสียชีวิต 12 ราย บาดเจ็บ 82 ราย ทั่วยูเครน",
-   "time": "2026-11-20T10:00:00Z",
-   "source": "https://kyivindependent.com/russian-attacks-kill-12-injure-82-across-ukraine-over-past-day-as-country-reels-from-mass-overnight-strike/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีสะพาน 3 แห่งในเคียฟ ผู้เสียชีวิตอย่างน้อย 9 ราย",
    "time": "2026-11-20T08:30:00Z",
@@ -90,20 +98,12 @@
    "source_name": "Kyiv Independent"
   },
   {
-   "id": "h12",
+   "id": "h13",
    "conflict_id": "ukraine_russia",
    "title_th": "ขีปนาวุธ Kh-101 สองลูกและโดรนตกในโปแลนด์ ระหว่างรัสเซียโจมตียูเครน โปแลนด์สอบสวน",
    "time": "2026-11-20T08:00:00Z",
    "source": "https://kyivindependent.com/poland-reports-airspace-violation-during-russian-attack-on-ukraine-investigates-debris-crash/",
    "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "เจ้าหน้าที่สหรัฐ: อิหร่านใช้ขีปนาวุธร้ายแรงขึ้นโจมตีเรือในฮอร์มุซ ขณะสหรัฐเสริมกำลังในภูมิภาค",
-   "time": "2026-11-19T18:00:00Z",
-   "source": "https://www.jpost.com/middle-east/iran-news/article-915531",
-   "source_name": "Jerusalem Post"
   },
   {
    "id": "h14",
