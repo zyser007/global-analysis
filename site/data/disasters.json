@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-23T03:19:29Z",
- "checked": "2026-11-23T03:19:29Z",
+ "updated": "2026-11-23T04:18:39Z",
+ "checked": "2026-11-23T04:18:39Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-23T03:19:29Z",
+   "fetched": "2026-11-23T04:18:39Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-09&toDate=2026-11-24&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-23T03:19:29Z",
+   "fetched": "2026-11-23T04:18:39Z",
    "count": 7,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -184,13 +184,13 @@
    "country": "",
    "country_th": "วานูอาตู",
    "countries": [],
-   "lat": -13.6607,
-   "lon": 172.2423,
-   "start": "2026-11-23T02:40:57Z",
-   "end": "2026-11-23T02:40:57Z",
-   "updated": "2026-11-23T03:06:51Z",
+   "lat": -13.5846,
+   "lon": 172.2672,
+   "start": "2026-11-23T02:40:58Z",
+   "end": "2026-11-23T02:40:58Z",
+   "updated": "2026-11-23T04:18:12Z",
    "alert_level": "green",
-   "severity_th": "ขนาด 6.5 ลึก 601 กม.",
+   "severity_th": "ขนาด 6.5 ลึก 598 กม.",
    "severity_value": 6.5,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucvm",
@@ -251,7 +251,7 @@
    "lon": -121.2083,
    "start": "2026-11-20T06:49:16Z",
    "end": "2026-11-20T06:49:16Z",
-   "updated": "2026-11-22T23:07:05Z",
+   "updated": "2026-11-23T04:18:06Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.0 ลึก 6 กม.",
    "severity_value": 4.98,
