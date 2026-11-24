@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-24T07:16:10Z",
- "checked": "2026-11-24T07:16:10Z",
+ "updated": "2026-11-24T08:19:08Z",
+ "checked": "2026-11-24T08:19:08Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-24T07:16:10Z",
+   "fetched": "2026-11-24T08:19:08Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-10&toDate=2026-11-25&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-24T07:16:10Z",
+   "fetched": "2026-11-24T08:19:08Z",
    "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -251,7 +251,7 @@
    "lon": -121.2083,
    "start": "2026-11-20T06:49:16Z",
    "end": "2026-11-20T06:49:16Z",
-   "updated": "2026-11-24T06:49:16Z",
+   "updated": "2026-11-24T07:19:33Z",
    "alert_level": "green",
    "severity_th": "ขนาด 5.0 ลึก 6 กม.",
    "severity_value": 4.98,
