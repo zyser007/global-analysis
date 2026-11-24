@@ -1,16 +1,72 @@
 {
- "updated_at": "2026-11-23T13:14:30Z",
+ "updated_at": "2026-11-24T13:13:24Z",
  "items": [
   {
    "id": "h1",
-   "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สหุ้นสหรัฐดีดแรง หลังตลาดลดความกังวลเฟดขึ้นดอกเบี้ยครั้งใหญ่เดือนธันวาคม",
-   "time": "2026-11-23T07:28:00Z",
-   "source": "https://www.fxstreet.com/news/dow-jones-futures-bounce-up-as-investors-pare-back-aggressive-fed-tightening-expectations-202611230728",
-   "source_name": "FXStreet"
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 4 ลำติดไฟหลังชนทุ่นระเบิดในช่องแคบฮอร์มุซ",
+   "time": "2026-11-24T10:00:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/24/iran-war-live-iran-says-three-ships-catch-fire-after-hitting-hormuz-mines",
+   "source_name": "Al Jazeera"
   },
   {
    "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "ฟิวเจอร์สหุ้นสหรัฐอ่อนตัว นักลงทุนทดสอบแรงรีบาวด์ที่ได้แรงหนุนจาก Nvidia",
+   "time": "2026-11-24T09:06:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-rebound-090614276.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "ukraine_russia",
+   "title_th": "อียูเปิดตัวมาตรการคว่ำบาตรรัสเซียชุดที่ 22 ขณะสงครามใกล้ครบปีที่ 6",
+   "time": "2026-11-24T09:00:00Z",
+   "source": "https://www.upi.com/Top_News/World-News/2026/11/24/belgium-EU-Russia-sanctions/6711795493121/",
+   "source_name": "UPI"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตียูเครนเสียชีวิต 2 ราย เด็กบาดเจ็บ ขณะเคียฟอธิบายการโจมตีในลิเบีย",
+   "time": "2026-11-24T08:00:00Z",
+   "source": "https://www.usnews.com/news/business/articles/2026-11-24/a-russian-strike-on-ukraine-kills-2-and-wounds-children-as-kyiv-explains-its-attack-in-libya",
+   "source_name": "AP via U.S. News"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "อังกฤษคว่ำบาตรผู้นำฮูตี กรณีโจมตีเรือและทรมานผู้ถูกควบคุม",
+   "time": "2026-11-24T08:00:00Z",
+   "source": "https://www.thenationalnews.com/news/uk/2026/11/24/uk-sanctions-houthis-over-shipping-attacks-and-alleged-torture/",
+   "source_name": "The National"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "taiwan_strait",
+   "title_th": "จีนวิจารณ์ผู้สมัครพรรครัฐบาลไต้หวัน ก่อนการเลือกตั้งท้องถิ่น ไทเปเตือนจีนแทรกแซงเลือกตั้ง",
+   "time": "2026-11-24T05:00:00Z",
+   "source": "https://www.japantimes.co.jp/news/2026/11/24/asia-pacific/politics/taiwan-elections-china-beijing/",
+   "source_name": "Japan Times"
+  },
+  {
+   "id": "h7",
+   "conflict_id": "economy",
+   "title_th": "ดาวโจนส์ S&P 500 และ Nasdaq ปิดบวกแรงสุดนับตั้งแต่เมษายน 2025 หลัง Nvidia ฟื้นตำแหน่ง Jensen Huang",
+   "time": "2026-11-23T21:00:00Z",
+   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h8",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "สื่อฮูตีอ้างซาอุฯ โจมตีเมืองท่าเยเมน เสียชีวิต 10 ราย",
+   "time": "2026-11-23T12:00:00Z",
+   "source": "https://www.dhakatribune.com/world/middle-east/425505/houthi-media-says-10-dead-in-saudi-attack-on-yemen",
+   "source_name": "Dhaka Tribune"
+  },
+  {
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "NBC: ยูเครนอ้างจมเรือรบรัสเซียนอกชายฝั่งลิเบีย ขยายสมรภูมิสู่แอฟริกาเหนือ",
    "time": "2026-11-23T06:00:00Z",
@@ -18,7 +74,7 @@
    "source_name": "NBC News"
   },
   {
-   "id": "h3",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ABC: เตหะรานระบุช่องแคบฮอร์มุซจะปลอดภัยหากข้อเรียกร้องได้รับการตอบสนอง ท่ามกลางการโจมตีที่พุ่งสูง",
    "time": "2026-11-22T17:47:00Z",
@@ -26,31 +82,7 @@
    "source_name": "ABC News"
   },
   {
-   "id": "h4",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "Al Jazeera วิเคราะห์เบื้องหลังการยกระดับโจมตีของอิหร่านในอ่าวเปอร์เซีย",
-   "time": "2026-11-22T12:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/22/whats-behind-irans-escalation-of-attacks-in-the-gulf",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h5",
-   "conflict_id": "ukraine_russia",
-   "title_th": "เซเลนสกีชี้สหรัฐล่าช้าเรื่อง Patriot เข้าใจยาก ขณะรัสเซียยิงขีปนาวุธ 165 ลูกในสัปดาห์เดียว",
-   "time": "2026-11-22T11:00:00Z",
-   "source": "https://kyivindependent.com/ukraine-war-latest-us-delays-on-patriot-missiles-difficult-to-understand-as-russia-fires-165-missiles-in-single-week-zelensky-says/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "Al Jazeera: เรือบรรทุกน้ำมันลุกไหม้ในฮอร์มุซ ขณะ IRGC เตือนภัยความไม่สงบภายในอิหร่าน",
-   "time": "2026-11-22T10:00:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/22/iran-war-live-tankers-set-ablaze-in-hormuz-as-irgc-warns-of-unrest-threat",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h7",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "CNN: การโจมตีของอิหร่านในช่องแคบฮอร์มุซอยู่ในระดับสูงสุดนับแต่สงครามเริ่มต้น",
    "time": "2026-11-22T09:00:00Z",
@@ -58,52 +90,12 @@
    "source_name": "CNN"
   },
   {
-   "id": "h8",
-   "conflict_id": "ukraine_russia",
-   "title_th": "โดรนรัสเซียโจมตีอาคารที่พักในเขตเคียฟ ผู้เสียชีวิต 7 ราย ครอบครัวรอผู้กู้ภัย",
-   "time": "2026-11-22T06:00:00Z",
-   "source": "https://kyivindependent.com/apartment-building-destroyed-in-kyiv-oblast-following-russian-drone-attack/",
-   "source_name": "Kyiv Independent"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "กองกำลังพันธมิตรนำโดยซาอุฯ ยิงสกัดขีปนาวุธฮูตี 3 ลูกที่พุ่งเป้าไปยังริยาด",
-   "time": "2026-11-21T12:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/21/saudi-led-coalition-intercepts-three-houthi-missiles-headed-for-riyadh",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "thailand",
-   "title_th": "ราคาทองไทยร่วงเกือบ 3,000 บาท ท่ามกลางดอลลาร์แข็งค่าและความกังวลเฟดขึ้นดอกเบี้ย",
-   "time": "2026-11-21T03:00:00Z",
-   "source": "https://www.pattayamail.com/latestnews/news/thai-gold-prices-plunge-nearly-3000-baht-amid-dollar-strength-572481",
-   "source_name": "Pattaya Mail"
-  },
-  {
-   "id": "h11",
+   "id": "h12",
    "conflict_id": "economy",
    "title_th": "CNBC: นักลงทุนเตรียมรับมือความผันผวนสัปดาห์หน้า จับตาข้อมูลเงินเฟ้อและความเสี่ยงที่เฟดอาจขึ้นดอกเบี้ย 0.5%",
    "time": "2026-11-20T22:00:00Z",
    "source": "https://www.cnbc.com/2026/11/20/stock-market-next-week-outlook-for-nov-23-27-2026.html",
    "source_name": "CNBC"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "economy",
-   "title_th": "CNBC วิเคราะห์ 5 ปัจจัยเบื้องหลังการเทขายจน S&P 500 เข้าสู่ภาวะปรับฐาน",
-   "time": "2026-11-20T20:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/20/sp-500-correction-market-sell-off.html",
-   "source_name": "CNBC"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "gaza_israel",
-   "title_th": "รมว.กลาโหมอิสราเอลระบุจะคงกำลังในกาซา เลบานอน และซีเรียต่อไปไม่มีกำหนด",
-   "time": "2026-11-19T10:00:00Z",
-   "source": "https://www.middleeasteye.net/live-blog/live-blog-update/israeli-defence-minister-says-israel-will-indefinitely-occupy-gaza",
-   "source_name": "Middle East Eye"
   }
  ]
 }
