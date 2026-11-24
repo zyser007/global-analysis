@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-24T11:14:33Z",
- "checked": "2026-11-24T11:14:33Z",
+ "updated": "2026-11-24T12:21:36Z",
+ "checked": "2026-11-24T12:21:36Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-24T11:14:33Z",
+   "fetched": "2026-11-24T12:21:36Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-10&toDate=2026-11-25&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-24T11:14:33Z",
-   "count": 6,
+   "fetched": "2026-11-24T12:21:36Z",
+   "count": 7,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -175,6 +175,25 @@
    "severity_value": 5.9,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucly",
+   "source_name": "USGS"
+  },
+  {
+   "id": "usgs-us6000ud6h",
+   "type": "earthquake",
+   "title_th": "แผ่นดินไหวขนาด 6.4 บริเวณMauritius - Reunion region",
+   "country": "",
+   "country_th": "Mauritius - Reunion region",
+   "countries": [],
+   "lat": -17.7049,
+   "lon": 65.6995,
+   "start": "2026-11-24T11:06:14Z",
+   "end": "2026-11-24T11:06:14Z",
+   "updated": "2026-11-24T11:36:22Z",
+   "alert_level": "green",
+   "severity_th": "ขนาด 6.4 ลึก 10 กม.",
+   "severity_value": 6.4,
+   "severity_unit": "M",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud6h",
    "source_name": "USGS"
   },
   {
