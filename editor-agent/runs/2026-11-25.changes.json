@@ -1,0 +1,320 @@
+{
+ "date": "2026-11-25",
+ "changes": [
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "iran_us_israel_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตอิหร่าน/ฮอร์มุซ 24 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kob.com/ap-top-news/ap-top-news-international/iran-rules-out-talks-with-us-until-its-7-conditions-are-met-and-other-mideast-news/",
+     "published": "2026-11-24",
+     "publisher": "AP",
+     "title": "Iran rules out talks with US until its 7 conditions are met, and other Mideast news"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/24/iran-orders-hormuz-closed-further-day-by-day-as-qatar-seeks-to-revive-peace-talks",
+     "published": "2026-11-24",
+     "publisher": "Euronews",
+     "title": "Iran orders Hormuz closed further day by day as Qatar seeks to revive peace talks"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "chokepoints",
+   "keys": [
+    "ช่องแคบฮอร์มุซ"
+   ],
+   "fields": [
+    "note_th"
+   ],
+   "summary_th": "อัปเดตฮอร์มุซ 24 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kob.com/ap-top-news/ap-top-news-international/iran-rules-out-talks-with-us-until-its-7-conditions-are-met-and-other-mideast-news/",
+     "published": "2026-11-24",
+     "publisher": "AP",
+     "title": "Iran rules out talks with US until its 7 conditions are met, and other Mideast news"
+    },
+    {
+     "url": "https://www.euronews.com/2026/11/24/iran-orders-hormuz-closed-further-day-by-day-as-qatar-seeks-to-revive-peace-talks",
+     "published": "2026-11-24",
+     "publisher": "Euronews",
+     "title": "Iran orders Hormuz closed further day by day as Qatar seeks to revive peace talks"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "gaza_israel"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตกาซา 24 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kob.com/ap-top-news/ap-top-news-international/iran-rules-out-talks-with-us-until-its-7-conditions-are-met-and-other-mideast-news/",
+     "published": "2026-11-24",
+     "publisher": "AP",
+     "title": "Iran rules out talks with US until its 7 conditions are met, and other Mideast news"
+    },
+    {
+     "url": "https://www.jpost.com/israel-news/defense-news/article-916000",
+     "published": "2026-11-25",
+     "publisher": "Jerusalem Post",
+     "title": "Katz: No withdrawal, no rebuilding in Hamas-controlled Gaza sectors"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "yemen_houthi_saudi"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเยเมน 24 พ.ย.",
+   "sources": [
+    {
+     "url": "https://www.kob.com/ap-top-news/ap-top-news-international/iran-rules-out-talks-with-us-until-its-7-conditions-are-met-and-other-mideast-news/",
+     "published": "2026-11-24",
+     "publisher": "AP",
+     "title": "Iran rules out talks with US until its 7 conditions are met, and other Mideast news"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_now"
+   ],
+   "fields": [
+    "spot_now"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "intraday_low"
+   ],
+   "fields": [
+    "intraday_low"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "change_day_pct"
+   ],
+   "fields": [
+    "change_day_pct"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "from_peak_pct"
+   ],
+   "fields": [
+    "from_peak_pct"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "spot_note_th"
+   ],
+   "fields": [
+    "spot_note_th"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "gold",
+   "section": "gold",
+   "keys": [
+    "thai"
+   ],
+   "fields": [
+    "thai.sell",
+    "thai.ornament_sell",
+    "thai.as_of",
+    "thai.note_th"
+   ],
+   "summary_th": "ทองสปอต 3,552.50 (24 พ.ย.) และทองไทย 58,200",
+   "sources": [
+    {
+     "url": "http://www.kitco.com/news/article/2026-11-24/gold-silver-extend-losses-tech-stocks-slide-fed-inflation-test-looms-kitco",
+     "published": "2026-11-24",
+     "publisher": "Kitco News",
+     "title": "Gold, silver extend losses as tech stocks slide; Fed inflation test looms"
+    },
+    {
+     "url": "https://www.siamnews.com/news/economy/58053",
+     "published": "2026-11-24",
+     "publisher": "สยามนิวส์ (อ้างสมาคมค้าทองคำ)",
+     "title": "สรุปราคาทองวันนี้ 24 พ.ย. 2569 สมาคมค้าทองคำประกาศครั้งที่ 45"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "ukraine_russia"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตยูเครน 24 พ.ย.: การโจมตีโอเดสซา/เคียฟ และคำเตือนของเซเลนสกี",
+   "sources": [
+    {
+     "url": "https://kyivindependent.com/russian-attacks-kill-2-in-odesa-oblast-including-child-injure-more-in-kyiv/",
+     "published": "2026-11-24",
+     "publisher": "Kyiv Independent",
+     "title": "Russian attacks kill 2 in Odesa Oblast, including child, injure more in Kyiv"
+    },
+    {
+     "url": "https://www.arabnews.com/world/zelensky-says-intelligence-shows-russia-planning-new-strikes-on-ukraine-3013786",
+     "published": "2026-11-24",
+     "publisher": "Arab News (Reuters)",
+     "title": "Zelensky says intelligence shows Russia planning new strikes on Ukraine"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "file": "world-data",
+   "section": "conflicts",
+   "keys": [
+    "myanmar_civil_war"
+   ],
+   "fields": [
+    "status_th"
+   ],
+   "summary_th": "อัปเดตเมียนมา 23–24 พ.ย.",
+   "sources": [
+    {
+     "url": "https://eng.mizzima.com/2026/11/24/41125",
+     "published": "2026-11-24",
+     "publisher": "Mizzima",
+     "title": "Junta airstrikes north of Mongmit; KIA/PDF advance (SHRF)"
+    },
+    {
+     "url": "https://www.narinjara.com/news/detail/6b05d5bf269f7506560a5da0",
+     "published": "2026-11-25",
+     "publisher": "Narinjara",
+     "title": "Junta jet bombs villages in Arakan, 23 Nov (AA statement)"
+    }
+   ],
+   "confidence": "low"
+  }
+ ],
+ "base_commit": "6db6fd58aa45ef66b1ea1d7a4ee22b8bc5ce477b",
+ "reviewed_unchanged": [
+  "mali_sahel",
+  "pakistan_afghanistan",
+  "sudan_civil_war"
+ ]
+}
