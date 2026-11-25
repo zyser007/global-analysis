@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-25T05:15:59Z",
- "checked": "2026-11-25T05:15:59Z",
+ "updated": "2026-11-25T06:25:10Z",
+ "checked": "2026-11-25T06:25:10Z",
  "ok": true,
  "message_th": "",
  "feeds": {
   "gdacs": {
    "ok": true,
-   "fetched": "2026-11-25T05:15:59Z",
+   "fetched": "2026-11-25T06:25:10Z",
    "count": 4,
    "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-11&toDate=2026-11-26&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-25T05:15:59Z",
+   "fetched": "2026-11-25T06:25:10Z",
    "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
@@ -43,7 +43,7 @@
    "lon": 39.5,
    "start": "2026-05-21T00:00:00Z",
    "end": "2026-11-23T00:00:00Z",
-   "updated": "2026-11-25T05:07:43Z",
+   "updated": "2026-11-25T05:57:19Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 1.4 ล้าน ตร.กม.",
    "severity_value": 1435673.0,
@@ -73,7 +73,7 @@
    "lon": -95.161,
    "start": "2026-04-21T00:00:00Z",
    "end": "2026-11-23T00:00:00Z",
-   "updated": "2026-11-25T05:07:30Z",
+   "updated": "2026-11-25T05:57:09Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 728,311 ตร.กม.",
    "severity_value": 728311.0,
@@ -119,7 +119,7 @@
    "lon": 14.216,
    "start": "2025-12-21T00:00:00Z",
    "end": "2026-11-23T00:00:00Z",
-   "updated": "2026-11-25T05:07:02Z",
+   "updated": "2026-11-25T05:57:03Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 1.1 ล้าน ตร.กม.",
    "severity_value": 1121702.0,
@@ -148,7 +148,7 @@
    "lon": -66.243,
    "start": "2022-09-21T00:00:00Z",
    "end": "2026-11-23T00:00:00Z",
-   "updated": "2026-11-25T05:07:22Z",
+   "updated": "2026-11-25T05:57:06Z",
    "alert_level": "orange",
    "severity_th": "ภัยแล้งด้านการเกษตร พื้นที่ราว 1.7 ล้าน ตร.กม.",
    "severity_value": 1683760.0,
