@@ -1,8 +1,56 @@
 {
- "updated_at": "2026-11-24T13:13:24Z",
+ "updated_at": "2026-11-25T01:14:05Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "S&P 500 และ Nasdaq ปิดลบ ขณะดาวโจนส์ปิดบวก ความกังวลเรื่อง AI กลับมา",
+   "time": "2026-11-24T21:30:00Z",
+   "source": "https://www.nbcnews.com/business/markets/stocks-lower-after-nvidia-fueled-gains-rcna611211",
+   "source_name": "NBC News"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "economy",
+   "title_th": "Nasdaq ร่วงราว 1.5% หุ้นชิปดิ่ง หลัง Nvidia ให้คืนกำไรจากแรงพุ่งวันก่อน",
+   "time": "2026-11-24T21:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/23/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "รมว.กลาโหมอิสราเอลระบุอิหร่านพัฒนาอาวุธเคมี ท่ามกลางการปิดล้อมของสหรัฐ",
+   "time": "2026-11-24T16:00:00Z",
+   "source": "https://www.cbsnews.com/live-updates/iran-war-us-trump-blockade-strait-of-hormuz-ship-attacks/",
+   "source_name": "CBS News"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "ฮูตีโจมตีตึกในย่านการเงินริยาด บาดเจ็บ 11 คน ตามที่ทางการซาอุฯ แจ้ง",
+   "time": "2026-11-24T14:00:00Z",
+   "source": "https://www.bloomberg.com/news/articles/2026-11-24/riyadh-s-finance-hub-attacked-saudi-anti-houthi-coalition-says",
+   "source_name": "Bloomberg"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ปริมาณขนส่งน้ำมันผ่านฮอร์มุซลดลง 40% จากการโจมตีเรือบรรทุกน้ำมันของอิหร่าน",
+   "time": "2026-11-24T12:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/24/hormuz-oil-traffic-is-down-40-percent-are-irans-tanker-attacks-working",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "thailand",
+   "title_th": "ราคาทองคำไทยปิดตลาดพุ่ง 1,200 บาท หลังผันผวนหนักตลอดวัน",
+   "time": "2026-11-24T10:30:00Z",
+   "source": "https://www.nationthailand.com/business/trading-investment/40073838",
+   "source_name": "Nation Thailand"
+  },
+  {
+   "id": "h7",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 4 ลำติดไฟหลังชนทุ่นระเบิดในช่องแคบฮอร์มุซ",
    "time": "2026-11-24T10:00:00Z",
@@ -10,15 +58,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h2",
-   "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สหุ้นสหรัฐอ่อนตัว นักลงทุนทดสอบแรงรีบาวด์ที่ได้แรงหนุนจาก Nvidia",
-   "time": "2026-11-24T09:06:00Z",
-   "source": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-rebound-090614276.html",
-   "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h3",
+   "id": "h8",
    "conflict_id": "ukraine_russia",
    "title_th": "อียูเปิดตัวมาตรการคว่ำบาตรรัสเซียชุดที่ 22 ขณะสงครามใกล้ครบปีที่ 6",
    "time": "2026-11-24T09:00:00Z",
@@ -26,15 +66,7 @@
    "source_name": "UPI"
   },
   {
-   "id": "h4",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตียูเครนเสียชีวิต 2 ราย เด็กบาดเจ็บ ขณะเคียฟอธิบายการโจมตีในลิเบีย",
-   "time": "2026-11-24T08:00:00Z",
-   "source": "https://www.usnews.com/news/business/articles/2026-11-24/a-russian-strike-on-ukraine-kills-2-and-wounds-children-as-kyiv-explains-its-attack-in-libya",
-   "source_name": "AP via U.S. News"
-  },
-  {
-   "id": "h5",
+   "id": "h9",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "อังกฤษคว่ำบาตรผู้นำฮูตี กรณีโจมตีเรือและทรมานผู้ถูกควบคุม",
    "time": "2026-11-24T08:00:00Z",
@@ -42,7 +74,15 @@
    "source_name": "The National"
   },
   {
-   "id": "h6",
+   "id": "h10",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตีซาปอริชเชีย เสียชีวิต 2 ราย บาดเจ็บกว่า 40 ราย รวมทารก",
+   "time": "2026-11-24T08:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/24/russian-attack-kills-two-people-in-ukraines-zaporizhzhia",
+   "source_name": "Al Jazeera"
+  },
+  {
+   "id": "h11",
    "conflict_id": "taiwan_strait",
    "title_th": "จีนวิจารณ์ผู้สมัครพรรครัฐบาลไต้หวัน ก่อนการเลือกตั้งท้องถิ่น ไทเปเตือนจีนแทรกแซงเลือกตั้ง",
    "time": "2026-11-24T05:00:00Z",
@@ -50,52 +90,12 @@
    "source_name": "Japan Times"
   },
   {
-   "id": "h7",
-   "conflict_id": "economy",
-   "title_th": "ดาวโจนส์ S&P 500 และ Nasdaq ปิดบวกแรงสุดนับตั้งแต่เมษายน 2025 หลัง Nvidia ฟื้นตำแหน่ง Jensen Huang",
-   "time": "2026-11-23T21:00:00Z",
-   "source": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html",
-   "source_name": "Yahoo Finance"
-  },
-  {
-   "id": "h8",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "สื่อฮูตีอ้างซาอุฯ โจมตีเมืองท่าเยเมน เสียชีวิต 10 ราย",
-   "time": "2026-11-23T12:00:00Z",
-   "source": "https://www.dhakatribune.com/world/middle-east/425505/houthi-media-says-10-dead-in-saudi-attack-on-yemen",
-   "source_name": "Dhaka Tribune"
-  },
-  {
-   "id": "h9",
+   "id": "h12",
    "conflict_id": "ukraine_russia",
    "title_th": "NBC: ยูเครนอ้างจมเรือรบรัสเซียนอกชายฝั่งลิเบีย ขยายสมรภูมิสู่แอฟริกาเหนือ",
    "time": "2026-11-23T06:00:00Z",
    "source": "https://www.nbcnews.com/world/ukraine/ukraine-sinks-russian-warship-merkury-libya-naval-drones-war-rcna610822",
    "source_name": "NBC News"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ABC: เตหะรานระบุช่องแคบฮอร์มุซจะปลอดภัยหากข้อเรียกร้องได้รับการตอบสนอง ท่ามกลางการโจมตีที่พุ่งสูง",
-   "time": "2026-11-22T17:47:00Z",
-   "source": "https://abcnews.com/International/live-updates/iran-live-updates-tehran-strait-hormuz-safe-demands/?id=138369648",
-   "source_name": "ABC News"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "CNN: การโจมตีของอิหร่านในช่องแคบฮอร์มุซอยู่ในระดับสูงสุดนับแต่สงครามเริ่มต้น",
-   "time": "2026-11-22T09:00:00Z",
-   "source": "https://cnn.com/2026/11/22/middleeast/hormuz-attacks-highest-levels-iran-war-intl",
-   "source_name": "CNN"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "economy",
-   "title_th": "CNBC: นักลงทุนเตรียมรับมือความผันผวนสัปดาห์หน้า จับตาข้อมูลเงินเฟ้อและความเสี่ยงที่เฟดอาจขึ้นดอกเบี้ย 0.5%",
-   "time": "2026-11-20T22:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/20/stock-market-next-week-outlook-for-nov-23-27-2026.html",
-   "source_name": "CNBC"
   }
  ]
 }
