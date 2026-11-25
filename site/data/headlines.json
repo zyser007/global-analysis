@@ -1,8 +1,48 @@
 {
- "updated_at": "2026-11-25T01:14:05Z",
+ "updated_at": "2026-11-25T13:13:30Z",
  "items": [
   {
    "id": "h1",
+   "conflict_id": "economy",
+   "title_th": "ฟิวเจอร์สสหรัฐร่วงก่อนเปิดตลาด Nasdaq-100 ลบกว่า 2.5% รอตัวเลข PCE หลังหุ้นเทคขายหนัก",
+   "time": "2026-11-25T10:44:00Z",
+   "source": "https://www.tipranks.com/news/stock-market-today-nov-25-wall-street-braces-for-inflation-data-after-tech-led-selloff",
+   "source_name": "TipRanks"
+  },
+  {
+   "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดและเกิดไฟไหม้ในฮอร์มุซ ขณะเรือถูกเตือนให้ใช้เส้นทางที่อิหร่านอนุญาต",
+   "time": "2026-11-25T10:00:00Z",
+   "source": "https://jpost.com/middle-east/iran-news/article-916095",
+   "source_name": "Jerusalem Post"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "อิหร่านแจ้งสหรัฐว่าจะไม่คืนการเดินเรือปกติในฮอร์มุซ จนกว่าข้อเรียกร้องได้รับการตอบสนอง รวมถึงยกเลิกการปิดล้อมท่าเรือ",
+   "time": "2026-11-25T09:53:00Z",
+   "source": "https://gulfnews.com/world/mena/middle-east-conflict-us-investigates-iran-over-cyberattacks-on-50-ships-as-fresh-sanctions-target-irans-shadow-banking-network-1.500758688",
+   "source_name": "Gulf News"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "ukraine_russia",
+   "title_th": "ยูเครนบอกปูตินให้เลิกบ่น หากต้องการให้หยุดโจมตีโรงกลั่น หลังรัสเซียขู่ตอบโต้",
+   "time": "2026-11-25T08:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/25/ukraine-putin-russia-oil-refinery-attacks.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC: เรือคอนเทนเนอร์ชนทุ่นระเบิดบนเส้นทางที่ไม่ได้รับอนุญาตใกล้ช่องแคบฮอร์มุซ",
+   "time": "2026-11-25T06:00:00Z",
+   "source": "https://english.alarabiya.net/News/middle-east/2026/11/25/iran-s-irgc-says-container-ship-hits-mine-in-unauthorized-route-near-strait-of-hormuz",
+   "source_name": "Al Arabiya"
+  },
+  {
+   "id": "h6",
    "conflict_id": "economy",
    "title_th": "S&P 500 และ Nasdaq ปิดลบ ขณะดาวโจนส์ปิดบวก ความกังวลเรื่อง AI กลับมา",
    "time": "2026-11-24T21:30:00Z",
@@ -10,7 +50,7 @@
    "source_name": "NBC News"
   },
   {
-   "id": "h2",
+   "id": "h7",
    "conflict_id": "economy",
    "title_th": "Nasdaq ร่วงราว 1.5% หุ้นชิปดิ่ง หลัง Nvidia ให้คืนกำไรจากแรงพุ่งวันก่อน",
    "time": "2026-11-24T21:00:00Z",
@@ -18,7 +58,7 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h3",
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "รมว.กลาโหมอิสราเอลระบุอิหร่านพัฒนาอาวุธเคมี ท่ามกลางการปิดล้อมของสหรัฐ",
    "time": "2026-11-24T16:00:00Z",
@@ -26,15 +66,15 @@
    "source_name": "CBS News"
   },
   {
-   "id": "h4",
+   "id": "h9",
    "conflict_id": "yemen_houthi_saudi",
-   "title_th": "ฮูตีโจมตีตึกในย่านการเงินริยาด บาดเจ็บ 11 คน ตามที่ทางการซาอุฯ แจ้ง",
-   "time": "2026-11-24T14:00:00Z",
-   "source": "https://www.bloomberg.com/news/articles/2026-11-24/riyadh-s-finance-hub-attacked-saudi-anti-houthi-coalition-says",
-   "source_name": "Bloomberg"
+   "title_th": "ซาอุฯ ระบุโดรนฮูตีโจมตีตึกในริยาด บาดเจ็บ 11 คน กองกำลังพันธมิตรประณาม",
+   "time": "2026-11-24T15:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/24/saudi-led-coalition-condemns-terrorist-attack-on-tower-in-riyadh",
+   "source_name": "Al Jazeera"
   },
   {
-   "id": "h5",
+   "id": "h10",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ปริมาณขนส่งน้ำมันผ่านฮอร์มุซลดลง 40% จากการโจมตีเรือบรรทุกน้ำมันของอิหร่าน",
    "time": "2026-11-24T12:00:00Z",
@@ -42,7 +82,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h6",
+   "id": "h11",
    "conflict_id": "thailand",
    "title_th": "ราคาทองคำไทยปิดตลาดพุ่ง 1,200 บาท หลังผันผวนหนักตลอดวัน",
    "time": "2026-11-24T10:30:00Z",
@@ -50,31 +90,7 @@
    "source_name": "Nation Thailand"
   },
   {
-   "id": "h7",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 4 ลำติดไฟหลังชนทุ่นระเบิดในช่องแคบฮอร์มุซ",
-   "time": "2026-11-24T10:00:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/24/iran-war-live-iran-says-three-ships-catch-fire-after-hitting-hormuz-mines",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h8",
-   "conflict_id": "ukraine_russia",
-   "title_th": "อียูเปิดตัวมาตรการคว่ำบาตรรัสเซียชุดที่ 22 ขณะสงครามใกล้ครบปีที่ 6",
-   "time": "2026-11-24T09:00:00Z",
-   "source": "https://www.upi.com/Top_News/World-News/2026/11/24/belgium-EU-Russia-sanctions/6711795493121/",
-   "source_name": "UPI"
-  },
-  {
-   "id": "h9",
-   "conflict_id": "yemen_houthi_saudi",
-   "title_th": "อังกฤษคว่ำบาตรผู้นำฮูตี กรณีโจมตีเรือและทรมานผู้ถูกควบคุม",
-   "time": "2026-11-24T08:00:00Z",
-   "source": "https://www.thenationalnews.com/news/uk/2026/11/24/uk-sanctions-houthis-over-shipping-attacks-and-alleged-torture/",
-   "source_name": "The National"
-  },
-  {
-   "id": "h10",
+   "id": "h12",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตีซาปอริชเชีย เสียชีวิต 2 ราย บาดเจ็บกว่า 40 ราย รวมทารก",
    "time": "2026-11-24T08:00:00Z",
@@ -82,20 +98,12 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h11",
+   "id": "h13",
    "conflict_id": "taiwan_strait",
    "title_th": "จีนวิจารณ์ผู้สมัครพรรครัฐบาลไต้หวัน ก่อนการเลือกตั้งท้องถิ่น ไทเปเตือนจีนแทรกแซงเลือกตั้ง",
    "time": "2026-11-24T05:00:00Z",
    "source": "https://www.japantimes.co.jp/news/2026/11/24/asia-pacific/politics/taiwan-elections-china-beijing/",
    "source_name": "Japan Times"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "ukraine_russia",
-   "title_th": "NBC: ยูเครนอ้างจมเรือรบรัสเซียนอกชายฝั่งลิเบีย ขยายสมรภูมิสู่แอฟริกาเหนือ",
-   "time": "2026-11-23T06:00:00Z",
-   "source": "https://www.nbcnews.com/world/ukraine/ukraine-sinks-russian-warship-merkury-libya-naval-drones-war-rcna610822",
-   "source_name": "NBC News"
   }
  ]
 }
