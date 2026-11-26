@@ -1,57 +1,57 @@
 {
- "updated_at": "2026-11-26T10:15:54Z",
- "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 17:15 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX, SET, Nikkei 225 · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 34 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX, Nikkei 225",
+ "updated_at": "2026-11-26T11:14:10Z",
+ "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 18:14 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX, SET, Nikkei 225 · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 36 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX, Nikkei 225",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "94.05",
+   "value": "95.06",
    "unit": "$/บาร์เรล",
-   "change_th": "−0.59% (−0.56) จากปิดก่อนหน้า",
-   "trend": "down",
-   "as_of": "2026-11-26T10:05:52Z",
+   "change_th": "+0.48% (+0.45) จากปิดก่อนหน้า",
+   "trend": "up",
+   "as_of": "2026-11-26T11:04:05Z",
    "source": "https://www.cnbc.com/quotes/@LCO.1"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "83.60",
+   "value": "84.45",
    "unit": "$/บาร์เรล",
-   "change_th": "−0.10% (−0.08) จากปิดก่อนหน้า",
-   "trend": "down",
-   "as_of": "2026-11-26T10:05:50Z",
+   "change_th": "+0.92% (+0.77) จากปิดก่อนหน้า",
+   "trend": "up",
+   "as_of": "2026-11-26T11:04:03Z",
    "source": "https://www.cnbc.com/quotes/@CL.1"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3565.74",
+   "value": "3567.61",
    "unit": "$/ออนซ์",
-   "change_th": "−0.43% (−15.26) จากปิดก่อนหน้า",
+   "change_th": "−0.37% (−13.39) จากปิดก่อนหน้า",
    "trend": "down",
-   "as_of": "2026-11-26T10:15:54Z",
+   "as_of": "2026-11-26T11:14:10Z",
    "source": "https://www.swissquote.com/"
   },
   {
    "key": "gold_th",
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
-   "value": "57650",
+   "value": "57550",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งที่ 34 เวลา 17:11 น. −50 บาท · +450 จากวันก่อน",
+   "change_th": "ประกาศครั้งที่ 36 เวลา 17:19 น. −50 บาท · +350 จากวันก่อน",
    "trend": "down",
-   "as_of": "2026-11-26T10:11:00Z",
+   "as_of": "2026-11-26T10:19:00Z",
    "source": "https://www.goldtraders.or.th/",
-   "buy": 57450,
-   "ornament_sell": 58450
+   "buy": 57350,
+   "ornament_sell": 58350
   },
   {
    "key": "dxy",
    "label_th": "ดัชนีดอลลาร์ (DXY)",
-   "value": "103.771",
+   "value": "103.747",
    "unit": "จุด",
-   "change_th": "+0.10% (+0.106) จากปิดก่อนหน้า",
+   "change_th": "+0.08% (+0.082) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T10:15:46Z",
+   "as_of": "2026-11-26T11:14:08Z",
    "source": "https://www.cnbc.com/quotes/.DXY"
   },
   {
@@ -77,11 +77,11 @@
   {
    "key": "btc",
    "label_th": "Bitcoin",
-   "value": "60882",
+   "value": "60475",
    "unit": "$",
-   "change_th": "+3.33% (+1,961) ใน 24 ชม.",
+   "change_th": "+3.02% (+1,774) ใน 24 ชม.",
    "trend": "up",
-   "as_of": "2026-11-26T10:15:40Z",
+   "as_of": "2026-11-26T11:13:45Z",
    "source": "https://www.coingecko.com/en/coins/bitcoin"
   },
   {
@@ -91,7 +91,7 @@
    "unit": "บาท/$",
    "change_th": "+0.09% (+0.030) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T10:15:00Z",
+   "as_of": "2026-11-26T11:14:00Z",
    "source": "https://www.cnbc.com/quotes/THB="
   },
   {
@@ -107,11 +107,11 @@
   {
    "key": "vix",
    "label_th": "VIX",
-   "value": "26.91",
+   "value": "27.50",
    "unit": "จุด",
-   "change_th": "ปิด 26 พ.ย. −4.88% (−1.38)",
+   "change_th": "ปิด 26 พ.ย. −2.79% (−0.79)",
    "trend": "down",
-   "as_of": "2026-11-26T10:00:46Z",
+   "as_of": "2026-11-26T10:59:01Z",
    "source": "https://finance.yahoo.com/quote/^VIX/"
   },
   {
@@ -121,7 +121,7 @@
    "unit": "จุด",
    "change_th": "ปิด 26 พ.ย. −0.98% (−14.06)",
    "trend": "down",
-   "as_of": "2026-11-26T09:48:14Z",
+   "as_of": "2026-11-26T10:03:15Z",
    "source": "https://www.cnbc.com/quotes/.SETI"
   },
   {
