@@ -1,35 +1,35 @@
 {
- "updated_at": "2026-11-26T13:12:49Z",
- "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 20:12 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX, SET, Nikkei 225 · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 36 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX, Nikkei 225",
+ "updated_at": "2026-11-26T13:16:07Z",
+ "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 20:16 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX, SET, Nikkei 225 · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 36 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX, Nikkei 225",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "95.85",
+   "value": "95.88",
    "unit": "$/บาร์เรล",
-   "change_th": "+1.31% (+1.24) จากปิดก่อนหน้า",
+   "change_th": "+1.34% (+1.27) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T13:02:43Z",
+   "as_of": "2026-11-26T13:05:57Z",
    "source": "https://www.cnbc.com/quotes/@LCO.1"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "85.01",
+   "value": "84.87",
    "unit": "$/บาร์เรล",
-   "change_th": "+1.59% (+1.33) จากปิดก่อนหน้า",
+   "change_th": "+1.42% (+1.19) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T13:02:42Z",
+   "as_of": "2026-11-26T13:06:00Z",
    "source": "https://www.cnbc.com/quotes/@CL.1"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3565.04",
+   "value": "3563.47",
    "unit": "$/ออนซ์",
-   "change_th": "−0.45% (−15.96) จากปิดก่อนหน้า",
+   "change_th": "−0.49% (−17.53) จากปิดก่อนหน้า",
    "trend": "down",
-   "as_of": "2026-11-26T13:12:49Z",
+   "as_of": "2026-11-26T13:16:07Z",
    "source": "https://www.swissquote.com/"
   },
   {
@@ -47,11 +47,11 @@
   {
    "key": "dxy",
    "label_th": "ดัชนีดอลลาร์ (DXY)",
-   "value": "103.750",
+   "value": "103.738",
    "unit": "จุด",
-   "change_th": "+0.08% (+0.085) จากปิดก่อนหน้า",
+   "change_th": "+0.07% (+0.073) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T13:12:48Z",
+   "as_of": "2026-11-26T13:16:00Z",
    "source": "https://www.cnbc.com/quotes/.DXY"
   },
   {
@@ -77,21 +77,21 @@
   {
    "key": "btc",
    "label_th": "Bitcoin",
-   "value": "60777",
+   "value": "60768",
    "unit": "$",
-   "change_th": "+3.73% (+2,183) ใน 24 ชม.",
+   "change_th": "+3.56% (+2,086) ใน 24 ชม.",
    "trend": "up",
-   "as_of": "2026-11-26T13:12:37Z",
+   "as_of": "2026-11-26T13:15:28Z",
    "source": "https://www.coingecko.com/en/coins/bitcoin"
   },
   {
    "key": "usdthb",
    "label_th": "ดอลลาร์/บาท",
-   "value": "34.050",
+   "value": "34.040",
    "unit": "บาท/$",
-   "change_th": "+0.06% (+0.020) จากปิดก่อนหน้า",
+   "change_th": "+0.03% (+0.010) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T13:12:00Z",
+   "as_of": "2026-11-26T13:15:00Z",
    "source": "https://www.cnbc.com/quotes/THB="
   },
   {
@@ -107,11 +107,11 @@
   {
    "key": "vix",
    "label_th": "VIX",
-   "value": "26.83",
+   "value": "27.09",
    "unit": "จุด",
-   "change_th": "ปิด 26 พ.ย. −5.16% (−1.46)",
+   "change_th": "ปิด 26 พ.ย. −4.24% (−1.20)",
    "trend": "down",
-   "as_of": "2026-11-26T12:57:46Z",
+   "as_of": "2026-11-26T13:01:01Z",
    "source": "https://finance.yahoo.com/quote/^VIX/"
   },
   {
