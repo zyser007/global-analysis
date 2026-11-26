@@ -1,57 +1,57 @@
 {
- "updated_at": "2026-11-26T05:15:38Z",
- "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 12:15 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท, SET, Nikkei 225 · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 20 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX",
+ "updated_at": "2026-11-26T06:24:45Z",
+ "note_th": "ดึงราคาตรงจากแหล่งข้อมูลฟรี ไม่ผ่าน AI เมื่อ 26 พ.ย. 2569 13:24 น. · ราคาระหว่างวัน: Brent, WTI, ทองคำ spot, DXY, ดอลลาร์/บาท, Nikkei 225 · ราคาปิดล่าสุด: S&P 500, Nasdaq 100, ยีลด์ 10 ปี, VIX, SET · Bitcoin ซื้อขายตลอด 24 ชม. · ทองคำแท่งไทยตามประกาศสมาคมค้าทองคำครั้งที่ 25 · ใช้แหล่งสำรอง: S&P 500, Nasdaq 100, VIX",
  "items": [
   {
    "key": "brent",
    "label_th": "น้ำมัน Brent",
-   "value": "95.25",
+   "value": "95.01",
    "unit": "$/บาร์เรล",
-   "change_th": "+0.68% (+0.64) จากปิดก่อนหน้า",
+   "change_th": "+0.42% (+0.40) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T05:05:32Z",
+   "as_of": "2026-11-26T06:14:34Z",
    "source": "https://www.cnbc.com/quotes/@LCO.1"
   },
   {
    "key": "wti",
    "label_th": "น้ำมัน WTI",
-   "value": "84.36",
+   "value": "84.14",
    "unit": "$/บาร์เรล",
-   "change_th": "+0.81% (+0.68) จากปิดก่อนหน้า",
+   "change_th": "+0.55% (+0.46) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T05:05:27Z",
+   "as_of": "2026-11-26T06:14:37Z",
    "source": "https://www.cnbc.com/quotes/@CL.1"
   },
   {
    "key": "gold",
    "label_th": "ทองคำ (spot)",
-   "value": "3592.41",
+   "value": "3579.09",
    "unit": "$/ออนซ์",
-   "change_th": "+0.32% (+11.41) จากปิดก่อนหน้า",
-   "trend": "up",
-   "as_of": "2026-11-26T05:15:38Z",
+   "change_th": "−0.05% (−1.91) จากปิดก่อนหน้า",
+   "trend": "down",
+   "as_of": "2026-11-26T06:24:45Z",
    "source": "https://www.swissquote.com/"
   },
   {
    "key": "gold_th",
    "label_th": "ทองคำแท่ง 96.5% ขายออก (สมาคมค้าทองคำ)",
-   "value": "57950",
+   "value": "57650",
    "unit": "บาท",
-   "change_th": "ประกาศครั้งที่ 20 เวลา 11:41 น. +50 บาท · +750 จากวันก่อน",
+   "change_th": "ประกาศครั้งที่ 25 เวลา 13:23 น. +100 บาท · +450 จากวันก่อน",
    "trend": "up",
-   "as_of": "2026-11-26T04:41:00Z",
+   "as_of": "2026-11-26T06:23:00Z",
    "source": "https://www.goldtraders.or.th/",
-   "buy": 57750,
-   "ornament_sell": 58750
+   "buy": 57450,
+   "ornament_sell": 58450
   },
   {
    "key": "dxy",
    "label_th": "ดัชนีดอลลาร์ (DXY)",
-   "value": "103.808",
+   "value": "103.789",
    "unit": "จุด",
-   "change_th": "+0.14% (+0.143) จากปิดก่อนหน้า",
+   "change_th": "+0.12% (+0.124) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T05:15:37Z",
+   "as_of": "2026-11-26T06:24:45Z",
    "source": "https://www.cnbc.com/quotes/.DXY"
   },
   {
@@ -77,11 +77,11 @@
   {
    "key": "btc",
    "label_th": "Bitcoin",
-   "value": "60843",
+   "value": "60447",
    "unit": "$",
-   "change_th": "+2.99% (+1,768) ใน 24 ชม.",
+   "change_th": "+2.23% (+1,319) ใน 24 ชม.",
    "trend": "up",
-   "as_of": "2026-11-26T05:14:28Z",
+   "as_of": "2026-11-26T06:23:57Z",
    "source": "https://www.coingecko.com/en/coins/bitcoin"
   },
   {
@@ -91,7 +91,7 @@
    "unit": "บาท/$",
    "change_th": "0.00% (0.000) จากปิดก่อนหน้า",
    "trend": "flat",
-   "as_of": "2026-11-26T05:15:00Z",
+   "as_of": "2026-11-26T06:24:00Z",
    "source": "https://www.cnbc.com/quotes/THB="
   },
   {
@@ -117,21 +117,21 @@
   {
    "key": "set",
    "label_th": "ดัชนี SET",
-   "value": "1431.80",
+   "value": "1432.01",
    "unit": "จุด",
-   "change_th": "+0.23% (+3.30) จากปิดก่อนหน้า",
+   "change_th": "ปิดภาคเช้า 26 พ.ย. +0.25% (+3.51)",
    "trend": "up",
-   "as_of": "2026-11-26T05:00:35Z",
+   "as_of": "2026-11-26T05:30:11Z",
    "source": "https://www.cnbc.com/quotes/.SETI"
   },
   {
    "key": "nikkei",
    "label_th": "Nikkei 225",
-   "value": "57926.77",
+   "value": "57457.75",
    "unit": "จุด",
-   "change_th": "+1.61% (+915.15) จากปิดก่อนหน้า",
+   "change_th": "+0.78% (+446.13) จากปิดก่อนหน้า",
    "trend": "up",
-   "as_of": "2026-11-26T05:15:00Z",
+   "as_of": "2026-11-26T06:24:00Z",
    "source": "https://indexes.nikkei.co.jp/en/nkave"
   }
  ]
