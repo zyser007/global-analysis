@@ -1,72 +1,96 @@
 {
- "updated_at": "2026-11-25T13:13:30Z",
+ "updated_at": "2026-11-27T13:13:34Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "ฟิวเจอร์สสหรัฐร่วงก่อนเปิดตลาด Nasdaq-100 ลบกว่า 2.5% รอตัวเลข PCE หลังหุ้นเทคขายหนัก",
-   "time": "2026-11-25T10:44:00Z",
-   "source": "https://www.tipranks.com/news/stock-market-today-nov-25-wall-street-braces-for-inflation-data-after-tech-led-selloff",
-   "source_name": "TipRanks"
+   "title_th": "ตลาดหุ้นสหรัฐผันผวนจากหุ้นเกี่ยวกับ AI นักลงทุนจับตาตัวเลขจ้างงานสัปดาห์หน้า",
+   "time": "2026-11-27T11:00:00Z",
+   "source": "https://www.marketscreener.com/news/sliding-stock-market-confronts-jobs-data-rate-view-as-next-tests-ce7851d9dc8af621",
+   "source_name": "Reuters"
   },
   {
    "id": "h2",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดและเกิดไฟไหม้ในฮอร์มุซ ขณะเรือถูกเตือนให้ใช้เส้นทางที่อิหร่านอนุญาต",
-   "time": "2026-11-25T10:00:00Z",
-   "source": "https://jpost.com/middle-east/iran-news/article-916095",
-   "source_name": "Jerusalem Post"
+   "conflict_id": "yemen_houthi_saudi",
+   "title_th": "สื่อฮูตีระบุ ซาอุฯ โจมตีทางอากาศในไทซ์ของเยเมน เสียชีวิต 11 คน รวมเด็ก",
+   "time": "2026-11-27T10:00:00Z",
+   "source": "https://www.aljazeera.com/news/2026/11/27/saudi-strike-kills-11-civilians-in-yemens-taiz-houthi-media",
+   "source_name": "Al Jazeera"
   },
   {
    "id": "h3",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "อิหร่านแจ้งสหรัฐว่าจะไม่คืนการเดินเรือปกติในฮอร์มุซ จนกว่าข้อเรียกร้องได้รับการตอบสนอง รวมถึงยกเลิกการปิดล้อมท่าเรือ",
-   "time": "2026-11-25T09:53:00Z",
-   "source": "https://gulfnews.com/world/mena/middle-east-conflict-us-investigates-iran-over-cyberattacks-on-50-ships-as-fresh-sanctions-target-irans-shadow-banking-network-1.500758688",
-   "source_name": "Gulf News"
+   "conflict_id": "thailand",
+   "title_th": "SET ปิด 1,440.29 จุด เพิ่ม 25.85 จุด หรือ 1.83% มูลค่าซื้อขาย 5.24 หมื่นล้านบาท",
+   "time": "2026-11-27T10:00:00Z",
+   "source": "https://www.kaohooninternational.com/markets/595651",
+   "source_name": "Kaohoon International"
   },
   {
    "id": "h4",
-   "conflict_id": "ukraine_russia",
-   "title_th": "ยูเครนบอกปูตินให้เลิกบ่น หากต้องการให้หยุดโจมตีโรงกลั่น หลังรัสเซียขู่ตอบโต้",
-   "time": "2026-11-25T08:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/25/ukraine-putin-russia-oil-refinery-attacks.html",
-   "source_name": "CNBC"
+   "conflict_id": "gaza_israel",
+   "title_th": "อิสราเอลโจมตีคลังอาวุธฮามาส 4 แห่งในฉนวนกาซา",
+   "time": "2026-11-27T09:07:00Z",
+   "source": "https://www.timesofisrael.com/liveblog-november-27-2026/",
+   "source_name": "Times of Israel"
   },
   {
    "id": "h5",
    "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC: เรือคอนเทนเนอร์ชนทุ่นระเบิดบนเส้นทางที่ไม่ได้รับอนุญาตใกล้ช่องแคบฮอร์มุซ",
-   "time": "2026-11-25T06:00:00Z",
-   "source": "https://english.alarabiya.net/News/middle-east/2026/11/25/iran-s-irgc-says-container-ship-hits-mine-in-unauthorized-route-near-strait-of-hormuz",
-   "source_name": "Al Arabiya"
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมันชนทุ่นระเบิดและระเบิดในช่องแคบฮอร์มุซ",
+   "time": "2026-11-27T09:00:00Z",
+   "source": "https://www.aljazeera.com/news/liveblog/2026/11/27/iran-war-live-irans-araghchi-calls-deadly-kuwait-attack-suspicious",
+   "source_name": "Al Jazeera"
   },
   {
    "id": "h6",
-   "conflict_id": "economy",
-   "title_th": "S&P 500 และ Nasdaq ปิดลบ ขณะดาวโจนส์ปิดบวก ความกังวลเรื่อง AI กลับมา",
-   "time": "2026-11-24T21:30:00Z",
-   "source": "https://www.nbcnews.com/business/markets/stocks-lower-after-nvidia-fueled-gains-rcna611211",
-   "source_name": "NBC News"
+   "conflict_id": "thailand",
+   "title_th": "ผู้ว่าการ ธปท. ระบุเงินบาทอ่อนผ่าน 34 บาทต่อดอลลาร์",
+   "time": "2026-11-27T07:00:00Z",
+   "source": "https://www.thaienquirer.com/76525/thai-enquirer-news-summary-november-27-2026/",
+   "source_name": "Thai Enquirer"
   },
   {
    "id": "h7",
    "conflict_id": "economy",
-   "title_th": "Nasdaq ร่วงราว 1.5% หุ้นชิปดิ่ง หลัง Nvidia ให้คืนกำไรจากแรงพุ่งวันก่อน",
-   "time": "2026-11-24T21:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/23/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
+   "title_th": "Core PCE สูงกว่าคาด 0.1 จุด PCE รวมเพิ่ม 3.8% สูงสุดตั้งแต่ปี 2023",
+   "time": "2026-11-27T06:00:00Z",
+   "source": "https://247wallst.com/investing/2026/11/27/the-feds-preferred-inflation-gauge-just-hit-a-level-not-seen-since-2023-and-its-bad-news-for-wall-street/",
+   "source_name": "24/7 Wall St (อ้างอิง CNBC)"
   },
   {
    "id": "h8",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "รมว.กลาโหมอิสราเอลระบุอิหร่านพัฒนาอาวุธเคมี ท่ามกลางการปิดล้อมของสหรัฐ",
-   "time": "2026-11-24T16:00:00Z",
-   "source": "https://www.cbsnews.com/live-updates/iran-war-us-trump-blockade-strait-of-hormuz-ship-attacks/",
-   "source_name": "CBS News"
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตียูเครนข้ามคืนด้วยโดรน 155 ลำ ยิงตก 110 ลำ ถูกเป้าหมาย 27 จุด",
+   "time": "2026-11-27T05:00:00Z",
+   "source": "https://en.lb.ua/news/2026/11/27/51660_russia_attacks_ukraine_overnight.html",
+   "source_name": "LB.ua"
   },
   {
    "id": "h9",
+   "conflict_id": "taiwan_strait",
+   "title_th": "ผู้สมัครทั่วไต้หวันหาเสียงรอบสุดท้ายก่อนเลือกตั้งท้องถิ่นวันเสาร์ ท่ามกลางข้อกล่าวหาจีนแทรกแซง",
+   "time": "2026-11-27T05:00:00Z",
+   "source": "https://www.taiwanplus.com/news/newscasts/taiwanplus-news/261127015/taiwan-candidates-make-final-push-ahead-of-local-elections-nov-27-2026",
+   "source_name": "TaiwanPlus"
+  },
+  {
+   "id": "h10",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "ส.ส.อิหร่านประกาศจะทำลายการปิดล้อมทางเรือของสหรัฐ อ้างควบคุมฮอร์มุซได้เต็มที่",
+   "time": "2026-11-27T04:30:00Z",
+   "source": "https://aninews.in/news/world/middle-east/iran-vows-to-break-us-naval-blockade-claims-full-control-over-strait-of-hormuz-mp-esmaeil-kowsari20261127095057/",
+   "source_name": "ANI"
+  },
+  {
+   "id": "h11",
+   "conflict_id": "economy",
+   "title_th": "หุ้นสหรัฐ: ดาวโจนส์ปิดบวก 0.33% ขณะ Nasdaq ลบ 0.62% และ S&P 500 ลบ 0.25%",
+   "time": "2026-11-27T01:00:00Z",
+   "source": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-nov-27-075400531.html",
+   "source_name": "Yahoo Finance"
+  },
+  {
+   "id": "h12",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ซาอุฯ ระบุโดรนฮูตีโจมตีตึกในริยาด บาดเจ็บ 11 คน กองกำลังพันธมิตรประณาม",
    "time": "2026-11-24T15:00:00Z",
@@ -74,36 +98,12 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h10",
+   "id": "h13",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ปริมาณขนส่งน้ำมันผ่านฮอร์มุซลดลง 40% จากการโจมตีเรือบรรทุกน้ำมันของอิหร่าน",
    "time": "2026-11-24T12:00:00Z",
    "source": "https://www.aljazeera.com/news/2026/11/24/hormuz-oil-traffic-is-down-40-percent-are-irans-tanker-attacks-working",
    "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "thailand",
-   "title_th": "ราคาทองคำไทยปิดตลาดพุ่ง 1,200 บาท หลังผันผวนหนักตลอดวัน",
-   "time": "2026-11-24T10:30:00Z",
-   "source": "https://www.nationthailand.com/business/trading-investment/40073838",
-   "source_name": "Nation Thailand"
-  },
-  {
-   "id": "h12",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตีซาปอริชเชีย เสียชีวิต 2 ราย บาดเจ็บกว่า 40 ราย รวมทารก",
-   "time": "2026-11-24T08:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/24/russian-attack-kills-two-people-in-ukraines-zaporizhzhia",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "taiwan_strait",
-   "title_th": "จีนวิจารณ์ผู้สมัครพรรครัฐบาลไต้หวัน ก่อนการเลือกตั้งท้องถิ่น ไทเปเตือนจีนแทรกแซงเลือกตั้ง",
-   "time": "2026-11-24T05:00:00Z",
-   "source": "https://www.japantimes.co.jp/news/2026/11/24/asia-pacific/politics/taiwan-elections-china-beijing/",
-   "source_name": "Japan Times"
   }
  ]
 }
