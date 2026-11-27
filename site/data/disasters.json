@@ -1,18 +1,19 @@
 {
- "updated": "2026-11-27T05:16:36Z",
- "checked": "2026-11-27T05:16:36Z",
- "ok": true,
- "message_th": "",
+ "updated": "2026-11-27T06:24:43Z",
+ "checked": "2026-11-27T06:24:43Z",
+ "ok": false,
+ "message_th": "โหลดข้อมูลจาก GDACS ไม่สำเร็จรอบนี้ แสดงเหตุการณ์จากรอบก่อนของแหล่งนั้น",
  "feeds": {
   "gdacs": {
-   "ok": true,
+   "ok": false,
    "fetched": "2026-11-27T05:16:36Z",
    "count": 4,
-   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-13&toDate=2026-11-28&pagesize=100&pagenumber=1"
+   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-13&toDate=2026-11-28&pagesize=100&pagenumber=1",
+   "error": "URLError: <urlopen error timed out>"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-27T05:16:36Z",
+   "fetched": "2026-11-27T06:24:43Z",
    "count": 6,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
