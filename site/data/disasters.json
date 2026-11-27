@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-27T08:19:48Z",
- "checked": "2026-11-27T08:19:48Z",
+ "updated": "2026-11-27T09:16:03Z",
+ "checked": "2026-11-27T09:16:03Z",
  "ok": false,
  "message_th": "โหลดข้อมูลจาก GDACS ไม่สำเร็จรอบนี้ แสดงเหตุการณ์จากรอบก่อนของแหล่งนั้น",
  "feeds": {
@@ -13,7 +13,7 @@
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-27T08:19:48Z",
+   "fetched": "2026-11-27T09:16:03Z",
    "count": 5,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
