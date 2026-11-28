@@ -1,16 +1,64 @@
 {
- "updated_at": "2026-11-28T01:13:59Z",
+ "updated_at": "2026-11-28T13:11:18Z",
  "items": [
   {
    "id": "h1",
-   "conflict_id": "economy",
-   "title_th": "หุ้นสหรัฐพุ่ง S&P 500 ปิด 7,297.49 จุด +1.6% ปิดสัปดาห์ที่ดีที่สุดในรอบกว่าหนึ่งปี",
-   "time": "2026-11-27T21:00:00Z",
-   "source": "https://www.cnbc.com/2026/11/26/stock-market-today-live-updates.html",
-   "source_name": "CNBC"
+   "conflict_id": "taiwan_strait",
+   "title_th": "ไต้หวันเลือกตั้งท้องถิ่น DPP รักษาเก้าอี้ผู้ว่าการเทศมณฑลผิงตงไว้ได้",
+   "time": "2026-11-28T10:00:00Z",
+   "source": "https://focustaiwan.tw/politics/202611285002",
+   "source_name": "Focus Taiwan"
   },
   {
    "id": "h2",
+   "conflict_id": "gaza_israel",
+   "title_th": "หัวหน้าฮามาสชี้การโจมตีของอิสราเอลในกาซายอมรับไม่ได้ กำลังพิจารณาการตอบโต้",
+   "time": "2026-11-28T08:00:00Z",
+   "source": "https://www.timesofisrael.com/liveblog-november-28-2026/",
+   "source_name": "Times of Israel"
+  },
+  {
+   "id": "h3",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "IRGC ระบุเรือบรรทุกน้ำมัน 2 ลำชนทุ่นระเบิดและเกิดไฟไหม้ในช่องแคบฮอร์มุซ",
+   "time": "2026-11-28T06:00:00Z",
+   "source": "https://www.khaama.com/iran-two-oil-tankers-naval-mines-strait-hormuz/",
+   "source_name": "Khaama Press"
+  },
+  {
+   "id": "h4",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "กองทัพบกอิหร่านอ้างกองทัพเรือคุมน่านน้ำจากช่องแคบฮอร์มุซถึงมหาสมุทรอินเดียตอนเหนือ",
+   "time": "2026-11-28T06:00:00Z",
+   "source": "https://aninews.in/news/world/middle-east/iranian-army-claims-control-over-strategic-waters-from-strait-of-hormuz-to-northern-indian-ocean20261128113543/",
+   "source_name": "ANI"
+  },
+  {
+   "id": "h5",
+   "conflict_id": "ukraine_russia",
+   "title_th": "รัสเซียโจมตียูเครนข้ามคืนด้วยโดรน 162 ลำ ตรงกับวันรำลึกโฮโลโดมอร์",
+   "time": "2026-11-28T06:00:00Z",
+   "source": "https://thechrissampson.substack.com/p/ukraine-daily-november-28-2026-russia",
+   "source_name": "Ukraine Daily"
+  },
+  {
+   "id": "h6",
+   "conflict_id": "economy",
+   "title_th": "น้ำมันเบรนต์ปิดสัปดาห์บวกราว 3% ครั้งแรกในเดือน พ.ย. จากความกังวลอุปทานในอ่าวเปอร์เซีย",
+   "time": "2026-11-28T00:00:00Z",
+   "source": "https://www.hawaiitribune-herald.com/2026/11/28/nation-world-news/oil-notches-first-weekly-gain-in-november-on-supply-fears/",
+   "source_name": "AP"
+  },
+  {
+   "id": "h7",
+   "conflict_id": "economy",
+   "title_th": "S&P 500 ปิดสัปดาห์ดีที่สุดนับแต่เดือน เม.ย. 2025 เมื่อกลุ่ม AI ฟื้นตัว",
+   "time": "2026-11-27T21:00:00Z",
+   "source": "https://www.bloomberg.com/news/articles/2026-11-26/asian-stock-futures-signal-gains-oil-climbs-again-markets-wrap",
+   "source_name": "Bloomberg"
+  },
+  {
+   "id": "h8",
    "conflict_id": "iran_us_israel_war",
    "title_th": "โดรนโจมตีคูเวตทำชาวอิตาลีเสียชีวิต 2 คน อิหร่านปฏิเสธ ทรัมป์ว่าสงครามจบเมื่อใดก็ได้",
    "time": "2026-11-27T13:00:00Z",
@@ -18,7 +66,23 @@
    "source_name": "CNBC"
   },
   {
-   "id": "h3",
+   "id": "h9",
+   "conflict_id": "thailand",
+   "title_th": "ตลาดหลักทรัพย์ไทยเข้มกฎขายชอร์ตหลังหุ้นเทคและ AI ถูกเทขายหนัก",
+   "time": "2026-11-27T12:00:00Z",
+   "source": "https://www.nationthailand.com/",
+   "source_name": "Nation Thailand"
+  },
+  {
+   "id": "h10",
+   "conflict_id": "world",
+   "title_th": "UN เตือนภาวะอดอยากในตะวันออกกลางแย่ลง จากความขัดแย้งและการตัดงบช่วยเหลือ",
+   "time": "2026-11-27T12:00:00Z",
+   "source": "https://www.thenationalnews.com/news/2026/11/27/un-warns-of-worsening-hunger-in-middle-east-due-to-conflict-and-aid-cuts/",
+   "source_name": "The National"
+  },
+  {
+   "id": "h11",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "สื่อฮูตีระบุ ซาอุฯ โจมตีทางอากาศในไทซ์ของเยเมน เสียชีวิต 11 คน รวมเด็ก",
    "time": "2026-11-27T10:00:00Z",
@@ -26,39 +90,15 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h4",
+   "id": "h12",
    "conflict_id": "thailand",
-   "title_th": "SET ปิด 1,440.29 จุด เพิ่ม 25.85 จุด หรือ 1.83% มูลค่าซื้อขาย 5.24 หมื่นล้านบาท",
-   "time": "2026-11-27T10:00:00Z",
-   "source": "https://www.kaohooninternational.com/markets/595651",
-   "source_name": "Kaohoon International"
+   "title_th": "ทองคำไทยปรับขึ้น 1,400 บาท ตามราคาทองโลกที่มีแรงซื้อกลับ",
+   "time": "2026-11-27T08:00:00Z",
+   "source": "https://www.nationthailand.com/business/trading-investment/40074011",
+   "source_name": "Nation Thailand"
   },
   {
-   "id": "h5",
-   "conflict_id": "gaza_israel",
-   "title_th": "อิสราเอลโจมตีคลังอาวุธฮามาส 4 แห่งในฉนวนกาซา",
-   "time": "2026-11-27T09:07:00Z",
-   "source": "https://www.timesofisrael.com/liveblog-november-27-2026/",
-   "source_name": "Times of Israel"
-  },
-  {
-   "id": "h6",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "IRGC ระบุเรือบรรทุกน้ำมันชนทุ่นระเบิดและระเบิดในช่องแคบฮอร์มุซ",
-   "time": "2026-11-27T09:00:00Z",
-   "source": "https://www.aljazeera.com/news/liveblog/2026/11/27/iran-war-live-irans-araghchi-calls-deadly-kuwait-attack-suspicious",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h7",
-   "conflict_id": "thailand",
-   "title_th": "ผู้ว่าการ ธปท. ระบุเงินบาทอ่อนผ่าน 34 บาทต่อดอลลาร์",
-   "time": "2026-11-27T07:00:00Z",
-   "source": "https://www.thaienquirer.com/76525/thai-enquirer-news-summary-november-27-2026/",
-   "source_name": "Thai Enquirer"
-  },
-  {
-   "id": "h8",
+   "id": "h13",
    "conflict_id": "economy",
    "title_th": "Core PCE สูงกว่าคาด 0.1 จุด PCE รวมเพิ่ม 3.8% สูงสุดตั้งแต่ปี 2023",
    "time": "2026-11-27T06:00:00Z",
@@ -66,43 +106,11 @@
    "source_name": "24/7 Wall St (อ้างอิง CNBC)"
   },
   {
-   "id": "h9",
-   "conflict_id": "ukraine_russia",
-   "title_th": "รัสเซียโจมตียูเครนข้ามคืนด้วยโดรน 155 ลำ ยิงตก 110 ลำ ถูกเป้าหมาย 27 จุด",
-   "time": "2026-11-27T05:00:00Z",
-   "source": "https://en.lb.ua/news/2026/11/27/51660_russia_attacks_ukraine_overnight.html",
-   "source_name": "LB.ua"
-  },
-  {
-   "id": "h10",
-   "conflict_id": "taiwan_strait",
-   "title_th": "ผู้สมัครทั่วไต้หวันหาเสียงรอบสุดท้ายก่อนเลือกตั้งท้องถิ่นวันเสาร์ ท่ามกลางข้อกล่าวหาจีนแทรกแซง",
-   "time": "2026-11-27T05:00:00Z",
-   "source": "https://www.taiwanplus.com/news/newscasts/taiwanplus-news/261127015/taiwan-candidates-make-final-push-ahead-of-local-elections-nov-27-2026",
-   "source_name": "TaiwanPlus"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ส.ส.อิหร่านประกาศจะทำลายการปิดล้อมทางเรือของสหรัฐ อ้างควบคุมฮอร์มุซได้เต็มที่",
-   "time": "2026-11-27T04:30:00Z",
-   "source": "https://aninews.in/news/world/middle-east/iran-vows-to-break-us-naval-blockade-claims-full-control-over-strait-of-hormuz-mp-esmaeil-kowsari20261127095057/",
-   "source_name": "ANI"
-  },
-  {
-   "id": "h12",
+   "id": "h14",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "ซาอุฯ ระบุโดรนฮูตีโจมตีตึกในริยาด บาดเจ็บ 11 คน กองกำลังพันธมิตรประณาม",
    "time": "2026-11-24T15:00:00Z",
    "source": "https://www.aljazeera.com/news/2026/11/24/saudi-led-coalition-condemns-terrorist-attack-on-tower-in-riyadh",
-   "source_name": "Al Jazeera"
-  },
-  {
-   "id": "h13",
-   "conflict_id": "iran_us_israel_war",
-   "title_th": "ปริมาณขนส่งน้ำมันผ่านฮอร์มุซลดลง 40% จากการโจมตีเรือบรรทุกน้ำมันของอิหร่าน",
-   "time": "2026-11-24T12:00:00Z",
-   "source": "https://www.aljazeera.com/news/2026/11/24/hormuz-oil-traffic-is-down-40-percent-are-irans-tanker-attacks-working",
    "source_name": "Al Jazeera"
   }
  ]
