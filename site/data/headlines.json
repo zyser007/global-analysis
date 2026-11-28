@@ -1,16 +1,24 @@
 {
- "updated_at": "2026-11-27T13:13:34Z",
+ "updated_at": "2026-11-28T01:13:59Z",
  "items": [
   {
    "id": "h1",
    "conflict_id": "economy",
-   "title_th": "ตลาดหุ้นสหรัฐผันผวนจากหุ้นเกี่ยวกับ AI นักลงทุนจับตาตัวเลขจ้างงานสัปดาห์หน้า",
-   "time": "2026-11-27T11:00:00Z",
-   "source": "https://www.marketscreener.com/news/sliding-stock-market-confronts-jobs-data-rate-view-as-next-tests-ce7851d9dc8af621",
-   "source_name": "Reuters"
+   "title_th": "หุ้นสหรัฐพุ่ง S&P 500 ปิด 7,297.49 จุด +1.6% ปิดสัปดาห์ที่ดีที่สุดในรอบกว่าหนึ่งปี",
+   "time": "2026-11-27T21:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/26/stock-market-today-live-updates.html",
+   "source_name": "CNBC"
   },
   {
    "id": "h2",
+   "conflict_id": "iran_us_israel_war",
+   "title_th": "โดรนโจมตีคูเวตทำชาวอิตาลีเสียชีวิต 2 คน อิหร่านปฏิเสธ ทรัมป์ว่าสงครามจบเมื่อใดก็ได้",
+   "time": "2026-11-27T13:00:00Z",
+   "source": "https://www.cnbc.com/2026/11/27/us-iran-war-trump-hormuz-italian-killed-trump.html",
+   "source_name": "CNBC"
+  },
+  {
+   "id": "h3",
    "conflict_id": "yemen_houthi_saudi",
    "title_th": "สื่อฮูตีระบุ ซาอุฯ โจมตีทางอากาศในไทซ์ของเยเมน เสียชีวิต 11 คน รวมเด็ก",
    "time": "2026-11-27T10:00:00Z",
@@ -18,7 +26,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h3",
+   "id": "h4",
    "conflict_id": "thailand",
    "title_th": "SET ปิด 1,440.29 จุด เพิ่ม 25.85 จุด หรือ 1.83% มูลค่าซื้อขาย 5.24 หมื่นล้านบาท",
    "time": "2026-11-27T10:00:00Z",
@@ -26,7 +34,7 @@
    "source_name": "Kaohoon International"
   },
   {
-   "id": "h4",
+   "id": "h5",
    "conflict_id": "gaza_israel",
    "title_th": "อิสราเอลโจมตีคลังอาวุธฮามาส 4 แห่งในฉนวนกาซา",
    "time": "2026-11-27T09:07:00Z",
@@ -34,7 +42,7 @@
    "source_name": "Times of Israel"
   },
   {
-   "id": "h5",
+   "id": "h6",
    "conflict_id": "iran_us_israel_war",
    "title_th": "IRGC ระบุเรือบรรทุกน้ำมันชนทุ่นระเบิดและระเบิดในช่องแคบฮอร์มุซ",
    "time": "2026-11-27T09:00:00Z",
@@ -42,7 +50,7 @@
    "source_name": "Al Jazeera"
   },
   {
-   "id": "h6",
+   "id": "h7",
    "conflict_id": "thailand",
    "title_th": "ผู้ว่าการ ธปท. ระบุเงินบาทอ่อนผ่าน 34 บาทต่อดอลลาร์",
    "time": "2026-11-27T07:00:00Z",
@@ -50,7 +58,7 @@
    "source_name": "Thai Enquirer"
   },
   {
-   "id": "h7",
+   "id": "h8",
    "conflict_id": "economy",
    "title_th": "Core PCE สูงกว่าคาด 0.1 จุด PCE รวมเพิ่ม 3.8% สูงสุดตั้งแต่ปี 2023",
    "time": "2026-11-27T06:00:00Z",
@@ -58,7 +66,7 @@
    "source_name": "24/7 Wall St (อ้างอิง CNBC)"
   },
   {
-   "id": "h8",
+   "id": "h9",
    "conflict_id": "ukraine_russia",
    "title_th": "รัสเซียโจมตียูเครนข้ามคืนด้วยโดรน 155 ลำ ยิงตก 110 ลำ ถูกเป้าหมาย 27 จุด",
    "time": "2026-11-27T05:00:00Z",
@@ -66,7 +74,7 @@
    "source_name": "LB.ua"
   },
   {
-   "id": "h9",
+   "id": "h10",
    "conflict_id": "taiwan_strait",
    "title_th": "ผู้สมัครทั่วไต้หวันหาเสียงรอบสุดท้ายก่อนเลือกตั้งท้องถิ่นวันเสาร์ ท่ามกลางข้อกล่าวหาจีนแทรกแซง",
    "time": "2026-11-27T05:00:00Z",
@@ -74,20 +82,12 @@
    "source_name": "TaiwanPlus"
   },
   {
-   "id": "h10",
+   "id": "h11",
    "conflict_id": "iran_us_israel_war",
    "title_th": "ส.ส.อิหร่านประกาศจะทำลายการปิดล้อมทางเรือของสหรัฐ อ้างควบคุมฮอร์มุซได้เต็มที่",
    "time": "2026-11-27T04:30:00Z",
    "source": "https://aninews.in/news/world/middle-east/iran-vows-to-break-us-naval-blockade-claims-full-control-over-strait-of-hormuz-mp-esmaeil-kowsari20261127095057/",
    "source_name": "ANI"
-  },
-  {
-   "id": "h11",
-   "conflict_id": "economy",
-   "title_th": "หุ้นสหรัฐ: ดาวโจนส์ปิดบวก 0.33% ขณะ Nasdaq ลบ 0.62% และ S&P 500 ลบ 0.25%",
-   "time": "2026-11-27T01:00:00Z",
-   "source": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-nov-27-075400531.html",
-   "source_name": "Yahoo Finance"
   },
   {
    "id": "h12",
