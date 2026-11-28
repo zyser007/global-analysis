@@ -1,20 +1,19 @@
 {
- "updated": "2026-11-27T23:13:07Z",
- "checked": "2026-11-27T23:13:07Z",
- "ok": false,
- "message_th": "โหลดข้อมูลจาก GDACS ไม่สำเร็จรอบนี้ แสดงเหตุการณ์จากรอบก่อนของแหล่งนั้น",
+ "updated": "2026-11-28T00:33:11Z",
+ "checked": "2026-11-28T00:33:11Z",
+ "ok": true,
+ "message_th": "",
  "feeds": {
   "gdacs": {
-   "ok": false,
-   "fetched": "2026-11-27T21:13:19Z",
+   "ok": true,
+   "fetched": "2026-11-28T00:33:11Z",
    "count": 4,
-   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-13&toDate=2026-11-28&pagesize=100&pagenumber=1",
-   "error": "TimeoutError: The read operation timed out"
+   "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=orange;red&fromDate=2026-10-14&toDate=2026-11-29&pagesize=100&pagenumber=1"
   },
   "usgs": {
    "ok": true,
-   "fetched": "2026-11-27T23:13:07Z",
-   "count": 5,
+   "fetched": "2026-11-28T00:33:11Z",
+   "count": 4,
    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
   }
  },
@@ -235,27 +234,6 @@
    "severity_value": 6.8,
    "severity_unit": "M",
    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucij",
-   "source_name": "USGS"
-  },
-  {
-   "id": "usgs-us6000ucfm",
-   "type": "earthquake",
-   "title_th": "แผ่นดินไหวขนาด 6.7 ในเปรู",
-   "country": "Peru",
-   "country_th": "เปรู",
-   "countries": [
-    "Peru"
-   ],
-   "lat": -10.8889,
-   "lon": -75.966,
-   "start": "2026-11-21T00:09:21Z",
-   "end": "2026-11-21T00:09:21Z",
-   "updated": "2026-11-25T19:59:30Z",
-   "alert_level": "green",
-   "severity_th": "ขนาด 6.7 ลึก 125 กม.",
-   "severity_value": 6.7,
-   "severity_unit": "M",
-   "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucfm",
    "source_name": "USGS"
   }
  ]
